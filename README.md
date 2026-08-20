@@ -6,35 +6,37 @@ Written for **platform PMs, API and DX engineers, SDK authors, and partner engin
 
 ## 📚 Related Collections
 
-- [`developer-relations-skills`](https://github.com/samber/developer-relations-skills) — DevRel strategy & execution — _for developer advocates, DevRel managers, community managers_
-- [`dev-event-organizer-skills`](https://github.com/samber/dev-event-organizer-skills) — Technical event operations — _for event organizers, conference producers, hackathon leads, community builders_
+- [`developer-relations-skills`](https://github.com/samber/developer-relations-skills): DevRel strategy & execution: _for developer advocates, DevRel managers, community managers_
+- [`dev-event-organizer-skills`](https://github.com/samber/dev-event-organizer-skills): Technical event operations: _for event organizers, conference producers, hackathon leads, community builders_
 
 _Part of the [samber skills ecosystem](https://github.com/samber?tab=repositories&q=skills)_
 
 ## 🚀 Install
 
-Install every skill in this repo, not just one. Skills here are atomic by design and reference each other freely — picking a single skill leaves its sibling skills uninstalled, so cross-references and routed handoffs go nowhere.
+Install every skill in this repo, not just one. Skills here are atomic by design and reference each other freely: picking a single skill leaves its sibling skills uninstalled, so cross-references and routed handoffs go nowhere.
 
-**skills.sh (universal)** — works with any Agent Skills-compatible tool:
+**skills.sh (universal)**: works with any Agent Skills-compatible tool:
 
 ```bash
 npx skills add samber/developer-platform-skills
 ```
 
-**Claude Code** — install the plugin:
+**Claude.ai**: add as a plugin marketplace: open **Settings -> Capabilities -> Plugins**, click **Add -> Add marketplace -> Add from a repository**, enter `samber/developer-platform-skills`, then **Sync**.
+
+**Claude Code**: install the plugin:
 
 ```bash
 /plugin marketplace add samber/cc
 /plugin install developer-platform-skills@samber
 ```
 
-**Codex (OpenAI)** — install via the Codex CLI:
+**Codex (OpenAI)**: install via the Codex CLI:
 
 ```bash
 codex plugin add github:samber/developer-platform-skills
 ```
 
-**Cursor** — copy into Cursor's skills directory:
+**Cursor**: copy into Cursor's skills directory:
 
 ```bash
 git clone https://github.com/samber/developer-platform-skills.git ~/.cursor/skills/developer-platform-skills
@@ -42,7 +44,7 @@ git clone https://github.com/samber/developer-platform-skills.git ~/.cursor/skil
 
 Cursor auto-discovers skills from `.agents/skills/` and `.cursor/skills/`.
 
-**Gemini CLI** — install as a Gemini extension:
+**Gemini CLI**: install as a Gemini extension:
 
 ```bash
 gemini extensions install https://github.com/samber/developer-platform-skills
@@ -54,9 +56,9 @@ Update with `gemini extensions update developer-platform-skills`.
 
 This collection covers the full developer-platform surface. Start here:
 
-- [`developer-platform-kickoff`](./developer-platform-kickoff) — Routes any developer-platform task to the right skill in this collection, returning a ranked short-list, an ordered chain, and an honest gap list.
-- [`developer-platform-career`](./developer-platform-career) — Plans a developer-platform career from the candidate side: role track, company archetype, portfolio signals, interview prep, and offer benchmarking.
-- [`developer-platform-hiring`](./developer-platform-hiring) — Builds the hiring side of a developer-platform role: scorecard, interview loop, sourcing channels, and compensation stance.
+- [`developer-platform-kickoff`](./developer-platform-kickoff): Routes any developer-platform task to the right skill in this collection, returning a ranked short-list, an ordered chain, and an honest gap list.
+- [`developer-platform-career`](./developer-platform-career): Plans a developer-platform career from the candidate side: role track, company archetype, portfolio signals, interview prep, and offer benchmarking.
+- [`developer-platform-hiring`](./developer-platform-hiring): Builds the hiring side of a developer-platform role: scorecard, interview loop, sourcing channels, and compensation stance.
 
 ### API design
 
