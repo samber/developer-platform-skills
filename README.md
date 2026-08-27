@@ -59,9 +59,14 @@ Update with `gemini extensions update developer-platform-skills`.
 
 ## 📦 Skills
 
-This collection covers the full developer-platform surface. Start here:
+This collection covers the full developer-platform surface.
 
-- [`developer-platform-kickoff`](./developer-platform-kickoff): Routes any developer-platform task to the right skill in this collection, returning a ranked short-list, an ordered chain, and an honest gap list.
+### Start here
+
+[`developer-platform-kickoff`](./developer-platform-kickoff): Routes any developer-platform task to the right skill in this collection, returning a ranked short-list, an ordered chain, and an honest gap list.
+
+### Meta
+
 - [`developer-platform-career`](./developer-platform-career): Plans a developer-platform career from the candidate side: role track, company archetype, portfolio signals, interview prep, and offer benchmarking.
 - [`developer-platform-hiring`](./developer-platform-hiring): Builds the hiring side of a developer-platform role: scorecard, interview loop, sourcing channels, and compensation stance.
 
