@@ -20,7 +20,7 @@ Two OWASP anchors frame the whole task (API Security Top 10 2023, API2 Broken Au
 
 Ask these before designing anything; each answer changes a later step. Batch them - this is a tactical design task, not a strategy interview.
 
-1. Greenfield or retrofit? If retrofit: the current key format, how keys are stored today (plaintext, hashed, encrypted), and roughly how many live keys exist.
+1. Greenfield or retrofit? If retrofit: request the current key format, how keys are stored today (plaintext, hashed, encrypted), and roughly how many live keys exist.
 2. Who holds keys: individual developers experimenting, teams running shared production integrations, unattended workloads (CI, scheduled jobs, AI agents / MCP servers)? (see next section)
 3. Do third-party apps act on behalf of your users, or do consumers only ever call as themselves? (drives the key-vs-OAuth boundary)
 4. Compliance regimes in scope: payment or cardholder data (PCI-DSS)? Enterprise buyers requiring SOC 2? Neither yet? (see step 7)
