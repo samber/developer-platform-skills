@@ -127,7 +127,7 @@ See [references/key-lifecycle-walkthrough.md](references/key-lifecycle-walkthrou
 - Never retry a read timeout on a non-idempotent operation without an idempotency key already in place. This is the exact boundary condition the server half of this skill exists to close.
 - Backoff must carry jitter. Ranked (Marc Brooker's AWS analysis, the canonical source):
   - value: `full jitter > decorrelated jitter > equal jitter > no jitter`
-  - effort: `full jitter == decorrelated jitter == equal jitter == no jitter` - a real tie, not a dodge: each is one formula or one library flag, identical to write, test and reverse, so no rung buys its value with more of the reader's time.
+  - effort: `full jitter == decorrelated jitter == equal jitter == no jitter` - a real tie, not a dodge: each is one formula or one library flag, identical to write, test, and reverse, so no rung buys its value with more of the reader's time.
   - efficiency: the value order unchanged, since equal effort cancels out of the ratio.
   - **Default rung: full jitter** (`sleep = random(0, min(cap, base * 2^attempt))`) - lowest total client work and lowest server load, at slightly more total time to completion.
   - Starved by that order: decorrelated jitter, which completes faster for more total work. Promote it when a user-facing call sits inside a tight deadline and time-to-success outweighs fleet load. Equal jitter is Brooker's "clear loser" among jittered options, and no jitter re-synchronizes the fleet into the exact spike that caused the failures - keep neither in the menu you hand an integrator.
