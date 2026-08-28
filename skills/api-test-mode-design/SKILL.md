@@ -35,7 +35,7 @@ Ask before designing anything; each answer changes a later step. Batch them - th
 6. Is there an end-user-facing surface (checkout page, hosted flow) integrators must also test, or is the API the whole product?
 7. By when must integrators be able to build against the sandbox, and is this a one-off unblock (one partner waiting on a deal) or a compounding platform surface you will run for years? (with question 2's budget, these are the re-rank inputs for steps 1 and 2)
 
-Question 7 exists because the isolation menu (step 1) and the simulation menu (step 2) diverge sharply on time-to-effect, durability and effort. Neither ranking can be picked without it.
+Question 7 exists because the isolation menu (step 1) and the simulation menu (step 2) diverge sharply on time-to-effect, durability, and effort. Neither ranking can be picked without it.
 
 - A hard date promotes the soft toggle and magic values.
 - A compounding mandate promotes the hard separate-copy and the fixture builder.
