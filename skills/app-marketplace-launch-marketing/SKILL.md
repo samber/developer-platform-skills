@@ -47,7 +47,7 @@ The splits that actually change the design are the ones the interview asks:
 
 ## Workflow
 
-1. Gate: which launch moment, and is the vetting story real.
+1. Gate: which launch moment, and whether the vetting story is real.
 2. Size and gate the founding cohort (debut only).
 3. Plan the reveal: embargo, quotes, event anchor.
 4. Design the ongoing featuring/spotlight program.
