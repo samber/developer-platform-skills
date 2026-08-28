@@ -23,7 +23,7 @@ One question structures everything else: **who is merchant of record** - the mar
 
 - Tax liability
 - Chargeback ownership
-- Which pricing models developers can even offer
+- Available developer pricing models
 - How payouts work
 
 ## Interview
