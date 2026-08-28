@@ -191,7 +191,7 @@ Post-approval security is a standing program, not a one-time gate. Write four th
 - **Guarding the front door, leaving the back door open.** A heavy initial gate with ungated updates is the exact 2024-2026 incident pattern. Fix: steps 3-4 before deepening step 1.
 - **Subjective re-review trigger.** "Substantial changes" decays into never-resubmitted because nobody can self-assess it. Fix: the objective trigger list.
 - **Over-attributing incidents to review.** A third-party app breach is not automatically a review failure. Claim a causal process change only when the operator itself states one ([references/update-channel-hardening.md](references/update-channel-hardening.md) carries the working rule). Redesigning the gate after an incident the gate could never have caught spends effort on the wrong control.
-- **Uniform depth held past its volume.** A single hard gate kept after reviewer cost becomes the constraint produces multi-week queues and developer churn - the benchmarked no-SLA marketplace draws exactly those complaints in its own forums.
+- **Uniform depth held past its volume.** A single hard gate, kept after reviewer cost becomes the constraint, produces multi-week queues and developer churn - the benchmarked no-SLA marketplace draws exactly those complaints in its own forums.
 - **Automation without triage design.** Scanning everything and ticketing everything drowns reviewers. Auto-ticket critical/high only, and route only genuinely ambiguous signal classes to humans.
 - **An appeal that is secretly resubmission.** Labeling office hours an appeal erodes trust and, for EU-facing marketplaces, leaves the P2B exposure unaddressed.
 
