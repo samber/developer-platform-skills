@@ -39,7 +39,7 @@ If your harness has persistent memory, store the practice's core decisions: comp
 
 ## Reader roles
 
-Whoever bought the product, the people reading a status page during an incident split by role, and the two roles want different pages:
+Regardless of whoever bought the product, the people reading a status page during an incident split by role, and the two roles want different pages:
 
 - **Integrating developers** - want component-level technical detail: which endpoints, per-region scoping, latency numbers, timestamps, and a postmortem deep enough to trust. They wire status into their own alerting, which makes machine-readable push channels (webhook, RSS) first-class.
 - **Business stakeholders and end customers** - want plain language: is it down, what's affected, when will it be fixed. Latency metrics read as noise to them.
