@@ -29,7 +29,7 @@ Ask one question per message and wait for the answer - each one changes a later 
 8. Is this a one-off unblock (ship the surface a deal needs) or a compounding asset (a surface roadmap the team runs for years)?
 9. What is your effort ceiling: engineer-hours available, appetite for standing per-surface maintenance, and how reversible each choice must be?
 
-Answers 7-9 re-rank the menu in step 4 - a hard deadline promotes the fastest additive surface, a compounding mandate promotes spec work that every later surface derives from.
+Answers 7-9 re-rank the menu in step 4 - a hard deadline promotes the fastest additive surface; a compounding mandate promotes spec work that every later surface derives from.
 
 ## Audience split by buyer type
 
