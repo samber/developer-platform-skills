@@ -20,7 +20,7 @@ Ask these before proposing anything. One question per message, multiple-choice w
 1. Where is the listing standard today? (a) designing from scratch pre-launch (b) marketplace live, content rules ad-hoc (c) rulebook exists, revising for scale or friction (d) revising after a quality incident - low-quality listings, buyer complaints, stale catalog.
 2. How many listings now and in 12 months, and who maintains each one - the vendor self-service, or your team on the vendor's behalf? The maintenance model sets how prescriptive the spec must be.
 3. Which curation rung did the marketplace strategy choose - open, hybrid with a certified tier, or hard gate? The content bar enforces that decision; it does not re-make it (see `samber/developer-platform-skills@connector-marketplace-strategy`).
-4. Who evaluates a listing before install - an end user self-serve installing, or an admin or committee doing diligence? This moves video length, tone, and description philosophy.
+4. Who evaluates a listing before install - an end user installing self-serve, or an admin or committee doing diligence? This moves video length, tone, and description philosophy.
 5. Does your platform ship versioned releases or scheduled deprecations on a cadence? This enables the strongest decay-enforcement rung.
 6. Which languages and regions must listings serve, now and in 24 months?
 7. Does a review, certification, or badge program exist or is one planned? Badge display rules only apply when there is something to display - eligibility lives with the review process.
