@@ -179,7 +179,7 @@ Anti-pattern checklist - each is a direct review finding:
 - **Silent schema drift**: a rename or type change ships to the export because nothing validates batches against a documented contract. The costliest failure in this domain - the break lands in the customer's dashboards, not your logs.
 - **Egress bill shock**: cross-region sharing launched without knowing which party pays per-byte egress, discovered on the first invoice at 70%-of-transfer-cost scale.
 - **Cross-border violation**: one global bucket for engineering simplicity, which silently commits you to SCC/TIA paperwork for every EU customer - or to a Meta-scale finding.
-- **Free-tier giveaway**: bulk export bundled free, against a feature class where every vendor studied gates it premium - margin surrendered that tier repricing can't easily claw back.
+- **Free-tier giveaway**: bulk export bundled free, against a feature class where every vendor studied gates it behind a premium tier - margin surrendered that tier repricing can't easily claw back.
 - **Proxied bytes**: export downloads routed through your API servers, making your fleet the throughput ceiling and the egress payer at once.
 - **Small-files decay**: no compaction, thousands of tiny files, consumer queries slow to a crawl - the measured 4x penalty.
 - **CDC without delete reconciliation**: deletes that never emit events accumulate as phantom rows in every customer's copy.
