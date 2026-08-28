@@ -26,7 +26,7 @@ Ask these before designing anything; each answer feeds a numbered step. Batch th
 7. What can the edge/gateway already emit? (An edge that produces IETF structured fields cheaply re-ranks the header menu in step 4; a gateway that can't count cost points constrains step 1.)
 8. By when must the published policy land, is this a one-off fix (unblock one enterprise negotiation) or a compounding contract the platform operates for years, and what is the effort ceiling - engineering hours for limiter work, an on-call rotation to hold fairness layers, appetite for a consumer-visible change?
 
-Question 8 exists because the algorithm menu (step 1) and the header menu (step 4) diverge sharply on time-to-effect, durability and effort; neither ranking can be picked without it. Each answer moves a different rung:
+Question 8 exists because the algorithm menu (step 1) and the header menu (step 4) diverge sharply on time-to-effect, durability, and effort; neither ranking can be picked without it. Each answer moves a different rung:
 
 - A hard date promotes whatever the current gateway already enforces, and the legacy header trio.
 - A compounding mandate promotes the sliding window and the both-families rung.
