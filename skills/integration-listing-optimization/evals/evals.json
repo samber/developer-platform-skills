@@ -1,0 +1,475 @@
+{
+  "skill_name": "integration-listing-optimization",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We run Cadenceloop, a standup-and-retro bot that's been live on the Slack Marketplace for about five months. Q4 plan from my head of growth: A/B test two versions of the listing description over six weeks, pick the winner on view-to-install conversion, then run a lifecycle email campaign to our 900 active workspaces to land 40 reviews by December so the star rating finally shows up. She wants a weekly dashboard review with me. Turn that into an execution plan with owners and a measurement setup.",
+      "expected_output": "A plan that classifies the Slack Marketplace as data-dark, refuses both the A/B test and the review campaign as unexecutable on that platform, and substitutes a write-once listing, external traffic generation, and a self-built install ledger based on the OAuth token store plus uninstall events.",
+      "files": [],
+      "expectations": [
+        "States that the Slack Marketplace exposes no listing analytics to publishers: no views, no installs, no conversion, and no search-term data.",
+        "Classifies the Slack Marketplace as a data-dark marketplace and says the measure-and-iterate loop does not apply there.",
+        "Declines the six-week A/B test specifically because no funnel exists to read a result from, not merely because the sample is small.",
+        "States that Slack exposes no review or rating system to submitters, so the 40-review goal cannot be executed on that marketplace at all.",
+        "Recommends a self-built install ledger and names the vendor's own OAuth token store as the install record.",
+        "Names subscribing to the app_uninstalled event, or an org-level uninstall event, as the churn signal to wire up.",
+        "States that Slack itself monitors the app's usage and uninstalls and contacts the developer directly.",
+        "Advises writing the best listing once and driving traffic from outside the marketplace instead of iterating on the listing.",
+        "Notes that Slack discoverability runs on editorial curation and categories rather than a published or inferable ranking algorithm.",
+        "Presents the absent analytics as deliberate platform design rather than a documentation gap or a request the vendor could file.",
+        "Flags an unmaintained Slack listing as a removal-risk trigger and assigns a named owner to a periodic refresh."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Trailhaus here, we make a bundle and volume-pricing app for Shopify merchants, live 8 months, sitting at about 140 installs. The app is currently called 'Trailhaus' with the subtitle 'Smarter pricing for growing stores'. Everything I've read says the name and subtitle are basically the whole ranking game, so I want to rename it to 'Bundle Discounts & Volume Pricing - Trailhaus' and set our five search terms to: 'bundle discounts for shopify stores', 'volume pricing app', 'increase average order value', 'quantity breaks', 'tiered pricing'. Sanity-check this and hand me the final strings.",
+      "expected_output": "A corrected title that leads with the brand per Shopify's own naming instruction, rejected search terms that violate the one-concept rule, a provenance label on the 80% weighting claim, and a keyword set sourced from real buyer language.",
+      "files": [],
+      "expectations": [
+        "Recommends a brand-first title with 'Trailhaus' leading, and rejects the proposed keyword-first name.",
+        "States that Shopify's own guidance instructs brand-first naming, and that the mobile app-store keyword-first convention does not transfer to it.",
+        "Rejects 'bundle discounts for shopify stores' and 'increase average order value' as search terms because each must express one concept.",
+        "States the search-terms rule that each term may be up to five complete words.",
+        "Labels the claim that name plus subtitle carry roughly 80% of keyword ranking weight as a practitioner estimate rather than a Shopify-official statement.",
+        "Establishes which fields the marketplace actually indexes for search instead of assuming all listing text counts.",
+        "Sources the keyword set from language buyers actually type, citing support tickets, sales-call notes, or the marketplace's own search-term report.",
+        "Distinguishes keyword coverage (terms present in indexed fields) from keyword performance (where the listing ranks), and says to track them separately.",
+        "Places the keyword rewrite as the highest-efficiency lever, ahead of media overhaul, review programs, and badge work.",
+        "Does not recommend reusing the same title convention on the vendor's listings on other marketplaces."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Parcelith, Shopify app for shipping-delay notifications. We have 9 reviews at 4.6 stars, our main competitor has 240. Marketing's proposal: (a) email our 1,200 merchants offering a $50 gift card to anyone who posts a review, (b) have the six of us on the team each write one so the count doesn't look dead, and (c) do a review swap with a partner app whose founder I know, they review us and we review them. It's a one-time push for our Black Friday launch window and then we stop. Write me the campaign brief.",
+      "expected_output": "A refusal of all three tactics with the specific enforcement consequences named, replaced by a sanctioned-trigger review program built on the platform's own mechanics plus post-support asks.",
+      "files": [],
+      "expectations": [
+        "Refuses the $50 gift-card incentive and states that all five benchmarked marketplaces ban incentivized reviews by agreement.",
+        "States the incentive ban covers offers made through external channels such as email, not only in-product prompts.",
+        "Names the graduated penalty ladder ending in termination of the Partner account and delisting of the app, not merely removal of reviews.",
+        "Warns that genuine reviews tied to an untrusted reviewer can be unpublished collaterally.",
+        "Refuses the six employee-written reviews.",
+        "Refuses the review swap with the partner vendor.",
+        "States that reviewer-attestation systems catch both employee reviews and cross-vendor swaps.",
+        "Rejects the 'one-time push then we stop' framing rather than granting a time-boxed exception.",
+        "Replaces the plan with triggers the platform itself operates: its auto-invite or copyable review link, and collection routed through its reviews API.",
+        "Adds an ask after a positive support interaction, specifying it must not block the user's workflow and must carry an opt-out from future asks.",
+        "States that review recency and velocity outweigh lifetime totals, so closing the 240-review gap directly is not the objective."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Board meeting in 11 days. I'm presenting the AppExchange plan for Northvane (revenue-forecasting software, listing live two years, 3.9 stars, 47 reviews). My two draft slides read: 'Title and subtitle carry ~80% of ranking weight, so rewriting them is our highest-leverage move' and 'Moving 3.9 to 4.4 stars drives +89% listing conversion, worth roughly $400K in new ARR at current traffic'. Tighten the wording and make the case airtight.",
+      "expected_output": "Both claims relabelled by provenance tier, the ARR extrapolation refused, and the board commitment rewritten to promise direction rather than magnitude.",
+      "files": [],
+      "expectations": [
+        "Labels the roughly 80% name-and-subtitle weighting as practitioner inference, and notes it originates as an estimate about a different marketplace rather than an AppExchange fact.",
+        "States that Salesforce publishes nothing about its AppExchange search algorithm, so ranking advice for it is inferred end to end.",
+        "Labels the +89% conversion figure as consumer mobile app-store data whose direction transfers but whose magnitude does not.",
+        "Applies an explicit provenance tier to each ranking claim, ordered vendor-official above corroborated practitioner inference above single-source inference above mobile-ASO analogy.",
+        "Rewrites the board commitment to promise direction rather than a specific magnitude of lift.",
+        "Refuses to derive the $400K ARR figure from the +89% number.",
+        "Identifies the Trailblazer Score as a partner-level health metric tied to visibility, not a per-listing ranking factor.",
+        "Names the only vendor-official ranking statements available anywhere in this discipline: Atlassian's on reviews, rating and rich media, and Shopify's Built for Shopify search boost.",
+        "Treats the newer intent-based AppExchange search favouring outcome-oriented language as emerging and still settling rather than established fact.",
+        "Does not quote a generic trust-badge conversion-lift figure as applicable to a B2B app listing."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Okrahead is listed on both the Shopify App Store and AppExchange. I have exactly one engineering quarter to spend on trust and credibility work, and my CTO's ordering is: (1) the Salesforce Security Review badge first, because enterprise logos care about it most, (2) Atlassian Cloud Fortified next since we launch there in H2, (3) Built for Shopify last, it's just a sticker. Confirm the sequencing and give me the quarter plan.",
+      "expected_output": "A corrected ranking that puts Built for Shopify first on confirmed ranking effect, reclassifies Security Review as a listing gate rather than a badge, and questions whether the badge quarter should be spent at all before cheaper levers ship.",
+      "files": [],
+      "expectations": [
+        "Corrects that the Salesforce Security Review is a listing gate rather than a badge, and that failing it delists the app.",
+        "Ranks Built for Shopify first among the badge candidates because it is the only one carrying a vendor-official ranking-boost statement.",
+        "States that Atlassian Cloud Fortified and Runs on Atlassian buy enterprise-procurement trust with no published quantified ranking lift.",
+        "Ranks badge candidates by confirmed ranking effect rather than perceived prestige.",
+        "Places badge pursuit as the lowest-efficiency rung of the optimization ladder, costing a quarter or more of engineering and process work for movement other levers buy faster.",
+        "Names the two conditions that promote badge pursuit anyway: an officially confirmed ranking effect, or enterprise procurement in the segment gating on the badge.",
+        "Asks whether procurement in their segment actually demands a badge before the quarter is committed.",
+        "Recommends working one marketplace at a time rather than running badge pursuit on both in parallel.",
+        "Says the keyword rewrite and first-screen media work should consume hours before the badge quarter, because they buy more rank and conversion movement per hour.",
+        "Does not present passing the Security Review as a ranking lever."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Fernlight goes live on the Atlassian Marketplace and the Shopify App Store on the same day next month. Our designer produced one asset kit we plan to use on both: a 2 minute 40 second promo video with voiceover, customer logos, and a closing card reading 'from $19/mo', plus six screenshots exported at 1600x900 where image 1 is our marketing site homepage, image 2 is our logo on a gradient, and images 3 to 6 are product views with a 5-star badge overlaid in the corner. Give me the upload checklist for both marketplaces.",
+      "expected_output": "A per-marketplace asset checklist that splits the video, resizes the screenshots, strips the banned pricing and rating claims, replaces the homepage and logo images, and reorders the first three gallery slots.",
+      "files": [],
+      "expectations": [
+        "States that Atlassian caps listing video at 30 seconds and requires a function demonstration in an anti-marketing tone, so the 2:40 promo cannot be reused there.",
+        "States that Shopify allows a two-to-three-minute promotional video but caps screencast footage at 25% of runtime.",
+        "Gives different screenshot dimensions per marketplace, naming 1600x900 for Shopify and 1840x900 for Atlassian.",
+        "Flags the 'from $19/mo' closing card as a pricing claim banned from listing imagery.",
+        "Flags the 5-star badge overlay as a review claim banned from listing imagery.",
+        "Rejects the logo-on-gradient image and notes that Shopify hard-rejects logo-only and duplicate images.",
+        "Rejects the marketing-site homepage as the first image and requires screenshots to be unique, in-product, and captioned.",
+        "Orders the first three gallery assets as hero, then key differentiator, then most-used or most-loved feature.",
+        "Labels the first-three gallery ordering and the evidence that most visitors never scroll past the third image as consumer app-store analogy rather than B2B fact.",
+        "States that demo video is platform-gated: worth building where the marketplace surfaces it prominently, skippable where it is buried.",
+        "Notes that Atlassian caps the listing at two categories and downgrades category-stale apps to uncategorized."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Glasswing, revenue-ops app on AppExchange, listing live 14 months and nobody has touched it. I want a full keyword and screenshot overhaul shipped next week. Two things to know: we have no listing numbers because Salesforce doesn't hand analytics to partners unless you're Summit tier, and roughly 31% of the orgs that install us uninstall within 45 days. My theory is that a stronger listing brings in better-fit customers and the churn sorts itself out. Plan the overhaul.",
+      "expected_output": "Instrumentation turned on first using the free AppExchange analytics the user wrongly believes are gated, the 31% uninstall rate treated as a blocker ahead of the overhaul, and a standing refresh cycle with a named owner.",
+      "files": [],
+      "expectations": [
+        "Puts instrumentation before any content change, on the grounds that an optimization that cannot be measured is a guess.",
+        "Corrects the Summit-tier assumption: AppExchange marketplace analytics are free to any partner with an active listing.",
+        "Names what that analytics surface exposes, including tile views, unique visitors, installs and lead events broken out by traffic source.",
+        "Names the report of top AppExchange search terms driving visits and installs, and routes the keyword rewrite through it instead of through guesswork.",
+        "Distinguishes the post-install telemetry API as churn and renewal tooling rather than listing-conversion data.",
+        "Treats the 31% uninstall rate as a blocker to fix before the listing overhaul rather than a problem a better listing solves.",
+        "Rejects the user's stated theory that better-fit traffic will make the churn sort itself out.",
+        "States that uninstall rate feeds ranking negatively where corroborated and that platforms monitor it independently of the vendor.",
+        "Warns that new installs won by a better listing become the uninstalls that sink the listing if the product gap stands.",
+        "Establishes a refresh cycle of 30 to 60 days with a named owner, and asks who owns the listing day to day and what changed on it in the last 90 days.",
+        "Lists view-to-install conversion, review velocity over the trailing 90 days, and uninstall rate among the operating KPIs."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Perchcode, we're on the HubSpot App Marketplace. Nine days ago we swapped our tagline and installs are up 1.6% since. I want to (a) roll the new tagline out to our Shopify and Atlassian listings this week, and (b) commit $8K/month of standing budget to paid marketplace placement on whichever of our marketplaces sells it, because organic has been flat since spring. Also pull our real view-to-install conversion so I can report it, HubSpot must surface that somewhere. Write it up as a one-pager for my CEO.",
+      "expected_output": "The 1.6% movement classified as noise, the HubSpot funnel correctly reported as nonexistent, the cross-marketplace rollout refused, and paid placement scoped to a time-boxed accelerant after the content levers ship.",
+      "files": [],
+      "expectations": [
+        "Treats the 1.6% movement as noise and names the threshold below which a lift is not acted on as roughly 2%.",
+        "Labels the significance thresholds as borrowed from consumer app-store A/B practice rather than measured on B2B marketplaces.",
+        "Notes that B2B listing traffic is low, so reaching significance takes proportionally longer than the consumer benchmarks imply.",
+        "States that HubSpot exposes install counts but no view-to-install funnel, so the requested conversion figure does not exist to report.",
+        "Gives HubSpot's active-install definition: unique production accounts unaffiliated with the vendor's own organization showing successful app activity within the past 30 days.",
+        "Refuses to roll the tagline out to the Shopify and Atlassian listings on the strength of this result.",
+        "Rejects the standing $8K/month paid budget and confines paid marketplace placement to a time-boxed accelerant.",
+        "States that paid installs mask whether the listing converts on its own.",
+        "Requires the content levers, keyword rewrite and first-screen media, to ship before paid placement is switched on.",
+        "States that HubSpot publishes nothing official about its ranking, so any HubSpot ranking advice in the one-pager is inference."
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "Our Salesforce AppExchange listing gets about 4,000 tile views a month and 30 installs. What do we fix first?",
+      "should_trigger": true
+    },
+    {
+      "query": "How do we rank higher in Shopify App Store search?",
+      "should_trigger": true
+    },
+    {
+      "query": "We submit to the Atlassian Marketplace in five weeks. Help me write the listing.",
+      "should_trigger": true
+    },
+    {
+      "query": "Need a plan to get our first 20 reviews on our marketplace app without breaking any rules",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it against the rules to give merchants a discount code for leaving us a review?",
+      "should_trigger": true
+    },
+    {
+      "query": "our app shows up on page 4 when people search the one term we care about. how do we move up",
+      "should_trigger": true
+    },
+    {
+      "query": "What should the first three screenshots on our listing actually show?",
+      "should_trigger": true
+    },
+    {
+      "query": "we're on the hubspot app marketplace and have no idea if anyone even sees the page",
+      "should_trigger": true
+    },
+    {
+      "query": "Should we chase the Built for Shopify badge this quarter?",
+      "should_trigger": true
+    },
+    {
+      "query": "Installs have been flat for two quarters even though traffic to the page looks fine.",
+      "should_trigger": true
+    },
+    {
+      "query": "help me rewrite our app title and subtitle so buyers actually find us",
+      "should_trigger": true
+    },
+    {
+      "query": "Do marketplace search ads actually work or are we just buying installs?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our competitor has 400 reviews and we have 12. How do we catch up?",
+      "should_trigger": true
+    },
+    {
+      "query": "What's a sane refresh cadence for a listing we published a year ago and never touched?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Slack app is live but we can't tell whether anyone installs it from the directory.",
+      "should_trigger": true
+    },
+    {
+      "query": "We got rejected for duplicate images. What now?",
+      "should_trigger": true
+    },
+    {
+      "query": "Which category should we pick for our app, and does the choice affect search?",
+      "should_trigger": true
+    },
+    {
+      "query": "Somebody left us a 2-star review saying onboarding is broken. Do we reply publicly?",
+      "should_trigger": true
+    },
+    {
+      "query": "Audit our app store page and tell me what's costing us installs",
+      "should_trigger": true
+    },
+    {
+      "query": "How long should the demo video on our listing be?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to go from 3.8 to 4.4 stars this quarter. What's a realistic plan?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it worth wiring GA4 and a pixel into our partner dashboard listing?",
+      "should_trigger": true
+    },
+    {
+      "query": "we launch in six weeks and the listing is still a placeholder. triage it for me",
+      "should_trigger": true
+    },
+    {
+      "query": "What words should go in the search terms field, and how many?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our page gets plenty of views and almost nobody clicks install.",
+      "should_trigger": true
+    },
+    {
+      "query": "How do I tell whether the ranking advice I'm reading came from the platform or from someone's guess?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our directory listing has been slowly sliding down the results all year.",
+      "should_trigger": true
+    },
+    {
+      "query": "Can we ask a customer for a review right after we close their support ticket?",
+      "should_trigger": true
+    },
+    {
+      "query": "Planning our AppExchange presence for next year. What does the standing program look like?",
+      "should_trigger": true
+    },
+    {
+      "query": "we're an unknown brand in this ecosystem. should our app name lead with the brand or the keyword?",
+      "should_trigger": true
+    },
+    {
+      "query": "What should I report monthly on our marketplace app?",
+      "should_trigger": true
+    },
+    {
+      "query": "Nearly everyone who installs us churns within a month, but we still want more installs.",
+      "should_trigger": true
+    },
+    {
+      "query": "Should we use the same copy and screenshots on all four marketplaces we're on?",
+      "should_trigger": true
+    },
+    {
+      "query": "Help me build a review request flow inside the product.",
+      "should_trigger": true
+    },
+    {
+      "query": "We got 60 installs after certification came through. Was it the certification?",
+      "should_trigger": true
+    },
+    {
+      "query": "I need to convince my VP that rewriting the tagline is worth two days of work.",
+      "should_trigger": true
+    },
+    {
+      "query": "we swapped our screenshots and conversion moved 1.8%. ship it everywhere?",
+      "should_trigger": true
+    },
+    {
+      "query": "What does the partner dashboard actually give us for our listing?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our listing converts fine on one marketplace and terribly on another. Why?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it okay if a few of us on the team write honest reviews for our own app?",
+      "should_trigger": true
+    },
+    {
+      "query": "We're writing the listing rulebook every third-party app on our marketplace must follow.",
+      "should_trigger": false
+    },
+    {
+      "query": "Define objective reject criteria for screenshots submitted to our app directory.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the approval pipeline and permission audit for apps submitted to our platform.",
+      "should_trigger": false
+    },
+    {
+      "query": "How should we handle appeals when we reject a partner's app?",
+      "should_trigger": false
+    },
+    {
+      "query": "Pick the founding launch cohort for the app marketplace we're standing up.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our app-of-the-month spotlight governance and the MDF budget split.",
+      "should_trigger": false
+    },
+    {
+      "query": "What take-rate should our connector marketplace charge partners?",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we build our own integration marketplace or just join other people's?",
+      "should_trigger": false
+    },
+    {
+      "query": "Merchant-of-record posture and payout hold windows for our app store.",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we collect revenue share from paid apps listed on our marketplace?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the sandbox provisioning and dev-account flow for partner developers.",
+      "should_trigger": false
+    },
+    {
+      "query": "Which of these 30 integration partners deserve a deep co-build?",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up sourced versus influenced pipeline attribution for our ISV alliances.",
+      "should_trigger": false
+    },
+    {
+      "query": "We want to be a source connector on the big ELT platforms. Which build path?",
+      "should_trigger": false
+    },
+    {
+      "query": "Does our API support log-based CDC or only pseudo-CDC for connector certification?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our public API's error-code taxonomy.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the rate-limit policy for our public API.",
+      "should_trigger": false
+    },
+    {
+      "query": "How should we version our public API without breaking integrators?",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan the information architecture of our developer portal.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we ship an MCP server for our product?",
+      "should_trigger": false
+    },
+    {
+      "query": "What does a staff-level platform engineer interview loop look like?",
+      "should_trigger": false
+    },
+    {
+      "query": "Run an ASO audit on our iOS app and fix the keyword field.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Google Play install rate dropped after the last update. What happened?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design App Store screenshots for our consumer fitness app.",
+      "should_trigger": false
+    },
+    {
+      "query": "Help us get featured on the App Store Today tab.",
+      "should_trigger": false
+    },
+    {
+      "query": "A/B test our Google Play store listing with Store Listing Experiments.",
+      "should_trigger": false
+    },
+    {
+      "query": "Reply to these one-star reviews on our iPhone game.",
+      "should_trigger": false
+    },
+    {
+      "query": "Configure EAS submit to push our builds to both mobile app stores.",
+      "should_trigger": false
+    },
+    {
+      "query": "What's the current review turnaround time for Apple's App Review team?",
+      "should_trigger": false
+    },
+    {
+      "query": "Localize our mobile app store listing into 12 languages.",
+      "should_trigger": false
+    },
+    {
+      "query": "Optimize our Amazon product listing: title, bullets, and A+ content.",
+      "should_trigger": false
+    },
+    {
+      "query": "We sell on a Shopify storefront. Improve our product page conversion rate.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the npm README for our SDK so more people adopt it.",
+      "should_trigger": false
+    },
+    {
+      "query": "Improve our SEO so we rank on Google for 'invoice automation software'.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a case study about a customer using our Salesforce integration.",
+      "should_trigger": false
+    },
+    {
+      "query": "How should we price the paid tiers of our developer tool?",
+      "should_trigger": false
+    },
+    {
+      "query": "Draft our answers to an enterprise buyer's security questionnaire.",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up webhook delivery retries and signature verification.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the OAuth authorization server our partners authenticate against.",
+      "should_trigger": false
+    },
+    {
+      "query": "Build a bulk data export API with signed URLs.",
+      "should_trigger": false
+    }
+  ]
+}
