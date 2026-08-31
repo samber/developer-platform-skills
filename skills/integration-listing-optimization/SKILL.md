@@ -43,7 +43,7 @@ All five benchmarked marketplaces sell software to businesses; the consumer app 
 - **Data-rich vs data-dark marketplace.** What each platform exposes to submitters:
   - Shopify, Atlassian, and AppExchange: a real view-to-install funnel.
   - HubSpot: install counts, no funnel.
-  - Slack: nothing - no listing analytics, no review system. This is deliberate platform design, not a documentation gap; the platform itself watches your usage and uninstalls, and contacts you.
+  - Slack: nothing - no listing analytics, no review system. This is deliberate platform design, not a documentation gap; the platform itself watches your usage and uninstalls, then contacts you.
 
   On a data-rich marketplace, run the full measure-and-iterate loop below. On a data-dark one the loop collapses: write the best listing you can once, drive traffic from outside the marketplace, self-track installs (menu 1's starved rung), and skip the review program entirely - there is nothing to iterate against.
 
