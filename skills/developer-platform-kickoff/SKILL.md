@@ -374,7 +374,7 @@ Out of scope by design, not gaps to fill later:
 
   The keywords are identical and the advice inverts.
 
-- **Uncapped interview.** Past 7 questions the kickoff becomes a form the user abandons. Detection fills the gaps - a committed spec answers more of it than any question does.
+- **Uncapped interview.** Past 7 questions, the kickoff becomes a form the user abandons. Detection fills the gaps - a committed spec answers more of it than any question does.
 - **Routines with no output channel.** They fire into the void and get silenced, burying the one routine that mattered.
 - **A flat short-list, or one led by the cheapest option.** Equal-looking options get picked by taste or by whichever sits first, and cheap is a different ordering from efficient - only the second answers "what first". Order by value per unit of effort and name both sides on every line.
 - **Ranking the routing table or the chain.** Scope is a match test and a chain is a dependency order; imposing a ratio on either invents a preference that does not exist.
