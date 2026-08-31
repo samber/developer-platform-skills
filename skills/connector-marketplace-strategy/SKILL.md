@@ -54,7 +54,7 @@ Get explicit approval on the full document before calling it final.
 
 Most SaaS platforms should not build a marketplace. Open with this gate and be willing to stop here.
 
-- **Join** existing ecosystems (list on the established marketplaces your customers already trust) is the pragmatic default for most companies - it borrows someone else's distribution and trust instead of building both from zero.
+- **Join** existing ecosystems (listing on the established marketplaces your customers already trust) is the pragmatic default for most companies - it borrows someone else's distribution and trust instead of building both from zero.
 - **Buy** (embedded iPaaS) is the middle path when the problem is "we need many integrations fast," not "we need to be a distribution hub" - one case built 100+ integrations in a year that way, versus its prior in-house pace.
 - **Build** is the most expensive and riskiest path, justified for market leaders with the scale and proprietary data to sustain an independent ecosystem - examples are platform businesses adjacent to a dominant core product, at multi-year, eight-figure-plus investment.
 
