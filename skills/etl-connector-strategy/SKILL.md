@@ -57,7 +57,7 @@ Each step has a section below, in order. Do not reorder: steps 1-2 supply the ev
 
 - Approve no connector build on hypothesis. Collect named, verifiable evidence: support tickets requesting a platform by name, lost-deal notes citing data-stack mismatch, API logs showing hand-rolled extraction (high-frequency paginated scans from data-team service accounts), security/procurement questionnaires asking about warehouse sync.
 - The documented business case clusters around four drivers:
-  - Relieving customers' non-core maintenance burden.
+  - Relief of customers' non-core maintenance burden.
   - Distribution through the platform's network of destinations.
   - Competitive table stakes in data-stack evaluations - major catalogs run 500-700+ connectors, and absence reads as a gap, not a neutral fact.
   - Retention/support-cost deflection.
