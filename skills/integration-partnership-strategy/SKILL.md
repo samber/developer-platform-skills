@@ -80,7 +80,7 @@ The ladder runs referral → reseller → co-sell/integration alliance → co-bu
 - effort: `OEM/embed > co-build > co-sell > reseller > referral`
 - value: `OEM/embed > co-build > co-sell > reseller > referral`
 - compliance cost (descending): `OEM/embed > co-build > reseller > co-sell > referral`
-  - OEM licensing puts your product behind the partner's paper with minimum commitments, IP and indemnity terms, and is the hardest rung to unwind once their customers depend on it.
+  - OEM licensing puts your product behind the partner's paper with minimum commitments, IP, and indemnity terms, and is the hardest rung to unwind once their customers depend on it.
   - Co-build triggers a joint development agreement with legal sign-off on IP, support, and roadmap.
   - Reselling makes the partner the transacting party, pulling in order-of-record and tax review.
   - Co-sell needs mutual NDA and revenue-share terms.
@@ -111,7 +111,7 @@ Certification and verification programs are what you join on someone else's plat
 
 The trap is budgeting certification as a one-time project. Across platforms, the renewal is recurring by design:
 
-- Some programs re-certify every major platform release (twice yearly on some platforms), others annually.
+- Some programs re-certify every major platform release (twice yearly on some platforms); others annually.
 - Security reviews carry per-release obligations, and roughly half of first submissions fail on the strictest programs.
 
 Budget certification maintenance as standing engineering work with a named owner, and count it against integration-engineer headcount, before signing up.
