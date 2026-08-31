@@ -87,7 +87,7 @@ Full detail and what's flagged as thin: [references/entry-paths-and-skills.md](.
 
 **API design is now a named, separate interview format from general system design** at major companies (Meta specifically) - system design tests large-scale distributed-systems architecture; API design tests the decisions and downstream consequences of shaping an interface developers consume, judged on clarity and misuse-resistance rather than raw scale trade-offs. A commonly cited worked example: design a payments API, scoped to card-payment processing, where the "users" are developers integrating it into their own product.
 
-For a PM candidate, the bar differs by design from an engineering candidate's: assessed on how well they scope, structure and communicate the design thinking, not on proving deep technical implementation (echoed at Google); some PM loops (Uber) still include a genuine technical conversation with an engineer.
+For a PM candidate, the bar differs by design from an engineering candidate's: assessed on how well they scope, structure and communicate their design thinking, not on proving deep technical implementation (echoed at Google); some PM loops (Uber) still include a genuine technical conversation with an engineer.
 
 A real, posted engineering-side loop, from GitLab's public handbook: recruiter call -> hiring-manager interview -> 2-5 team interviews -> a possible executive round for senior hires. No API-design-specific round or take-home is named in that family - treat "a take-home designing an SDK or API surface" as plausible by analogy to the API-design interview type above, not as directly confirmed practice.
 
