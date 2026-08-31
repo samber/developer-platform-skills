@@ -76,7 +76,7 @@ Ask one question at a time, multiple-choice where possible. Skip anything alread
 
 ## Reading a posting for red flags
 
-**No named, sourced hiring-red-flag taxonomy exists yet for developer-platform roles**, unlike DevRel's documented gatekeeper/pit-trap framework - say this plainly rather than citing a pre-existing source that doesn't exist. What the structural data does support is a distinct pattern, not the same one relabeled:
+**No named, sourced hiring-red-flag taxonomy exists yet for developer-platform roles**, unlike DevRel's documented gatekeeper/pit-trap framework - say this plainly rather than citing a source that doesn't exist. What the structural data does support is a distinct pattern, not the same one relabeled:
 
 - **The pattern**: a posting stacking **build work** (API/schema design, partner integration architecture) with **outreach work** (developer marketing, content) - a scope-collapse across disciplines rather than within one discipline. Unlike DevRel's gatekeeper pattern, each individual skill listed can be genuinely held by one strong candidate; the failure is an execution-volume mismatch across three full-time jobs, not an impossible-skills list.
 - **Symptoms**: the posting names outcomes belonging to three different functions (a shipped API surface, a named partner-integration count, a content or community metric) with no stated headcount plan to eventually split them; the title implies IC-engineering seniority but the responsibilities read as a product-manager's job plus a DevRel job layered on top; no named reporting line or budget is stated for growing the function past one person.
