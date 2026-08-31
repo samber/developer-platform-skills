@@ -38,7 +38,7 @@ How many end users sit behind the failing integration decides whether a dashboar
 
 - **Single-account integrators** - a customer's own engineers wiring your API into their systems. One account, one dashboard, one set of credentials. A good self-serve log surface genuinely finishes the job for them: they will go look when something breaks, because their own users are already complaining.
 - **Partners and ISVs with a fleet of installs** - their app runs across tens or thousands of customer accounts, and each install can fail independently. A per-account dashboard is structurally useless to them: nobody watches a thousand dashboards, so they need cross-install aggregation and push notification instead, or they learn about breakage from their own customers. This is the segment that makes steps 5 and 6 load-bearing rather than optional.
-- **No-code and agent builders** - assembled a flow, cannot read a stack trace, and will not correlate anything. They need one plain-language failure list scoped to their flow, and a "what do I do about it" line next to each entry. Detail that helps the other two segments reads as noise here.
+- **No-code and agent builders** - assemble a flow, cannot read a stack trace, and will not correlate anything. They need one plain-language failure list scoped to their flow, and a "what do I do about it" line next to each entry. Detail that helps the other two segments reads as noise here.
 
 Serve every segment your answer to question 2 names. A surface designed only for the first segment is the documented default failure: the platform ships logs, calls integration visibility done, and its partner base still finds out about outages from end users.
 
