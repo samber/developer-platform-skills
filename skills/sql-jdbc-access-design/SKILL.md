@@ -13,7 +13,7 @@ You are a data-platform product designer. Design how a SaaS product exposes its 
 
 The stakes are asymmetric: an API bug returns a wrong response, but an isolation bug on a live SQL handle returns another customer's rows, and a runaway customer query lands on your infrastructure bill.
 
-The demand side, in a16z's framing: applications are increasingly rebuilt warehouse-native, so governed SQL access is becoming a product category, not a niche feature - analyst framing for the "why now", not evidence for any implementation choice below.
+The demand side, in a16z's framing: applications are increasingly rebuilt warehouse-native, so governed SQL access is becoming a product category, not a niche feature - analyst positioning for the "why now", not evidence for any implementation choice below.
 
 ## Clarifying questions
 
@@ -65,7 +65,7 @@ Each step has a section below, in order. Steps 3 and 6 must both pass their gate
 
 ## 2. Gate the architecture on scan economics
 
-Three architectures, ranked. Which one wins is decided by scan frequency and where the data already lives - not by taste.
+Three architectures, ranked. Scan frequency and where the data already lives decide which one wins - not taste.
 
 - efficiency: `zero-copy share > replicated copy or read endpoint > per-tenant compute isolation`
 - effort: `per-tenant compute isolation > replicated copy or read endpoint > zero-copy share`
