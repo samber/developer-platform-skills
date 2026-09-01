@@ -1,0 +1,638 @@
+{
+  "skill_name": "public-grpc-api-design",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm the platform lead at Rondelet, a payments infrastructure company. Everything behind our edge is gRPC already - about 40 services, Envoy mesh, protos in a monorepo. Leadership signed off on opening the platform to third parties next quarter: roughly 200 partner engineers, mixed shops, some of them are building merchant-facing dashboards in React that would talk to us directly. We picked gRPC for the public surface because it's what we already run and it's faster than REST. Design the public gRPC API for us - package layout, the services we expose, the whole thing.",
+      "expected_output": "A design that first challenges whether gRPC belongs at this public edge at all, given browser consumers and a mixed-skill partner base, and lands on internal gRPC with a transcoded JSON edge rather than a raw public gRPC surface.",
+      "files": [],
+      "expectations": [
+        "Runs an explicit gate on whether gRPC belongs at the public edge before designing any proto or service layout",
+        "States that REST still carries the large majority of public APIs (roughly 83% in recent tracked counts) and that dual-stack - gRPC internally, REST or transcoded JSON externally - is the practitioner default rather than either/or",
+        "Names that browsers structurally cannot speak gRPC's raw HTTP/2 framing, making a proxy layer mandatory given the React dashboards described",
+        "Names Protobuf's binary encoding as a concrete debuggability cost for external consumers: nothing readable in a network tab, inspection needs grpcurl-class tooling partners rarely have installed",
+        "Names that every external caller pays the protoc/stub-regeneration cost that an internal fleet amortizes",
+        "Notes that gRPC at the edge limits the ability to augment or remediate API behavior in proxies and API-management tooling",
+        "Checks the three genuine triggers that would justify public gRPC anyway - confirmed SDK-mediated or proto-fluent consumers, genuinely streaming-shaped workload, measured performance bottleneck consumers can absorb tooling cost for",
+        "Concludes that 'we already run gRPC internally' and 'it's faster' are not among the qualifying triggers",
+        "Identifies the 200 mixed-shop partner engineers as not a confirmed SDK-mediated audience, so Temporal's control-plane precedent does not transfer here",
+        "Makes the audience-reach argument explicitly: limiting to gRPC-only risks missing developers not equipped or experienced enough to consume gRPC services",
+        "Recommends gRPC inside with JSON outside rather than raw public gRPC as the only surface",
+        "States that the gate's verdict determines which transcoding/gateway options are even in play for the next design step"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Reviewing the gateway error mapping our backend team wrote for the public edge of Kestrelline (B2B logistics API). Here's their table: INVALID_ARGUMENT -> 400, FAILED_PRECONDITION -> 412, OUT_OF_RANGE -> 416, NOT_FOUND -> 404, ALREADY_EXISTS -> 409, PERMISSION_DENIED -> 403, UNAUTHENTICATED -> 401, CANCELLED -> 408, RESOURCE_EXHAUSTED -> 429, DEADLINE_EXCEEDED -> 504, and anything we haven't classified falls through to INTERNAL -> 500. They pulled it from the gRPC docs. Tell me if this is right before we publish it in our partner docs.",
+      "expected_output": "A review that corrects the specific mappings, explains why a server may not derive HTTP status from the canonical client-side table at all, and documents the lossiness of the HTTP status line for consumers.",
+      "files": [],
+      "expectations": [
+        "Corrects FAILED_PRECONDITION to 400, not 412, and identifies 412 as the recurring point of confusion",
+        "Corrects CANCELLED to 499 (non-standard 'Client Closed Request', no formal IANA status), not 408",
+        "Corrects OUT_OF_RANGE to 400, not 416",
+        "States that the gRPC project's own documentation forbids servers from using the canonical status-mapping table to determine an HTTP status code",
+        "States that the canonical mappings are neither symmetric nor 1-to-1, and that the table exists for clients or intermediaries interpreting a response that arrived without a grpc-status",
+        "Requires the gateway to have its own deliberate mapping, confirmed against the transcoding implementation actually in use rather than assumed universal",
+        "Names the 400 collapse point: INVALID_ARGUMENT, FAILED_PRECONDITION and OUT_OF_RANGE all land on 400",
+        "Names the 409 collapse point: ALREADY_EXISTS and ABORTED both land on 409",
+        "Requires the partner docs to state that the HTTP status line is lossy and the structured envelope in the response body is the source of truth",
+        "Flags the unclassified-falls-through-to-INTERNAL rule as the named anti-pattern, because aggregating every failure into one code flattens status dashboards into a single bucket",
+        "Requires returning the most specific applicable code, for example OUT_OF_RANGE over FAILED_PRECONDITION when both technically apply",
+        "Notes that RESOURCE_EXHAUSTED at 429 should be paired with a RetryInfo detail, and that UNAVAILABLE (503) is the only code generally safe to auto-retry without extra signal"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Quick CI question. Vantabrook publishes .proto files for partners and also exposes a transcoded REST surface generated from the same protos. Our pipeline runs `buf lint` with the STANDARD set and `buf breaking --against main` with the PACKAGE category on every PR, and it has been green for eight months. Compliance is asking me to sign a statement that our published contract cannot break without CI catching it. Can I sign it?",
+      "expected_output": "A clear no, with the annotation blind spot named, a concrete additional gate specified, a category upgrade, and the cross-version test that schema diffing does not cover.",
+      "files": [],
+      "expectations": [
+        "Answers that the described pipeline does not cover the published contract and the statement cannot be signed as written",
+        "Names that `buf breaking` does not inspect custom options, so changes to `google.api.http` annotations pass every proto gate while breaking the public REST mapping",
+        "Prescribes a dedicated annotation check: snapshot the annotation-derived HTTP surface (paths, verbs, body mappings) and diff it in CI, or contract-test the transcoded routes",
+        "Recommends upgrading from PACKAGE to the FILE category for a public surface, and gives the reason that PACKAGE forgives moving a definition between files while FILE catches generated-import breakage",
+        "States that Protobuf's encoding guarantees wire compatibility only, not generated-client-code compatibility",
+        "Names that a rename is semantically remove-and-add and is therefore always breaking, never a safe refactor",
+        "Names that moving a field into or out of a `oneof` breaks generated Go stubs",
+        "Names that moving a message to a different file breaks generated imports because the file path is part of the generated-code contract",
+        "Requires cross-version testing in both directions - old client against new server and new client against old server - rather than treating schema parsing as sufficient",
+        "Proposes a human backstop for a public surface, such as a Buf Schema Registry review queue where a breaking push is approved or rejected with a paper trail (or a proto.lock-based equivalent for teams not on buf)",
+        "States the coverage gate as binary: 100% of RPCs carrying google.api.http annotations covered by a mapping diff or contract test"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Here's the first cut of the protos we're about to publish for Almandine Ledger. Package is `almandine.ledger`, file lives at `ledger/ledger_v1.proto`. Services: `Ledger` with `rpc GetEntry(string) returns (LedgerEntry)`, `rpc ListEntries(LedgerQuery) returns (LedgerEntryList)` and `rpc SearchEntries(LedgerQuery) returns (LedgerEntryList)` - we reuse LedgerQuery because both take the same filters and it keeps things DRY. We have `enum EntryStatus { ACTIVE = 0; VOIDED = 1; }`. Marketing wants to brand the release v1.2 since it's our second iteration. Also we dropped the old `legacy_ref` field (was tag 4) last week. Review it.",
+      "expected_output": "A convention review that corrects the package suffix, directory mirror, filename, version scheme, request/response wrappers, shared message, enum zero value and the removed field's tag.",
+      "files": [],
+      "expectations": [
+        "Requires the package to end in a major-version component, i.e. `almandine.ledger.v1`, not `almandine.ledger`",
+        "Requires the directory structure to mirror the package exactly, i.e. `almandine/ledger/v1/`",
+        "Rejects the version appearing in the filename (`ledger_v1.proto`), because it produces bizarre generated imports",
+        "Rejects `v1.2` as a public version: major version only, never SemVer minors or patch segments in the package or the URI",
+        "Rejects the bare scalar `string` request on GetEntry and requires a dedicated wrapper message",
+        "Requires one dedicated `<Method>Request` / `<Method>Response` wrapper per RPC, so ListEntries and SearchEntries stop sharing LedgerQuery and LedgerEntryList",
+        "Gives the reason a shared message is rejected: every change to it ripples across every RPC referencing it, while a wrapper can gain optional fields without breaking wire compatibility",
+        "Requires the enum zero value to be an `_UNSPECIFIED` member rather than ACTIVE = 0",
+        "Requires the removed `legacy_ref` field's tag 4 to be marked `reserved`, and states that a tag is never reused or renumbered",
+        "Requires per-language package options (such as `java_package`) so generated code stays idiomatic instead of leaking the raw proto path",
+        "Recommends modeling the surface resource-oriented with standard List/Get/Create/Update/Delete methods, reserving the `:verb` custom-method suffix for cases no standard verb fits",
+        "Recommends well-known types (google.protobuf.Timestamp, FieldMask, google.rpc.*) over hand-rolled equivalents",
+        "Cites the buf lint rules that mechanize these findings, such as PACKAGE_VERSION_SUFFIX, RPC_REQUEST_RESPONSE_UNIQUE and ENUM_ZERO_VALUE_SUFFIX"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Design decision I want validated for Thessaly Telemetry's new partner API. Our architect wants every read method on the public surface to be bidirectional streaming - his argument is that we avoid connection setup per call and get better throughput than unary, and since gRPC gives us bidi for free we may as well use it everywhere. Consumers are partner backends plus an embedded widget our customers drop into their own web apps, which will be on HTTP/1.1 for a good while. We terminate at an AWS Application Load Balancer today. Give me your read on it.",
+      "expected_output": "A rejection of blanket bidirectional streaming, with the unary default, the named costs, the browser protocol wall, the HTTP-mapping exemption, and the load-balancer configuration all specified.",
+      "files": [],
+      "expectations": [
+        "Establishes unary as the default call shape, with every streaming method a deliberate, recorded decision rather than a free feature",
+        "Cites the published guidance that replacing unary calls with bidirectional streaming for performance reasons is an advanced technique not appropriate in many situations",
+        "Identifies server-streaming as the streaming mode to reach for first when a genuine push/tail use case exists, because it maps cleanly onto SSE through a gateway and onto Connect's streaming encoding",
+        "States that browsers cannot do client or bidirectional streaming over HTTP/1.1 at all, and frames this as a protocol wall rather than a tooling gap, with Connect over HTTP/2 as the exception",
+        "Names that a stream failing mid-flight after partial data forces every external consumer into restart/resume bookkeeping a unary retry never requires",
+        "Names that retries stop being transparently managed by the client library once a call is streaming",
+        "States that an HTTP mapping is required for every RPC except bidirectional streaming, so every bidi method needs a documented non-streaming alternative or it is invisible on the transcoded surface",
+        "Warns that HTTP/2 multiplexing under an L4 balancer pins all of a client's streams to one backend for the connection's lifetime",
+        "Requires L7, HTTP/2-aware load balancing at the public gRPC edge",
+        "Requires the client keepalive PING interval to be set below whichever load-balancer idle timeout applies on the path",
+        "Names the AWS Application Load Balancer's 60-second default idle timeout as the binding number for this deployment (and may contrast with AWS NLB 350 s or Google Cloud's 600 s backend keepalive)",
+        "Recommends enabling buf's UNARY_RPC lint category if the surface commits to unary-only, so a later PR cannot silently reintroduce a streaming method"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Security design for Oriflamme's new external API. Internally every service-to-service gRPC hop is mTLS with SPIFFE identities issued by our mesh CA, and it has worked flawlessly for three years. We're now onboarding about 500 external developers - a mix of partner backend jobs and a few integrations where an end user clicks 'connect' in a browser and authorizes access to their own account. Plan on the table is to extend what already works: issue each external developer a client certificate from the same CA and require mTLS on the public endpoint. Poke holes in it.",
+      "expected_output": "A rejection of per-developer client certificates, replaced with an OAuth2 external-auth design, method-level scope enforcement, and the gateway reference architecture with the mesh resuming behind it.",
+      "files": [],
+      "expectations": [
+        "Rejects issuing and revoking client certificates for 500 external developers as operationally impractical",
+        "Distinguishes that mTLS authenticates workloads and scales inside a mesh, while a public edge must authenticate apps and users instead",
+        "States that the mesh does not disappear: mTLS resumes one hop further in, behind the public gateway",
+        "Requires TLS as non-negotiable and first, because credentials travel as gRPC metadata and would otherwise be plaintext",
+        "Notes that most gRPC implementations refuse to send credentials over an unencrypted channel at all",
+        "Assigns OAuth2 Client Credentials to the partner backend/machine callers",
+        "Assigns OAuth2 Authorization Code with PKCE to the browser flow where a human authorizes interactively",
+        "Specifies the token as `authorization: Bearer <token>` metadata validated in a server interceptor",
+        "Specifies JWT as the token format, strongly signed (RS256), with expiry claims",
+        "Specifies token introspection against the authorization server, cached so it does not tax every call",
+        "Requires scope enforcement at the method level - whether the token is scoped for this specific RPC, not merely whether the caller is authenticated",
+        "States that API keys complement rather than replace authentication: a key identifies a project or consumer for quota attribution and coarse gating, not an authenticated identity",
+        "Specifies the public-gateway reference architecture as TLS termination plus token validation plus per-method authorization plus rate limiting, fronting the internal mesh"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Last item before Halcyon Freight opens its gRPC endpoint to customers on the 14th. The service started life internal, so alongside the business methods (CreateShipment, GetShipment, ListShipments, QuoteRate) it also carries DrainNode, DumpRuntimeConfig, SetFeatureFlag, ReindexShipmentCache and a ping-style DebugEcho. Server reflection is on because our support engineers use grpcurl against staging and production daily. TLS is terminated at the edge and every call requires a valid bearer token. Auth and transport are locked down - are we clear to launch?",
+      "expected_output": "A no, with server reflection required off in production, the internal-RPC exposure audit named as mandatory and incomplete, and the specific admin methods called out.",
+      "files": [],
+      "expectations": [
+        "Answers that the service is not clear to launch as described",
+        "Requires server reflection to be disabled in production, giving the reason that it is an API-discovery tool for attackers once the port is publicly reachable",
+        "States explicitly that TLS terminated and authentication enforced does not close the exposure hole",
+        "Requires enumerating the full method surface for admin, debug and monitoring RPCs never designed for external visibility",
+        "Identifies DrainNode, DumpRuntimeConfig, SetFeatureFlag, ReindexShipmentCache and DebugEcho by name as methods that must not be on the public surface",
+        "States that the exposure audit is mandatory rather than optional for any service built internal-first",
+        "Treats reflection-disabled and audit-completed as binary pass gates that must both be satisfied before launch",
+        "Recommends keeping the admin and debug methods off the published contract rather than relying only on per-method authorization to hide them",
+        "Retains per-method scope enforcement for the business methods that do stay on the public surface",
+        "Notes that the support engineers' grpcurl workflow can continue against a non-public environment rather than justifying reflection in production"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Need a call on the edge architecture for Bellweather Analytics by Friday. Situation: Envoy is already our mesh data plane and two of our platform engineers know its config well. Backend services are Go. Consumers are a customer-facing dashboard running in the browser, plus partner backends that will poll us hard and care about latency. We have six weeks to ship. The team's instinct is grpc-gateway since it's the best-known option and everyone's Go. Lay out the options and tell us what to do.",
+      "expected_output": "A ranked menu rather than a flat comparison, with Connect-RPC as the default rung, Envoy's promotion condition applied to this team, grpc-gateway's error weakness named, raw public gRPC deleted because of the browser consumer, and an explicit re-rank against the six-week deadline.",
+      "files": [],
+      "expectations": [
+        "Presents the options as an explicit ranking rather than a flat pros-and-cons list",
+        "States the ordering on separate axes, with effort ordered raw public gRPC edge > grpc-gateway == Envoy transcoder > Connect-RPC, and value and efficiency both ordering Connect-RPC > Envoy transcoder > grpc-gateway > raw public gRPC edge",
+        "Names Connect-RPC as the default rung for a new public surface",
+        "Lists Connect-RPC's concrete properties: no proxy required, browsers served natively, full streaming over HTTP/2, JSON errors out of the box, wire-compatible with gRPC",
+        "States the condition that promotes Envoy's gRPC-JSON transcoder - Envoy is already the mesh data plane and a second runtime is the real cost - and applies it to this team's existing Envoy fluency",
+        "Explains the grpc-gateway == Envoy effort tie explicitly, and identifies 'you already run Envoy' as the condition that breaks it",
+        "Names grpc-gateway's default error handler as the weakest of the options, and its codegen step plus double JSON-to-protobuf parse per request as recurring costs",
+        "Deletes raw public gRPC as the only surface outright because a browser client is confirmed, rather than demoting it to the bottom of the menu",
+        "Re-ranks against the stated inputs and says which input moved which option - the six-week ship date and the existing Envoy expertise promoting what the team already operates",
+        "States that the ranking is a default rather than a law",
+        "Steers the latency-sensitive partner backends to native gRPC or Connect's binary mode, noting that no JSON-transcoding path is free",
+        "Requires google.api.http annotations on every RPC except bidirectional streaming as the mapping convention regardless of which rung is chosen",
+        "Makes a single concrete recommendation for this team rather than leaving the choice open"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Debugging a partner complaint at Corvid Payments. Our services return google.rpc.Status properly - we attach ErrorInfo with a reason and domain, BadRequest with field violations for validation failures, and DebugInfo carrying the stack detail so our own on-call can correlate. Partners integrating over our JSON endpoint say all they ever get back is a flat message string with no field-level information, so their support tickets are all 'the API said invalid request'. We're on grpc-gateway today and someone suggested moving to Envoy's transcoder. What's actually happening and what should we do?",
+      "expected_output": "A diagnosis naming grpc-gateway's default error handler as the cause, the per-gateway survival mechanics for each alternative, and a hard stop on DebugInfo reaching external callers.",
+      "files": [],
+      "expectations": [
+        "Identifies grpc-gateway's default error handler as the cause: it maps the code to an HTTP status but flattens the message and drops `details` entirely",
+        "States that a custom error handler is mandatory on grpc-gateway if structured error detail is to survive",
+        "States that Envoy's gRPC-JSON transcoder requires `convert_grpc_status: true` to surface google.rpc.Status as the JSON body",
+        "Adds the second Envoy condition: every error-detail type must be present in the proto descriptor set the transcoder was built with, or the detail drops silently",
+        "Notes that Connect-RPC serializes errors as JSON natively, so no transcoding gap exists there",
+        "Flags DebugInfo as internal-only and requires it to be filtered from `details` before the response leaves the service",
+        "States that sanitizing the `message` field alone is insufficient while `details` still carries DebugInfo, i.e. the sanitization must be structural",
+        "Confirms ErrorInfo as the general-purpose detail to reach for first and BadRequest as the right carrier for field-level validation violations",
+        "Recommends pairing RetryInfo with RESOURCE_EXHAUSTED so callers back off rather than hammering the same limit",
+        "Describes the resulting JSON error shape with a code, a status string and a typed `details` array carrying `@type` entries, as the de facto standard envelope worth adopting",
+        "Requires documenting for consumers that the structured body envelope is the source of truth and the HTTP status line is a lossy convenience"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Planning the v2 of Sablefen's published protos and I want a sanity check on the plan. (1) `sablefen.catalog.v2` will import the message types from `sablefen.catalog.v1` for everything that isn't changing - no point duplicating 40 messages. (2) We're renaming `sku_code` to `product_code` across the board for clarity, and deleting three fields nobody uses. (3) Our new realtime inventory feature isn't fully baked but partners are asking for it, so we're shipping it inside `sablefen.catalog.v1` this month so they don't have to add a second import path, and we'll harden it later. (4) Some resource names change in v2 since we reorganized the hierarchy. Tell me what to fix.",
+      "expected_output": "A review rejecting the cross-major dependency, the rename, the resource-name change and the unbaked feature in v1, with channel semantics and deprecation mechanics specified.",
+      "files": [],
+      "expectations": [
+        "Rejects v2 importing from v1: a new major version must not depend on the previous major version of the same API",
+        "Rejects the resource-name changes for stable resources: resource names stay identical across majors so a v2 client can address a resource a v1 client created",
+        "States that renaming sku_code to product_code is semantically remove-and-add and is therefore a breaking change, not a clarity refactor",
+        "Requires the three deleted fields to be marked `reserved` and their tags never reused or renumbered",
+        "Rejects shipping the unbaked realtime inventory feature inside the v1 package, stating that v1 is reserved for stable and that claiming beta functionality under v1 is a review finding",
+        "Directs the pre-stable feature to a v1beta or v1alpha channel instead",
+        "Names the two legitimate evolution strategies - channel-based (long-lived beta/stable channels updated in place) and release-based (v1beta1 to v1beta2 for an incompatible beta-only change)",
+        "Requires `deprecated = true` on anything being retired, noting the option is available on messages, enums, enum values and services, not only fields",
+        "Requires a deprecation comment stating why the component is deprecated and what replaces it, so generated docs explain the replacement",
+        "States the channel-differentiated sunset expectations: alpha may be removed without notice, beta after a deprecation period with 180 days as the recommended floor",
+        "States that an in-place breaking change to a stable component is an extreme course of action reserved for security or regulatory necessity",
+        "Defers concrete notice windows and sunset communication to versioning-policy territory rather than inventing them here"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "Should we expose our internal gRPC services to external partners?",
+      "should_trigger": true
+    },
+    {
+      "query": "Design a public gRPC API for our platform.",
+      "should_trigger": true
+    },
+    {
+      "query": "we publish .proto files on github for partners, what conventions should the package follow",
+      "should_trigger": true
+    },
+    {
+      "query": "Is buf breaking enough to protect a public proto contract?",
+      "should_trigger": true
+    },
+    {
+      "query": "Connect-RPC or grpc-gateway for our public edge?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do browser clients call our gRPC backend",
+      "should_trigger": true
+    },
+    {
+      "query": "Review our google.rpc.Status error model before we open the API to customers.",
+      "should_trigger": true
+    },
+    {
+      "query": "Our partners want to generate their own stubs from our protos. What do we owe them?",
+      "should_trigger": true
+    },
+    {
+      "query": "We're putting Envoy's gRPC-JSON transcoder in front of our services for third parties, sanity check the design.",
+      "should_trigger": true
+    },
+    {
+      "query": "what HTTP status should our gateway return for FAILED_PRECONDITION",
+      "should_trigger": true
+    },
+    {
+      "query": "audit this gRPC service before we open it to external developers",
+      "should_trigger": true
+    },
+    {
+      "query": "does the proto package need a version suffix if we're publishing it",
+      "should_trigger": true
+    },
+    {
+      "query": "we want to offer both REST and gRPC to customers, how do we keep the two surfaces consistent",
+      "should_trigger": true
+    },
+    {
+      "query": "our partner devs keep breaking when we refactor protos, what gates do we need in CI",
+      "should_trigger": true
+    },
+    {
+      "query": "is it ok to put the version in the proto filename",
+      "should_trigger": true
+    },
+    {
+      "query": "planning to make all our public read methods bidirectional streaming for speed",
+      "should_trigger": true
+    },
+    {
+      "query": "how should external developers authenticate to our gRPC endpoint",
+      "should_trigger": true
+    },
+    {
+      "query": "we authenticate our internal RPC mesh with mTLS and now want outside developers calling the same services",
+      "should_trigger": true
+    },
+    {
+      "query": "grpc-gateway is dropping our error details before they reach partners",
+      "should_trigger": true
+    },
+    {
+      "query": "our partner-facing status dashboard shows almost every failure as UNKNOWN and we can't tell anything apart",
+      "should_trigger": true
+    },
+    {
+      "query": "we shipped a new half-finished feature into our v1 package so partners wouldn't need a second import, is that fine",
+      "should_trigger": true
+    },
+    {
+      "query": "what does AIP-215 require for proto packages",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I version a protobuf API for outside consumers",
+      "should_trigger": true
+    },
+    {
+      "query": "Do we need a proxy in front of gRPC for third-party developers?",
+      "should_trigger": true
+    },
+    {
+      "query": "our load balancer keeps dropping long-lived streams to partner clients",
+      "should_trigger": true
+    },
+    {
+      "query": "planning the public API surface and the team wants protobuf everywhere",
+      "should_trigger": true
+    },
+    {
+      "query": "what's the right way to deprecate an RPC that partners depend on",
+      "should_trigger": true
+    },
+    {
+      "query": "should server reflection stay on once the port is publicly reachable",
+      "should_trigger": true
+    },
+    {
+      "query": "we want to publish our schema to the Buf Schema Registry so customers can generate clients",
+      "should_trigger": true
+    },
+    {
+      "query": "hey, thinking of just shipping our protos to customers and letting them figure it out. thoughts?",
+      "should_trigger": true
+    },
+    {
+      "query": "design the proto governance for a contract several products will share for years",
+      "should_trigger": true
+    },
+    {
+      "query": "our transcoded REST routes changed and nobody noticed until partners paged us at 2am",
+      "should_trigger": true
+    },
+    {
+      "query": "which streaming call types are actually safe to expose publicly",
+      "should_trigger": true
+    },
+    {
+      "query": "map our canonical RPC status codes onto HTTP for the public gateway",
+      "should_trigger": true
+    },
+    {
+      "query": "we're a control-plane product and our users are infra engineers, is native gRPC defensible for us",
+      "should_trigger": true
+    },
+    {
+      "query": "explain the tradeoffs of exposing protobuf to third-party integrators",
+      "should_trigger": true
+    },
+    {
+      "query": "set up CI gates for the .proto files we publish to customers",
+      "should_trigger": true
+    },
+    {
+      "query": "should each RPC get its own request message or can they share one",
+      "should_trigger": true
+    },
+    {
+      "query": "our enum's zero value is the active state, does that matter for a public API",
+      "should_trigger": true
+    },
+    {
+      "query": "do we need google.api.http annotations on every method",
+      "should_trigger": true
+    },
+    {
+      "query": "cheapest way to serve both JSON and binary clients from one protobuf contract",
+      "should_trigger": true
+    },
+    {
+      "query": "we're worried our partners can't debug binary payloads when something goes wrong",
+      "should_trigger": true
+    },
+    {
+      "query": "does Temporal's public gRPC API make sense as a model for what we're building",
+      "should_trigger": true
+    },
+    {
+      "query": "we run Envoy already, what's the least work to expose our services as JSON to customers",
+      "should_trigger": true
+    },
+    {
+      "query": "external devs are poking our service with grpcurl and discovering admin methods",
+      "should_trigger": true
+    },
+    {
+      "query": "write the design doc section justifying gRPC versus REST at our public edge",
+      "should_trigger": true
+    },
+    {
+      "query": "how many canonical status codes are there and which of them collapse onto 400",
+      "should_trigger": true
+    },
+    {
+      "query": "planning a v2 of our published protos, can v2 import the v1 messages",
+      "should_trigger": true
+    },
+    {
+      "query": "our SDK team wraps gRPC directly, should partners get the raw protos too",
+      "should_trigger": true
+    },
+    {
+      "query": "what breaks for consumers when we move a message to a different .proto file",
+      "should_trigger": true
+    },
+    {
+      "query": "stubs drift between releases for our partners, how do we test compatibility properly",
+      "should_trigger": true
+    },
+    {
+      "query": "we want to sell an API but the backend is all protobuf RPC internally",
+      "should_trigger": true
+    },
+    {
+      "query": "review the transcoding architecture for our public edge",
+      "should_trigger": true
+    },
+    {
+      "query": "is Connect-RPC production ready for an external-facing surface",
+      "should_trigger": true
+    },
+    {
+      "query": "Design the REST resource naming and status codes for our public API.",
+      "should_trigger": false
+    },
+    {
+      "query": "Audit our REST endpoints for pagination and filtering consistency.",
+      "should_trigger": false
+    },
+    {
+      "query": "Review our public REST API for Hyrum's Law backward-compatibility risk.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design a public GraphQL API for third-party developers.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should our GraphQL schema use Relay cursor connections?",
+      "should_trigger": false
+    },
+    {
+      "query": "Set depth and complexity ceilings on our public GraphQL surface.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the federation trust boundary for our GraphQL subgraphs.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write our deprecation notice window and sunset policy for API consumers.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we use RFC 9745 Deprecation and RFC 8594 Sunset headers?",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we version in the URI path or pin accounts to a date-based version?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our error code taxonomy and RFC 9457 problem-details envelope.",
+      "should_trigger": false
+    },
+    {
+      "query": "How should error messages be written so integrators can self-serve the fix?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design idempotency-key support for our public API.",
+      "should_trigger": false
+    },
+    {
+      "query": "What backoff strategy should our SDK use on retries?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the rate-limit tiers and quota-versus-burst numbers our API publishes.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we emit X-RateLimit-* headers or the IETF RateLimit fields?",
+      "should_trigger": false
+    },
+    {
+      "query": "Which integration surfaces should we offer developers first, webhooks, SDKs or an MCP server?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our OAuth2 authorization server and its consent screen.",
+      "should_trigger": false
+    },
+    {
+      "query": "What TTL should our refresh tokens have and should we rotate them?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our API key format with a prefix and checksum.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should API keys be stored hashed or encrypted?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our outbound webhook platform with HMAC request signing.",
+      "should_trigger": false
+    },
+    {
+      "query": "What retry and dead-letter policy should webhook deliveries use?",
+      "should_trigger": false
+    },
+    {
+      "query": "Which languages should get official SDKs and in what order?",
+      "should_trigger": false
+    },
+    {
+      "query": "Should our SDK's SemVer track the API version or move independently?",
+      "should_trigger": false
+    },
+    {
+      "query": "Audit our API reference docs for missing parameters and undocumented response codes.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design a sandbox mode so integrators can test without real charges.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our status page components and the incident lifecycle we publish.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design an MCP server so AI agents can operate our product.",
+      "should_trigger": false
+    },
+    {
+      "query": "Give customers JDBC access to their data in our product.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we ship Parquet file drops or a Snowflake share for bulk export?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the information architecture of our developer portal.",
+      "should_trigger": false
+    },
+    {
+      "query": "Surface integration failures and delivery logs to the partners who built against us.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a Go gRPC server with interceptors and graceful shutdown.",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I unit test a gRPC handler in Go with testify?",
+      "should_trigger": false
+    },
+    {
+      "query": "Implement a gRPC client with connection pooling in Go.",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up gRPC health checking probes for our Kubernetes deployment.",
+      "should_trigger": false
+    },
+    {
+      "query": "Configure mTLS between our internal services in the Istio mesh.",
+      "should_trigger": false
+    },
+    {
+      "query": "Benchmark protobuf versus JSON serialization in our internal ingestion pipeline.",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I generate Python stubs from a .proto file on my laptop?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our internal service-to-service gRPC calls are timing out under load, help me debug it.",
+      "should_trigger": false
+    },
+    {
+      "query": "Migrate our internal RPC layer from Thrift to gRPC.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should our internal microservices talk over gRPC or a message queue?",
+      "should_trigger": false
+    },
+    {
+      "query": "Decide whether to build our own app marketplace or join other vendors' marketplaces.",
+      "should_trigger": false
+    },
+    {
+      "query": "Optimize our listing on the Salesforce AppExchange.",
+      "should_trigger": false
+    },
+    {
+      "query": "Which technology partners should we integrate with first?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the review and approval process for third-party apps on our marketplace.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design partner developer onboarding from signup to first submitted app.",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan our presence as a source connector on third-party ETL platforms.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a job description for an API product manager.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the listing content standards every app on our marketplace must meet.",
+      "should_trigger": false
+    },
+    {
+      "query": "What take rate should our app marketplace charge developers?",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan the launch cohort and co-marketing for our new marketplace.",
+      "should_trigger": false
+    },
+    {
+      "query": "Route this task to the right developer-platform skill for me.",
+      "should_trigger": false
+    }
+  ]
+}
