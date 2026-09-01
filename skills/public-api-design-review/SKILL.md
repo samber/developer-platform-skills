@@ -135,7 +135,7 @@ Company-by-company trigger, authority, and scaling detail - with the staged laun
 - **Rubber-stamping and bottlenecking** - the two named failure modes of review programs, and both avoidable.
   - Too heavy: teams route around it.
   - Too light: a rubber stamp.
-  - Calibration: firm on client-affecting and security decisions, forgiving on style, turned around within a week.
+  - Calibration: firm on client-affecting and security decisions, forgiving on style, quick turnaround within a week.
 - **Review as a late gate.** Feedback arriving after implementation forces teams to start over (Google's documented pre-reform state). Fix: trigger at design time, on the spec.
 - **Growing reviewers without a shared versioned corpus.** Google measured turnaround and guidance consistency degrading together as the pool grew - more reviewers amplify inconsistency unless the rules are written down and versioned.
 - **Taste-based blocking comments.** A block with no cited rule is the anti-pattern step 4 exists to prevent; it recreates both failure modes at once.
@@ -149,7 +149,7 @@ Company-by-company trigger, authority, and scaling detail - with the staged laun
 - **Program health (standing programs only):**
   - Target under-a-week turnaround for small APIs.
   - Median turnaround past ~2 weeks, or teams shipping without review, means too heavy - automate or federate.
-  - Defects reaching GA that a written rule would have caught means too light - add the rule to the linter and require citations.
+  - Defects reaching GA that a written rule would have caught mean too light - add the rule to the linter and require citations.
   - These thresholds are Google-derived benchmarks: treat the direction as sourced and the exact numbers as calibration points, not laws.
 
 ## Invocation examples
