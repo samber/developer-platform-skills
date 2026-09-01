@@ -193,7 +193,7 @@ Anti-pattern checklist - each is a direct audit finding:
 Two binary gates - iterate the design until both pass:
 
 - **Contract completeness**: the guarantee, ordering position, retry schedule, ack timeout, and dedup ID location are each explicitly documented. Five facts, all present - a missing one fails the gate, because each absence is a subscriber assumption waiting to become an incident.
-- **Documentation rubric**: all five rubric elements exist before launch. Four of five fails.
+- **Documentation rubric**: all five rubric elements exist before launch. Any missing element fails the gate.
 
 Operational metrics to stand up, watched as trends rather than pass thresholds:
 
