@@ -72,7 +72,7 @@ Three rungs, ranked:
 - trust and control (descending): `application-reviewed registration > agreement-split entry > self-service signup`
 - compliance cost (descending): `application-reviewed registration > agreement-split entry > self-service signup`
   - a reviewed gate needs a countersigned company-level agreement and a documented admission decision per applicant, and unwinding an admitted partner is a contract termination
-  - the seller track adds KYC/KYB identity data, so privacy and data-residency review, but only for partners who opt into selling and only reversibly
+  - the seller track adds KYC/KYB identity data, so privacy and data-residency review applies, but only for partners who opt into selling and only reversibly
   - a click-through program agreement needs one legal sign-off, then none per partner
 - efficiency: `self-service signup > agreement-split entry > application-reviewed registration`
 
@@ -154,7 +154,7 @@ The headline metric, time-to-first-submitted-app, is effectively yours to coin: 
 
 Working thresholds, each attributed in that reference file:
 
-- Checkpoint 2 above ~10 minutes → fix onboarding friction before anything else; the drop-off evidence puts the largest leak before the first API call, drawn from general developer-tool funnels rather than marketplace-partner data.
+- Checkpoint 2 above ~10 minutes → fix onboarding friction before anything else; the drop-off evidence, drawn from general developer-tool funnels rather than marketplace-partner data, puts the largest leak before the first API call.
 - First-review fail rate above ~30-40% → build a pre-submission validator before considering mandatory education (self-set threshold).
 - Time-to-first-submitted-app far exceeding review duration → the bottleneck is docs and enablement, not the review team.
 
