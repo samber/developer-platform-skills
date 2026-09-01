@@ -27,7 +27,7 @@ Ask one question per message and wait for the answer - each one changes a later 
 8. Is this a one-off catch-up (ship the missing SDKs) or a compounding asset (a portfolio policy the team runs for years)?
 9. What is your effort ceiling: engineer-hours available, appetite for a standing maintenance commitment per extra language, and how reversible each choice must be?
 
-Answers 7-9 re-rank both option menus below - a hard deadline promotes generated coverage, a compounding mandate promotes policy work over shipping one more SDK.
+Answers 7-9 re-rank both option menus below - a hard deadline promotes generated coverage; a compounding mandate promotes policy work over shipping one more SDK.
 
 ## Developer vertical split
 
@@ -115,7 +115,7 @@ See [references/build-model-vendor-landscape.md](references/build-model-vendor-l
 
 ## 5. Decouple the three versioning policies
 
-Stripe states the split directly: SDKs use SemVer, the API is versioned by release date. Write three separate policies and refuse to merge them:
+Stripe states the split directly: SDKs use SemVer; the API is versioned by release date. Write three separate policies and refuse to merge them:
 
 1. **SDK package version** - SemVer per package. Major bump only when the SDK's own surface breaks (renamed method, changed constructor), never merely because the API released a new version.
 2. **API version** - owned by the sibling versioning-policy skill (see References); this strategy only records which scheme it is and pins the boundary.
