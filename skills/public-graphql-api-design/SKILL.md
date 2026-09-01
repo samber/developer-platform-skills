@@ -68,7 +68,7 @@ REST wins by default for three concrete reasons:
 
 GraphQL earns the investment when the consumer mix hits its genuine triggers:
 
-- Multiple client types need meaningfully different shapes of the same data (web, mobile, partner integrations).
+- Multiple client types need meaningfully different shapes of the same data (web, mobile, and partner integrations).
 - Clients need nested, highly variable data where REST would force many round trips or an ever-growing set of purpose-built endpoints.
 - Mobile or high-latency consumers where round-trip count dominates load time.
 
@@ -234,7 +234,7 @@ Reviewing an existing schema emits the same sections as findings instead: the an
 
 See also, same collection:
 
-- `samber/developer-platform-skills@api-integration-surface-strategy` - the umbrella surface-selection decision across REST, GraphQL, gRPC, SDKs and webhooks; step 1's gate defers to it when the question is broader than GraphQL-vs-REST.
+- `samber/developer-platform-skills@api-integration-surface-strategy` - the umbrella surface-selection decision across REST, GraphQL, gRPC, SDKs, and webhooks; step 1's gate defers to it when the question is broader than GraphQL-vs-REST.
 - `samber/developer-platform-skills@public-api-design-review` - whole-surface consistency review; it hands GraphQL surfaces here and consumes this skill's checklist as its GraphQL rubric.
 - `samber/developer-platform-skills@api-rate-limit-policy` - the cost-scoring and budget mechanics that meter traffic under the ceilings designed in step 5.
 - `samber/developer-platform-skills@api-error-design` - the error-code taxonomy, envelope and message discipline behind the `ErrorCode` enum of step 4.
