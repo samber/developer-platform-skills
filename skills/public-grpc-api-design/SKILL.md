@@ -181,7 +181,7 @@ Mechanics table (streaming support, browser path, proxy requirements per option)
 
 ## 7. External auth, TLS, and the exposure audit
 
-The internal-auth instinct is the wrong one: mTLS authenticates _workloads_ and scales fine inside a mesh, but issuing and revoking client certificates for developers you have never met is operationally impractical. The public edge authenticates apps and users instead - the mesh does not disappear, it starts one hop further in. Order of operations:
+The internal-auth instinct is the wrong one: mTLS authenticates _workloads_ and scales fine inside a mesh, but issuing and revoking client certificates for developers you have never met is operationally impractical. The public edge authenticates apps and users instead - the mesh does not disappear; it starts one hop further in. Order of operations:
 
 1. TLS first, non-negotiable: credentials travel as gRPC metadata, plaintext without transport security; most implementations refuse to send credentials over an unencrypted channel at all.
 2. OAuth2 flow by caller type: Client Credentials for machine/service callers, Authorization Code + PKCE where a human authenticates interactively. Token as `authorization: Bearer <token>` metadata, validated in a server interceptor.
@@ -192,7 +192,7 @@ The internal-auth instinct is the wrong one: mTLS authenticates _workloads_ and 
 4. Enforce scopes at the method level - not "is this caller authenticated" but "is this token scoped for this RPC".
 5. API keys complement, never replace, authentication (Google's own Endpoints distinction): a key identifies a project/consumer for quota attribution and coarse gating, not an authenticated identity.
 6. Rate limiting signals over-quota with `RESOURCE_EXHAUSTED` (429 once transcoded) paired with a `RetryInfo` detail so callers back off instead of hammering the same limit.
-7. The exposure audit, mandatory for any internal-first service: disable server reflection in production (it is an API-discovery tool for attackers once the port is public), then enumerate the full method surface for admin, debug, and monitoring RPCs that were never designed for external visibility. TLS and auth switched on does not close this hole.
+7. The exposure audit, mandatory for any internal-first service: disable server reflection in production (it is an API-discovery tool for attackers once the port is public), then enumerate the full method surface for admin, debug, and monitoring RPCs that were never designed for external visibility. TLS and auth switched on do not close this hole.
 
 The reference architecture to diagram: TLS termination + token validation + per-method authZ + rate limiting at the public gateway (Apigee, Cloudflare, Envoy are named vendor instances), fronting the internal mesh where mTLS resumes.
 
