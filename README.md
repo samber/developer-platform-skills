@@ -31,8 +31,8 @@ npx skills add samber/developer-platform-skills
 **Claude Code**: install the plugin:
 
 ```bash
-/plugin marketplace add samber/cc
-/plugin install developer-platform-skills@samber
+/plugin marketplace add samber/developer-platform-skills
+/plugin install developer-platform-skills@developer-platform-skills
 ```
 
 **Codex (OpenAI)**: install via the Codex CLI:
