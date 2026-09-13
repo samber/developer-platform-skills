@@ -46,11 +46,11 @@ Ask one question at a time, multiple-choice where possible. Skip anything alread
 
 Never assume one archetype predicts the others - the day-to-day, the ladder, and what a hire is measured on all differ:
 
-| Archetype | Shape of the work | What a hire is measured on |
-| --- | --- | --- |
-| Infra/API-first (Stripe, Twilio-style) | The API is the product; dedicated platform teams, highest technical depth | API design quality, infra reliability, contract stability |
-| Bolt-on public API on an existing product | Rarely a dedicated team; API design folded into general backend engineering | General engineering delivery, API design as one competency among several |
-| Enterprise partner/ISV ecosystem | A named partner-engineering function with its own manager and director (GitLab's structure) | Partners supported, integrations shipped, usage growth |
+| Archetype                                 | Shape of the work                                                                           | What a hire is measured on                                               |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Infra/API-first (Stripe, Twilio-style)    | The API is the product; dedicated platform teams, highest technical depth                   | API design quality, infra reliability, contract stability                |
+| Bolt-on public API on an existing product | Rarely a dedicated team; API design folded into general backend engineering                 | General engineering delivery, API design as one competency among several |
+| Enterprise partner/ISV ecosystem          | A named partner-engineering function with its own manager and director (GitLab's structure) | Partners supported, integrations shipped, usage growth                   |
 
 The dominant real-world condition, worth setting expectations against: Postman's State of the API Report found **84% of API teams operate in groups of 1-9 people**, with no distinct, centralized platform function called out separately from general engineering at most companies. Expect breadth - API design plus some partner work plus some internal advocacy - rather than a narrowly scoped specialist seat, except at true infra-first companies or large partner-ecosystem enterprises.
 

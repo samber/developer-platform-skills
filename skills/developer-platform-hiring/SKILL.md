@@ -100,13 +100,13 @@ Score the artefacts against these checks before final delivery.
 
 ## Common failure modes
 
-| Failure | Fix |
-| --- | --- |
-| Sourcing on PlatformCon or internal-IDP channels for an external-API-platform hire | Use apidays and general senior-backend/PM channels instead |
-| Solo hire expected to own API design, partner integrations, and developer-facing content with no team or budget | Split the scope across more than one hire, or state the resourcing explicitly in the posting |
-| Copying a general system-design interview for an API-design-judgment role | Use the API-design format, judged on developer-facing usability and misuse-resistance |
-| Quoting a bespoke "platform engineer" salary figure from a crowdsourced site | Anchor to the company's general engineering/PM ladder at the equivalent level |
-| Treating GitLab's or Stripe's posted structure as a universal industry standard | State it as the one sourced example, not a standard |
+| Failure                                                                                                                              | Fix                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Sourcing on PlatformCon or internal-IDP channels for an external-API-platform hire                                                   | Use apidays and general senior-backend/PM channels instead                                       |
+| Solo hire expected to own API design, partner integrations, and developer-facing content with no team or budget                      | Split the scope across more than one hire, or state the resourcing explicitly in the posting     |
+| Copying a general system-design interview for an API-design-judgment role                                                            | Use the API-design format, judged on developer-facing usability and misuse-resistance            |
+| Quoting a bespoke "platform engineer" salary figure from a crowdsourced site                                                         | Anchor to the company's general engineering/PM ladder at the equivalent level                    |
+| Treating GitLab's or Stripe's posted structure as a universal industry standard                                                      | State it as the one sourced example, not a standard                                              |
 | Hiring three specialized roles (API PM, architect, partner engineer) at a company where 1-9 people already run the whole API surface | Confirm the archetype first and size the hire to the actual team, per the company-type reference |
 
 ## Reference

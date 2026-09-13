@@ -16,7 +16,7 @@ No published, cross-company skills matrix comparable to DevRel's own frameworks 
 
 - **Staff-level platform engineering** (Stripe posting): hands-on technical leadership spanning "architecture and design, vision, direction, and requirements setting"; ability to communicate from "high-level discussions to detailed coding"; thrives on high autonomy; proficiency in Java, Ruby, Python, or Go.
 - **API Product Manager, senior level**: "develop and execute the product strategy and roadmap for API products, aligning with the company's overall business objectives," plus competitive analysis and monetization/pricing model design - the PM-track skill that gains weight with seniority is commercial/ecosystem judgment, not deeper technical depth.
-- **Partner/Integration Engineer** (GitLab): the associate-to-full-role jump is an experience threshold on the *same* responsibilities, not a change in scope; the jump to manager adds team hiring/development, mentorship, and being the subject-matter expert for cross-functional partner relationships.
+- **Partner/Integration Engineer** (GitLab): the associate-to-full-role jump is an experience threshold on the _same_ responsibilities, not a change in scope; the jump to manager adds team hiring/development, mentorship, and being the subject-matter expert for cross-functional partner relationships.
 
 **Flagged as thin:** a level-by-level hard/soft skill breakdown for the engineering platform track (junior through staff) was not found as a published framework. Only the staff-level bar (via Stripe) and the associate/full/manager framing (via GitLab) are directly sourced. Treat any finer-grained ladder as inferred from general software-engineering ladders, not platform-specific, until better sourcing is found.
 

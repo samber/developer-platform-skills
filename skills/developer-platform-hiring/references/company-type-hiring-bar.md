@@ -4,7 +4,7 @@ Contents: the three company archetypes and how the hiring bar differs, the domin
 
 ## The three archetypes
 
-- **Infrastructure/API-first companies** (Stripe, Twilio-style) - the API *is* the product. Bar: highest technical depth, dedicated platform teams, staff-level roles carrying 12+ years experience and 5+ years of strategic technical leadership as a stated minimum. Stripe's own posting explicitly invites candidates "whether they've spent their entire career in infrastructure or are looking to apply their skills... for the first time."
+- **Infrastructure/API-first companies** (Stripe, Twilio-style) - the API _is_ the product. Bar: highest technical depth, dedicated platform teams, staff-level roles carrying 12+ years experience and 5+ years of strategic technical leadership as a stated minimum. Stripe's own posting explicitly invites candidates "whether they've spent their entire career in infrastructure or are looking to apply their skills... for the first time."
 - **Companies bolting a public API onto an existing product** - no single sourced example was directly confirmed, but the shape is implied by the prevalence of small API teams (below) and by postings that ask for "API design and development" as one line item inside an otherwise general backend-engineering role rather than as a dedicated platform team's sole mandate.
 - **Enterprise platforms with large partner/ISV ecosystems** - evidenced by GitLab's dedicated, three-level Partner Integration Engineering job family reporting through a Director, Partner Solutions Architecture, with tracked KPIs (partners supported, integrations launched, integration usage, year-over-year growth) - a structurally different hiring pattern because the deliverable is partner-relationship-mediated, not a solo technical build.
 
@@ -16,11 +16,11 @@ Postman's State of the API Report found **84% of API teams operate in groups of 
 
 ## What differs across the three archetypes
 
-| Dimension | Infra/API-first | Bolt-on public API | Enterprise partner ecosystem |
-| --- | --- | --- | --- |
-| Team dedicated to the platform | Yes, often multiple specialized teams | Rarely a dedicated team; folded into general backend engineering | Yes, a named partner-engineering function with its own manager and director |
-| What a hire is measured on | API design quality, infra reliability, developer-facing contract stability | General engineering delivery, API design as one competency among several | Named partner-facing KPIs: partners supported, integrations shipped, usage growth |
-| Portfolio bar for a candidate | Highest - staff-level postings can expect 12+ years and prior leadership of API-design teams | Lower, folded into a general "API design and development" line item | Relationship plus technical hybrid: open-source contribution history, partner-facing communication |
+| Dimension                      | Infra/API-first                                                                              | Bolt-on public API                                                       | Enterprise partner ecosystem                                                                       |
+| ------------------------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| Team dedicated to the platform | Yes, often multiple specialized teams                                                        | Rarely a dedicated team; folded into general backend engineering         | Yes, a named partner-engineering function with its own manager and director                        |
+| What a hire is measured on     | API design quality, infra reliability, developer-facing contract stability                   | General engineering delivery, API design as one competency among several | Named partner-facing KPIs: partners supported, integrations shipped, usage growth                  |
+| Portfolio bar for a candidate  | Highest - staff-level postings can expect 12+ years and prior leadership of API-design teams | Lower, folded into a general "API design and development" line item      | Relationship plus technical hybrid: open-source contribution history, partner-facing communication |
 
 ## What this means for the hiring skill
 

@@ -118,11 +118,11 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 
 ### Meta
 
-| Skill                                                         | Route here when the task is…                                                      |
-| ------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `samber/developer-platform-skills@developer-platform-kickoff` | This skill: project start, periodic check-in, "which skill do I need", re-routing |
+| Skill                                                         | Route here when the task is…                                                                                                        |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `samber/developer-platform-skills@developer-platform-kickoff` | This skill: project start, periodic check-in, "which skill do I need", re-routing                                                   |
 | `samber/developer-platform-skills@developer-platform-career`  | Candidate side - breaking into an API PM, platform engineer, or partner/integration engineer role, interview prep, offer evaluation |
-| `samber/developer-platform-skills@developer-platform-hiring`  | Employer side - scorecard and job posting, interview loop design, sourcing, compensation stance |
+| `samber/developer-platform-skills@developer-platform-hiring`  | Employer side - scorecard and job posting, interview loop design, sourcing, compensation stance                                     |
 
 **The altitude rule.** Seven skills sit at macro altitude, and each shares subject keywords with a tactical sibling:
 
