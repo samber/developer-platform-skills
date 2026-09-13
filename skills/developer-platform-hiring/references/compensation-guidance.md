@@ -17,7 +17,7 @@ This is the one finding worth stating explicitly and prominently, because it fli
 ## What to check for a live figure
 
 - The company's own published engineering or PM level ladder and comp bands, if public (GitLab publishes both, though the specific compensation figures for its Partner Integration Engineer family were not visible in the fetched handbook page - only the job-level structure was).
-- Crowdsourced leveling sites (Levels.fyi) searched by the *general* engineering or PM title plus team name (for example, "Staff Software Engineer" at the target company, filtered to a platform or API team) rather than by a bespoke "platform engineer" or "API product manager" title, since those bespoke titles return sparse or no data.
+- Crowdsourced leveling sites (Levels.fyi) searched by the _general_ engineering or PM title plus team name (for example, "Staff Software Engineer" at the target company, filtered to a platform or API team) rather than by a bespoke "platform engineer" or "API product manager" title, since those bespoke titles return sparse or no data.
 - Devtools-focused recruiters, the same channel devrel-hiring names for its own undersurveyed compensation gap.
 
 Never quote an undated figure from memory; if the harness can browse, pull a current figure with its source, date, and level before using it in any deliverable, exactly as devrel-hiring instructs for its own compensation gate.

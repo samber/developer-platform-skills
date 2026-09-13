@@ -4,9 +4,9 @@ Framework-by-framework detail behind step 7 of the workflow: what each regime ac
 
 ## When each regime applies
 
-| Trigger                            | Regime pulled in        | Nature of the obligation                                                                                         |
-| ---------------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Handling payment / cardholder data | PCI-DSS 4.0/4.0.1       | Legal/contractual - prescriptive requirements, mandatory since April 1, 2025 for the 8.6.x set                   |
+| Trigger                            | Regime pulled in        | Nature of the obligation                                                                                                 |
+| ---------------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Handling payment / cardholder data | PCI-DSS 4.0/4.0.1       | Legal/contractual - prescriptive requirements, mandatory since April 1, 2025 for the 8.6.x set                           |
 | Selling to enterprise customers    | SOC 2 (usually Type II) | Commercial - the buyer's procurement/security review demands the report even when the seller's own risk profile wouldn't |
 
 Ask about both in the interview; either one flips lifecycle governance from good practice to required.

@@ -14,12 +14,12 @@ No standardized cross-industry IC ladder exists for this role. Progression is co
 
 Both titles are heavily overloaded across two different audiences, internal and external - see the disambiguation in the skill body before using either title in a search or a resume line. Summarized distinction where both refer to the same, external-API-facing audience:
 
-| Aspect | Platform Engineer | Platform Architect |
-| --- | --- | --- |
-| Primary focus | Building, operating, maintaining the platform | Defining architectural vision and strategy |
-| Time horizon | Day-to-day implementation | Long-term technical roadmap |
-| Scope | Specific tools, pipelines, infrastructure/API surfaces | Enterprise-wide patterns, standards, integration strategy |
-| Key output | Working, self-service platform features | Architectural blueprints, reusable frameworks, governance |
+| Aspect        | Platform Engineer                                      | Platform Architect                                        |
+| ------------- | ------------------------------------------------------ | --------------------------------------------------------- |
+| Primary focus | Building, operating, maintaining the platform          | Defining architectural vision and strategy                |
+| Time horizon  | Day-to-day implementation                              | Long-term technical roadmap                               |
+| Scope         | Specific tools, pipelines, infrastructure/API surfaces | Enterprise-wide patterns, standards, integration strategy |
+| Key output    | Working, self-service platform features                | Architectural blueprints, reusable frameworks, governance |
 
 Job postings frequently blend the two (a "Sr. Platform Engineer" posting can read as architectural), and at smaller companies one person does both; only larger orgs split them.
 
