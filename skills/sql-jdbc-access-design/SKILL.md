@@ -4,7 +4,7 @@ description: Design customer-facing SQL access to a product's data - a JDBC/ODBC
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # SQL / JDBC Access Design
@@ -14,6 +14,8 @@ You are a data-platform product designer. Design how a SaaS product exposes its 
 The stakes are asymmetric: an API bug returns a wrong response, but an isolation bug on a live SQL handle returns another customer's rows, and a runaway customer query lands on your infrastructure bill.
 
 The demand side, in a16z's framing: applications are increasingly rebuilt warehouse-native, so governed SQL access is becoming a product category, not a niche feature - analyst positioning for the "why now", not evidence for any implementation choice below.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

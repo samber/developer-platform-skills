@@ -4,7 +4,7 @@ description: Before starting any developer-platform, public-API, or integration 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.2"
 ---
 
 # Developer Platform Kickoff
@@ -22,6 +22,7 @@ Run this skill at every project start, even when the collection's skills are alr
 
 Every fact derivable from the environment is a question the user never has to answer. Run detection first; the interview cap only survives if it does.
 
+**Memory (advised): When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. This file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.**
 1. Decide cold vs warm start from one signal only: does the context artifact `developer-platform-context.md` exist in the project? Present → warm start. Absent → cold start. Never ask the user which one it is.
 2. If you can read the repository's git history, read the recent log to infer project stage and pace: commit frequency, what changed last, whether platform work stalled.
 3. Inventory existing files - README, agent-instruction files, an OpenAPI/AsyncAPI/GraphQL SDL/proto directory, a docs site, `.github/`, a `CHANGELOG` - so nothing already written gets re-asked. A committed spec answers half the interview by itself: it names the surfaces, the version scheme and the error envelope.
@@ -30,7 +31,7 @@ Every fact derivable from the environment is a question the user never has to an
 
 ## 2. Interview - capped, tappable
 
-On a cold start, ask at most 5-7 questions. Ask one question per message. Offer multiple-choice options whenever possible. Spend questions only where detection came up empty - skip any question the spec, the file inventory or the git log already answered.
+On a cold start, ask at most 5-7 questions. Ask one question per message. Offer multiple-choice options whenever possible. Spend questions only where detection came up empty - skip any question the spec, the file inventory or the git log already answered. **Use an interactive question mechanism (e.g. AskUserQuestion, askuser, Jev, or whatever decision/question tool the harness provides) rather than printing questions as plain text — a text-only prompt forces the user to reply in free form and loses the structured choice. Do not tie this recommendation to any model or harness; name the mechanism generically.**
 
 1. "Who integrates with this platform today?" - (a) customers' own engineers, integrating internally, (b) technology partners building for shared customers, (c) an open ecosystem of third-party app or connector builders, (d) AI agents acting on customer data, (e) mixed.
 2. "What is the goal of this session - and is it the same as the project's goal?" Ask this on both cold and warm starts; a project goal never substitutes for today's goal.

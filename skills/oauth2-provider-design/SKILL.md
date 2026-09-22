@@ -4,7 +4,7 @@ description: Design the OAuth2 authorization-server surface a B2B SaaS offers th
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # OAuth2 Provider Design
@@ -17,6 +17,8 @@ This is decision guidance for a platform/API team, not an RFC tutorial. The targ
 - The consolidated OAuth 2.1 document (draft-ietf-oauth-v2-1) remains in draft. Check its current status before citing it as published.
 
 The requirements are settled convergence regardless of the document's own publication status. Never state that OAuth 2.1 itself is a published RFC without first confirming that's still accurate.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

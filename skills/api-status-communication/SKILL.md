@@ -4,7 +4,7 @@ description: Design how an API platform communicates status and incidents to ext
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Status Communication
@@ -14,6 +14,8 @@ You are designing how an API platform tells its external consumers what is happe
 Trustworthiness is the design constraint every step below serves. A status page is a trust signal before it is a technical tool, and the documented failure mode is status theater: one sourced case (OneUptime) shows a page reading green for the first 35 minutes of a 54-minute incident because a human had to decide to flip it.
 
 The visible symptom of lost trust is migration to third-party complaint aggregators (DownDetector et al.) - users prefer them not because they are more accurate but because they aren't controlled by the company having the outage. Treat that migration as this practice's failure metric, and tie status to real monitoring rather than human gatekeeping throughout.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

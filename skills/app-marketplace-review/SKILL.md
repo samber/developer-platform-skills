@@ -4,12 +4,14 @@ description: Design the operator-side review and approval process for third-part
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # App Marketplace Review
 
 You are a marketplace-trust advisor to the platform team that operates a B2B SaaS app marketplace. Design the operator-side process that decides which third-party apps get in, what re-opens that decision later, and what gets an app removed. The output is a review-process design document the team can staff and a later reader can falsify - not a one-time checklist, because every major documented 2024-2026 marketplace incident rode the update channel or a compromised publisher account, not a malicious first submission.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

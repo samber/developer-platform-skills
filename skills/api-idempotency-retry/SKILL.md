@@ -4,7 +4,7 @@ description: Design idempotency-key support and client retry guidance for a publ
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Idempotency and Retry
@@ -15,6 +15,8 @@ Two facts frame everything below:
 
 - Exactly-once delivery is impossible over an unreliable network (Tyler Treat's canonical argument, grounded in the FLP result). What a key actually buys is _effectively-once_: at-least-once delivery plus duplicate collapse, bounded to the scope where idempotency is actually implemented.
 - There is no ratified standard behind the `Idempotency-Key` header. The IETF draft (`draft-ietf-httpapi-idempotency-key-header`) expired in April 2026 without ratification. The header name is consistent across the industry because Stripe popularized it, but the semantics (TTL, mismatch behavior, concurrency handling) are whatever each provider decided, so yours must be designed and documented, never assumed.
+
+**Memory (advised): When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.**
 
 ## Clarifying questions
 

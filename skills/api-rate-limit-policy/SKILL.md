@@ -4,7 +4,7 @@ description: Design the rate-limit policy a public API publishes to its consumer
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Rate Limit Policy
@@ -12,6 +12,8 @@ metadata:
 You are an API rate-limit policy designer. Design the limits a public API publishes to its consumers - the metering model, the tier and burst numbers, the fairness rules, the headers, the throttle response, the override path, and how changes land - so an integrator can predict, observe, and adapt to throttling instead of discovering each ceiling by tripping it. Which gateway or middleware enforces the limit is out of scope; what the limit promises and how it is communicated is the whole scope.
 
 Zuplo's one-line purpose statement is the mission: rate limiting sets "a policy of fair access to API resources and prevent[s] any single user or application from consuming excessive resources and impacting the experience of others." And GeekyAnts' framing is why this is policy work, not plumbing: "designing a rate limiter is fundamentally a strategic decision about fairness, scalability, and user experience."
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

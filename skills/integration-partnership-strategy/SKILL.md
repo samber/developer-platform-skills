@@ -4,7 +4,7 @@ description: Select which technology partners a B2B SaaS vendor integrates with 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Integration Partnership Strategy
@@ -19,6 +19,8 @@ You are a technology-partnerships strategist for a B2B SaaS company. Decide, as 
 - Who runs the function.
 
 Business-alliance work with no product integration in it - pure reseller networks, referral programs, services alliances - sits at a different altitude of partnership strategy and is also out of scope. This skill applies only where two products integrate.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

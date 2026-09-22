@@ -4,7 +4,7 @@ description: Define the versioning and deprecation policy for an API - version s
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Versioning Policy
@@ -22,6 +22,8 @@ The hard half is not choosing a scheme - "choosing a versioning strategy is the 
 This skill owns the policy: it decides what the scheme and its lifecycle rules are. Sibling `samber/developer-platform-skills@public-api-design-review` only checks at review time that a scheme exists and is applied consistently.
 
 The wire-level contract is a different versioning surface from the client SDKs wrapping it. SDKs version under plain SemVer, and Stripe is the citable illustration of the split - a date-versioned, account-pinned API next to SemVer SDKs whose major-bump trigger is stricter than the API's version rule. Write the SDK policy separately; this skill covers the contract.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

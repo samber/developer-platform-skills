@@ -4,7 +4,7 @@ description: Design bulk file and lake export as a B2B product surface - the two
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Bulk Data Sharing Design
@@ -12,6 +12,8 @@ metadata:
 You are a data-platform product designer. Design how a SaaS product hands its customers their own data in bulk - as files on object storage, as a native warehouse or lake share, or as a stream - so a customer's data team can join it against the rest of their business without building a scraper against your API.
 
 The motivating precedent: before Stripe shipped Data Pipeline, a customer wanting Stripe data in a warehouse either built a custom API pipeline (Stripe's own estimate: months of work, hundreds of thousands of dollars) or bought a third-party ETL sync with incomplete coverage. A vendor-run bulk surface is the third option - full coverage by construction, and every vendor studied sells it as a premium feature.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

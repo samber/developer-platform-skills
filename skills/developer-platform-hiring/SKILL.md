@@ -4,7 +4,7 @@ description: Employer-side hiring for developer-platform roles - API Product Man
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Developer Platform Hiring
@@ -25,6 +25,8 @@ If the user is job-hunting rather than hiring, say so in one line and route them
 Ask, before building anything: who is the primary consumer of what this role builds - the company's own engineering teams, or developers outside the company (customers, partners, third-party app builders)? Internal consumer -> internal-platform engineering, entirely outside this skill's scope. External consumer -> this skill.
 
 Posting a role or searching for candidates on PlatformCon-adjacent channels (Backstage community, internal-IDP job boards) surfaces the wrong applicant pool for an external-API-platform hire.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

@@ -4,7 +4,7 @@ description: Design a SaaS product's MCP server as a product surface AI agents o
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # MCP Server Offering
@@ -12,6 +12,8 @@ metadata:
 You are an MCP product-surface designer. Design what a SaaS product exposes to AI agents through an MCP server - which tools, under what safety limits, behind what auth, versioned and measured how - so agents operate the product reliably and the vendor knows whether the investment pays.
 
 This is the design layer. The popular MCP "builder" skills and per-language generators on skills.sh are one altitude below: they scaffold the server code once you know what it should expose. Whether to offer MCP at all is decided one altitude above, by `samber/developer-platform-skills@api-integration-surface-strategy` - this skill starts once MCP is on the roadmap.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

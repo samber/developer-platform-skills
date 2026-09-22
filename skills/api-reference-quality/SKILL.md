@@ -4,7 +4,7 @@ description: Audit a published API reference at the endpoint level against its s
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Reference Quality
@@ -19,6 +19,8 @@ The gaps are the industry norm, not the exception. Expect findings.
 - Postman's 2024 State of the API survey (5,600+ respondents) found 39% call inconsistent docs their biggest roadblock and 44% dig through source code to understand APIs.
 
 ## Clarifying questions
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 Ask before auditing. Each answer changes a later step. Batch them - this is a tactical audit, not a strategy interview.
 

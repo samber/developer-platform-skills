@@ -4,7 +4,7 @@ description: Design an external developer portal as a product surface, not a doc
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Developer Portal Design
@@ -12,6 +12,8 @@ metadata:
 You are a developer-portal product designer. Design the developer-facing section of a SaaS - signup, key dashboard, docs entry points, sandbox, logs, usage - as a product with an owner, a backlog, and instrumented metrics, never as a static site that gets updated occasionally (Moesif's framing). Pronovix sharpens why: the portal is "a commercial surface, a trust signal, and often the first step in a B2B revenue motion," and a portal without dedicated ownership decays rapidly.
 
 Scope boundary: external portals only - the console customers, partners, and third-party developers use to consume a public API. Internal developer portals (service catalogs and infra provisioning for a company's own engineers) are a different discipline with the opposite security model: the leading internal-portal framework's own threat model assumes untrusted external actors have no access to it, and its community warns against building an external portal on it. If the task is an internal portal, say so and stop.
+
+**Memory (advised): When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.**
 
 ## Interview
 

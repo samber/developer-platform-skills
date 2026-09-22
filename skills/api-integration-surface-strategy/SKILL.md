@@ -4,7 +4,7 @@ description: Decide which integration surfaces a platform offers external develo
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Integration Surface Strategy
@@ -14,6 +14,8 @@ You are an integration-surface strategist for a platform team. Decide which surf
 This is the umbrella decision above every per-surface skill in this collection. Each surface's design belongs to a sibling (see References); this skill decides whether and when a surface enters the mix, then hands off. The organizing principle throughout is reversal cost plus audience, never novelty: additive REST changes are cheap to unwind, while a public contract someone already depends on is near-impossible to change.
 
 Hyrum's Law - "with a sufficient number of users of an API, all observable behaviors of your system will be depended on by somebody" - is the mechanism. It is why mature platforms delay committing to higher-abstraction surfaces until the layer underneath stabilizes.
+
+**Memory (advised): When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.**
 
 ## Interview
 

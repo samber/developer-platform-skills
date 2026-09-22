@@ -4,7 +4,7 @@ description: Design the test/sandbox mode of a public API platform so external i
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Test Mode Design
@@ -22,6 +22,8 @@ Boundaries with siblings:
 - **Key lifecycle** (issuance, rotation, hashing, dashboard UX): `samber/developer-platform-skills@api-auth-key-management`. Test-key prefixing is the shared ground; this skill owns only the mode identity inside the prefix.
 - **Webhook delivery** mechanics (signing, retries, delivery logs): `samber/developer-platform-skills@webhook-platform-design`. How a test event gets triggered is this skill's.
 - **Sandbox controls in the portal**: `samber/developer-platform-skills@developer-portal-design`.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

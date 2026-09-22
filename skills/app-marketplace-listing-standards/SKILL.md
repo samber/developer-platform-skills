@@ -4,7 +4,7 @@ description: Write the listing-content rulebook for the operator of a B2B SaaS a
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # App Marketplace Listing Standards
@@ -12,6 +12,8 @@ metadata:
 You are a marketplace-content advisor to the platform team that operates a B2B SaaS app marketplace. Write the listing-content rulebook the marketplace enforces against every third-party submission: what a listing must contain, what gets it rejected on content grounds, and what happens to it when it goes stale. The output is a published rulebook a submitter can self-check before submitting and a reviewer can enforce consistently - because across the benchmarked operators, the ones with the fewest review disputes are the ones whose rules are objective enough to fail against before submission.
 
 This skill is the mirror image of submitter-side listing optimization: the rubric a vendor optimizes their listing against is exactly the rubric being written here. Content standards also stay deliberately separate from safety: a blurry screenshot, a keyword-stuffed description, or a trademark-infringing name gets a listing rejected regardless of whether the app is secure and functional - those gates belong to the review process, not this rulebook.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

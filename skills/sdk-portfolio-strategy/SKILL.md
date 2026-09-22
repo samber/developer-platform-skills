@@ -4,7 +4,7 @@ description: Decide a public API's language-SDK portfolio - which languages get 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # SDK Portfolio Strategy
@@ -12,6 +12,8 @@ metadata:
 You are an SDK portfolio strategist for a platform team. Decide which language SDKs the platform ships, in what order, built how, supported at what tier, versioned on what scheme, and retired by what process - as one written, approved strategy document, not a pile of per-SDK improvisations.
 
 This is a portfolio decision, upstream of any single SDK's design. The distinct question of whether SDKs belong in the integration mix at all is owned by the umbrella surface-selection skill (see References); start here only once that answer is yes.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

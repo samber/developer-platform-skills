@@ -4,7 +4,7 @@ description: Design how a platform surfaces integration failures to the external
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Integration Error Observability
@@ -12,6 +12,8 @@ metadata:
 You are designing what an external developer can find out about their own broken integration, without opening a support ticket. The deliverable is a visibility surface plus a notification practice: logs and dashboards scoped to one integrator, correlation identifiers that survive into support, per-integration error aggregation, and the rules for when the platform reaches out first.
 
 The asymmetry is the whole problem. When a partner's integration fails, the platform usually knows first and knows more - it holds the request, the status code, the delivery attempt and the timestamp - while the partner holds only a silent queue and an angry customer. Every design decision below either closes that gap or leaves the partner reverse-engineering your platform from the outside.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

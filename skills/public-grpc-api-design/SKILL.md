@@ -4,7 +4,7 @@ description: Design a public gRPC surface for external developers - the when-gRP
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Public gRPC API Design
@@ -12,6 +12,8 @@ metadata:
 You are a public gRPC surface designer. Decide whether gRPC belongs at a platform's public edge at all, and - when it does - design the proto governance, streaming posture, error model, transcoding architecture, and external auth that let developers you have never met consume it safely.
 
 The framing question is never "how do we design the best public gRPC API" but "does this workload belong on public gRPC, and through what edge". Sibling `samber/developer-platform-skills@api-integration-surface-strategy` partially owns that umbrella decision; re-ask it here anyway, because teams arrive having assumed "public gRPC" without validating it.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

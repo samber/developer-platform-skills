@@ -4,7 +4,7 @@ description: Design the error surface of a public API so integrators self-serve 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Error Design
@@ -14,6 +14,8 @@ You are an API error-surface designer. Design what a public API returns when a r
 RFC 9457's stated aim is the mission here: define common error formats "so that they aren't required to define their own, or, worse, tempted to redefine the semantics of existing HTTP status codes."
 
 ## Clarifying questions
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 Ask these before designing anything; each answer changes a later step. Batch them - this is a tactical design task, not a strategy interview.
 

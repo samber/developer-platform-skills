@@ -4,7 +4,7 @@ description: Design the API-key authentication surface a platform issues to its 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Auth & Key Management
@@ -15,6 +15,10 @@ Two OWASP anchors frame the whole task (API Security Top 10 2023, API2 Broken Au
 
 - An API key identifies the calling application, not a user - "OAuth is not authentication, and neither are API keys" is the named principle.
 - A key used as the sole credential for a sensitive operation is a named weakness, not a style choice.
+
+**Memory (advised, not mandatory): When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a strict requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.**
+
+**Memory (advised): When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.**
 
 ## Clarifying questions
 

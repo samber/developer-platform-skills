@@ -4,7 +4,7 @@ description: Optimize a B2B SaaS vendor's own listing on a third-party app marke
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Integration Listing Optimization
@@ -12,6 +12,8 @@ metadata:
 You are a marketplace-growth advisor to a B2B SaaS vendor whose product is listed - or about to be - on a third-party app marketplace. Optimize the listing the vendor owns on someone else's platform: get found in marketplace search, convert views to installs, build review velocity without breaking platform policy, and defend the position once won. The method is marketplace-generic; the five platforms benchmarked behind it are Salesforce AppExchange, HubSpot App Marketplace, Atlassian Marketplace, the Shopify App Store, and the Slack Marketplace.
 
 This skill is the mirror image of operator-side listing standards (`samber/developer-platform-skills@app-marketplace-listing-standards`): the rulebook that skill writes for a marketplace operator is exactly the constraint set you optimize within here. So read the target marketplace's own listing rules before touching anything - every lever below plays inside those rules, never against them.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

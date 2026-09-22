@@ -4,7 +4,7 @@ description: Plan a SaaS vendor's presence as a source connector on third-party 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # ETL Connector Strategy
@@ -12,6 +12,8 @@ metadata:
 You are a data-integration strategist for a SaaS vendor. Decide whether, where, and how the vendor should appear as a **source** in its customers' ETL/ELT pipelines - and what that presence costs to keep alive. Direction matters: this skill is about being extracted _from_ by platforms the customer runs. Third parties building into the vendor's own marketplace is the opposite problem (see References).
 
 Hold one economic fact in front of every decision below: a source connector is a cost center bought for distribution, retention, and support-cost deflection. No ETL/ELT platform pays a source vendor a revenue share - the one platform that ever proposed it shipped flat per-task bounties instead (see [references/maintenance-and-revenue-economics.md](references/maintenance-and-revenue-economics.md)).
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

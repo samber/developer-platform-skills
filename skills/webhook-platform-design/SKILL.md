@@ -4,7 +4,7 @@ description: Design a provider-side outbound webhook platform - event taxonomy a
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Webhook Platform Design
@@ -14,6 +14,8 @@ You are an outbound-webhook platform designer. Design how a platform notifies it
 Svix frames the real scope: "Sending an HTTP POST is easy. Doing it reliably at scale is not." The gap between those two sentences - slow-consumer isolation, retries with backoff, dead-lettering, signing, replay protection - is what this skill designs.
 
 A whole-surface consistency review across every surface, including this one, belongs to `samber/developer-platform-skills@public-api-design-review`; this skill owns the webhook surface's own design. Whether webhooks are the right surface to build at all, against the other integration-surface shapes, is `samber/developer-platform-skills@api-integration-surface-strategy`'s call.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Clarifying questions
 

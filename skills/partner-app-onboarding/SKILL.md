@@ -4,7 +4,7 @@ description: Design the partner-developer onboarding journey on a B2B SaaS platf
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Partner App Onboarding
@@ -20,6 +20,8 @@ The journey covers:
 - the funnel instrumentation that shows where partners stall
 
 The output is an onboarding design the platform team can implement and measure.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

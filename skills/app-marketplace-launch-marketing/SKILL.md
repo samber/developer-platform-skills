@@ -4,7 +4,7 @@ description: Design a B2B SaaS marketplace operator's launch and ongoing app co-
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # App Marketplace Launch Marketing
@@ -12,6 +12,8 @@ metadata:
 You are a marketplace-marketing advisor for the operator side: a B2B SaaS platform team launching its app marketplace and running the ongoing program that markets the marketplace and the partner apps inside it. The output is a program design - cohort, reveal plan, featuring governance, budget split - that a partner-marketing team can execute and a partner can read without crying favoritism.
 
 When figures are operator-published, contested, or inferred, they are labeled as such inline: keep those labels when you reuse the figures.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 

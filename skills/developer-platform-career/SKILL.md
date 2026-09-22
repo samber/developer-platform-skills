@@ -4,7 +4,7 @@ description: Plans a developer-platform career from the candidate side - API Pro
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Developer Platform Career
@@ -27,6 +27,8 @@ This skill covers a different, narrower population: engineers and PMs who design
 Ask, or infer from a job title or resume line: who is the primary consumer of what this role builds - the company's own engineering teams, or developers outside the company (customers, partners, third-party app builders)? Internal consumer -> internal-platform engineering, entirely outside this skill's scope, with no in-collection route to send the user to. External consumer -> this skill.
 
 Getting this wrong sources the wrong community (PlatformCon vs. apidays), benchmarks the wrong compensation band (general infra/SRE vs. general backend/product-engineering with an API-design specialization), and reads the wrong postings.
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview
 
@@ -82,6 +84,8 @@ No dedicated academic degree or bootcamp path exists for this specialization - i
 **A route worth testing, not yet established for this field:** building internal APIs inside an existing engineering org carries less external-consumer accountability than shipping a public API, making it a plausible, lower-friction practice ground before moving to a team that ships externally. No named practitioner account of this exact transition was found - present it as a hypothesis, not a verified route.
 
 Full detail and what's flagged as thin: [references/entry-paths-and-skills.md](./references/entry-paths-and-skills.md).
+
+**Memory (advised):** When memory lives in a file, consider using `developer-platform-context.md`; if a different memory system is in use, rely on that instead. The file is an advisory reference, not a mandatory requirement. Separate task info in different sections. Remove finished tasks. Add a date to a task; no date for general project context. Some interview responses may differ between 2 tasks.
 
 ## Interview preparation
 
