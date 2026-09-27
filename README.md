@@ -17,33 +17,46 @@ _Part of the [samber skills ecosystem](https://github.com/samber?tab=repositorie
 
 Install every skill in this repo, not just one. Skills here are atomic by design and reference each other freely: picking a single skill leaves its sibling skills uninstalled, so cross-references and routed handoffs go nowhere.
 
-**skills.sh (universal)**: works with any Agent Skills-compatible tool:
+<details>
+<summary><b>skills.sh</b> — universal, works with any Agent Skills-compatible tool</summary>
 
 ```bash
 npx skills add samber/developer-platform-skills
 ```
 
-**Claude.ai**:
+</details>
+
+<details>
+<summary><b>Claude.ai</b></summary>
 
 1. add as a plugin marketplace: open **Settings -> Capabilities -> Plugins**
 2. click **Add -> Add marketplace -> Add from a repository**
 3. enter `samber/developer-platform-skills`
 4. then **Sync**
 
-**Claude Code**: install the plugin:
+</details>
+
+<details>
+<summary><b>Claude Code</b></summary>
 
 ```bash
 /plugin marketplace add samber/developer-platform-skills
 /plugin install developer-platform-skills@developer-platform-skills
 ```
 
-**Codex (OpenAI)**: install via the Codex CLI:
+</details>
+
+<details>
+<summary><b>Codex (OpenAI)</b></summary>
 
 ```bash
 codex plugin add github:samber/developer-platform-skills
 ```
 
-**Cursor**: copy into Cursor's skills directory:
+</details>
+
+<details>
+<summary><b>Cursor</b></summary>
 
 ```bash
 git clone https://github.com/samber/developer-platform-skills.git ~/.cursor/skills/developer-platform-skills
@@ -51,13 +64,24 @@ git clone https://github.com/samber/developer-platform-skills.git ~/.cursor/skil
 
 Cursor auto-discovers skills from `.agents/skills/` and `.cursor/skills/`.
 
-**Gemini CLI**: install as a Gemini extension:
+</details>
+
+<details>
+<summary><b>Gemini CLI</b></summary>
 
 ```bash
 gemini extensions install https://github.com/samber/developer-platform-skills
 ```
 
 Update with `gemini extensions update developer-platform-skills`.
+
+</details>
+
+### First run
+
+```
+/developer-platform-kickoff We're about to publish our first public REST API and I'm not sure the design is ready to commit to.
+```
 
 ## 📦 Skills
 
