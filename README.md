@@ -4,6 +4,8 @@ Skills for building and running the **developer-facing surface of a SaaS product
 
 Written for **platform PMs, API and DX engineers, SDK authors, and partner engineering**: design and policy work, not code generation. Every skill is **tool-agnostic**: it teaches the decision, not one vendor's console.
 
+<img width="1904" height="640" alt="image" src="https://github.com/user-attachments/assets/b8a9d183-8c93-4124-8ccc-8c7d9acd2807" />
+
 ## 📚 Related Collections
 
 - [`developer-relations-skills`](https://github.com/samber/developer-relations-skills): DevRel strategy & execution: _for developer advocates, DevRel managers, community managers_
