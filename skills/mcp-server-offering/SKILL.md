@@ -1,10 +1,10 @@
 ---
 name: mcp-server-offering
-description: Design a SaaS product's MCP server as a product surface AI agents operate - sizing the build investment, curating a 5-15 workflow-tool agent surface instead of mirroring API endpoints, named write-tool safety patterns (scoped credentials, read-only lockdown, human-in-the-loop approval, risk-tiered server-side gates, dry-run preflight, idempotency and spend caps), remote hosting with OAuth 2.1, versioning the tool surface, MCP registry discoverability, and measuring agent adoption. Use whenever the user mentions MCP, Model Context Protocol, an agent-facing tool surface, exposing a product to AI agents or coding assistants, or MCP write-tool safety - even if they never say "MCP server". Design layer only - code-generation MCP builder skills scaffold what this specifies.
+description: Design a SaaS product's MCP server as a product surface AI agents operate - sizing the build investment, curating a 5-15 workflow-tool agent surface instead of mirroring API endpoints, MCP Apps interactive UI, named write-tool safety patterns (scoped credentials, read-only lockdown, human-in-the-loop approval, risk-tiered server-side gates, dry-run preflight, idempotency and spend caps), remote hosting with OAuth 2.1, versioning the tool surface, MCP registry discoverability, and measuring agent adoption. Use whenever the user mentions MCP, Model Context Protocol, an agent-facing tool surface, exposing a product to AI agents or coding assistants, or MCP write-tool safety - even if they never say "MCP server". Design layer only - code-generation MCP builder skills scaffold what this specifies.
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
 # MCP Server Offering
@@ -92,6 +92,53 @@ The comprehensive-vs-curated debate is resolved: curated won. Do not present thi
   - Set the read-only/destructive/idempotent annotations honestly, and treat them as hints for clients, never as security controls.
   - Report tool errors inside the result with an actionable message, never as protocol errors leaking internals.
 - Give every tool exactly one risk level (step 3). A tool that both reads and irreversibly writes is two tools.
+
+### MCP Apps: when a tool returns interactive UI
+
+MCP Apps is an official MCP extension (identifier `io.modelcontextprotocol/ui`, spec revision 2026-01-26). It lets a tool answer with an interactive HTML interface - a chart, a form, a viewer, a dashboard - rendered inside the conversation instead of a block of text. Treat it as an optional layer on top of the curated tool surface above, never as a replacement for it.
+
+Why MCP Apps are different from the rest of the server:
+
+- **Different reader.** Every other tool in this surface answers the agent: the model reads the result, reasons over it, and summarizes it for the user. An app answers the human. The user clicks, filters and approves directly, and the model sees only what the app chooses to push back into its context.
+- **Different from a plain tool result.** A text or structured result is a one-shot answer; each follow-up costs another model turn. An app keeps state and lets the user explore without a prompt per step, and it can call the server's tools itself.
+- **Different from a standalone web app behind a link.** The app lives inside the conversation, next to the discussion that produced it, so no tab switch and no lost context. It reaches data through the MCP tools the server already exposes, so it needs no separate API, login or session handling. It can also hand an outcome to the host, which routes it through the user's other connected capabilities, with the user's consent.
+- **Different from a widget embedded in your own product.** Your own page is one host you control. An MCP App runs in many hosts you don't control, inside a sandbox with a deny-by-default content security policy, and each host decides which capabilities the app may use.
+
+How it works, in the order the host runs it:
+
+1. **Declare.** The tool's description carries `_meta.ui.resourceUri`, pointing to a `ui://` resource on the same server. The host can preload that resource before the tool is even called, which lets it stream tool inputs into the app.
+2. **Fetch.** The host reads the `ui://` resource: an HTML page, usually bundled with its JavaScript and CSS. External scripts and assets load only from origins listed in `_meta.ui.csp`.
+3. **Render.** Web hosts render the page in a sandboxed iframe. The app cannot touch the parent page's DOM, cookies or local storage, and cannot navigate it. Extra capabilities (camera, microphone) are requested through `_meta.ui.permissions`.
+4. **Talk.** App and host exchange JSON-RPC over `postMessage`, a dialect of MCP: some methods are shared with the core protocol (`tools/call`), most carry a `ui/` prefix (`ui/initialize`). The app can call the server's tools, receive fresh results pushed by the host, send messages, and update the model's context.
+
+Decide per tool, not per server:
+
+- **Ship an app** only when the job needs interaction that text can't carry:
+  - exploring complex data (drill down a region, hover for detail, toggle metrics);
+  - configuring many interdependent options at once, with validation and defaults, instead of a ten-question back-and-forth;
+  - viewing rich media (PDF, 3D model, generated images) with pan and zoom;
+  - live monitoring that updates without the user asking again;
+  - stepping through a queue item by item (approving expenses, triaging issues, reviewing changes).
+- **Keep a plain tool result** for everything else. Each app is a second front-end with its own build, tests, accessibility and security review, and it is maintained for as long as the tool exists. A lookup, a status check or a single write gains nothing from a UI.
+- **Prefer a standalone web app and a link** when the job does not benefit from staying in the conversation - no need for the surrounding context, no tool calls back into the server, no use of the host's other connected capabilities.
+
+Design rules:
+
+- **Keep every app-backed tool complete without its UI.** The extension is opt-in: client and server must both declare it during capability negotiation, so hosts without it, headless clients and background agent fleets receive only the plain result. Return the full structured and text result on every call, and let the UI be a richer view of that same data.
+- **Route UI-initiated calls through the same risk tiers as step 3.** A click inside the app is not approval. A write that the app requests still passes its tier's gate: dry-run, confirmation, spend cap or human approval, exactly as if the model had called the tool directly.
+- **Treat host delegation as consent-gated.** An app can ask the host to reach an outcome through the user's other connected capabilities (for example, "schedule this meeting"), subject to user consent. Never design a flow whose success depends on that consent being granted.
+- **Declare the minimum.** List only the external origins the app truly loads in `_meta.ui.csp`, and request permissions only for features the job needs. Every extra origin widens what a compromised dependency can reach. Bundle assets into the resource where possible.
+- **Render model- and user-supplied data as data.** Escape it in the UI exactly as a web app escapes untrusted input; the sandbox protects the host, not your own app's integrity.
+- **Version the `ui://` resource with the tool (step 5).** A tool whose result shape changes breaks its app silently; ship both in the same release and keep the old shape readable during the deprecation window.
+- **Build it with the official toolkit.** [references/mcp-apps-build.md](references/mcp-apps-build.md) walks through creating one: the `create-mcp-app` agent skill or a manual setup, `registerAppTool` / `registerAppResource` on the server, the `App` class in the UI, single-file bundling, and local testing.
+- **Stay framework-neutral.** The `App` class in `@modelcontextprotocol/ext-apps` is a convenience wrapper, not a requirement; the official examples ship React, Vue, Svelte, Preact, Solid and vanilla templates. Pick what the team already maintains.
+
+Host support and testing:
+
+- Support varies by host, and the MCP extension client matrix is community-maintained. As of 2026-09 it lists Claude (web and Desktop), ChatGPT, Cursor, VS Code GitHub Copilot, Microsoft 365 Copilot, Goose, Postman, MCPJam, Archestra.AI and PostHog Code. Re-check it before promising a host to a customer.
+- Test in at least two hosts plus one client without the extension, to prove the plain-result fallback. The ext-apps repository's `basic-host` example renders apps locally without a production host.
+
+Measure (step 7) app-rendered versus text-only calls per client, and completion of the interactive job (drill-downs used, forms submitted, queue items cleared). An app that is rendered but never used is maintenance cost with no return: retire it and keep the tool.
 
 ## 3. Apply write-tool safety patterns
 

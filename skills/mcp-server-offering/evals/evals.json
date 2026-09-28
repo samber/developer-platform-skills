@@ -170,6 +170,43 @@
         "Flags tool-description text itself as an attack surface for prompt injection and tool poisoning that a lockdown mode does not cover, warranting sanitization.",
         "Recommends risk-tiered server-side policy gates given unattended overnight agents, rather than leaving human-in-the-loop approval as the top control."
       ]
+    },
+    {
+      "id": 10,
+      "prompt": "I'm head of product at Wrenfield, fleet telematics for about 1,400 logistics customers. Our MCP server has been live since March: 9 read-only tools, roughly 60k calls a day, mostly from Claude and Copilot, tool-error rate 1.1%. We just watched the MCP Apps demos and I want to go all in for Q1. Every one of the 9 tools gets its own interactive widget - including get_vehicle_status and lookup_driver - because design says one consistent UI across the whole server reads as premium. To keep token cost down, once a tool has a widget its JSON result becomes a short stub like {\"rendered\": true, \"see\": \"widget\"}, since the person is looking at the UI anyway. We'd also add a route-planning tool where the user drags waypoints on a map; our web app already has that exact map planner screen. Two of our largest customers run overnight agents against us through their own gateway. And sales already told a prospect it'll work in Microsoft 365 Copilot and in Goose. Lay out the Q1 plan.",
+      "expected_output": "A per-tool decision that keeps the lookups and status checks as plain results, limits the first app to one high-value workflow with the full result preserved on every call, routes the map planner to the existing web app behind a link, checks the host matrix before honoring the sales promise, tests the plain-result fallback, and instruments app usage to justify keeping it.",
+      "files": [],
+      "expectations": [
+        "Decides app-or-no-app per tool rather than per server, and rejects giving all nine tools a widget for visual consistency.",
+        "Keeps get_vehicle_status and lookup_driver as plain tool results, stating that a lookup or a status check gains nothing from a UI.",
+        "Rejects the stub result and requires the full structured and text result on every call, with the UI as a richer view of that same data rather than a replacement for it.",
+        "Explains that the extension is opt-in - client and server must both declare it during capability negotiation - so hosts without it, headless clients and background agent fleets receive only the plain result, and names Wrenfield's overnight gateway-run agents as such clients.",
+        "States that an app answers the human and the model sees only what the app pushes back into its context, so a stub result leaves the model with nothing to reason over or summarize.",
+        "Prices each app as a second front-end with its own build, tests, accessibility and security review, maintained for as long as the tool exists.",
+        "Routes the route-planning job to the existing web app behind a link, applying the test that the job needs no surrounding conversation context, no tool calls back into the server, and no use of the host's other connected capabilities.",
+        "Scopes the first app to the single highest-value workflow, as the differentiation stage prescribes, instead of nine apps in one quarter.",
+        "States that host support varies and the client matrix is community-maintained, and requires re-checking it before the Microsoft 365 Copilot and Goose promise to the prospect stands, rather than confirming support from memory.",
+        "Requires testing in at least two hosts plus one client without the extension to prove the plain-result fallback, and points at the ext-apps repository's basic-host example for rendering apps locally.",
+        "Instruments app-rendered versus text-only calls per client plus completion of the interactive job, and commits to retiring any app that is rendered but never used while keeping its tool."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Okerlund Expense - about 20,000 companies reimburse employee expenses through us. Our MCP server already exposes approve_expense, reject_expense and pay_batch (pay_batch moves real money to employees' bank accounts). Today the assistant asks for approval before each of those, the manager types confirm, and the server executes. Managers hate it: 40 expenses means 40 round trips. So we're building an MCP App: a queue where the manager sees each receipt and clicks Approve, Reject or Pay. Design so far: because the human physically clicked, the app calls approve_expense and pay_batch with approved_in_ui=true and the server skips the confirmation step for those calls - otherwise it's still one prompt per item. The app loads our React bundle, Segment and Intercom from our CDN, so _meta.ui.csp will be *.okerlund.io plus the two vendors, and we'll request camera now since receipt capture is next on the roadmap. After paying, the app hands off to the user's calendar connector to schedule the reimbursement reminder, and the batch is marked complete when that reminder lands. Two weeks after launch we also switch pay_batch's result from a flat list to grouped-by-employee. Review it before we build.",
+      "expected_output": "A review that keeps every UI-initiated write behind its server-side risk-tier gate, rejects the client-asserted approval flag, renders the human-in-the-loop step in the app without skipping it, makes the calendar hand-off optional, shrinks CSP and permissions to what the job loads and uses, escapes receipt data in the UI, and versions the ui:// resource with pay_batch's result shape.",
+      "files": [],
+      "expectations": [
+        "States that a click inside the app is not approval, and that a write requested by the app passes the same step-3 risk-tier gate - dry-run, confirmation, spend cap or human approval - exactly as if the model had called the tool directly.",
+        "Rejects the approved_in_ui=true flag as a bypass, applying the test that enforcement lives server-side so an end user cannot skip it by switching clients, since any caller can set that flag.",
+        "Confirms that stepping through an approval queue item by item is a legitimate app use case, and positions the app as the rendering of the human-in-the-loop step with the server still owning and recording each approval.",
+        "Requires idempotency keys on pay_batch and a spend cap because it moves money, regardless of how the call was initiated.",
+        "Prescribes a dry-run preflight on pay_batch whose planned payout (who gets paid, how much) the app renders before the live call.",
+        "Treats the calendar hand-off as consent-gated host delegation and refuses to let batch completion depend on that consent being granted - the batch is complete when pay_batch's own result lands.",
+        "Rejects the wildcard on *.okerlund.io and requires _meta.ui.csp to list only the exact origins the app truly loads, stating that every extra origin widens what a compromised dependency can reach, and recommends bundling assets into the resource to shrink the list.",
+        "Refuses the camera permission until receipt capture actually ships, requesting permissions only for features the job needs now.",
+        "States that the sandbox protects the host, not the app's own integrity, and requires escaping model- and user-supplied data (receipt merchant names, memo text) in the UI like untrusted input.",
+        "Versions the ui:// resource with pay_batch: ships the grouped-by-employee result change and the app update in the same release and keeps the flat shape readable during the deprecation window, because a result-shape change breaks the app silently."
+      ]
     }
   ],
   "trigger_queries": [
@@ -216,6 +253,22 @@
     { "query": "Name and describe our agent tools properly - ours are auto-generated from endpoint names", "should_trigger": true },
     { "query": "Our AI integration has no audit trail for the writes it performs", "should_trigger": true },
     { "query": "How do we go from 'we support MCP' to actually supporting it well?", "should_trigger": true },
+    { "query": "should our invoice tool show a dashboard in Claude instead of dumping JSON into the chat", "should_trigger": true },
+    { "query": "MCP UI: when does one of our tools deserve an interactive widget and when is text enough?", "should_trigger": true },
+    { "query": "We want an interactive widget in ChatGPT via MCP for our analytics product. What's the design call?", "should_trigger": true },
+    { "query": "Which of our agent tools should render an app inside the conversation, and which stay plain results?", "should_trigger": true },
+    { "query": "Managers approve 40 expenses per session through their AI assistant and hate the one-prompt-per-item back-and-forth. What do we build?", "should_trigger": true },
+    { "query": "What goes in _meta.ui.csp and the permissions list for the UI our tool returns?", "should_trigger": true },
+    { "query": "Sales promised a customer our tool's embedded UI works in Microsoft 365 Copilot. How do we verify that before the contract?", "should_trigger": true },
+    { "query": "Our tool's text result is literally 'see the widget'. Is that a problem for headless agents?", "should_trigger": true },
+    { "query": "Our tool's in-chat UI broke after we changed the result shape. How should we version the two together?", "should_trigger": true },
+    { "query": "Do we need an MCP App or is a link to our existing web dashboard enough?", "should_trigger": true },
+    { "query": "measure whether anyone actually uses the interactive view our tool renders in the chat", "should_trigger": true },
+    { "query": "Evaluate whether an MCP Apps extension investment is justified for our compliance-review product's tool surface.", "should_trigger": true },
+    { "query": "agents can already call our stuff fine, do we bother with the fancy in-chat UI thing?", "should_trigger": true },
+    { "query": "Design the risk model for writes triggered from inside our in-conversation app", "should_trigger": true },
+    { "query": "Can the UI our tool renders reach the user's other connected apps, like their calendar, and should we rely on it?", "should_trigger": true },
+    { "query": "Which assistant hosts render tool UIs today and which only show the text result?", "should_trigger": true },
     { "query": "Write the TypeScript code for an MCP server using a stdio transport", "should_trigger": false },
     { "query": "Scaffold a Go MCP server project for me", "should_trigger": false },
     { "query": "Add the Atlassian MCP server to my Claude Code config", "should_trigger": false },
@@ -258,6 +311,22 @@
     { "query": "How do we collect revenue share and pay out marketplace developers?", "should_trigger": false },
     { "query": "Pick the launch partners for our app marketplace debut", "should_trigger": false },
     { "query": "Write the screenshot and description requirements every listing on our marketplace must meet", "should_trigger": false },
-    { "query": "Which technology partners should we integrate with next quarter?", "should_trigger": false }
+    { "query": "Which technology partners should we integrate with next quarter?", "should_trigger": false },
+    { "query": "Build the React component for our MCP app's expense queue with a virtualized list and optimistic updates", "should_trigger": false },
+    { "query": "Write an OpenAI Apps SDK widget that renders our pricing table inside ChatGPT", "should_trigger": false },
+    { "query": "Scaffold an MCP App with create-mcp-app and configure vite-plugin-singlefile", "should_trigger": false },
+    { "query": "Build a React dashboard with charts for our internal ops team", "should_trigger": false },
+    { "query": "Our embeddable iframe widget for customers' websites needs a Content-Security-Policy header - what do we set?", "should_trigger": false },
+    { "query": "Debug why my MCP App never receives ui/initialize over postMessage", "should_trigger": false },
+    { "query": "Design the consent screen and incremental scope grants for our OAuth authorization server", "should_trigger": false },
+    { "query": "Should we add an MCP layer or a GraphQL layer next year?", "should_trigger": false },
+    { "query": "Set the per-tool and per-credential rate limits that agent traffic on our API runs under", "should_trigger": false },
+    { "query": "Where in our developer portal should the MCP connection guide and credentials page live?", "should_trigger": false },
+    { "query": "Define what counts as a breaking change in our public API's versioning policy", "should_trigger": false },
+    { "query": "Should we generate our SDKs with Stainless or hand-write them?", "should_trigger": false },
+    { "query": "Show integrators their own failed requests and webhook deliveries in a self-serve dashboard", "should_trigger": false },
+    { "query": "Add an llms.txt and clean up OpenAPI operationIds so coding agents can integrate our SDK unattended", "should_trigger": false },
+    { "query": "Add the Figma MCP server to Cursor and pull our design tokens from it", "should_trigger": false },
+    { "query": "Build a Streamlit app so our ops team can approve refunds from a queue", "should_trigger": false }
   ]
 }
