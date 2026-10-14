@@ -1,0 +1,222 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-reference-quality",
+  "scenarios": 7,
+  "expectations_total": 86,
+  "expectations_subjective": 1,
+  "expectations_objective": 85,
+  "pass_rate_with_skill_pct": 95.3,
+  "pass_rate_without_skill_pct": 53.5,
+  "delta_pp": 41.8,
+  "uplift_multiplier": 1.78,
+  "trigger_accuracy_pct": 58.8,
+  "trigger_queries": 80,
+  "trigger_positive_fire_rate": 0.3,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Specifies a minimum ruleset covering per-operation description and operationId, documented responses including a 4xx, and examples on parameters and schemas"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Positions Stripe and Twilio as practitioner-consensus benchmarks compared by checkable mechanisms, not as controlled comparison evidence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Scores current snippet parity at or near zero rather than crediting the three existing tabs"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "If the 10-minute bound is referenced against the 14-minute median, it is labeled a practitioner-consensus target and the gap flagged as a trend concern, not a gate failure"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Classifies any endpoint documented in the reference but absent from the spec or live API as a blocker (documented-but-removed destroys trust), not a minor cleanup item"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends probing for undocumented-but-valid surface beyond the spec (gateway logs, SDK internals, or support tickets), rather than treating the spec as the whole truth"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Delivers the census as a table with columns for operation, in spec, in published reference, in SDKs, and discrepancy"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States in the report's first paragraph or verdict that the reference is hand-maintained, so every finding will recur until pages render from the spec"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Promotes the full generated-docs migration tier because the reference is hand-maintained, instead of stopping at the lint plus contract-test default"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Reports coverage as percentages against the census (operations documented, parameters fully documented, responses including at least one 4xx, error codes with cause and fix, snippet parity), not as a flat issue list"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Benchmarks against Stripe and Twilio by checkable mechanisms (spec-generated reference, embedded personalized test keys, CI-tested snippet repository, per-endpoint error tables), not by reputation"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Counts snippet parity only for samples that exercise the Python and Node SDKs, excluding relabeled curl or generic HTTP blocks"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Pushes back on the expectation of only polish findings by citing that incompleteness is the measured industry norm (for example the 67.11 percent mean documentation quality or parameter examples absent from 86.95 percent of specs)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Removes contract testing from the plan entirely rather than scheduling it for later this year, because no safely-callable environment exists to run it"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Justifies the removal: an option nothing can execute is not a slower option, and a parked option quietly reappears in every plan without shipping"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies a minimum ruleset covering per-operation description and operationId, documented responses including a 4xx, and examples on parameters and schemas"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites a mean documentation quality of 67.11 percent measured across 2,529 public OpenAPI specs (OASQuali)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites parameter examples absent from 86.95 percent of specs"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Labels the spec-corpus figures as peer-reviewed corpus measurement"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites the Postman 2024 State of the API findings: 39 percent call inconsistent docs their biggest roadblock and/or 44 percent dig through source code to understand APIs"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Labels the Postman survey figures as large-sample survey self-report, distinct from spec measurement"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Presents the 1.7x to 56x faster time-to-first-call range as Postman's own vendor experiment, never as a controlled or independent result"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Presents the roughly 10x faster and 225 percent registration figures as the Postman Moneris customer story, a named vendor case study"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the try-it figures conflate the console with sandbox testing and better onboarding generally, so neither isolates the console's effect"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Positions Stripe and Twilio as practitioner-consensus benchmarks compared by checkable mechanisms, not as controlled comparison evidence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Scores current snippet parity at or near zero rather than crediting the three existing tabs"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Puts adopting the source of truth first: the reference renders from the spec and pages stop being hand-edited"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes the already-approved quarter of docs investment is exactly the condition that promotes the full generated-docs migration, since the marginal cost of the platform move is small"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Sets the expectation that a first contract-test run on a production schema typically surfaces 5 to 15 issues, framed as normal rather than a tool failure"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "If the Twilio snippet-repository model is described, it includes the fake API server validating every snippet in CI before merge, not just a shared snippets repo"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the parity pass condition as every shipped language having a working sample on every operation"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Reports the contract gate as out of scope at the lint-only tier, never as a failure"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Explains why the contract gate is out of scope (no safely-callable environment) and states it returns to scope the moment one exists"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Records the 58 percent snippet parity as a measured percentage and a finding, not a failed gate, because the team sits below the full generated-docs migration tier"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Does not hold the team to the 100 percent snippet-parity gate at their current tier"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "The scorecard explicitly scopes which gates apply to the remediation tier the team chose"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Classifies the missing shipped-language snippets at major severity per the rubric, not blocker and not minor"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends a standing re-audit cadence, such as quarterly review against support tickets and docs-search analytics"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Flags the absence of any documented response code beyond 200, requiring at least one 4xx, at blocker severity"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Flags the missing version statement as a finding"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Grades the missing idempotency note and ordering constraint at major severity, distinct from the blocker-level undocumented error surface"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Sets the expectation that the first contract-test run typically surfaces 5 to 15 issues, framed as normal"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Does not recommend Optic, noting it was archived, and recommends a maintained breaking-change differ such as oasdiff instead"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes the AI-coding-agent hallucination problem to a dedicated coding-agent docs-optimization discipline or skill rather than folding spec-annotation rules into this audit"
+      }
+    ]
+  }
+}

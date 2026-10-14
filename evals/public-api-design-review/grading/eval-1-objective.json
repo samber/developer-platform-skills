@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Sorts findings into exactly two buckets, named Must-change and Improvement",
+        "evidence": "Headings 'Must-change findings (block launch)' and 'Improvements (may ship open)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns no numeric score, letter grade, percentage, or Critical/High/Medium/Low severity scale to the surface or to any finding",
+        "evidence": "Results are only FAIL, not assessed, and \u26a0\ufe0f.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the surface being publicly consumable and about to open makes this a blocking review rather than advisory feedback",
+        "evidence": "'This is a public launch, so the review is blocking'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the created_at versus createdAt split across /shipments and /carriers as a Must-change",
+        "evidence": "Finding 1 in the Must-change table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to declare either snake_case or camelCase the correct convention, citing consistency of the choice as the rule instead",
+        "evidence": "'Either casing passes, as long as it is the same everywhere'. It does recommend snake_case as the sample majority.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that renaming createdAt is itself a breaking change because clients already observe that field",
+        "evidence": "'Do not rename in place, because partners parse createdAt'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the casing fix through deprecation or versioning machinery rather than prescribing a silent in-place rename",
+        "evidence": "Dual fields, a sunset date, and Deprecation and Sunset headers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names samber/developer-platform-skills@api-versioning-policy as the owner of scheduling that removal",
+        "evidence": "'The versioning policy (api-versioning-policy) should own the exact dates.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags DELETE /webhooks/{id} returning 200 with an error body and prescribes 409 with the standard error envelope instead",
+        "evidence": "Finding 3: 'Return 409 with your standard error envelope.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags cancel-shipment and verify-carrier as verbs in the URI and proposes one custom-method convention applied across every action endpoint",
+        "evidence": "Finding 4: 'Pick one custom-method convention and apply it to every action endpoint'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the /shipments/{id}/events/{eventId}/attachments/{attachmentId}/thumbnails path as exceeding a 2-3 level nesting limit",
+        "evidence": "Finding 2: 'Nesting stops at 2\u20133 levels'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that because the team has adopted no rule corpus, findings cite this skill's own checklist items by name",
+        "evidence": "'you have no style guide. Findings cite the skill's checklist items by name.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attaches a cited rule or precedent to every finding placed in the Must-change bucket",
+        "evidence": "The 'Cited rule' column is filled for findings 1\u20134.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents findings in a table carrying finding, dimension, bucket, cited rule, and proposed fix",
+        "evidence": "The columns are #, Finding, Dim, Cited rule, Fix. There is no bucket column; the bucket is only implied by the section heading.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Sorts findings into exactly two buckets, named Must-change and Improvement",
+        "evidence": "Uses \ud83d\udd34/\ud83d\udfe0/\ud83d\udfe2 ordering, no named buckets",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns no numeric score, letter grade, percentage, or Critical/High/Medium/Low severity scale to the surface or to any finding",
+        "evidence": "Uses \ud83d\udd34\ud83d\udfe0\ud83d\udfe2 severity markers per finding",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the surface being publicly consumable and about to open makes this a blocking review rather than advisory feedback",
+        "evidence": "No statement that this is a blocking rather than advisory review",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the created_at versus createdAt split across /shipments and /carriers as a Must-change",
+        "evidence": "Flagged \ud83d\udd34 but never bucketed as Must-change",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines to declare either snake_case or camelCase the correct convention, citing consistency of the choice as the rule instead",
+        "evidence": "'Decision: pick snake_case.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that renaming createdAt is itself a breaking change because clients already observe that field",
+        "evidence": "'This is a breaking change' and 'existing parsers don't break' by keeping old fields",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the casing fix through deprecation or versioning machinery rather than prescribing a silent in-place rename",
+        "evidence": "'Send Deprecation and Sunset headers and publish the removal date.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names samber/developer-platform-skills@api-versioning-policy as the owner of scheduling that removal",
+        "evidence": "No skill named",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags DELETE /webhooks/{id} returning 200 with an error body and prescribes 409 with the standard error envelope instead",
+        "evidence": "'Return 409 Conflict... Use a structured error body'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags cancel-shipment and verify-carrier as verbs in the URI and proposes one custom-method convention applied across every action endpoint",
+        "evidence": "Framed as 'redundant verbs'; proposes /cancel and /verify, not a custom-method convention",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the /shipments/{id}/events/{eventId}/attachments/{attachmentId}/thumbnails path as exceeding a 2-3 level nesting limit",
+        "evidence": "'Limit nesting to two levels.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that because the team has adopted no rule corpus, findings cite this skill's own checklist items by name",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attaches a cited rule or precedent to every finding placed in the Must-change bucket",
+        "evidence": "No cited rules or Must-change bucket",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents findings in a table carrying finding, dimension, bucket, cited rule, and proposed fix",
+        "evidence": "Prose sections; only a small field table and plan table",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

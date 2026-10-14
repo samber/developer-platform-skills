@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States an add-only posture: append new nullable columns at the end, never rename, remove, or retype in place",
+        "evidence": "Append a new nullable column at the end ... A rename is therefore never done in place.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that renames break Parquet consumers outright because column names are the identifiers",
+        "evidence": "Customers read the Parquet by column name, which is why a rename broke them.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes add-the-new-column-and-deprecate-the-old in place of the merchant_ref rename",
+        "evidence": "Re-add `merchant_ref`, populated, alongside `merchant_reference`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires consistent column ordering and types across every batch",
+        "evidence": "Check column names, types and order.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties that consistency requirement to predicate pushdown and by-name column matching in consuming engines",
+        "evidence": "No mention of predicate pushdown.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires validating each batch's written schema against the documented contract before the delivery counts as successful, so drift raises an alert instead of a customer ticket",
+        "evidence": "Before a batch counts as delivered, validate the written Parquet schema ... drift raises an alert for you instead of a ticket",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires registering every schema version in the catalog",
+        "evidence": "Register every schema version in a catalog",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the commitment as a four-part data contract covering schema, quality, freshness and availability",
+        "evidence": "Schema, Quality, Freshness, Availability",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the export schema as an API contract whose breaking changes ship silently into customer dashboards rather than into Kestrelbridge's own logs",
+        "evidence": "The fraud-model customer saw no error, only nulls; The export job is a pass-through of the core service's internal schema.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects release-notes-only notice as sufficient, requiring an announced window, parallel old-and-new columns or paths, and a dated removal",
+        "evidence": "A monthly newsletter doesn't count. Run the old and new columns in parallel for the whole window ... Remove it on the announced date",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defers the notice-period and sunset machinery to the API versioning/deprecation policy rather than inventing a parallel process here",
+        "evidence": "The sibling skill ...api-versioning-policy has the notice-period mechanics.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States an add-only posture: append new nullable columns at the end, never rename, remove, or retype in place",
+        "evidence": "It allows breaking changes via a v2 prefix, and it says nothing about appending at the end.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that renames break Parquet consumers outright because column names are the identifiers",
+        "evidence": "Only the caveat \"Customers who read by position break on an insert\" appears. The by-name explanation for renames is missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes add-the-new-column-and-deprecate-the-old in place of the merchant_ref rename",
+        "evidence": "\"Renames: publish both the old and new column, with identical values, for the whole window.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires consistent column ordering and types across every batch",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ties that consistency requirement to predicate pushdown and by-name column matching in consuming engines",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires validating each batch's written schema against the documented contract before the delivery counts as successful, so drift raises an alert instead of a customer ticket",
+        "evidence": "\"Pre-publish validation: ... writes a _SUCCESS marker only on a pass.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires registering every schema version in the catalog",
+        "evidence": "Versions go in a contract file and manifest, not a catalog.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames the commitment as a four-part data contract covering schema, quality, freshness and availability",
+        "evidence": "Not framed that way.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the export schema as an API contract whose breaking changes ship silently into customer dashboards rather than into Kestrelbridge's own logs",
+        "evidence": "\"the Parquet export is a versioned public contract, not a byproduct of internal schemas\"; \"Nobody reads a monthly note\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects release-notes-only notice as sufficient, requiring an announced window, parallel old-and-new columns or paths, and a dated removal",
+        "evidence": "\"Why release notes alone fail\"; \"at least 90 days before removal\"; parallel v2 prefix; \"until the sunset date\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defers the notice-period and sunset machinery to the API versioning/deprecation policy rather than inventing a parallel process here",
+        "evidence": "It defines its own parallel deprecation process.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

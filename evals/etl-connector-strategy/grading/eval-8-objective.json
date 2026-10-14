@@ -1,0 +1,106 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Separates the three requests instead of treating them as one connector strategy.",
+        "evidence": "\"four different surfaces\" table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the nightly Parquet-to-S3 request to a bulk or direct-to-storage data-sharing surface rather than to an ETL source connector.",
+        "evidence": "\"Bulk data delivery | bulk-data-sharing-design\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the live-query-from-Tableau request to a SQL or JDBC access surface rather than to an ETL source connector.",
+        "evidence": "\"Customer-facing live SQL | sql-jdbc-access-design\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the partners-building-into-our-app-directory request as the opposite direction: third parties building into the vendor's own marketplace, a different problem from being a source in someone else's catalog.",
+        "evidence": "\"Item 3 is third parties building into your directory.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the direction distinction explicitly: ETL connector strategy covers the vendor being extracted from by platforms the customer runs.",
+        "evidence": "\"The ETL skill is you building into someone else's catalog.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not design an ETL/ELT source connector for the Parquet file-drop or the live-query request.",
+        "evidence": "Designs managed export jobs and defers live endpoint.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that none of the three requests as described constitutes demand evidence for ETL catalog presence.",
+        "evidence": "\"The two Parquet customers are evidence that these customers want files in their lake, not that they run Fivetran or Airbyte.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks which extraction platforms the customers' data teams actually run before recommending any catalog target.",
+        "evidence": "\"run interview question 2 (which platforms customers run) before choosing a platform\"; asks warehouse behind buckets.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Separates the three requests instead of treating them as one connector strategy.",
+        "evidence": "'three asks, three different bets'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the nightly Parquet-to-S3 request to a bulk or direct-to-storage data-sharing surface rather than to an ETL source connector.",
+        "evidence": "'Data delivery (push)... Nightly Parquet export: build it as a product'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the live-query-from-Tableau request to a SQL or JDBC access surface rather than to an ETL source connector.",
+        "evidence": "Reopen options: 'a warehouse-share model... a read-only SQL endpoint, or a Tableau-specific connector'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the partners-building-into-our-app-directory request as the opposite direction: third parties building into the vendor's own marketplace, a different problem from being a source in someone else's catalog.",
+        "evidence": "Calls it an 'ecosystem bet' but does not contrast it with being a source in someone else's catalog.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the direction distinction explicitly: ETL connector strategy covers the vendor being extracted from by platforms the customer runs.",
+        "evidence": "Never discusses ETL connector direction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not design an ETL/ELT source connector for the Parquet file-drop or the live-query request.",
+        "evidence": "Designs a Parquet export and defers live query.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that none of the three requests as described constitutes demand evidence for ETL catalog presence.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which extraction platforms the customers' data teams actually run before recommending any catalog target.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

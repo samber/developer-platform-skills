@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends auto-translate with vendor override as the posture, explicitly because Halyard already owns the machine-translation pipeline",
+        "evidence": "\"You already own a machine-translation pipeline. That is the asset the skill says to amortize, so auto-translate with override is the promotion.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names which piece of context moved the ranking - the already-owned asset re-ranking the menu - rather than presenting the default as fixed",
+        "evidence": "\"Two facts re-rank the menu: Q6 names three markets... You already own a machine-translation pipeline.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the trust cost of machine translation plainly: the output carries the operator's own name",
+        "evidence": "\"Machine output carries Halyard's name, and the skill ranks this rung last on trust.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a documented path for a vendor to replace any single language's translation",
+        "evidence": "\"A vendor may replace any one language's text.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that removing an override reverts that field to machine output",
+        "evidence": "\"Deleting an override reverts to machine translation only after a visible confirmation to the vendor.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names opt-in per market as the cheaper default posture that applies while only one primary market exists",
+        "evidence": "\"The skill's default for one primary market is opt-in per market, which is the honest floor.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes a translated listing page from a runtime language-capability claim",
+        "evidence": "\"'Supports Japanese' means the product runs in Japanese. It does not mean the listing page reads in Japanese.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the all-or-nothing capability declaration for the Japanese enterprise buyers who treat language support as purchase-blocking, because it is the only posture where the listing's language claim is guaranteed true in the product",
+        "evidence": "\"Don't make the vendor commit to all-or-nothing for every listing\"; it recommends a structured per-surface declaration instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the all-or-nothing posture carries the highest vendor effort and the least listing reach, which is why it loses the efficiency ranking as a default",
+        "evidence": "\"which the skill rates as the highest vendor effort for the least reach.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a region-locked posture should only be adopted together with region-based visibility gating, never on its own",
+        "evidence": "Says \"If there is [region gating], region-locked becomes mandatory on top of this\", which does not state the rule that region-locked is adopted only with gating.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that visual and promotional assets may not localize alongside text fields, and instructs Halyard to check its own asset pipeline for that gap",
+        "evidence": "Notes screenshots and video are not machine-translated, but never tells Halyard to check its own asset pipeline.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends auto-translate with vendor override as the posture, explicitly because Halyard already owns the machine-translation pipeline",
+        "evidence": "Recommends translating freely with labeling, but not because the pipeline is already owned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names which piece of context moved the ranking - the already-owned asset re-ranking the menu - rather than presenting the default as fixed",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the trust cost of machine translation plainly: the output carries the operator's own name",
+        "evidence": "Only a \"Machine-translated\" label is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a documented path for a vendor to replace any single language's translation",
+        "evidence": "\"Give publishers an 'edit or approve this translation' path.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that removing an override reverts that field to machine output",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names opt-in per market as the cheaper default posture that applies while only one primary market exists",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes a translated listing page from a runtime language-capability claim",
+        "evidence": "\"never let a translation imply that the app supports the language\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the all-or-nothing capability declaration for the Japanese enterprise buyers who treat language support as purchase-blocking, because it is the only posture where the listing's language claim is guaranteed true in the product",
+        "evidence": "Recommends a per-dimension Full/Partial/None declaration instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the all-or-nothing posture carries the highest vendor effort and the least listing reach, which is why it loses the efficiency ranking as a default",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a region-locked posture should only be adopted together with region-based visibility gating, never on its own",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that visual and promotional assets may not localize alongside text fields, and instructs Halyard to check its own asset pipeline for that gap",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

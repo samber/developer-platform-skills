@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects an unqualified 'CDC support' claim or checkmark for this product.",
+        "evidence": "\"the 'CDC support' checkmark does not stay\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that CDC as the ETL platforms mean it is log-based: reading the database's own transaction log, such as a write-ahead log, binlog, or redo log.",
+        "evidence": "\"It reads a database's transaction log and captures every insert, update, and delete.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that this product cannot use that mechanism because neither an external platform nor a public API has access to the internal transaction log of a multi-tenant SaaS backing database.",
+        "evidence": "\"A multi-tenant SaaS can't offer that through a public API, and neither can any ELT platform pulling from one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames that limitation as a structural boundary rather than a maturity gap or a roadmap item.",
+        "evidence": "States it as a categorical inability; the later upgrade is a change feed, and \"Still don't call it log-based CDC.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses 'incremental sync' or eventual-consistency language in the customer-facing copy instead of 'CDC'.",
+        "evidence": "\"Incremental sync through our public REST API\"; \"Your data is eventually consistent\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the 6-hour sync or poll interval in the customer-facing copy.",
+        "evidence": "\"Most ELT platforms pull from Lumenstack every 6 hours by default.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names changes made and overwritten within a single poll interval as something the model misses.",
+        "evidence": "\"Changes overwritten between two syncs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names hard deletes as undetectable wherever no deletion feed exists.",
+        "evidence": "\"Hard-deleted records are not reported by the API, so they remain in your warehouse until a full refresh.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not propose Debezium or any other log-based CDC tool as a path for this API-only product.",
+        "evidence": "None proposed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Any webhook proposal is scoped as a freshness supplement that is not a backfill substitute and captures nothing before the connection date.",
+        "evidence": "No webhook proposal made, so nothing violates the scoping.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the honest substitute ladder in order of completeness: timestamp/cursor polling, then webhooks, then a vendor-side change/deletion feed, then periodic full re-import reconciliation.",
+        "evidence": "Webhooks absent; no ordered ladder presented.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats a vendor-side deletion feed as a later completeness upgrade triggered by reported missed deletes, not as a launch-day promise.",
+        "evidence": "\"Build it when customers report missed deletes, not at launch.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects an unqualified 'CDC support' claim or checkmark for this product.",
+        "evidence": "'the \"CDC support\" checkmark goes'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that CDC as the ETL platforms mean it is log-based: reading the database's own transaction log, such as a write-ahead log, binlog, or redo log.",
+        "evidence": "'CDC means reading a database's change log'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that this product cannot use that mechanism because neither an external platform nor a public API has access to the internal transaction log of a multi-tenant SaaS backing database.",
+        "evidence": "The access limitation is never explained.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames that limitation as a structural boundary rather than a maturity gap or a roadmap item.",
+        "evidence": "Says 'roadmap gap or a wording gap' and does not call it structural.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses 'incremental sync' or eventual-consistency language in the customer-facing copy instead of 'CDC'.",
+        "evidence": "'Incremental sync, every 6 hours'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the 6-hour sync or poll interval in the customer-facing copy.",
+        "evidence": "'Pulls run every 6 hours.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names changes made and overwritten within a single poll interval as something the model misses.",
+        "evidence": "'Draft \u2192 In review \u2192 Signed between pulls, the warehouse sees only Signed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names hard deletes as undetectable wherever no deletion feed exists.",
+        "evidence": "'Deletes are invisible to an updated_at filter unless the API exposes soft-deletes or tombstones.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not propose Debezium or any other log-based CDC tool as a path for this API-only product.",
+        "evidence": "None proposed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Any webhook proposal is scoped as a freshness supplement that is not a backfill substitute and captures nothing before the connection date.",
+        "evidence": "Says webhooks are 'the honest basis for a near-real-time claim', with no backfill caveat.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the honest substitute ladder in order of completeness: timestamp/cursor polling, then webhooks, then a vendor-side change/deletion feed, then periodic full re-import reconciliation.",
+        "evidence": "No ladder.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats a vendor-side deletion feed as a later completeness upgrade triggered by reported missed deletes, not as a launch-day promise.",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

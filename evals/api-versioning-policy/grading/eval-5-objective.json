@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects headers-only communication as a named failure mode - shipping the header does not mean anyone was reached.",
+        "evidence": "\"A header-only plan satisfies the RFC and reaches almost nobody. This is a named failure mode.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reason: most integrators' tooling does not surface these headers, so a header-only plan satisfies the RFC while reaching no one.",
+        "evidence": "\"Most API tooling and HTTP clients ignore these headers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the two headers' roles: a Deprecation signal that deprecation is coming or here, and a Sunset header carrying the exact timestamp the version stops responding.",
+        "evidence": "\"Ship Deprecation first. Add Sunset once the date is firm.\" and \"`Sunset: <date>`\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the Deprecation header with RFC 9745 and notes it can ship before any sunset date exists and changes no behavior.",
+        "evidence": "It cites RFC 9745 and says to ship Deprecation first, but never says the header changes no behavior.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the Sunset header with RFC 8594 and notes that RFC is Informational rather than Standards Track, citing it accordingly.",
+        "evidence": "\"RFC 8594 (`Sunset`) is Informational, not Standards Track.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes the Sunset header to the deprecated version's responses only.",
+        "evidence": "\"`Sunset: <date>` (RFC 8594) on all v2 responses\", where v2 is the deprecated version.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a successor-version link relation so tooling can find the replacement without scraping prose.",
+        "evidence": "\"`Link: <v3-url>; rel=\\\"successor-version\\\"` (RFC 8288)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the deprecated operations with deprecated: true in the OpenAPI document so docs and codegen surface it.",
+        "evidence": "\"`deprecated: true` in the v2 OpenAPI document\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pairs the headers with at least one channel that reaches humans: changelog, developer-dashboard banner, email, or in-response warnings.",
+        "evidence": "Changelog, docs banner, dashboard banner and email.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends targeted outreach at the accounts still calling the deprecated version (or warnings embedded in API responses, which reach exactly the affected callers) rather than only a mass announcement.",
+        "evidence": "\"Repeat the email to keys still calling v2\" and \"In-response warning ... reaches exactly the callers still affected.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires owning the migration: a migration guide with concrete steps and a support channel, not just the announcement.",
+        "evidence": "\"migration guide (concrete steps, endpoint-by-endpoint mapping, code samples, a named support channel)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking deprecated-version traffic share after each communication wave to learn which channels actually reach integrators, treating a flat line after an email blast as evidence the channel failed.",
+        "evidence": "\"A flat line after a mass email means that channel failed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Structures the deprecation as staged (announce, deprecate, sunset, removal) instead of jumping from announcement to removal.",
+        "evidence": "\"Stages: announce \u2192 deprecate \u2192 sunset \u2192 removal.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects headers-only communication as a named failure mode - shipping the header does not mean anyone was reached.",
+        "evidence": "\"Ship the `Sunset` header, but it is one channel of six, not the plan.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reason: most integrators' tooling does not surface these headers, so a header-only plan satisfies the RFC while reaching no one.",
+        "evidence": "\"Most HTTP clients and SDKs discard response headers, and server-to-server integrations are rarely watched by a human.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the two headers' roles: a Deprecation signal that deprecation is coming or here, and a Sunset header carrying the exact timestamp the version stops responding.",
+        "evidence": "\"`Deprecation: @<announce-epoch>`... `Sunset` alone doesn't mean 'deprecated'\"; Sunset is a fixed date.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the Deprecation header with RFC 9745 and notes it can ship before any sunset date exists and changes no behavior.",
+        "evidence": "It cites RFC 9745 but never says the header can ship early or changes no behavior.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the Sunset header with RFC 8594 and notes that RFC is Informational rather than Standards Track, citing it accordingly.",
+        "evidence": "It cites RFC 8594 but does not note that it is Informational.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes the Sunset header to the deprecated version's responses only.",
+        "evidence": "\"On every v2 response, including errors\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a successor-version link relation so tooling can find the replacement without scraping prose.",
+        "evidence": "It uses rel=\"deprecation\" and rel=\"sunset\" only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks the deprecated operations with deprecated: true in the OpenAPI document so docs and codegen surface it.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pairs the headers with at least one channel that reaches humans: changelog, developer-dashboard banner, email, or in-response warnings.",
+        "evidence": "Email, docs banner, changelog, and a dashboard notice.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends targeted outreach at the accounts still calling the deprecated version (or warnings embedded in API responses, which reach exactly the affected callers) rather than only a mass announcement.",
+        "evidence": "\"Personal outreach (CSM or engineer) | Top-volume keys\"; reminders go to still-active keys only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires owning the migration: a migration guide with concrete steps and a support channel, not just the announcement.",
+        "evidence": "An endpoint-by-endpoint migration guide, SDKs, a named inbox and office hours.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking deprecated-version traffic share after each communication wave to learn which channels actually reach integrators, treating a flat line after an email blast as evidence the channel failed.",
+        "evidence": "It tracks weekly v2 share but does not use it to evaluate channel effectiveness.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Structures the deprecation as staged (announce, deprecate, sunset, removal) instead of jumping from announcement to removal.",
+        "evidence": "Announce at T-14m, brownouts, shutdown with 410, and removal of code after T+3m.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

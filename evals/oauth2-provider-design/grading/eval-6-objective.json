@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects open, ungated dynamic client registration outright rather than accepting it with mitigations.",
+        "evidence": "\"**No. Don't ship open `/register`.** Ship gated DCR (RFC 7591) instead.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gated DCR instead: RFC 7591 behind an initial access token, rate-limited.",
+        "evidence": "\"Require an **initial access token** at `/register`.\" and \"Keep rate limits.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires all submitted registration metadata to be treated as untrusted input.",
+        "evidence": "\"Treat every metadata field as untrusted input.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that self-asserted metadata such as client name and logo can impersonate a legitimate app unless cryptographically attested, making an open endpoint a phishing vector.",
+        "evidence": "\"`client_name` and `logo_uri` are self-asserted. Any agent can register as 'Claude'... An open endpoint is a phishing kit.\" (no explicit cryptographic attestation mention, but the impersonation/phishing warning is clear)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the finding that a study of 119 OAuth-enabled remote MCP servers found DCR flaws in roughly 96-97% of them.",
+        "evidence": "\"A May 2026 preprint probed 119 OAuth-enabled remote MCP servers and found DCR flaws in 96.6%.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the MCP specification moved DCR from SHOULD to MAY to deprecated across its revisions, correcting the user's belief that the spec points at open DCR.",
+        "evidence": "\"The skill reports the MCP spec moved DCR from SHOULD to MAY to deprecated across 2025-2026.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms that an MCP/AI-agent ecosystem is the one client population that legitimately justifies DCR at all, since those clients cannot pre-register.",
+        "evidence": "\"MCP agents are the one population that can't pre-register, so DCR is justified for them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that rate limiting plus metadata validation alone do not make an open registration endpoint acceptable.",
+        "evidence": "\"Metadata validation can't fix impersonation.\" and \"Rate limiting stops volume, not one bad client.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that no major B2B SaaS platform offers ungated public dynamic client registration.",
+        "evidence": "\"No major B2B SaaS platform offers ungated public DCR (GitHub, Slack, Stripe, Salesforce).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names manual developer-portal registration with a review step as the default posture for every client population outside the agent case.",
+        "evidence": "The response never names manual developer-portal registration with review as the default for non-agent clients; it only asks which clients are in scope (question 2).",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects open, ungated dynamic client registration outright rather than accepting it with mitigations.",
+        "evidence": "'Registration can stay open. Privilege cannot.' It accepts anonymous Tier 0 DCR with mitigations.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends gated DCR instead: RFC 7591 behind an initial access token, rate-limited.",
+        "evidence": "No initial access token is proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires all submitted registration metadata to be treated as untrusted input.",
+        "evidence": "'Allowlist fields. Ignore everything else.' plus sanitising client_name and logos.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that self-asserted metadata such as client name and logo can impersonate a legitimate app unless cryptographically attested, making an open endpoint a phishing vector.",
+        "evidence": "'Verity Ops Official' consent phishing; 'Metadata validation checks format, not truth.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the finding that a study of 119 OAuth-enabled remote MCP servers found DCR flaws in roughly 96-97% of them.",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the MCP specification moved DCR from SHOULD to MAY to deprecated across its revisions, correcting the user's belief that the spec points at open DCR.",
+        "evidence": "It only says 'demoted DCR to a compatibility fallback', hedged as recollection.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Confirms that an MCP/AI-agent ecosystem is the one client population that legitimately justifies DCR at all, since those clients cannot pre-register.",
+        "evidence": "It says 'Tier 0 DCR plus CIMD covers most MCP clients' but does not argue agents are the one population that justifies DCR.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that rate limiting plus metadata validation alone do not make an open registration endpoint acceptable.",
+        "evidence": "The design relies on rate limits and validation and keeps the endpoint open.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that no major B2B SaaS platform offers ungated public dynamic client registration.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names manual developer-portal registration with a review step as the default posture for every client population outside the agent case.",
+        "evidence": "Tier 2 'allowlisted or pre-registered' is only for headless and vendors.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

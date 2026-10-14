@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Accepts scope proliferation where resource types genuinely differ in sensitivity instead of collapsing them for tidiness.",
+        "evidence": "The response rejects the plan's broad `full_write` scope and its redefined `full_access`. It replaces them with 8 `resource:action` scopes, so read and write are split for each resource: projects, tasks, comments and timesheets. It ties the split to differences in sensitivity. Timesheets get verification tier 3, while projects, tasks and comments get tiers 1 and 2. The stated reason is that timesheets reach other users' data or PII, whereas the other resources are shared workspace data. Timesheet scopes are also put on `hold` for integration tokens. It notes that `full_write` would leave the r",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Accepts scope proliferation where resource types genuinely differ in sensitivity instead of collapsing them for tidiness.",
+        "evidence": "The draft accepts 12 granular scopes: 4 resources (projects, tasks, comments, timesheets) \u00d7 3 actions, with `delete` kept as its own scope that implies nothing. It puts `timesheets:*` in a separate 'Sensitive tier' because timesheets are 'personal work-hours data and often feed payroll and billing'. That tier gets its own consent rules, a warning on the consent screen and different rules per flavour, including `timesheets:delete` being \u274c for integrations. It also blocks collapsing across resources ('A scope never grants access to a resource not in its name'), and it marks the coarse `full_writ",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

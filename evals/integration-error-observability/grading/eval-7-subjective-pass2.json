@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Uses a long enough comparison window that a single quiet interval does not fire the signal",
+        "evidence": "For high, steady traffic, the design uses a short window (15\u201360 min) and a long window (hours to a day). It fires only when volume is below baseline in both, so one quiet short interval alone does not alert. The baseline is the same hour-of-week over the last 2\u20134 weeks. For low-volume traffic, it fires only when the gap exceeds the p99 of past gaps plus a margin. Its examples show this tolerance: a nightly sync becomes silent only after missing two nights, and a 40-minute gap on a 3-calls/hour integration does not count. Not a 5 because it gives no concrete long-window length and leaves both t",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Uses a long enough comparison window that a single quiet interval does not fire the signal",
+        "evidence": "The answer addresses this in several places. The silence window is sized statistically per flow (T \u2248 9/\u03bb, so a normal gap has about a 1e-4 chance). It has a 15-minute floor so jitter does not page, and it is benchmarked against a 4-week hour-of-week baseline. The partial-collapse detector also needs 3 consecutive windows below 20% before it fires. One gap remains: the silence alert itself fires once a single sized window is exceeded, with no consecutive-window requirement. Hysteresis applies only to resolving the alert, not to firing it. That keeps the score below 5.",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

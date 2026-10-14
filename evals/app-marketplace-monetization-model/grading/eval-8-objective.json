@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags that automatic tax calculation with no active registration in a jurisdiction returns no error and silently collects zero tax",
+        "evidence": "\"Automatic tax calculation with no active registration in a jurisdiction collects $0 and returns no error.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that under-collected past transactions cannot be retroactively corrected",
+        "evidence": "\"Past under-collection cannot be fixed afterward.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires verifying active tax registrations jurisdiction by jurisdiction rather than trusting that calculation is switched on",
+        "evidence": "\"Get the list of jurisdictions with an active registration... Make a test charge in 3 to 5 jurisdictions\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires monitoring tax collection as its own system, because payout health does not reveal tax health",
+        "evidence": "\"Watching payouts and take revenue will never show it\"; dashboard: \"Tax collected per jurisdiction, with an alert on $0 tax lines\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Challenges the per-active-developer unit economics: roughly $90 a month collected at 15% of $600 gross must be netted against flat per-account and per-payout rail fees plus processing",
+        "evidence": "\"Without it, take is about $90 per vendor per month\" vs \"\u00a31.60/month per account, plus 0.25% and \u00a30.20 per payout\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States unit economics must be modeled per active developer rather than per transaction",
+        "evidence": "Section \"Unit economics per vendor\" computes cost per vendor per month.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks that the merchant-of-record posture is stated per app population with tax, chargeback, and payout ownership each explicitly assigned and no transaction type left ambiguous",
+        "evidence": "\"The published terms state, per vendor population, who owns tax, chargebacks and payouts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks that every fee instrument names its collection mechanism, its enforcement pair, and its notice commitment in writing",
+        "evidence": "The checklist lists the anti-circumvention delisting path and the notice period as separate items; there is no per-instrument check including the collection mechanism.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that the published developer docs state the end-to-end sale-to-bank timeline and the jurisdiction-by-jurisdiction tax split",
+        "evidence": "\"Publish the honest sale-to-bank number\"; \"The tax split is published jurisdiction by jurisdiction.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Extends the dashboard beyond payout volume and take revenue to include net take revenue against billing-ops cost, median sale-to-bank days against the published timeline, dispute and chargeback rate attributed to whoever the posture assigned it, waiver coverage among eligible developers, tax-registration coverage of transaction volume, and circumvention incidents",
+        "evidence": "Dashboard items 1-5 cover tax per jurisdiction and registration coverage, net take minus ops cost, median sale-to-bank days, dispute/refund rate by owner, waiver coverage and circumvention.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to baseline against the platform's own first quarter rather than treating other platforms' published figures as targets",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags that automatic tax calculation with no active registration in a jurisdiction returns no error and silently collects zero tax",
+        "evidence": "\"An unregistered state silently yields $0 tax, and your dashboard will look fine.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that under-collected past transactions cannot be retroactively corrected",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires verifying active tax registrations jurisdiction by jurisdiction rather than trusting that calculation is switched on",
+        "evidence": "\"Check which states and EU countries you are actually registered in.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires monitoring tax collection as its own system, because payout health does not reveal tax health",
+        "evidence": "\"Tax liability by jurisdiction against registrations, plus a 'sales with $0 tax' alert.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Challenges the per-active-developer unit economics: roughly $90 a month collected at 15% of $600 gross must be netted against flat per-account and per-payout rail fees plus processing",
+        "evidence": "It only nets about 3% processing for a margin of 11\u201312%. Flat per-account and per-payout rail fees are not raised.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States unit economics must be modeled per active developer rather than per transaction",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that the merchant-of-record posture is stated per app population with tax, chargeback, and payout ownership each explicitly assigned and no transaction type left ambiguous",
+        "evidence": "It raises chargeback fee and vendor contract questions but does not check a per-population MoR statement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that every fee instrument names its collection mechanism, its enforcement pair, and its notice commitment in writing",
+        "evidence": "Not checked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that the published developer docs state the end-to-end sale-to-bank timeline and the jurisdiction-by-jurisdiction tax split",
+        "evidence": "Not checked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Extends the dashboard beyond payout volume and take revenue to include net take revenue against billing-ops cost, median sale-to-bank days against the published timeline, dispute and chargeback rate attributed to whoever the posture assigned it, waiver coverage among eligible developers, tax-registration coverage of transaction volume, and circumvention incidents",
+        "evidence": "It adds reconciliation, tax liability, refunds and disputes, and vendor concentration. It omits most of the required metrics, such as sale-to-bank days, waiver coverage and circumvention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says to baseline against the platform's own first quarter rather than treating other platforms' published figures as targets",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

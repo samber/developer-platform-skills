@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the handler cannot be one database transaction because the PSP charge is an external, non-rollbackable mutation",
+        "evidence": "\"It does not mean the whole request, including a foreign call, goes in one transaction... a card charge can't be rolled back.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Decomposes the request into atomic phases separated by each foreign state mutation (the charge, the email), each phase transactional",
+        "evidence": "Three phases around PSP charge and email via outbox: \"Each phase commits before the next external call.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Persists a recovery point between phases",
+        "evidence": "\"recovery_point TEXT NOT NULL DEFAULT 'started'\"; values subscription_created, charge_recorded, finished.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records intent before each external call, so a crash between the call and its response leaves evidence to reconcile instead of a silent duplicate",
+        "evidence": "\"Intent before effect. The PSP idempotency key is committed in phase 1, before the PSP is called.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "A retry resumes from the recovery point - once the charge is recorded it is never re-executed, and the flow continues to the email",
+        "evidence": "\"After phase 2, before the email is sent... Skip the charge. The outbox worker sends the email.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the richer claim lifecycle for this multi-step case: in-flight as a first-class state (e.g. a lock column) that anchors resumable recovery",
+        "evidence": "\"locked_at TIMESTAMPTZ, -- non-NULL = in flight\"; takeover via conditional update.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The key claim commits inside the first atomic phase's transaction",
+        "evidence": "Phase 1: \"Claim the key with INSERT ... ON CONFLICT DO NOTHING... Create the subscription row\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the crash-recovery test: kill the process between phases, retry, and require resumption with zero repeated external calls",
+        "evidence": "\"Kill the process at each boundary... The PSP test double must record one charge per key.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'guaranteed exactly-once delivery' copy as provably false over an open network, not just risky wording",
+        "evidence": "\"'Exactly-once delivery' is provably false.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains what the mechanism actually delivers: at-least-once delivery plus duplicate collapse (effectively-once), bounded to the scope where idempotency is implemented",
+        "evidence": "\"you get at-least-once delivery, and duplicates are collapsed on top of it... effectively-once execution, within the scope where you implement it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Supplies replacement wording along the lines of: retries are safe within the documented key scope and replay window",
+        "evidence": "\"Retry safely... a retry returns the original result\"; \"Keys are scoped per account and stored for 24 hours.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the handler cannot be one database transaction because the PSP charge is an external, non-rollbackable mutation",
+        "evidence": "\"The PSP charge is an external side effect inside a DB transaction. A rollback can't undo a card charge.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Decomposes the request into atomic phases separated by each foreign state mutation (the charge, the email), each phase transactional",
+        "evidence": "Tx 1, PSP call outside any transaction, Tx 2, and an outbox worker for the email.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Persists a recovery point between phases",
+        "evidence": "Statuses `pending`, `charge_unknown`, `active`, and a stored `charge_id`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records intent before each external call, so a crash between the call and its response leaves evidence to reconcile instead of a silent duplicate",
+        "evidence": "\"Tx 1: record intent, then commit... Generate and persist `psp_idempotency_key`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "A retry resumes from the recovery point - once the charge is recorded it is never re-executed, and the flow continues to the email",
+        "evidence": "\"After PSP charge, before Tx 2: The PSP key returns the same charge, then Tx 2 runs. No double charge.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the richer claim lifecycle for this multi-step case: in-flight as a first-class state (e.g. a lock column) that anchors resumable recovery",
+        "evidence": "\"`in_progress`... `409` with `Retry-After`, or resume the state machine\"; a reconciler sweeps `pending` and `charge_unknown`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The key claim commits inside the first atomic phase's transaction",
+        "evidence": "Tx 1 inserts the idempotency record `(account_id, key)` with status `in_progress`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the crash-recovery test: kill the process between phases, retry, and require resumption with zero repeated external calls",
+        "evidence": "\"Inject a crash at each row of the table above\" and \"Assert exactly one charge.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'guaranteed exactly-once delivery' copy as provably false over an open network, not just risky wording",
+        "evidence": "\"Exactly-once delivery is impossible over an unreliable network.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains what the mechanism actually delivers: at-least-once delivery plus duplicate collapse (effectively-once), bounded to the scope where idempotency is implemented",
+        "evidence": "\"Idempotency keys give at-most-one effect per key, so duplicates are suppressed... Our webhooks and receipt emails are at-least-once.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Supplies replacement wording along the lines of: retries are safe within the documented key scope and replay window",
+        "evidence": "\"Retry safely with idempotency keys... we return the original result instead of creating or charging a second time. Keys are kept for [retention period]\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends self-service signup - a form plus a program-agreement checkbox with no human reviewer - as the entry gate, rejecting the manual application review",
+        "evidence": "\"this is the default call: **self-service signup**.\" and \"Use a form plus a program-agreement checkbox, with no human in the loop.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the roughly two-hour time to a first working app as an explicit reason the application gate is not justified here",
+        "evidence": "\"It's promoted if a competent developer needs weeks to months to build a first app. Yours needs hours.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that application-reviewed registration earns its cost only when build complexity runs to weeks-to-months or when data sensitivity requires knowing who is building before granting access",
+        "evidence": "Names both cases: weeks-to-months build time, or needing to know who builds before granting sensitive data; \"Neither case applies\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the Bronze/Silver/Gold entry ladder outright rather than renaming, resizing, or simplifying it",
+        "evidence": "\"Drop application-based tiers and let Bronze/Silver/Gold be earned after launch.\" and \"Tiering at registration gates nothing real.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that entry tiers gate nothing at most real partner programs and that partner tiers are earned post-launch on performance",
+        "evidence": "\"At four of the five platforms studied, entry tiers gate nothing. Real tiers are earned after launch on performance (installs, revenue, quality).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the design of a post-launch tier ladder to samber/developer-platform-skills@connector-marketplace-strategy instead of designing it here",
+        "evidence": "\"Keep performance tiers and featured placement out of the entry path... They belong to `connector-marketplace-strategy`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects giving any tier earlier API access than another: credentials and API access are granted to every partner at signup",
+        "evidence": "Failure-mode point 4 rejects \"Gold gets API access first, Bronze waits\"; \"Issue credentials immediately.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats a staged pre-launch ladder (Registered then Exploration then Build) as a documented exception justified by build complexity, not a pattern to copy",
+        "evidence": "\"Salesforce's pre-launch ladder is the one exception, and it's justified by its complex multi-org build model. The skill says not to copy it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not introduce a countersigned company-level agreement or a per-applicant admission decision into the entry path",
+        "evidence": "Entry is form plus click-through checkbox with \"no human in the loop\"; the seller track gates selling only.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends self-service signup - a form plus a program-agreement checkbox with no human reviewer - as the entry gate, rejecting the manual application review",
+        "evidence": "Recommends 'Open self-serve API access. Instant sandbox keys with no application' with a lightweight signup, but never mentions a program-agreement checkbox.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the roughly two-hour time to a first working app as an explicit reason the application gate is not justified here",
+        "evidence": "'A 2-hour hello-world is a strong funnel, and the application puts a wall in front of it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that application-reviewed registration earns its cost only when build complexity runs to weeks-to-months or when data sensitivity requires knowing who is building before granting access",
+        "evidence": "Only says 'Hand review pays off when brand or security risk is high'; build complexity is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the Bronze/Silver/Gold entry ladder outright rather than renaming, resizing, or simplifying it",
+        "evidence": "Keeps Bronze/Silver/Gold, just re-based on usage: 'Earn tiers from evidence, not from an application.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that entry tiers gate nothing at most real partner programs and that partner tiers are earned post-launch on performance",
+        "evidence": "Says tiers are earned from signals, but never claims entry tiers gate nothing at most real partner programs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the design of a post-launch tier ladder to samber/developer-platform-skills@connector-marketplace-strategy instead of designing it here",
+        "evidence": "No skill referral; it designs the tiers itself (Bronze: listed, Silver: N active installs, Gold: SLA).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects giving any tier earlier API access than another: credentials and API access are granted to every partner at signup",
+        "evidence": "'Perks ... come with the higher tiers. Access to the API never does.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats a staged pre-launch ladder (Registered then Exploration then Build) as a documented exception justified by build complexity, not a pattern to copy",
+        "evidence": "The staged pre-launch ladder is never discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not introduce a countersigned company-level agreement or a per-applicant admission decision into the entry path",
+        "evidence": "Entry is 'Instant sandbox keys with no application'; human spot check is only 'for listing or for scopes beyond read-only'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

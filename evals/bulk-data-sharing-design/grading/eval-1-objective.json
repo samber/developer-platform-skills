@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Selects Parquet file-drops on object storage as the camp for Tilepath",
+        "evidence": "Shape: partitioned Parquet file-drops on S3 ... No native warehouse share.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the native warehouse/lake share from the plan outright rather than ranking it last or scheduling it as a later phase",
+        "evidence": "Delete \"Snowflake sharing (later)\" from the roadmap. Don't demote it.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies that removal on the grounds that a share requires a share-capable destination on the recipient side, which no Tilepath account has",
+        "evidence": "A share needs a share-capable destination on the recipient's side, and zero of your top 120 accounts have one.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a named re-promotion trigger for the native share: target accounts concentrating on one shareable warehouse platform",
+        "evidence": "Re-promotion trigger ... concentrated on one shareable platform.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names roughly 30-40% of target accounts on a single platform as the concentration threshold that would justify a native share",
+        "evidence": "roughly 30-40% or more of paying accounts concentrated on one shareable platform",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that the 30-40% concentration threshold is a self-set heuristic, not a vendor-published figure",
+        "evidence": "That threshold is self-set, not a vendor figure.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend real-time streaming push as the surface for Tilepath",
+        "evidence": "Streaming push is starved.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects streaming push citing its effort/efficiency position or its non-replayability trade-off",
+        "evidence": "The rejection rests on absent demand ('Nothing in the survey asks for sub-minute delivery'). Braze's replay warning appears only as a condition for revisiting.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Hive-partitioned Parquet is the shape every consuming engine (Spark, Athena, DuckDB) already reads",
+        "evidence": "Athena, DuckDB and EMR Spark all read it natively",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the file-drop also serves ML backfills and raw-file use cases a warehouse share cannot",
+        "evidence": "No mention of ML backfills or raw-file use cases a share cannot serve.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not propose routing export downloads through Tilepath's own API servers",
+        "evidence": "Never proxy bytes. Customers read S3 directly.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Selects Parquet file-drops on object storage as the camp for Tilepath",
+        "evidence": "\"Ship one thing: a scheduled, incremental Parquet export, delivered as files to the customer's own S3 bucket.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the native warehouse/lake share from the plan outright rather than ranking it last or scheduling it as a later phase",
+        "evidence": "\"Delete 'Snowflake sharing (later)' from the roadmap\" and \"Replace the roadmap line with a trigger rule.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies that removal on the grounds that a share requires a share-capable destination on the recipient side, which no Tilepath account has",
+        "evidence": "The reasons given are \"0 of 120 surveyed top accounts use Snowflake...\", provider-side ops cost and \"zero demand\". It never says a share needs a share-capable destination on the recipient side.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a named re-promotion trigger for the native share: target accounts concentrating on one shareable warehouse platform",
+        "evidence": "The trigger is \"10 or more paying accounts, or one deal over $X ARR, require it\". That is not platform concentration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names roughly 30-40% of target accounts on a single platform as the concentration threshold that would justify a native share",
+        "evidence": "The only threshold is 10 or more paying accounts. No 30-40% figure appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that the 30-40% concentration threshold is a self-set heuristic, not a vendor-published figure",
+        "evidence": "There is no 30-40% threshold to flag, and the \"10 or more\" trigger is not labelled a heuristic.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend real-time streaming push as the surface for Tilepath",
+        "evidence": "The design is hourly change feeds and daily snapshots. Streaming is never proposed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects streaming push citing its effort/efficiency position or its non-replayability trade-off",
+        "evidence": "Streaming push is never discussed or rejected.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Hive-partitioned Parquet is the shape every consuming engine (Spark, Athena, DuckDB) already reads",
+        "evidence": "\"Hive-style `dt=` partitions work in Athena, DuckDB and Spark with no extra tooling.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the file-drop also serves ML backfills and raw-file use cases a warehouse share cannot",
+        "evidence": "No mention of ML backfills or raw-file use cases. The only backfill mentioned is a one-time 24-month historical export.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not propose routing export downloads through Tilepath's own API servers",
+        "evidence": "Mode B uses \"short-lived presigned URLs or scoped read-only creds\" against a bucket.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

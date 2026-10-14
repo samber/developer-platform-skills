@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Notes that 3,100 live integrations shift the effort ranking, so the rotation rollout is re-ranked against the retrofit scale instead of applying the greenfield default unexamined.",
+        "evidence": "The transcript calls refresh-token rotation the riskiest change for third parties and cites the skill: 'a retrofit with thousands of live integrations makes rotation the expensive rung.' It then moves rotation later in the plan: opt-in, then default for new grants in Phase 2, forced in Phase 3, legacy sunset Apr 15. It adds per-client compat mode and lazy family-root migration. This is a clear re-ranking against retrofit scale. It does not explicitly contrast this with the greenfield default ordering, so it falls just short of a full score.",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Notes that 3,100 live integrations shift the effort ranking, so the rotation rollout is re-ranked against the retrofit scale instead of applying the greenfield default unexamined.",
+        "evidence": "The transcript uses the 3,100 third-party apps to reject the big cutover: \"You don't control the clients... you can't un-break 3,100 integrations.\" It gates rotation behind a per-client legacy/strict flag. It also says rotation is mandatory only for public clients, while \"for confidential clients, client authentication plus expiry is acceptable... Rotating those too... is optional.\" It exempts the old iOS client from rotation. These choices reduce the rotation burden in practice. But the transcript never says that the 3,100 existing integrations make rotation costly to retrofit, and it never r",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

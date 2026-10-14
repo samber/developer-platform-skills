@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects treating a customer-facing consumer portal as a phase-2 nice-to-have, and states that the portal is table stakes in this market.",
+        "evidence": "'Don't push customer-facing UI to phase 2 as a whole.' It pulls the send-example button and recent-deliveries list into phase 1.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a test-event or \"send example event\" action driven by each event type's schema, so an integrator sees one realistic payload before writing handler code.",
+        "evidence": "'It is schema-driven, so the example payload and the delivered payload can't drift apart.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Connects that test-event feature to the catch-URL mental model no-code consumers arrive with from workflow-automation tools.",
+        "evidence": "'No-code users think in catch URLs: \"show me one real payload before I build against it.\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies delivery logs filterable by endpoint, event type, and status.",
+        "evidence": "Phase 1 is only a per-endpoint list. 'filtering by status' is deferred to phase 2, and there is no endpoint/event-type/status filtering.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies per-attempt inspection covering request headers, request body, response code, and timing.",
+        "evidence": "'Per attempt, show request headers, body, response code and timing.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Resolves the naming argument by keeping retry and replay as two distinct operations rather than choosing one word for a single button.",
+        "evidence": "'Retry and replay are two different operations.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines retry as a new delivery attempt of the same event.",
+        "evidence": "'Retry: a new delivery attempt of the same event.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines replay as re-ingesting the original as a new event.",
+        "evidence": "'Replay: re-ingest the original as a new event.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers both single-event and range replay, gating a large replay window behind an explicit cost confirmation.",
+        "evidence": "'Single-event and range replay, with a cost confirmation for large windows'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Surfaces exhausted deliveries as incidents grouped by endpoint and status code with notification, rather than as rows in a queue behind a bare replay button.",
+        "evidence": "'failure grouping' is only listed as phase 2. Exhausted deliveries are not presented as grouped incidents.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Documents the 200-then-crash blackhole: a handler that acknowledges then throws has reported success, and no debugging surface can see inside it.",
+        "evidence": "Only 'Cover the 200-then-crash blackhole'. It never explains that an acknowledging handler reports success and no debugging surface can see inside it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a design good enough for the most sophisticated consumer segment still fails no-code consumers, because the consumer segments do not nest.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects treating a customer-facing consumer portal as a phase-2 nice-to-have, and states that the portal is table stakes in this market.",
+        "evidence": "Moves test event and a minimal log to phase 1 but never says a consumer portal is table stakes; filtering and search stay in phase 2.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a test-event or \"send example event\" action driven by each event type's schema, so an integrator sees one realistic payload before writing handler code.",
+        "evidence": "\"Event type picker, default `booking.created`... realistic, clearly fake payload\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Connects that test-event feature to the catch-URL mental model no-code consumers arrive with from workflow-automation tools.",
+        "evidence": "\"The user creates the catch-hook URL, then the tool waits for a sample.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies delivery logs filterable by endpoint, event type, and status.",
+        "evidence": "\"Filtering and search in the log\" is deferred to Phase 2.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies per-attempt inspection covering request headers, request body, response code, and timing.",
+        "evidence": "Log lists type, timestamp, status, response snippet and payload; no request headers or timing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Resolves the naming argument by keeping retry and replay as two distinct operations rather than choosing one word for a single button.",
+        "evidence": "\"The two words mean different things. Assign them\" with a Retry vs Replay table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines retry as a new delivery attempt of the same event.",
+        "evidence": "\"The same event ID and the same payload. A new delivery attempt ID.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines replay as re-ingesting the original as a new event.",
+        "evidence": "Replay defined as \"Re-send an event that already succeeded or is old\"; not as a new event.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers both single-event and range replay, gating a large replay window behind an explicit cost confirmation.",
+        "evidence": "Range replay is bulk with a duplicate warning, not a cost confirmation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Surfaces exhausted deliveries as incidents grouped by endpoint and status code with notification, rather than as rows in a queue behind a bare replay button.",
+        "evidence": "Only self-serve alerts deferred to Phase 2.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Documents the 200-then-crash blackhole: a handler that acknowledges then throws has reported success, and no debugging surface can see inside it.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a design good enough for the most sophisticated consumer segment still fails no-code consumers, because the consumer segments do not nest.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

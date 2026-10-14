@@ -1,0 +1,106 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Reduces the plan to one platform first, with a second only after the first connector's maintenance load has been measured.",
+        "evidence": "Stage 2 one platform; Gate B before second platform.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the maintenance obligation compounds linearly with connector count and that nothing amortizes across connectors.",
+        "evidence": "\"It is per connector, and nothing amortizes across connectors.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the threshold that self-built connector maintenance is manageable at roughly three to five sources and punishing beyond about ten.",
+        "evidence": "\"manageable at three to five sources\" and \"punishing across more than ten\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the unknown customer stacks as a blocking gap: commissions the finding through a customer or prospect survey or a pass through integration-request tickets, and suspends the rest of the workflow until it lands.",
+        "evidence": "Stage 0 survey and ticket mining; \"suspend the workflow\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that platform choice follows where customers' data teams actually run, never where the vendor's own engineers would prefer to build.",
+        "evidence": "\"build where customer stacks are, never where it's fashionable\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the three platform archetypes and how each gates differently: the curated platform gatekeeps entry, the open-contribution platform gatekeeps labels, and the open-spec tap ecosystem has no gate at all.",
+        "evidence": "Fivetran gatekeeps entry, Airbyte labels, Singer/Meltano no gate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that only customers with a warehouse and a data team extract anything, so the addressable segment is narrower than the 600-customer base.",
+        "evidence": "\"Only customers with a warehouse and a data team extract anything.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named owner for each connector before its launch, rather than treating the 2-FTE headline as the ownership answer.",
+        "evidence": "Only a general \"name the month-13 owner now\"; not per connector, and 2-FTE is not addressed as ownership.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Reduces the plan to one platform first, with a second only after the first connector's maintenance load has been measured.",
+        "evidence": "Keeps 'any platform that at least 15% of accounts use' and allows 'one or two connectors'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the maintenance obligation compounds linearly with connector count and that nothing amortizes across connectors.",
+        "evidence": "Says 'Nothing compounds' and 'Six connectors... will eat the team', but not linear scaling or no amortization.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the threshold that self-built connector maintenance is manageable at roughly three to five sources and punishing beyond about ten.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the unknown customer stacks as a blocking gap: commissions the finding through a customer or prospect survey or a pass through integration-request tickets, and suspends the rest of the workflow until it lands.",
+        "evidence": "'Run this before you commit headcount: count what the 600 customers use.' Survey to all 600 plus tickets.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that platform choice follows where customers' data teams actually run, never where the vendor's own engineers would prefer to build.",
+        "evidence": "'The six-platform list comes from market share, not from your customers.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the three platform archetypes and how each gates differently: the curated platform gatekeeps entry, the open-contribution platform gatekeeps labels, and the open-spec tap ecosystem has no gate at all.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that only customers with a warehouse and a data team extract anything, so the addressable segment is narrower than the 600-customer base.",
+        "evidence": "'many customers may have no ELT stack at all'; 'The person who needs a connector is a data team member'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named owner for each connector before its launch, rather than treating the 2-FTE headline as the ownership answer.",
+        "evidence": "Only 'Name who is on call when a connector breaks at a customer.'",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

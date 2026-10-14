@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Moves OAuth-scope and permission auditing out of the listing-content rulebook",
+        "evidence": "\"Put scope audit and re-review triggers in the review process doc.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves re-review-on-update triggers out of the listing-content rulebook",
+        "evidence": "\"which app updates trigger a security re-review, are defined in [Security and Review Requirements]\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns both to the app-review process and cross-references them instead of duplicating them",
+        "evidence": "\"`samber/developer-platform-skills@app-marketplace-review` owns that\"; paste-ready link.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: content standards and safety gates kept in one document drift apart and contradict each other",
+        "evidence": "\"The two documents then drift apart and contradict each other.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that content triggers fire independently of security and functionality - a blurry screenshot or a keyword-stuffed description is rejected regardless of whether the app is secure and works",
+        "evidence": "\"Content triggers (a blurry screenshot, keyword spam) must fire independently of safety.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the undisclosed ranking penalty",
+        "evidence": "\"Silent ranking penalty for no demo video: publish it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the penalty to be published in the policy if Quillrock applies it at all",
+        "evidence": "\"if you rank-penalize, publish it.\"; paste-ready section discloses it.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: an unannounced down-ranking reads as arbitrary once vendors discover it",
+        "evidence": "\"Vendors can't respond to a penalty they don't know exists... read it as arbitrary.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a ranking-penalty lever presupposes ranked search infrastructure, which is why it loses the efficiency ranking as a general default, and names the condition that promotes it: an asset that should be encouraged rather than required",
+        "evidence": "\"The skill calls it a starved option that only works when ranking exists, and it exists. Keep the video optional.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a notice runway before the new ranking rule takes effect for already-listed apps",
+        "evidence": "\"existing listings from [date + notice runway]\"; \"The skill requires one for any new requirement applied to already-listed apps.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Moves OAuth-scope and permission auditing out of the listing-content rulebook",
+        "evidence": "Keeps it in the same doc as a \"Security and permissions\" layer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves re-review-on-update triggers out of the listing-content rulebook",
+        "evidence": "Triggers stay in the doc.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns both to the app-review process and cross-references them instead of duplicating them",
+        "evidence": "No cross-reference to a separate process.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: content standards and safety gates kept in one document drift apart and contradict each other",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that content triggers fire independently of security and functionality - a blurry screenshot or a keyword-stuffed description is rejected regardless of whether the app is secure and works",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the undisclosed ranking penalty",
+        "evidence": "\"The hidden demo-video penalty should not ship as planned: disclose it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the penalty to be published in the policy if Quillrock applies it at all",
+        "evidence": "Provides wording for \"Search ranking\" disclosure in the doc.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: an unannounced down-ranking reads as arbitrary once vendors discover it",
+        "evidence": "\"'The marketplace secretly punished us' is a worse story\"; a hidden penalty tends to leak.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a ranking-penalty lever presupposes ranked search infrastructure, which is why it loses the efficiency ranking as a general default, and names the condition that promotes it: an asset that should be encouraged rather than required",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a notice runway before the new ranking rule takes effect for already-listed apps",
+        "evidence": "\"A grace period (30 to 60 days) avoids an overnight traffic drop.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

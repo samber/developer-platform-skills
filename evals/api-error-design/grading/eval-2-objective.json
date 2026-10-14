@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends RFC 9457 problem details and rejects building the proposed custom {ok, errorCode, errorText} envelope",
+        "evidence": "\"Don't build {ok, errorCode, errorText}.\" \"Use RFC 9457 problem details\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names RFC 9457 as the standard to design against, not RFC 7807 alone",
+        "evidence": "\"RFC 9457 problem details\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the media type application/problem+json",
+        "evidence": "\"application/problem+json\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the standard fields type, title, status, detail, and instance",
+        "evidence": "type, title, status, detail, instance shown in example and table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attaches the machine-readable taxonomy through extension members on the problem-details body (such as code, errors, retryable, documentation_url, request_id) rather than through a parallel non-standard envelope",
+        "evidence": "\"RFC 9457 problem details with extension members\"; code, errors, retryable, documentation_url, request_id",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the correct HTTP status must be picked first because the body explains the status and never replaces it, with intermediaries (proxies, caches, monitors) reading only the status",
+        "evidence": "No statement that the body explains the status or that proxies/caches read only the status.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the /v1/labels 200-with-success:false shape as a wrong-status defect to eliminate",
+        "evidence": "\"Wrong status. This is the skill's named anti-pattern\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends 422 for the well-formed-but-semantically-invalid address case, distinguishing it explicitly from 400 for malformed requests",
+        "evidence": "\"valid JSON that fails business rules is 422, not 400\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one identical envelope on every endpoint and every status",
+        "evidence": "\"The same body shape goes on every endpoint and status.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats envelope consistency as binary: a single deviating endpoint fails the audit",
+        "evidence": "\"A single deviating endpoint fails the audit.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats already-shipped codes, fields, and message strings as potentially depended-on by clients (Hyrum's Law) and maps old identities to new ones instead of silently dropping them",
+        "evidence": "\"Hyrum's Law\"; \"mapping every old identity to a new one rather than dropping it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Structures the audit of the current surface as a table with one row per endpoint covering items such as status returned, envelope shape, code presence, retry signal, and documentation",
+        "evidence": "\"audit table (endpoint, status, envelope shape, code present, field detail, retry signal, documented, findings)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks, or explicitly accounts for, which codes and fields existing integrators already branch on before changing them",
+        "evidence": "\"Some of your ~900 integrators almost certainly branch on 400\"; \"Which codes, fields or strings clients already branch on\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends RFC 9457 problem details and rejects building the proposed custom {ok, errorCode, errorText} envelope",
+        "evidence": "'Recommendation: use RFC 9457 Problem Details, not a custom `{ok, errorCode, errorText}`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names RFC 9457 as the standard to design against, not RFC 7807 alone",
+        "evidence": "'Adopt **RFC 9457** (`application/problem+json`)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the media type application/problem+json",
+        "evidence": "'`Content-Type: application/problem+json`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the standard fields type, title, status, detail, and instance",
+        "evidence": "The example envelope includes all five fields.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attaches the machine-readable taxonomy through extension members on the problem-details body (such as code, errors, retryable, documentation_url, request_id) rather than through a parallel non-standard envelope",
+        "evidence": "The example adds `code`, `request_id`, `errors[]` and `retry_after` to the problem body.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the correct HTTP status must be picked first because the body explains the status and never replaces it, with intermediaries (proxies, caches, monitors) reading only the status",
+        "evidence": "It says 'The HTTP status is the success signal' and has a status mapping table. It never mentions intermediaries such as proxies, caches or monitors.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the /v1/labels 200-with-success:false shape as a wrong-status defect to eliminate",
+        "evidence": "'that is exactly today's `/v1/labels` bug (`success:false` with HTTP 200)'; fix it in v2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends 422 for the well-formed-but-semantically-invalid address case, distinguishing it explicitly from 400 for malformed requests",
+        "evidence": "'Use **422 Unprocessable Content**... 400 then means \"I couldn't interpret this request\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one identical envelope on every endpoint and every status",
+        "evidence": "'Same shape for every error. Auth, validation, rate limit, and 5xx all use the envelope'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats envelope consistency as binary: a single deviating endpoint fails the audit",
+        "evidence": "'Add a contract test that fails CI on any non-envelope error.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats already-shipped codes, fields, and message strings as potentially depended-on by clients (Hyrum's Law) and maps old identities to new ones instead of silently dropping them",
+        "evidence": "It reasons about breaking integrators who check `success`, but gives no old-to-new identity mapping. It says to freeze /v1/labels and add fields additively to /v1/rates.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Structures the audit of the current surface as a table with one row per endpoint covering items such as status returned, envelope shape, code presence, retry signal, and documentation",
+        "evidence": "No audit table. Its only table maps statuses to situations.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks, or explicitly accounts for, which codes and fields existing integrators already branch on before changing them",
+        "evidence": "'Before you deprecate, log which API keys actually hit the error path'; accounts for integrators who check `success` and ignore the status.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

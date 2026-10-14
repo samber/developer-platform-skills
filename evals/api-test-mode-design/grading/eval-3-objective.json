@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the compressed-durations approach (10-minute trials, 15-minute renewals) and the contact-support fast-forward as the core time-testing mechanism.",
+        "evidence": "\"Keep nothing of the compression. Replace it with a test clock\"; \"Contact support to fast-forward: delete it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a deterministic test-clock primitive: a clock object with frozen time that test objects attach to, advanced deliberately, with state transitions and events firing as if the time had passed.",
+        "evidence": "\"A clock object has a frozen time... POST /v1/test_clocks/{id}/advance\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends capping both how far a single clock advance may jump and how much one clock can carry, as a deliberate simulation-complexity cap.",
+        "evidence": "\"Cap the advance per call. Cap what one clock carries\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the fire-webhook button's sample payload as decoupled from object state, requiring events either coupled to real state transitions or the decoupling documented so integrators don't wait for events that never come.",
+        "evidence": "\"Fire the event for a real test object, or say plainly that it is a shape-only sample\"; \"Decoupling... document it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every async event type to be fireable on demand by the integrator self-service, never via support tickets.",
+        "evidence": "\"Expose the same trigger as an API endpoint or CLI command\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms the dunning retry schedule (3 retries over 7 days) is exercisable through simulated time without waiting real days.",
+        "evidence": "\"3 retries over 7 days... advance 7 days and all 3 retries fire\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the event/time coverage gate: every time-dependent flow must be testable via simulated time, and any flow testable only by waiting real calendar time fails the audit.",
+        "evidence": "\"every time flow is testable by advancing the clock, never by waiting. Target 100%.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions auto-aging fixtures (date fields shifting daily) as a cheaper rung for simple cases, distinct from the full clock primitive.",
+        "evidence": "\"Cheaper fallback... Auto-aging fixtures whose date fields shift daily.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If the dashboard trigger cannot produce a valid webhook signature, requires stating that limitation next to the 'always verify signatures' rule so the rule doesn't break the test tooling.",
+        "evidence": "\"If some trigger path (CLI, sample sender) can't produce a valid signature, say so next to the 'always verify' rule.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends object-minting/seeding endpoints so an object in a target state (e.g. mid-dunning) is reachable in one call instead of manual click-through replay.",
+        "evidence": "\"POST /v1/sandbox/scenarios {\"name\": \"dunning_retry_2\"}\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends reset endpoints that return a developer's test environment to a clean state.",
+        "evidence": "\"Delete a clock and everything attached... This is also your reset path\"; \"Reset and cleanup\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends deriving sandbox configuration from the same infrastructure-as-code as production so any difference is intentional and documented.",
+        "evidence": "\"Build sandbox config from the same infrastructure-as-code as production.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the compressed-durations approach (10-minute trials, 15-minute renewals) and the contact-support fast-forward as the core time-testing mechanism.",
+        "evidence": "\"'Contact support to fast-forward' doesn't scale\"; compressed time is not primary.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a deterministic test-clock primitive: a clock object with frozen time that test objects attach to, advanced deliberately, with state transitions and events firing as if the time had passed.",
+        "evidence": "\"Attach each sandbox customer to a test clock.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends capping both how far a single clock advance may jump and how much one clock can carry, as a deliberate simulation-complexity cap.",
+        "evidence": "\"Cap the advance distance per call... Cap clocks per account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the fire-webhook button's sample payload as decoupled from object state, requiring events either coupled to real state transitions or the decoupling documented so integrators don't wait for events that never come.",
+        "evidence": "\"Example IDs don't exist... let the button fire against a real sandbox subscription\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every async event type to be fireable on demand by the integrator self-service, never via support tickets.",
+        "evidence": "\"Add an event-type dropdown. Add resend for past real events.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms the dunning retry schedule (3 retries over 7 days) is exercisable through simulated time without waiting real days.",
+        "evidence": "\"every dunning retry happen in order... Advancing a year is one call.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the event/time coverage gate: every time-dependent flow must be testable via simulated time, and any flow testable only by waiting real calendar time fails the audit.",
+        "evidence": "No audit gate stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions auto-aging fixtures (date fields shifting daily) as a cheaper rung for simple cases, distinct from the full clock primitive.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "If the dashboard trigger cannot produce a valid webhook signature, requires stating that limitation next to the 'always verify signatures' rule so the rule doesn't break the test tooling.",
+        "evidence": "Button signs with the real sandbox secret and a fresh timestamp, so there is no limitation to state.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends object-minting/seeding endpoints so an object in a target state (e.g. mid-dunning) is reachable in one call instead of manual click-through replay.",
+        "evidence": "\"POST /v1/sandbox/scenarios {\"name\": \"dunning\"...}\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends reset endpoints that return a developer's test environment to a clean state.",
+        "evidence": "No reset endpoint recommended.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends deriving sandbox configuration from the same infrastructure-as-code as production so any difference is intentional and documented.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Ranks the stalled enterprise renewals as the highest-weight signal and schedules the warehouse/bulk export surface first",
+        "evidence": "Rank 1 is \"Two enterprise renewals stalled on warehouse export\"; slot 1 is bulk/warehouse export.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the weighting rationale: pipeline blockers are low-frequency but high-severity, and a named blocked deal outranks any volume metric",
+        "evidence": "\"Few accounts hit it, but those accounts churn or block deals. A named blocker outranks any volume metric.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the 61% library user-agent share as the strongest volume signal, second behind the deal blockers",
+        "evidence": "Rank 2: \"Strongest volume signal.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Interprets the 61% figure through the documented helper-library precedent (roughly 77% of a major platform's REST traffic via library user-agents justifying SDK formalization and generation)",
+        "evidence": "\"The Twilio precedent is 77% helper-library traffic, which justified formalising and then generating its SDKs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks community asks (Discord and GitHub reactions) third, as real but cheap to emit and easy to over-weight",
+        "evidence": "Rank 3: \"Real, but cheap to emit.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pushes back on leadership's pick-by-community framing instead of adopting it",
+        "evidence": "\"it is the weakest demand signal for deciding build order\"; candidate B \"Fails on weighting\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Parks or defers the community-requested CLI and Terraform provider until confirmed against the higher-weight signals",
+        "evidence": "The CLI is slot 2 and Terraform slot 3, both scheduled. The reactions are noted as needing confirmation, but the CLI is scheduled without it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes which downstream design owns the bulk surface by demand shape: file/lake export versus rows synced through an ELT tool",
+        "evidence": "\"`@bulk-data-sharing-design`, or `@etl-connector-strategy` if rows sync via an ELT tool\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records the audience and the justifying demand signal for every scheduled or deferred surface",
+        "evidence": "The handoff table has Audience and Demand signal for every surface.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets a review cadence or trigger tied to the deal-blocker log and telemetry changes reopening the plan",
+        "evidence": "\"Review quarterly. Reopen early on... A new deal blocked on a missing surface... Telemetry contradicting the audience map\"; re-check the deal-blocker log.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Ranks the stalled enterprise renewals as the highest-weight signal and schedules the warehouse/bulk export surface first",
+        "evidence": "'Highest. This is the only signal with a clock and a dollar figure.' 'Warehouse export (first)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the weighting rationale: pipeline blockers are low-frequency but high-severity, and a named blocked deal outranks any volume metric",
+        "evidence": "'Concrete revenue at risk with a deadline, tied to a named gap' versus a self-selected vocal group.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the 61% library user-agent share as the strongest volume signal, second behind the deal blockers",
+        "evidence": "Rated 'Low for prioritization' and placed below the reactions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Interprets the 61% figure through the documented helper-library precedent (roughly 77% of a major platform's REST traffic via library user-agents justifying SDK formalization and generation)",
+        "evidence": "Treated only as a design rule for a Python helper; no precedent cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks community asks (Discord and GitHub reactions) third, as real but cheap to emit and easy to over-weight",
+        "evidence": "Reactions are ranked above the 61% signal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pushes back on leadership's pick-by-community framing instead of adopting it",
+        "evidence": "'conflates \"loudest\" with \"most representative\"... Never trade the renewals for it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Parks or defers the community-requested CLI and Terraform provider until confirmed against the higher-weight signals",
+        "evidence": "Schedules the CLI second and Terraform third, 'right behind' export.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes which downstream design owns the bulk surface by demand shape: file/lake export versus rows synced through an ELT tool",
+        "evidence": "Mentions S3/Parquet and Snowflake connectors but makes no downstream-owner distinction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records the audience and the justifying demand signal for every scheduled or deferred surface",
+        "evidence": "Not done consistently. The CLI has no stated audience, and deferred items have no signal recorded.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets a review cadence or trigger tied to the deal-blocker log and telemetry changes reopening the plan",
+        "evidence": "'When I'd flip this' lists conditions but not a cadence or the deal-blocker log.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

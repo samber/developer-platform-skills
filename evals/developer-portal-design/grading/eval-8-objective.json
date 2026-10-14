@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Gives request, event or delivery logs a first-class self-service home in the portal instead of leaving failure investigation to a support handoff.",
+        "evidence": "'Logs and delivery status \u2190 replaces support greps'; 'Ship logs and delivery status MVP'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names usage metering and quota visibility as a surface needing a deliberate home.",
+        "evidence": "Missing item 3: 'Usage and quota visibility | Needs a deliberate home'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names billing or plan management as a surface needing a deliberate home.",
+        "evidence": "Missing item 4: 'Billing and plan management'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a changelog or release-notes surface.",
+        "evidence": "'Changelog / release notes' under Trust and help.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a support escalation path as a placed surface.",
+        "evidence": "'Support escalation path'; 'Support (after logs and search)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places a status-page link in the portal and frames it as a trust signal.",
+        "evidence": "'Status page link | Trust signal'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the published error-code catalog in the portal as what error responses' documentation_url fields point at.",
+        "evidence": "'Error catalog (public pages that documentation_url points at)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the sandbox entry point together with a visible test-versus-live mode toggle.",
+        "evidence": "'Default mode on signup, visible Test/Live toggle'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts the try-it console on the endpoint page itself rather than as a separate tool the developer leaves the docs to open, with the signed-in developer's own key injected into it and into the code snippets.",
+        "evidence": "'Try-it console on each endpoint page, with the signed-in key injected'; sandbox key 'injected into every snippet'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the API reference to be generated from the spec rather than hand-maintained as a parallel copy that drifts.",
+        "evidence": "'Generated from the spec'; 'A hand-maintained reference that drifts from the spec' listed as a failure mode.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes its own answer to placement, entry points and navigation, deferring the internal content design of individual surfaces rather than specifying it here.",
+        "evidence": "'The portal decides where they sit'; each surface has a 'Content owner' column.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Gives request, event or delivery logs a first-class self-service home in the portal instead of leaving failure investigation to a support handoff.",
+        "evidence": "'/app/logs Message log and message detail.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names usage metering and quota visibility as a surface needing a deliberate home.",
+        "evidence": "'Usage and billing, plan limits'; '/app/team, /app/billing'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names billing or plan management as a surface needing a deliberate home.",
+        "evidence": "'/app/billing' for roles, usage and plan.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a changelog or release-notes surface.",
+        "evidence": "'/docs/changelog Releases and deprecations'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a support escalation path as a placed surface.",
+        "evidence": "'/app/support Ticket form with context attached'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places a status-page link in the portal and frames it as a trust signal.",
+        "evidence": "Listed under 'Account and trust'; the status page is kept separate to survive a main-site outage.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the published error-code catalog in the portal as what error responses' documentation_url fields point at.",
+        "evidence": "'Every API error returns a doc_url pointing to /docs/errors/{code}.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the sandbox entry point together with a visible test-versus-live mode toggle.",
+        "evidence": "'The test-mode toggle and test keys live in the dashboard.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts the try-it console on the endpoint page itself rather than as a separate tool the developer leaves the docs to open, with the signed-in developer's own key injected into it and into the code snippets.",
+        "evidence": "No try-it console is described; only a logged-in quickstart shows the test key.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the API reference to be generated from the spec rather than hand-maintained as a parallel copy that drifts.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes its own answer to placement, entry points and navigation, deferring the internal content design of individual surfaces rather than specifying it here.",
+        "evidence": "It specifies surface internals such as the message timeline, raw SMTP response and suppression behavior.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

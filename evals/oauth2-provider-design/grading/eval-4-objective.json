@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects redefining `full_access` and states scopes are additive-only, never repurposed.",
+        "evidence": "'Do not redefine `full_access`.' and 'Additive-only, forever.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that repurposing silently changes what already-granted consents authorize.",
+        "evidence": "'Existing grants and live tokens currently authorize read and write ... `full_access` means two things depending on grant date.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that scope-set changes invalidate refresh tokens and force re-consent, so the redefinition does not actually avoid touching the existing registrations.",
+        "evidence": "Only says moving to new scopes 'is a new grant and needs consent'; no refresh-token invalidation point.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deferring the token-type binding and requires every scope bound to a token type (app identity versus user delegation) on day one.",
+        "evidence": "'Do not defer the integration/user token split. Bind every scope to a token type now.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the documented cost of deferring it: changing a scope's token-type binding later requires reauthorization from every user.",
+        "evidence": "Slack documents that changing the binding later 'requires reauthorization from every user'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends `resource:action` naming as the default granularity rung.",
+        "evidence": "'**Naming:** `resource:action`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a read/write split with read-only as the default.",
+        "evidence": "Read/write split present, but no read-only default is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names scopes after the same resource nouns the API already uses (`projects`, `tasks`, `comments`, `timesheets`).",
+        "evidence": "'`projects`, `tasks`, `comments`, `timesheets`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the single broad catch-all scope as a deleted anti-pattern rather than a coarse tier worth keeping in the menu.",
+        "evidence": "'Never create a single broad catch-all scope. No `full_write`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions fine-grained per-resource permissions as the starved option, promoted only on named conditions such as admin approval policies, a compliance regime, or scopes reaching org-wide data.",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a migration to fine-grained permissions is lossy in edge-case coverage, so the coarser tier stays alive during the transition instead of a hard cutover.",
+        "evidence": "'GitHub's fine-grained model \"cannot accomplish every task\" ... do not force a lossy cutover.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects redefining `full_access` and states scopes are additive-only, never repurposed.",
+        "evidence": "'Freeze full_access as a legacy alias with exactly today's semantics'; 'Adding a scope is free.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that repurposing silently changes what already-granted consents authorize.",
+        "evidence": "'Existing tokens change meaning in place.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that scope-set changes invalidate refresh tokens and force re-consent, so the redefinition does not actually avoid touching the existing registrations.",
+        "evidence": "It says the opposite: 'Refresh tokens... stay valid.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deferring the token-type binding and requires every scope bound to a token type (app identity versus user delegation) on day one.",
+        "evidence": "'Decide the flavour matrix now, not after usage data'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the documented cost of deferring it: changing a scope's token-type binding later requires reauthorization from every user.",
+        "evidence": "It says only 'Tightening later is a breaking change.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends `resource:action` naming as the default granularity rung.",
+        "evidence": "'Format: <resource>:<action>.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a read/write split with read-only as the default.",
+        "evidence": "The split exists, but no read-only default is stated, only 'conservative defaults'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names scopes after the same resource nouns the API already uses (`projects`, `tasks`, `comments`, `timesheets`).",
+        "evidence": "Resources: projects, tasks, comments, timesheets.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the single broad catch-all scope as a deleted anti-pattern rather than a coarse tier worth keeping in the menu.",
+        "evidence": "It keeps optional full_write and read_all, and legacy full_access remains until sunset.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Positions fine-grained per-resource permissions as the starved option, promoted only on named conditions such as admin approval policies, a compliance regime, or scopes reaching org-wide data.",
+        "evidence": "Fine-grained is the default design, with no promotion conditions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a migration to fine-grained permissions is lossy in edge-case coverage, so the coarser tier stays alive during the transition instead of a hard cutover.",
+        "evidence": "No such warning.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

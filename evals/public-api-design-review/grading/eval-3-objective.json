@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Removes the certified federated reviewer pool from the option menu entirely rather than ranking it last or parking it as a later phase",
+        "evidence": "'Deleted, not ranked last.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies removal over demotion by noting a parked rung reappears as roadmap work that consumes corpus-writing time nobody needs yet",
+        "evidence": "'Roadmap risk: eventually we'll federate becomes a roadmap item that eats corpus-writing time'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives an explicit re-promotion trigger: a third team shipping its own API surface, or median review turnaround past roughly 2 weeks",
+        "evidence": "'A third team ships its own API surface, or median review turnaround passes ~2 weeks.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a linter-only CI gate rather than the default linter-plus-two-named-reviewers rung",
+        "evidence": "The plan ranks the linter first but also ranks the two named reviewers second ('Do next') and has Day 3 'Name two reviewers'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the two-team scope and the 3-day effort ceiling as the answers that moved the recommendation down from the default rung",
+        "evidence": "'two teams owning the whole surface step the ladder down... your 3-day budget promotes it further'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the semantic conversation still happens inside ordinary code review at this scale",
+        "evidence": "'The semantic conversation happens in ordinary code review.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends forking a published corpus such as Zalando, Adidas, or Microsoft rather than writing a style guide from scratch",
+        "evidence": "'Fork Zalando's ruleset'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the corpus must be adapted to the team's own articulated intent before it is enforced",
+        "evidence": "'Trim the forked corpus... Delete rules that don't fit' on Day 2, before the Day 3 gate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the ranking of the options explicitly rather than implying it through the order of a list",
+        "evidence": "The table has a 'Rank' column.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to propose reviewer certification or per-domain embedded champions for an 11-engineer, two-team organization",
+        "evidence": "Both are marked \u274c 'Deleted'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the Must-change versus Improvement two-bucket model rather than introducing a numeric severity score",
+        "evidence": "'Must-change needs a cited MUST rule... No rule means Improvement.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Characterizes the corpus-plus-linter setup as roughly an afternoon of work rather than a multi-week program",
+        "evidence": "It gives a 3-day plan of about 16 hours. It never says an afternoon.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Removes the certified federated reviewer pool from the option menu entirely rather than ranking it last or parking it as a later phase",
+        "evidence": "Certification is ranked 5 and 'Defer'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies removal over demotion by noting a parked rung reappears as roadmap work that consumes corpus-writing time nobody needs yet",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives an explicit re-promotion trigger: a third team shipping its own API surface, or median review turnaround past roughly 2 weeks",
+        "evidence": "'A third team starts shipping endpoints.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a linter-only CI gate rather than the default linter-plus-two-named-reviewers rung",
+        "evidence": "Recommends linter plus 2 named reviewers via CODEOWNERS",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the two-team scope and the 3-day effort ceiling as the answers that moved the recommendation down from the default rung",
+        "evidence": "Frames by headcount, not as moving off a default rung",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the semantic conversation still happens inside ordinary code review at this scale",
+        "evidence": "Uses dedicated named reviewers instead",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends forking a published corpus such as Zalando, Adidas, or Microsoft rather than writing a style guide from scratch",
+        "evidence": "Writes guide from own API examples",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the corpus must be adapted to the team's own articulated intent before it is enforced",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the ranking of the options explicitly rather than implying it through the order of a list",
+        "evidence": "Table with Rank column 1-6",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to propose reviewer certification or per-domain embedded champions for an 11-engineer, two-team organization",
+        "evidence": "'Formal reviewer certification... Defer'; 'Per-domain embedded champions... Defer'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the Must-change versus Improvement two-bucket model rather than introducing a numeric severity score",
+        "evidence": "Not used",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Characterizes the corpus-plus-linter setup as roughly an afternoon of work rather than a multi-week program",
+        "evidence": "'~1.5 days'",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

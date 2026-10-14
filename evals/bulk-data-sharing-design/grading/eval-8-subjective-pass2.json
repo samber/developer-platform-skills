@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires the public contract or documentation to state non-replayability as loudly as Braze Currents does",
+        "evidence": "The transcript does cite Braze Currents' no-replay warning: 'Braze Currents can't replay events, so a consumer outage means permanent loss.' But it treats this as a risk the design removes ('Pulsegrid avoids this by keeping a retry window and a replay window'). It never requires the public docs to warn prominently about data loss. The 'What we commit to publicly' section only lists positive claims, such as 72h retry and 7-day replay. Permanent loss after the window shows up only indirectly, as the 'Do not commit' entry 'Retention beyond the replay window' and the internal note 'After that, the",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires the public contract or documentation to state non-replayability as loudly as Braze Currents does",
+        "evidence": "The plan does not require a prominent public statement of when events cannot be recovered, and it never mentions Braze Currents. It promises 7-day replay as a feature. The limits appear only in passing: 'Retention beyond 7 days' in the do-not-commit list, and 'Events stay replayable for 7 days' under auto-pause. Nothing tells customers clearly that events older than the window, or lost while an endpoint is paused past 7 days, are permanently unrecoverable. Nothing requires the docs to warn about this the way Braze Currents does.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

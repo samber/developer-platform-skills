@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the dedicated sandbox error format and requires magic numbers to return the API's real published error taxonomy and codes.",
+        "evidence": "\"Return the identical error body, HTTP status, and code that production returns\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects quarterly rotation: magic values are a stable, non-expiring API contract that integrators' CI suites will depend on.",
+        "evidence": "\"Treat magic values as API contract: stable, documented, non-expiring.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the asymmetry that adding new magic values is safe while changing or removing existing ones is a breaking change.",
+        "evidence": "\"Additions are free. Changes are breaking.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the single flat master list and requires each value labeled per operation and field, because the same number can mean different things in different calls.",
+        "evidence": "\"Publish one table per operation, keyed by field.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the unlabeled multi-operation catalog as a documented integrator trap (cross-referencing the wrong operation's meaning).",
+        "evidence": "\"Twilio's own catalog shows it... Cross-reading the wrong table is a known mistake.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects letting test credentials send to a real teammate's phone: the hard guarantee for a communications API is that no real message ever leaves the sandbox.",
+        "evidence": "\"No real message leaves the sandbox\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the strong isolation posture where test credentials cannot even reference production resources or real numbers.",
+        "evidence": "\"the strongest design refuses to let test credentials reference production resources at all\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses phone numbers/addresses as the magic-value carrier, matching the communications domain, rather than card-number or username-style values.",
+        "evidence": "\"+15005550001\"; \"magic `To` number\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes deliberate-failure values (invalid, unroutable, blocked, or not-capable numbers), not just valid/success numbers.",
+        "evidence": "\"blocked recipient, unroutable, no international permission, sender not SMS-capable\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Addresses whether simulated sends fire status callbacks/delivery events, requiring the behavior to be documented explicitly rather than left implicit.",
+        "evidence": "\"Document whether a state change and its event delivery are coupled.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an on-demand simulation endpoint for the delayed carrier rejection, since that outcome is not a function of the original request input and no magic number can encode it.",
+        "evidence": "\"Add a sandbox-only endpoint: POST a message ID plus a target status and error code\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends bidirectional mode-boundary enforcement: live credentials reject magic numbers and test credentials reject real ones.",
+        "evidence": "\"live keys reject magic numbers, and test keys reject real numbers\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the sandbox's isolation level explicitly in documentation instead of relying on the word 'sandbox'.",
+        "evidence": "\"Isolation model. State the level explicitly.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the dedicated sandbox error format and requires magic numbers to return the API's real published error taxonomy and codes.",
+        "evidence": "\"Return the exact production error body: same fields, same codes, same HTTP status.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects quarterly rotation: magic values are a stable, non-expiring API contract that integrators' CI suites will depend on.",
+        "evidence": "\"Make the list stable and append-only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the asymmetry that adding new magic values is safe while changing or removing existing ones is a breaking change.",
+        "evidence": "It says append-only and add a new number, but never states that additions are safe and changes are breaking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the single flat master list and requires each value labeled per operation and field, because the same number can mean different things in different calls.",
+        "evidence": "\"Publish one list where each number has a defined outcome per role.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the unlabeled multi-operation catalog as a documented integrator trap (cross-referencing the wrong operation's meaning).",
+        "evidence": "Frames it as a design flaw, not a documented integrator cross-reference trap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects letting test credentials send to a real teammate's phone: the hard guarantee for a communications API is that no real message ever leaves the sandbox.",
+        "evidence": "\"Real-phone sends: take it out of test mode\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the strong isolation posture where test credentials cannot even reference production resources or real numbers.",
+        "evidence": "\"Keep test credentials fully hermetic: no carrier, no billing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses phone numbers/addresses as the magic-value carrier, matching the communications domain, rather than card-number or username-style values.",
+        "evidence": "Number table \u20260001 etc. per role.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes deliberate-failure values (invalid, unroutable, blocked, or not-capable numbers), not just valid/success numbers.",
+        "evidence": "invalid_number, landline, opted out, busy, no answer.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Addresses whether simulated sends fire status callbacks/delivery events, requiring the behavior to be documented explicitly rather than left implicit.",
+        "evidence": "\"The webhook fires, signed with the test secret.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an on-demand simulation endpoint for the delayed carrier rejection, since that outcome is not a function of the original request input and no magic number can encode it.",
+        "evidence": "\"POST /test/messages/{id}/events {status, error_code}\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends bidirectional mode-boundary enforcement: live credentials reject magic numbers and test credentials reject real ones.",
+        "evidence": "Only checks that numbers can't route live; no live-rejects-magic rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the sandbox's isolation level explicitly in documentation instead of relying on the word 'sandbox'.",
+        "evidence": "No documentation statement of isolation level.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

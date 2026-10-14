@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects forwarding the caller's bearer token to the upstream API and names it the confused-deputy shape the spec forbids outright.",
+        "evidence": "\"The MCP spec forbids forwarding a caller's bearer token upstream. It is the confused-deputy shape.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes obtaining a separate upstream token via token exchange, with the MCP server acting as an OAuth client to the upstream system.",
+        "evidence": "\"own upstream token, obtained through token exchange (RFC 8693)... MCP server's client identity as the actor\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the sticky-session design and requires stateless, interchangeable server instances behind a plain load balancer.",
+        "evidence": "\"Every instance should be interchangeable behind a plain load balancer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions the MCP server as an OAuth 2.1 resource server that validates tokens and never mints them, leaving authorization-server design out of scope.",
+        "evidence": "\"resource server. It validates tokens and never mints them... authorization-server design is `oauth2-provider-design` territory\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires publishing protected-resource metadata (RFC 9728).",
+        "evidence": "\"Publish protected-resource metadata (RFC 9728).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires resource indicators (RFC 8707) and rejecting any token not issued specifically for this server, to stop a token minted for one MCP server being replayed against another.",
+        "evidence": "\"reject any token whose audience isn't this server\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires issuer validation (RFC 9207).",
+        "evidence": "\"Validate the issuer (RFC 9207).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a remote managed platform as the default hosting rung rather than self-hosting, justified by the protocol shipping four backward-incompatible revisions in its first twenty months plus the OAuth machinery a platform absorbs.",
+        "evidence": "\"skill's default is a managed platform... spec churn (four breaking revisions in 20 months) and the OAuth machinery\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the conditions that promote self-hosting anyway - a custom server-side risk-tier policy layer, residency constraints, MCP being the product, or existing multi-tenant edge infrastructure - and tests Kestrel against them instead of approving or rejecting self-hosting flatly.",
+        "evidence": "\"your case justifies it: regulated customers, residency expectations, per-tenant isolation, and a custom policy layer\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rules out local stdio entirely for this audience because enterprise agent fleets consume hosted endpoints.",
+        "evidence": "Local stdio is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that hosting choice is invisible to the buyer, since the client sees the same OAuth-protected endpoint either way, so the value difference between remote postures is a genuine tie.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes the hardening floor: schema-validate every input with bounded sizes and ranges, sanitize paths, and never leak internal errors to the client.",
+        "evidence": "\"Schema-validate every input and bound sizes and ranges. Sanitize paths. Return tool errors inside the result... Never leak stack traces\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects forwarding the caller's bearer token to the upstream API and names it the confused-deputy shape the spec forbids outright.",
+        "evidence": "\"The MCP authorization spec explicitly forbids a server from accepting tokens that weren't issued to it, or forwarding them downstream.\" and \"Confused deputy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes obtaining a separate upstream token via token exchange, with the MCP server acting as an OAuth client to the upstream system.",
+        "evidence": "\"Token exchange for the downstream call (RFC 8693)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the sticky-session design and requires stateless, interchangeable server instances behind a plain load balancer.",
+        "evidence": "\"Stickiness is an optimization, not a correctness dependency\" - it keeps sticky sessions and does not require stateless instances behind a plain load balancer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Positions the MCP server as an OAuth 2.1 resource server that validates tokens and never mints them, leaving authorization-server design out of scope.",
+        "evidence": "\"MCP server is an OAuth resource server... accepts only tokens whose audience is the MCP server\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires publishing protected-resource metadata (RFC 9728).",
+        "evidence": "\"publishes protected-resource metadata (RFC 9728)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires resource indicators (RFC 8707) and rejecting any token not issued specifically for this server, to stop a token minted for one MCP server being replayed against another.",
+        "evidence": "\"(RFC 8707 resource indicators)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires issuer validation (RFC 9207).",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a remote managed platform as the default hosting rung rather than self-hosting, justified by the protocol shipping four backward-incompatible revisions in its first twenty months plus the OAuth machinery a platform absorbs.",
+        "evidence": "It keeps self-hosting, listing it as \"already good\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the conditions that promote self-hosting anyway - a custom server-side risk-tier policy layer, residency constraints, MCP being the product, or existing multi-tenant edge infrastructure - and tests Kestrel against them instead of approving or rejecting self-hosting flatly.",
+        "evidence": "No test of the promotion conditions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rules out local stdio entirely for this audience because enterprise agent fleets consume hosted endpoints.",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that hosting choice is invisible to the buyer, since the client sees the same OAuth-protected endpoint either way, so the value difference between remote postures is a genuine tie.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes the hardening floor: schema-validate every input with bounded sizes and ranges, sanitize paths, and never leak internal errors to the client.",
+        "evidence": "It covers body limits, CORS and SSRF, but not schema-validating every input with bounds, path sanitization, or error leakage.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

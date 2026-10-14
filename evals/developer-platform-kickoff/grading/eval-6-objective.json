@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Separates the two problems by the direction of the call rather than treating them as one duplicate-delivery problem",
+        "evidence": "Table: 'client retries into you' vs 'you deliver out'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the double-charge problem to `samber/developer-platform-skills@api-idempotency-retry`",
+        "evidence": "Route section.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns the duplicate outbound event callbacks to `samber/developer-platform-skills@webhook-platform-design`, not to `api-idempotency-retry`",
+        "evidence": "Table skill row.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that no single skill and no single fix covers both directions",
+        "evidence": "\"The VP's 'one fix' doesn't exist\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at-least-once delivery as the provider-side contract that makes consumer-side dedupe expected rather than a defect",
+        "evidence": "\"At-least-once delivery produces duplicates by design.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names exactly one skill as the route for the immediate task rather than offering a menu as the route",
+        "evidence": "Single route.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a chain is given, `samber/developer-platform-skills@webhook-platform-design` precedes `samber/developer-platform-skills@integration-error-observability` in it",
+        "evidence": "No chain given; none invented, so no violation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps `samber/developer-platform-skills@api-error-design` distinct, as the shape of one response body rather than as retry mechanics",
+        "evidence": "Described as the machine-readable signal in a response, not retry mechanics.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The short-list holds between 5 and 8 entries, each naming the bottleneck it attacks and what the session costs",
+        "evidence": "Six entries, each with Attacks and Cost.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not design the idempotency-key scheme or the webhook signing scheme itself",
+        "evidence": "No scheme designed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes or updates `developer-platform-context.md`, including a session-log line",
+        "evidence": "\"Context artifact (draft, not written)\".",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Separates the two problems by the direction of the call rather than treating them as one duplicate-delivery problem",
+        "evidence": "Table row 'Direction: Inbound: customer to us / Outbound: us to customer'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the double-charge problem to `samber/developer-platform-skills@api-idempotency-retry`",
+        "evidence": "No skill is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns the duplicate outbound event callbacks to `samber/developer-platform-skills@webhook-platform-design`, not to `api-idempotency-retry`",
+        "evidence": "No skill is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that no single skill and no single fix covers both directions",
+        "evidence": "'They are the same family of problem but not one fix'; 'It still ships as two changes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at-least-once delivery as the provider-side contract that makes consumer-side dedupe expected rather than a defect",
+        "evidence": "'At-least-once delivery means duplicates are inherent'; 'Publish the contract: Delivery is at-least-once. Dedupe on event_id.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names exactly one skill as the route for the immediate task rather than offering a menu as the route",
+        "evidence": "No skill is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "If a chain is given, `samber/developer-platform-skills@webhook-platform-design` precedes `samber/developer-platform-skills@integration-error-observability` in it",
+        "evidence": "No chain.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps `samber/developer-platform-skills@api-error-design` distinct, as the shape of one response body rather than as retry mechanics",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The short-list holds between 5 and 8 entries, each naming the bottleneck it attacks and what the session costs",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not design the idempotency-key scheme or the webhook signing scheme itself",
+        "evidence": "It specifies the Idempotency-Key header, unique constraint, body hash and 422/409 behavior.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes or updates `developer-platform-context.md`, including a session-log line",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

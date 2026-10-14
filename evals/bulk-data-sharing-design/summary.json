@@ -1,0 +1,426 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "bulk-data-sharing-design",
+  "scenarios": 9,
+  "expectations_total": 98,
+  "expectations_subjective": 2,
+  "expectations_objective": 96,
+  "pass_rate_with_skill_pct": 70.4,
+  "pass_rate_without_skill_pct": 32.7,
+  "delta_pp": 37.7,
+  "uplift_multiplier": 2.15,
+  "trigger_accuracy_pct": 74.4,
+  "trigger_queries": 90,
+  "trigger_positive_fire_rate": 0.6,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Rejects streaming push citing its effort/efficiency position or its non-replayability trade-off"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes the file-drop also serves ML backfills and raw-file use cases a warehouse share cannot"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that leaving the posture unnamed makes the best-effort promise in the customer's mind and the no-promise position in the vendor's own"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects customer_id and session_id as partition keys on high-cardinality grounds"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Caps partition depth at roughly 2-3 levels of low-cardinality keys"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States partition keys must be chosen by what the consumer filters on, not by how the internal schema is organized"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends replacing JSON with Parquet, citing roughly up to 2x faster unload and up to 6x smaller output"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Prescribes a compaction job with a concrete trigger, such as compacting when a table or partition exceeds 100 files each smaller than 75% of the target file size"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lays out the isolation ladder in order - dedicated bucket per tenant, shared bucket with prefix isolation, per-recipient access points, broker-minted short-term credentials - and advises climbing it only as tenant count forces"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that key rotation under CMEK/SSE-KMS must not require re-encrypting historical data"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions per-file Parquet encryption as the finer-grained option when one shared bucket serves recipients of differing trust levels"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends against bundling the export free, stating that no free-tier precedent exists in this feature class"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that in cross-region native sharing the provider can end up paying egress that scales with consumer query volume"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies egress as the decisive line item, citing that cross-region and cross-cloud transfer can reach up to roughly 70% of total data-transfer cost"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Attributes the ~70% figure to Snowflake as a vendor-published number and weights it as such"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names Snowflake's Egress Cost Optimizer - replicate once, pay egress on increments - as a mitigation, treating its savings figure as a vendor claim"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Separates what Slatewave charges from who pays the underlying infrastructure, treating them as independent decisions"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that under a native share nothing is copied, so there is no storage duplication and the consumer pays only query compute"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Ties that consistency requirement to predicate pushdown and by-name column matching in consuming engines"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the Indian data-localization requirement as a hard blocker rather than a paperwork item, and presents explicit non-availability in that region as a legitimate precedented outcome (Stripe does not offer Data Pipeline in India)"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Produces per-route transfer documentation covering legal basis, data classes involved, and whether pseudonymization applies"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Accepts streaming push only against the three named conditions: genuinely event-shaped data, consumer demand for sub-minute delivery, and consumer acceptance of the durability trade-off"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires the public contract or documentation to state non-replayability as loudly as Braze Currents does"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that Avro, with schema-registry-based evolution, rather than Parquet, is the format used on the streaming rung"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Mentions entity-count batching (such as splitting files per 5,000 users) as an alternative to time-window batching on this rung"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Puts the native Databricks Delta Sharing surface first, justified by the 38% concentration"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Puts the Parquet-on-object-storage file drop second as the universal fallback serving the warehouse-less majority"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects building the in-house file transfer and sharing service, recommending the destination warehouse's own sharing primitive instead"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Gives a named revisit trigger for the build-versus-buy choice: vendor usage pricing crossing the fully-loaded cost of roughly 1-2 data engineers"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Justifies that removal on the grounds that a share requires a share-capable destination on the recipient side, which no Tilepath account has"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States a named re-promotion trigger for the native share: target accounts concentrating on one shareable warehouse platform"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names roughly 30-40% of target accounts on a single platform as the concentration threshold that would justify a native share"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Flags that the 30-40% concentration threshold is a self-set heuristic, not a vendor-published figure"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Rejects streaming push citing its effort/efficiency position or its non-replayability trade-off"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes the file-drop also serves ML backfills and raw-file use cases a warehouse share cannot"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that leaving the posture unnamed makes the best-effort promise in the customer's mind and the no-promise position in the vendor's own"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends scheduled full-dump as the starting cadence rung rather than CDC"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites a full load every 3 hours as a concrete reference cadence in this feature class"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that adopting CDC commits the design to upsert-by-primary-key deduplication"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that adopting CDC requires explicit delete tombstones"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires a periodic full-scan reconciliation job under CDC"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names missed deletes - a delete that emits no change event - as the CDC failure mode that leaves phantom rows in customer copies"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Acknowledges the lead's existing Debezium experience as a legitimate reason to promote the CDC rung earlier than the cost curve alone would"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Caps partition depth at roughly 2-3 levels of low-cardinality keys"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States partition keys must be chosen by what the consumer filters on, not by how the internal schema is organized"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends replacing JSON with Parquet, citing roughly up to 2x faster unload and up to 6x smaller output"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Prescribes a compaction job with a concrete trigger, such as compacting when a table or partition exceeds 100 files each smaller than 75% of the target file size"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites the measured small-files penalty of roughly 4x (an Athena query dropping from about 40 seconds to about 10 after compaction)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Declines to adopt Iceberg/Delta/Hudi unless the export needs atomic multi-file commits, time-travel, or in-place schema evolution, naming those as the graduation triggers"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the layout is a written contract rather than whatever the export job happens to emit"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Prescribes one KMS grant per recipient so revoking one customer never touches another"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lays out the isolation ladder in order - dedicated bucket per tenant, shared bucket with prefix isolation, per-recipient access points, broker-minted short-term credentials - and advises climbing it only as tenant count forces"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Pins the access-review cadence to the credential TTL/expiry rather than the quarterly calendar process"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that key rotation under CMEK/SSE-KMS must not require re-encrypting historical data"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions per-file Parquet encryption as the finer-grained option when one shared bucket serves recipients of differing trust levels"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends against bundling the export free, stating that no free-tier precedent exists in this feature class"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites that every vendor studied gates bulk export behind an enterprise tier, a paid plan, or a usage-priced add-on, naming at least one example such as Stripe's transaction-count subscription, Braze's enterprise contract, or HubSpot's top tier"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that in cross-region native sharing the provider can end up paying egress that scales with consumer query volume"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies egress as the decisive line item, citing that cross-region and cross-cloud transfer can reach up to roughly 70% of total data-transfer cost"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Attributes the ~70% figure to Snowflake as a vendor-published number and weights it as such"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names Snowflake's Egress Cost Optimizer - replicate once, pay egress on increments - as a mitigation, treating its savings figure as a vendor claim"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Separates what Slatewave charges from who pays the underlying infrastructure, treating them as independent decisions"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires writing down before launch, per delivery model, who pays storage, compute and egress, explicitly including the cross-region path"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States an add-only posture: append new nullable columns at the end, never rename, remove, or retype in place"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Explains that renames break Parquet consumers outright because column names are the identifiers"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires consistent column ordering and types across every batch"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Ties that consistency requirement to predicate pushdown and by-name column matching in consuming engines"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires registering every schema version in the catalog"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Frames the commitment as a four-part data contract covering schema, quality, freshness and availability"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Defers the notice-period and sunset machinery to the API versioning/deprecation policy rather than inventing a parallel process here"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends region pinning (EU customer data in EU buckets/shares) as the first and preferred fix"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Orders the remedies architecture-first - region pinning, then regionalized CMEK, then pseudonymized replicas - with legal paperwork as the fallback rather than the lead"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Explains that regionalized CMEK closes the 'the ciphertext moved but it is encrypted' argument, which regulators do not accept as a substitute for a transfer mechanism"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites Meta's \u20ac1.2 billion 2023 fine as having been specifically for cross-border transfer failures"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the Indian data-localization requirement as a hard blocker rather than a paperwork item, and presents explicit non-availability in that region as a legitimate precedented outcome (Stripe does not offer Data Pipeline in India)"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites Segment deprecating its EU Data Lakes product rather than retrofitting residency, as evidence that retrofitting can cost the whole product"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires region selection to be built into the early rollout stages rather than bolted on later"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Produces per-route transfer documentation covering legal basis, data classes involved, and whether pseudonymization applies"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the single global us-east-1 bucket as the anti-pattern that silently commits Vantablue to the SCC/TIA paperwork path for every EU customer"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Accepts streaming push only against the three named conditions: genuinely event-shaped data, consumer demand for sub-minute delivery, and consumer acceptance of the durability trade-off"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States explicitly that with a non-replayable stream a consumer whose endpoint was down recovers nothing from the provider"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires the public contract or documentation to state non-replayability as loudly as Braze Currents does"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Identifies streaming push as the highest-effort rung and the one that loses every efficiency comparison"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends also shipping a file-drop or batch surface for historical backfill, which the stream cannot serve"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that Avro, with schema-registry-based evolution, rather than Parquet, is the format used on the streaming rung"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Keeps the streaming surface gated behind a paid or enterprise contract rather than self-serve, consistent with the precedent in this feature class"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Mentions entity-count batching (such as splitting files per 5,000 users) as an alternative to time-window batching on this rung"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Puts the native Databricks Delta Sharing surface first, justified by the 38% concentration"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Puts the Parquet-on-object-storage file drop second as the universal fallback serving the warehouse-less majority"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects building the in-house file transfer and sharing service, recommending the destination warehouse's own sharing primitive instead"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Cites Fivetran acquiring Census in 2025 despite holding a working reverse-ETL prototype as the build-versus-partner evidence"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Gives a named revisit trigger for the build-versus-buy choice: vendor usage pricing crossing the fully-loaded cost of roughly 1-2 data engineers"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Replaces the NPS and adoption criteria with the four binary gates: contract completeness, cost allocation named, residency coverage, and premium gating"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Treats freshness attainment, consumer-reported schema-break incidents and egress cost per recipient as trends to watch rather than pass/fail thresholds"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes that the effort ranking favouring the native share assumes the data already sits in a share-capable warehouse or lakehouse, and that getting it there flips the ordering"
+      }
+    ]
+  }
+}

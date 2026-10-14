@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Treats the missing `developer-platform-context.md` as the cold-start signal instead of asking the user whether this is a new or a resumed project",
+        "evidence": "\"No `developer-platform-context.md` exists. That means a cold start.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks at most 7 interview questions, one per message",
+        "evidence": "\"Interview: not run.\" Only conditional open questions listed; none asked as interview.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Outputs a route and a short-list rather than a proposed API design, endpoint list, or specification",
+        "evidence": "Route + Short-list sections; no endpoints or spec drafted.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes the surface-audit class from the short-list entirely rather than placing it last, because nothing is published yet",
+        "evidence": "Says it deleted the audit class, but lists `public-api-design-review` and `api-reference-quality` under 'Not now'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes the macro-strategy class to the first rung of the short-list",
+        "evidence": "\"Nothing public yet moved macro strategy to rung 1\"; #1 is api-integration-surface-strategy.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the absent breaking-change sign-off as an independent second reason macro strategy sits at rung 1",
+        "evidence": "\"'Nobody signs off on breaking changes' moved `api-versioning-policy` to rung 1 as well.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the immediate task to `samber/developer-platform-skills@api-integration-surface-strategy`",
+        "evidence": "\"`api-integration-surface-strategy` is the one skill for the immediate task.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The chain ends at `samber/developer-platform-skills@api-versioning-policy`",
+        "evidence": "Chain step 3: `api-versioning-policy` defines what you will and won't break.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the chain is ordered by dependency, not ranked by value or effort",
+        "evidence": "\"Dependency order:\" heading the chain, distinct from the value-ordered short-list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The short-list holds between 5 and 8 entries",
+        "evidence": "Numbered 1-4 plus #5 and #6 named (six entries).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every short-list entry names both the bottleneck it attacks and what the session costs",
+        "evidence": "`api-rate-limit-policy` (#5) and `webhook-platform-design` (#6) have no bottleneck or cost.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes `developer-platform-context.md`, including a session-log line, before the session ends",
+        "evidence": "\"I did not write this to disk\"; draft only.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Treats the missing `developer-platform-context.md` as the cold-start signal instead of asking the user whether this is a new or a resumed project",
+        "evidence": "No mention of developer-platform-context.md or cold start.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks at most 7 interview questions, one per message",
+        "evidence": "Three questions are asked together in one 'Questions I need answered' list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Outputs a route and a short-list rather than a proposed API design, endpoint list, or specification",
+        "evidence": "Outputs a full plan with a deprecation policy, OpenAPI spec and probable endpoints; no route or short-list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Deletes the surface-audit class from the short-list entirely rather than placing it last, because nothing is published yet",
+        "evidence": "No class-based short-list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes the macro-strategy class to the first rung of the short-list",
+        "evidence": "No short-list rungs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the absent breaking-change sign-off as an independent second reason macro strategy sits at rung 1",
+        "evidence": "Names the missing approver in step 3 but ties it to no rung.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the immediate task to `samber/developer-platform-skills@api-integration-surface-strategy`",
+        "evidence": "No skill is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The chain ends at `samber/developer-platform-skills@api-versioning-policy`",
+        "evidence": "No chain.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the chain is ordered by dependency, not ranked by value or effort",
+        "evidence": "No chain.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The short-list holds between 5 and 8 entries",
+        "evidence": "No short-list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Every short-list entry names both the bottleneck it attacks and what the session costs",
+        "evidence": "No entries.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes `developer-platform-context.md`, including a session-log line, before the session ends",
+        "evidence": "No file is written.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

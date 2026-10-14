@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Defers concrete notice windows and sunset communication to versioning-policy territory rather than inventing them here",
+        "evidence": "The transcript never refers notice windows or sunset communication to a separate versioning or deprecation policy. In #3 it sets a concrete window itself: 'it can be removed after a deprecation period (180 days is the recommended floor)'. It also prescribes sunset messaging directly: a deprecated=true marker with an AIP-192 comment, a migration guide, and a field mapping table. Saying 'v1 can never be sunset' while v2 imports it is a design-coupling point, not a deferral. The answer handles timelines and communication inline instead of pointing them to versioning-policy territory.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Defers concrete notice windows and sunset communication to versioning-policy territory rather than inventing them here",
+        "evidence": "The answer gives no specific notice-window length, which satisfies the 'not inventing' half. It does not hand the topic off to a versioning or deprecation policy, though. It handles sunset planning inside its own recommendations: 'Missing from the plan' asks for 'A v1 deprecation and sunset timeline, with usage telemetry per partner and a date partners can plan around'. The 'Suggested order' adds 'Publish the migration guide and sunset dates' and 'v1 frozen to bug fixes only'. So it avoids inventing numbers but never defers the topic, which earns partial credit only.",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

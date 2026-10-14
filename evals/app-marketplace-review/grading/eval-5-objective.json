@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Promotes a staged gate with an objective fast path, on the grounds that update volume has made reviewer cost the binding constraint",
+        "evidence": "\"promote it to a staged gate with fast-path once update volume makes reviewer cost the binding constraint. Your 6-week queue shows it has.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps full review for new apps and major versions",
+        "evidence": "\"Full review: new apps and major versions only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grants near-instant clearance only to objectively defined minor updates",
+        "evidence": "Fast path only if five objective conditions met",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps continuous automated scanning covering what the fast path skips",
+        "evidence": "\"Continuous scanning: covers what the fast path skips.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Changes the ticketing rule so that only critical and high findings auto-raise a ticket",
+        "evidence": "\"auto-ticket critical and high only\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes to human reviewers only judgment calls plus a single genuinely ambiguous signal class, naming secret-scan hits as that class",
+        "evidence": "\"secret-scan hits are the only signal class routed to a human\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: scanning everything and ticketing everything drowns reviewers",
+        "evidence": "\"The reviewers ignore 1,900 tickets a quarter because most are noise.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tiers scan cadence by cost - cheap checks daily, expensive per-version checks on release, slow checks monthly",
+        "evidence": "\"cheap checks daily, per-version checks on release, slow checks monthly\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands developers the reviewers' own checking tool to run before submission",
+        "evidence": "\"Give developers the same SAST ruleset and the same manifest checker you run.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Connects that pre-submission self-check to reducing the first-pass failure rate",
+        "evidence": "\"This is the direct attack on the first-pass failure rate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the roughly-half-of-first-submissions-fail figure as a benchmarked floor to beat rather than as an acceptable norm",
+        "evidence": "\"Cut the 50% first-pass failure with a pre-check tool.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names automated-scan false-positive rate as a tracked metric, because rising false positives retrain reviewers to ignore the scanner",
+        "evidence": "\"If it rises, reviewers learn to ignore the scanner again.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names share of updates clearing the fast path as a tracked metric",
+        "evidence": "\"Share of updates clearing the fast path.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Promotes a staged gate with an objective fast path, on the grounds that update volume has made reviewer cost the binding constraint",
+        "evidence": "Tier 0/1/2 table; \"Don't hire a third reviewer first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps full review for new apps and major versions",
+        "evidence": "Tier 2: \"every new app\" gets full review.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grants near-instant clearance only to objectively defined minor updates",
+        "evidence": "Tier 0: no change to permissions, scopes, data access or domains.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps continuous automated scanning covering what the fast path skips",
+        "evidence": "\"Post-publish scanning and a kill switch: continuous scanning\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Changes the ticketing rule so that only critical and high findings auto-raise a ticket",
+        "evidence": "\"limited to new, high-severity findings in the diff\"; everything else is advisory.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes to human reviewers only judgment calls plus a single genuinely ambiguous signal class, naming secret-scan hits as that class",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: scanning everything and ticketing everything drowns reviewers",
+        "evidence": "\"Reviewers who stopped opening tickets may have missed real ones.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tiers scan cadence by cost - cheap checks daily, expensive per-version checks on release, slow checks monthly",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Hands developers the reviewers' own checking tool to run before submission",
+        "evidence": "\"run SAST inside the submission flow and send findings to the developer\"; pre-submit checks developers can run.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Connects that pre-submission self-check to reducing the first-pass failure rate",
+        "evidence": "\"Cut the 50% first-submission failure rate\" via automated pre-submit checks.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the roughly-half-of-first-submissions-fail figure as a benchmarked floor to beat rather than as an acceptable norm",
+        "evidence": "Section heading \"Cut the 50% first-submission failure rate\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names automated-scan false-positive rate as a tracked metric, because rising false positives retrain reviewers to ignore the scanner",
+        "evidence": "Not in the weekly metrics list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names share of updates clearing the fast path as a tracked metric",
+        "evidence": "\"Throughput by tier\" is listed, not the share clearing the fast path.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

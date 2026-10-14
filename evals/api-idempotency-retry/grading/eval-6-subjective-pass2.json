@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Treats SDK defaults as the de-facto contract for the majority of callers who never read the docs, reviewed with API-contract rigor",
+        "evidence": "The transcript states this outright: \"Most callers never read past install. The defaults are the contract.\" and \"The safe path should be the zero-config path.\" It also rejects \"Off by default\" because it \"moves it to code you don't control.\" The rigor matches an API contract: there is an exact defaults table, it requires the Python and Node SDKs to be identical, it lists precise retry and never-retry status codes (including the two distinct 409 codes), it gates the release on server prerequisites, and it asks for docs \"with the same precision as the raw-HTTP contract\" with no \"exactly-once\" wo",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Treats SDK defaults as the de-facto contract for the majority of callers who never read the docs, reviewed with API-contract rigor",
+        "evidence": "The response grounds its main objection in what callers who never configure anything will get: 'Most integrators never opt in, so every transient 503, connection reset or 429 reaches their users.' It treats a change in defaults as a contract change. It ties the behavior change to the v2 major version, asks for release notes to 'state plainly that retries are now on', and documents the opt-out (`max_retries=0`). It also gives `0` and `None`/`null` explicit disable meanings, requires identical names in both SDKs, and keeps a single-attempt call behaving 'the same as before'. It spells out the re",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

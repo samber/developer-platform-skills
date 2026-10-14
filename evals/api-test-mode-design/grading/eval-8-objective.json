@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the deliberately unrecognizable key format and recommends the recognized type-prefix plus _test_/_live_ mode-substring shape.",
+        "evidence": "\"vltc_sk_test_<random>... a type prefix, then a `_test_`/`_live_` mode substring.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: recognized prefix shapes are zero-false-positive secret-scanning/push-protection targets, buying free leak detection from tooling the vendor doesn't control, while a novel scheme buys nothing.",
+        "evidence": "\"A novel scheme buys no leak detection from tooling you don't control... Enroll it with secret-scanning providers\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Directly counters the obscurity argument: an unrecognizable key loses scanner protection rather than gaining safety.",
+        "evidence": "\"Hiding the pattern doesn't stop that. You also hide the pattern from the defenders who would catch the leak.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects committing test keys to public repos: test keys are not risk-free and deserve real secret hygiene.",
+        "evidence": "\"Don't let developers commit sandbox keys to public repos\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains why test keys carry risk: on a toggle model they still read and write real account configuration, and the prefix communicates mode, not risk level.",
+        "evidence": "\"On a toggle model, test keys still read and write real account configuration... The prefix communicates mode, not risk level.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the quickstart's use of the production key in local development: never live secrets in local dev.",
+        "evidence": "\"Quickstart: never use the production key locally\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the single-codebase runtime-flag pattern and recommends per-environment separation of credentials, data stores, and redirect allowlists.",
+        "evidence": "\"Keep per-environment separation (data stores, redirect allowlists, credentials) rather than one codebase branching on a runtime flag.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the opaque invalid_credentials response with a clear, legible wrong-environment error.",
+        "evidence": "\"Return a distinct error, e.g. HTTP 401 `wrong_environment`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the wrong-environment paste as a named recurring support-ticket generator with a design target of zero cross-environment incidents, achieved structurally rather than by warning developers.",
+        "evidence": "\"named, recurring support-ticket generator... zero wrong-mode support tickets, achieved structurally\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires bidirectional boundary enforcement: live keys reject test data and test keys reject real records.",
+        "evidence": "\"Live keys reject sandbox values. Sandbox keys reject real values.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects seeding the sandbox with the scrubbed customer employee export: seed data must be synthetic only, never copied production data.",
+        "evidence": "\"Sample data: use synthetic data, not a scrubbed customer export\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends secret-scanning enrollment for the key format, alongside server-side-only and scoped/restricted keys, as leaked-key mitigations.",
+        "evidence": "\"server-side-only secrets, scoped/restricted keys, and secret-scanning enrollment\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the deliberately unrecognizable key format and recommends the recognized type-prefix plus _test_/_live_ mode-substring shape.",
+        "evidence": "\"Use a distinctive, greppable prefix: vltc_prd_\u2026 and vltc_sbx_\u2026\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: recognized prefix shapes are zero-false-positive secret-scanning/push-protection targets, buying free leak detection from tooling the vendor doesn't control, while a novel scheme buys nothing.",
+        "evidence": "\"An odd format means leaks go undetected.\"; checksum \"near-zero false positives\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Directly counters the obscurity argument: an unrecognizable key loses scanner protection rather than gaining safety.",
+        "evidence": "\"Unrecognizable keys mainly blind defenders.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects committing test keys to public repos: test keys are not risk-free and deserve real secret hygiene.",
+        "evidence": "\"don't ask developers to commit their own keys\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains why test keys carry risk: on a toggle model they still read and write real account configuration, and the prefix communicates mode, not risk level.",
+        "evidence": "Gives abuse and attribution reasons, not toggle-model config access.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the quickstart's use of the production key in local development: never live secrets in local dev.",
+        "evidence": "\"The quickstart uses the sandbox key only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the single-codebase runtime-flag pattern and recommends per-environment separation of credentials, data stores, and redirect allowlists.",
+        "evidence": "\"separate host, datastore and key store\"; distinct env var names.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the opaque invalid_credentials response with a clear, legible wrong-environment error.",
+        "evidence": "\"wrong_environment\" code.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the wrong-environment paste as a named recurring support-ticket generator with a design target of zero cross-environment incidents, achieved structurally rather than by warning developers.",
+        "evidence": "Notes hours lost but sets no zero-incident target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires bidirectional boundary enforcement: live keys reject test data and test keys reject real records.",
+        "evidence": "Only the SDK mismatch check and prod-key-to-sandbox handling.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects seeding the sandbox with the scrubbed customer employee export: seed data must be synthetic only, never copied production data.",
+        "evidence": "\"generate synthetic data from a seeded generator\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends secret-scanning enrollment for the key format, alongside server-side-only and scoped/restricted keys, as leaked-key mitigations.",
+        "evidence": "\"Register the format with GitHub's secret scanning partner program\"; scoped permissions.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

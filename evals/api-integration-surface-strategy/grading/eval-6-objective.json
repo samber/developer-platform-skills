@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Schedules the warehouse/bulk sharing surface on the strength of the two lost deals, treating the pipeline blocker as the highest-weight signal",
+        "evidence": "\"Two lost enterprise deals over Snowflake. This is pipeline data, which carries the highest weight.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Revises the CLI spec to serve dual audiences: readable table output for humans plus JSON with clean stdout/stderr separation for agents",
+        "evidence": "\"Humans: readable table output... Agents and scripts: --output json... data on stdout only. Progress, warnings and errors go to stderr.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the CLI has no dedicated downstream design owner, so its design decisions are recorded in the plan itself",
+        "evidence": "\"Design owner: no sibling exists, so these decisions live here in the plan.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schedules the agent-access surface (MCP) because observed agent traffic is a real demand signal, distinguishing this from hype-driven scheduling",
+        "evidence": "MCP is gated: \"Park it until a signal fires\". It treats agent traffic as a CS report only: \"It does not yet justify building an MCP server.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Positions MCP as a thin layer derived or generated from the existing stable contract, sequenced after the foundation and never hand-built",
+        "evidence": "\"generate it from the OpenAPI spec, and prefer a managed platform over a hand-build.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps concurrent new-surface builds within the four-engineer capacity, sequencing the three surfaces rather than launching all at once",
+        "evidence": "Quarterly table with \"Concurrent new surfaces (max 2)\"; \"no quarter has more than two new surfaces\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every surface entry carries all five handoff fields: target audience, justifying demand signal, reversal-cost tier, capacity owner, and the owning downstream design or an inline decision",
+        "evidence": "The \u00a75b table has Audience, Demand signal, Reversal tier, Owner and Design owner for all 11 surfaces.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates this plan's job (whether and when each surface ships) from per-surface design (how), which is handed off",
+        "evidence": "Each surface has a named design owner such as `bulk-data-sharing-design` and `mcp-server-offering`, and the plan decides timing and priority.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets a review date (quarterly or similar) plus named reopen triggers such as a new deal blocker or agent-signal changes",
+        "evidence": "\"First review: January 2027, then quarterly\"; the reopen triggers include a deal blocked and an RFP requiring MCP.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps each surface to a distinct consumer class (BI consumers for warehouse sharing, humans and agents for the CLI, agent clients for MCP) rather than one ladder every consumer climbs",
+        "evidence": "\"This is a per-audience map, not one ladder every consumer climbs.\" Warehouse maps to BI, the CLI to platform engineers and agents, and MCP to agents.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records what evidence the next review must re-check rather than re-arguing the whole plan",
+        "evidence": "\"Re-check at the next review: Telemetry... deal-blocker log... warehouse pilot partner... real customer ask for the CLI.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Schedules the warehouse/bulk sharing surface on the strength of the two lost deals, treating the pipeline blocker as the highest-weight signal",
+        "evidence": "'Warehouse sharing is the only surface with lost revenue attached.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Revises the CLI spec to serve dual audiences: readable table output for humans plus JSON with clean stdout/stderr separation for agents",
+        "evidence": "'Detect a TTY... emit JSON' and 'put errors on stderr in a structured form.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the CLI has no dedicated downstream design owner, so its design decisions are recorded in the plan itself",
+        "evidence": "No mention of a downstream design owner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Schedules the agent-access surface (MCP) because observed agent traffic is a real demand signal, distinguishing this from hype-driven scheduling",
+        "evidence": "Calls the signal 'Customer success's anecdote is a hypothesis until the logs confirm it.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Positions MCP as a thin layer derived or generated from the existing stable contract, sequenced after the foundation and never hand-built",
+        "evidence": "'Build a thin remote MCP server over the existing API... Generate as much as possible from the OpenAPI spec.' It comes fourth after tokens and safety.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps concurrent new-surface builds within the four-engineer capacity, sequencing the three surfaces rather than launching all at once",
+        "evidence": "Capacity table with 'Four engineers can't do all three at full depth' and staggered quarters.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every surface entry carries all five handoff fields: target audience, justifying demand signal, reversal-cost tier, capacity owner, and the owning downstream design or an inline decision",
+        "evidence": "Surface entries lack reversal-cost tier and downstream-design owner fields.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates this plan's job (whether and when each surface ships) from per-surface design (how), which is handed off",
+        "evidence": "Plan mixes detailed design into the roadmap with no handoff.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets a review date (quarterly or similar) plus named reopen triggers such as a new deal blocker or agent-signal changes",
+        "evidence": "Has only 'What I'd cut first if capacity slips'; no review date or reopen triggers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Maps each surface to a distinct consumer class (BI consumers for warehouse sharing, humans and agents for the CLI, agent clients for MCP) rather than one ladder every consumer climbs",
+        "evidence": "Goals are stated, but there is no explicit consumer-class mapping such as BI consumers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records what evidence the next review must re-check rather than re-arguing the whole plan",
+        "evidence": "No such section.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

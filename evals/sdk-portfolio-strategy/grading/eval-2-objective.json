@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States explicitly that 'official' is a support commitment, not a build method",
+        "evidence": "\"Official is a support commitment. It is not a build method.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Plaid generating its five official SDKs with the free open-source OpenAPI Generator as the counter-example",
+        "evidence": "\"Plaid's five official SDKs (Ruby, Node, Python, Java, Go) come from the free OpenAPI Generator.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a generated build model rather than hand-writing all five libraries",
+        "evidence": "\"Generate all five SDKs from your OpenAPI spec with a self-hosted generator.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the air-gapped/no-external-SaaS requirement as deleting the hosted commercial generator option outright rather than demoting it in a ranking",
+        "evidence": "\"Your security rule removes hosted generators.\"; \"Your hard rule deletes the hosted rung.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names OpenAPI Generator and/or Speakeasy as options compatible with fully self-hosted, air-gapped generation",
+        "evidence": "\"Speakeasy was self-hostable and air-gapped at the last snapshot.\"; free OpenAPI Generator, self-hosted.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that free OpenAPI Generator output is technically correct but non-idiomatic, and budgets standing curation effort for it",
+        "evidence": "\"technically correct but non-idiomatic... custom templates, a curated ergonomics layer, and a review gate\"; \"Curation budget\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies one build model portfolio-wide, permitting at most one handwritten flagship exception",
+        "evidence": "\"Move one language, not all five.\"; Option C one hand-polished language.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the OpenAPI spec, not a vendor configuration DSL, to remain the single source of truth",
+        "evidence": "\"Make the spec, not a generator config, the single source of truth.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a written exit plan naming who regenerates the SDKs if a generator vendor disappears, recorded before any commitment",
+        "evidence": "Exit plan lists \"spec is the source of truth, the generator is pinned and mirrored internally, and templates live in your repo\" but never names who regenerates if a vendor disappears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the team to fix the six months of spec drift before generating anything from it",
+        "evidence": "\"Fix the spec before anything else.\"; \"Generating from a drifting spec ships the drift into five languages at once.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Expresses the cost of hand-maintaining many languages as an order of magnitude (engineer-years of standing effort) rather than a currency budget",
+        "evidence": "\"multiple engineer-years of standing cost... treat it as order of magnitude.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not claim that generated SDKs cannot be official or cannot carry a support commitment",
+        "evidence": "Plaid's generated SDKs are cited as official.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the build-model options on effort, value and efficiency instead of presenting them as interchangeable",
+        "evidence": "The portfolio table compares shapes A/B/C with brief \"Fit for you\" notes. It does not rank build-model options on effort, value and efficiency.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States explicitly that 'official' is a support commitment, not a build method",
+        "evidence": "It disputes 'official means hand-written' by pointing to unidiomatic output. It never says official denotes a support commitment.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Plaid generating its five official SDKs with the free open-source OpenAPI Generator as the counter-example",
+        "evidence": "Plaid is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a generated build model rather than hand-writing all five libraries",
+        "evidence": "'generate the transport and model layer from a repaired OpenAPI spec using self-hosted tools. Hand-write the public surface.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the air-gapped/no-external-SaaS requirement as deleting the hosted commercial generator option outright rather than demoting it in a ranking",
+        "evidence": "'Several commercial SDK generators run their generation in the vendor's cloud. Treat those as excluded unless the vendor offers a verified fully offline mode.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names OpenAPI Generator and/or Speakeasy as options compatible with fully self-hosted, air-gapped generation",
+        "evidence": "'OpenAPI Generator. It supports all five languages with customizable templates.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that free OpenAPI Generator output is technically correct but non-idiomatic, and budgets standing curation effort for it",
+        "evidence": "It mentions unidiomatic output and template work, but gives no warning specific to OpenAPI Generator and no standing curation budget.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies one build model portfolio-wide, permitting at most one handwritten flagship exception",
+        "evidence": "One hybrid model for all five languages; the pilot language is only a sequencing step, not a different model.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the OpenAPI spec, not a vendor configuration DSL, to remain the single source of truth",
+        "evidence": "'Pick a source of truth. Preferably generate the spec from the API code... enforced by a CI contract test.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a written exit plan naming who regenerates the SDKs if a generator vendor disappears, recorded before any commitment",
+        "evidence": "No exit plan is mentioned. It pins the generator in an internal registry, which is not an exit plan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the team to fix the six months of spec drift before generating anything from it",
+        "evidence": "'Fix the spec first (blocking)... Don't start on SDKs until the contract tests pass.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Expresses the cost of hand-maintaining many languages as an order of magnitude (engineer-years of standing effort) rather than a currency budget",
+        "evidence": "Only qualitative: 'every API change lands five times'. There is no engineer-year estimate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not claim that generated SDKs cannot be official or cannot carry a support commitment",
+        "evidence": "It argues customers accept generated code when the facade is idiomatic, and never says generated SDKs cannot be official.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the build-model options on effort, value and efficiency instead of presenting them as interchangeable",
+        "evidence": "Presents a hybrid and a fallback ('When hand-writing is still right'), but no ranking of options.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

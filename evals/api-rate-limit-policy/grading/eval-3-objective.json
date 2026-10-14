@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects cutting every tenant's cap to 4,000 req/min as the fix",
+        "evidence": "'Recommendation: don't cut everyone to 4,000 req/min.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the incident as the canonical noisy-neighbor case where the caller stays under its own cap, so tighter per-tenant request caps alone cannot fix it",
+        "evidence": "'The 2am pain is shared-resource contention... 4,000 heavy requests a minute can still saturate the backend.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies a tenant-level ceiling as the first fairness layer, where the tier table applies",
+        "evidence": "'1. Tenant ceiling. The 10,000/min cap stays.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies per-user limits inside the tenant's allocation as the second layer, addressing the 40-seat shared org key so one seat cannot spend the whole tenant budget",
+        "evidence": "'Per-identity limit. This fixes the 40-seat problem.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies a per-endpoint-class carve-out as the third layer, isolating the expensive export operations from the general budget",
+        "evidence": "'Bulk class carve-out with concurrency cap.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes weighted sharing (per-tenant weights with capacity divided proportionally) instead of a hard per-tenant cliff, so a small tenant is never starved to zero",
+        "evidence": "'Divide it by tier weight, with Deficit Round Robin... so a small tenant is never starved to zero.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the weighted-sharing trade: a deterministic guaranteed rate is given up to eliminate the fully-blocked-small-tenant cliff",
+        "evidence": "The trade-off is never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a concurrency limiter for the expensive endpoints, not only a requests-per-window number",
+        "evidence": "'Bulk concurrency 8 in-flight'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents defense-in-depth with multiple simultaneous limiter types as the mature end state rather than picking one mechanism",
+        "evidence": "Org ceiling, per-identity, bulk class, concurrency, weighted sharing and load shedding are layered.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes load shedding from rate limiting (it keys off overall system state, so a well-behaved tenant can still be shed) and requires the published policy to disclose this rather than overclaim fairness",
+        "evidence": "'even a tenant within its quota can see a 429... A fairness promise that omits it overclaims.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps internal fairness machinery (weights, deficit round robin, shedders) out of the published policy, documenting only externally observable effects",
+        "evidence": "'This is internal architecture. Publish only what callers can observe.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Acknowledges the quota paradox knowingly: throttling reduces the throttled tenant's own availability even when spare capacity existed, and this is an accepted trade, not a hidden one",
+        "evidence": "Work-conserving elasticity 'avoids the paradox'. It is treated as something to avoid, not an acknowledged trade that is accepted.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects cutting every tenant's cap to 4,000 req/min as the fix",
+        "evidence": "'Don't cut everyone to 4,000 req/min.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the incident as the canonical noisy-neighbor case where the caller stays under its own cap, so tighter per-tenant request caps alone cannot fix it",
+        "evidence": "'The big tenant is within their stated limit' and 'The cap measures the wrong thing'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies a tenant-level ceiling as the first fairness layer, where the tier table applies",
+        "evidence": "'Keep the 10,000 cap as the contractual ceiling'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies per-user limits inside the tenant's allocation as the second layer, addressing the 40-seat shared org key so one seat cannot spend the whole tenant budget",
+        "evidence": "Section 7 sets the hierarchy 'org cap, then per-credential share, then workload class'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies a per-endpoint-class carve-out as the third layer, isolating the expensive export operations from the general budget",
+        "evidence": "Workload classes: the 2am export lands in bulk and interactive stays separate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes weighted sharing (per-tenant weights with capacity divided proportionally) instead of a hard per-tenant cliff, so a small tenant is never starved to zero",
+        "evidence": "Weighted fair queuing / DRR with weights from plan tier.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the weighted-sharing trade: a deterministic guaranteed rate is given up to eliminate the fully-blocked-small-tenant cliff",
+        "evidence": "The trade is not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a concurrency limiter for the expensive endpoints, not only a requests-per-window number",
+        "evidence": "Section 2, per-tenant concurrency caps.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents defense-in-depth with multiple simultaneous limiter types as the mature end state rather than picking one mechanism",
+        "evidence": "It layers cost budgets, concurrency, classes, WFQ, AIMD and a token bucket.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes load shedding from rate limiting (it keys off overall system state, so a well-behaved tenant can still be shed) and requires the published policy to disclose this rather than overclaim fairness",
+        "evidence": "There is no discussion of shedding or disclosure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps internal fairness machinery (weights, deficit round robin, shedders) out of the published policy, documenting only externally observable effects",
+        "evidence": "It does not address what is published versus internal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Acknowledges the quota paradox knowingly: throttling reduces the throttled tenant's own availability even when spare capacity existed, and this is an accepted trade, not a hidden one",
+        "evidence": "The success criterion 'Zero tenants throttled while the system has idle capacity' ignores the paradox.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

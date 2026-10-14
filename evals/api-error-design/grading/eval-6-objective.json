@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Enumerates each status an endpoint can return in its OpenAPI responses block",
+        "evidence": "\"list every status the endpoint can return in its OpenAPI responses block\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named example per distinct error code under each status, rejecting the single generic 'Error object' schema reference",
+        "evidence": "\"Give each distinct error code its own named example... Don't use one $ref to a generic schema.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes the error catalog as a single public page with a stable anchor per code",
+        "evidence": "\"publish one public page with a stable anchor per code\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points documentation_url in error responses at those per-code anchors",
+        "evidence": "\"so documentation_url always has a target\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies per-code catalog content covering the HTTP status it rides on, what causes it, whether it is retryable, whether its message is safe to show end users, and the fix path",
+        "evidence": "Status, causes, retryable, safe for end users, fix path",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a code to be documented before it ships, never after a support ticket forces it",
+        "evidence": "\"No code ships without a catalog entry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Returns a request-ID header (such as X-Request-ID) on every response",
+        "evidence": "\"Also send an X-Request-ID header.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Echoes the same ID in the error body's request_id field so it survives being copy-pasted into a ticket without the header",
+        "evidence": "\"add request_id to the error body (not only the header)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the request-ID echo as the highest-leverage change for converting vague error tickets into traceable ones",
+        "evidence": "\"Do this first... addresses 'we can almost never trace the original request.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends regenerating the published catalog and per-endpoint examples from the spec so documentation and responses cannot drift apart",
+        "evidence": "\"generate the catalog and the examples from the OpenAPI spec so they can't drift\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects committing to the proposed 10%-within-a-quarter target because no industry threshold exists, setting the baseline from the platform's own first month instead",
+        "evidence": "\"No evidence supports 10%. The skill is explicit that no industry threshold exists.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the support-ticket signal as a trend to watch, never as a pass/fail gate",
+        "evidence": "\"Trend metrics: watch these, don't gate on them\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the two actual gates: envelope consistency at 100% of endpoints and statuses (binary), and catalog coverage with zero observable codes missing from the catalog or endpoint examples",
+        "evidence": "Envelope consistency 100%; catalog coverage zero missing",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tracks the share of error-related tickets that arrive carrying a request ID as a metric",
+        "evidence": "\"Share of error-related tickets that arrive with a request_id.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Enumerates each status an endpoint can return in its OpenAPI responses block",
+        "evidence": "OpenAPI responses are not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a named example per distinct error code under each status, rejecting the single generic 'Error object' schema reference",
+        "evidence": "It proposes one page per code but no OpenAPI named examples. Replacing the generic Error object schema is about docs pages only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes the error catalog as a single public page with a stable anchor per code",
+        "evidence": "It proposes 'one addressable page per code', not a single catalog page with anchors.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points documentation_url in error responses at those per-code anchors",
+        "evidence": "'Add a `doc_url` field to the error body, pointing at that code's own page'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies per-code catalog content covering the HTTP status it rides on, what causes it, whether it is retryable, whether its message is safe to show end users, and the fix path",
+        "evidence": "Its six parts are message, applies to, cause, fix, confirm and still stuck. There is no retryable or end-user-safe field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a code to be documented before it ships, never after a support ticket forces it",
+        "evidence": "The plan is ticket-driven and ranked by tickets, so docs follow tickets.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Returns a request-ID header (such as X-Request-ID) on every response",
+        "evidence": "'Put a `request_id` in every error body and in a response header (for example `X-Request-Id`)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Echoes the same ID in the error body's request_id field so it survives being copy-pasted into a ticket without the header",
+        "evidence": "The same step puts `request_id` in the error body.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the request-ID echo as the highest-leverage change for converting vague error tickets into traceable ones",
+        "evidence": "'Step 0... This is the highest-leverage change.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends regenerating the published catalog and per-endpoint examples from the spec so documentation and responses cannot drift apart",
+        "evidence": "'Declare the codes in one machine-readable file... that both the API and the docs build read.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects committing to the proposed 10%-within-a-quarter target because no industry threshold exists, setting the baseline from the platform's own first month instead",
+        "evidence": "'6x is not supported by evidence'; 'set the numeric outcome target after four weeks of tagged data'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the support-ticket signal as a trend to watch, never as a pass/fail gate",
+        "evidence": "It plans to set a numeric ticket-share target later and uses ticket counts as outcome targets.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the two actual gates: envelope consistency at 100% of endpoints and statuses (binary), and catalog coverage with zero observable codes missing from the catalog or endpoint examples",
+        "evidence": "No gate for envelope consistency at 100%, and no zero-missing-codes gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tracks the share of error-related tickets that arrive carrying a request ID as a metric",
+        "evidence": "'Traceable-ticket share... Share of new tickets that include a `request_id`'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

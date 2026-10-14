@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "The business case contains no projected revenue-share, commission, or catalog-placement income line from the ETL/ELT platform.",
+        "evidence": "\"Putting an income line in this case would fail at finance review, so I left it out.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that no ETL/ELT platform pays a source vendor for its connector.",
+        "evidence": "\"No ELT platform pays a source vendor for a connector.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Any revenue-share program mentioned is described as announced but never delivered as described, not as an existing precedent to plan around.",
+        "evidence": "\"The one platform that floated revenue share shipped flat one-time bounties of $10\u2013150 per task instead.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the program that actually shipped as flat one-time per-task bounties rather than a revenue share, citing at least one amount in the $10-$150 range (for example $150 for a new sync mode or $50 for a minor bug).",
+        "evidence": "\"flat one-time bounties of $10\u2013150 per task\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the payoff sources with support-ticket deflection and customer retention first and revenue share last.",
+        "evidence": "Only two payoff sources listed (retention, support deflection); no ranking that includes revenue share or other sources.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places competitive-parity distribution above co-marketing or partner-tier demand-gen in that same ranking.",
+        "evidence": "Parity is mentioned as hard to attribute, but co-marketing is never discussed or compared.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that co-marketing and partner-tier benefits require an active partnership relationship, not merely a listed connector.",
+        "evidence": "No mention of co-marketing or partner-tier benefits.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Budgets recurring annual maintenance at 15-30% of the original build cost, and notes it can reach roughly 50% in mature, high-change phases.",
+        "evidence": "\"15\u201330% of C per year, up to 50% in high-change phases\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that each additional connector is an independent recurring obligation and that nothing amortizes across connectors.",
+        "evidence": "Not stated anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames the connector as a cost center bought for distribution, retention, and support-cost deflection rather than as a revenue source.",
+        "evidence": "\"A connector is a cost center bought for support deflection, retention and competitive parity.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats any build-cost benchmark figures as order-of-magnitude ranges rather than as quotes.",
+        "evidence": "\"Vendor-published figures, so an order of magnitude\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Answers the payback request without inventing an ROI figure or a modeled revenue number.",
+        "evidence": "Gives a formula and flags numbers as \"Illustrative only, with the inputs being my assumptions\"; says \"I can't write the revenue line or a payback date\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "The business case contains no projected revenue-share, commission, or catalog-placement income line from the ETL/ELT platform.",
+        "evidence": "Revenue comes from churn avoided and new logos. There is no platform payout line.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that no ETL/ELT platform pays a source vendor for its connector.",
+        "evidence": "Never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Any revenue-share program mentioned is described as announced but never delivered as described, not as an existing precedent to plan around.",
+        "evidence": "No revenue-share program is discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the program that actually shipped as flat one-time per-task bounties rather than a revenue share, citing at least one amount in the $10-$150 range (for example $150 for a new sync mode or $50 for a minor bug).",
+        "evidence": "No bounties mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the payoff sources with support-ticket deflection and customer retention first and revenue share last.",
+        "evidence": "Lists retention, new logos, expansion. There is no ticket deflection and no ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places competitive-parity distribution above co-marketing or partner-tier demand-gen in that same ranking.",
+        "evidence": "No such ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that co-marketing and partner-tier benefits require an active partnership relationship, not merely a listed connector.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Budgets recurring annual maintenance at 15-30% of the original build cost, and notes it can reach roughly 50% in mature, high-change phases.",
+        "evidence": "Uses $60K/yr on a $135K build, about 44%, with no 15-30% range and no 50% note.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that each additional connector is an independent recurring obligation and that nothing amortizes across connectors.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames the connector as a cost center bought for distribution, retention, and support-cost deflection rather than as a revenue source.",
+        "evidence": "Says 'not a revenue bet' but builds a revenue model. Support-cost deflection is absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats any build-cost benchmark figures as order-of-magnitude ranges rather than as quotes.",
+        "evidence": "Gives point estimates ($135K, $4K/week) and no benchmarks.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Answers the payback request without inventing an ROI figure or a modeled revenue number.",
+        "evidence": "Provides a payback table with 'about $170K' incremental ARR and 'About 32 months'.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

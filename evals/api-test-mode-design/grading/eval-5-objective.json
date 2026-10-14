@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Separates the two abuse classes explicitly and assigns each its own mitigations instead of one blanket sandbox lockdown.",
+        "evidence": "\"Problem 1: card testing\" and \"Problem 2: competitor scraping\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that card testing targets live checkout endpoints and the sandbox is generally useless for carding because test transactions never touch real card networks.",
+        "evidence": "\"The sandbox is useless for carding. Test transactions never reach real card networks\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Redirects card-testing mitigations to live mode: edge bot challenges/CAPTCHA on live checkout and endpoint-scoped rate limits.",
+        "evidence": "\"Add an edge bot challenge... endpoint-scoped rate limits\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes live-mode rules capping instruments per customer and consecutive declines per IP as carding controls.",
+        "evidence": "\"cap distinct instruments per customer; cap consecutive declines per IP\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the quantified precedent that managed CAPTCHA on checkout cut card testing by about 80% with under 0.02% impact on authorization rates.",
+        "evidence": "\"Stripe reports managed CAPTCHA cut card testing 80% with under 0.02% impact\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 10 requests/minute sandbox limiter as the default and recommends reusing production rate limits unchanged in the sandbox as the default posture.",
+        "evidence": "\"Keep the per-second rate at live parity: 100/s\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason for limit parity: identical limits keep integrators' throttling and backoff code honest before they hit production.",
+        "evidence": "\"That keeps integrators' throttling code honest.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats 'every vendor publishes a distinct sandbox throttle' as false, noting sandbox-specific numeric limits are sparsely documented across vendors and several reuse production limits.",
+        "evidence": "Mentions only \"Plaid's pattern\" and \"No cross-industry threshold exists\"; does not address the claim that every vendor publishes a distinct sandbox throttle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the competitor scraping as the evaluation-volume abuse case that genuinely justifies a dedicated sandbox control.",
+        "evidence": "\"This is evaluation-volume abuse. It is the one case where a dedicated sandbox quota is justified.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Models that control as an aggregate volume-and-scope cap on the pre-production tier, explicitly not as a faster per-minute limiter.",
+        "evidence": "\"aggregate volume-and-scope cap... not a slower per-minute limiter\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps leaked-key mitigations distinct: server-side-only secrets, scoped/restricted keys, and secret-scanning enrollment.",
+        "evidence": "No discussion of server-side-only secrets, scoped keys, or secret-scanning enrollment.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes test keys are not risk-free - on a toggle model they still read and write real account configuration - so they deserve real secret hygiene.",
+        "evidence": "Not mentioned anywhere in the response.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not endorse sandbox-side CAPTCHA or a sandbox lockdown as a fix for the card-testing problem.",
+        "evidence": "CAPTCHA on signup \"targets mass account creation, not carding\"; carding controls are live-mode.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Separates the two abuse classes explicitly and assigns each its own mitigations instead of one blanket sandbox lockdown.",
+        "evidence": "\"Treat the two problems separately.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that card testing targets live checkout endpoints and the sandbox is generally useless for carding because test transactions never touch real card networks.",
+        "evidence": "\"the real card testing is happening in production\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Redirects card-testing mitigations to live mode: edge bot challenges/CAPTCHA on live checkout and endpoint-scoped rate limits.",
+        "evidence": "\"CAPTCHA or 3DS on the merchant's checkout\"; velocity limits.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes live-mode rules capping instruments per customer and consecutive declines per IP as carding controls.",
+        "evidence": "\"Velocity limits per card, BIN, IP/ASN\"; decline-ratio auto-pause.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the quantified precedent that managed CAPTCHA on checkout cut card testing by about 80% with under 0.02% impact on authorization rates.",
+        "evidence": "No such figure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 10 requests/minute sandbox limiter as the default and recommends reusing production rate limits unchanged in the sandbox as the default posture.",
+        "evidence": "Rejects 10/min but proposes tiered sandbox limits, not production parity default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason for limit parity: identical limits keep integrators' throttling and backoff code honest before they hit production.",
+        "evidence": "Not given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats 'every vendor publishes a distinct sandbox throttle' as false, noting sandbox-specific numeric limits are sparsely documented across vendors and several reuse production limits.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the competitor scraping as the evaluation-volume abuse case that genuinely justifies a dedicated sandbox control.",
+        "evidence": "Section 2 on competitors mass-creating accounts.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Models that control as an aggregate volume-and-scope cap on the pre-production tier, explicitly not as a faster per-minute limiter.",
+        "evidence": "Org-level caps, daily caps, per-ASN account caps.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps leaked-key mitigations distinct: server-side-only secrets, scoped/restricted keys, and secret-scanning enrollment.",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes test keys are not risk-free - on a toggle model they still read and write real account configuration - so they deserve real secret hygiene.",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not endorse sandbox-side CAPTCHA or a sandbox lockdown as a fix for the card-testing problem.",
+        "evidence": "\"CAPTCHA... goes on checkout, not on developer signup.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

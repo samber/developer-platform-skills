@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Declines to embed the backoff algorithm (multiplier, jitter formula) in the error body spec, scoping this design to signal fields rather than client retry mechanics",
+        "evidence": "\"I did not put the multiplier and jitter formula in the error body spec.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the retryable baseline by status: 429 and 503 retryable (with 408, 502, 504 in the same class), and 500 only sometimes",
+        "evidence": "\"The skill also lists 408, 502 and 504 as retryable\"; 500 bounded retries \"because a real bug fails every time\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks 400, 401, and 404 as non-retryable",
+        "evidence": "Matrix rows with retryable false",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks 409 as non-retryable, on the reasoning that repeating the unchanged request fails identically",
+        "evidence": "\"Re-read the resource, then send a new request. Not an unchanged retry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the Retry-After header on both 429 and 503 as the minimum signal",
+        "evidence": "Matrix: \"always\" on 429, 503",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies Retry-After as a real HTTP header that generic clients and proxies parse without understanding the body format",
+        "evidence": "Only says use seconds so every client parses it; no generic client/proxy justification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a retryable true/false boolean in the response body even when the Retry-After header is present",
+        "evidence": "\"retryable: boolean, present on every error\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the body-level boolean: it is the one field a generic error handler branches on without a status-code lookup table, and not every client library surfaces headers as easily as the parsed body",
+        "evidence": "\"Generic handlers branch on it without a status table.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats 500 as genuinely ambiguous (transient blip vs real bug) and emits an explicit retry object on 500 rather than letting the caller guess",
+        "evidence": "500 gets retry object with max_retries 2 and \"a real bug fails every time\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a bare 500 with no retry signal as the design gap to close",
+        "evidence": "Never names a bare 500 as a design gap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers a richer body retry object (retryable, retry_after, optional guidance fields) for cases where the header under-specifies the caller's options",
+        "evidence": "\"retry: an object... retry_after... max_retries\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits severity by who acts: 4xx means the caller should stop and change the request, 5xx means retry later or the provider must fix a bug",
+        "evidence": "No 4xx-caller vs 5xx-provider framing.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Declines to embed the backoff algorithm (multiplier, jitter formula) in the error body spec, scoping this design to signal fields rather than client retry mechanics",
+        "evidence": "It embeds a normative backoff algorithm and a `backoff` object with multiplier, cap and jitter in the body.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the retryable baseline by status: 429 and 503 retryable (with 408, 502, 504 in the same class), and 500 only sometimes",
+        "evidence": "Per-status table: 429 and 503 true, 500 'true only if safe'; 502 and 504 are treated as 503.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks 400, 401, and 404 as non-retryable",
+        "evidence": "The table shows `retryable` false for all three.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks 409 as non-retryable, on the reasoning that repeating the unchanged request fails identically",
+        "evidence": "'409 | depends on `code`', with `idempotency_key_in_progress`: `retryable: true`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the Retry-After header on both 429 and 503 as the minimum signal",
+        "evidence": "'`Retry-After`... on every 429 and 503'; the table says 'Retry-After required'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies Retry-After as a real HTTP header that generic clients and proxies parse without understanding the body format",
+        "evidence": "No such justification is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a retryable true/false boolean in the response body even when the Retry-After header is present",
+        "evidence": "`retry.retryable` is a bool in the body.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the body-level boolean: it is the one field a generic error handler branches on without a status-code lookup table, and not every client library surfaces headers as easily as the parsed body",
+        "evidence": "No justification given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats 500 as genuinely ambiguous (transient blip vs real bug) and emits an explicit retry object on 500 rather than letting the caller guess",
+        "evidence": "'500 | true only if safe... max_attempts: 2, because many 500s are deterministic bugs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a bare 500 with no retry signal as the design gap to close",
+        "evidence": "Not stated as a gap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers a richer body retry object (retryable, retry_after, optional guidance fields) for cases where the header under-specifies the caller's options",
+        "evidence": "The `retry` object has `retryable`, `action`, `after_ms`, `max_attempts` and `requires_idempotency_key`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits severity by who acts: 4xx means the caller should stop and change the request, 5xx means retry later or the provider must fix a bug",
+        "evidence": "No explicit 4xx caller-stop versus 5xx provider/retry framing.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Splits the single release into a staged rollout instead of shipping read tools, write tools, and interactive UI together.",
+        "evidence": "\"Don't ship this as one mid-November release... What I'd ship instead\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes stage one a read-only launch with the curated tool set, OAuth 2.1 from day one, OpenTelemetry from the first call, and registry publication.",
+        "evidence": "\"OAuth 2.1, OpenTelemetry and registry publication from day one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the gate from read-only to writes as sustained tool-call volume from real agent clients - explicitly excluding demo or hackathon spikes - plus a tool-error rate under 2%.",
+        "evidence": "\"gated on sustained real-client volume and under 2% error\" with no exclusion of demo or hackathon spikes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the gate for expanding write scope as a clean audit trail, zero unattributed writes, and demonstrated approval-flow reliability in production.",
+        "evidence": "Only mentions \"no audit-trail history\" as a gap; no explicit expansion gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places the interactive in-assistant UI at the differentiation stage, after writes are proven, rather than in the launch release.",
+        "evidence": "\"After design-partner validation (Stage 3): The triage dashboard\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires validating that target customers' security teams will permit iframe-rendered third-party UI inside their AI assistant, and names this an open ecosystem question rather than a settled yes.",
+        "evidence": "\"The skill calls this an open question, not a settled yes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends asking two or three design partners about that acceptance before building the UI.",
+        "evidence": "\"ask two or three design partners whether their security teams will allow iframe-rendered third-party UI\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies delete_project as Critical tier and disables it by default rather than shipping it enabled.",
+        "evidence": "\"Disabled by default, per the Critical tier.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the stage-gate numbers as calibration defaults drawn from one vendor's practice, to be re-baselined against Bramwell's own first month, not an industry standard.",
+        "evidence": "\"defaults to calibrate against your own first month\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a hard MCP requirement in buyer RFPs would be the one reason to accelerate past stages, and that no such evidence has been presented here.",
+        "evidence": "\"If MCP appears as a hard requirement in actual buyer RFPs, accelerate. If it doesn't, you can't justify skipping stages.\"; \"Assumes no hard RFP deadline.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Splits the single release into a staged rollout instead of shipping read tools, write tools, and interactive UI together.",
+        "evidence": "\"Run internal dogfooding, then 20\u201350 design-partner customers behind a flag, then GA.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes stage one a read-only launch with the curated tool set, OAuth 2.1 from day one, OpenTelemetry from the first call, and registry publication.",
+        "evidence": "The stages are by audience and not by read-only first; OTel and registry publication are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the gate from read-only to writes as sustained tool-call volume from real agent clients - explicitly excluding demo or hackathon spikes - plus a tool-error rate under 2%.",
+        "evidence": "No such gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the gate for expanding write scope as a clean audit trail, zero unattributed writes, and demonstrated approval-flow reliability in production.",
+        "evidence": "No such gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places the interactive in-assistant UI at the differentiation stage, after writes are proven, rather than in the launch release.",
+        "evidence": "The dashboard stays in the launch, only with a text fallback and tested clients.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires validating that target customers' security teams will permit iframe-rendered third-party UI inside their AI assistant, and names this an open ecosystem question rather than a settled yes.",
+        "evidence": "It covers iframe sandbox and XSS, and testing client support, not whether customers' security teams will allow third-party iframe UI.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends asking two or three design partners about that acceptance before building the UI.",
+        "evidence": "It suggests design partners for the beta, not asking about UI acceptance.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies delete_project as Critical tier and disables it by default rather than shipping it enabled.",
+        "evidence": "It says \"Cut it from v1\", with no tier classification or default-disabled framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the stage-gate numbers as calibration defaults drawn from one vendor's practice, to be re-baselined against Bramwell's own first month, not an industry standard.",
+        "evidence": "No gate numbers are given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a hard MCP requirement in buyer RFPs would be the one reason to accelerate past stages, and that no such evidence has been presented here.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

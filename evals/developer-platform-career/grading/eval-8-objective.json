@@ -1,0 +1,70 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the request as employer-side hiring rather than candidate-side career planning",
+        "evidence": "'The career skill is candidate-side, so I used its mirror, `developer-platform-hiring`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names samber/developer-platform-skills@developer-platform-hiring as the skill to use instead",
+        "evidence": "'`developer-platform-hiring`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the redirect to roughly one line rather than delivering a full plan",
+        "evidence": "Delivered a full JD, must-haves and a six-stage loop.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not produce a finished job description",
+        "evidence": "'## 1. Job description' with full content.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not produce a finished interview loop or scorecard",
+        "evidence": "'## 3. Interview loop' table with six stages and scorecard rules.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the request as employer-side hiring rather than candidate-side career planning",
+        "evidence": "The package opens 'hiring package for Kestrel Compliance'; the JD says 'Kestrel Compliance... We are 40 people'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names samber/developer-platform-skills@developer-platform-hiring as the skill to use instead",
+        "evidence": "No skill is named; it produces the full package itself.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the redirect to roughly one line rather than delivering a full plan",
+        "evidence": "No redirect. It delivers a long full plan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not produce a finished job description",
+        "evidence": "It includes a full '1. Job description' section.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not produce a finished interview loop or scorecard",
+        "evidence": "It includes '3. Interview loop' and '4. Scorecard and decision process'.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

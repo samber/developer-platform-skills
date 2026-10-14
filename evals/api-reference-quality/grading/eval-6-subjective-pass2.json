@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Grades the page row by row against a per-endpoint rubric rather than giving impressionistic feedback",
+        "evidence": "The transcript includes a numbered 15-row table (Description, Parameters presence/depth, Request/Response examples, Response codes, Error codes, Snippets, Try-it, Version, Idempotency, Ordering, Auth, Quadrant shape, Currency). Each row gets an explicit Pass/Fail/Conditional/Not assessable result, a severity, and a concrete finding. The verdict tallies them (3 passes, 9 fails, 1 conditional, 2 not assessable), and a coverage table with gates follows.",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Grades the page row by row against a per-endpoint rubric rather than giving impressionistic feedback",
+        "evidence": "The response has a 12-row rubric table. Each row names a criterion (endpoint/method, parameters, edge cases, auth, Idempotency-Key, success response, errors, prerequisites, troubleshooting, example, scope, side effects) and gives it an explicit status (Pass/Partial/Missing/Unverified) with specific notes. Rows the grader could not check are marked unverified rather than guessed. The verdict is also tied to the rubric ('Quality of prose isn't the measure').",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,242 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "developer-platform-hiring",
+  "scenarios": 7,
+  "expectations_total": 65,
+  "expectations_subjective": 3,
+  "expectations_objective": 62,
+  "pass_rate_with_skill_pct": 84.6,
+  "pass_rate_without_skill_pct": 40.0,
+  "delta_pp": 44.6,
+  "uplift_multiplier": 2.11,
+  "trigger_accuracy_pct": 70.7,
+  "trigger_queries": 58,
+  "trigger_positive_fire_rate": 0.759,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Pushes back on hiring three specialized roles at once and recommends sizing the hire to the current two-person API surface"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that at a bolt-on company API design is typically one line item inside a general backend-engineering role rather than a dedicated platform team's sole mandate"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Frames a first dedicated platform hire at this company as a real resourcing shift rather than a routine backfill"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags the missing reporting line and the absent budget for growing the function past one person"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Distinguishes this pattern from DevRel's gatekeeper/pit-trap taxonomy rather than relabeling that taxonomy"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the mismatch between the IC-engineering seniority the title implies and responsibilities that read as a product manager's job plus a DevRel job layered on top"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Presents that company example as one sourced data point rather than a universal industry standard"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends searching crowdsourced leveling data by the general engineering title plus team name rather than by the bespoke platform title"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that DevRel roles are screened primarily on communication and community craft while developer-platform roles are screened on API and system design judgment"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Does not produce an API-design interview round for this role"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that apidays names API platform engineers and API product managers among its stated audience"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names open-source contribution history as a screening signal reviewable as existing evidence rather than tested live"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Classifies Calder Analytics as the bolt-on public API archetype rather than infra/API-first or enterprise partner ecosystem"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites Postman's finding that 84% of API teams operate in groups of 1-9 people"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Pushes back on hiring three specialized roles at once and recommends sizing the hire to the current two-person API surface"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that at a bolt-on company API design is typically one line item inside a general backend-engineering role rather than a dedicated platform team's sole mandate"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that splitting API PM, platform architect and partner engineer into three separate people is the exception rather than the norm"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks or establishes how many people currently own the API surface end to end before producing any scorecard"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Frames a first dedicated platform hire at this company as a real resourcing shift rather than a routine backfill"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Does not apply the infra/API-first bar (staff level, 12+ years, prior leadership of API-design teams) as the bar for this company"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Any scorecard produced names the company archetype and the specific metric the role is measured on"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags the absence of any stated headcount plan for eventually splitting the scope"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags the missing reporting line and the absent budget for growing the function past one person"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the failure here is execution volume across multiple full-time jobs rather than an impossible-skills list"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Distinguishes this pattern from DevRel's gatekeeper/pit-trap taxonomy rather than relabeling that taxonomy"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States plainly that no named, sourced hiring-red-flag taxonomy exists for developer-platform roles and presents this diagnosis as a structural inference rather than a quoted industry framework"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the mismatch between the IC-engineering seniority the title implies and responsibilities that read as a product manager's job plus a DevRel job layered on top"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends the posting state explicitly that this is external-API platform engineering rather than internal developer platform work"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that API design and system design are two separate named interview formats used at major companies"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the API-design round is judged on developer-facing usability and resistance to misuse rather than raw scale trade-offs"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names clarity, predictability, being hard to misuse, or error messages specific enough for a developer to act on, as the bar for the API-design round"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes the API-design round's scope is deliberately smaller than full system design, with no full architecture to sketch"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Classifies Trellis Comms as the infra/API-first archetype where the API is the product and sets the highest technical-depth bar accordingly"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that no single fully documented developer-platform-specific loop is published for every track and presents the resulting loop as an assembled design"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites Google's or Uber's own PM loop practice as the precedent for that weighting"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends a written product exercise only if the company's general PM process already uses one"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Classifies Hollis Retail Systems as the enterprise partner-ecosystem archetype"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Refuses to present the $155k-$210k crowdsourced range as a verified market rate"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Anchors the offer to the company's own general software-engineering ladder at the L5-equivalent level"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that bespoke platform engineer or API product manager title searches return sparse crowdsourced data"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites Stripe's Staff Software Engineer, API Platform title as evidence that the leveling word is a general-ladder rung with the platform name as a team qualifier"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Presents that company example as one sourced data point rather than a universal industry standard"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires any figure used to carry its source, date and level, and never an undated number quoted from memory"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends searching crowdsourced leveling data by the general engineering title plus team name rather than by the bespoke platform title"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the general-ladder anchor as the actionable answer rather than hedging the compensation question away as unanswerable"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes the user to samber/developer-relations-skills@devrel-hiring"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that DevRel roles are screened primarily on communication and community craft while developer-platform roles are screened on API and system design judgment"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Does not produce an API-design interview round for this role"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Flags the mismatch between the platform engineering title and the responsibilities, and recommends retitling or splitting the role rather than hiring under the platform title as written"
+      }
+    ]
+  }
+}

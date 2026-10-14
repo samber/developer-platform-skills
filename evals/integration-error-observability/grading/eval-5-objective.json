@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to build a replay button that re-issues the failed POST /orders request on the integrator's behalf, and explains that re-issuing it creates side effects nobody authorised",
+        "evidence": "\"Do not build a server-side re-run in the log viewer... re-issuing a POST on the integrator's behalf creates side effects nobody authorised.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends instead surfacing the full request detail so the integrator's own client re-issues the call",
+        "evidence": "\"Full request detail... 'Copy as cURL'... The partner re-issues from their own client.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Approves event replay for the webhook case and ties the promotion to partners losing events during their own downtime, which is Kettleback's stated situation",
+        "evidence": "\"The skill promotes replay when integrators lose events during their own downtime, and that is exactly this request.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the replayed delivery to carry the same event ID as the original so the consumer can deduplicate",
+        "evidence": "\"Every replay carries the same event.id as the original, so the consumer can deduplicate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that without a stable event ID replay converts a missed event into a duplicated side effect, a worse failure than the one it fixed",
+        "evidence": "\"Replay without a stable event ID, which turns missed events into duplicates.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires manual replay to run independently of Kettleback's automatic six-attempt retry schedule, without cancelling or resetting it",
+        "evidence": "\"A replay never cancels, resets or shifts the 6-attempt schedule.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a manual resend issued while automatic retries are still scheduled can produce a duplicate delivery, and addresses that specific overlap",
+        "evidence": "\"Checkout.com documents that manual resend can duplicate a pending automatic retry\"; the still-retrying events are unchecked by default.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines a bounded window measured from event creation beyond which replay is not offered, and requires publishing it",
+        "evidence": "\"Window: 30 days from event creation. Publish the number.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires rate control on the 90,000-event bulk replay, and states that an unthrottled bulk replay turns the partner's recovery into Kettleback's next incident",
+        "evidence": "\"Without it, a partner recovering from an outage becomes your next incident, and your recipient's.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Decides the replay scope explicitly among per-event, per-endpoint, and per-time-range rather than leaving it implicit",
+        "evidence": "\"Scope: three levels\" (single event, selection, bulk job by endpoint + time range + status), with endpoint-bound delivery.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies replay as the highest-effort item on the visibility menu rather than a quick win",
+        "evidence": "\"It ranks last on efficiency, so it must not ship before its prerequisite.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend having a manual resend cancel or supersede the in-flight automatic retries",
+        "evidence": "\"If included, it still does not cancel the schedule.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to build a replay button that re-issues the failed POST /orders request on the integrator's behalf, and explains that re-issuing it creates side effects nobody authorised",
+        "evidence": "Designs a guarded server-side 'Retry' button.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends instead surfacing the full request detail so the integrator's own client re-issues the call",
+        "evidence": "Only 'Copy as cURL' for non-retryable cases.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Approves event replay for the webhook case and ties the promotion to partners losing events during their own downtime, which is Kettleback's stated situation",
+        "evidence": "Replay designed for the 4-hour outage with 90,000 failed events.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the replayed delivery to carry the same event ID as the original so the consumer can deduplicate",
+        "evidence": "'It keeps the same event_id... so partners can dedupe on event_id.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that without a stable event ID replay converts a missed event into a duplicated side effect, a worse failure than the one it fixed",
+        "evidence": "Assumption 4: 'If they don't, bulk replay can double-apply events on their side.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires manual replay to run independently of Kettleback's automatic six-attempt retry schedule, without cancelling or resetting it",
+        "evidence": "'Do not change the existing 6 retries over 12 hours. Replay is the manual layer on top.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a manual resend issued while automatic retries are still scheduled can produce a duplicate delivery, and addresses that specific overlap",
+        "evidence": "'marked skipped_delivered. It is not sent again.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines a bounded window measured from event creation beyond which replay is not offered, and requires publishing it",
+        "evidence": "30-day limit set, but publishing it is not required.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires rate control on the 90,000-event bulk replay, and states that an unthrottled bulk replay turns the partner's recovery into Kettleback's next incident",
+        "evidence": "20/s default, 100/s cap, AIMD backpressure, circuit breaker.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Decides the replay scope explicitly among per-event, per-endpoint, and per-time-range rather than leaving it implicit",
+        "evidence": "One endpoint per job, time window required, single-event Resend.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies replay as the highest-effort item on the visibility menu rather than a quick win",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend having a manual resend cancel or supersede the in-flight automatic retries",
+        "evidence": "Replay does not reschedule or alter the retry schedule.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

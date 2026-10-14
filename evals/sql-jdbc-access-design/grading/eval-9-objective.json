@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects recipient-property partition filtering as an access-control mechanism, stating it is documented as a best-effort performance optimization",
+        "evidence": "\"Delta Sharing documents recipient-property partition filtering as best-effort. The skill says to treat it as a performance optimization only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires hard isolation to come from a dynamic view predicate filtered on current_recipient(), not from partition pruning",
+        "evidence": "\"Write each view's predicate on the share-aware identity, `current_recipient()`, joined to the entitlement table.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the credential preference order: short-lived token, then managed secret, then static password",
+        "evidence": "\"short-lived token > managed secret > static password\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the inline credential in the Airflow connection string as the anti-pattern that no documented path should show",
+        "evidence": "\"Inline credentials in a connection string are 'the anti-pattern no documented path should show.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the service-account password with key-pair authentication signing a short-lived JWT, so no password crosses the network",
+        "evidence": "\"Move to key-pair auth or workload identity: short-lived signed tokens, no password on the network.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires marking machine identities as service-type so the engine refuses password auth for them and the password fallback is closed",
+        "evidence": "\"Mark the identity service-type so the engine refuses password auth for it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the pasted BI-tool passwords with OAuth, using the authorization-code grant with PKCE for desktop BI tools, so the tool never stores a database password",
+        "evidence": "\"OIDC federation or OAuth, using authorization-code with PKCE for desktop tools.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the degradation path: a client that cannot hold and refresh a token falls back to key-pair or a PAT service account, never to a static password, and requires verifying each supported client's refresh capability before promising OAuth everywhere",
+        "evidence": "\"degrade to a service account with key-pair auth or a PAT... Never fall back to a static password. Check each BI client's refresh capability before promising OAuth-only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects annual rotation over email as the design and requires customer self-service issuance and revocation in the product",
+        "evidence": "\"Give customers self-service issuance and revocation.\" and table rows rejecting yearly rotation over email.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes every credential to one tenant's entitlement mapping by construction and states TLS as an explicit named requirement rather than a client-library default",
+        "evidence": "\"scoped to one tenant's entitlement\" and \"TLS is a stated, named requirement. Don't leave it to client defaults.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the industry trajectory retiring static database passwords, citing a staged deprecation that moves service users onto key-pair, OAuth, PAT, or workload identity",
+        "evidence": "Only says \"The industry is retiring these\" with no staged deprecation cited.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects recipient-property partition filtering as an access-control mechanism, stating it is documented as a best-effort performance optimization",
+        "evidence": "It calls it 'a protocol-level guarantee, not a convention. Your instinct is sound.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires hard isolation to come from a dynamic view predicate filtered on current_recipient(), not from partition pruning",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the credential preference order: short-lived token, then managed secret, then static password",
+        "evidence": "It prefers federation and then short-lived tokens, but gives no short-lived token, managed secret, static password ordering.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the inline credential in the Airflow connection string as the anti-pattern that no documented path should show",
+        "evidence": "'Inline passwords leak... Never put it in the connection string.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the service-account password with key-pair authentication signing a short-lived JWT, so no password crosses the network",
+        "evidence": "It recommends 'OAuth M2M', not key-pair JWT.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires marking machine identities as service-type so the engine refuses password auth for them and the password fallback is closed",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the pasted BI-tool passwords with OAuth, using the authorization-code grant with PKCE for desktop BI tools, so the tool never stores a database password",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the degradation path: a client that cannot hold and refresh a token falls back to key-pair or a PAT service account, never to a static password, and requires verifying each supported client's refresh capability before promising OAuth everywhere",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects annual rotation over email as the design and requires customer self-service issuance and revocation in the product",
+        "evidence": "It rejects yearly rotation by email but proposes scripted rotation by the provider, not customer self-service.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes every credential to one tenant's entitlement mapping by construction and states TLS as an explicit named requirement rather than a client-library default",
+        "evidence": "TLS is not stated as a requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the industry trajectory retiring static database passwords, citing a staged deprecation that moves service users onto key-pair, OAuth, PAT, or workload identity",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

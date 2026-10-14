@@ -1,0 +1,418 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "public-grpc-api-design",
+  "scenarios": 10,
+  "expectations_total": 119,
+  "expectations_subjective": 1,
+  "expectations_objective": 118,
+  "pass_rate_with_skill_pct": 79.8,
+  "pass_rate_without_skill_pct": 42.0,
+  "delta_pp": 37.8,
+  "uplift_multiplier": 1.9,
+  "trigger_accuracy_pct": 64.8,
+  "trigger_queries": 108,
+  "trigger_positive_fire_rate": 0.574,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that REST still carries the large majority of public APIs (roughly 83% in recent tracked counts) and that dual-stack - gRPC internally, REST or transcoded JSON externally - is the practitioner default rather than either/or"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names Protobuf's binary encoding as a concrete debuggability cost for external consumers: nothing readable in a network tab, inspection needs grpcurl-class tooling partners rarely have installed"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names that every external caller pays the protoc/stub-regeneration cost that an internal fleet amortizes"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that gRPC at the edge limits the ability to augment or remediate API behavior in proxies and API-management tooling"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Makes the audience-reach argument explicitly: limiting to gRPC-only risks missing developers not equipped or experienced enough to consume gRPC services"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the gate's verdict determines which transcoding/gateway options are even in play for the next design step"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that Protobuf's encoding guarantees wire compatibility only, not generated-client-code compatibility"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names that a rename is semantically remove-and-add and is therefore always breaking, never a safe refactor"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names that moving a field into or out of a `oneof` breaks generated Go stubs"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires cross-version testing in both directions - old client against new server and new client against old server - rather than treating schema parsing as sufficient"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Proposes a human backstop for a public surface, such as a Buf Schema Registry review queue where a breaking push is approved or rejected with a paper trail (or a proto.lock-based equivalent for teams not on buf)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends well-known types (google.protobuf.Timestamp, FieldMask, google.rpc.*) over hand-rolled equivalents"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that most gRPC implementations refuse to send credentials over an unencrypted channel at all"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies the token as `authorization: Bearer <token>` metadata validated in a server interceptor"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Presents the options as an explicit ranking rather than a flat pros-and-cons list"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the ordering on separate axes, with effort ordered raw public gRPC edge > grpc-gateway == Envoy transcoder > Connect-RPC, and value and efficiency both ordering Connect-RPC > Envoy transcoder > grpc-gateway > raw public gRPC edge"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that the ranking is a default rather than a law"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires google.api.http annotations on every RPC except bidirectional streaming as the mapping convention regardless of which rung is chosen"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Identifies grpc-gateway's default error handler as the cause: it maps the code to an HTTP status but flattens the message and drops `details` entirely"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends pairing RetryInfo with RESOURCE_EXHAUSTED so callers back off rather than hammering the same limit"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Names the two legitimate evolution strategies - channel-based (long-lived beta/stable channels updated in place) and release-based (v1beta1 to v1beta2 for an incompatible beta-only change)"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires `deprecated = true` on anything being retired, noting the option is available on messages, enums, enum values and services, not only fields"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States the channel-differentiated sunset expectations: alpha may be removed without notice, beta after a deprecation period with 180 days as the recommended floor"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Defers concrete notice windows and sunset communication to versioning-policy territory rather than inventing them here"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Runs an explicit gate on whether gRPC belongs at the public edge before designing any proto or service layout"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that REST still carries the large majority of public APIs (roughly 83% in recent tracked counts) and that dual-stack - gRPC internally, REST or transcoded JSON externally - is the practitioner default rather than either/or"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names Protobuf's binary encoding as a concrete debuggability cost for external consumers: nothing readable in a network tab, inspection needs grpcurl-class tooling partners rarely have installed"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names that every external caller pays the protoc/stub-regeneration cost that an internal fleet amortizes"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that gRPC at the edge limits the ability to augment or remediate API behavior in proxies and API-management tooling"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Checks the three genuine triggers that would justify public gRPC anyway - confirmed SDK-mediated or proto-fluent consumers, genuinely streaming-shaped workload, measured performance bottleneck consumers can absorb tooling cost for"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Concludes that 'we already run gRPC internally' and 'it's faster' are not among the qualifying triggers"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Identifies the 200 mixed-shop partner engineers as not a confirmed SDK-mediated audience, so Temporal's control-plane precedent does not transfer here"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the gate's verdict determines which transcoding/gateway options are even in play for the next design step"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the gRPC project's own documentation forbids servers from using the canonical status-mapping table to determine an HTTP status code"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the canonical mappings are neither symmetric nor 1-to-1, and that the table exists for clients or intermediaries interpreting a response that arrived without a grpc-status"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires the gateway to have its own deliberate mapping, confirmed against the transcoding implementation actually in use rather than assumed universal"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the 400 collapse point: INVALID_ARGUMENT, FAILED_PRECONDITION and OUT_OF_RANGE all land on 400"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires the partner docs to state that the HTTP status line is lossy and the structured envelope in the response body is the source of truth"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Flags the unclassified-falls-through-to-INTERNAL rule as the named anti-pattern, because aggregating every failure into one code flattens status dashboards into a single bucket"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires returning the most specific applicable code, for example OUT_OF_RANGE over FAILED_PRECONDITION when both technically apply"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that RESOURCE_EXHAUSTED at 429 should be paired with a RetryInfo detail, and that UNAVAILABLE (503) is the only code generally safe to auto-retry without extra signal"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that Protobuf's encoding guarantees wire compatibility only, not generated-client-code compatibility"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names that a rename is semantically remove-and-add and is therefore always breaking, never a safe refactor"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names that moving a field into or out of a `oneof` breaks generated Go stubs"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires cross-version testing in both directions - old client against new server and new client against old server - rather than treating schema parsing as sufficient"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Proposes a human backstop for a public surface, such as a Buf Schema Registry review queue where a breaking push is approved or rejected with a paper trail (or a proto.lock-based equivalent for teams not on buf)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the coverage gate as binary: 100% of RPCs carrying google.api.http annotations covered by a mapping diff or contract test"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends modeling the surface resource-oriented with standard List/Get/Create/Update/Delete methods, reserving the `:verb` custom-method suffix for cases no standard verb fits"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites the published guidance that replacing unary calls with bidirectional streaming for performance reasons is an advanced technique not appropriate in many situations"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names that a stream failing mid-flight after partial data forces every external consumer into restart/resume bookkeeping a unary retry never requires"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that an HTTP mapping is required for every RPC except bidirectional streaming, so every bidi method needs a documented non-streaming alternative or it is invisible on the transcoded surface"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Warns that HTTP/2 multiplexing under an L4 balancer pins all of a client's streams to one backend for the connection's lifetime"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires L7, HTTP/2-aware load balancing at the public gRPC edge"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires the client keepalive PING interval to be set below whichever load-balancer idle timeout applies on the path"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends enabling buf's UNARY_RPC lint category if the surface commits to unary-only, so a later PR cannot silently reintroduce a streaming method"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that the mesh does not disappear: mTLS resumes one hop further in, behind the public gateway"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires TLS as non-negotiable and first, because credentials travel as gRPC metadata and would otherwise be plaintext"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that most gRPC implementations refuse to send credentials over an unencrypted channel at all"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies the token as `authorization: Bearer <token>` metadata validated in a server interceptor"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies JWT as the token format, strongly signed (RS256), with expiry claims"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies token introspection against the authorization server, cached so it does not tax every call"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires scope enforcement at the method level - whether the token is scoped for this specific RPC, not merely whether the caller is authenticated"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that API keys complement rather than replace authentication: a key identifies a project or consumer for quota attribution and coarse gating, not an authenticated identity"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies the public-gateway reference architecture as TLS termination plus token validation plus per-method authorization plus rate limiting, fronting the internal mesh"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires enumerating the full method surface for admin, debug and monitoring RPCs never designed for external visibility"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the exposure audit is mandatory rather than optional for any service built internal-first"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats reflection-disabled and audit-completed as binary pass gates that must both be satisfied before launch"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Retains per-method scope enforcement for the business methods that do stay on the public surface"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Presents the options as an explicit ranking rather than a flat pros-and-cons list"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the ordering on separate axes, with effort ordered raw public gRPC edge > grpc-gateway == Envoy transcoder > Connect-RPC, and value and efficiency both ordering Connect-RPC > Envoy transcoder > grpc-gateway > raw public gRPC edge"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names Connect-RPC as the default rung for a new public surface"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Lists Connect-RPC's concrete properties: no proxy required, browsers served natively, full streaming over HTTP/2, JSON errors out of the box, wire-compatible with gRPC"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Explains the grpc-gateway == Envoy effort tie explicitly, and identifies 'you already run Envoy' as the condition that breaks it"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names grpc-gateway's default error handler as the weakest of the options, and its codegen step plus double JSON-to-protobuf parse per request as recurring costs"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Deletes raw public gRPC as the only surface outright because a browser client is confirmed, rather than demoting it to the bottom of the menu"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that the ranking is a default rather than a law"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Steers the latency-sensitive partner backends to native gRPC or Connect's binary mode, noting that no JSON-transcoding path is free"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires google.api.http annotations on every RPC except bidirectional streaming as the mapping convention regardless of which rung is chosen"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Identifies grpc-gateway's default error handler as the cause: it maps the code to an HTTP status but flattens the message and drops `details` entirely"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that a custom error handler is mandatory on grpc-gateway if structured error detail is to survive"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes that Connect-RPC serializes errors as JSON natively, so no transcoding gap exists there"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that sanitizing the `message` field alone is insufficient while `details` still carries DebugInfo, i.e. the sanitization must be structural"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends pairing RetryInfo with RESOURCE_EXHAUSTED so callers back off rather than hammering the same limit"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Describes the resulting JSON error shape with a code, a status string and a typed `details` array carrying `@type` entries, as the de facto standard envelope worth adopting"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires documenting for consumers that the structured body envelope is the source of truth and the HTTP status line is a lossy convenience"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Rejects the resource-name changes for stable resources: resource names stay identical across majors so a v2 client can address a resource a v1 client created"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States that renaming sku_code to product_code is semantically remove-and-add and is therefore a breaking change, not a clarity refactor"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Names the two legitimate evolution strategies - channel-based (long-lived beta/stable channels updated in place) and release-based (v1beta1 to v1beta2 for an incompatible beta-only change)"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires `deprecated = true` on anything being retired, noting the option is available on messages, enums, enum values and services, not only fields"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires a deprecation comment stating why the component is deprecated and what replaces it, so generated docs explain the replacement"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States the channel-differentiated sunset expectations: alpha may be removed without notice, beta after a deprecation period with 180 days as the recommended floor"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States that an in-place breaking change to a stable component is an extreme course of action reserved for security or regulatory necessity"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Defers concrete notice windows and sunset communication to versioning-policy territory rather than inventing them here"
+      }
+    ]
+  }
+}

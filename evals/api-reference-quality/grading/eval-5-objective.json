@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Reports the census coverage gate as a pass at 100 percent",
+        "evidence": "Scorecard rows show 41/41 and 100%, each with \u2705 Pass.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reports the lint gate as a pass with zero errors",
+        "evidence": "'0 errors, fail-on-warn | \u2705 Pass'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reports the contract gate as out of scope at the lint-only tier, never as a failure",
+        "evidence": "'\u26aa Out of scope at this tier'; 'Out-of-scope gates are not failures.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains why the contract gate is out of scope (no safely-callable environment) and states it returns to scope the moment one exists",
+        "evidence": "'no environment safe for generated traffic'; 'Promote the contract gate when a sandbox exists.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records the 58 percent snippet parity as a measured percentage and a finding, not a failed gate, because the team sits below the full generated-docs migration tier",
+        "evidence": "'Recorded as a major finding'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not hold the team to the 100 percent snippet-parity gate at their current tier",
+        "evidence": "'Out of scope at this tier'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats time-to-first-call as a trend to watch, never as a pass/fail gate on the scorecard",
+        "evidence": "'(trend, never gated)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If the 10-minute bound is referenced against the 14-minute median, it is labeled a practitioner-consensus target and the gap flagged as a trend concern, not a gate failure",
+        "evidence": "The 10-minute target is called 'target' and 'bound' but is never labeled practitioner consensus.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The scorecard explicitly scopes which gates apply to the remediation tier the team chose",
+        "evidence": "'Tier: lint gate only'; the Status column marks out-of-scope gates.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the missing shipped-language snippets at major severity per the rubric, not blocker and not minor",
+        "evidence": "'### Major - Snippet parity is 58%'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a standing re-audit cadence, such as quarterly review against support tickets and docs-search analytics",
+        "evidence": "'re-audit quarterly against support tickets and docs-search misses'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Reports the census coverage gate as a pass at 100 percent",
+        "evidence": "'\u2705 41 of 41 operations documented.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reports the lint gate as a pass with zero errors",
+        "evidence": "'Vacuum lint at fail-on-warn is clean.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reports the contract gate as out of scope at the lint-only tier, never as a failure",
+        "evidence": "There is no contract gate in the scorecard.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains why the contract gate is out of scope (no safely-callable environment) and states it returns to scope the moment one exists",
+        "evidence": "The no-safe-environment point is about the Run tier, not a contract gate, and no return trigger is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records the 58 percent snippet parity as a measured percentage and a finding, not a failed gate, because the team sits below the full generated-docs migration tier",
+        "evidence": "'Parity at least 90%... 58%... \u274c Fail'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not hold the team to the 100 percent snippet-parity gate at their current tier",
+        "evidence": "It holds the team to a 90% parity gate and marks it failed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats time-to-first-call as a trend to watch, never as a pass/fail gate on the scorecard",
+        "evidence": "'I give it no pass or fail. Report it as a baseline.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If the 10-minute bound is referenced against the 14-minute median, it is labeled a practitioner-consensus target and the gap flagged as a trend concern, not a gate failure",
+        "evidence": "The 10-minute bound isn't referenced.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The scorecard explicitly scopes which gates apply to the remediation tier the team chose",
+        "evidence": "All sample gates apply; there is no tier scoping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies the missing shipped-language snippets at major severity per the rubric, not blocker and not minor",
+        "evidence": "No severity classification; it uses a gate pass/fail framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a standing re-audit cadence, such as quarterly review against support tickets and docs-search analytics",
+        "evidence": "No cadence is recommended.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

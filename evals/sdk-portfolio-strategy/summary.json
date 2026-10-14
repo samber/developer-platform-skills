@@ -1,0 +1,454 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "sdk-portfolio-strategy",
+  "scenarios": 8,
+  "expectations_total": 104,
+  "expectations_subjective": 1,
+  "expectations_objective": 103,
+  "pass_rate_with_skill_pct": 77.9,
+  "pass_rate_without_skill_pct": 24.0,
+  "delta_pp": 53.9,
+  "uplift_multiplier": 3.25,
+  "trigger_accuracy_pct": 54.3,
+  "trigger_queries": 92,
+  "trigger_positive_fire_rate": 0.196,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Requires a written exit plan naming who regenerates the SDKs if a generator vendor disappears, recorded before any commitment"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Ranks the build-model options on effort, value and efficiency instead of presenting them as interchangeable"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites Stripe's stated split: SemVer for SDKs, release-date versioning for the API"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Identifies that mapping table as an artifact Stripe and/or AWS actually maintain and worth copying"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Offers a cadence choice between a fixed release train and continuous release-on-change"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Carries Azure's own warning not to publish releases just to keep to a regular cadence if a fixed train is proposed"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Frames release cadence as a predictability promise to integrators rather than a productivity metric"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gathers upstream platform health and registry download trends as supporting rather than decisive evidence"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States AWS's commitment of at least 24 months of general-availability support"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Offers Azure's floor as an alternative anchor: at least 12 months of critical fixes, or 3 years when breaking changes are involved"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Makes transfer of the canonical registry package name an explicit condition of promotion"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that MCP's tiers rank implementation completeness rather than feature ambition"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Distinguishes OpenAPI-native generators from DSL-interposing ones, naming at least one vendor on each side"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the build model as one portfolio-wide decision rather than a per-language vendor choice"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks clarifying questions before proposing any language list"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks one question per message rather than delivering the whole questionnaire in a single block"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks which developer vertical the integrators belong to"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks whether this is a one-off catch-up or a compounding portfolio policy the team will run for years"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Verifies that SDKs were actually chosen as an integration surface, and defers that decision to the separate integration-surface-strategy skill if it has not been made"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Uses the Friday deadline as an explicit re-ranking input, noting a hard deadline promotes generated coverage over handwritten SDKs"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Presents 2-3 candidate portfolio shapes with trade-offs and a recommendation instead of a single answer"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names candidate shapes such as a lean core plus self-service long tail, broad generated coverage on one pipeline, or a handwritten flagship plus generated rest"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that the strategy is complete only when all seven workflow steps end in a written, user-approved policy"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Recommends a small official core of roughly 2-5 languages rather than the nine the VP asked for"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Rejects TIOBE, the Stack Overflow developer survey, and GitHub Octoverse as decision inputs, stating that no vendor documents choosing languages from a named popularity ranking"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Cites Stripe's or Plaid's fintech SDK portfolio by naming its actual languages as the documented precedent"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Places every language outside the official core on spec-driven self-service, pointing the long tail at open-source generators driven by the published spec"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States an add-a-language threshold such as a sustained double-digit share of API traffic or repeated enterprise-deal requests naming that language"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Labels that threshold as self-set rather than a published industry standard"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends instrumenting per-language client telemetry via User-Agent or SDK headers"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the telemetry confirms the audience mapping rather than originating the language order"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names Plaid's cap of five official libraries alongside 40+ languages self-served from its spec"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Ranks the coverage rungs explicitly (official SDK vs community tier vs spec-driven self-service) instead of presenting a flat list of languages"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States explicitly that 'official' is a support commitment, not a build method"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites Plaid generating its five official SDKs with the free open-source OpenAPI Generator as the counter-example"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns that free OpenAPI Generator output is technically correct but non-idiomatic, and budgets standing curation effort for it"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires a written exit plan naming who regenerates the SDKs if a generator vendor disappears, recorded before any commitment"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Expresses the cost of hand-maintaining many languages as an order of magnitude (engineer-years of standing effort) rather than a currency budget"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Ranks the build-model options on effort, value and efficiency instead of presenting them as interchangeable"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Refuses to bump SDK majors merely because the API released a new version"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Separates the SDK package version (SemVer) from the API version as two distinct written policies"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the language-runtime support window as a third policy, separate from both of the others"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that an SDK major is warranted only when the SDK's own code surface breaks, such as a renamed method or changed constructor"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites Stripe's stated split: SemVer for SDKs, release-date versioning for the API"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Identifies that mapping table as an artifact Stripe and/or AWS actually maintain and worth copying"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Ties the runtime support window mechanically to upstream language lifecycles plus a stated grace window"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites a concrete runtime-window precedent such as Stripe's four most recent Go versions, Node LTS 18+, or AWS's latest two GA Go versions with a six-month grace"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Leaves ownership of the API-side versioning scheme to the separate API versioning policy, recording only the boundary here"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Offers a cadence choice between a fixed release train and continuous release-on-change"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Carries Azure's own warning not to publish releases just to keep to a regular cadence if a fixed train is proposed"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Frames release cadence as a predictability promise to integrators rather than a productivity metric"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires isolating the accounts that use the PHP SDK exclusively, with no other SDK of ours, as the decisive evidence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Quantifies revenue at risk from that exclusive-usage segment rather than from raw download counts"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Attributes the evidence-gated process to Sentry's published SDK deprecation playbook"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gathers upstream platform health and registry download trends as supporting rather than decisive evidence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Orders execution as final release, then announcement, then archive"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the final release must be cut before the deprecation is announced"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires a pinned deprecation issue naming the reason, the successor, and the remaining timeline"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires registry deprecation markers plus README and docs-site banners"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires notifying support and go-to-market teams as part of execution"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Schedules post-archival cleanup 6-12 months later, de-indexing the retired docs while keeping them reachable rather than returning 404, with redirects to the successor"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States an announcement-to-archive window within the observed 6-24 month range"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Flags that AWS's own published policies disagree on the maintenance-phase duration"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names 12 months from the core SDKs-and-Tools maintenance policy and 6 months from the Powertools documentation as the two conflicting figures"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Refuses to quote 'AWS's policy' as a single number without naming which document it comes from"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States AWS's commitment of at least 24 months of general-availability support"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States AWS's maintenance announcement lead time of at least 6 months before maintenance mode begins"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Describes a phased lifecycle (developer preview, GA, maintenance announcement, maintenance, end-of-support) rather than one flat support window"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that the maintenance announcement is timed with the successor major version's GA so users have a migration target from day one of the notice"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites a worked AWS timeline as evidence the default flexes, such as JavaScript v2 announced September 2024 with end-of-support September 2025, or the .NET v3 window of only about three months"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Offers Azure's floor as an alternative anchor: at least 12 months of critical fixes, or 3 years when breaking changes are involved"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites the Anthropic Ruby SDK case, where the community maintainer donated the canonical gem name, as the documented promotion precedent"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends the two-tier official-plus-community shape as the default"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Attaches an explicit non-guarantee to the community tier covering accuracy, completeness, or being kept up to date"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Routes community-SDK support requests to the community repository rather than the vendor's own ticket queue"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Encodes the quality level where users already look, in the version number and package metadata, not only on a docs page"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites a concrete metadata precedent such as Google Cloud requiring version 1.0 or higher plus the Production/Stable development-status classifier for GA"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Offers numbered tiers (MCP's Tier 1/2/3 or Azure's named tier-1 languages) as the alternative once 'official' alone stops discriminating"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that MCP's tiers rank implementation completeness rather than feature ambition"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Raises vendor acquisition and continuity risk as a first-order selection criterion, not an afterthought"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites Postman's acquisition of Fern in January 2026"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites Anthropic's acquisition of Stainless and the wind-down of its hosted SDK generator"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that Stainless customers kept their already-generated SDKs but lost the pipeline that kept those SDKs in sync with API changes"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Warns that a proprietary configuration DSL is a second artifact that must stay synchronized with the spec"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Distinguishes OpenAPI-native generators from DSL-interposing ones, naming at least one vendor on each side"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Prefers a generator that can run self-hosted"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires a written exit plan naming who regenerates the SDKs if the vendor exits, recorded in the decision record before signing"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes the vendor landscape is time-sensitive and instructs re-verifying each vendor's current status before committing"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the build model as one portfolio-wide decision rather than a per-language vendor choice"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks clarifying questions before proposing any language list"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks one question per message rather than delivering the whole questionnaire in a single block"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks which developer vertical the integrators belong to"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks whether a machine-readable OpenAPI-style spec exists and what state it is in"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks which languages the team can genuinely maintain in-house over years"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks whether procurement and security can accept a hosted commercial generator"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks whether per-language client traffic telemetry exists today"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks whether this is a one-off catch-up or a compounding portfolio policy the team will run for years"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Verifies that SDKs were actually chosen as an integration surface, and defers that decision to the separate integration-surface-strategy skill if it has not been made"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Uses the Friday deadline as an explicit re-ranking input, noting a hard deadline promotes generated coverage over handwritten SDKs"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Presents 2-3 candidate portfolio shapes with trade-offs and a recommendation instead of a single answer"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names candidate shapes such as a lean core plus self-service long tail, broad generated coverage on one pipeline, or a handwritten flagship plus generated rest"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that the strategy is complete only when all seven workflow steps end in a written, user-approved policy"
+      }
+    ]
+  }
+}

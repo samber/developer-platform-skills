@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the minimum payout threshold as the wrong lever and the hold window as the one developers actually feel",
+        "evidence": "\"developers feel the hold window and batch timing, not the payout minimum.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that marketplace payout minimums cluster in roughly the $50 to $150 range, small enough that active developers clear them every cycle, so moving $25 to $10 changes little",
+        "evidence": "\"Comparable platforms set minimums of $50\u2013$150, so active partners already clear $25 every cycle.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the real end-to-end sale-to-bank lag for a sale made early in a month runs well past 60 days once month close, the 30-day window, the mid-month batch, and wire time stack",
+        "evidence": "\"Mar 1 | 75 days | 78\u201380 days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects publishing \"most partners get paid within 30 days\" as inaccurate against the described sequence",
+        "evidence": "\"Don't ship the 'most partners get paid within 30 days' line... No sale clears 30 days.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires publishing the honest end-to-end sale-to-bank timeline in the developer docs",
+        "evidence": "\"Replace the docs line with the honest timeline.\" Draft text included.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the current design as the monthly-cycle-plus-explicit-hold-window rung and sizes the hold to actual refund and chargeback exposure, noting roughly 30 to 60 days as the platform norm",
+        "evidence": "\"Keep the 30-day hold itself. It matches your refund exposure and sits at the low end of the 30\u201360 day norm.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers rolling payouts with reserves, a percentage held on a rolling window against disputes, as the promotion when competing for supply against faster-paying alternatives",
+        "evidence": "Options are per-sale release, twice-monthly and instant payout; rolling reserves are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers instant payout for a fee only as an option layered on a slower default, never as the default, because it loses every round on operator risk and cost",
+        "evidence": "\"Instant payout for a fee, as an opt-in layer on top of the slower default... highest cost and risk to you.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises invoice-cycle consolidation only on the precondition that the platform already bills these customers on an existing settlement cycle",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that under the marketplace-billed posture the platform owns cross-border mechanics including payout currency conversion and payment-rail choice across the seven currencies, and says to budget it",
+        "evidence": "\"Under merchant-of-record billing you own currency conversion and rail choice. Publish the payout currency...\" There is no instruction to budget for it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds median sale-to-bank days measured against the published timeline as a tracked post-launch metric",
+        "evidence": "No post-launch metrics are listed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the minimum payout threshold as the wrong lever and the hold window as the one developers actually feel",
+        "evidence": "\"The minimum only affects small balances. Partners who say cash flow is painful are mostly waiting on timing, not on the threshold.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that marketplace payout minimums cluster in roughly the $50 to $150 range, small enough that active developers clear them every cycle, so moving $25 to $10 changes little",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the real end-to-end sale-to-bank lag for a sale made early in a month runs well past 60 days once month close, the 30-day window, the mid-month batch, and wire time stack",
+        "evidence": "\"Jan sales pay on Mar 15 at the earliest. That is roughly 43 to 73 days from sale, plus wire time\"; the table shows 48\u201350 days for international Jan 1 sales on the unrefund-gated batch.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects publishing \"most partners get paid within 30 days\" as inaccurate against the described sequence",
+        "evidence": "\"don't publish 'most partners get paid within 30 days.' By the timeline you gave, that claim is false.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires publishing the honest end-to-end sale-to-bank timeline in the developer docs",
+        "evidence": "Proposed doc text: \"Typical time from sale to payout is about 45\u201375 days\", with a worked example.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the current design as the monthly-cycle-plus-explicit-hold-window rung and sizes the hold to actual refund and chargeback exposure, noting roughly 30 to 60 days as the platform norm",
+        "evidence": "No rung framing, no sizing to refund and chargeback exposure, no platform norm.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers rolling payouts with reserves, a percentage held on a rolling window against disputes, as the promotion when competing for supply against faster-paying alternatives",
+        "evidence": "It offers two batches a month and per-sale release, not rolling payouts with reserves.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers instant payout for a fee only as an option layered on a slower default, never as the default, because it loses every round on operator risk and cost",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Raises invoice-cycle consolidation only on the precondition that the platform already bills these customers on an existing settlement cycle",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that under the marketplace-billed posture the platform owns cross-border mechanics including payout currency conversion and payment-rail choice across the seven currencies, and says to budget it",
+        "evidence": "It raises seven currencies and wire fees as policy questions. It says nothing about owning FX and rails or budgeting for them.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds median sale-to-bank days measured against the published timeline as a tracked post-launch metric",
+        "evidence": "Not mentioned. It only says to verify against payout data.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

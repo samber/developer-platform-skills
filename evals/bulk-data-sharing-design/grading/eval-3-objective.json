@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects customer_id and session_id as partition keys on high-cardinality grounds",
+        "evidence": "session_id is rejected as high-cardinality. customer_id is dropped only as 'probably redundant', not on cardinality grounds.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps partition depth at roughly 2-3 levels of low-cardinality keys",
+        "evidence": "Recommends one level (dt=) but states no 2-3 level cap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes Hive-style partition paths such as year=2026/month=08/day=30/",
+        "evidence": "dt=YYYY-MM-DD ... Hive-style, so Athena, Spark and DuckDB can prune partitions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States partition keys must be chosen by what the consumer filters on, not by how the internal schema is organized",
+        "evidence": "Only says 'Customers query by date, so a stable file count matters'. It never states the principle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a target file size of roughly 256-512 MB",
+        "evidence": "The target is 256\u2013512 MB files.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a target Parquet row-group size of roughly 128-512 MB",
+        "evidence": "Row groups of 128 MB or more.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends replacing JSON with Parquet, citing roughly up to 2x faster unload and up to 6x smaller output",
+        "evidence": "Only the size claim ('up to 6\u00d7 larger than Parquet'). The unload speed claim is missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a compaction job with a concrete trigger, such as compacting when a table or partition exceeds 100 files each smaller than 75% of the target file size",
+        "evidence": "Says 'Don't write small files and compact them afterwards.' No compaction trigger is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the measured small-files penalty of roughly 4x (an Athena query dropping from about 40 seconds to about 10 after compaction)",
+        "evidence": "582,000 files of 0.14 MB took 40 s ... 9.7 s.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires registering the export schema in a catalog (Glue, Hive Metastore, Iceberg REST or equivalent) rather than letting consumers infer it from files",
+        "evidence": "Register the table in Glue with partition projection",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to adopt Iceberg/Delta/Hudi unless the export needs atomic multi-file commits, time-travel, or in-place schema evolution, naming those as the graduation triggers",
+        "evidence": "graduate to a table format only for atomic multi-file commits, time-travel, or in-place schema evolution.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the layout is a written contract rather than whatever the export job happens to emit",
+        "evidence": "Docs: Publish the layout, the schema ... The rule to publish: at most N files per dt partition",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects customer_id and session_id as partition keys on high-cardinality grounds",
+        "evidence": "\"Session cardinality is huge, which also bloats Glue partition metadata\"; \"Skip hour, session_id and customer_id.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Caps partition depth at roughly 2-3 levels of low-cardinality keys",
+        "evidence": "It prescribes a single `event_date` partition and states no depth cap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes Hive-style partition paths such as year=2026/month=08/day=30/",
+        "evidence": "`event_date=2026-10-07/` and \"Hive-style path: key=value in the path\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States partition keys must be chosen by what the consumer filters on, not by how the internal schema is organized",
+        "evidence": "The principle is never stated. It only notes that a time filter can't prune by session.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a target file size of roughly 256-512 MB",
+        "evidence": "\"Target 128\u2013512 MB per file\" and a benchmark target of 128\u2013256 MB. This is broader than the rubric range but overlaps it.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a target Parquet row-group size of roughly 128-512 MB",
+        "evidence": "\"with 128 MB row groups\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends replacing JSON with Parquet, citing roughly up to 2x faster unload and up to 6x smaller output",
+        "evidence": "No such figures. It only says bytes scanned drop \"several-fold\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a compaction job with a concrete trigger, such as compacting when a table or partition exceeds 100 files each smaller than 75% of the target file size",
+        "evidence": "Daily compaction \"after the day closes\" is time-based. There is no file-count or file-size trigger.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the measured small-files penalty of roughly 4x (an Athena query dropping from about 40 seconds to about 10 after compaction)",
+        "evidence": "Only unmeasured estimates (\"low seconds\") are given, and it says \"These are estimates, not measurements.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires registering the export schema in a catalog (Glue, Hive Metastore, Iceberg REST or equivalent) rather than letting consumers infer it from files",
+        "evidence": "\"Ship DDL that uses Athena partition projection on event_date\" and the Glue table. A typed-columns schema is registered in Glue.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to adopt Iceberg/Delta/Hudi unless the export needs atomic multi-file commits, time-travel, or in-place schema evolution, naming those as the graduation triggers",
+        "evidence": "It declines Iceberg for now and offers it as an opt-in for customers who ask. It does not name atomic multi-file commits, time-travel or in-place schema evolution as the graduation triggers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the layout is a written contract rather than whatever the export job happens to emit",
+        "evidence": "The layout is never framed as a contract.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

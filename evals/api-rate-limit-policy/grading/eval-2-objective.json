@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the described mechanism as leaky-bucket behavior (constant drain rate, no banked burst capacity), not a token bucket, despite what the docs call it",
+        "evidence": "'What you describe is a leaky bucket... a quiet client gets no burst headroom.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags token bucket vs leaky bucket as a commonly inverted naming pair and requires the published policy to describe the behavior (whether idle time banks burst capacity) rather than rely on the algorithm name",
+        "evidence": "'most commonly inverted pair'; the test is 'whether idle time banks burst capacity'; 'Rewrite the docs to describe the behavior.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the mismatch between the documented algorithm name and the enforced behavior as an audit finding in its own right",
+        "evidence": "'Any decision... should start by correcting the docs'; 'Diff the docs against the enforced config in both directions.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States fixed window's boundary flaw: up to 2x the published limit can pass at the window boundary",
+        "evidence": "'1,500 requests at the end of one window and 1,500 at the start of the next. That is 3,000 requests in about a second.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States fixed window's stampede flaw: throttled clients synchronize their retries at the reset boundary",
+        "evidence": "'Throttled clients synchronize their retries at the reset boundary.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines the fixed-window switch for this public developer API, confining fixed window to internal or low-stakes limits where the boundary flaw is harmless",
+        "evidence": "'The skill reserves fixed window for internal or low-stakes limits where the 2\u00d7 flaw is harmless.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites a named platform precedent that accepts fixed window's flaw purely for simplicity in a low-stakes context (Sentry), and distinguishes that context from Ferroline's",
+        "evidence": "Sentry is not mentioned anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks or determines whether a burst is a threat or a feature for Ferroline's downstream before choosing between keeping leaky bucket and moving to token bucket",
+        "evidence": "'Choose the algorithm by one question: is a burst a threat or a feature?'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that token bucket and leaky bucket are an effort tie (both maintain one bucket per key, differing in intent, not implementation weight), so the simplicity argument does not favor fixed window over them",
+        "evidence": "It says token bucket needs only a counter and timestamp. It never says the two are an effort tie.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames the algorithm as a policy choice defining what the published number promises (burst behavior, boundary behavior), not an internal gateway detail",
+        "evidence": "'it makes a different promise.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Conditions any promotion of the sliding-window option on adversarial or scraping pressure, naming its higher compute cost",
+        "evidence": "'If yes, sliding window is promoted' is stated, but its higher compute cost is never named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires burst and sustained to be published as two explicit numbers under whichever algorithm is kept",
+        "evidence": "'The skill wants burst and sustained as two explicit numbers'; 'Publish two numbers: refill of 25/s sustained, and a bucket depth'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the described mechanism as leaky-bucket behavior (constant drain rate, no banked burst capacity), not a token bucket, despite what the docs call it",
+        "evidence": "'the behavior they describe is a leaky bucket used as a queue (a shaper)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags token bucket vs leaky bucket as a commonly inverted naming pair and requires the published policy to describe the behavior (whether idle time banks burst capacity) rather than rely on the algorithm name",
+        "evidence": "It does not say the names are commonly inverted, though it asks the docs to state rate, burst size and queue depth.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the mismatch between the documented algorithm name and the enforced behavior as an audit finding in its own right",
+        "evidence": "Section 1 is titled 'The docs describe the wrong algorithm'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States fixed window's boundary flaw: up to 2x the published limit can pass at the window boundary",
+        "evidence": "'Up to 3,000 in a few seconds: 1,500 at the end of one window, 1,500 at the start of the next'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States fixed window's stampede flaw: throttled clients synchronize their retries at the reset boundary",
+        "evidence": "'Clients retry at the reset and stampede together'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines the fixed-window switch for this public developer API, confining fixed window to internal or low-stakes limits where the boundary flaw is harmless",
+        "evidence": "It declines the switch but never says where fixed window would be acceptable.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites a named platform precedent that accepts fixed window's flaw purely for simplicity in a low-stakes context (Sentry), and distinguishes that context from Ferroline's",
+        "evidence": "Sentry is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks or determines whether a burst is a threat or a feature for Ferroline's downstream before choosing between keeping leaky bucket and moving to token bucket",
+        "evidence": "'Backend headroom for a burst' is a pre-change check, and it says to decide 'smoothing (delay) or enforcement'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that token bucket and leaky bucket are an effort tie (both maintain one bucket per key, differing in intent, not implementation weight), so the simplicity argument does not favor fixed window over them",
+        "evidence": "It says token bucket is 'about as simple as a window counter' but never compares leaky bucket's weight.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames the algorithm as a policy choice defining what the published number promises (burst behavior, boundary behavior), not an internal gateway detail",
+        "evidence": "The table row 'Customer-visible contract: \"25 per second\" vs \"1,500 per minute\", a different promise'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Conditions any promotion of the sliding-window option on adversarial or scraping pressure, naming its higher compute cost",
+        "evidence": "It lists sliding-window counter as an option with no condition and no compute cost.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires burst and sustained to be published as two explicit numbers under whichever algorithm is kept",
+        "evidence": "'State the rate, burst size, queue depth and timeout if any'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

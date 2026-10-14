@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the one-shot mass cutover: rotation is per-key dual-key overlap where old and new keys validate simultaneously for a grace period",
+        "evidence": "\"Tenant-initiated atomic roll plus staggered expiry\"; overlap with grace windows",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Exposes rotation as a single atomic roll operation that creates the new key and schedules the old key's expiry in one call",
+        "evidence": "\"One operation creates the new key and sets the old key's expiry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against splitting rotation into two manual steps where the expiry half gets forgotten",
+        "evidence": "\"There are never two manual steps.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a routine grace window in the 24-hour-to-7-day range, tied to deploy cadence",
+        "evidence": "Default is \"14 days\" and tenant choice \"1 day to 14 days\", outside the 24h-7d range.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Reserves zero-grace immediate revocation for compromise or offboarding, never routine rotation",
+        "evidence": "\"Suspected or confirmed compromise, or offboarding | Zero.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives agent fleets and queued workloads a longer grace window than the human default",
+        "evidence": "\"Tenants with queued or agent workloads | Suggest the upper end of the range.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires last-used telemetry and forbids disabling or deleting an old key before its traffic hits zero",
+        "evidence": "\"Never delete an old key before last-used shows zero traffic\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sequences deactivate-then-delete with a 24-48 hour wait, noting deactivation is reversible and deletion is not",
+        "evidence": "\"deactivated, not deleted... Wait 24-48 hours... Deactivation is reversible and deletion is not.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites a named vendor dual-key mechanic (Stripe's up-to-7-day roll or AWS's two-active-key cap forcing overlap)",
+        "evidence": "\"Keep at most two active keys per key identity, as AWS IAM does\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pushes back on the universal 30-day rule: no universal rotation frequency exists, cadence must be justified against risk profile and deploy cadence",
+        "evidence": "\"No standard requires it\"; risk-based cadence",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fires an expiry-approaching alert and extends the window when old-key traffic persists, rather than breaking a live consumer",
+        "evidence": "\"the system warns and offers an extension rather than breaking a live consumer\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stages the cutover: staging first, then production, then agent fleets and queued workloads last",
+        "evidence": "\"staging first, then production, then queued workloads\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Logs every rotation step (initiator, timing, grace window chosen) as audit evidence",
+        "evidence": "\"Every step is logged: who, when, window chosen, cutover confirmed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the doubled-attack-surface invariant: never create a new key without scheduling the old one's revocation",
+        "evidence": "\"Never create a new key without scheduling the old one's revocation, because that doubles your attack surface.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the one-shot mass cutover: rotation is per-key dual-key overlap where old and new keys validate simultaneously for a grace period",
+        "evidence": "\"Rotation needs old and new keys valid at the same time.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Exposes rotation as a single atomic roll operation that creates the new key and schedules the old key's expiry in one call",
+        "evidence": "\"`POST /v1/keys/{id}/rotate` creates a new key and sets `expires_at = now + overlap` on the old one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against splitting rotation into two manual steps where the expiry half gets forgotten",
+        "evidence": "No such warning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a routine grace window in the 24-hour-to-7-day range, tied to deploy cadence",
+        "evidence": "\"The default overlap is 7 days, configurable from 1 to 30.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reserves zero-grace immediate revocation for compromise or offboarding, never routine rotation",
+        "evidence": "\"Emergency revoke... Immediate, no grace period.\" is kept separate from rotation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives agent fleets and queued workloads a longer grace window than the human default",
+        "evidence": "No mention of agent fleets or queued workloads.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires last-used telemetry and forbids disabling or deleting an old key before its traffic hits zero",
+        "evidence": "Tenants watch last_used_at, but nothing forbids disabling before traffic reaches zero.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sequences deactivate-then-delete with a 24-48 hour wait, noting deactivation is reversible and deletion is not",
+        "evidence": "Only 90-day tombstones; no deactivate/delete sequencing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites a named vendor dual-key mechanic (Stripe's up-to-7-day roll or AWS's two-active-key cap forcing overlap)",
+        "evidence": "No Stripe or AWS reference.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pushes back on the universal 30-day rule: no universal rotation frequency exists, cadence must be justified against risk profile and deploy cadence",
+        "evidence": "\"SOC 2 and ISO 27001 ask for a defined, justified policy, not 30 days specifically.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fires an expiry-approaching alert and extends the window when old-key traffic persists, rather than breaking a live consumer",
+        "evidence": "Extensions are granted only if the tenant replies to the notice, not based on traffic.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Stages the cutover: staging first, then production, then agent fleets and queued workloads last",
+        "evidence": "Phases are by tenant cohort, not environment order.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Logs every rotation step (initiator, timing, grace window chosen) as audit evidence",
+        "evidence": "\"Log events: key created, rotated, used from a new IP, expired, revoked.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the doubled-attack-surface invariant: never create a new key without scheduling the old one's revocation",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

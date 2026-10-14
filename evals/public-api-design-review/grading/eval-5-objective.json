@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags the unpaginated GET /stores as a Must-change against the rule that every collection endpoint is paginated",
+        "evidence": "Finding 2, citing 'Every collection endpoint is paginated'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the silent clamp of per_page=5000 down to 100 and requires a 400 response instead of a silently clamped value",
+        "evidence": "Finding 3.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the silently ignored `statuss` typo and requires 400 or 422 for a filter on an unknown field",
+        "evidence": "Finding 4.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that silently ignoring unknown filters makes a client typo indistinguishable from a genuinely empty result set",
+        "evidence": "No such explanation is given; it only says the full list is returned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the mixed offset-and-cursor pagination as a cross-surface consistency finding rather than praising it as client flexibility",
+        "evidence": "Finding 1, 'One pagination pattern across the whole surface'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Handles the retained offset pagination on /products as an accepted deviation with a recorded rationale, not as an unresolved failure or a blanket rejection",
+        "evidence": "'Accepted deviation: offset/page on /products (conditional)' with a rationale to record.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the recorded deviation becomes binding precedent for future admin-facing collections rather than a silent inconsistency",
+        "evidence": "'The skill treats this as a precedent, so it applies to admin-facing collections only.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that a cursor minted under one sort must not be replayable under a different sort, and requires the sort to be encoded into the cursor",
+        "evidence": "Finding 5.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the `total` COUNT as a deliberate cost decision and proposes making it opt-in, for example via ?include_total=true",
+        "evidence": "Finding 6, opt-in include_total=true.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a has_more flag or equivalent so clients never infer completion from a short page",
+        "evidence": "Finding 6 says 'Return has_more instead'. The unverified list adds that the checklist requires has_more and navigation links.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the response shape for empty results, last page, and out-of-range page requests to be specified rather than left undefined",
+        "evidence": "'The checklist requires all of these to be specified.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that filters are applied before the page is computed",
+        "evidence": "Not stated anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Buckets every finding as Must-change or Improvement with a cited rule, and uses no numeric severity scale",
+        "evidence": "The findings table has Bucket and Cited rule columns. Finding 7 cites Hyrum's Law.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags the unpaginated GET /stores as a Must-change against the rule that every collection endpoint is paginated",
+        "evidence": "Flagged but not bucketed or tied to a rule",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the silent clamp of per_page=5000 down to 100 and requires a 400 response instead of a silently clamped value",
+        "evidence": "'Return 400 with the maximum in the error body'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the silently ignored `statuss` typo and requires 400 or 422 for a filter on an unknown field",
+        "evidence": "'Reject unknown query parameters with 400'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that silently ignoring unknown filters makes a client typo indistinguishable from a genuinely empty result set",
+        "evidence": "Explains unfiltered-list danger, not indistinguishability from empty",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the mixed offset-and-cursor pagination as a cross-surface consistency finding rather than praising it as client flexibility",
+        "evidence": "Endorses accepting both on /products",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the retained offset pagination on /products as an accepted deviation with a recorded rationale, not as an unresolved failure or a blanket rejection",
+        "evidence": "'documented exception' with catalog-size rationale",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the recorded deviation becomes binding precedent for future admin-facing collections rather than a silent inconsistency",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that a cursor minted under one sort must not be replayable under a different sort, and requires the sort to be encoded into the cursor",
+        "evidence": "'Encode in the cursor: format version, sort spec...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the `total` COUNT as a deliberate cost decision and proposes making it opt-in, for example via ?include_total=true",
+        "evidence": "'?include_total=true'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a has_more flag or equivalent so clients never infer completion from a short page",
+        "evidence": "envelope includes has_more",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the response shape for empty results, last page, and out-of-range page requests to be specified rather than left undefined",
+        "evidence": "Not specified",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that filters are applied before the page is computed",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Buckets every finding as Must-change or Improvement with a cited rule, and uses no numeric severity scale",
+        "evidence": "No buckets or cited rules",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends cutting the surface to roughly 5-15 workflow-level tools instead of keeping one tool per API endpoint.",
+        "evidence": "\"Cut the surface to 5\u201315 tools\"; \"5 tools at launch and 9 after writes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents curation as the settled answer rather than laying out comprehensive-vs-curated as an open trade-off for Corvale to weigh.",
+        "evidence": "\"curated beats comprehensive... Mirroring endpoints is the named anti-pattern, and you have shipped it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the real-world median of 5 tools per server across 1,412 analyzed servers.",
+        "evidence": "\"The median across 1,412 analyzed servers is 5 tools (Bloomberry...)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes the 'runs out of room' symptom to tool metadata consuming roughly 40-50% of the agent's context window before any work begins.",
+        "evidence": "\"Tool metadata alone can consume 40\u201350% of the context window.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs deriving the new tools from the existing stable v3 REST contract rather than hand-building a parallel surface.",
+        "evidence": "\"Derive the tools from it rather than hand-building a parallel surface.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Designs tools top-down from user workflows and collapses granular endpoints into workflow-level tools, rather than bottom-up from the endpoint list.",
+        "evidence": "\"Vendor guidance converges on 5\u201315 tools designed top-down from workflows.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Renames tools to verb-first, service-prefixed snake_case (for example corvale_list_invoices) instead of unprefixed camelCase.",
+        "evidence": "\"Names use a `corvale_` prefix, verb-first snake_case\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a limit parameter with cursor or has-more fields returned, defaulting to roughly 20-50 items.",
+        "evidence": "\"`limit` defaults to 25. Returns a cursor and `has_more`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats writing tool descriptions as budgeted engineering work, noting that description-only tuning has measurably cut agent error rates with no code change.",
+        "evidence": "Says \"Descriptions are the highest-leverage lever\" and \"treat description edits like code\" but never cites a measured error-rate reduction from description-only tuning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies parameter mistake-proofing (poka-yoke): absolute identifiers over relative ones, enums over free-form strings.",
+        "evidence": "\"Use enums over free strings and absolute IDs over relative ones.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns exactly one risk level per tool and splits any tool that both reads and irreversibly writes into two tools.",
+        "evidence": "\"One risk tier per tool. If a tool both reads and irreversibly writes, split it into two.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Withholds breadth patterns - a generic execute-any-endpoint escape hatch, dynamic tool loading, client-selectable toolset grouping - unless a breadth requirement is proven, rather than offering them as the fix.",
+        "evidence": "No mention of execute-any-endpoint, dynamic loading, or toolset grouping.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends cutting the surface to roughly 5-15 workflow-level tools instead of keeping one tool per API endpoint.",
+        "evidence": "\"One tool per agent task, not per endpoint. Target 12\u201316 tools.\" and \"Proposed surface (about 14 tools)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents curation as the settled answer rather than laying out comprehensive-vs-curated as an open trade-off for Corvale to weigh.",
+        "evidence": "Curation is the design rule throughout; no comprehensive-vs-curated trade-off is laid out.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the real-world median of 5 tools per server across 1,412 analyzed servers.",
+        "evidence": "No such statistic appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attributes the 'runs out of room' symptom to tool metadata consuming roughly 40-50% of the agent's context window before any work begins.",
+        "evidence": "It only guesses \"20\u201340k tokens before any work\" and says to measure it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs deriving the new tools from the existing stable v3 REST contract rather than hand-building a parallel surface.",
+        "evidence": "\"Don't touch REST v3. Build the new MCP layer as a hand-written facade over it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Designs tools top-down from user workflows and collapses granular endpoints into workflow-level tools, rather than bottom-up from the endpoint list.",
+        "evidence": "\"Write the top 15 agent jobs... Group endpoints by job. Aim for one tool per job.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Renames tools to verb-first, service-prefixed snake_case (for example corvale_list_invoices) instead of unprefixed camelCase.",
+        "evidence": "Names are `search_invoices`, `get_invoice` with no service prefix (no corvale_).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a limit parameter with cursor or has-more fields returned, defaulting to roughly 20-50 items.",
+        "evidence": "\"default limit 20, cursor pagination\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats writing tool descriptions as budgeted engineering work, noting that description-only tuning has measurably cut agent error rates with no code change.",
+        "evidence": "It gives a description template and re-running evals, but no measured error-rate reduction from description-only tuning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies parameter mistake-proofing (poka-yoke): absolute identifiers over relative ones, enums over free-form strings.",
+        "evidence": "It specifies \"enums over free strings\" but nothing on absolute versus relative identifiers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns exactly one risk level per tool and splits any tool that both reads and irreversibly writes into two tools.",
+        "evidence": "It uses annotations and a void_invoice toolset but assigns no per-tool risk level; `update_invoice` and `transition_invoice` merge many actions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Withholds breadth patterns - a generic execute-any-endpoint escape hatch, dynamic tool loading, client-selectable toolset grouping - unless a breadth requirement is proven, rather than offering them as the fix.",
+        "evidence": "It proposes toolsets \"selected by token scope\" and an optional `search_api` plus `call_api` pair.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

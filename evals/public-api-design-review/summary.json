@@ -1,0 +1,438 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "public-api-design-review",
+  "scenarios": 9,
+  "expectations_total": 114,
+  "expectations_subjective": 0,
+  "expectations_objective": 114,
+  "pass_rate_with_skill_pct": 82.5,
+  "pass_rate_without_skill_pct": 31.6,
+  "delta_pp": 50.9,
+  "uplift_multiplier": 2.61,
+  "trigger_accuracy_pct": 65.7,
+  "trigger_queries": 102,
+  "trigger_positive_fire_rate": 0.451,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Presents findings in a table carrying finding, dimension, bucket, cited rule, and proposed fix"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the maturity-ladder ordering explicitly in the text rather than leaving it implied by the order of a list"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives separate orderings for efficiency and for effort or value, noting the federated pool loses every efficiency round while winning on value"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a linter-only CI gate rather than the default linter-plus-two-named-reviewers rung"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Characterizes the corpus-plus-linter setup as roughly an afternoon of work rather than a multi-week program"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the position that an internal API needs no contract, on the grounds that internal consumers are still consumers"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Suggests tagging audience in the spec itself so the review trigger becomes mechanical, citing the x-api-audience convention"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Asks for the spec, reference docs, or sample requests and responses rather than reviewing from the endpoint name alone"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Explains that silently ignoring unknown filters makes a client typo indistinguishable from a genuinely empty result set"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that filters are applied before the page is computed"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the aip.dev/not-precedent rationale convention as the mechanism for recording an accepted deviation"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Identifies taste-based blocking comments as a named failure mode that recreates both rubber-stamping and bottlenecking"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the calibration line: firm on decisions affecting clients or security, forgiving on stylistic preference"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Points at samber/developer-platform-skills@api-integration-surface-strategy for whether a surface belongs on the roadmap at all before it is reviewed"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites the limitation that a linter cannot judge whether an operation makes sense to a consumer"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Inventories the endpoints and tags each as collection, mutating, or both"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Explains that mixed error patterns leave the consumer unable to predict behavior across endpoints"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that RFC 9457 obsoletes RFC 7807"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects writing the spec after launch with the point that the schema is the documentation and is written first"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Attributes the late-review pattern to Google's documented pre-reform state, where teams were forced to start over"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Sorts findings into exactly two buckets, named Must-change and Improvement"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Assigns no numeric score, letter grade, percentage, or Critical/High/Medium/Low severity scale to the surface or to any finding"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the surface being publicly consumable and about to open makes this a blocking review rather than advisory feedback"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Flags the created_at versus createdAt split across /shipments and /carriers as a Must-change"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Declines to declare either snake_case or camelCase the correct convention, citing consistency of the choice as the rule instead"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names samber/developer-platform-skills@api-versioning-policy as the owner of scheduling that removal"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Flags cancel-shipment and verify-carrier as verbs in the URI and proposes one custom-method convention applied across every action endpoint"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that because the team has adopted no rule corpus, findings cite this skill's own checklist items by name"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Attaches a cited rule or precedent to every finding placed in the Must-change bucket"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Presents findings in a table carrying finding, dimension, bucket, cited rule, and proposed fix"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects the proposed monthly meeting cadence and triggers review on audience and lifecycle stage instead of a calendar"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States review is required at beta and at GA-if-changed, recommended at alpha, and skipped for internal-only surfaces"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects growing the architect group from 5 to 10 and states that growing a central committee is the one scaling move no studied company chose"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends the certified federated reviewer pool rung for this organization"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the two-quarter runway, the budget, and the 31-team scale as the answers that promoted that rung above the default"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the maturity-ladder ordering explicitly in the text rather than leaving it implied by the order of a list"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives separate orderings for efficiency and for effort or value, noting the federated pool loses every efficiency round while winning on value"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires a shared, versioned rule corpus to exist before the reviewer pool grows"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that growing reviewers without a versioned corpus degrades turnaround time and guidance consistency together"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Attributes the centralized-friction-point concession to Kenneth Auchenberg personally rather than to Stripe as a company"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives turnaround guidance of under a week for small APIs, with a median past roughly 2 weeks signalling the program is too heavy"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends forking an existing public rule corpus rather than authoring one from a blank page"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Removes the certified federated reviewer pool from the option menu entirely rather than ranking it last or parking it as a later phase"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Justifies removal over demotion by noting a parked rung reappears as roadmap work that consumes corpus-writing time nobody needs yet"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a linter-only CI gate rather than the default linter-plus-two-named-reviewers rung"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the two-team scope and the 3-day effort ceiling as the answers that moved the recommendation down from the default rung"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the semantic conversation still happens inside ordinary code review at this scale"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends forking a published corpus such as Zalando, Adidas, or Microsoft rather than writing a style guide from scratch"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the corpus must be adapted to the team's own articulated intent before it is enforced"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Keeps the Must-change versus Improvement two-bucket model rather than introducing a numeric severity score"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Characterizes the corpus-plus-linter setup as roughly an afternoon of work rather than a multi-week program"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names both axes that produce the conclusion: surface exposure (internal / partner / public) and lifecycle stage (alpha / beta / GA)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that review is recommended but advisory at alpha, so an internal alpha gets advisory feedback rather than a blocking checklist"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that review becomes required at the beta gate if the surface ever becomes externally consumable"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Attributes the audience-by-release-level keying to Google's AIP-100"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the position that an internal API needs no contract, on the grounds that internal consumers are still consumers"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Suggests tagging audience in the spec itself so the review trigger becomes mechanical, citing the x-api-audience convention"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Keeps any findings it does raise in the Improvement bucket absent a cited rule"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Asks for the spec, reference docs, or sample requests and responses rather than reviewing from the endpoint name alone"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Flags the unpaginated GET /stores as a Must-change against the rule that every collection endpoint is paginated"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Explains that silently ignoring unknown filters makes a client typo indistinguishable from a genuinely empty result set"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Flags the mixed offset-and-cursor pagination as a cross-surface consistency finding rather than praising it as client flexibility"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the recorded deviation becomes binding precedent for future admin-facing collections rather than a silent inconsistency"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires the response shape for empty results, last page, and out-of-range page requests to be specified rather than left undefined"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that filters are applied before the page is computed"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Buckets every finding as Must-change or Improvement with a cited rule, and uses no numeric severity scale"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects the /refunds nesting demand as a block, noting the existing structure sits within the 2-3 level depth limit"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that the burden of justification falls on the party deviating from a cited rule, not on the designer defending against an uncited objection"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the aip.dev/not-precedent rationale convention as the mechanism for recording an accepted deviation"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Identifies taste-based blocking comments as a named failure mode that recreates both rubber-stamping and bottlenecking"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the calibration line: firm on decisions affecting clients or security, forgiving on stylistic preference"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes the 8-day stall against the under-a-week turnaround target for a small API"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Scopes the review to the REST surface only and declines to apply this checklist to the GraphQL and gRPC surfaces"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Hands the GraphQL gateway to samber/developer-platform-skills@public-graphql-api-design"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Hands the gRPC surface to samber/developer-platform-skills@public-grpc-api-design"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Explains the handoff as a conventions mismatch that would make this checklist actively mislead, not as a convenience or a scope cut"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Points at samber/developer-platform-skills@api-integration-surface-strategy for whether a surface belongs on the roadmap at all before it is reviewed"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Runs a spec linter such as Spectral or Zally against the OpenAPI 3.1 file before any human-judgment check"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that linting owns the mechanical findings and human reviewers own the semantic ones, and does not invert that split"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites the limitation that a linter cannot judge whether an operation makes sense to a consumer"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks for 5-10 real production responses across endpoints rather than reviewing from the spec alone"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Explains that a spec can claim a consistency the production traffic does not actually have"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Inventories the endpoints and tags each as collection, mutating, or both"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Logs the absence of a machine-readable spec as an Improvement finding in its own right"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that RFC 9457 obsoletes RFC 7807"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Keeps the error review at envelope-shape level and defers code taxonomy, message wording, and retry signaling to samber/developer-platform-skills@api-error-design"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Does not design an error-code catalog, subcode scheme, or retryability flag as part of this review"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Walks all eight checklist dimensions rather than only the dimensions the prompt raised"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Splits the 9 items into 4 Must-change and 5 Improvement strictly on whether a written rule is cited"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States the ship gate as zero Must-change findings open at GA, with Improvement findings permitted to ship open"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Offers recording a documented deviation as a legitimate alternative to fixing a Must-change before the date"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Names expediency - a deadline that cannot accommodate the better design - as one of the enumerated deviation reasons available"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires any such deviation to carry a written rationale that leaves a trace, rather than a verbal or informal exception"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Refuses to let the 200-with-error endpoint ship unresolved without either a fix or a recorded deviation"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Identifies the review arriving three weeks after implementation was finished as a named failure mode of review programs"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Attributes the late-review pattern to Google's documented pre-reform state, where teams were forced to start over"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Prescribes triggering future reviews at design time against the spec, before the code exists"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Checks that the review walked every checklist dimension, treating a skipped dimension as an incomplete review rather than a lean one"
+      }
+    ]
+  }
+}

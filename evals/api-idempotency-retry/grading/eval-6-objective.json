@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Reverses the opt-in proposal: SDK retries default ON with backoff and jitter",
+        "evidence": "\"Retries | **ON**\"; \"Backoff | **Full jitter**\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 10 attempts and bounds the cap low (3 total attempts is the cited anchor)",
+        "evidence": "\"3 total (initial + 2 retries) | Matches the AWS anchor.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the fresh 30-second timeout per attempt: one overall deadline is set at the top and per-attempt timeouts are budgeted inside it",
+        "evidence": "\"One per logical call: 40s. Set once at the top, never reset per attempt.\"; per-attempt \"min(10s, remaining deadline)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a fresh overall timeout per attempt silently extends the caller's real wait beyond what it committed to",
+        "evidence": "\"The caller's real wait becomes 10 \u00d7 30s = 300s plus sleeps.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a fleet-wide retry budget as a distinct control from per-caller attempt caps",
+        "evidence": "\"Per-caller attempt caps alone cannot prevent amplification.\"; token bucket retry budget.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Quantifies the amplification risk: a 200-instance fleet each retrying a few times multiplies load on a struggling downstream several-hundred-fold while every instance looks reasonable in isolation",
+        "evidence": "Says \"up to 10x load\" per call and \"200 instances all multiplying traffic\" but gives no fleet-wide multiplication figure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the token-bucket retry-quota implementation with its figures: 14 tokens per transient-error retry, 5 per throttle retry",
+        "evidence": "\"500 capacity, 14 tokens per transient-error retry, 5 per throttle retry, +1 per success.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets single-attempt timeouts at 2-3x measured p99 latency, never an OS default or a round number",
+        "evidence": "\"The target is 2-3x p99.\"; \"Set it to 2-3x your measured p99\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the SDK auto-generate idempotency keys for retry-unsafe operations where it controls the request",
+        "evidence": "\"SDK auto-generates a key for every POST and other unsafe call\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "When pairing with a circuit breaker, states the stacking order Retry then CircuitBreaker then RateLimiter then Bulkhead",
+        "evidence": "Circuit breaker stacking order is not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For call chains, propagates the remaining deadline downward with the request (relative timeouts on the wire) so no hop starts work exceeding what the top-level caller has left",
+        "evidence": "Only a passing mention of \"deadline propagation\" in the source note; no call-chain propagation guidance.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Reverses the opt-in proposal: SDK retries default ON with backoff and jitter",
+        "evidence": "\"I'd ship retries on, 3 total attempts... Exponential, full jitter\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 10 attempts and bounds the cap low (3 total attempts is the cited anchor)",
+        "evidence": "\"`max_retries` 2 (3 total attempts)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the fresh 30-second timeout per attempt: one overall deadline is set at the top and per-attempt timeouts are budgeted inside it",
+        "evidence": "\"Overall deadline 60 s... Each attempt gets `min(30 s, time left)`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a fresh overall timeout per attempt silently extends the caller's real wait beyond what it committed to",
+        "evidence": "\"The worst case is 10 \u00d7 30 s plus backoff, which is over 5 minutes per call.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a fleet-wide retry budget as a distinct control from per-caller attempt caps",
+        "evidence": "\"Retry budget 10% per client process... token bucket\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Quantifies the amplification risk: a 200-instance fleet each retrying a few times multiplies load on a struggling downstream several-hundred-fold while every instance looks reasonable in isolation",
+        "evidence": "It quantifies only \"up to 10\u00d7\" load. It does not multiply across 200 instances.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the token-bucket retry-quota implementation with its figures: 14 tokens per transient-error retry, 5 per throttle retry",
+        "evidence": "It uses \"each success earns 0.1 retry tokens\" instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets single-attempt timeouts at 2-3x measured p99 latency, never an OS default or a round number",
+        "evidence": "It keeps 30 s and says to drop it to 10\u201315 s if p99 is a few seconds. It gives no 2\u20133x p99 rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Has the SDK auto-generate idempotency keys for retry-unsafe operations where it controls the request",
+        "evidence": "\"POST is retried only if the SDK attaches an auto-generated idempotency key to it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "When pairing with a circuit breaker, states the stacking order Retry then CircuitBreaker then RateLimiter then Bulkhead",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For call chains, propagates the remaining deadline downward with the request (relative timeouts on the wire) so no hop starts work exceeding what the top-level caller has left",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

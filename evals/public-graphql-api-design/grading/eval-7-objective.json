@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Argues against collapsing `Viewer`, `TeamMember` and the customer person fields into one `User` type purely to remove duplicated `name` and `email`.",
+        "evidence": "\"Collapse into one User: no\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the MOIST principle (Marc-Andre Giroux) as the counter-argument to reflexive DRY in schema design.",
+        "evidence": "\"Giroux's MOIST principle\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that types are designed around distinct client use cases that evolve independently, not around the database tables behind them.",
+        "evidence": "\"Design types around client use cases, not around duplicated fields.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the foreign-key fields `accountId` and `ownerId` with object references such as `account: Account!` and `owner: User!`, citing Shopify's Rule #8.",
+        "evidence": "\"account: Account! and owner: TeamMember... Shopify Rule #8\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Changes `addresses: [Address]` to `[Address!]!`, stating an empty list is preferred over a null list with no null items inside.",
+        "evidence": "Changes to [Address!]! but gives no reasoning about empty vs null list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Renames `created_at` to camelCase `createdAt` and `Active` to a prefixed boolean such as `isActive`.",
+        "evidence": "\"createdAt: DateTime!\" and \"isActive: Boolean!\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the `String` timestamp with a custom domain-validated scalar such as `DateTime`.",
+        "evidence": "\"createdAt: DateTime! (custom scalar)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects returning the bare output type `Customer` from the mutation and requires a dedicated payload or result type alongside the dedicated input type.",
+        "evidence": "\"Bare Customer return... Return a result type\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the monolithic `updateCustomer` shape in favor of focused business-action mutations.",
+        "evidence": "\"Model business actions instead, such as changeCustomerContact...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States both naming forks are documented production practice - Apollo's verb-first and Shopify's noun-first - and that the team must pick one and enforce it schema-wide, rather than handing them a universal winner.",
+        "evidence": "\"Apollo uses verb-first... Shopify uses noun-first... pick one and enforce it across the whole schema\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives Shopify's stated rationale for noun-first: a type's mutations group together when tooling sorts fields alphabetically.",
+        "evidence": "\"so a type's mutations sort together\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the selection argument (which object changes) to stay separate from the change-data argument, citing Shopify's Rule #22.",
+        "evidence": "\"Per Shopify Rule #22, separate the selection argument from the change data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the NetSuite docstring for the public audience, stating that naming an internal system publishes architecture to every schema reader.",
+        "evidence": "\"names your database column, your ERP vendor and your sync cadence... docstrings written for the engineering team publish architecture\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Argues against collapsing `Viewer`, `TeamMember` and the customer person fields into one `User` type purely to remove duplicated `name` and `email`.",
+        "evidence": "\"Don't merge into `User`... The duplication is of syntax, not of knowledge.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the MOIST principle (Marc-Andre Giroux) as the counter-argument to reflexive DRY in schema design.",
+        "evidence": "Not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that types are designed around distinct client use cases that evolve independently, not around the database tables behind them.",
+        "evidence": "\"Different people, different trust... Different lifecycles.\" and \"These won't [change together].\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the foreign-key fields `accountId` and `ownerId` with object references such as `account: Account!` and `owner: User!`, citing Shopify's Rule #8.",
+        "evidence": "It uses `account: Account!` and `owner: TeamMember` but cites no rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Changes `addresses: [Address]` to `[Address!]!`, stating an empty list is preferred over a null list with no null items inside.",
+        "evidence": "\"`[Address]` is a nullable list of nullable items, which is almost never intended\"; the fixed field is `[Address!]!`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Renames `created_at` to camelCase `createdAt` and `Active` to a prefixed boolean such as `isActive`.",
+        "evidence": "\"`created_at` becomes `createdAt` and `Active` becomes `isActive`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the `String` timestamp with a custom domain-validated scalar such as `DateTime`.",
+        "evidence": "\"Use a `DateTime` scalar, not `String`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects returning the bare output type `Customer` from the mutation and requires a dedicated payload or result type alongside the dedicated input type.",
+        "evidence": "\"`UpdateCustomerInput`\" and \"`UpdateCustomerPayload { customer, userErrors }`\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the monolithic `updateCustomer` shape in favor of focused business-action mutations.",
+        "evidence": "It keeps a monolithic `updateCustomer`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States both naming forks are documented production practice - Apollo's verb-first and Shopify's noun-first - and that the team must pick one and enforce it schema-wide, rather than handing them a universal winner.",
+        "evidence": "\"GitHub uses verb-first... Shopify uses noun-first... enforce it with a schema lint rule.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives Shopify's stated rationale for noun-first: a type's mutations group together when tooling sorts fields alphabetically.",
+        "evidence": "\"noun-first (`customerUpdate`), which groups related mutations alphabetically in docs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the selection argument (which object changes) to stay separate from the change-data argument, citing Shopify's Rule #22.",
+        "evidence": "It puts `id: ID!` inside `UpdateCustomerInput`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the NetSuite docstring for the public audience, stating that naming an internal system publishes architecture to every schema reader.",
+        "evidence": "\"This publishes three internal details... the vendor (NetSuite)\" and the replacement docstring.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

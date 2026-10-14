@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Concludes that formal blocking review is not required for an internal-only surface with a single known consumer set",
+        "evidence": "'Verdict for /billing-internal: no blocking review'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names both axes that produce the conclusion: surface exposure (internal / partner / public) and lifecycle stage (alpha / beta / GA)",
+        "evidence": "The Audience and Lifecycle table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that review is recommended but advisory at alpha, so an internal alpha gets advisory feedback rather than a blocking checklist",
+        "evidence": "'An internal alpha gets advisory feedback.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that review becomes required at the beta gate if the surface ever becomes externally consumable",
+        "evidence": "The trigger: reclassify as partner or public, and 'the blocking review then applies at beta'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes the audience-by-release-level keying to Google's AIP-100",
+        "evidence": "'This follows Google AIP-100.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the position that an internal API needs no contract, on the grounds that internal consumers are still consumers",
+        "evidence": "There is no explicit rejection. It only advises keeping a machine-readable spec.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Suggests tagging audience in the spec itself so the review trigger becomes mechanical, citing the x-api-audience convention",
+        "evidence": "x-api-audience is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that because the consumers are enumerable and deployed by the same team, defects can be fixed in place rather than routed through deprecation machinery",
+        "evidence": "'Any breaking change is one atomic monorepo PR'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to endorse the architecture lead's blocking gate as a compromise position",
+        "evidence": "'/billing-internal needs no blocking review. It gets a CI linter plus one advisory skim.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps any findings it does raise in the Improvement bucket absent a cited rule",
+        "evidence": "'every finding bucketed as Improvement'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns no numeric maturity score or readiness percentage to the internal API",
+        "evidence": "None given.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks for the spec, reference docs, or sample requests and responses rather than reviewing from the endpoint name alone",
+        "evidence": "It only says 'I didn't have your spec or any real responses' and never requests them.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Concludes that formal blocking review is not required for an internal-only surface with a single known consumer set",
+        "evidence": "'does not need the partner-API design review'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names both axes that produce the conclusion: surface exposure (internal / partner / public) and lifecycle stage (alpha / beta / GA)",
+        "evidence": "Only exposure reasoning; lifecycle not framed as an axis",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that review is recommended but advisory at alpha, so an internal alpha gets advisory feedback rather than a blocking checklist",
+        "evidence": "Requires design note and reviews before first prod deploy",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that review becomes required at the beta gate if the surface ever becomes externally consumable",
+        "evidence": "Triggers mention alpha-to-GA, not beta gate",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attributes the audience-by-release-level keying to Google's AIP-100",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the position that an internal API needs no contract, on the grounds that internal consumers are still consumers",
+        "evidence": "Implicit via contract tests only, not argued",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Suggests tagging audience in the spec itself so the review trigger becomes mechanical, citing the x-api-audience convention",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that because the consumers are enumerable and deployed by the same team, defects can be fixed in place rather than routed through deprecation machinery",
+        "evidence": "'A breaking change is one PR that updates the producer and both consumers'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to endorse the architecture lead's blocking gate as a compromise position",
+        "evidence": "'real input without a veto over the deploy'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps any findings it does raise in the Improvement bucket absent a cited rule",
+        "evidence": "No bucket model",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns no numeric maturity score or readiness percentage to the internal API",
+        "evidence": "None given",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks for the spec, reference docs, or sample requests and responses rather than reviewing from the endpoint name alone",
+        "evidence": "Only asks to check Northmark policy",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

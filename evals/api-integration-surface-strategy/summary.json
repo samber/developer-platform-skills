@@ -1,0 +1,250 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-integration-surface-strategy",
+  "scenarios": 6,
+  "expectations_total": 66,
+  "expectations_subjective": 0,
+  "expectations_objective": 66,
+  "pass_rate_with_skill_pct": 84.8,
+  "pass_rate_without_skill_pct": 37.9,
+  "delta_pp": 46.9,
+  "uplift_multiplier": 2.24,
+  "trigger_accuracy_pct": 57.8,
+  "trigger_queries": 64,
+  "trigger_positive_fire_rate": 0.5,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Sequences REST completion plus webhooks as the first surfaces, noting webhooks ride the same infrastructure rather than opening a new paradigm"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Labels the per-call agent monetization idea speculative, noting unproven unit economics and that observed per-call volumes are tiny and partly wash-traded"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Justifies delaying higher-abstraction surfaces via the dependency mechanism (Hyrum's Law or equivalent: once enough consumers depend on observable behavior, the contract is near-impossible to change)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Plans the API foundation underneath the embedded layer, naming that retrofitting an API onto a UI-first product later is the expensive direction"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Uses the contrast between a developer-sold API platform and a business-owner-sold checkout button (Stripe vs PayPal or equivalent) as evidence the same industry supports opposite surface orders by buyer"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that a surface reaching only the economic buyer or only the technical user stalls the deal"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites the retention/switching-cost argument for the API foundation: an API embedded in customer production code costs engineering hours to leave, not a cancellation click"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Parks or defers the community-requested CLI and Terraform provider until confirmed against the higher-weight signals"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Keeps webhooks as the near-term addition riding the existing REST infrastructure"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Schedules the agent-access surface (MCP) because observed agent traffic is a real demand signal, distinguishing this from hype-driven scheduling"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Recommends against building the MCP server this quarter, parking it until agent-demand signals (RFPs requiring MCP compatibility, or observed agent traffic) appear"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names the absence of agent signals (zero agent traffic, no customer asks) as the reason MCP is parked, rather than arguing only from team effort or generic prioritization"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that when MCP is eventually built it must be derived or generated from the existing API contract, never hand-built as a separate product"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Flags the 60% API coverage as a shallow-API-first failure: partners discover mid-integration that later steps still need manual touches, so depth is probed per capability"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Sequences REST completion plus webhooks as the first surfaces, noting webhooks ride the same infrastructure rather than opening a new paradigm"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Labels the per-call agent monetization idea speculative, noting unproven unit economics and that observed per-call volumes are tiny and partly wash-traded"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Caps concurrent new-surface builds at the stated two-engineer capacity, sequencing surfaces one at a time"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes review triggers that reopen the plan early, among them agent-demand signals moving from none to present"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Justifies delaying higher-abstraction surfaces via the dependency mechanism (Hyrum's Law or equivalent: once enough consumers depend on observable behavior, the contract is near-impossible to change)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Establishes the buyer type (developer-chosen vs non-technical buyer) via a question or an explicit audience map before or while ranking surfaces"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Each scheduled surface carries a named audience and the demand signal justifying it, plus a reversal-cost tier and an owner"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Carries the roughly 20-40% initial-build overhead plus N+1 and authorization complexity as GraphQL's standing cost"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Classifies a public GraphQL schema as a high reversal-cost, tight and binding contract, in contrast with additive REST changes being cheap to unwind"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rebuts the 'REST is legacy' claim with REST's dominant adoption (on the order of 93% vs 33% for GraphQL, or equivalent framing of REST as the near-universal substrate)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites Shopify's GraphQL-first Admin API in both directions: evidence a major platform anchored on it, and evidence of significant developer pushback over verbosity"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Plans the API foundation underneath the embedded layer, naming that retrofitting an API onto a UI-first product later is the expensive direction"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Uses the contrast between a developer-sold API platform and a business-owner-sold checkout button (Stripe vs PayPal or equivalent) as evidence the same industry supports opposite surface orders by buyer"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that a surface reaching only the economic buyer or only the technical user stalls the deal"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites the retention/switching-cost argument for the API foundation: an API embedded in customer production code costs engineering hours to leave, not a cancellation click"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Presents 2-3 candidate sequences with trade-offs and a recommendation for the user to pick or blend, rather than one dictated plan"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Records the demand signal for the embedded surface (sales naming turnkey integrations as deal-closers) instead of scheduling it on taste"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Ranks the 61% library user-agent share as the strongest volume signal, second behind the deal blockers"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Interprets the 61% figure through the documented helper-library precedent (roughly 77% of a major platform's REST traffic via library user-agents justifying SDK formalization and generation)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Ranks community asks (Discord and GitHub reactions) third, as real but cheap to emit and easy to over-weight"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Parks or defers the community-requested CLI and Terraform provider until confirmed against the higher-weight signals"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Distinguishes which downstream design owns the bulk surface by demand shape: file/lake export versus rows synced through an ELT tool"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Records the audience and the justifying demand signal for every scheduled or deferred surface"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Sets a review cadence or trigger tied to the deal-blocker log and telemetry changes reopening the plan"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects the simultaneous multi-surface launch and sequences one new surface at a time within a stated capacity number"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the reason: several concurrent launches yield half-measured surfaces with no clean signal from any, plus a standing maintenance bill for all"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Asks for or forces a sustained-capacity number: how many surfaces the team can build, document, support, and keep releasing for years"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites the one-spec-propagates-everywhere pattern (major platforms generating SDKs, docs, and MCP from one OpenAPI source of truth)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites the capacity-matched precedent: SDK languages added only once tooling made supporting them sustainable, or the principle that two surfaces done properly beat six done badly"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Assigns surviving surfaces reversal-cost tiers, including server SDKs as high because method signatures bake directly into customer code"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes the CLI has no dedicated downstream design owner, so its design decisions are recorded in the plan itself"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Schedules the agent-access surface (MCP) because observed agent traffic is a real demand signal, distinguishing this from hype-driven scheduling"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Every surface entry carries all five handoff fields: target audience, justifying demand signal, reversal-cost tier, capacity owner, and the owning downstream design or an inline decision"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Separates this plan's job (whether and when each surface ships) from per-surface design (how), which is handed off"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Sets a review date (quarterly or similar) plus named reopen triggers such as a new deal blocker or agent-signal changes"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Maps each surface to a distinct consumer class (BI consumers for warehouse sharing, humans and agents for the CLI, agent clients for MCP) rather than one ladder every consumer climbs"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Records what evidence the next review must re-check rather than re-arguing the whole plan"
+      }
+    ]
+  }
+}

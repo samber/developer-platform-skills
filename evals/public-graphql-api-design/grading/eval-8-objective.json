@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Corrects the claim that GraphQL forbids versioning, stating the paradigm does not dictate versioning policy.",
+        "evidence": "\"'GraphQL has no versions' is wrong... The paradigm doesn't decide the policy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Shopify's quarterly date-based versioning of its GraphQL Admin API as the counter-example.",
+        "evidence": "\"Shopify ships date-based versions of its GraphQL Admin API every quarter\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records which versioning stance the team takes and hands the ongoing policy - notice periods, deprecation workflow, removal discipline - to versioning-policy work rather than settling it here.",
+        "evidence": "\"which it hands to api-versioning-policy\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `Int` for identifiers and requires the `ID` scalar.",
+        "evidence": "\"Use id: ID! on a Node interface\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a `Node` interface (`interface Node { id: ID! }`) on every entity so any object is refetchable by one global ID.",
+        "evidence": "\"interface Node { id: ID! }\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires IDs to be opaque to clients, base64-encoding compound identities rather than exposing raw numeric primary keys.",
+        "evidence": "\"IDs are opaque strings... Base64 of v1:<type>:<pk>\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one shared identifier across the coexisting REST and GraphQL surfaces rather than two separate ID spaces.",
+        "evidence": "\"one identity system serves both APIs\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names GitHub's `node_id` REST-to-GraphQL interop as the worked precedent for one ID space serving both surfaces.",
+        "evidence": "\"Add a node_id field to REST responses... node_id is the GraphQL global id\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Handles the planned encoding change with a client-controlled opt-in mechanism rather than a deadline-driven forced migration, naming GitHub's `X-Github-Next-Global-ID` request header as the precedent.",
+        "evidence": "\"It shipped an X-Github-Next-Global-ID header\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the design goal of that migration: any consumer that never persisted a global ID needs no changes at all.",
+        "evidence": "\"Any consumer who never stored an ID needed no change.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires additive-friendly return shapes, noting payload objects and result unions can gain members where a bare scalar return type cannot.",
+        "evidence": "\"payload objects and result unions, never bare scalars\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that field-level `@deprecated` is a cheap mechanism carrying real integrator cost, paraphrasing Giroux's caution that deprecation requires work from integrators at best and is a breaking change at worst.",
+        "evidence": "\"deprecation 'requires work from integrators at best, or constitutes a breaking change at worst.'\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Corrects the claim that GraphQL forbids versioning, stating the paradigm does not dictate versioning policy.",
+        "evidence": "It says \"GraphQL has no version numbers in the spec\" and never says the paradigm doesn't dictate a versioning policy.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names Shopify's quarterly date-based versioning of its GraphQL Admin API as the counter-example.",
+        "evidence": "Not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records which versioning stance the team takes and hands the ongoing policy - notice periods, deprecation workflow, removal discipline - to versioning-policy work rather than settling it here.",
+        "evidence": "It drafts the full deprecation policy and mechanics itself.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects `Int` for identifiers and requires the `ID` scalar.",
+        "evidence": "\"Use `id: ID!` on every object type, opaque and globally unique.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a `Node` interface (`interface Node { id: ID! }`) on every entity so any object is refetchable by one global ID.",
+        "evidence": "\"Implement `interface Node { id: ID! }` and `node(id: ID!): Node`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires IDs to be opaque to clients, base64-encoding compound identities rather than exposing raw numeric primary keys.",
+        "evidence": "\"IDs are opaque strings. Clients must not parse them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one shared identifier across the coexisting REST and GraphQL surfaces rather than two separate ID spaces.",
+        "evidence": "It keeps REST numeric paths and adds a separate `restId` bridge field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names GitHub's `node_id` REST-to-GraphQL interop as the worked precedent for one ID space serving both surfaces.",
+        "evidence": "Not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the planned encoding change with a client-controlled opt-in mechanism rather than a deadline-driven forced migration, naming GitHub's `X-Github-Next-Global-ID` request header as the precedent.",
+        "evidence": "It uses a server flag and flips minting, with no client opt-in.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the design goal of that migration: any consumer that never persisted a global ID needs no changes at all.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires additive-friendly return shapes, noting payload objects and result unions can gain members where a bare scalar return type cannot.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that field-level `@deprecated` is a cheap mechanism carrying real integrator cost, paraphrasing Giroux's caution that deprecation requires work from integrators at best and is a breaking change at worst.",
+        "evidence": "It says \"`@deprecated` is a flag, not a mechanism\" but gives no Giroux paraphrase about integrator work.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

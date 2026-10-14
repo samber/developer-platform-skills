@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Treats the decision as a binary gate against a trigger list rather than scoring GraphQL against REST on an efficiency, effort, or value ranking.",
+        "evidence": "Section 1 runs a table of three triggers, each marked Fires? Yes/No, and states: 'Per the skill, the gate is a binary check against the trigger list. It doesn't rank GraphQL and REST by value or effort.' The verdict ('no trigger fires, so stay on REST') comes from the trigger check. The CDN point is supporting context, not a scored comparison. Section 3 ties any reversal to a fired trigger ('If steps 1 and 2 find a real trigger, the gate flips').",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Treats the decision as a binary gate against a trigger list rather than scoring GraphQL against REST on an efficiency, effort, or value ranking.",
+        "evidence": "The answer compares the two options on cost and benefit instead of checking named triggers. It says the numbers make GraphQL 'the weaker fit' and lists four facts that count against it: flat data, little nesting saved, CDN cacheability, and polling better solved elsewhere. It notes that 'there is little to save' and that a forced migration costs goodwill 'for no measurable gain'. It also asks for origin-load modeling as 'the number that will persuade people'. The closest thing to a gate is 'If step 0 shows no real demand, say so', but that is a vague demand check, not an explicit pass/fail lis",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies Ferrolane's complete lack of a public API as the exception to the defensive-positioning framing, making MCP a genuinely new acquisition channel rather than a defensive duplicate.",
+        "evidence": "\"MCP is the first machine-readable interface they ever shipped, which makes it a possible new acquisition channel\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites that roughly half the companies shipping MCP servers had no public REST API.",
+        "evidence": "\"Roughly half of companies shipping MCP servers had no public REST API.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates the competitor announcement from real demand, and asks for demand evidence - buyer RFPs, security questionnaires, customer requests, or an existing community-built server - before sizing the build.",
+        "evidence": "\"two competitors announcing MCP servers is not demand evidence\"; asks sales for RFPs",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that with no machine-readable interface at all the tool surface cannot be derived from an existing contract, which changes the effort and ROI framing.",
+        "evidence": "\"there is no stable contract to derive tools from\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Budgets honestly: demo-grade in days versus production-grade in months plus standing maintenance, citing an order of 150-250 hours for a simple hand-built API-integration server.",
+        "evidence": "\"A demo server takes a weekend. A production server takes months plus a standing maintenance commitment... 150-250 hour\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the park rule: if tool-call volume stays flat and no RFP demand materializes after two full quarters, keep it as low-maintenance table stakes and explicitly defer the production build.",
+        "evidence": "\"If two full quarters pass with flat usage and no RFP demand, park it at stage 1\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the accelerate override: a hard MCP requirement in actual buyer RFPs justifies skipping past the staged timeline.",
+        "evidence": "\"if MCP is a hard requirement in real RFPs, accelerate\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sequences a read-only launch first rather than shipping write tools in the first release.",
+        "evidence": "\"Writes by January are not realistic and not safe\"; stage 1 read-only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks about the effort ceiling and the date the server must land by - engineering hours, maintenance appetite, reversibility - before recommending a hosting posture.",
+        "evidence": "\"What is your engineering ceiling in hours\"; \"Is January a procurement deadline or a competitive-optics date?\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies Ferrolane's complete lack of a public API as the exception to the defensive-positioning framing, making MCP a genuinely new acquisition channel rather than a defensive duplicate.",
+        "evidence": "Treats it as \"your first public API\" and a commitment burden, not as a channel exception.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites that roughly half the companies shipping MCP servers had no public REST API.",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates the competitor announcement from real demand, and asks for demand evidence - buyer RFPs, security questionnaires, customer requests, or an existing community-built server - before sizing the build.",
+        "evidence": "\"Competitor announcements are not evidence of demand.\" Step 1 asks for deals, lost-deal reasons and competitor MCP mentions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that with no machine-readable interface at all the tool surface cannot be derived from an existing contract, which changes the effort and ROI framing.",
+        "evidence": "It only asks whether a service layer exists; it does not make the point about deriving the tool surface.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Budgets honestly: demo-grade in days versus production-grade in months plus standing maintenance, citing an order of 150-250 hours for a simple hand-built API-integration server.",
+        "evidence": "Gives \"3\u20136 engineer-weeks\" and no 150-250 hours.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the park rule: if tool-call volume stays flat and no RFP demand materializes after two full quarters, keep it as low-maintenance table stakes and explicitly defer the production build.",
+        "evidence": "It sets a re-check \"end of Q1\", not the two-quarter park rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the accelerate override: a hard MCP requirement in actual buyer RFPs justifies skipping past the staged timeline.",
+        "evidence": "It says only \"A single large deal blocked on it: go sooner\", with no RFP requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sequences a read-only launch first rather than shipping write tools in the first release.",
+        "evidence": "\"Scope: read-only. Four to six tools... No uploads and no writes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks about the effort ceiling and the date the server must land by - engineering hours, maintenance appetite, reversibility - before recommending a hosting posture.",
+        "evidence": "Its questions cover service layer, why 'no integrations' was chosen, and sales; not effort ceiling or hosting.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

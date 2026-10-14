@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Removes the attribution of the incident to AWS from the public update",
+        "evidence": "\"Removed the AWS theory.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the rule: never deflect to an upstream vendor in public updates, even when the root cause genuinely is upstream",
+        "evidence": "\"If AWS really is the cause, you still shouldn't blame them in the post.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the internal jargon (k8s ingress pods, operator, endpoint churn) from the customer-facing text",
+        "evidence": "\"Removed the k8s ingress and endpoint-churn detail.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the unconfirmed AWS theory as stated fact, keeping only what is confirmed",
+        "evidence": "\"post only what is confirmed\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the update explicitly admit the cause is not yet confirmed rather than omitting the topic",
+        "evidence": "\"We have not yet confirmed the cause and are actively investigating.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the open-ended 'will post more when we know more' with a specific next-update time",
+        "evidence": "\"We will post the next update by [HH:MM] UTC\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a timestamp with an explicit time zone to the update",
+        "evidence": "\"[HH:MM] UTC\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes the retry workaround in the update since retries are known to succeed",
+        "evidence": "\"retrying a failed request usually succeeds\" with backoff and jitter advice",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the 'Operation Redwing' codename with a plain-language title stating the nature of the problem",
+        "evidence": "\"Title: Elevated error rates on the API\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that internal incident identifiers and codenames never surface publicly",
+        "evidence": "\"Public titles use plain language... never an internal codename or ticket ID.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes impact in the consumers' terms (what they are experiencing), not in infrastructure terms",
+        "evidence": "\"some API requests are failing... retrying... usually succeeds\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends posting now rather than waiting for a fuller picture, and keeping page, social, and email consistent with this same content",
+        "evidence": "\"Post now.\"; \"Send the same text to email, RSS, X and any other channel at the same time.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Removes the attribution of the incident to AWS from the public update",
+        "evidence": "\"Softened the AWS claim ... 'infrastructure provider's network'\"; AWS is not named in the post",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the rule: never deflect to an upstream vendor in public updates, even when the root cause genuinely is upstream",
+        "evidence": "\"You can name AWS explicitly once confirmed\" and a follow-up template names AWS. This is the opposite of the rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the internal jargon (k8s ingress pods, operator, endpoint churn) from the customer-facing text",
+        "evidence": "\"Dropped the Kubernetes and ingress detail. Customers can't act on it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the unconfirmed AWS theory as stated fact, keeping only what is confirmed",
+        "evidence": "\"examining several possible causes ... have not yet confirmed a root cause\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the update explicitly admit the cause is not yet confirmed rather than omitting the topic",
+        "evidence": "\"have not yet confirmed a root cause\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the open-ended 'will post more when we know more' with a specific next-update time",
+        "evidence": "\"We will post our next update by [HH:MM UTC]\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a timestamp with an explicit time zone to the update",
+        "evidence": "\"began at [HH:MM UTC]\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes the retry workaround in the update since retries are known to succeed",
+        "evidence": "\"Retrying a failed request usually succeeds.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the 'Operation Redwing' codename with a plain-language title stating the nature of the problem",
+        "evidence": "\"Title: Elevated API errors\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that internal incident identifiers and codenames never surface publicly",
+        "evidence": "\"Removed 'Operation Redwing' and INC-CORK-77. Customers can't use internal names\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes impact in the consumers' terms (what they are experiencing), not in infrastructure terms",
+        "evidence": "\"Some requests are failing\"; \"Affecting all API endpoints\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends posting now rather than waiting for a fuller picture, and keeping page, social, and email consistent with this same content",
+        "evidence": "No advice to post now, and no mention of cross-channel consistency.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Uses a long enough comparison window that a single quiet interval does not fire the signal",
+        "evidence": "The high-volume detector fires only when volume is below baseline in both a short window (about 15\u201360 minutes) and a long window (hours to a day). It compares against the same hour-of-week over 2\u20134 weeks. The low-volume detector fires only when the gap exceeds the learned p99 inter-arrival gap by a margin. It also gives examples: 'A nightly sync that has missed two nights is silent. A 3-calls/hour integration with a 40-minute gap is not.' So one quiet short interval cannot fire the alert alone. The transcript never states this goal outright, and it leaves the fraction and margin unset ('yours ",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Uses a long enough comparison window that a single quiet interval does not fire the signal",
+        "evidence": "The silence window is sized per flow at T \u2248 9/\u03bb, so a normal gap has only about a 1e-4 chance of firing (about 4.5 h for a 2/hr partner). A 15-minute floor keeps jitter from paging. The partial-collapse detector needs volume below 20% of baseline for 3 consecutive windows, and the baseline comes from the trailing 4 weeks by hour-of-week. Not a full 5, because the gap detector still fires once a single window is exceeded. It relies on window sizing alone and does not require several quiet windows in a row.",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

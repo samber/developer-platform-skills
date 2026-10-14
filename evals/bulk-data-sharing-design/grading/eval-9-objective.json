@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Puts the native Databricks Delta Sharing surface first, justified by the 38% concentration",
+        "evidence": "'Camp: both, file-drop first ... Delta Sharing ships second'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts the Parquet-on-object-storage file drop second as the universal fallback serving the warehouse-less majority",
+        "evidence": "The file drop is placed first, not second.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deferring EU region pinning to phase 4, requiring it baked into the first two stages",
+        "evidence": "Region pinning is cross-cutting ... Put it in week 1.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deferring the pricing decision, requiring the surface priced as an enterprise tier or add-on from day one",
+        "evidence": "Decide pricing before the first customer gets access; Gate as enterprise-tier feature or paid add-on. Decide in week 1.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects building the in-house file transfer and sharing service, recommending the destination warehouse's own sharing primitive instead",
+        "evidence": "Replaces phase 1 with 'object storage, short-lived scoped credentials, a thin credential broker', not the warehouse's sharing primitive.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Fivetran acquiring Census in 2025 despite holding a working reverse-ETL prototype as the build-versus-partner evidence",
+        "evidence": "Fivetran bought Census instead of building.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a named revisit trigger for the build-versus-buy choice: vendor usage pricing crossing the fully-loaded cost of roughly 1-2 data engineers",
+        "evidence": "No such trigger is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes cadence upgrades such as incremental or CDC conditional on full-dump cost or a customer freshness requirement, rather than a scheduled phase",
+        "evidence": "Promote only when (a) full-dump bandwidth/compute bill exceeds CDC build cost, or (b) a named customer needs fresher data",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the NPS and adoption criteria with the four binary gates: contract completeness, cost allocation named, residency coverage, and premium gating",
+        "evidence": "Launch gates (binary, from the skill): data contract, cost allocation, residency, paid tier.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats freshness attainment, consumer-reported schema-break incidents and egress cost per recipient as trends to watch rather than pass/fail thresholds",
+        "evidence": "Trends, not thresholds: Share of deliveries meeting stated posture; Egress cost per recipient per month.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the effort ranking favouring the native share assumes the data already sits in a share-capable warehouse or lakehouse, and that getting it there flips the ordering",
+        "evidence": "Share effort assumes data already sits in Delta. Yours probably sits in an operational DB. Getting it there is the real cost.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Puts the native Databricks Delta Sharing surface first, justified by the 38% concentration",
+        "evidence": "\"Treat it as an option, not a day-one build\"; Parquet file drops come first.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts the Parquet-on-object-storage file drop second as the universal fallback serving the warehouse-less majority",
+        "evidence": "Parquet and CSV file drops are the MVP, ahead of any Databricks path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deferring EU region pinning to phase 4, requiring it baked into the first two stages",
+        "evidence": "\"Region is a tenant setting, and the EU bucket exists from the start.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deferring the pricing decision, requiring the surface priced as an enterprise tier or add-on from day one",
+        "evidence": "\"Decide pricing posture: included in the enterprise tier until end of Q2 2027\" in Weeks 0-2, with a pricing posture set before building.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects building the in-house file transfer and sharing service, recommending the destination warehouse's own sharing primitive instead",
+        "evidence": "It rejects the in-house service but recommends managed object storage, signed URLs and managed SFTP, not the warehouse's sharing primitive.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Fivetran acquiring Census in 2025 despite holding a working reverse-ETL prototype as the build-versus-partner evidence",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives a named revisit trigger for the build-versus-buy choice: vendor usage pricing crossing the fully-loaded cost of roughly 1-2 data engineers",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes cadence upgrades such as incremental or CDC conditional on full-dump cost or a customer freshness requirement, rather than a scheduled phase",
+        "evidence": "\"CDC: start only if at least 5 accounts name a use case that needs data fresher than 15 minutes.\" It is listed under \"Gated, not scheduled\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the NPS and adoption criteria with the four binary gates: contract completeness, cost allocation named, residency coverage, and premium gating",
+        "evidence": "It uses an adoption definition and quantitative targets, not the four binary gates.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats freshness attainment, consumer-reported schema-break incidents and egress cost per recipient as trends to watch rather than pass/fail thresholds",
+        "evidence": "Freshness is a pass/fail SLO of at least 99%. Egress per recipient is not tracked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the effort ranking favouring the native share assumes the data already sits in a share-capable warehouse or lakehouse, and that getting it there flips the ordering",
+        "evidence": "Not noted.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

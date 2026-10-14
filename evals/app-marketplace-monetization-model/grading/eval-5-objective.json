@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags the application-and-review enrollment as the core defect: eligible developers who miss the paperwork silently pay the full rate",
+        "evidence": "\"Manual application is the 'opt-in waiver' failure mode... a qualifying developer who misses the paperwork silently pays full rate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires defaulting eligible developers into the waiver automatically rather than making them opt in",
+        "evidence": "\"Fix: default eligible vendors in.\"; \"Enrollment: none.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reason: an opt-in waiver changes paper rather than behavior",
+        "evidence": "The reason given is silent full-rate payment and delay, not 'changes paper rather than behavior'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Challenges the $400,000 threshold against the roughly $1M revenue threshold that major marketplace waiver programs cluster around, and recommends anchoring there rather than inventing a number",
+        "evidence": "\"$400K sits below the $1M anchor... That's allowed, but it needs data.\" The rewrite keeps $400K and does not recommend the $1M anchor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names annual-reset versus lifetime cap as an explicit design decision to make rather than a detail",
+        "evidence": "\"Annual reset is the default. Lifetime (Shopify's 2025 change)... decide deliberately.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that moving from an annual reset to a lifetime cap is a one-way tightening",
+        "evidence": "\"Lifetime (Shopify's 2025 change) is a one-way tightening\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the per-entity allowance as a gap and requires associated or affiliated accounts to aggregate toward the cap",
+        "evidence": "\"Per-entity $400K allowance is a loophole\"; \"one allowance per vendor group.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a stated rule for what happens when a vendor crosses the threshold mid-period",
+        "evidence": "Draft \"silent on mid-quarter crossings\"; the rewrite uses a marginal 0%-on-first-$400K-then-15% shape.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the draft as a revenue-exemption tier and identifies that shape as the default waiver rung on efficiency grounds",
+        "evidence": "\"a revenue-exemption tier is the skill's default rung.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that fee waivers are a standard menu item across major marketplaces rather than an exceptional discount",
+        "evidence": "Cites Apple, Atlassian and Shopify precedents for specific mechanics but never says waivers are standard.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names waiver coverage among eligible developers as the post-launch metric proving the default-in rule worked, and pairs the waiver with a published notice commitment for later changes",
+        "evidence": "\"Waiver coverage among eligible vendors. It should be about 100%\"; \"Six months' notice for unfavorable changes\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags the application-and-review enrollment as the core defect: eligible developers who miss the paperwork silently pay the full rate",
+        "evidence": "Blocker 3: \"only reaches vendors who apply... The solo developer earning $20K never finds the form.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires defaulting eligible developers into the waiver automatically rather than making them opt in",
+        "evidence": "\"compute eligibility automatically from your own ledger\"; \"No application form. Vendors see their status in the portal.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reason: an opt-in waiver changes paper rather than behavior",
+        "evidence": "Not stated. The reasons given are delay and sophistication selection.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Challenges the $400,000 threshold against the roughly $1M revenue threshold that major marketplace waiver programs cluster around, and recommends anchoring there rather than inventing a number",
+        "evidence": "It asks \"Why $400K?\" and says to compare against competing marketplaces. It never cites ~$1M.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names annual-reset versus lifetime cap as an explicit design decision to make rather than a detail",
+        "evidence": "It sets \"Resets Jan 1\" without presenting it as a decision against a lifetime cap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that moving from an annual reset to a lifetime cap is a one-way tightening",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the per-entity allowance as a gap and requires associated or affiliated accounts to aggregate toward the cap",
+        "evidence": "Blocker 1: \"apply one allowance per controlled group, aggregated across all apps.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a stated rule for what happens when a vendor crosses the threshold mid-period",
+        "evidence": "Gap 6 \"No re-test or exit rule\"; the marginal design gives \"first $400K... at 0%, and everything above is at 15%\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the draft as a revenue-exemption tier and identifies that shape as the default waiver rung on efficiency grounds",
+        "evidence": "No such classification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that fee waivers are a standard menu item across major marketplaces rather than an exceptional discount",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names waiver coverage among eligible developers as the post-launch metric proving the default-in rule worked, and pairs the waiver with a published notice commitment for later changes",
+        "evidence": "The metric named is \"apps live after 12 months or vendors crossing $100K\". Neither waiver coverage nor a notice commitment appears.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

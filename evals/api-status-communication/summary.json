@@ -1,0 +1,226 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-status-communication",
+  "scenarios": 8,
+  "expectations_total": 102,
+  "expectations_subjective": 0,
+  "expectations_objective": 102,
+  "pass_rate_with_skill_pct": 93.1,
+  "pass_rate_without_skill_pct": 62.7,
+  "delta_pp": 30.4,
+  "uplift_multiplier": 1.48,
+  "trigger_accuracy_pct": 63.3,
+  "trigger_queries": 90,
+  "trigger_positive_fire_rate": 0.556,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Recommends writing down a staged escalation pipeline: an explicit rule for when an internal event becomes a public communication (alerts, incidents of note, triage, problems, status updates, published report)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends calibrated accuracy rather than maximal alarm, noting an honestly earned green history is itself valuable"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Distinguishes pull (the page the customer must visit) from push (subscriptions) and states a mature practice needs both"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends the severity-to-public-state mapping be agreed once in writing, not debated mid-incident"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Distinguishes SLIs (measured metrics), SLOs (internal targets), and SLAs (contractual commitments with consequences) in the design"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Flags monitoring calibration: probing too sensitively overcounts downtime, too coarsely undercounts it, either corrupting the published number"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Explains that Degraded Performance conventionally counts as 0% downtime, which is exactly how the two latency-doubling periods vanished from the number"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Justifies the standard vocabulary by subscriber comprehension: readers already know the industry-wide set, a custom set costs comprehension and buys nothing"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Defines Degraded Performance as working but slow for everyone"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Defines Major Outage as unavailable for everyone"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States explicitly that component severity encodes breadth of impact, not felt severity"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends writing the aggregation/blend rule down so it is applied consistently rather than re-argued per incident"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Classifies the Frankfurt case as a Partial Outage scoped to that region, not a blanket page-wide state alarming users elsewhere"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Removes the human confirmation/approval gate as a precondition for the first public status change"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends writing down a staged escalation pipeline: an explicit rule for when an internal event becomes a public communication (alerts, incidents of note, triage, problems, status updates, published report)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends adding at least one workflow-level probe exercising a real multi-step user journey, not only infrastructure checks"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Distinguishes infrastructure-green from product-broken as different claims when justifying the workflow probe"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that a lag in the tens of minutes indicates a human gate is still in the loop"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Identifies customer migration to third-party complaint aggregators as the failure signal of lost trust in the page"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends calibrated accuracy rather than maximal alarm, noting an honestly earned green history is itself valuable"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends the status page with email and RSS subscription enabled as the default first rung"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that subscriptions reduce inbound support tickets during incidents (a support-load lever, not a courtesy)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Notes webhook push is cheap here specifically because the platform already runs webhook delivery infrastructure"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the SMS re-promotion trigger: the first contract that specifies a notification channel"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Distinguishes pull (the page the customer must visit) from push (subscriptions) and states a mature practice needs both"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the rule: never deflect to an upstream vendor in public updates, even when the root cause genuinely is upstream"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends posting now rather than waiting for a fuller picture, and keeping page, social, and email consistent with this same content"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Sets the component to Partial Outage, not Major Outage, despite the CEO's framing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Justifies via the breadth axis: completely broken for a subset (one region) is the definition of Partial Outage; Major Outage means unavailable for everyone"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Maps SEV2 to Partial Outage consistent with a severity-to-component-state mapping"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends the severity-to-public-state mapping be agreed once in writing, not debated mid-incident"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Has the Resolved update acknowledge or apologize for the disruption"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Counters legal's default with the SRE argument: sharing a postmortem widely multiplies its learning value, and an honest postmortem is a key tool in restoring shaken trust"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Structures the external document around: why did this happen; could it have been worse; how do we make sure it won't happen again"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes a 'could it have been worse / where we got lucky' section transferred close to as-is from the internal version"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Splits action items into mitigative and preventative, each with an owner and a status"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Commits to publicly updating action-item status, noting completion below roughly 50% is the threshold at which postmortems become theater"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Warns that publication is irreversible (a correction can be appended, an admission cannot be unpublished) and that the deep write-up triggers legal/comms sign-off on cause language"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Defines a response-time threshold above which a slow response counts as downtime"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Defines whether the number is evaluated service-wide or per affected component, consistent with the status page's breadth model"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Flags monitoring calibration: probing too sensitively overcounts downtime, too coarsely undercounts it, either corrupting the published number"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Translates the percentage target into allowed downtime minutes published alongside it (e.g. 99.9% as roughly 43 minutes per month, 99.99% as roughly 4.3 minutes per month)"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the SLA/uptime page and the status page as distinct artifacts: historical performance against commitments versus current discrete incidents"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends offering both pages, cross-linked"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that SLA exclusion is not trust exclusion: a badly communicated window still costs trust even when the arithmetic forgives it"
+      }
+    ]
+  }
+}

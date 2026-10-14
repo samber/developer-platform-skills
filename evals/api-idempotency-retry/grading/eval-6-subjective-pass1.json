@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Treats SDK defaults as the de-facto contract for the majority of callers who never read the docs, reviewed with API-contract rigor",
+        "evidence": "The review states it outright: \"Most callers never read past install. The defaults are the contract.\" It adds \"The safe path should be the zero-config path\" and says off-by-default \"moves it to code you don't control.\" It then specifies the defaults precisely: a 3-attempt total, a hard ceiling of 5, the full-jitter formula, a 40s overall deadline, per-attempt timeouts, token-bucket costs, idempotency-key behavior, and the retry/never-retry status codes. It requires the default table in each SDK README \"with the same precision as the raw-HTTP contract.\"",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Treats SDK defaults as the de-facto contract for the majority of callers who never read the docs, reviewed with API-contract rigor",
+        "evidence": "The review's first argument is that 'Most integrators never opt in, so every transient 503, connection reset or 429 reaches their users.' That ties the defaults to what most callers will actually experience. It also handles the defaults as contract: v2 is a major version and 'the right moment to change behavior'; the release notes must 'state plainly that retries are now on' and give the opt-out (`max_retries=0`); the per-attempt timeout is kept so 'a single-attempt call behaves the same as before'; both SDKs share the same parameter names; and retry semantics are spelled out by status code, H",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

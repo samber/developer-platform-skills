@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Produces a written two-list definition (breaking vs non-breaking) as policy text, not just case-by-case rulings on the two disputes.",
+        "evidence": "The policy section has \"Breaking changes\" and \"Non-breaking changes\" lists.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies adding the benefits_class response field as non-breaking, shippable into the current version.",
+        "evidence": "\"This is a new response property, which is explicitly non-breaking.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies adding new optional request parameters as non-breaking in the written list.",
+        "evidence": "\"Adding optional request parameters, including a new name for an existing one\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies renaming the dept query parameter as a breaking change requiring a new version - rejects shipping the rename in place.",
+        "evidence": "\"Marcus cannot just ship it.\" and \"Removing or renaming ... a query parameter\" is listed as breaking.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Resolves the enum dispute with the open-enum device: declare explicitly which enum fields may grow new values without a version bump.",
+        "evidence": "\"declare employment_type an open enum in the published policy\", with an Open enums section.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the open-enum rationale: it shifts tolerance onto callers and cuts version churn, as a documented backward-compatible carve-out.",
+        "evidence": "It says clients MUST handle unknown values, but never gives the rationale of shifting tolerance to callers and reducing version churn.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies removing an enum value as breaking in the written list.",
+        "evidence": "\"Removing an enum value.\" appears in the breaking list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the unwritten security understanding: the policy must contain a written, narrowly scoped exception reserving the right to patch any version for critical security or privacy issues.",
+        "evidence": "A \"Security, privacy and bug-fix exception\" section covers critical security and privacy fixes and states that business reasons never qualify.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declares what is explicitly not contractual (such as message text, ordering, or timing), reflecting that with enough users every observable behavior gets depended on.",
+        "evidence": "Error message text, array ordering and response timing are listed as not contractual.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that without a published definition every dispute becomes a judgment call - which is exactly what happened here - so the definition must be published.",
+        "evidence": "It says the test settles disputes, but never states that without a published definition each dispute becomes a judgment call.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes the operational health metric: needing breaking changes more than roughly twice a year signals the scheme or compatibility discipline is wrong.",
+        "evidence": "\"Target: at most [2] breaking changes per year. A higher rate triggers a review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies changing the status code or content type for the same scenario as breaking in the written list.",
+        "evidence": "\"Changing the status code or content type for the same scenario.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies changes to the length or format of opaque strings (such as ID prefixes) as non-breaking in the written list.",
+        "evidence": "\"Changing the length or format of opaque strings, including ID prefixes.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Produces a written two-list definition (breaking vs non-breaking) as policy text, not just case-by-case rulings on the two disputes.",
+        "evidence": "\u00a72 Non-breaking changes and \u00a73 Breaking changes.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies adding the benefits_class response field as non-breaking, shippable into the current version.",
+        "evidence": "\"Adding a response field is non-breaking. It ships now.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies adding new optional request parameters as non-breaking in the written list.",
+        "evidence": "\"Adding an optional request parameter or field.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies renaming the dept query parameter as a breaking change requiring a new version - rejects shipping the rename in place.",
+        "evidence": "\"Marcus is wrong. It is breaking\"; remove the old name only in the next major version.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Resolves the enum dispute with the open-enum device: declare explicitly which enum fields may grow new values without a version bump.",
+        "evidence": "\"Every response enum created after [DATE] is open... tolerate unknown values in any response enum marked `open`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the open-enum rationale: it shifts tolerance onto callers and cuts version churn, as a documented backward-compatible carve-out.",
+        "evidence": "It states the obligation but not the rationale of shifted tolerance or less churn.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies removing an enum value as breaking in the written list.",
+        "evidence": "\"Removing or renaming any endpoint, parameter, field, header, or enum value.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the unwritten security understanding: the policy must contain a written, narrowly scoped exception reserving the right to patch any version for critical security or privacy issues.",
+        "evidence": "\u00a77: security fixes may ship as breaking; critical CVEs in sunset versions may still be patched at discretion.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declares what is explicitly not contractual (such as message text, ordering, or timing), reflecting that with enough users every observable behavior gets depended on.",
+        "evidence": "No non-contractual list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that without a published definition every dispute becomes a judgment call - which is exactly what happened here - so the definition must be published.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes the operational health metric: needing breaking changes more than roughly twice a year signals the scheme or compatibility discipline is wrong.",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies changing the status code or content type for the same scenario as breaking in the written list.",
+        "evidence": "Only \"Changing error codes or response shape\" is listed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies changes to the length or format of opaque strings (such as ID prefixes) as non-breaking in the written list.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

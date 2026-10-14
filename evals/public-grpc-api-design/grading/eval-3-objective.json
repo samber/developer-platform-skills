@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Answers that the described pipeline does not cover the published contract and the statement cannot be signed as written",
+        "evidence": "\"No. Do not sign it as written.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names that `buf breaking` does not inspect custom options, so changes to `google.api.http` annotations pass every proto gate while breaking the public REST mapping",
+        "evidence": "\"It diffs the proto schema and ignores custom options.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a dedicated annotation check: snapshot the annotation-derived HTTP surface (paths, verbs, body mappings) and diff it in CI, or contract-test the transcoded routes",
+        "evidence": "\"snapshot the annotation-derived routes (path, verb, body) and diff them in CI, or contract-test the transcoded routes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends upgrading from PACKAGE to the FILE category for a public surface, and gives the reason that PACKAGE forgives moving a definition between files while FILE catches generated-import breakage",
+        "evidence": "\"PACKAGE forgives moving a message or definition between files... Partners generating their own stubs hit broken imports\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Protobuf's encoding guarantees wire compatibility only, not generated-client-code compatibility",
+        "evidence": "Never states that protobuf encoding guarantees only wire compatibility.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that a rename is semantically remove-and-add and is therefore always breaking, never a safe refactor",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that moving a field into or out of a `oneof` breaks generated Go stubs",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that moving a message to a different file breaks generated imports because the file path is part of the generated-code contract",
+        "evidence": "\"The file path is part of the generated-code contract.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires cross-version testing in both directions - old client against new server and new client against old server - rather than treating schema parsing as sufficient",
+        "evidence": "Step 5 is \"Optionally, test an old client against a new server and the reverse\"; optional, not required.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes a human backstop for a public surface, such as a Buf Schema Registry review queue where a breaking push is approved or rejected with a paper trail (or a proto.lock-based equivalent for teams not on buf)",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the coverage gate as binary: 100% of RPCs carrying google.api.http annotations covered by a mapping diff or contract test",
+        "evidence": "\"Check that every RPC with a google.api.http annotation is covered by that check... Make it a hard gate.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Answers that the described pipeline does not cover the published contract and the statement cannot be signed as written",
+        "evidence": "\"Can you sign it? \u274c No, not as worded\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names that `buf breaking` does not inspect custom options, so changes to `google.api.http` annotations pass every proto gate while breaking the public REST mapping",
+        "evidence": "\"they don't check google.api.http annotations. Changing a path, verb, body... breaks REST clients. buf breaking stays green.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a dedicated annotation check: snapshot the annotation-derived HTTP surface (paths, verbs, body mappings) and diff it in CI, or contract-test the transcoded routes",
+        "evidence": "\"Generate OpenAPI from the protos and commit it. Run a diff tool such as oasdiff breaking against the last release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends upgrading from PACKAGE to the FILE category for a public surface, and gives the reason that PACKAGE forgives moving a definition between files while FILE catches generated-import breakage",
+        "evidence": "\"PACKAGE doesn't flag moving a message between files in the same package, deleting a file, or changing file options... Only FILE catches those.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Protobuf's encoding guarantees wire compatibility only, not generated-client-code compatibility",
+        "evidence": "This is not stated as a principle. It only says PACKAGE misses generated-code layout changes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that a rename is semantically remove-and-add and is therefore always breaking, never a safe refactor",
+        "evidence": "Renaming a field appears only as a canary PR, with no explanation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that moving a field into or out of a `oneof` breaks generated Go stubs",
+        "evidence": "oneof is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that moving a message to a different file breaks generated imports because the file path is part of the generated-code contract",
+        "evidence": "\"Partners who import your .proto files by path, or who rely on generated-code layout, break on those changes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires cross-version testing in both directions - old client against new server and new client against old server - rather than treating schema parsing as sufficient",
+        "evidence": "It prescribes canary PRs only, with no old-client/new-server testing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes a human backstop for a public surface, such as a Buf Schema Registry review queue where a breaking push is approved or rejected with a paper trail (or a proto.lock-based equivalent for teams not on buf)",
+        "evidence": "It proposes CODEOWNERS on buf.yaml and required checks, with no review or approval queue for breaking pushes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the coverage gate as binary: 100% of RPCs carrying google.api.http annotations covered by a mapping diff or contract test",
+        "evidence": "No coverage gate is stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

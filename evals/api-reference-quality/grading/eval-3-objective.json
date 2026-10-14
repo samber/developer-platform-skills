@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Cites a mean documentation quality of 67.11 percent measured across 2,529 public OpenAPI specs (OASQuali)",
+        "evidence": "'Mean documentation quality is 67.11% across 2,529 public OpenAPI specs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites parameter examples absent from 86.95 percent of specs",
+        "evidence": "'86.95% of specs have no parameter examples.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the spec-corpus figures as peer-reviewed corpus measurement",
+        "evidence": "Evidence quality column: 'Peer-reviewed'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the Postman 2024 State of the API findings: 39 percent call inconsistent docs their biggest roadblock and/or 44 percent dig through source code to understand APIs",
+        "evidence": "39% inconsistent docs; 44% dig through source code.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the Postman survey figures as large-sample survey self-report, distinct from spec measurement",
+        "evidence": "'Survey self-report'; 'The survey figures are perception.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the 1.7x to 56x faster time-to-first-call range as Postman's own vendor experiment, never as a controlled or independent result",
+        "evidence": "'Vendor experiment'; 'Neither figure is a controlled, independent result.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the roughly 10x faster and 225 percent registration figures as the Postman Moneris customer story, a named vendor case study",
+        "evidence": "'Postman, Moneris customer story, 2025 | Vendor customer story'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the try-it figures conflate the console with sandbox testing and better onboarding generally, so neither isolates the console's effect",
+        "evidence": "'It bundles the console with sandbox testing and better onboarding generally.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends measuring the company's own before-and-after time-to-first-call instead of reusing any vendor multiplier",
+        "evidence": "'Measure Corven's current time-to-first-call now... Report your own before/after figure.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not present the roughly 10 percent undocumented-exception crash figure as a REST or HTTP API statistic; if cited at all it is attributed as an Android platform-API study",
+        "evidence": "'Do not cite the Kechagia 10% as a REST statistic. It is an Android platform study.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a time-to-first-call target appears, the under-10-minutes bound is labeled practitioner consensus, not a measured industry statistic",
+        "evidence": "'practitioner consensus bound... a borrowed target, not an industry average.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every figure presented carries a named source rather than appearing as an unattributed statistic",
+        "evidence": "Each table row names a source.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions Stripe and Twilio as practitioner-consensus benchmarks compared by checkable mechanisms, not as controlled comparison evidence",
+        "evidence": "Only Stripe is mentioned ('Stripe's docs embed live, personalized test keys'). Twilio is not positioned as a benchmark.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Cites a mean documentation quality of 67.11 percent measured across 2,529 public OpenAPI specs (OASQuali)",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites parameter examples absent from 86.95 percent of specs",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the spec-corpus figures as peer-reviewed corpus measurement",
+        "evidence": "No corpus figures appear.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the Postman 2024 State of the API findings: 39 percent call inconsistent docs their biggest roadblock and/or 44 percent dig through source code to understand APIs",
+        "evidence": "It cites the 39% figure but attributes it to 'Postman, State of the API Report, 2023 edition', not the 2024 report.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the Postman survey figures as large-sample survey self-report, distinct from spec measurement",
+        "evidence": "Called a 'respondents' figure but not explicitly labeled self-report or contrasted with spec measurement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the 1.7x to 56x faster time-to-first-call range as Postman's own vendor experiment, never as a controlled or independent result",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the roughly 10x faster and 225 percent registration figures as the Postman Moneris customer story, a named vendor case study",
+        "evidence": "It says 'Don't use the 10x claim. I know of no independent study.' No Moneris attribution.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the try-it figures conflate the console with sandbox testing and better onboarding generally, so neither isolates the console's effect",
+        "evidence": "Says the figure is time to first call versus a no-sandbox baseline, which is not the same conflation claim.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends measuring the company's own before-and-after time-to-first-call instead of reusing any vendor multiplier",
+        "evidence": "'Baseline: measure your current median time to first successful call... Pilot... re-measure.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not present the roughly 10 percent undocumented-exception crash figure as a REST or HTTP API statistic; if cited at all it is attributed as an Android platform-API study",
+        "evidence": "The figure isn't cited.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a time-to-first-call target appears, the under-10-minutes bound is labeled practitioner consensus, not a measured industry statistic",
+        "evidence": "No such target appears.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every figure presented carries a named source rather than appearing as an unattributed statistic",
+        "evidence": "The table has a Source column for every stat.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions Stripe and Twilio as practitioner-consensus benchmarks compared by checkable mechanisms, not as controlled comparison evidence",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Presents the options as an explicit ranking rather than a flat pros-and-cons list",
+        "evidence": "A flat comparison table with a \"Fit for 6 weeks\" row; no explicit ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the ordering on separate axes, with effort ordered raw public gRPC edge > grpc-gateway == Envoy transcoder > Connect-RPC, and value and efficiency both ordering Connect-RPC > Envoy transcoder > grpc-gateway > raw public gRPC edge",
+        "evidence": "No separate effort/value/efficiency orderings are given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names Connect-RPC as the default rung for a new public surface",
+        "evidence": "\"Connect is the skill's default for new surfaces.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists Connect-RPC's concrete properties: no proxy required, browsers served natively, full streaming over HTTP/2, JSON errors out of the box, wire-compatible with gRPC",
+        "evidence": "\"one server speaks Connect, gRPC and gRPC-Web, the browser works natively, and errors are JSON\"; \"wire-compatible with gRPC\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the condition that promotes Envoy's gRPC-JSON transcoder - Envoy is already the mesh data plane and a second runtime is the real cost - and applies it to this team's existing Envoy fluency",
+        "evidence": "\"No, you already run Envoy\"; \"already run Envoy, two engineers know it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the grpc-gateway == Envoy effort tie explicitly, and identifies 'you already run Envoy' as the condition that breaks it",
+        "evidence": "\"It costs the same order of effort as Envoy in general, but 'already run Envoy...' breaks that tie.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names grpc-gateway's default error handler as the weakest of the options, and its codegen step plus double JSON-to-protobuf parse per request as recurring costs",
+        "evidence": "\"default error handler flattens messages and drops details\"; \"regenerates a Go proxy\"; \"double JSON\u2194protobuf parse\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes raw public gRPC as the only surface outright because a browser client is confirmed, rather than demoting it to the bottom of the menu",
+        "evidence": "\"Browsers can't speak gRPC framing, so it can't be the only surface.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Re-ranks against the stated inputs and says which input moved which option - the six-week ship date and the existing Envoy expertise promoting what the team already operates",
+        "evidence": "Six-week window and existing Envoy expertise are what move Envoy ahead of Connect.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the ranking is a default rather than a law",
+        "evidence": "Not stated explicitly.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Steers the latency-sensitive partner backends to native gRPC or Connect's binary mode, noting that no JSON-transcoding path is free",
+        "evidence": "\"move those partners to Connect's binary mode or native gRPC\"; \"Every JSON-transcoding path pays a parse and serialize cost\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires google.api.http annotations on every RPC except bidirectional streaming as the mapping convention regardless of which rung is chosen",
+        "evidence": "Says \"Annotate the protos\" but gives no every-RPC-except-bidi convention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes a single concrete recommendation for this team rather than leaving the choice open",
+        "evidence": "\"Use Envoy's gRPC-JSON transcoder at the edge, not grpc-gateway.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Presents the options as an explicit ranking rather than a flat pros-and-cons list",
+        "evidence": "Options 1-5 are listed with pros and cons and a recommendation. There is no ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the ordering on separate axes, with effort ordered raw public gRPC edge > grpc-gateway == Envoy transcoder > Connect-RPC, and value and efficiency both ordering Connect-RPC > Envoy transcoder > grpc-gateway > raw public gRPC edge",
+        "evidence": "Effort and value axes are absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names Connect-RPC as the default rung for a new public surface",
+        "evidence": "Connect is option 4, \"Pick it only if you do not need REST resources.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists Connect-RPC's concrete properties: no proxy required, browsers served natively, full streaming over HTTP/2, JSON errors out of the box, wire-compatible with gRPC",
+        "evidence": "It mentions one handler for gRPC, gRPC-web and JSON and no proxy filter, but not the full set, and frames the JSON as a con.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the condition that promotes Envoy's gRPC-JSON transcoder - Envoy is already the mesh data plane and a second runtime is the real cost - and applies it to this team's existing Envoy fluency",
+        "evidence": "\"Envoy already runs as your data plane... Two engineers know Envoy config. Nobody needs to learn a new proxy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the grpc-gateway == Envoy effort tie explicitly, and identifies 'you already run Envoy' as the condition that breaks it",
+        "evidence": "No effort tie is explained.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names grpc-gateway's default error handler as the weakest of the options, and its codegen step plus double JSON-to-protobuf parse per request as recurring costs",
+        "evidence": "It lists grpc-gateway pros and cons without these.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Deletes raw public gRPC as the only surface outright because a browser client is confirmed, rather than demoting it to the bottom of the menu",
+        "evidence": "Raw public gRPC as the only surface is not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-ranks against the stated inputs and says which input moved which option - the six-week ship date and the existing Envoy expertise promoting what the team already operates",
+        "evidence": "\"Six weeks is tight. Fewer moving parts wins.\" and \"Two engineers know Envoy config\" are tied to choosing Envoy.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the ranking is a default rather than a law",
+        "evidence": "No such statement. It gives a firm decision and a fallback.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Steers the latency-sensitive partner backends to native gRPC or Connect's binary mode, noting that no JSON-transcoding path is free",
+        "evidence": "Partners are routed through Envoy transcoding, with no mention of native gRPC for latency-sensitive backends.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires google.api.http annotations on every RPC except bidirectional streaming as the mapping convention regardless of which rung is chosen",
+        "evidence": "The spike only checks that \"google.api.http annotations cover your routes\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes a single concrete recommendation for this team rather than leaving the choice open",
+        "evidence": "\"Decision: use Envoy as the single edge, with its gRPC-JSON transcoder.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

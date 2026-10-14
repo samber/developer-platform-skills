@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags the combination as invalid: a non-direct charge pattern requires the platform to carry losses, so destination charges with Stripe as loss collector is blocked or silently shifts liability back to the platform",
+        "evidence": "\"Destination charges with `losses_collector: stripe`... this combination is blocked.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the account dials (dashboard access, fee collection, loss liability) collapse into two coherent bundles rather than being freely mixable",
+        "evidence": "\"Three independent dials... Only two combinations hang together.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the marketplace-shaped bundle: express dashboard, platform collects fees, platform carries losses, destination or separate charges",
+        "evidence": "Table column \"Marketplace-shaped bundle\"; design: \"express... platform is MoR... losses_collector: application\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the SaaS-shaped bundle: full dashboard, Stripe bills the developer, Stripe carries losses, direct charges only",
+        "evidence": "Table column \"SaaS-shaped bundle\": direct charges, full dashboard, vendor's name, \"`losses_collector: stripe` \u2705\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags full-dashboard access as belonging to the SaaS-shaped bundle and inconsistent with the destination-charge, platform-as-MoR intent",
+        "evidence": "\"The full dashboard belongs to the SaaS-shaped bundle (direct charges).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States destination charges pay the connected account on payment success and therefore cannot implement a hold-and-release model",
+        "evidence": "\"Destination charges auto-pay the vendor on payment success. They are explicitly not for hold-and-release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes separate charges and transfers as the pattern required for delayed, gated, or split payouts",
+        "evidence": "\"A hold needs separate charges and transfers\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the charge pattern is what technically determines merchant of record: direct charges make the developer MoR, destination and separate charges make the platform MoR",
+        "evidence": "\"Destination charges also make you the merchant of record\"; direct charges mean \"the vendor is MoR\"; separate charges and transfers make \"the platform MoR\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against using on_behalf_of for marketplace use cases because it keeps the charge on the platform while making the developer merchant of record",
+        "evidence": "on_behalf_of is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs picking a whole bundle rather than dials \u00e0 la carte, naming the failure mode as the platform carrying dispute losses it believed it had pushed to developers",
+        "evidence": "\"Choose which two of these you want to give up\"; \"near-miss combinations can silently leave you holding dispute losses\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the 45-day hold to be sized against actual refund and chargeback exposure and published as part of an end-to-end sale-to-bank timeline",
+        "evidence": "\"Hold sizing... Check the dispute window\"; \"Publish the real end-to-end number... about 75 days or more\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises the per-active-developer cost of the managed marketplace bundle (per-account monthly fee plus fixed and percentage per-payout fees on top of processing) and says to model unit economics per active developer, not per transaction",
+        "evidence": "\"about \u00a31.60 per month plus 0.25% and \u00a30.20 per payout... Model the margin per active vendor, not per transaction.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags the combination as invalid: a non-direct charge pattern requires the platform to carry losses, so destination charges with Stripe as loss collector is blocked or silently shifts liability back to the platform",
+        "evidence": "\"`losses_collector: stripe` doesn't remove your chargeback exposure... the dispute fee and disputed amount debit your balance.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the account dials (dashboard access, fee collection, loss liability) collapse into two coherent bundles rather than being freely mixable",
+        "evidence": "Says \"Three of your five pieces conflict\" but never describes two bundles.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the marketplace-shaped bundle: express dashboard, platform collects fees, platform carries losses, destination or separate charges",
+        "evidence": "The bundle is not named or described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the SaaS-shaped bundle: full dashboard, Stripe bills the developer, Stripe carries losses, direct charges only",
+        "evidence": "The bundle is not named or described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags full-dashboard access as belonging to the SaaS-shaped bundle and inconsistent with the destination-charge, platform-as-MoR intent",
+        "evidence": "It notes full Dashboards let vendors control payouts. It does not tie this to a SaaS-shaped bundle or to the platform-as-MoR intent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States destination charges pay the connected account on payment success and therefore cannot implement a hold-and-release model",
+        "evidence": "\"A destination charge transfers the vendor's share to their balance at charge time.\" Heading: \"Destination charges can't give you a 45-day hold.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes separate charges and transfers as the pattern required for delayed, gated, or split payouts",
+        "evidence": "\"Separate charges and transfers (recommended)... create the transfer at day 45 with `source_transaction`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the charge pattern is what technically determines merchant of record: direct charges make the developer MoR, destination and separate charges make the platform MoR",
+        "evidence": "It says direct charges put the vendor's name on the statement and recommends separate charges \"with the platform as merchant of record\". It never states that the charge pattern determines MoR.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns against using on_behalf_of for marketplace use cases because it keeps the charge on the platform while making the developer merchant of record",
+        "evidence": "\"Adding `on_behalf_of` makes the vendor the business of record, which changes the statement descriptor... separate charges and transfers avoid this.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs picking a whole bundle rather than dials \u00e0 la carte, naming the failure mode as the platform carrying dispute losses it believed it had pushed to developers",
+        "evidence": "No bundle-choice instruction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the 45-day hold to be sized against actual refund and chargeback exposure and published as part of an end-to-end sale-to-bank timeline",
+        "evidence": "It notes the hold is shorter than the ~120-day dispute window and suggests reserves. It only suggests disclosing the hold in vendor ToS and never calls for a published end-to-end timeline.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Raises the per-active-developer cost of the managed marketplace bundle (per-account monthly fee plus fixed and percentage per-payout fees on top of processing) and says to model unit economics per active developer, not per transaction",
+        "evidence": "It mentions processing fees on small tickets only. It does not mention per-account or per-payout fees or per-developer modeling.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

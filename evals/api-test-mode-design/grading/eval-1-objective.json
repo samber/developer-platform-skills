@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends the soft toggle (mode flag on the live account with mode-prefixed keys routing to test infrastructure) as the model to build now, not the fully separate sandbox environment.",
+        "evidence": "\"Build the soft test-mode toggle plus magic test cards on your existing stack... Don't build the separate sandbox now\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explicitly rules the no-test-mode / documented-convention option out entirely for this API rather than listing or ranking it as a viable last option, because money flows through the API.",
+        "evidence": "\"ruled out, not just demoted... Payflux moves money... so this option is out entirely.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the choice to the hard 6-week deadline and weeks-level engineering budget as the inputs that promote the soft toggle over the separate-copy environment.",
+        "evidence": "\"Your budget is weeks, not quarters... Two quarters is about 26 weeks against a 6-week deadline.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the separate-copy sandbox from this build pass and names a concrete condition that revives it, such as a first cross-mode leakage incident or a compliance regime landing.",
+        "evidence": "\"Revisit when the first cross-mode leakage incident happens, or a compliance regime demands demonstrable isolation\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a mode flag (livemode-style boolean) on every API object so test data is invisible to live calls and vice versa.",
+        "evidence": "\"add `livemode` to every object (platforms, vendors, payments, payouts, webhooks)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies mode-prefixed API keys using the recognized type-prefix plus _test_/_live_ mode-substring shape rather than inventing a novel format.",
+        "evidence": "\"type prefix plus a `_test_` or `_live_` substring, for example `sk_test_\u2026`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Calls out that testing with real card numbers must stop, treating it as a compliance/terms violation rather than a mere inconvenience.",
+        "evidence": "Only says \"Real money moves and card data leaks into test logs\" and breaks an internal rule; no compliance or terms violation is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes magic test card numbers as the first simulation primitive and includes deliberate-failure values (specific declines), not only a success card.",
+        "evidence": "\"The carrier is the card number... Generic decline. Insufficient funds... Expired card and bad CVC... 3DS challenge required.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires each magic value to map onto a real published error/decline code from the API's error catalog, never a sandbox-only error shape.",
+        "evidence": "\"Each one maps one-to-one to your **real** published error code.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the sandbox's isolation level explicitly in the docs instead of letting the word 'sandbox' imply it.",
+        "evidence": "\"State the level in the docs: logical isolation, same host, shared infrastructure... Don't just say 'sandbox'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that graduation to live will be gated by a compliance step (KYC-style activation) and recommends integrators submit it early because review can take days.",
+        "evidence": "\"Gate: KYC activation... Submit KYC early, before the launch date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a mirrored test-mode version of the hosted checkout page, so the end-user-facing surface is testable, not just API responses.",
+        "evidence": "\"4. Hosted checkout, mirrored... visible 'Test mode' banner\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enforcing the mode boundary bidirectionally: live keys reject test card values and test keys reject real cards.",
+        "evidence": "\"Live rejects test values and test rejects real card numbers, in both directions.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends the soft toggle (mode flag on the live account with mode-prefixed keys routing to test infrastructure) as the model to build now, not the fully separate sandbox environment.",
+        "evidence": "\"Ship a test mode, selected by API key, on your current API and checkout hosts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explicitly rules the no-test-mode / documented-convention option out entirely for this API rather than listing or ranking it as a viable last option, because money flows through the API.",
+        "evidence": "\"the 'just write a doc' option fails... Partners would still move real money\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the choice to the hard 6-week deadline and weeks-level engineering budget as the inputs that promote the soft toggle over the separate-copy environment.",
+        "evidence": "\"It misses the 6-week deadline by about three months.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the separate-copy sandbox from this build pass and names a concrete condition that revives it, such as a first cross-mode leakage incident or a compliance regime landing.",
+        "evidence": "\"Revisit these only if... evidence that mode leakage can't be contained at the data layer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a mode flag (livemode-style boolean) on every API object so test data is invisible to live calls and vice versa.",
+        "evidence": "\"Store a livemode flag on every resource\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies mode-prefixed API keys using the recognized type-prefix plus _test_/_live_ mode-substring shape rather than inventing a novel format.",
+        "evidence": "\"sk_test_\u2026 and sk_live_\u2026\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Calls out that testing with real card numbers must stop, treating it as a compliance/terms violation rather than a mere inconvenience.",
+        "evidence": "\"Real card numbers in a shared environment put that environment in PCI scope.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes magic test card numbers as the first simulation primitive and includes deliberate-failure values (specific declines), not only a success card.",
+        "evidence": "\"success, generic decline, insufficient funds, 3DS required, 3DS fails, disputed later\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires each magic value to map onto a real published error/decline code from the API's error catalog, never a sandbox-only error shape.",
+        "evidence": "No mention of mapping to the production error catalog.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the sandbox's isolation level explicitly in the docs instead of letting the word 'sandbox' imply it.",
+        "evidence": "Docs section covers quickstart and magic-value table only, with no isolation statement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that graduation to live will be gated by a compliance step (KYC-style activation) and recommends integrators submit it early because review can take days.",
+        "evidence": "Only says test keys need no KYC; nothing on the live activation gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a mirrored test-mode version of the hosted checkout page, so the end-user-facing surface is testable, not just API responses.",
+        "evidence": "\"Hosted checkout in test mode... Show a clear 'Test mode' banner.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enforcing the mode boundary bidirectionally: live keys reject test card values and test keys reject real cards.",
+        "evidence": "\"Reject real PANs in test mode, and reject test PANs in live mode.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

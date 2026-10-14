@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the proposed monthly meeting cadence and triggers review on audience and lifecycle stage instead of a calendar",
+        "evidence": "'Drop the monthly meeting as the gate. Triggers are audience \u00d7 lifecycle, never the calendar.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States review is required at beta and at GA-if-changed, recommended at alpha, and skipped for internal-only surfaces",
+        "evidence": "Review rule 1 lists all four cases.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects growing the architect group from 5 to 10 and states that growing a central committee is the one scaling move no studied company chose",
+        "evidence": "'Growing a central committee is the one scaling move no studied company chose.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the certified federated reviewer pool rung for this organization",
+        "evidence": "'Weeks 8-26: promote to a certified federated reviewer pool.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the two-quarter runway, the budget, and the 31-team scale as the answers that promoted that rung above the default",
+        "evidence": "'You have 19 teams... You have budget and two quarters'. The transcript says 19 teams, not the 31 in the rubric.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the maturity-ladder ordering explicitly in the text rather than leaving it implied by the order of a list",
+        "evidence": "It says 'This is the maturity ladder' but gives no explicit ordering of the rungs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives separate orderings for efficiency and for effort or value, noting the federated pool loses every efficiency round while winning on value",
+        "evidence": "Only 'highest-value and highest-effort rung' appears. There are no separate orderings.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a shared, versioned rule corpus to exist before the reviewer pool grows",
+        "evidence": "'the federated rung needs the corpus it produces' and 'Version the corpus.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that growing reviewers without a versioned corpus degrades turnaround time and guidance consistency together",
+        "evidence": "'Google measured turnaround and guidance consistency degrading together as its reviewer pool grew.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes the centralized-friction-point concession to Kenneth Auchenberg personally rather than to Stripe as a company",
+        "evidence": "'Stripe's Kenneth Auchenberg called central review...'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires publishing the escalation path and a named override authority up front",
+        "evidence": "Review rule 6.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places a spec linter first for mechanical checks and keeps semantic judgment with human reviewers",
+        "evidence": "'Skip the linter-only gate... semantic checks need humans' and 'humans never spend review time on mechanical checks'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives turnaround guidance of under a week for small APIs, with a median past roughly 2 weeks signalling the program is too heavy",
+        "evidence": "The Metrics table and the Targets line.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends forking an existing public rule corpus rather than authoring one from a blank page",
+        "evidence": "'Fork a public corpus: Zalando or Adidas... or Microsoft.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the proposed monthly meeting cadence and triggers review on audience and lifecycle stage instead of a calendar",
+        "evidence": "Tiers by change type (new API, breaking change), not audience and lifecycle stage",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States review is required at beta and at GA-if-changed, recommended at alpha, and skipped for internal-only surfaces",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects growing the architect group from 5 to 10 and states that growing a central committee is the one scaling move no studied company chose",
+        "evidence": "Says add reviewers only on triggers; no 'no studied company' claim",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends the certified federated reviewer pool rung for this organization",
+        "evidence": "Recommends a steward network, not a certified pool",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the two-quarter runway, the budget, and the 31-team scale as the answers that promoted that rung above the default",
+        "evidence": "No ladder rung reasoning",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the maturity-ladder ordering explicitly in the text rather than leaving it implied by the order of a list",
+        "evidence": "No ladder",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives separate orderings for efficiency and for effort or value, noting the federated pool loses every efficiency round while winning on value",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a shared, versioned rule corpus to exist before the reviewer pool grows",
+        "evidence": "Not required as precondition",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that growing reviewers without a versioned corpus degrades turnaround time and guidance consistency together",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attributes the centralized-friction-point concession to Kenneth Auchenberg personally rather than to Stripe as a company",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires publishing the escalation path and a named override authority up front",
+        "evidence": "'you (head of platform) are the tiebreaker... Make that visible'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places a spec linter first for mechanical checks and keeps semantic judgment with human reviewers",
+        "evidence": "Tier 0 linter blocking on MUST rules; Tier 2/3 human review",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives turnaround guidance of under a week for small APIs, with a median past roughly 2 weeks signalling the program is too heavy",
+        "evidence": "SLAs of 3-5 days given but no 2-week signal",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends forking an existing public rule corpus rather than authoring one from a blank page",
+        "evidence": "Says write API Standard v1 from scratch",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

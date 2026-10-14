@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects cutting the use-case description as the fix and identifies the commercial and payout fields as the cause of abandonment",
+        "evidence": "\"Don't cut the use-case description. Cut six other fields from signup.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the pricing-model choice (free / platform-billed / vendor-billed) out of registration to the launch stage, as the last gate before listing",
+        "evidence": "Seller track opens at first listing; \"Last in the track: the pricing model (free / we bill / you bill)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the proposed list price out of registration for the same reason",
+        "evidence": "\"then list price\" is in the seller track at first listing.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the reseller or seller agreement to first listing rather than registration",
+        "evidence": "\"It belongs at first listing, not at registration.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves payout banking details and tax documentation (tax ID, W-9 or local equivalent) out of the registration path",
+        "evidence": "\"Tax ID, bank account, W-9... should gate selling, never building.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends that registration carry only a click-through program agreement needing a single legal sign-off and no per-partner review",
+        "evidence": "Includes a click-through checkbox but never mentions a single legal sign-off.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the agreement-split shape: building stays ungated for everyone, and a separate verified seller track carries the agreement signature plus KYC/KYB identity checks",
+        "evidence": "\"Seller track (gates selling, never building)\" and the Atlassian 2025 split with KYC/KYB.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a partner forced to price an app they have not built answers randomly",
+        "evidence": "\"A partner who hasn't built anything yet can't price an app... that form collects noise\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties any revenue-reporting obligation to first sale rather than to registration",
+        "evidence": "Only says \"The paperwork still has to happen before first sale\"; revenue reporting is not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects cutting the use-case description as the fix and identifies the commercial and payout fields as the cause of abandonment",
+        "evidence": "'Don't cut the use-case field first'; likely causes are 'Payout and tax data asked on day one', agreement, pricing questions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the pricing-model choice (free / platform-billed / vendor-billed) out of registration to the launch stage, as the last gate before listing",
+        "evidence": "Step 1 Apply still includes 'pricing model (with default and one-line explainer)'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves the proposed list price out of registration for the same reason",
+        "evidence": "Step 3 'Get paid' includes 'list price (prefilled default)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the reseller or seller agreement to first listing rather than registration",
+        "evidence": "Puts it at 'Step 2. Agree | After approval', not first listing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves payout banking details and tax documentation (tax ID, W-9 or local equivalent) out of the registration path",
+        "evidence": "'Before the first payout, or after the first deal | Tax ID, W-9 ..., bank account'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends that registration carry only a click-through program agreement needing a single legal sign-off and no per-partner review",
+        "evidence": "Retains an approval step ('After approval'); no click-through agreement is proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the agreement-split shape: building stays ungated for everyone, and a separate verified seller track carries the agreement signature plus KYC/KYB identity checks",
+        "evidence": "No ungated building / seller track split or KYC/KYB.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a partner forced to price an app they have not built answers randomly",
+        "evidence": "Says pricing 'ask[s] for a commercial choice with no context' but not that answers are random.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ties any revenue-reporting obligation to first sale rather than to registration",
+        "evidence": "No revenue-reporting discussion.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

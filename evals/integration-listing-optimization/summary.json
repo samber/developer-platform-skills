@@ -1,0 +1,458 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "integration-listing-optimization",
+  "scenarios": 8,
+  "expectations_total": 84,
+  "expectations_subjective": 0,
+  "expectations_objective": 84,
+  "pass_rate_with_skill_pct": 60.7,
+  "pass_rate_without_skill_pct": 16.7,
+  "delta_pp": 44.0,
+  "uplift_multiplier": 3.63,
+  "trigger_accuracy_pct": 50.0,
+  "trigger_queries": 80,
+  "trigger_positive_fire_rate": 0.15,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that the Slack Marketplace exposes no listing analytics to publishers: no views, no installs, no conversion, and no search-term data."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that Slack itself monitors the app's usage and uninstalls and contacts the developer directly."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that Slack discoverability runs on editorial curation and categories rather than a published or inferable ranking algorithm."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Presents the absent analytics as deliberate platform design rather than a documentation gap or a request the vendor could file."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Flags an unmaintained Slack listing as a removal-risk trigger and assigns a named owner to a periodic refresh."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects 'bundle discounts for shopify stores' and 'increase average order value' as search terms because each must express one concept."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the search-terms rule that each term may be up to five complete words."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Establishes which fields the marketplace actually indexes for search instead of assuming all listing text counts."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Sources the keyword set from language buyers actually type, citing support tickets, sales-call notes, or the marketplace's own search-term report."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Distinguishes keyword coverage (terms present in indexed fields) from keyword performance (where the listing ranks), and says to track them separately."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Places the keyword rewrite as the highest-efficiency lever, ahead of media overhaul, review programs, and badge work."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Refuses the $50 gift-card incentive and states that all five benchmarked marketplaces ban incentivized reviews by agreement."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Replaces the plan with triggers the platform itself operates: its auto-invite or copyable review link, and collection routed through its reviews API."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Adds an ask after a positive support interaction, specifying it must not block the user's workflow and must carry an opt-out from future asks."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Applies an explicit provenance tier to each ranking claim, ordered vendor-official above corroborated practitioner inference above single-source inference above mobile-ASO analogy."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Identifies the Trailblazer Score as a partner-level health metric tied to visibility, not a per-listing ranking factor."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the only vendor-official ranking statements available anywhere in this discipline: Atlassian's on reviews, rating and rich media, and Shopify's Built for Shopify search boost."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Treats the newer intent-based AppExchange search favouring outcome-oriented language as emerging and still settling rather than established fact."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Places badge pursuit as the lowest-efficiency rung of the optimization ladder, costing a quarter or more of engineering and process work for movement other levers buy faster."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the two conditions that promote badge pursuit anyway: an officially confirmed ranking effect, or enterprise procurement in the segment gating on the badge."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Asks whether procurement in their segment actually demands a badge before the quarter is committed."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends working one marketplace at a time rather than running badge pursuit on both in parallel."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says the keyword rewrite and first-screen media work should consume hours before the badge quarter, because they buy more rank and conversion movement per hour."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Flags the 'from $19/mo' closing card as a pricing claim banned from listing imagery."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that demo video is platform-gated: worth building where the marketplace surfaces it prominently, skippable where it is buried."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the 31% uninstall rate as a blocker to fix before the listing overhaul rather than a problem a better listing solves."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects the user's stated theory that better-fit traffic will make the churn sort itself out."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that uninstall rate feeds ranking negatively where corroborated and that platforms monitor it independently of the vendor."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Establishes a refresh cycle of 30 to 60 days with a named owner, and asks who owns the listing day to day and what changed on it in the last 90 days."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Lists view-to-install conversion, review velocity over the trailing 90 days, and uninstall rate among the operating KPIs."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that B2B listing traffic is low, so reaching significance takes proportionally longer than the consumer benchmarks imply."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gives HubSpot's active-install definition: unique production accounts unaffiliated with the vendor's own organization showing successful app activity within the past 30 days."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that HubSpot publishes nothing official about its ranking, so any HubSpot ranking advice in the one-pager is inference."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that the Slack Marketplace exposes no listing analytics to publishers: no views, no installs, no conversion, and no search-term data."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Classifies the Slack Marketplace as a data-dark marketplace and says the measure-and-iterate loop does not apply there."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Declines the six-week A/B test specifically because no funnel exists to read a result from, not merely because the sample is small."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that Slack exposes no review or rating system to submitters, so the 40-review goal cannot be executed on that marketplace at all."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names subscribing to the app_uninstalled event, or an org-level uninstall event, as the churn signal to wire up."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that Slack itself monitors the app's usage and uninstalls and contacts the developer directly."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Advises writing the best listing once and driving traffic from outside the marketplace instead of iterating on the listing."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that Slack discoverability runs on editorial curation and categories rather than a published or inferable ranking algorithm."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Presents the absent analytics as deliberate platform design rather than a documentation gap or a request the vendor could file."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Flags an unmaintained Slack listing as a removal-risk trigger and assigns a named owner to a periodic refresh."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that Shopify's own guidance instructs brand-first naming, and that the mobile app-store keyword-first convention does not transfer to it."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects 'bundle discounts for shopify stores' and 'increase average order value' as search terms because each must express one concept."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the search-terms rule that each term may be up to five complete words."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Labels the claim that name plus subtitle carry roughly 80% of keyword ranking weight as a practitioner estimate rather than a Shopify-official statement."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Establishes which fields the marketplace actually indexes for search instead of assuming all listing text counts."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Sources the keyword set from language buyers actually type, citing support tickets, sales-call notes, or the marketplace's own search-term report."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Distinguishes keyword coverage (terms present in indexed fields) from keyword performance (where the listing ranks), and says to track them separately."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Places the keyword rewrite as the highest-efficiency lever, ahead of media overhaul, review programs, and badge work."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Refuses the $50 gift-card incentive and states that all five benchmarked marketplaces ban incentivized reviews by agreement."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the incentive ban covers offers made through external channels such as email, not only in-product prompts."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the graduated penalty ladder ending in termination of the Partner account and delisting of the app, not merely removal of reviews."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that genuine reviews tied to an untrusted reviewer can be unpublished collaterally."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that reviewer-attestation systems catch both employee reviews and cross-vendor swaps."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Replaces the plan with triggers the platform itself operates: its auto-invite or copyable review link, and collection routed through its reviews API."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Adds an ask after a positive support interaction, specifying it must not block the user's workflow and must carry an opt-out from future asks."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that review recency and velocity outweigh lifetime totals, so closing the 240-review gap directly is not the objective."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Labels the roughly 80% name-and-subtitle weighting as practitioner inference, and notes it originates as an estimate about a different marketplace rather than an AppExchange fact."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Labels the +89% conversion figure as consumer mobile app-store data whose direction transfers but whose magnitude does not."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Applies an explicit provenance tier to each ranking claim, ordered vendor-official above corroborated practitioner inference above single-source inference above mobile-ASO analogy."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rewrites the board commitment to promise direction rather than a specific magnitude of lift."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Refuses to derive the $400K ARR figure from the +89% number."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Identifies the Trailblazer Score as a partner-level health metric tied to visibility, not a per-listing ranking factor."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the only vendor-official ranking statements available anywhere in this discipline: Atlassian's on reviews, rating and rich media, and Shopify's Built for Shopify search boost."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Treats the newer intent-based AppExchange search favouring outcome-oriented language as emerging and still settling rather than established fact."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Corrects that the Salesforce Security Review is a listing gate rather than a badge, and that failing it delists the app."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ranks Built for Shopify first among the badge candidates because it is the only one carrying a vendor-official ranking-boost statement."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that Atlassian Cloud Fortified and Runs on Atlassian buy enterprise-procurement trust with no published quantified ranking lift."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ranks badge candidates by confirmed ranking effect rather than perceived prestige."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Places badge pursuit as the lowest-efficiency rung of the optimization ladder, costing a quarter or more of engineering and process work for movement other levers buy faster."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the two conditions that promote badge pursuit anyway: an officially confirmed ranking effect, or enterprise procurement in the segment gating on the badge."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Asks whether procurement in their segment actually demands a badge before the quarter is committed."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends working one marketplace at a time rather than running badge pursuit on both in parallel."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says the keyword rewrite and first-screen media work should consume hours before the badge quarter, because they buy more rank and conversion movement per hour."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that Atlassian caps listing video at 30 seconds and requires a function demonstration in an anti-marketing tone, so the 2:40 promo cannot be reused there."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that Shopify allows a two-to-three-minute promotional video but caps screencast footage at 25% of runtime."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects the logo-on-gradient image and notes that Shopify hard-rejects logo-only and duplicate images."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects the marketing-site homepage as the first image and requires screenshots to be unique, in-product, and captioned."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Orders the first three gallery assets as hero, then key differentiator, then most-used or most-loved feature."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Labels the first-three gallery ordering and the evidence that most visitors never scroll past the third image as consumer app-store analogy rather than B2B fact."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that demo video is platform-gated: worth building where the marketplace surfaces it prominently, skippable where it is buried."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that Atlassian caps the listing at two categories and downgrades category-stale apps to uncategorized."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Corrects the Summit-tier assumption: AppExchange marketplace analytics are free to any partner with an active listing."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names what that analytics surface exposes, including tile views, unique visitors, installs and lead events broken out by traffic source."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the report of top AppExchange search terms driving visits and installs, and routes the keyword rewrite through it instead of through guesswork."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Distinguishes the post-install telemetry API as churn and renewal tooling rather than listing-conversion data."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the 31% uninstall rate as a blocker to fix before the listing overhaul rather than a problem a better listing solves."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects the user's stated theory that better-fit traffic will make the churn sort itself out."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that uninstall rate feeds ranking negatively where corroborated and that platforms monitor it independently of the vendor."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Warns that new installs won by a better listing become the uninstalls that sink the listing if the product gap stands."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Establishes a refresh cycle of 30 to 60 days with a named owner, and asks who owns the listing day to day and what changed on it in the last 90 days."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Lists view-to-install conversion, review velocity over the trailing 90 days, and uninstall rate among the operating KPIs."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Treats the 1.6% movement as noise and names the threshold below which a lift is not acted on as roughly 2%."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Labels the significance thresholds as borrowed from consumer app-store A/B practice rather than measured on B2B marketplaces."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that B2B listing traffic is low, so reaching significance takes proportionally longer than the consumer benchmarks imply."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that HubSpot exposes install counts but no view-to-install funnel, so the requested conversion figure does not exist to report."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gives HubSpot's active-install definition: unique production accounts unaffiliated with the vendor's own organization showing successful app activity within the past 30 days."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Refuses to roll the tagline out to the Shopify and Atlassian listings on the strength of this result."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that paid installs mask whether the listing converts on its own."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires the content levers, keyword rewrite and first-screen media, to ship before paid placement is switched on."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that HubSpot publishes nothing official about its ranking, so any HubSpot ranking advice in the one-pager is inference."
+      }
+    ]
+  }
+}

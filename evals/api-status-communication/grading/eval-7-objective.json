@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Distinguishes SLIs (measured metrics), SLOs (internal targets), and SLAs (contractual commitments with consequences) in the design",
+        "evidence": "It mentions a target versus a contractual commitment, but never lays out measured metrics, internal targets and SLAs as three distinct layers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to publish 99.99% while the internal target is 99.9%, identifying an aspirational number presented as a commitment as a dispute source",
+        "evidence": "\"Do not ship the 99.99% banner.\"; \"Publishing a number you treat as aspirational is how SLA disputes start.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the edge cases be defined in writing before any number is published",
+        "evidence": "\"Definitions to publish (write these before any number goes live)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines a response-time threshold above which a slow response counts as downtime",
+        "evidence": "\"slower than 10 seconds\" counts as failure",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines whether the number is evaluated service-wide or per affected component, consistent with the status page's breadth model",
+        "evidence": "\"Availability is evaluated per component.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States planned maintenance is excluded from the arithmetic only when adequate notice was given, with that condition written into the SLA text",
+        "evidence": "\"excluded from downtime arithmetic only if notice was given on time\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags monitoring calibration: probing too sensitively overcounts downtime, too coarsely undercounts it, either corrupting the published number",
+        "evidence": "It only says \"Probe calibration is published\" and never warns that too-sensitive probes overcount or too-coarse probes undercount.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Translates the percentage target into allowed downtime minutes published alongside it (e.g. 99.9% as roughly 43 minutes per month, 99.99% as roughly 4.3 minutes per month)",
+        "evidence": "\"99.99% allows about 4.3 minutes of downtime per month\"; \"99.9%... about 43 minutes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes incident history next to the headline uptime figure",
+        "evidence": "The incident history section sits under the uptime table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that Degraded Performance conventionally counts as 0% downtime, which is exactly how the two latency-doubling periods vanished from the number",
+        "evidence": "It defines Degraded minutes as not counting against Availability, but never says this is the convention that hid the incidents.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends the latency-doubling periods surface as incidents (degraded state) rather than remaining invisible behind a 100% figure",
+        "evidence": "\"The Degraded rule above also auto-opens an incident.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the SLA/uptime page and the status page as distinct artifacts: historical performance against commitments versus current discrete incidents",
+        "evidence": "\"This is a separate artifact from the uptime page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends offering both pages, cross-linked",
+        "evidence": "The uptime page copy includes \"[Status page](/status)\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Distinguishes SLIs (measured metrics), SLOs (internal targets), and SLAs (contractual commitments with consequences) in the design",
+        "evidence": "\"Measured results\" vs \"internal reliability objective is 99.9% ... not a contractual guarantee\" vs \"separate SLA document (credits, exclusions...)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to publish 99.99% while the internal target is 99.9%, identifying an aspirational number presented as a commitment as a dispute source",
+        "evidence": "\"Publishing 99.99% would be a false public claim.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the edge cases be defined in writing before any number is published",
+        "evidence": "\"a public definition of what counts as down\"; \"no definition of 'down' behind it\"; the definitions table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines a response-time threshold above which a slow response counts as downtime",
+        "evidence": "Latency breaches are only \"Degraded\", which is \"excluded\" from Availability. No latency threshold counts as downtime.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defines whether the number is evaluated service-wide or per affected component, consistent with the status page's breadth model",
+        "evidence": "Components have their own status, but the Availability % arithmetic scope is never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States planned maintenance is excluded from the arithmetic only when adequate notice was given, with that condition written into the SLA text",
+        "evidence": "\"Announced maintenance (at least 72 h notice) is excluded from Availability\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags monitoring calibration: probing too sensitively overcounts downtime, too coarsely undercounts it, either corrupting the published number",
+        "evidence": "Probe frequency is set at 60 s, but over- and under-counting from sensitivity is never discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Translates the percentage target into allowed downtime minutes published alongside it (e.g. 99.9% as roughly 43 minutes per month, 99.99% as roughly 4.3 minutes per month)",
+        "evidence": "Minutes (4.3 and 43.2) appear only in the explanation to the user, not on the page.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes incident history next to the headline uptime figure",
+        "evidence": "The page has \"Last 90 days\", an \"Incidents\" section, and measured results",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that Degraded Performance conventionally counts as 0% downtime, which is exactly how the two latency-doubling periods vanished from the number",
+        "evidence": "\"the old rule scored them 100% up\"; \"They would not reduce Availability\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the latency-doubling periods surface as incidents (degraded state) rather than remaining invisible behind a 100% figure",
+        "evidence": "\"both would show as Degraded\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the SLA/uptime page and the status page as distinct artifacts: historical performance against commitments versus current discrete incidents",
+        "evidence": "A single combined page is built.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends offering both pages, cross-linked",
+        "evidence": "Not recommended.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

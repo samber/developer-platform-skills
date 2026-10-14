@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Chooses the lint-gate-only remediation tier for now",
+        "evidence": "'The fix is a lint gate only, built in 3 weeks.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes contract testing from the plan entirely rather than scheduling it for later this year, because no safely-callable environment exists to run it",
+        "evidence": "'Contract tests are deleted, not postponed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the explicit re-promotion trigger for contract tests: a sandbox or staging surface a test suite may call",
+        "evidence": "'Contract tests: unlock trigger = sandbox exists.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the removal: an option nothing can execute is not a slower option, and a parked option quietly reappears in every plan without shipping",
+        "evidence": "'\"We'll add contract tests too\" is the line that appears in every plan and never ships.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the 3-week deadline independently favors the lint-only rung as a first increment",
+        "evidence": "'The deadline agrees. Three weeks to the board favours the cheapest gate'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a specific spec linter by name (Spectral, Redocly CLI, Vacuum, or RateMyOpenAPI) as an instance of the linter category",
+        "evidence": "'use Redocly CLI as the linter'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a minimum ruleset covering per-operation description and operationId, documented responses including a 4xx, and examples on parameters and schemas",
+        "evidence": "The ruleset has description, summary, operationId and 4xx rules plus no-invalid-media-type-examples. Nothing requires parameter or schema examples.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises starting the linter at warn severity and flipping to fail-on-warn once the spec is clean",
+        "evidence": "Week 1 'Run lint in warn mode', Week 3 'Flip to error'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a numeric 80 out of 100 lint bar is cited, it is labeled as RateMyOpenAPI's or Zuplo's own tool default, never as an industry average",
+        "evidence": "No 80/100 bar is cited, so no mislabeling.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Acknowledges the lint gate only verifies the spec describes itself, not that the spec tells the truth about the running API",
+        "evidence": "'It doesn't prove the spec is true.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not treat the Redocly docs site rebuilding green as a quality gate",
+        "evidence": "'Redocly renders whatever it's given, and an endpoint with no description builds fine.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the lint gate as running in CI on every PR touching the spec, not as a one-off cleanup pass",
+        "evidence": "'Run redocly lint ... on every PR touching the spec... required status check'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Chooses the lint-gate-only remediation tier for now",
+        "evidence": "The board deliverable is the Redocly lint gate, and it says 'contract tests aren't needed for the board deadline.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes contract testing from the plan entirely rather than scheduling it for later this year, because no safely-callable environment exists to run it",
+        "evidence": "It schedules it: 'Put 1 and 2 on the roadmap for this year', including read-only Schemathesis runs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the explicit re-promotion trigger for contract tests: a sandbox or staging surface a test suite may call",
+        "evidence": "'Put 3 on the roadmap conditional on the stubbed test mode or the sandbox.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the removal: an option nothing can execute is not a slower option, and a parked option quietly reappears in every plan without shipping",
+        "evidence": "No such argument; it keeps the contract tests in a ladder.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the 3-week deadline independently favors the lint-only rung as a first increment",
+        "evidence": "'contract tests aren't needed for the board deadline' and a 3-week lint timeline.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a specific spec linter by name (Spectral, Redocly CLI, Vacuum, or RateMyOpenAPI) as an instance of the linter category",
+        "evidence": "'use Redocly CLI lint'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a minimum ruleset covering per-operation description and operationId, documented responses including a 4xx, and examples on parameters and schemas",
+        "evidence": "Rules cover description, operationId and 4xx, but only validate examples that exist. They don't require examples on parameters and schemas.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises starting the linter at warn severity and flipping to fail-on-warn once the spec is clean",
+        "evidence": "Week 1 'run it in warn mode'; Week 2 'Flip to error'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a numeric 80 out of 100 lint bar is cited, it is labeled as RateMyOpenAPI's or Zuplo's own tool default, never as an industry average",
+        "evidence": "No 80/100 bar is cited.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Acknowledges the lint gate only verifies the spec describes itself, not that the spec tells the truth about the running API",
+        "evidence": "'A linter checks that a description... exist and have the right shape. It can't check that they're true.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not treat the Redocly docs site rebuilding green as a quality gate",
+        "evidence": "The build-docs check is only an extra render check; quality rests on lint and CODEOWNERS.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the lint gate as running in CI on every PR touching the spec, not as a one-off cleanup pass",
+        "evidence": "Required status check on every PR, with no path filters.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

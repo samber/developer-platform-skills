@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends the platform-managed listing, where the platform builds and maintains the connector, as the default path for this case.",
+        "evidence": "\"Primary: the platform-managed listing, filed this week\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shows an explicit ranked ordering across more than one axis rather than a flat list of options.",
+        "evidence": "Comparison table by axis with Low/High labels but no explicit ranked ordering.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders maintenance-tax exposure with the custom outside-platform path highest and the platform-managed listing lowest.",
+        "evidence": "Table: \"Platform\" / \"Split\" / \"You, 100%\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that compliance cost runs in the opposite direction to effort: highest on the platform-managed path, lowest on the custom path.",
+        "evidence": "Not stated; only 'Rejection risk' row.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies that inversion by the platform-managed path's external source review, which can reject the source outright, and by its binding release-phase promotion clock.",
+        "evidence": "No such inversion argument.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that control over quality and cadence ties between the custom and vendor-SDK paths, and justifies the tie by the vendor keeping every implementation decision on both.",
+        "evidence": "Table shows High/High with no justification about vendor keeping decisions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the platform-managed path's real costs: a review gate of weeks that can reject the source, zero control over feature scope and cadence, and a fit limited to stable, non-dynamic schemas.",
+        "evidence": "Mentions review/rejection and stable schema fit but control only as \"Low\", not zero control over scope and cadence.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explicitly ties the hard renewal deadline to promoting the platform-managed queue in the ranking.",
+        "evidence": "\"Deadline: 5 months, hard | Promotes the managed queue.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explicitly ties the 4-hours-per-month ceiling to demoting the higher-effort paths, or to the option of not building yet.",
+        "evidence": "\"Demotes custom to the bottom.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the team's existing Python fluency lowers the effort of the vendor-SDK path and re-ranks against that fact rather than applying the default order unchanged.",
+        "evidence": "\"The SDK rung gets cheap. Both the Fivetran Connector SDK and the Airbyte CDK are Python.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks the platform-managed path's own clock, including weeks of initial API-documentation analysis plus its advertised post-acceptance turnaround, against the five-month deadline instead of assuming it lands in time.",
+        "evidence": "\"2 to 8 weeks of analysis, then about 30 days to build. Risk of slipping.\" plus tripwire 2026-11-20.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents 2-3 candidate strategies, each combining a platform, a build path, and a resource scope, with trade-offs stated.",
+        "evidence": "Three candidates A, B, C compared, with platform archetypes and a resource-scope recommendation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ends with one argued recommendation and asks the user for an explicit pick before moving on to the API readiness audit.",
+        "evidence": "\"Why A\" followed by \"You need to pick A, B, or C explicitly\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends the platform-managed listing, where the platform builds and maintains the connector, as the default path for this case.",
+        "evidence": "Recommends a self-built Python connector.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Shows an explicit ranked ordering across more than one axis rather than a flat list of options.",
+        "evidence": "Table of options by tool only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders maintenance-tax exposure with the custom outside-platform path highest and the platform-managed listing lowest.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that compliance cost runs in the opposite direction to effort: highest on the platform-managed path, lowest on the custom path.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies that inversion by the platform-managed path's external source review, which can reject the source outright, and by its binding release-phase promotion clock.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that control over quality and cadence ties between the custom and vendor-SDK paths, and justifies the tie by the vendor keeping every implementation decision on both.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the platform-managed path's real costs: a review gate of weeks that can reject the source, zero control over feature scope and cadence, and a fit limited to stable, non-dynamic schemas.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explicitly ties the hard renewal deadline to promoting the platform-managed queue in the ranking.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explicitly ties the 4-hours-per-month ceiling to demoting the higher-effort paths, or to the option of not building yet.",
+        "evidence": "Uses the ceiling to favor declarative YAML, with no ranking of paths.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the team's existing Python fluency lowers the effort of the vendor-SDK path and re-ranks against that fact rather than applying the default order unchanged.",
+        "evidence": "'Half your backend team already writes Python daily.' It chooses the Python SDK/CDK on that basis.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks the platform-managed path's own clock, including weeks of initial API-documentation analysis plus its advertised post-acceptance turnaround, against the five-month deadline instead of assuming it lands in time.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents 2-3 candidate strategies, each combining a platform, a build path, and a resource scope, with trade-offs stated.",
+        "evidence": "Gives one recommendation plus a fallback.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ends with one argued recommendation and asks the user for an explicit pick before moving on to the API readiness audit.",
+        "evidence": "Ends with open questions and no request for a pick.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

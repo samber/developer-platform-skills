@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects per-failure alerting on error volume as a design option outright rather than ranking it last, naming it as the alert-fatigue failure mode itself",
+        "evidence": "\"Severity levels on the existing per-failure email... It's the alert-fatigue failure mode.\" and \"alert per incident\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a periodic per-integration digest as the default notification rung for the majority of Nooklet's partners",
+        "evidence": "\"Daily digest (default) | All 340\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends threshold alerting with a cooldown specifically for the two payment-adjacent partners, tying that promotion to their losing money within hours",
+        "evidence": "Threshold row: \"The two payment-adjacent partners\"; \"they lose money inside an hour.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a cooldown period during which the same integration cannot alert again, and explains that without it one ongoing incident produces a continuous stream until the recipient mutes the channel permanently",
+        "evidence": "\"One alert per incident, then a cooldown.\" Diagnosis: \"one outage produces a flood. Six of your top ten have muted the channel.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises deriving the cooldown length from Nooklet's own typical incident duration rather than copying a borrowed number",
+        "evidence": "\"Start at 30 minutes (Salesforce's default) and tune from your real incident durations.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats integration state changes such as revoked credentials, a disabled integration, or a lapsed subscription as a separate immediate rung with no threshold and no cooldown",
+        "evidence": "\"State-change alert... One event, no cooldown.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a recovery notification when the rate returns to baseline, on the grounds that silence is not an all-clear",
+        "evidence": "\"Send a recovery message. Silence isn't an all-clear.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every alert to name the top machine-readable error codes and to link directly into the log filtered to those failures",
+        "evidence": "\"State the top error code, how many installs are affected...\"; \"Every message links to it, filtered to the incident.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a threshold alert to state whether a Nooklet release falls in the window, so the partner knows what the platform has already ruled out",
+        "evidence": "\"Check your own deploy timeline first. If the cause is your release, say so.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a threshold alert to state the earliest time the next alert for that integration can arrive",
+        "evidence": "\"...and when the next alert can arrive.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the digest and the threshold alert must not be routed to the same destination at the same cadence",
+        "evidence": "The table assigns different channels, but there is no explicit statement of this rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking the share of alerts partners act on, and treats a sustained decline as the design failing rather than the partners failing",
+        "evidence": "\"Alert action rate... A sustained fall means widen thresholds or lengthen the cooldown before adding channels.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies an escalation path naming where a repeated unacted-on alert goes and after what interval",
+        "evidence": "\"if nobody acknowledges within N minutes, the alert goes to your partner team and your on-call.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not present adding severity levels to the existing per-failure emails as the fix",
+        "evidence": "\"Don't add severity levels to the email stream.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects per-failure alerting on error volume as a design option outright rather than ranking it last, naming it as the alert-fatigue failure mode itself",
+        "evidence": "'one email per failure trains people to ignore them'; 'a single failure never notifies anyone.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a periodic per-integration digest as the default notification rung for the majority of Nooklet's partners",
+        "evidence": "'Weekly digest email' for the standard tier (~338 partners).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends threshold alerting with a cooldown specifically for the two payment-adjacent partners, tying that promotion to their losing money within hours",
+        "evidence": "Tighter thresholds are given, but no cooldown.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a cooldown period during which the same integration cannot alert again, and explains that without it one ongoing incident produces a continuous stream until the recipient mutes the channel permanently",
+        "evidence": "No cooldown is described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises deriving the cooldown length from Nooklet's own typical incident duration rather than copying a borrowed number",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats integration state changes such as revoked credentials, a disabled integration, or a lapsed subscription as a separate immediate rung with no threshold and no cooldown",
+        "evidence": "401/403 are only wording variants of the Failing state.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a recovery notification when the rate returns to baseline, on the grounds that silence is not an all-clear",
+        "evidence": "'Recovered... one \"resolved\" message'; 'Recovery notice plus an automatic replay.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every alert to name the top machine-readable error codes and to link directly into the log filtered to those failures",
+        "evidence": "Email body gives cause, fix and replay link; no filtered-log link.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a threshold alert to state whether a Nooklet release falls in the window, so the partner knows what the platform has already ruled out",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a threshold alert to state the earliest time the next alert for that integration can arrive",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the digest and the threshold alert must not be routed to the same destination at the same cadence",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking the share of alerts partners act on, and treats a sustained decline as the design failing rather than the partners failing",
+        "evidence": "Tracks open/click rate and time to acknowledge, with no design-failure framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies an escalation path naming where a repeated unacted-on alert goes and after what interval",
+        "evidence": "'If no one acknowledges within 10 minutes, re-alert and escalate to their second contact.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not present adding severity levels to the existing per-failure emails as the fix",
+        "evidence": "'Don't add severity levels by event type.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends the domain/reason taxonomy (Google AIP-193 ErrorInfo style) instead of the flat HTTP-status-pinned catalog the user asked for",
+        "evidence": "\"What's left is domain/reason (Google AIP-193 ErrorInfo)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that HTTP-status-pinned catalog shapes (flat catalog and code/subcode) are removed from the menu entirely on a gRPC-only surface, not merely ranked last or discouraged",
+        "evidence": "\"the skill rules that shape out. It doesn't just rank it lower.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the removal by the fact that those shapes define each code's identity by pinning it to one HTTP status, which a gRPC-only surface does not have",
+        "evidence": "\"define a code's identity by pinning it to one HTTP status, and you have no HTTP surface to pin to\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects any 'we'll map codes to HTTP statuses later' compromise, or names the re-promotion condition explicitly as a REST surface joining the API family",
+        "evidence": "\"The re-promotion trigger is: a REST surface joins the family.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines the stable machine-readable identity as the (domain, reason) pair",
+        "evidence": "Layer 2 Identity: \"ErrorInfo.reason and ErrorInfo.domain ... This is what callers branch on.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a metadata map on the error for dynamic context values",
+        "evidence": "\"ErrorInfo.metadata\" with service, retryable, decline_code keys",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the team's existing gRPC/Google Cloud fluency lowers the usual adoption effort of domain/reason substantially",
+        "evidence": "\"It's the effort-heavy rung for most teams, but nearly free for yours.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "References google.rpc.Status carrying ErrorInfo in its details, or cites AIP-193 by name",
+        "evidence": "\"google.rpc.Status\" and \"AIP-193 ErrorInfo\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the stability contract: a (domain, reason) pair stays consistent over time and its metadata keys can only be added, never removed or repurposed",
+        "evidence": "\"Keys only added\"; \"Evolve by addition only: new reasons, new optional metadata keys. Never repurpose, rename or delete\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the human-readable message text is not contractually stable and client code must never parse or match on it",
+        "evidence": "\"message and description text is not contractual and may change without notice.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every reason a client can ever see to be enumerable ahead of time in one published catalog, and treats a reason invented ad hoc at a call site without a catalog entry as a design defect",
+        "evidence": "\"no reason reaches production without a catalog entry\"; \"No ad hoc errors\" lint rule",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The delivered catalog design does not assign an HTTP status code to each error identity",
+        "evidence": "Catalog tables map reason to gRPC code only, no HTTP column",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends the domain/reason taxonomy (Google AIP-193 ErrorInfo style) instead of the flat HTTP-status-pinned catalog the user asked for",
+        "evidence": "Wire contract uses `ErrorInfo.reason` and `ErrorInfo.domain` with `google.rpc.Status`; cites AIP-193.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that HTTP-status-pinned catalog shapes (flat catalog and code/subcode) are removed from the menu entirely on a gRPC-only surface, not merely ranked last or discouraged",
+        "evidence": "It only says 'Drop the HTTP column'. It never says the flat catalog or code/subcode shapes are eliminated as options.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies the removal by the fact that those shapes define each code's identity by pinning it to one HTTP status, which a gRPC-only surface does not have",
+        "evidence": "The reasons given are 'no consumer' and that several gRPC codes 'collapse to 400', which is information loss. Identity-pinning is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects any 'we'll map codes to HTTP statuses later' compromise, or names the re-promotion condition explicitly as a REST surface joining the API family",
+        "evidence": "It offers the opposite: 'If a gateway ever appears... Adding the column later costs nothing, so don't build it now.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defines the stable machine-readable identity as the (domain, reason) pair",
+        "evidence": "'`ErrorInfo.domain` | `api.ledgerline.com`. The reason is unique within the domain.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a metadata map on the error for dynamic context values",
+        "evidence": "'`ErrorInfo.metadata` | String to string map, keys in lowerCamelCase'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the team's existing gRPC/Google Cloud fluency lowers the usual adoption effort of domain/reason substantially",
+        "evidence": "It says only 'it fits your Google Cloud shop'. It makes no claim about reduced adoption effort.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "References google.rpc.Status carrying ErrorInfo in its details, or cites AIP-193 by name",
+        "evidence": "'This is Google's own model (AIP-193, `google.rpc.Status` with `ErrorInfo`)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the stability contract: a (domain, reason) pair stays consistent over time and its metadata keys can only be added, never removed or repurposed",
+        "evidence": "'A reason is never renamed, reused, or moved to a different gRPC code... Metadata keys can be added but not removed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the human-readable message text is not contractually stable and client code must never parse or match on it",
+        "evidence": "'`message`... It is not a contract and may change at any time'; 'Never parse `message`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every reason a client can ever see to be enumerable ahead of time in one published catalog, and treats a reason invented ad hoc at a call site without a catalog entry as a design defect",
+        "evidence": "'Define the catalog once in protobuf'; a lint 'rejects any handler path that returns a bare `error`'; handlers never build a Status by hand; docs generated from ErrorSpec.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The delivered catalog design does not assign an HTTP status code to each error identity",
+        "evidence": "The catalog tables carry gRPC code, retry, meaning and metadata. There is no HTTP column.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

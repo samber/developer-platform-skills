@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Names exactly one freshness posture for the product and labels it as one of: fixed cadence, best-effort target, or contractual SLA",
+        "evidence": "Fixed cadence: every 3 hours, with an `as_of` timestamp in each delivery.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that 'hourly SLA' on the pricing page reads as a contractual, penalty-backed commitment distinct from a best-effort hourly target, and must either be backed or corrected",
+        "evidence": "\"Hourly data SLA\" reads as the third ... a promise your engineering can't back; Change the copy.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that leaving the posture unnamed makes the best-effort promise in the customer's mind and the no-promise position in the vendor's own",
+        "evidence": "No statement of this expectation gap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends scheduled full-dump as the starting cadence rung rather than CDC",
+        "evidence": "The skill's default rung is a scheduled full dump ... Ship batch first.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites a full load every 3 hours as a concrete reference cadence in this feature class",
+        "evidence": "Stripe's reference is a full load every 3 hours.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives named promotion conditions for leaving full-dump: its bandwidth/compute bill exceeding CDC's build cost, or a customer freshness requirement the dump interval cannot meet",
+        "evidence": "the full-snapshot bandwidth and compute bill exceeds CDC's build cost, or a paying customer needs fresher than your published cadence.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adopting CDC commits the design to upsert-by-primary-key deduplication",
+        "evidence": "upsert-by-primary-key dedup",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adopting CDC requires explicit delete tombstones",
+        "evidence": "explicit delete tombstones",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a periodic full-scan reconciliation job under CDC",
+        "evidence": "Keep the weekly full-scan reconciliation job as a safety net.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names missed deletes - a delete that emits no change event - as the CDC failure mode that leaves phantom rows in customer copies",
+        "evidence": "a delete that never emits an event leaves a phantom row in every customer's copy.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Acknowledges the lead's existing Debezium experience as a legitimate reason to promote the CDC rung earlier than the cost curve alone would",
+        "evidence": "Three years of Debezium is a real input ... moves that upgrade earlier.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Names exactly one freshness posture for the product and labels it as one of: fixed cadence, best-effort target, or contractual SLA",
+        "evidence": "\"Freshness | Target: changes visible within 75 minutes\" and \"Credits and penalties | None at launch. Freshness is a target\". This is a best-effort target, with the SLA deferred.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that 'hourly SLA' on the pricing page reads as a contractual, penalty-backed commitment distinct from a best-effort hourly target, and must either be backed or corrected",
+        "evidence": "\"An SLA implies a contractual guarantee with remedies, and you can't measure one yet. Keep the hourly claim and drop the word.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that leaving the posture unnamed makes the best-effort promise in the customer's mind and the no-promise position in the vendor's own",
+        "evidence": "The two-sided mismatch of an unnamed posture is never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends scheduled full-dump as the starting cadence rung rather than CDC",
+        "evidence": "\"Ship hourly incremental batch at launch\", with only a weekly full snapshot.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites a full load every 3 hours as a concrete reference cadence in this feature class",
+        "evidence": "No 3-hour reference cadence appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives named promotion conditions for leaving full-dump: its bandwidth/compute bill exceeding CDC's build cost, or a customer freshness requirement the dump interval cannot meet",
+        "evidence": "\"Move when: Demand: ... freshness under 15 minutes. Load: batch extraction measurably strains the replica or runs past its hourly window.\" These are conditions for leaving batch, not full-dump specifically, and cost is not compared to CDC build cost.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adopting CDC commits the design to upsert-by-primary-key deduplication",
+        "evidence": "Upsert by primary key is in the batch contract. It is not stated as a consequence of adopting CDC.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that adopting CDC requires explicit delete tombstones",
+        "evidence": "Tombstones are prescribed for batch deletes, not as a requirement of adopting CDC.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a periodic full-scan reconciliation job under CDC",
+        "evidence": "Reconciliation and weekly snapshots are prescribed for the batch design, not for CDC.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names missed deletes - a delete that emits no change event - as the CDC failure mode that leaves phantom rows in customer copies",
+        "evidence": "The transcript presents hard deletes as CDC's advantage and a limit of batch, the opposite of the rubric's point.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Acknowledges the lead's existing Debezium experience as a legitimate reason to promote the CDC rung earlier than the cost curve alone would",
+        "evidence": "\"Your lead has run Debezium for three years... He should build it as an internal pipeline after launch.\" It defers CDC rather than promoting it earlier.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
