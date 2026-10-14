@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the annual listing fee as a freshness mechanism",
+        "evidence": "\"The $200 fee is not a freshness mechanism, and the policy does not count it as one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: a fee renews the billing relationship, not the listing content, and nothing about paying it checks a stale screenshot",
+        "evidence": "\"It renews billing, not content... payment checks nothing about a dead link or an old screenshot.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns listing fees to marketplace monetization and revenue design rather than to the decay policy",
+        "evidence": "Only the refund treatment is handed to \"legal and monetization\". The fee itself is not clearly assigned to monetization design.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends version-currency enforcement as the strongest available rung, explicitly because Cadenza already ships versioned releases with scheduled deprecations",
+        "evidence": "\"Promoted: version-currency enforcement. Your six-month release cadence and published deprecations do the freshness detection for free.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the platform's own release cadence performs the freshness detection, which is what makes this rung affordable for Cadenza specifically",
+        "evidence": "\"This layer catches abandoned apps without any crawler.\" The release cadence \"do[es] the freshness detection for free\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a stated migration window for existing listings rather than immediate enforcement against already-listed apps",
+        "evidence": "\"every listing on it enters a 60-day migration window\"; T0 to T0+60 amnesty window.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects new submissions built on unsupported platform versions",
+        "evidence": "\"New listings must be on a supported version.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts a staleness downgrade in place as the always-on floor beneath whatever policy runs, with a browse-surface consequence rather than removal",
+        "evidence": "\"Floor: a browse downgrade, applied automatically.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names 'out-of-date listing content' as an explicit, rejectable violation in the published policy",
+        "evidence": "\"'out-of-date listing content' becomes a named, rejectable violation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds an operator-side calendar review sweep aligned to Cadenza's own release cycle",
+        "evidence": "\"A calendar sweep enforces it\"; the crawler runs weekly; recertification is annual; \"Every API deprecation triggers a re-check.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that no benchmarked marketplace operator publishes a hard numeric update-or-be-removed cadence",
+        "evidence": "No such statement. Adobe's 12 months is cited only as an adjacent benchmark.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels any cited 12-month auto-removal rule as coming from an adjacent marketplace ecosystem and treats it as an internal worst-case freshness SLA rather than an external requirement",
+        "evidence": "\"Worst-case freshness SLA: 12 months, borrowed from Adobe's abandoned-listing rule. It is an adjacent-ecosystem benchmark.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Avoids recommending a mass delisting of the 41%",
+        "evidence": "\"This is the price of not delisting a third of the catalog at once.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a notice runway before any new content requirement takes effect on already-listed apps, on the grounds that retroactive enforcement without runway burns the partner trust the standard exists to build",
+        "evidence": "\"amnesty window. Partners fix things on their own, and no clocks run.\"; staggered cohorts.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the annual listing fee as a freshness mechanism",
+        "evidence": "\"The fee won't fix this\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: a fee renews the billing relationship, not the listing content, and nothing about paying it checks a stale screenshot",
+        "evidence": "\"The fee says 'I'm listed'. It doesn't tell a partner their link broke or their screenshot aged out.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns listing fees to marketplace monetization and revenue design rather than to the decay policy",
+        "evidence": "Instead says \"Use the fee as the lever\" for the dashboard and attestation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends version-currency enforcement as the strongest available rung, explicitly because Cadenza already ships versioned releases with scheduled deprecations",
+        "evidence": "Anchors API staleness to the published schedule but never ranks it as the strongest rung.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the platform's own release cadence performs the freshness detection, which is what makes this rung affordable for Cadenza specifically",
+        "evidence": "Detection is \"derived from API/OAuth app telemetry\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a stated migration window for existing listings rather than immediate enforcement against already-listed apps",
+        "evidence": "Backlog \"amnesty path\" with staggered cohorts across weeks 4-12.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects new submissions built on unsupported platform versions",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts a staleness downgrade in place as the always-on floor beneath whatever policy runs, with a browse-surface consequence rather than removal",
+        "evidence": "\"Degrade before delisting\"; hidden screenshots, boosts dropped.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names 'out-of-date listing content' as an explicit, rejectable violation in the published policy",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds an operator-side calendar review sweep aligned to Cadenza's own release cycle",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that no benchmarked marketplace operator publishes a hard numeric update-or-be-removed cadence",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels any cited 12-month auto-removal rule as coming from an adjacent marketplace ecosystem and treats it as an internal worst-case freshness SLA rather than an external requirement",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Avoids recommending a mass delisting of the 41%",
+        "evidence": "\"Clearing the backlog without delisting a third\"; 5% monthly cap.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a notice runway before any new content requirement takes effect on already-listed apps, on the grounds that retroactive enforcement without runway burns the partner trust the standard exists to build",
+        "evidence": "Notice and clocks exist, but retroactive enforcement burning partner trust is not the stated reason.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

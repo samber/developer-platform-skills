@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Leads the sequence with the embedded/turnkey layer, justified by the non-technical buyer and the hours-level time-to-value requirement",
+        "evidence": "\"Build turnkey payroll connectors first\"; \"The buyer needs hours to value, not days.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps the buyer type explicitly (who chooses the product) before ranking surfaces, rather than jumping to a build order",
+        "evidence": "The Audiences and buyers table (\u00a71) comes before the ranked plan (\u00a75).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats API-first and embedded as layers rather than rivals, refusing both the board's blanket API-first framing and an embedded-only answer",
+        "evidence": "\"Your board's 'API-first' and Sales' 'turnkey in an afternoon' are two layers of one plan, not rivals.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Plans the API foundation underneath the embedded layer, naming that retrofitting an API onto a UI-first product later is the expensive direction",
+        "evidence": "No retrofit argument appears anywhere in the plan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the contrast between a developer-sold API platform and a business-owner-sold checkout button (Stripe vs PayPal or equivalent) as evidence the same industry supports opposite surface orders by buyer",
+        "evidence": "No such comparison appears. Only Plaid is cited, for the CLI.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a surface reaching only the economic buyer or only the technical user stalls the deal",
+        "evidence": "The plan separates the economic buyer from technical users but never states that reaching only one side stalls the deal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sequences one surface at a time matched to the one-engineer capacity",
+        "evidence": "\"Only one surface is in build at a time, to match your capacity.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schedules no SDKs or MCP before a stable API contract exists",
+        "evidence": "The derivation gate holds until the spec is stable. SDKs are deferred and MCP is \"generated from the REST spec\" last.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the retention/switching-cost argument for the API foundation: an API embedded in customer production code costs engineering hours to leave, not a cancellation click",
+        "evidence": "No argument about leaving an API embedded in customer production code.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents 2-3 candidate sequences with trade-offs and a recommendation for the user to pick or blend, rather than one dictated plan",
+        "evidence": "Sequences A, B and C are given, with B recommended as a blend.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records the demand signal for the embedded surface (sales naming turnkey integrations as deal-closers) instead of scheduling it on taste",
+        "evidence": "\"Sales names payroll connectors as the deal blocker\"; the handoff row cites \"Sales: named deal blockers\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Leads the sequence with the embedded/turnkey layer, justified by the non-technical buyer and the hours-level time-to-value requirement",
+        "evidence": "'Your buyers don't call APIs... connecting their payroll tool in an afternoon.' CSV import and native connectors come first.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps the buyer type explicitly (who chooses the product) before ranking surfaces, rather than jumping to a build order",
+        "evidence": "'Office managers and HR directors never write code' appears before the order table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats API-first and embedded as layers rather than rivals, refusing both the board's blanket API-first framing and an embedded-only answer",
+        "evidence": "'API-first is a design principle, not a product you must ship publicly. Build every connector on a clean internal, versioned API.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Plans the API foundation underneath the embedded layer, naming that retrofitting an API onto a UI-first product later is the expensive direction",
+        "evidence": "Says only 'Publishing part of it later is then cheap.' Retrofit cost is not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the contrast between a developer-sold API platform and a business-owner-sold checkout button (Stripe vs PayPal or equivalent) as evidence the same industry supports opposite surface orders by buyer",
+        "evidence": "No such contrast is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a surface reaching only the economic buyer or only the technical user stalls the deal",
+        "evidence": "No warning of this kind.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sequences one surface at a time matched to the one-engineer capacity",
+        "evidence": "Numbered sequence and 'Do not split the engineer between connectors and a public API.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schedules no SDKs or MCP before a stable API contract exists",
+        "evidence": "No SDKs or MCP are scheduled; the public REST API comes last.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the retention/switching-cost argument for the API foundation: an API embedded in customer production code costs engineering hours to leave, not a cancellation click",
+        "evidence": "No switching-cost argument.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents 2-3 candidate sequences with trade-offs and a recommendation for the user to pick or blend, rather than one dictated plan",
+        "evidence": "Presents a single dictated order.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records the demand signal for the embedded surface (sales naming turnkey integrations as deal-closers) instead of scheduling it on taste",
+        "evidence": "Mentions 'sales' goal' but never records sales naming turnkey integrations as deal-closers.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

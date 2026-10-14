@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies grpc-gateway's default error handler as the cause: it maps the code to an HTTP status but flattens the message and drops `details` entirely",
+        "evidence": "Hedged: \"I'm not certain the default handler is the culprit... grpc-gateway v2's default handler marshals the whole Status\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a custom error handler is mandatory on grpc-gateway if structured error detail is to survive",
+        "evidence": "\"Install a custom error handler on grpc-gateway. Use runtime.WithErrorHandler.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Envoy's gRPC-JSON transcoder requires `convert_grpc_status: true` to surface google.rpc.Status as the JSON body",
+        "evidence": "\"it needs convert_grpc_status: true\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the second Envoy condition: every error-detail type must be present in the proto descriptor set the transcoder was built with, or the detail drops silently",
+        "evidence": "\"every detail type must be in the proto descriptor, or the missing types drop with no error\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that Connect-RPC serializes errors as JSON natively, so no transcoding gap exists there",
+        "evidence": "\"Errors are JSON natively and no proxy is needed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags DebugInfo as internal-only and requires it to be filtered from `details` before the response leaves the service",
+        "evidence": "\"It is documented as internal-only.\"; allowlist drops DebugInfo",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that sanitizing the `message` field alone is insufficient while `details` still carries DebugInfo, i.e. the sanitization must be structural",
+        "evidence": "\"Sanitizing message alone is not enough.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms ErrorInfo as the general-purpose detail to reach for first and BadRequest as the right carrier for field-level validation violations",
+        "evidence": "\"the body, ErrorInfo.reason plus BadRequest.field_violations, is the source of truth\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends pairing RetryInfo with RESOURCE_EXHAUSTED so callers back off rather than hammering the same limit",
+        "evidence": "RetryInfo appears only in the allowlist; no pairing with RESOURCE_EXHAUSTED.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the resulting JSON error shape with a code, a status string and a typed `details` array carrying `@type` entries, as the de facto standard envelope worth adopting",
+        "evidence": "\"{\\\"error\\\":{\\\"code\\\":400,\\\"status\\\":\\\"INVALID_ARGUMENT\\\"... \\\"@type\\\"...\" used by Google Cloud and Dapr",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting for consumers that the structured body envelope is the source of truth and the HTTP status line is a lossy convenience",
+        "evidence": "\"The HTTP status is a lossy convenience.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies grpc-gateway's default error handler as the cause: it maps the code to an HTTP status but flattens the message and drops `details` entirely",
+        "evidence": "It says \"Stock grpc-gateway v2 serializes the whole google.rpc.Status, details included\" and blames a custom handler or missing errdetails.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a custom error handler is mandatory on grpc-gateway if structured error detail is to survive",
+        "evidence": "It recommends writing one explicit handler but does not say one is mandatory, and says the stock handler already includes details.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Envoy's gRPC-JSON transcoder requires `convert_grpc_status: true` to surface google.rpc.Status as the JSON body",
+        "evidence": "\"Envoy's grpc_json_transcoder only emits the Status as JSON when convert_grpc_status is enabled.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the second Envoy condition: every error-detail type must be present in the proto descriptor set the transcoder was built with, or the detail drops silently",
+        "evidence": "\"It also needs the errdetails protos in the descriptor set, or it can't unpack the details.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that Connect-RPC serializes errors as JSON natively, so no transcoding gap exists there",
+        "evidence": "Connect is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags DebugInfo as internal-only and requires it to be filtered from `details` before the response leaves the service",
+        "evidence": "\"Always drop DebugInfo and any detail type you haven't listed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that sanitizing the `message` field alone is insufficient while `details` still carries DebugInfo, i.e. the sanitization must be structural",
+        "evidence": "This is not stated explicitly.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Confirms ErrorInfo as the general-purpose detail to reach for first and BadRequest as the right carrier for field-level validation violations",
+        "evidence": "Allowlist passes through \"ErrorInfo (reason, domain, metadata), BadRequest field violations\"; the example JSON carries both.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends pairing RetryInfo with RESOURCE_EXHAUSTED so callers back off rather than hammering the same limit",
+        "evidence": "RetryInfo appears only as an optional pass-through, with no pairing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the resulting JSON error shape with a code, a status string and a typed `details` array carrying `@type` entries, as the de facto standard envelope worth adopting",
+        "evidence": "The example has code (numeric), message and details with @type, but no status string, and it is not framed as the de facto standard.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting for consumers that the structured body envelope is the source of truth and the HTTP status line is a lossy convenience",
+        "evidence": "It says to document the JSON contract, but not that the status line is lossy.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

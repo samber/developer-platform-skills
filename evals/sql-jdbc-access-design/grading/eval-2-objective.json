@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that scan frequency, not customer size, tier, or contract value, is the variable that gates the architecture",
+        "evidence": "\"Revenue shouldn't pick the architecture. Scan frequency times table size should.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects assigning dedicated infrastructure to the enterprise cohort on the basis of contract value",
+        "evidence": "\"Six-figure contracts buy a higher service level... They don't buy a different engine.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents three architecture rungs: zero-copy warehouse share, replicated copy or dedicated read endpoint, and per-tenant compute isolation",
+        "evidence": "Discusses live scan, mart copy and dedicated compute, but never lays out a zero-copy share / replicated copy / per-tenant compute ladder; mid-market is a pooled project.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names zero-copy warehouse sharing as the default rung and justifies it by the data already living in a cloud warehouse",
+        "evidence": "No default rung is named; mid-market goes on a \"pooled\" project with row access policies.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the zero-copy share is a metadata grant with no data copied, and that live access is paid per query scan plus cross-region egress",
+        "evidence": "No statement about metadata grants or egress.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the tipping heuristic of roughly 20 scans per day on a roughly 200 GB table, past which live re-scanning costs more per month than a replicated copy costs per year",
+        "evidence": "\"the skill's rule of thumb is that about 20 scans/day on a 200 GB table tips live access over a copy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels that tipping heuristic as one practitioner's rule of thumb rather than a benchmark or a measured figure",
+        "evidence": "Calls it \"the skill's rule of thumb\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the 50-viewer weekday-morning dashboard cohort past the tipping line and recommends the replicated copy or dedicated read endpoint rung for it",
+        "evidence": "\"Enterprises need a replicated mart... Fifty people loading a dashboard over 300 GB each morning is well past the point where live re-scanning costs more than a copy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the roughly 40 low-frequency mid-market accounts on the zero-copy share rung",
+        "evidence": "Mid-market is placed on a pooled shared project with row access policies; Analytics Hub is only an optional extra.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the price of the replicated rung: staleness to the last refresh, plus a second copy of the data and its PII to govern",
+        "evidence": "\"The cost you take on is staleness to the last refresh, plus a second copy of the data to govern.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the two conditions that promote per-tenant compute isolation (arbitrary customer-authored SQL at dashboard-or-agent frequency across many tenants, or a shared cluster whose worst-case query already threatens the product) and does not promote it here on contract size",
+        "evidence": "\"Promote a single tenant... only when: runs arbitrary SQL at dashboard or agent frequency; repeatedly trips quotas or queues other tenants; worst-case query threatens the shared enterprise reservation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against pointing the replicated copy at the live operational schema",
+        "evidence": "\"Mart only. Never expose operational tables.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that scan frequency, not customer size, tier, or contract value, is the variable that gates the architecture",
+        "evidence": "It says 'Split by workload shape and by how bad a failure would be'. Scan frequency is not named as the gating variable.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects assigning dedicated infrastructure to the enterprise cohort on the basis of contract value",
+        "evidence": "'Price doesn't set infrastructure cost... Cost is not the deciding variable.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents three architecture rungs: zero-copy warehouse share, replicated copy or dedicated read endpoint, and per-tenant compute isolation",
+        "evidence": "It presents tiers by project and reservation. Analytics Hub is only an 'Optional' item.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names zero-copy warehouse sharing as the default rung and justifies it by the data already living in a cloud warehouse",
+        "evidence": "Per-customer serving datasets are the default. Analytics Hub is 'Optional'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the zero-copy share is a metadata grant with no data copied, and that live access is paid per query scan plus cross-region egress",
+        "evidence": "The only mention is that Analytics Hub customers 'pay their own compute'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the tipping heuristic of roughly 20 scans per day on a roughly 200 GB table, past which live re-scanning costs more per month than a replicated copy costs per year",
+        "evidence": "No such heuristic appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels that tipping heuristic as one practitioner's rule of thumb rather than a benchmark or a measured figure",
+        "evidence": "There is no heuristic to label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places the 50-viewer weekday-morning dashboard cohort past the tipping line and recommends the replicated copy or dedicated read endpoint rung for it",
+        "evidence": "It recommends pre-aggregated serving tables and caching but does not apply a tipping line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the roughly 40 low-frequency mid-market accounts on the zero-copy share rung",
+        "evidence": "Mid-market gets 'one dataset per customer' with on-demand compute, not a share.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the price of the replicated rung: staleness to the last refresh, plus a second copy of the data and its PII to govern",
+        "evidence": "Freshness appears only as a question, and the second-copy PII governance cost is not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the two conditions that promote per-tenant compute isolation (arbitrary customer-authored SQL at dashboard-or-agent frequency across many tenants, or a shared cluster whose worst-case query already threatens the product) and does not promote it here on contract size",
+        "evidence": "Dedicated projects are assigned to the enterprise tier without these two promotion conditions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns against pointing the replicated copy at the live operational schema",
+        "evidence": "It only says 'Customers never get raw core tables.'",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

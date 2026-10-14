@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags serving the latest version to header-less requests as unsafe: callers silently receive a new contract on every release instead of a stable one.",
+        "evidence": "\"every new release silently changes behavior for every caller who omits the header.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends requiring the version header and returning an error on unversioned calls rather than applying any default silently.",
+        "evidence": "\"A request without the version header returns 400 with a descriptive error.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Contrasts the two header-scheme defaults - silently pinning callers to a version versus refusing unversioned calls with an error - and picks the refusal style as safer.",
+        "evidence": "\"Discord allowed it ... LinkedIn's choice is safer: a required version can never drift under a caller.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: a required version can never drift under a caller silently.",
+        "evidence": "\"a required version can never drift under a caller.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies a version being simultaneously deprecated and the default as a named failure pattern, not a tolerable interim state.",
+        "evidence": "\"This is the first named failure mode in the skill.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the cost of deprecated-and-default: the deprecation label loses credibility while new integrators keep being handed the deprecated version.",
+        "evidence": "The stated cost is that new integrators start on a dying version and must be migrated later. The loss of credibility of the deprecation label is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the default for docs and new API keys off 2024-03 onto a current version as a near-term action.",
+        "evidence": "\"Today: move the interactive docs default and the new-key default to the current version.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects coupling SDK major versions to API version identifiers as the versioning story.",
+        "evidence": "\"Tying SDK majors to API versions would cause three problems\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that client SDKs version under plain SemVer, separate from the wire contract's date scheme.",
+        "evidence": "\"SDKs follow plain SemVer, independent of the API's YYYY-MM versions.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the SDK major-bump trigger is stricter than the API's version rule, because a library's compiled surface breaks in ways a tolerant HTTP caller does not.",
+        "evidence": "\"Its SDK major-bump trigger is stricter than its API rule, because a compiled library breaks in ways a tolerant HTTP caller does not.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends writing the SDK versioning policy as its own separate policy rather than folding it into this document.",
+        "evidence": "\"Client SDKs are versioned separately under SemVer. Their policy is out of scope here\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that later removing the unversioned (header-less) access path is itself a breaking change that needs its own notice and communication.",
+        "evidence": "\"Removing the fallback later is itself a breaking change, so it needs a notice window\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags serving the latest version to header-less requests as unsafe: callers silently receive a new contract on every release instead of a stable one.",
+        "evidence": "\"Any client that omits the header silently changes behavior on every release you ship.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends requiring the version header and returning an error on unversioned calls rather than applying any default silently.",
+        "evidence": "It pins to the key's version for header-less requests instead of erroring.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Contrasts the two header-scheme defaults - silently pinning callers to a version versus refusing unversioned calls with an error - and picks the refusal style as safer.",
+        "evidence": "It picks pin-on-first-use.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: a required version can never drift under a caller silently.",
+        "evidence": "Not given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies a version being simultaneously deprecated and the default as a named failure pattern, not a tolerable interim state.",
+        "evidence": "\"Your policy contradicts itself\"; \"Cannot be the default for new keys or docs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the cost of deprecated-and-default: the deprecation label loses credibility while new integrators keep being handed the deprecated version.",
+        "evidence": "\"onboarding every new customer onto a version you've told people to leave... 'deprecated' has no teeth.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the default for docs and new API keys off 2024-03 onto a current version as a near-term action.",
+        "evidence": "Migration step 1: \"Switch the default for new keys and the docs to the current version.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects coupling SDK major versions to API version identifiers as the versioning story.",
+        "evidence": "It keeps a coupling rule: \"The SDK major version increments whenever its default API version changes.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that client SDKs version under plain SemVer, separate from the wire contract's date scheme.",
+        "evidence": "\"SDKs follow their own semantic versioning, independent of API versions.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the SDK major-bump trigger is stricter than the API's version rule, because a library's compiled surface breaks in ways a tolerant HTTP caller does not.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends writing the SDK versioning policy as its own separate policy rather than folding it into this document.",
+        "evidence": "It is folded into this document as \u00a76.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that later removing the unversioned (header-less) access path is itself a breaking change that needs its own notice and communication.",
+        "evidence": "It disables implicit-latest in migration step 4 without calling that a breaking change.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

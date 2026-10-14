@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to present 31,400 downloads as organizations or as usage, stating downloads measure install interest only.",
+        "evidence": "\"Downloads count installs, not organizations.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that only in-server telemetry answers the adoption question, and that download counts exclude private mirrors and cannot be read as execution counts.",
+        "evidence": "\"They include CI re-installs and private mirrors... Only in-server telemetry measures usage.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects registry listing or directory rank as a trust or security claim, stating the official registry is a metadata catalog with namespace-ownership proof and community moderation that certifies nothing about security.",
+        "evidence": "\"metadata catalog with DNS namespace-ownership proof... certifies nothing about security.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes instrumenting tool calls as OpenTelemetry spans - session to tool invocation to downstream operation - rather than a bespoke event schema.",
+        "evidence": "OpenTelemetry is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies OpenTelemetry by the enterprise customer's own observability stack being an audience for the data, not only Pellham's dashboard.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the metric set: call volume, success and error rate, per-tool usage, active users, and client distribution.",
+        "evidence": "Lists distinct orgs, tool calls per week, error rate only; no per-tool usage or client distribution.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the dual purpose of that metric set - confirming the server is used at all, and whether adoption is broad or concentrated.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the gateway-fronted customers by designing metrics to be correlatable through stable tool names and request IDs, instead of assuming Pellham's telemetry is the only visibility layer.",
+        "evidence": "\"We've made our tool names and request IDs correlatable and asked them for gateway-side counts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points at the first-party disclosure shape worth matching - call volume, write share, non-technical-user share, enterprise share, retention by cohort, and accuracy plus token-efficiency gains.",
+        "evidence": "Not referenced.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to present 31,400 downloads as organizations or as usage, stating downloads measure install interest only.",
+        "evidence": "\"31,400 npm downloads counts installs... downloads relabeled as customers\"; relabel as \"installs, not organizations\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that only in-server telemetry answers the adoption question, and that download counts exclude private mirrors and cannot be read as execution counts.",
+        "evidence": "It says to query own logs for org counts, but never says downloads exclude private mirrors or can't be read as execution counts.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects registry listing or directory rank as a trust or security claim, stating the official registry is a metadata catalog with namespace-ownership proof and community moderation that certifies nothing about security.",
+        "evidence": "\"the official MCP registry verifies namespace ownership, not security\" and \"It's namespace verification and discovery.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes instrumenting tool calls as OpenTelemetry spans - session to tool invocation to downstream operation - rather than a bespoke event schema.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies OpenTelemetry by the enterprise customer's own observability stack being an audience for the data, not only Pellham's dashboard.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the metric set: call volume, success and error rate, per-tool usage, active users, and client distribution.",
+        "evidence": "Only org counts and weekly active orgs are named, not the call volume / error rate / per-tool / client distribution set.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the dual purpose of that metric set - confirming the server is used at all, and whether adoption is broad or concentrated.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the gateway-fronted customers by designing metrics to be correlatable through stable tool names and request IDs, instead of assuming Pellham's telemetry is the only visibility layer.",
+        "evidence": "It asks customers to pass a tenant/org header or usage export. It does not mention stable tool names or request IDs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points at the first-party disclosure shape worth matching - call volume, write share, non-technical-user share, enterprise share, retention by cohort, and accuracy plus token-efficiency gains.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

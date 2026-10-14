@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that once customers query the tables the schema is an API: columns are fields, tables are endpoints, and their dashboards are clients",
+        "evidence": "\"both are in-place breaking changes to a live customer API\"; dashboards, dbt models and saved queries named as consumers of the columns.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adopts an additive-only rule: add columns and tables freely, never rename, retype, or drop in place",
+        "evidence": "\"Additive-only. Add columns and tables freely. Never rename, retype or drop in place.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects both the in-place rename of cust_ord_dt and the in-place retype of order_total",
+        "evidence": "\"Neither change should ship as written.\" and \"Don't do this\" for the retype.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes expand/contract in order: add the new column, deprecate the old one in the docs, migrate consumers, remove only when nothing depends on it",
+        "evidence": "\"add the new column, deprecate the old one in the docs, migrate consumers, and remove it only when nothing depends on it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects a two-week changelog announcement as sufficient governance and requires the contract be enforced in CI rather than by convention",
+        "evidence": "\"Announcing them in a changelog two weeks ahead is not a deprecation process.\" and \"Enforce it in CI.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a CI enforcement mechanism such as dbt model contracts failing the run on a breaking column change, or the datacontract CLI validating a contract against a PR before merge",
+        "evidence": "\"Use dbt model contracts (1.5+) or the `datacontract` CLI\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the contract in four parts: schema (columns, types, nullability), quality (completeness thresholds), freshness (refresh SLA), and availability (uptime or latency)",
+        "evidence": "\"schema, quality, freshness SLA, availability\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that schema changes are more dangerous than API changes because they often happen accidentally, such as a source-system update or a readability rename, and propagate downstream with no deprecation header",
+        "evidence": "Only a passing remark that a doc contract \"won't survive the next readability refactor\"; the accidental, no-header explanation is absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects serving the live production schema and requires a curated mart layer so internal schema churn stops at the replication boundary",
+        "evidence": "\"The skill says never expose the live operational schema. Serve a curated mart layer so internal churn stops at the boundary.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a shipped additive-only precedent such as Amplitude's event schema, which only ever adds tables and columns as new event types arrive",
+        "evidence": "No precedent is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the schema gate as zero breaking changes reaching the customer-facing schema past the CI contract check, and that a breaking change that ships is a gate failure even if no customer noticed",
+        "evidence": "\"A breaking change that ships counts as a failure even if nobody noticed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that the customer's certified connector package is a second stability surface: a schema change can break its customization file or expected column typing even when the data contract itself is honored",
+        "evidence": "\"The Tableau connector is a second stability surface... can break a certified connector's column typing or customization file even when the data contract is honored.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that once customers query the tables the schema is an API: columns are fields, tables are endpoints, and their dashboards are clients",
+        "evidence": "'The share is a public API with no contract.' and 'View schema is now an API' framing via the contract layer.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adopts an additive-only rule: add columns and tables freely, never rename, retype, or drop in place",
+        "evidence": "'Make most changes additive. Add the new name next to the old one'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects both the in-place rename of cust_ord_dt and the in-place retype of order_total",
+        "evidence": "'Reject the order_total string change' and rename delivered as 'add-then-retire'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes expand/contract in order: add the new column, deprecate the old one in the docs, migrate consumers, remove only when nothing depends on it",
+        "evidence": "Timeline: add columns, deprecate with catalog comments, brownout, remove only if usage is zero.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects a two-week changelog announcement as sufficient governance and requires the contract be enforced in CI rather than by convention",
+        "evidence": "'a notice policy bolted onto a missing mechanism' and 'Add a CI gate'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a CI enforcement mechanism such as dbt model contracts failing the run on a breaking column change, or the datacontract CLI validating a contract against a PR before merge",
+        "evidence": "'Diff INFORMATION_SCHEMA.COLUMNS for the share schema against that snapshot... fail unless the PR includes a deprecation entry.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the contract in four parts: schema (columns, types, nullability), quality (completeness thresholds), freshness (refresh SLA), and availability (uptime or latency)",
+        "evidence": "Only schema is covered. Quality, freshness and availability are absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that schema changes are more dangerous than API changes because they often happen accidentally, such as a source-system update or a readability rename, and propagate downstream with no deprecation header",
+        "evidence": "Not argued.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects serving the live production schema and requires a curated mart layer so internal schema churn stops at the replication boundary",
+        "evidence": "'Separate the contract from the tables' with a versioned V1 secure-view layer.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a shipped additive-only precedent such as Amplitude's event schema, which only ever adds tables and columns as new event types arrive",
+        "evidence": "No precedent cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the schema gate as zero breaking changes reaching the customer-facing schema past the CI contract check, and that a breaking change that ships is a gate failure even if no customer noticed",
+        "evidence": "The CI gate fails removals unless a deprecation entry exists, but no zero-breaking-change, even-if-unnoticed standard is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that the customer's certified connector package is a second stability surface: a schema change can break its customization file or expected column typing even when the data contract itself is honored",
+        "evidence": "'The Tableau connector... highest-risk item... Ask what it hardcodes. Column names, type mappings'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

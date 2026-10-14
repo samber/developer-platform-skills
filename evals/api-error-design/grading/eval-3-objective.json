@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to translate the error code: code values like INVALID_SKU stay untranslated for every locale",
+        "evidence": "\"Reject INVALID_SKU \u2192 REFERENCE_INVALIDE.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the refusal by the code being the field client code logs, branches, and matches on",
+        "evidence": "\"Client code branches on code... logs and tickets would carry codes we can't search\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Localizes only the human-readable message/detail text, negotiated via the Accept-Language request header",
+        "evidence": "Translate title, detail, errors[].message; locale resolution starts with Accept-Language",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Echoes the chosen language back in a Content-Language response header",
+        "evidence": "\"always send Content-Language: <resolved>\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the alternative split of keeping the message stable and developer-facing while carrying translated end-user text in a separate localized-message field",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The rewritten error names the field, the value received, and the constraint violated in the same error object (quantity, received 0, minimum 1)",
+        "evidence": "\"quantity doit \u00eatre sup\u00e9rieur ou \u00e9gal \u00e0 1 ; re\u00e7u : 0\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes structured machine-readable detail such as the provided value and the constraint (e.g. value_provided 0, min 1), not prose alone",
+        "evidence": "\"value_provided\": 0, \"constraints\": { \"min\": 1 }",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Evaluates messages against three independent properties - human-readable, actionable, consistent in format across the API - checked separately",
+        "evidence": "No separate evaluation of human-readable, actionable, consistent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the MIN_QTY_RULE_VIOLATED-style bare rule name as the failure pattern: a rule named with no field, no expected value, and no self-serve path",
+        "evidence": "\"It has no field, no value, no constraint, no status guidance, and no request ID.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For errors whose fix takes a paragraph to explain, links a documentation_url to the code's catalog entry instead of cramming the explanation into the message",
+        "evidence": "documentation_url included but the rule of linking instead of cramming is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps structured fields as the machine signal so the prose message is never the only thing a programmatic caller can branch on",
+        "evidence": "\"a client branches on errors[].code ... It never parses prose.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to translate the error code: code values like INVALID_SKU stay untranslated for every locale",
+        "evidence": "'Do not translate `INVALID_SKU` into `REFERENCE_INVALIDE`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the refusal by the code being the field client code logs, branches, and matches on",
+        "evidence": "'Integrators branch on the identifier... Logs, alerts, retry rules, SDK enums and support macros all key on the code.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Localizes only the human-readable message/detail text, negotiated via the Accept-Language request header",
+        "evidence": "The field table localizes `title` and `detail`; locale resolution starts with the `Accept-Language` header.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Echoes the chosen language back in a Content-Language response header",
+        "evidence": "'Always send the `Content-Language` header and `Vary: Accept-Language`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the alternative split of keeping the message stable and developer-facing while carrying translated end-user text in a separate localized-message field",
+        "evidence": "It offers only an informational `code_label`. It does not describe a stable developer message alongside a separate localized message.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The rewritten error names the field, the value received, and the constraint violated in the same error object (quantity, received 0, minimum 1)",
+        "evidence": "'La quantit\u00e9 doit \u00eatre d'au moins 1. Valeur re\u00e7ue : 0.' with pointer `/quantity`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes structured machine-readable detail such as the provided value and the constraint (e.g. value_provided 0, min 1), not prose alone",
+        "evidence": "`\"params\": { \"min\": 1, \"actual\": 0 }`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Evaluates messages against three independent properties - human-readable, actionable, consistent in format across the API - checked separately",
+        "evidence": "No evaluation of human-readable, actionable and consistent as separate properties.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the MIN_QTY_RULE_VIOLATED-style bare rule name as the failure pattern: a rule named with no field, no expected value, and no self-serve path",
+        "evidence": "'Today's bare string carries no field, no values and no request ID.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For errors whose fix takes a paragraph to explain, links a documentation_url to the code's catalog entry instead of cramming the explanation into the message",
+        "evidence": "A stable `type` URI links to a docs page per code, served in the reader's locale.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps structured fields as the machine signal so the prose message is never the only thing a programmatic caller can branch on",
+        "evidence": "`code`, `type`, `status` and `params` are frozen and byte-identical across locales; free text is documented as unstable.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

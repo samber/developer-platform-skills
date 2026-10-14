@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies that the ID is echoed only on failures, and requires echoing it on every response including 2xx, because a call that returned 200 and did the wrong thing is a real ticket class with no error body to carry the ID",
+        "evidence": "\"You return the ID only on 4xx/5xx. The skill echoes it on every response, because '200 but wrong' is a real ticket class.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies per-service regeneration as a defect and requires one identifier to survive unchanged from the edge through every internal hop",
+        "evidence": "\"Mint at the edge only... Services read it, never mint it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that echoing the header without an external surface that resolves it leaves integrators quoting a string nobody outside Palmate can look up",
+        "evidence": "\"No surface lets the partner resolve it. Partners can only paste the ID into a ticket.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends making the identifier searchable in a developer-facing log the integrator can reach themselves, and pairs that with the header rather than treating either rung as sufficient alone",
+        "evidence": "Step 5: \"Searchable by req_\u2026 in the developer portal. Show the same ID the partner got in the header.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes a request ID, which identifies one HTTP call and its response, from a correlation ID, which identifies a multi-call transaction spanning several request IDs",
+        "evidence": "A client-supplied X-Palmate-Correlation-Id is mentioned only as a way to join logs. The multi-call transaction concept is never defined or contrasted with request IDs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends forwarding the same identifier to the tax engine and the card processor instead of generating new ones at those hops",
+        "evidence": "\"Send ours where the vendor allows it: a metadata field, a reference field, or a custom header.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies promoting downstream propagation by pointing at Palmate's current inability to see into failures that came from a provider it calls",
+        "evidence": "\"Propagation to sub-processors is promoted because your support answer is effectively 'that's in another system'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires Palmate's own internal retries to carry the original identifier rather than generating a fresh one per attempt",
+        "evidence": "\"Internal retries reuse the original ID and add an attempt field.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends logging the identifier on both sides of every boundary: inbound at the edge and outbound at each downstream call",
+        "evidence": "\"log it on both sides of every boundary\" and the child-link record logged on outbound vendor calls.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends accepting and echoing a client-supplied identifier when one arrives rather than overwriting it",
+        "evidence": "\"Client-supplied IDs: don't let a client value replace ours.\" Only a separate correlation header is accepted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies an opaque random value such as a UUIDv4 and rejects sequential or timestamp-derived identifiers because they leak volume or timing and collide under concurrency",
+        "evidence": "\"req_ plus a random UUIDv4 body. It is opaque and carries no sequence or timestamp.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not redesign the error response payload shape, or explicitly defers the question of whether the ID rides in the error body to a separate error-design scope",
+        "evidence": "\"api-error-design owns the payload shape, so coordinate with it rather than redesigning it here.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends documenting the lookup path next to the error documentation rather than on a separate observability page",
+        "evidence": "\"Document the lookup path next to the error docs.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies that the ID is echoed only on failures, and requires echoing it on every response including 2xx, because a call that returned 200 and did the wrong thing is a real ticket class with no error body to carry the ID",
+        "evidence": "'Return X-Palmate-Request-Id on every response, not only 4xx/5xx'; 'partners can then quote successes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies per-service regeneration as a defect and requires one identifier to survive unchanged from the edge through every internal hop",
+        "evidence": "'Propagate and never re-mint'; 'Services never generate an ID for request-scoped work.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that echoing the header without an external surface that resolves it leaves integrators quoting a string nobody outside Palmate can look up",
+        "evidence": "Lookup is only a support console; this is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends making the identifier searchable in a developer-facing log the integrator can reach themselves, and pairs that with the header rather than treating either rung as sufficient alone",
+        "evidence": "Only an internal support view is proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes a request ID, which identifies one HTTP call and its response, from a correlation ID, which identifies a multi-call transaction spanning several request IDs",
+        "evidence": "No such distinction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends forwarding the same identifier to the tax engine and the card processor instead of generating new ones at those hops",
+        "evidence": "'Send our ID in whatever the vendor supports'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies promoting downstream propagation by pointing at Palmate's current inability to see into failures that came from a provider it calls",
+        "evidence": "Only mentions support escalations via vendor ID; no explicit justification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires Palmate's own internal retries to carry the original identifier rather than generating a fresh one per attempt",
+        "evidence": "Idempotency keys are stable across retries, but retries carrying the request ID is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends logging the identifier on both sides of every boundary: inbound at the edge and outbound at each downstream call",
+        "evidence": "'one structured log line per outbound attempt' plus the edge canonical event.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends accepting and echoing a client-supplied identifier when one arrives rather than overwriting it",
+        "evidence": "'It never trusts an inbound ID'; logs it as client_request_id instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies an opaque random value such as a UUIDv4 and rejects sequential or timestamp-derived identifiers because they leak volume or timing and collide under concurrency",
+        "evidence": "Specifies 'ULID or UUIDv7', which are timestamp-derived.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not redesign the error response payload shape, or explicitly defers the question of whether the ID rides in the error body to a separate error-design scope",
+        "evidence": "'put it in the JSON error body as request_id'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends documenting the lookup path next to the error documentation rather than on a separate observability page",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

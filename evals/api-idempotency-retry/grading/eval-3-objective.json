@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Diagnoses the root cause as a binary seen/not-seen key model with no representation of an in-flight request",
+        "evidence": "\"your key store has only two states, seen and not seen.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the key as a three-state machine: absent, in-flight, complete",
+        "evidence": "\"A key needs three: **absent**, **in-flight** and **complete**.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the proposal to let a retry through once the original merely seems stuck past 10 seconds",
+        "evidence": "\"Do not ship the 10-second rule... It would let the retry through while the first attempt is still running.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defaults the in-flight response to a conflict (409) telling the caller to wait and retry",
+        "evidence": "\"`409 concurrent_idempotent_requests`, 'wait and retry'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers blocking for the bounded result and 202-plus-status-URL as the alternatives for synchronous callers and long-running effects respectively",
+        "evidence": "Only \"Return `202` plus a status URL\" and documenting p99 are offered; blocking for a bounded result is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the in-flight conflict and the payload-mismatch conflict to carry distinct machine-readable error codes",
+        "evidence": "\"Use two distinct machine-readable codes for the two 409s.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that in-flight conflict and completed replay are different responses by design, never fallbacks of each other",
+        "evidence": "\"Both the conflict response and the replay response are deliberate and distinct.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows takeover of an abandoned request only after a lock timeout, via an atomic conditional update on the lock timestamp",
+        "evidence": "\"only through an atomic `UPDATE ... SET locked_at = now() WHERE locked_at < $threshold`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "A taken-over or retried request resumes from a persisted recovery point rather than restarting from the beginning",
+        "evidence": "\"A takeover caller resumes from `recovery_point`, never from the start.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pushes back on the email to the client: frames the client's retry as correct configured behavior and the server's missing in-flight state as the bug",
+        "evidence": "\"Your client did what a correct client does\"; \"The client's 10s timeout was reasonable.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an active completer background job that pushes abandoned in-flight requests through to completion, not passive expiry",
+        "evidence": "\"A **completer** pushes abandoned in-flight requests to completion\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a reaper job that deletes expired records and logs what it could not finish for a human",
+        "evidence": "\"A **reaper** deletes records past the retention threshold and logs anything it couldn't finish for a human.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Diagnoses the root cause as a binary seen/not-seen key model with no representation of an in-flight request",
+        "evidence": "It blames treating \"slow and dead as the same thing\" and a retry arriving \"with a key that has no response\". It never names the binary seen/not-seen model.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies the key as a three-state machine: absent, in-flight, complete",
+        "evidence": "Table rows: \"Absent\", \"`completed`\", \"`in_progress`, lease live\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the proposal to let a retry through once the original merely seems stuck past 10 seconds",
+        "evidence": "\"Don't ship the engineer's proposal... That recreates the bug: two labels and two carrier charges.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defaults the in-flight response to a conflict (409) telling the caller to wait and retry",
+        "evidence": "\"Prefer the hold, because the client gets the label without a second round trip.\" Its default is blocking, not 409.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers blocking for the bounded result and 202-plus-status-URL as the alternatives for synchronous callers and long-running effects respectively",
+        "evidence": "\"hold the request open and poll the row for up to about 25s\" and \"Return `202` with a shipment ID right away\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the in-flight conflict and the payload-mismatch conflict to carry distinct machine-readable error codes",
+        "evidence": "It gives status codes (409, 422) but no machine-readable error codes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that in-flight conflict and completed replay are different responses by design, never fallbacks of each other",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Allows takeover of an abandoned request only after a lock timeout, via an atomic conditional update on the lock timestamp",
+        "evidence": "It uses lease expiry plus a heartbeat and says \"Recover (section 4)\", but does not specify an atomic conditional update for takeover.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "A taken-over or retried request resumes from a persisted recovery point rather than restarting from the beginning",
+        "evidence": "\"Write a `carrier_call_started` record... If the record says the call started but has no result, look the shipment up at the carrier... If a label exists, adopt it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pushes back on the email to the client: frames the client's retry as correct configured behavior and the server's missing in-flight state as the bug",
+        "evidence": "\"The client behaved correctly. Retrying with the same idempotency key is exactly what the key is for.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an active completer background job that pushes abandoned in-flight requests through to completion, not passive expiry",
+        "evidence": "No background job that pushes abandoned requests to completion is proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a reaper job that deletes expired records and logs what it could not finish for a human",
+        "evidence": "No reaper is proposed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends classifying the most recent integration support tickets by failure class (request not found, webhook never arrived, auth or credential failure, rate-limit confusion, silent data mismatch) before choosing what to build",
+        "evidence": "\"Classify the last 20 integration tickets before any build work. Use these classes: webhook never arrived, synchronous API error, auth or credential failure, rate-limit confusion, silent data mismatch.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the request log, the event log, and the webhook delivery-attempt log as three distinct surfaces rather than one combined dashboard",
+        "evidence": "Only the delivery-attempt log and the request log are named. No event log appears anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the delivery-attempt log answers 'did you tell me about it', the request log answers 'did my call work', and the event log answers 'what did it change'",
+        "evidence": "The transcript never states the 'did you tell me about it' / 'did my call work' / 'what did it change' split.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends exposing the existing delivery-attempt data as the first surface, on the grounds that it is already recorded and the remaining work is mostly access control and interface",
+        "evidence": "\"This is the skill's default rung when you send webhooks and already record attempts. It is mostly an access-control and interface job.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend building all three surfaces simultaneously inside the six-week window",
+        "evidence": "Only the delivery log is the core build. The request log is a conditional stretch item: \"Request log if synchronous API errors are a large share of the ticket pile.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a delivery-attempt row must carry the actual failure reason (timeout, connection refused, TLS failure, or a specific non-2xx status) rather than a generic 'delivery failed'",
+        "evidence": "\"Keep timeout, connection refused, TLS failure and non-2xx distinct... Never show a generic 'delivery failed'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the fields a delivery-attempt row carries, including event ID, destination endpoint, attempt number, attempt timestamp, and next scheduled retry time",
+        "evidence": "\"Event ID, endpoint, attempt number, UTC timestamp, and next scheduled retry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a surface shipping only failure counts with no detail behind it converts a silent failure into a support ticket rather than into a fix",
+        "evidence": "The mistake listed is logs with no push notification. Counts without detail behind them are never discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks or establishes what an integrator can see today without contacting Freightwise, as the audit baseline",
+        "evidence": "\"What can an integrator see today? I assumed nothing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks whether request and response bodies carry PII, secrets, or another tenant's data, and who signs off on exposing them to a third party",
+        "evidence": "\"Get legal and data sign-off on what leaves your tenancy... consignee names, addresses... echo secrets in their response bodies.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the dashboard to display the same identifiers Freightwise returns to integrators rather than internal primary keys",
+        "evidence": "\"Identifiers the integrator can copy and search, matching what they see in their own payloads and headers.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends classifying the most recent integration support tickets by failure class (request not found, webhook never arrived, auth or credential failure, rate-limit confusion, silent data mismatch) before choosing what to build",
+        "evidence": "'pull the last 60 days of integration tickets. Tag each by root cause. Counts decide what to build.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the request log, the event log, and the webhook delivery-attempt log as three distinct surfaces rather than one combined dashboard",
+        "evidence": "Only a single delivery log is discussed; no request log or event log is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the delivery-attempt log answers 'did you tell me about it', the request log answers 'did my call work', and the event log answers 'what did it change'",
+        "evidence": "No such framing appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends exposing the existing delivery-attempt data as the first surface, on the grounds that it is already recorded and the remaining work is mostly access control and interface",
+        "evidence": "'Delivery log... Builds on the attempts table you already have.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend building all three surfaces simultaneously inside the six-week window",
+        "evidence": "Plan builds only a delivery log, then replay, alerts and a tester.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a delivery-attempt row must carry the actual failure reason (timeout, connection refused, TLS failure, or a specific non-2xx status) rather than a generic 'delivery failed'",
+        "evidence": "'Shows each attempt with HTTP code, timeout reason, latency'; 'Map raw codes and timeout reasons to a message plus a fix.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the fields a delivery-attempt row carries, including event ID, destination endpoint, attempt number, attempt timestamp, and next scheduled retry time",
+        "evidence": "Lists event ID, endpoint, status, latency and retry schedule, but not attempt number or attempt timestamp.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a surface shipping only failure counts with no detail behind it converts a silent failure into a support ticket rather than into a fix",
+        "evidence": "No such warning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks or establishes what an integrator can see today without contacting Freightwise, as the audit baseline",
+        "evidence": "Open questions ask about the attempts table, not what integrators see now.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether request and response bodies carry PII, secrets, or another tenant's data, and who signs off on exposing them to a third party",
+        "evidence": "Covers PII and tenant isolation but names no sign-off owner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the dashboard to display the same identifiers Freightwise returns to integrators rather than internal primary keys",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags \"19 attempts over 48 hours\" as Shopify's superseded pre-September-2024 policy and warns that sources repeating it are stale.",
+        "evidence": "'Shopify's policy from before September 2024.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives Shopify's current documented policy as 8 retries over roughly 4 hours.",
+        "evidence": "'It now makes 8 retries over 4 hours.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the flat 45-second interval and requires exponential backoff instead.",
+        "evidence": "'Flat intervals are a named anti-pattern... Exponential, never linear'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that constant-interval retries hammer a struggling endpoint and worsen an active rate-limit response.",
+        "evidence": "Quotes 'constant-interval retries hammer a struggling endpoint' and adds lockstep retries.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a fixed exponential-backoff schedule spanning roughly a day as the default.",
+        "evidence": "'8 attempts over about 27.5 hours'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites at least one documented vendor schedule as the reference for that span, such as Svix's 8 attempts over about 27.5 hours or Stripe's up to 3 days.",
+        "evidence": "Svix's shipped schedule; Stripe's shape for 3 days.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to size the total retry span against realistic subscriber incident durations, contrasting a deploy taking minutes against an outage taking hours, rather than picking a round number.",
+        "evidence": "'A deploy takes minutes and an outage takes hours.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects retrying non-retriable 4xx responses and routes them straight to the dead-letter queue.",
+        "evidence": "'any 4xx other than 408 or 429 straight to the dead-letter queue'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names 408 and 429 as the 4xx status codes that are the exception and do get retried.",
+        "evidence": "'408, 429, 5xx, and timeouts get retried.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to honor a subscriber's Retry-After header on a 429 in preference to the platform's own backoff curve.",
+        "evidence": "'Honor Retry-After on 429 instead of your own curve.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the never-disable plan and requires auto-disabling an endpoint after sustained failure.",
+        "evidence": "'Auto-disable, not delete'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires notifying the subscriber out-of-band, by email or dashboard, because the webhook channel itself is what is broken.",
+        "evidence": "'Notify the customer out-of-band, by email or dashboard, because the webhook channel itself is broken.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives dead-lettering exactly two triggers: the retry budget being exhausted, and a non-retriable error class.",
+        "evidence": "'dead-letters on exactly two triggers: budget exhausted, or non-retriable error'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags \"19 attempts over 48 hours\" as Shopify's superseded pre-September-2024 policy and warns that sources repeating it are stale.",
+        "evidence": "\"Shopify's 19 attempts over 48 hours was an increasing-interval schedule. As I recall, Shopify has since cut it... check their current docs before citing them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives Shopify's current documented policy as 8 retries over roughly 4 hours.",
+        "evidence": "\"about 8 retries over 4 hours\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the flat 45-second interval and requires exponential backoff instead.",
+        "evidence": "\"A flat interval is worse than it is 'predictable'\"; proposes 1, 2, 5, 10, 20, 30 min then hourly with jitter.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that constant-interval retries hammer a struggling endpoint and worsen an active rate-limit response.",
+        "evidence": "\"A flat 45 s hammers an endpoint that is already struggling, and gives it no recovery room.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a fixed exponential-backoff schedule spanning roughly a day as the default.",
+        "evidence": "Recommends about 19 attempts over about 48 h with a stepped schedule, not roughly a day.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites at least one documented vendor schedule as the reference for that span, such as Svix's 8 attempts over about 27.5 hours or Stripe's up to 3 days.",
+        "evidence": "Only cites Shopify, and says to verify it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says to size the total retry span against realistic subscriber incident durations, contrasting a deploy taking minutes against an outage taking hours, rather than picking a round number.",
+        "evidence": "Only says the SLA window \"should drive the 48 h figure\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects retrying non-retriable 4xx responses and routes them straight to the dead-letter queue.",
+        "evidence": "\"Retry only a few times, then park\" for 400/401/403/404/410/413/422.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names 408 and 429 as the 4xx status codes that are the exception and do get retried.",
+        "evidence": "Table: \"408, 425, 5xx... Retry\" and \"429 | Retry, and honor Retry-After\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to honor a subscriber's Retry-After header on a 429 in preference to the platform's own backoff curve.",
+        "evidence": "\"429 | Retry, and honor `Retry-After`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the never-disable plan and requires auto-disabling an endpoint after sustained failure.",
+        "evidence": "\"Mark the endpoint degraded, then paused after... 72 h of consecutive failure.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires notifying the subscriber out-of-band, by email or dashboard, because the webhook channel itself is what is broken.",
+        "evidence": "\"through email, a dashboard banner and an API status field\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives dead-lettering exactly two triggers: the retry budget being exhausted, and a non-retriable error class.",
+        "evidence": "Dead-letter is described only for after the budget is spent; the non-retriable trigger is not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

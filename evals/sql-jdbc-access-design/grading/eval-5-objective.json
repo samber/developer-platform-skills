@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that reader-account warehouses can consume unlimited credits billed to the provider's own account by default",
+        "evidence": "\"provider-billed reader-account warehouses can burn unlimited credits on your bill unless a resource monitor caps them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a resource monitor on every reader account and names it the single most important cost-control step of this surface, not optional hardening",
+        "evidence": "\"SKILL.md step 6 calls a monitor on every reader account the single most important cost control on this surface.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the statement timeout, which bounds one query, from the spend cap or resource monitor, which bounds the month, and states the 10-minute timeout alone does not bound the downside",
+        "evidence": "\"The timeout bounds one query. A resource monitor bounds the month.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a queued-statement timeout so queries do not wait indefinitely for a slot",
+        "evidence": "\"Add a queued-statement timeout.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a concurrency cap per tenant or workload so one customer's parallel dashboard refresh cannot occupy shared compute",
+        "evidence": "\"Cap concurrency per account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that none of these controls are on by default and each must be configured per external warehouse or engine before GA",
+        "evidence": "Says other controls are \"unconfirmed\" but never says they are off by default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the cost gate: every external compute handle has a statement timeout, a concurrency cap, and a spend cap before the first customer connects, audited as a pass/fail checklist per handle",
+        "evidence": "\"every reader account has a statement timeout, a concurrency cap, and a spend cap, audited pass/fail per account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the flat-price risk of the unbounded heavy user whose compute cost exceeds the flat price, acceptable only with the caps in place",
+        "evidence": "\"A flat add-on... is acceptable only with the step 6 caps in place. The unbounded heavy user is its known risk\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes moving a tenant that regularly queues others or trips monitors onto isolated or larger compute",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explicitly rejects raising the shared cap for everyone to accommodate one heavy tenant",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes capping compute seconds and spend on a long-running engine from counting requests at an API gateway, and requires endpoint-level connection or query-rate limits to stay consistent with the published API rate-limit policy",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the consumer-pays alternative at the same rung, where compute bills to the customer's own account, citing HubSpot's Snowflake share gated to its top data tier",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that reader-account warehouses can consume unlimited credits billed to the provider's own account by default",
+        "evidence": "'compute is billed to us, so the margin is open-ended' and 'reader-account admins... bypass the timeout, and that compute is also billed to us'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a resource monitor on every reader account and names it the single most important cost-control step of this surface, not optional hardening",
+        "evidence": "'Add a resource monitor... This is the only hard dollar cap' and a per-customer warehouse and monitor.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the statement timeout, which bounds one query, from the spend cap or resource monitor, which bounds the month, and states the 10-minute timeout alone does not bound the downside",
+        "evidence": "'The timeout caps how long one statement runs. It doesn't cap how many statements run...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a queued-statement timeout so queries do not wait indefinitely for a slot",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a concurrency cap per tenant or workload so one customer's parallel dashboard refresh cannot occupy shared compute",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that none of these controls are on by default and each must be configured per external warehouse or engine before GA",
+        "evidence": "Not stated as a principle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the cost gate: every external compute handle has a statement timeout, a concurrency cap, and a spend cap before the first customer connects, audited as a pass/fail checklist per handle",
+        "evidence": "No pass/fail checklist before the first customer connects.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the flat-price risk of the unbounded heavy user whose compute cost exceeds the flat price, acceptable only with the caps in place",
+        "evidence": "'about 5.8\u00d7 that customer's fee' and fair-use and overage terms.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes moving a tenant that regularly queues others or trips monitors onto isolated or larger compute",
+        "evidence": "It proposes per-customer warehouses generally but not as a response to a tenant that queues others or trips monitors.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explicitly rejects raising the shared cap for everyone to accommodate one heavy tenant",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes capping compute seconds and spend on a long-running engine from counting requests at an API gateway, and requires endpoint-level connection or query-rate limits to stay consistent with the published API rate-limit policy",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the consumer-pays alternative at the same rung, where compute bills to the customer's own account, citing HubSpot's Snowflake share gated to its top data tier",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

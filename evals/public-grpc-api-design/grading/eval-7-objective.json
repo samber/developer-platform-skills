@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Answers that the service is not clear to launch as described",
+        "evidence": "\"Not clear to launch.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires server reflection to be disabled in production, giving the reason that it is an API-discovery tool for attackers once the port is publicly reachable",
+        "evidence": "\"reflection lets attackers list every method\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that TLS terminated and authentication enforced does not close the exposure hole",
+        "evidence": "\"Auth and transport are necessary. They do not close the exposure hole.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires enumerating the full method surface for admin, debug and monitoring RPCs never designed for external visibility",
+        "evidence": "\"Re-run the audit... Confirm the descriptor lists only...\"; \"list every RPC\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies DrainNode, DumpRuntimeConfig, SetFeatureFlag, ReindexShipmentCache and DebugEcho by name as methods that must not be on the public surface",
+        "evidence": "DrainNode, SetFeatureFlag, ReindexShipmentCache, DumpRuntimeConfig, DebugEcho",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the exposure audit is mandatory rather than optional for any service built internal-first",
+        "evidence": "\"exposure audit (step 7) is mandatory for any internal-first service\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats reflection-disabled and audit-completed as binary pass gates that must both be satisfied before launch",
+        "evidence": "Both reflection and the five RPCs are listed as launch blockers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping the admin and debug methods off the published contract rather than relying only on per-method authorization to hide them",
+        "evidence": "\"The fix is to take these RPCs off the public contract.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retains per-method scope enforcement for the business methods that do stay on the public surface",
+        "evidence": "\"Per-method scopes: is each RPC checked against a token scope? shipments.read vs shipments.write\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the support engineers' grpcurl workflow can continue against a non-public environment rather than justifying reflection in production",
+        "evidence": "\"Keep reflection on only for the internal admin listener, reachable by VPN or mTLS only.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Answers that the service is not clear to launch as described",
+        "evidence": "\"Not clear to launch \u274c\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires server reflection to be disabled in production, giving the reason that it is an API-discovery tool for attackers once the port is publicly reachable",
+        "evidence": "\"any customer can run grpcurl list and see every method... Turn it off on the customer endpoint.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that TLS terminated and authentication enforced does not close the exposure hole",
+        "evidence": "\"Transport and authentication are fine, but they aren't the gap. The gap is authorization.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires enumerating the full method surface for admin, debug and monitoring RPCs never designed for external visibility",
+        "evidence": "It handles only the five named methods and does not require a full method-surface enumeration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies DrainNode, DumpRuntimeConfig, SetFeatureFlag, ReindexShipmentCache and DebugEcho by name as methods that must not be on the public surface",
+        "evidence": "It names DrainNode, SetFeatureFlag, ReindexShipmentCache, DumpRuntimeConfig and DebugEcho and moves them off the customer surface.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the exposure audit is mandatory rather than optional for any service built internal-first",
+        "evidence": "This is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats reflection-disabled and audit-completed as binary pass gates that must both be satisfied before launch",
+        "evidence": "It gives a \"minimum path to clear\" checklist but no binary gates, and no audit gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping the admin and debug methods off the published contract rather than relying only on per-method authorization to hide them",
+        "evidence": "\"remove these from the customer-facing surface entirely... Don't rely on a role check inside the shared endpoint as your only control.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retains per-method scope enforcement for the business methods that do stay on the public surface",
+        "evidence": "It raises tenant isolation and asks whether tokens carry distinguishing claims, but does not require per-method scope enforcement for the methods that stay.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the support engineers' grpcurl workflow can continue against a non-public environment rather than justifying reflection in production",
+        "evidence": "\"Support can keep using grpcurl against staging and production through the internal path.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Sets the component to Partial Outage, not Major Outage, despite the CEO's framing",
+        "evidence": "\"Partial Outage, scoped to ap-southeast\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies via the breadth axis: completely broken for a subset (one region) is the definition of Partial Outage; Major Outage means unavailable for everyone",
+        "evidence": "\"completely broken for a subset (one region)... Major means unavailable for everyone\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes the incident to ap-southeast in the title or scope statement so users elsewhere are not alarmed",
+        "evidence": "\"Authentication API unavailable in ap-southeast\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects marking the incident Resolved immediately upon error rates recovering",
+        "evidence": "\"Incident status: Monitoring, not Resolved\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the incident to Monitoring status with the recovery noted and the incident held open under observation",
+        "evidence": "The post reads \"Error rates in ap-southeast returned to normal... We are monitoring\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that resolving on the first green minute and then reopening costs more trust than a visible monitoring period",
+        "evidence": "\"Closing on the first green minute and reopening costs more trust than a visible monitoring period.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps SEV2 to Partial Outage consistent with a severity-to-component-state mapping",
+        "evidence": "\"SEV2 maps to Partial Outage\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the severity-to-public-state mapping be agreed once in writing, not debated mid-incident",
+        "evidence": "It says the call \"matches the written mapping\" and to write the blend rule down once, but doesn't recommend writing the severity mapping once.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the internal SEV2 label off the public page (internal severity vocabulary never surfaces publicly)",
+        "evidence": "\"SEV2 is never shown publicly.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the eventual Resolved update quantify the impact window and affected scope (times and the affected share/region)",
+        "evidence": "\"From [START] to [RECOVERY] UTC, all authentication requests in ap-southeast failed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the Resolved update acknowledge or apologize for the disruption",
+        "evidence": "\"We apologize for the disruption.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the Resolved update commit to a posted summary of cause and prevention within a stated timeframe",
+        "evidence": "\"posted here within 3 business days\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Sets the component to Partial Outage, not Major Outage, despite the CEO's framing",
+        "evidence": "\"Set only the affected component to Major Outage\"; \"Authentication API \u2013 ap-southeast \u2192 Major Outage\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies via the breadth axis: completely broken for a subset (one region) is the definition of Partial Outage; Major Outage means unavailable for everyone",
+        "evidence": "\"The CEO is right about severity and wrong about scope.\" Major is justified by the 100% failure rate, not breadth.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes the incident to ap-southeast in the title or scope statement so users elsewhere are not alarmed",
+        "evidence": "\"Authentication API \u2013 ap-southeast: elevated errors, recovery observed\"; \"Other regions were not affected.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects marking the incident Resolved immediately upon error rates recovering",
+        "evidence": "\"Don't mark it Resolved yet.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the incident to Monitoring status with the recovery noted and the incident held open under observation",
+        "evidence": "\"Incident status now? Monitoring\"; post notes recovery observed",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that resolving on the first green minute and then reopening costs more trust than a visible monitoring period",
+        "evidence": "\"A second failure after a Resolved post costs more trust than the shorter window gains.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps SEV2 to Partial Outage consistent with a severity-to-component-state mapping",
+        "evidence": "\"SEV2 stays internal ... it doesn't drive the page color.\" There is no mapping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends the severity-to-public-state mapping be agreed once in writing, not debated mid-incident",
+        "evidence": "No such recommendation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the internal SEV2 label off the public page (internal severity vocabulary never surfaces publicly)",
+        "evidence": "\"Customers never see it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the eventual Resolved update quantify the impact window and affected scope (times and the affected share/region)",
+        "evidence": "\"Impact ran from [START UTC] to [RECOVERY UTC] (about [N] minutes) ... in that region failed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the Resolved update acknowledge or apologize for the disruption",
+        "evidence": "The Resolved text contains no apology or acknowledgment of disruption.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Has the Resolved update commit to a posted summary of cause and prevention within a stated timeframe",
+        "evidence": "\"We will publish a post-incident review by [date].\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

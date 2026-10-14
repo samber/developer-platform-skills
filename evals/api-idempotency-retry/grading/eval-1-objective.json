@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the server-computed request-body hash as the dedup key and requires a client-minted idempotency key (e.g. an Idempotency-Key header)",
+        "evidence": "\"I recommend **not** building the SHA-256-body-as-key design\"; \"Header: `Idempotency-Key`, minted by the client and never derived by the server.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the rejection with the intentional-duplicate case: two genuinely identical transfers both intended are indistinguishable to a server-side hash, so only a caller-provided key expresses intent",
+        "evidence": "\"Two identical transfers (same vendor, same amount) in one day have identical bodies... Only the client knows whether a request is a retry or a new intent.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the single global dedup table and scopes uniqueness per caller as (account_id, idempotency_key)",
+        "evidence": "\"A global table leaks across tenants... Scope must be `(account_id, key)`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends event-derived key derivation as the default (a key built from an identifier the caller already holds, e.g. their own transfer or order id)",
+        "evidence": "\"Best: derive it from your own business identifier... This is the default recommendation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents derivation options as a ranking - event-derived over request-scoped over a random UUID reused across retries - not an unordered list",
+        "evidence": "Best: business identifier; \"If no stable ID exists\": request-scoped; \"If you're a stateless script\": random UUID persisted.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a fresh key value generated per attempt (regenerated UUID or timestamp) as the anti-pattern that defeats the mechanism, not as a fourth ranked option",
+        "evidence": "\"Don't: Generate a new key per attempt (`Date.now()`, a fresh `randomUUID()` in the retry loop). That defeats the protection.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the same key arriving with a different request body is rejected with a conflict (409), never silently replayed",
+        "evidence": "\"`409` with code `invalid_idempotent_request`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends storing a payload fingerprint or checksum beside the key to enforce the mismatch guard",
+        "evidence": "\"request_fingerprint TEXT NOT NULL\"; \"SHA-256 of the canonicalized body, stored with the key.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores failed outcomes as well as successes so a retry replays the original result",
+        "evidence": "\"Stored outcomes: both successes and failures, replayed verbatim\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes or demands an explicit decision whether a stored failure replays verbatim or the operation is re-attempted without side effects (the Stripe v1 vs v2 fork)",
+        "evidence": "\"Failure policy (decided, not left open): a stored terminal result replays verbatim, including 4xx.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not treat the Idempotency-Key header as a ratified standard - notes the IETF draft expired unratified, so TTL, mismatch and concurrency semantics must be explicitly designed and documented",
+        "evidence": "No mention of the IETF draft or the absence of a ratified standard anywhere in the transcript.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the server-computed request-body hash as the dedup key and requires a client-minted idempotency key (e.g. an Idempotency-Key header)",
+        "evidence": "\"I'd drop 'SHA-256 of the body as the dedup key'... Recommendation: a client-supplied `Idempotency-Key` header, scoped per account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the rejection with the intentional-duplicate case: two genuinely identical transfers both intended are indistinguishable to a server-side hash, so only a caller-provided key expresses intent",
+        "evidence": "\"Two same-day transfers to one vendor for the same amount have identical bodies, so they hash to the same value.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the single global dedup table and scopes uniqueness per caller as (account_id, idempotency_key)",
+        "evidence": "\"A global table leaks across customers... Uniqueness is `(account_id, key)`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends event-derived key derivation as the default (a key built from an identifier the caller already holds, e.g. their own transfer or order id)",
+        "evidence": "It tells integrators to \"Generate a UUIDv4 when you create the payout\" and not to derive keys from the body. It never recommends deriving the key from an identifier the caller already holds.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents derivation options as a ranking - event-derived over request-scoped over a random UUID reused across retries - not an unordered list",
+        "evidence": "No ranked list of key-derivation options appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a fresh key value generated per attempt (regenerated UUID or timestamp) as the anti-pattern that defeats the mechanism, not as a fourth ranked option",
+        "evidence": "\"One key per payout intent, not per HTTP attempt.\" plus \"Reuse the same key and the same body on every retry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the same key arriving with a different request body is rejected with a conflict (409), never silently replayed",
+        "evidence": "It rejects with \"`422 Unprocessable Entity`, error `idempotency_key_reuse`\", not 409.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends storing a payload fingerprint or checksum beside the key to enforce the mismatch guard",
+        "evidence": "\"The server stores a fingerprint with each key... `request_hash BYTEA`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores failed outcomes as well as successes so a retry replays the original result",
+        "evidence": "\"Store terminal outcomes once execution began: success, or a business rejection such as insufficient funds.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes or demands an explicit decision whether a stored failure replays verbatim or the operation is re-attempted without side effects (the Stripe v1 vs v2 fork)",
+        "evidence": "It stores business rejections and skips pre-side-effect failures, but never frames or flags the Stripe v1 vs v2 replay-or-re-attempt decision.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not treat the Idempotency-Key header as a ratified standard - notes the IETF draft expired unratified, so TTL, mismatch and concurrency semantics must be explicitly designed and documented",
+        "evidence": "The IETF draft and its non-ratified status are not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

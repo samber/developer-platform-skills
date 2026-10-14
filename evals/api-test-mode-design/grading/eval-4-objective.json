@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects loading scrubbed/anonymized production accounts into the sandbox: seed data must be synthetic only, never copied from production.",
+        "evidence": "\"Drop the production export... Generate instead\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses test identities/personas (usernames selecting fixture shapes) as the magic-value carrier, matching the data-aggregation domain.",
+        "evidence": "\"Identity-carried personas (the magic-value carrier)... user_gig_worker\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the ambient force_error next-call toggle with deterministic per-request error selection, such as parameterizing the error on the credential (e.g. a password suffix selecting the error condition).",
+        "evidence": "\"password suffix selects the error... error_ITEM_LOGIN_REQUIRED\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the config-driven fixture builder because integrators' data shapes genuinely vary, naming the data-aggregation domain as the promotion condition.",
+        "evidence": "\"Your integrators' end-user shapes genuinely vary... the skill says to promote the builder\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships a starter-fixture library alongside the fixture builder rather than making every integrator hand-write configs.",
+        "evidence": "\"ship `ledgerlink/sandbox-fixtures` with the four personas\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps the requested shapes (gig worker with multiple income streams, small business, joint account, thin-file student) onto named test personas or starter fixtures.",
+        "evidence": "Table with user_gig_worker, user_small_business, user_joint_account, user_thin_file_student",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'no cleanup needed': a shared sandbox needs automated periodic resets so accumulated test data doesn't drift into an unrepresentative state.",
+        "evidence": "\"'Read-mostly, so no cleanup' is false... Overlay TTL and reset\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends both object-minting endpoints (seed a known state in one call) and reset endpoints (return to a clean state) for integrators.",
+        "evidence": "\"POST /sandbox/fixtures\"; \"POST /sandbox/reset\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the shared sandbox's isolation level explicitly in docs - shared and not per-integrator isolated - instead of letting 'sandbox' imply isolation.",
+        "evidence": "\"State the level in the docs: 'The sandbox is a separate environment... private writable overlay on a shared, immutable synthetic baseline.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends auto-shifting fixture date fields so the newest data is always 'today', keeping transaction histories fresh without manual reseeding.",
+        "evidence": "\"Auto-aging: date fields shift daily so the newest transaction is always 'today'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires deliberate failure personas/values to map onto the real published error codes, not a sandbox-only error shape.",
+        "evidence": "\"Every suffix maps one-to-one onto your published error catalog... Never invent a sandbox-only error shape.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the failure-path coverage gate: every documented failure outcome deterministically triggerable, with a single untriggerable path failing the audit.",
+        "evidence": "\"one untriggerable code fails the audit\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the environment boundary to prevent test credentials from referencing or touching real accounts.",
+        "evidence": "\"Add no code path from sandbox credentials to production data.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects loading scrubbed/anonymized production accounts into the sandbox: seed data must be synthetic only, never copied from production.",
+        "evidence": "\"don't seed from production records. Generate synthetic personas\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses test identities/personas (usernames selecting fixture shapes) as the magic-value carrier, matching the data-aggregation domain.",
+        "evidence": "Golden accounts \"gig_worker_01\", \"err_login_required\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the ambient force_error next-call toggle with deterministic per-request error selection, such as parameterizing the error on the credential (e.g. a password suffix selecting the error condition).",
+        "evidence": "\"Ledgerlink-Sandbox-Simulate: error=ITEM_LOGIN_REQUIRED\" applies to that single request only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the config-driven fixture builder because integrators' data shapes genuinely vary, naming the data-aggregation domain as the promotion condition.",
+        "evidence": "Builds a generator and custom specs, but never names the domain as the promotion condition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships a starter-fixture library alongside the fixture builder rather than making every integrator hand-write configs.",
+        "evidence": "Persona catalog v1 and golden accounts.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps the requested shapes (gig worker with multiple income streams, small business, joint account, thin-file student) onto named test personas or starter fixtures.",
+        "evidence": "Gig worker, small business, joint account, thin-file student table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'no cleanup needed': a shared sandbox needs automated periodic resets so accumulated test data doesn't drift into an unrepresentative state.",
+        "evidence": "\"Set a TTL and quotas... sweeper job\"; \"breaks as soon as integrators write\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends both object-minting endpoints (seed a known state in one call) and reset endpoints (return to a clean state) for integrators.",
+        "evidence": "\"POST /sandbox/accounts\" and \"POST /sandbox/reset\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the shared sandbox's isolation level explicitly in docs - shared and not per-integrator isolated - instead of letting 'sandbox' imply isolation.",
+        "evidence": "Chooses per-tenant isolation but never says to state isolation in docs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends auto-shifting fixture date fields so the newest data is always 'today', keeping transaction histories fresh without manual reseeding.",
+        "evidence": "\"Generate dates relative to 'now'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires deliberate failure personas/values to map onto the real published error codes, not a sandbox-only error shape.",
+        "evidence": "\"Allow only codes the real API can emit\"; bodies identical to production.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the failure-path coverage gate: every documented failure outcome deterministically triggerable, with a single untriggerable path failing the audit.",
+        "evidence": "No audit gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the environment boundary to prevent test credentials from referencing or touching real accounts.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects sorting the fleet view by raw error count and requires ranking by blast radius instead",
+        "evidence": "\"Rank by blast radius... Raw error count is a displayed column and never the sort key.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a partner app failing across many installs outranks a single account throwing more absolute errors, because one conversation fixes many problems",
+        "evidence": "\"200/200 installs failing means one partner release broke everything and one call fixes it\"; acceptance: 200/200 outranks a single account with 10\u00d7 the errors.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires installs affected against installs total per partner app as a dimension of the view",
+        "evidence": "Column \"installs affected / installs total\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a dominant status-code bucket per row so the queue separates the partner's payloads from Sablecrest's own failures from quota rejection",
+        "evidence": "\"dominant bucket (4xx / 5xx / 429)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named contact owner on each row, on the grounds that a ranked list with no contact becomes a report nobody acts on",
+        "evidence": "\"named partner contact (owner)\"; acceptance \"Every row has a named contact\". The stated rationale (an unactioned report) is not given.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires first-seen timestamps aligned against both Sablecrest's release timeline and, where known, the partner's",
+        "evidence": "First seen is shown against \"our deploys\" only. The partner's release timeline is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates integrations broken since Sablecrest's own deploy into a distinct view or tab from the partner-outreach queue, and identifies the first as Sablecrest's own regression queue",
+        "evidence": "\"Platform regression... Owner is the platform team. Keep it visually separate from the outreach queue.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires silent integrations whose call volume dropped toward zero to appear in the view",
+        "evidence": "\"Gone quiet: apps whose call volume dropped to or near zero.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against publishing a per-partner reliability number Sablecrest cannot defend line by line, because it will be quoted back in commercial conversations",
+        "evidence": "\"No published reliability or availability number derived from this. The fleet measures integrations, including partner code.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the inputs behind any partner-facing score to be inspectable by that partner: error counts, install coverage, and the windows used",
+        "evidence": "\"Every component expanded with its raw inputs... install coverage, the windows used\"; \"A partner can recompute their score\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a documented recomputation and dispute process before the score can affect Premier tier, rather than after the first complaint",
+        "evidence": "\"Documented recomputation and dispute process... exists before launch.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rules out showing a partner where they rank against named competitors",
+        "evidence": "\"Never show other partners' scores, ranks, percentiles or averages.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that volume alone is not health, and that a large partner at a stable low error rate is healthier than a small partner at a high one",
+        "evidence": "\"Volume alone is not health. A large partner at a stable 0.5% beats a small one at 30%.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires Sablecrest to set and defend its own weights rather than borrowing another product's weighting",
+        "evidence": "\"The skill says Sablecrest must set and defend its own. They are not borrowed from any product.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects sorting the fleet view by raw error count and requires ranking by blast radius instead",
+        "evidence": "Builds raw-count sort as default; only flags a DECIDE.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that a partner app failing across many installs outranks a single account throwing more absolute errors, because one conversation fixes many problems",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires installs affected against installs total per partner app as a dimension of the view",
+        "evidence": "Not a column.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a dominant status-code bucket per row so the queue separates the partner's payloads from Sablecrest's own failures from quota rejection",
+        "evidence": "'Cause split: Partner-side (4xx) / platform-side (5xx) / rate-limited (429)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named contact owner on each row, on the grounds that a ranked list with no contact becomes a report nobody acts on",
+        "evidence": "Columns include no contact; contact details are explicitly excluded.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires first-seen timestamps aligned against both Sablecrest's release timeline and, where known, the partner's",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates integrations broken since Sablecrest's own deploy into a distinct view or tab from the partner-outreach queue, and identifies the first as Sablecrest's own regression queue",
+        "evidence": "Only a 'platform' tag.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires silent integrations whose call volume dropped toward zero to appear in the view",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns against publishing a per-partner reliability number Sablecrest cannot defend line by line, because it will be quoted back in commercial conversations",
+        "evidence": "Score must be explainable, fair and contestable; calibrate on 90 days and use shadow mode before use.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the inputs behind any partner-facing score to be inspectable by that partner: error counts, install coverage, and the windows used",
+        "evidence": "Raw measures and thresholds are shown, but not install coverage.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a documented recomputation and dispute process before the score can affect Premier tier, rather than after the first complaint",
+        "evidence": "\u00a72.6 disputes and \u00a72.7 safeguards, used for Premier only after one full window.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rules out showing a partner where they rank against named competitors",
+        "evidence": "'No peer comparison and no rank'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that volume alone is not health, and that a large partner at a stable low error rate is healthier than a small partner at a high one",
+        "evidence": "'Raw error count ranks volume, not quality'; 'Rates, not counts.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires Sablecrest to set and defend its own weights rather than borrowing another product's weighting",
+        "evidence": "Weights marked DECIDE, calibrated on 90 days of data, methodology versioned and published.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

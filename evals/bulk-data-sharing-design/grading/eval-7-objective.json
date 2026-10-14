@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that remote access - the Manila support team querying an EEA customer's export - is itself a regulated cross-border transfer, not merely file copying",
+        "evidence": "Manila support staff querying EU names ... is the same regulated event as copying the files out.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends region pinning (EU customer data in EU buckets/shares) as the first and preferred fix",
+        "evidence": "2. Region-pin the data (the architectural fix)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders the remedies architecture-first - region pinning, then regionalized CMEK, then pseudonymized replicas - with legal paperwork as the fallback rather than the lead",
+        "evidence": "Region pinning, regional KMS, metadata-first tooling and pseudonymized replica, then break-glass access with the legal basis.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that regionalized CMEK closes the 'the ciphertext moved but it is encrypted' argument, which regulators do not accept as a substitute for a transfer mechanism",
+        "evidence": "closes the \"it's encrypted, so it doesn't count\" loophole, which regulators reject.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects the counsel's position: SCCs alone are insufficient post-Schrems II and a Transfer Impact Assessment is mandatory on top of them",
+        "evidence": "SCCs are only step 2 ... SCCs need a documented Transfer Impact Assessment on top.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Meta's \u20ac1.2 billion 2023 fine as having been specifically for cross-border transfer failures",
+        "evidence": "Meta's \u20ac1.2B fine (2023) was for transfer failures.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the Indian data-localization requirement as a hard blocker rather than a paperwork item, and presents explicit non-availability in that region as a legitimate precedented outcome (Stripe does not offer Data Pipeline in India)",
+        "evidence": "Says 'Don't promise India residency until you know the legal requirement' and that counsel must confirm 'whether localization is mandatory or only contractual'. It does not treat localization as a hard blocker.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Segment deprecating its EU Data Lakes product rather than retrofitting residency, as evidence that retrofitting can cost the whole product",
+        "evidence": "It killed its EU Data Lakes product rather than retrofit compliance",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires region selection to be built into the early rollout stages rather than bolted on later",
+        "evidence": "Region pinning (step 2) is cross-cutting. Don't leave it for the pricing stage.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces per-route transfer documentation covering legal basis, data classes involved, and whether pseudonymization applies",
+        "evidence": "No per-route table of legal basis, data classes and pseudonymization.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the single global us-east-1 bucket as the anti-pattern that silently commits Vantablue to the SCC/TIA paperwork path for every EU customer",
+        "evidence": "the single global us-east-1 bucket is the problem.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that remote access - the Manila support team querying an EEA customer's export - is itself a regulated cross-border transfer, not merely file copying",
+        "evidence": "\"Manila access is a second transfer. Remote querying from the Philippines is an onward transfer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends region pinning (EU customer data in EU buckets/shares) as the first and preferred fix",
+        "evidence": "\"fix section 2 first, then build the region\". Access controls come first.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders the remedies architecture-first - region pinning, then regionalized CMEK, then pseudonymized replicas - with legal paperwork as the fallback rather than the lead",
+        "evidence": "Paperwork (SCCs, sub-processor list) leads the plan. Regional CMEK and pseudonymized replicas are absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that regionalized CMEK closes the 'the ciphertext moved but it is encrypted' argument, which regulators do not accept as a substitute for a transfer mechanism",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Corrects the counsel's position: SCCs alone are insufficient post-Schrems II and a Transfer Impact Assessment is mandatory on top of them",
+        "evidence": "\"A transfer impact assessment is also required. Schrems II requires one for SCC transfers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Meta's \u20ac1.2 billion 2023 fine as having been specifically for cross-border transfer failures",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the Indian data-localization requirement as a hard blocker rather than a paperwork item, and presents explicit non-availability in that region as a legitimate precedented outcome (Stripe does not offer Data Pipeline in India)",
+        "evidence": "\"Don't build a region for one RFP answer\"; \"DPDP Act... doesn't impose a general localization rule\". It treats the requirement as unclear and does not cite the Stripe precedent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Segment deprecating its EU Data Lakes product rather than retrofitting residency, as evidence that retrofitting can cost the whole product",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires region selection to be built into the early rollout stages rather than bolted on later",
+        "evidence": "Region routing design is Quarter 1 and migration is Quarter 2+.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces per-route transfer documentation covering legal basis, data classes involved, and whether pseudonymization applies",
+        "evidence": "Not provided.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the single global us-east-1 bucket as the anti-pattern that silently commits Vantablue to the SCC/TIA paperwork path for every EU customer",
+        "evidence": "The single bucket is criticized only for tenant isolation and misconfiguration risk.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

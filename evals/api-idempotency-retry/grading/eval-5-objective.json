@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Replaces 'retry on any error' with an explicit allowlist: 429, 502, 503, 504, and connection timeouts/resets",
+        "evidence": "\"Retry only `429`, `502`, `503`, `504`, and connection errors or timeouts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retries on 429 honor the Retry-After header",
+        "evidence": "\"`429` | Yes | Wait at least `Retry-After` seconds.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats 500 separately from the allowlist - retried cautiously, since some 500s are real bugs that fail identically on retry",
+        "evidence": "\"Retry once, then stop. Some 500s are bugs that fail the same way every time.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States non-429 4xx responses and auth failures are never retried",
+        "evidence": "\"`400`, `401`, `403`... any other `4xx` | **No**\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against retrying a timed-out non-idempotent request unless idempotency keys are in place",
+        "evidence": "\"Never retry a `POST` without a key after a timeout or connection error.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends full jitter as the default backoff, with the formula sleep = random(0, min(cap, base * 2^attempt)) or an exact equivalent",
+        "evidence": "\"wait = random(0, min(30 s, 1 s \u00d7 2^attempt))\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names decorrelated jitter as the variant to promote when a tight user-facing deadline makes time-to-success outweigh fleet load",
+        "evidence": "Decorrelated jitter is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Excludes equal jitter and no-jitter from the recommended menu (equal jitter identified as the loser among jittered options; no jitter re-synchronizes the fleet into the original spike)",
+        "evidence": "No-jitter is discouraged, but equal jitter is never identified or excluded.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attributes the outage amplification to synchronized retries, crediting jitter rather than backoff alone with reducing total client work",
+        "evidence": "\"they all retry together at +100 ms... recreates the spike\"; \"It had no jitter, so clients failing together retried together.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bounds both the attempt count and the total retry duration, not attempts alone",
+        "evidence": "\"Cap both the number of attempts (5) and the total time (60 seconds).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires logging every retry with attempt number, error, and next wait",
+        "evidence": "\"Log every retry: attempt number, status or error, and the wait before the next try.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points integrators at an established retry library (tenacity, Resilience4j, or equivalent) ahead of hand-rolled formulas",
+        "evidence": "\"Prefer your language's retry library over hand-written loops: `tenacity`, `Resilience4j`, `p-retry`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides a worked schedule with concrete numbers (e.g. 1s, 2s, 4s, 8s capped at 30s, plus jitter)",
+        "evidence": "Table: retry 1 0\u20131 s, 2 0\u20132 s, 3 0\u20134 s, 4 0\u20138 s; cap 30 s.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Replaces 'retry on any error' with an explicit allowlist: 429, 502, 503, 504, and connection timeouts/resets",
+        "evidence": "The table lists network errors, 408, 429, 502/503/504 as retryable, and 4xx as no.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retries on 429 honor the Retry-After header",
+        "evidence": "\"`429`... Yes, after waiting... Honor `Retry-After`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats 500 separately from the allowlist - retried cautiously, since some 500s are real bugs that fail identically on retry",
+        "evidence": "\"`500`: Yes, with backoff. Often temporary. Stop if it persists.\" It never says some 500s are deterministic bugs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States non-429 4xx responses and auth failures are never retried",
+        "evidence": "\"Do not retry `4xx` errors other than `408` and `429`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against retrying a timed-out non-idempotent request unless idempotency keys are in place",
+        "evidence": "\"Retry `POST` requests only when you send an idempotency key.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends full jitter as the default backoff, with the formula sleep = random(0, min(cap, base * 2^attempt)) or an exact equivalent",
+        "evidence": "\"delay = random(0, min(cap, base * 2^(attempt - 1)))\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names decorrelated jitter as the variant to promote when a tight user-facing deadline makes time-to-success outweigh fleet load",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Excludes equal jitter and no-jitter from the recommended menu (equal jitter identified as the loser among jittered options; no jitter re-synchronizes the fleet into the original spike)",
+        "evidence": "It says \"Never use a fixed delay\" but never discusses equal jitter.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attributes the outage amplification to synchronized retries, crediting jitter rather than backoff alone with reducing total client work",
+        "evidence": "\"Jitter... stops clients that failed at the same moment from retrying at the same moment. Without jitter, backoff only moves the burst to a later time.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bounds both the attempt count and the total retry duration, not attempts alone",
+        "evidence": "\"at most 5 attempts... give up after a total time limit\"; TOTAL_DEADLINE_S = 60",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires logging every retry with attempt number, error, and next wait",
+        "evidence": "No logging requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points integrators at an established retry library (tenacity, Resilience4j, or equivalent) ahead of hand-rolled formulas",
+        "evidence": "It provides a hand-rolled implementation using only `requests`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides a worked schedule with concrete numbers (e.g. 1s, 2s, 4s, 8s capped at 30s, plus jitter)",
+        "evidence": "\"With `base = 0.5 s` and `cap = 30 s`, the upper bound for each retry is 0.5 s, 1 s, 2 s and 4 s.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

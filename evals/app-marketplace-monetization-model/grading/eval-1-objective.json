@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the take-rate level and tier architecture is not decided by this design and must be settled first",
+        "evidence": "\"before any billing build, get leadership to sign off on the take-rate architecture\"; \"\u00a71 Take-rate architecture: Not decided.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names samber/developer-platform-skills@connector-marketplace-strategy as where the take-rate level and tier decision belongs",
+        "evidence": "D1: \"Run `connector-marketplace-strategy`.\" The full samber/developer-platform-skills@ path is not given, only the skill name.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not adopt, endorse, or build the design around 20% or 25% as the rate",
+        "evidence": "\"Your 20-25% sits above the sourced B2B benchmarks\"; the design treats the rate as a config value.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the merchant-of-record posture as the first decision, from which tax liability, chargeback ownership, offerable pricing models, and payouts all follow",
+        "evidence": "Take-rate (D1) is the first decision; MoR is \u00a72 and is derived from the take-rate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that while the take-rate is zero the default posture is developer-billed (vendor-as-MoR), because there is no cut to collect and collection machinery buys nothing",
+        "evidence": "No zero-take default is stated. The transcript says only that a percentage \"rules out developer-billed\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the promotion condition explicitly: the moment a non-zero take-rate is charged, promote to marketplace-billed (platform-as-MoR)",
+        "evidence": "Never framed as a promotion condition, only as an immediate choice.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies marketplace-billed by collection at source being the only mechanism that does not depend on developer self-reporting",
+        "evidence": "\"Collection at source is the only mechanism that does not depend on developers reporting honestly.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks interview questions one at a time rather than delivering a batch list or assuming the answers",
+        "evidence": "\"I could not run the 10-question interview in a single response\"; defaults marked [ASSUMED] and a batch \"Open questions, ranked\" list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether Calvetta already bills these end customers on a recurring invoice or settlement cycle for its core product",
+        "evidence": "It assumes the answer: \"[ASSUMED] Calvetta already invoices its ~900 customers on a recurring cycle\". The only related open question is about the invoice stack carrying third-party line items.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks the hard-date, one-off-unlock-versus-compounding-asset, and effort-ceiling questions, and states that a hard date promotes managed rails and the simplest posture",
+        "evidence": "D4 covers the hard date and says \"A fixed date forces managed rails and the simplest posture\", but the one-off-vs-asset and effort-ceiling questions are absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sequences the work so the merchant-of-record posture is validated before the fee stack, payout design, and tax map are drafted",
+        "evidence": "All sections are drafted together in one document; D1 (the take rate) is the prerequisite, not MoR.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the take-rate level and tier architecture is not decided by this design and must be settled first",
+        "evidence": "Recommends \"Launch at 20%\" and \"Fix the rate before the first publisher signs... about week 8\". It treats the rate as something this design settles.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names samber/developer-platform-skills@connector-marketplace-strategy as where the take-rate level and tier decision belongs",
+        "evidence": "No such reference appears anywhere in the transcript.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not adopt, endorse, or build the design around 20% or 25% as the rate",
+        "evidence": "\"Launch at 20%.\" Section 3 models 20% vs 25% and section 4 builds the rate card around it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the merchant-of-record posture as the first decision, from which tax liability, chargeback ownership, offerable pricing models, and payouts all follow",
+        "evidence": "MoR appears as recommendation #4 and open question #4 of 5. Take rate and rate mechanics are treated as equally central. It does not say tax, chargebacks, pricing models and payouts all follow from MoR.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that while the take-rate is zero the default posture is developer-billed (vendor-as-MoR), because there is no cut to collect and collection machinery buys nothing",
+        "evidence": "It recommends Calvetta as MoR outright. It never discusses a zero-take developer-billed default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the promotion condition explicitly: the moment a non-zero take-rate is charged, promote to marketplace-billed (platform-as-MoR)",
+        "evidence": "No promotion condition is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies marketplace-billed by collection at source being the only mechanism that does not depend on developer self-reporting",
+        "evidence": "The MoR justification given is \"one Calvetta invoice... suits mid-market procurement\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks interview questions one at a time rather than delivering a batch list or assuming the answers",
+        "evidence": "Section 11 delivers a batch of five questions, and the document is built on stated assumptions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether Calvetta already bills these end customers on a recurring invoice or settlement cycle for its core product",
+        "evidence": "Question 3 asks \"what bills customers today, and can it carry third-party line items?\" It does not ask about a recurring invoice or settlement cycle for the core product.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks the hard-date, one-off-unlock-versus-compounding-asset, and effort-ceiling questions, and states that a hard date promotes managed rails and the simplest posture",
+        "evidence": "None of these questions is asked. The only date question is whether Q2 means Apr\u2013Jun.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sequences the work so the merchant-of-record posture is validated before the fee stack, payout design, and tax map are drafted",
+        "evidence": "It drafts the full fee stack, payouts and tax handling in the same document. The MoR is assumed, not validated first.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

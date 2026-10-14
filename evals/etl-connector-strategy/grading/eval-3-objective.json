@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to approve a connector build on the evidence given, classifying it as an internal hypothesis rather than observed customer pull.",
+        "evidence": "\"build not approved yet\"; \"Interview answer 1 is (d), an internal hypothesis only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the categories of verifiable demand evidence to collect first: support tickets naming a platform, lost-deal or churn notes citing data-stack mismatch, API-log evidence of hand-rolled extraction, and security or procurement questionnaires asking about warehouse sync.",
+        "evidence": "Table and sprint cover tickets, lost deals/churn, API logs, procurement questionnaires.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the API-log evidence concretely as high-frequency paginated scans from data-team service accounts.",
+        "evidence": "\"look for high-frequency paginated scans from single service accounts\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a concrete signal that would reopen the decision, such as a specific number of named-platform tickets within a quarter or one lost deal citing the gap.",
+        "evidence": "\"three tickets naming a platform within a quarter, or one lost deal citing the gap\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends improving the raw API or a direct-to-storage delivery path as the alternative investment instead of building the connector now.",
+        "evidence": "November extraction-readiness audit; \"If the sprint finds no demand, this is still a customer-facing API improvement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a connector shipped without evidence still bills its annual maintenance percentage every year regardless of use.",
+        "evidence": "\"Pays 15-30% a year on a connector with zero measured demand\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats competitive parity as a documented business driver but not as a substitute for named demand evidence.",
+        "evidence": "\"a signal, not evidence\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not produce a build plan, platform pick, or delivery timeline as the primary deliverable.",
+        "evidence": "Includes extensive build-path menu, platform snapshots, certification, maintenance and a dated timeline table.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Conducts the intake as an interview asking one question at a time rather than delivering a single block of questions.",
+        "evidence": "Ends with a block of six \"Questions to answer before this locks\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the demand evidence to be attached to the decision record, with each claimed driver citing at least one verifiable artifact.",
+        "evidence": "\"Gate on Oct 26: attach the artifacts, or write 'no demand found' and stop.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to approve a connector build on the evidence given, classifying it as an internal hypothesis rather than observed customer pull.",
+        "evidence": "'Don't commit November engineering yet'; 'Every blank is unproven today.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the categories of verifiable demand evidence to collect first: support tickets naming a platform, lost-deal or churn notes citing data-stack mismatch, API-log evidence of hand-rolled extraction, and security or procurement questionnaires asking about warehouse sync.",
+        "evidence": "Covers CSM requests, lost deals, API logs and a survey. Support tickets naming a platform and security questionnaires are missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the API-log evidence concretely as high-frequency paginated scans from data-team service accounts.",
+        "evidence": "Says 'heavy bulk-pull keys and scheduled export jobs'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a concrete signal that would reopen the decision, such as a specific number of named-platform tickets within a quarter or one lost deal citing the gap.",
+        "evidence": "'reopen conditions (for example, 5 requests logged)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends improving the raw API or a direct-to-storage delivery path as the alternative investment instead of building the connector now.",
+        "evidence": "Not recommended; only checks API readiness for the connector.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a connector shipped without evidence still bills its annual maintenance percentage every year regardless of use.",
+        "evidence": "Only says 'Someone owns the connector forever'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats competitive parity as a documented business driver but not as a substitute for named demand evidence.",
+        "evidence": "'It doesn't prove your 320 customers do.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not produce a build plan, platform pick, or delivery timeline as the primary deliverable.",
+        "evidence": "The deliverable is a dated plan: demand check, Oct 22 go/no-go, November build, December submit.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Conducts the intake as an interview asking one question at a time rather than delivering a single block of questions.",
+        "evidence": "Delivers a single block of open questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the demand evidence to be attached to the decision record, with each claimed driver citing at least one verifiable artifact.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

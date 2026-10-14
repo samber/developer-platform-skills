@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the description copy edit as the cause, explaining that a tool description is a compiled interface whose wording changes the model's probability of selecting that tool.",
+        "evidence": "\"The model chooses between `search_deals` and `list_deals` mostly by reading their descriptions\"; \"Treat names, descriptions, and schemas as one compiled contract.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the analysis of 61,097 catalogued tools that measured description wording altering tool-selection probability.",
+        "evidence": "\"In a published analysis of 61,097 catalogued tools, changing a description's wording measurably changed how often the model picked that tool\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States this is a breaking change even though the JSON schema was untouched, and that schema-diff CI structurally cannot catch it.",
+        "evidence": "\"Your schema-diff CI watches the wrong layer... with the JSON schema untouched.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the toolset rename as a separate breaking change, because agents key on names for discovery and a rename breaks them silently.",
+        "evidence": "\"Agents key on names for discovery... it is a breaking change.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates three versioning layers explicitly - the MCP protocol revision, Tollgate's own server API under semantic versioning, and the unstandardized tool-surface contract - rather than treating MCP versioning as one decision.",
+        "evidence": "No separation of protocol revision, server API semver, and tool-surface contract.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies renaming or removing a toolset name as a major version bump of the server's public API.",
+        "evidence": "\"Treat a rename or removal as a major version.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires aliasing the old tool and toolset names rather than renaming outright, and defaulting every future change to additive.",
+        "evidence": "\"Default every change to additive. Alias old tool and toolset names\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires hashing the full surface - names plus descriptions plus schemas - to catch silent drift.",
+        "evidence": "\"Hash the full surface (names, descriptions, schemas, toolset membership)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires golden-prompt behavioral tests in CI: a fixed set of representative tasks that must still select and call the right tools after any description edit.",
+        "evidence": "\"Golden-prompt tests... Each must still select and call the expected tool\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires routing description edits through the same review gate as a code change, never as a docs fix.",
+        "evidence": "\"A description edit is a code change, not a docs fix.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a published deprecation window of at least 90 days with machine-readable response-header signaling, plus a version marker carried in the response envelope and logged on every call.",
+        "evidence": "\"at least 90 days with a machine-readable header\"; \"Put a surface version in the response envelope and log it on every call.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the description copy edit as the cause, explaining that a tool description is a compiled interface whose wording changes the model's probability of selecting that tool.",
+        "evidence": "It hedges between two causes: \"the toolset rename may be the real cause, or a second one.\" It calls descriptions \"model-facing prompts\" but does not commit.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the analysis of 61,097 catalogued tools that measured description wording altering tool-selection probability.",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States this is a breaking change even though the JSON schema was untouched, and that schema-diff CI structurally cannot catch it.",
+        "evidence": "\"A schema diff checks names, parameters, and types. Descriptions, toolset membership, and annotations are outside what it checks.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the toolset rename as a separate breaking change, because agents key on names for discovery and a rename breaks them silently.",
+        "evidence": "\"The toolset rename may be the real cause... silently changes what they get.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates three versioning layers explicitly - the MCP protocol revision, Tollgate's own server API under semantic versioning, and the unstandardized tool-surface contract - rather than treating MCP versioning as one decision.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies renaming or removing a toolset name as a major version bump of the server's public API.",
+        "evidence": "No semver classification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires aliasing the old tool and toolset names rather than renaming outright, and defaulting every future change to additive.",
+        "evidence": "\"Make renames backward compatible. Alias old names, deprecate them for a stated window\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires hashing the full surface - names plus descriptions plus schemas - to catch silent drift.",
+        "evidence": "\"Snapshot the whole `tools/list` output in CI. Include descriptions, toolset membership, and annotations.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires golden-prompt behavioral tests in CI: a fixed set of representative tasks that must still select and call the right tools after any description edit.",
+        "evidence": "\"Add a tool-selection eval as a CI gate... 30\u201350 realistic prompts, each with the expected tool\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires routing description edits through the same review gate as a code change, never as a docs fix.",
+        "evidence": "\"Add CODEOWNERS so engineering must review changes to it, including docs-team PRs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a published deprecation window of at least 90 days with machine-readable response-header signaling, plus a version marker carried in the response envelope and logged on every call.",
+        "evidence": "Only \"a stated window\"; no 90 days, no headers or envelope version marker.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

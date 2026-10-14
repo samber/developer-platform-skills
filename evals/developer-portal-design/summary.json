@@ -1,0 +1,258 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "developer-portal-design",
+  "scenarios": 8,
+  "expectations_total": 84,
+  "expectations_subjective": 1,
+  "expectations_objective": 83,
+  "pass_rate_with_skill_pct": 95.2,
+  "pass_rate_without_skill_pct": 41.7,
+  "delta_pp": 53.5,
+  "uplift_multiplier": 2.28,
+  "trigger_accuracy_pct": 51.3,
+  "trigger_queries": 76,
+  "trigger_positive_fire_rate": 0.053,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 3,
+        "expectation": "Names gating decision-making information behind a login wall as a sales-enablement failure, not merely a content or UX shortcoming."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Checks whether each authoring persona - engineers pushing specs through CI/CD, business-side authors, technical writers as editors - has a workable workflow, instead of assuming one authoring workflow serves all of them."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Declines to commit a specific deflection percentage as a forecast in the business case."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Raises the one-portal-versus-two question explicitly for the public and partner audiences, noting separate portals can share one API backend."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Names time to first call (TTFC) as the governing metric for this work and sets an explicit target figure for Ledgerwell."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Anchors that target to the API's complexity class - OAuth plus webhooks - landing near an hour rather than a sub-15-minute figure."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that no universal TTFC benchmark exists, instead of presenting one number as an industry standard."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends instrumenting TTFC in increments, at minimum landing-to-signup and signup-to-first-call, rather than as a single end-to-end number."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Explicitly demotes or defers role-and-use-case personalized onboarding intake, tying that to the six-week deadline and the part-time engineering capacity."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Any first-call acceleration figure attributed to a ready-to-run collection is expressed as a ratio of roughly 1.7x, labeled vendor-reported, with no baseline minute count carried over."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Warns that TTFC is a leading indicator only, and names downstream activation or retention as a trend to watch alongside it."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Declines to produce the requested plugin architecture and partner-facing navigation built on the internal service-catalog framework."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives the security reason: that framework's threat model assumes untrusted external actors have no access to it."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that this option is ruled out entirely, not merely ranked lower, deferred, or made conditional on extra hardening."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Distinguishes an internal developer portal (service catalog, infrastructure provisioning for a company's own engineers) from an external API-consumer portal as different disciplines with different security models."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names partner-specific requirements the external portal needs, including at least two of: approval-gated signup, team-owned applications, page-level visibility control, SSO/SCIM provisioning."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Presents at least two candidate portal architectures with trade-offs rather than a single structure, and names one as the recommendation."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the chosen skeleton will be validated with the user section by section before any final deliverable, rather than treating the structure as settled."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a structure layered by depth, with visual and marketing richness decreasing as pages get more technical."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Treats that solution layer as first-class rather than optional filler."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that pricing, use cases and competitive/decision-making material must be readable before login."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names gating decision-making information behind a login wall as a sales-enablement failure, not merely a content or UX shortcoming."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Keeps marketing chrome off the technical reference and console pages."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Keeps the portal distinct from the top-of-funnel marketing site while linking the two in both directions, rather than folding portal content into the marketing site's IA."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Scores the portal along three named dimensions covering authoring-workflow quality (operational excellence), journey friction (developer experience), and intentional interface strategy (business alignment)."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Places the portal on a three-stage progression running portal-as-a-project, portal-as-a-product, portal-as-critical-business-infrastructure."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Refuses to reduce the assessment to a single maturity score or a fixed 1-to-5 level, and says why."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Delivers the output as a prioritized Priority 1 / Priority 2 / Priority 3 roadmap."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Runs a focus-area diagnostic spanning discovery, decision-making, onboarding, go-live, maintenance and troubleshooting, and community."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Checks whether each authoring persona - engineers pushing specs through CI/CD, business-side authors, technical writers as editors - has a workable workflow, instead of assuming one authoring workflow serves all of them."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Describes the benchmarking framework's structure rather than inventing a numeric scoring formula or enabler weightings for it."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the default recommendation is buying a managed platform - a gateway-bundled portal or a hosted docs/portal product - rather than building."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the ranking across the options explicitly as a value, effort and efficiency ordering instead of leaving it implied by the order of discussion."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects branding and pixel-level control on its own as a sufficient reason to promote a custom build."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the full set of custom-build promotion conditions: compliance or data-residency requirements no managed platform meets, business-side authors needing a real CMS alongside spec-driven docs, and a multi-gateway API portfolio no single vendor portal unifies."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Points out that Halcyon runs a single gateway across all products, so that gateway's bundled portal comes nearly free and the multi-gateway argument does not apply here."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the assembled-stack middle option: a docs platform for content composed with the gateway for credentials under one navigation."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Frames the decision by platform category rather than resolving it to one specific named vendor product."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Declines to commit a specific deflection percentage as a forecast in the business case."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that published deflection figures around the 20-40% range are vendor-reported and directional only."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires measuring against Verdanta's own pre-assistant ticket baseline before claiming ROI, and recommends capturing that baseline before launch."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Keeps the existing classic full-text or semantic search rather than replacing it with the assistant."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Co-locates the Ask AI widget with the search box."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Treats support-ticket deflection as a watched trend rather than a gate the project passes or fails on."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Proposes a two-level hierarchy of organization to project (or workspace)."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Scopes credentials, usage and environments to the project or workspace level rather than to the account or organization level."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Makes the environment marker visible on log and usage surfaces, not only on the credential list."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Adds partner-side controls beyond the public tier, including at least one of: team-owned or team-shared applications, page-level visibility permissions, a viewer-versus-consumer role split."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Raises the one-portal-versus-two question explicitly for the public and partner audiences, noting separate portals can share one API backend."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Frames that separate-portal question as an architectural decision rather than a licensing or vendor-packaging one."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Puts the try-it console on the endpoint page itself rather than as a separate tool the developer leaves the docs to open, with the signed-in developer's own key injected into it and into the code snippets."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires the API reference to be generated from the spec rather than hand-maintained as a parallel copy that drifts."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Scopes its own answer to placement, entry points and navigation, deferring the internal content design of individual surfaces rather than specifying it here."
+      }
+    ]
+  }
+}

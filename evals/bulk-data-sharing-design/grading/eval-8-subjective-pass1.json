@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires the public contract or documentation to state non-replayability as loudly as Braze Currents does",
+        "evidence": "The transcript cites the Braze Currents warning that events cannot be replayed, so a consumer outage means permanent loss. It answers this with a 7-day replay window and 72-hour HTTPS retries, and does not require the public contract to warn customers about loss. The public 'Commit' list says only 'Events are replayable by time range for 7 days.' The 'Do not commit' list says only 'Retention beyond the replay window.' Neither line warns that events outside the window are permanently gone. The plan states no Kinesis retry or loss behaviour, and it gives no requirement to document the limit prom",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires the public contract or documentation to state non-replayability as loudly as Braze Currents does",
+        "evidence": "The design promises replayability rather than warning about its absence. It commits to '7 days of replay by time range' and says 'Events stay replayable for 7 days.' The only limit is a short 'Retention beyond 7 days' line under 'Do not commit.' Nothing requires the public docs to state prominently that events are lost once they fall outside the 7-day window or after a destination is paused. The transcript never mentions Braze Currents' explicit non-replayability warning or anything like it.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

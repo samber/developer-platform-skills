@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Removes payload-level logging from the option set entirely rather than ranking it lower or proposing a masked version of it",
+        "evidence": "\"Legal's answer removes payload logging from the menu entirely.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that metadata-only logging is the ceiling in Clovermast's case rather than a compromise position",
+        "evidence": "\"Metadata-only logging is the ceiling, and that is enough for most of the 70% pile.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a machine-readable error code to every row, and states that a bare 400 tells the integrator nothing their own client did not already know",
+        "evidence": "\"Machine-readable error code. A status code alone tells the integrator nothing new.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a request ID to every row, copy-pasteable and searchable by the integrator",
+        "evidence": "Row shows request_id; \"search by request ID\" in the viewer.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the integration identity and the account it acted on to every row",
+        "evidence": "\"app / key acme-pm v2.3 \u00b7 key \u2026a91f   tenant acct_19KdQ2\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds latency to the row",
+        "evidence": "\"latency 84 ms\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an error detail or reason field naming which field or condition failed, constructed without echoing the payload itself",
+        "evidence": "Field pointers plus rule IDs from a closed catalog, e.g. \"/lines/2/diagnosis_code rule=dx_pos_mismatch\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires credentials, tokens and signing secrets to be stripped unconditionally rather than partially masked, because a prefix plus a length is often enough to attack",
+        "evidence": "Only \"Never log Authorization\" appears in the header allowlist. Unconditional stripping of credentials and the partial-masking risk are not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires any withheld field to be visibly marked as withheld so the integrator can tell it was suppressed rather than absent",
+        "evidence": "\"bodies withheld by policy\" in the row.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires tenant isolation to be enforced structurally rather than by an application-code filter on account ID",
+        "evidence": "\"scoping enforced structurally, for example by row-level security rather than a query filter.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the redaction rule set as a published contract once integrators build against it, noting that loosening it later is a privacy incident and tightening it later breaks their tooling",
+        "evidence": "\"A published field list. It is the contract... loosening it later is a privacy incident.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prioritises the synchronous request log over the other surfaces on the strength of the 70% synchronous share of the support pile",
+        "evidence": "\"It is the rung that fits a pile dominated by synchronous POST failures.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not propose negotiating with legal or seeking an exception as the path forward",
+        "evidence": "The Legal question only confirms that the metadata record is not PHI. No exception to the body ban is sought.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Removes payload-level logging from the option set entirely rather than ranking it lower or proposing a masked version of it",
+        "evidence": "'What we are not shipping: Body capture... Masked bodies.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that metadata-only logging is the ceiling in Clovermast's case rather than a compromise position",
+        "evidence": "'Legal's no is absolute'; 'We record... never what the request contained.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a machine-readable error code to every row, and states that a bare 400 tells the integrator nothing their own client did not already know",
+        "evidence": "Adds an error_code enum but never says a bare 400 tells nothing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a request ID to every row, copy-pasteable and searchable by the integrator",
+        "evidence": "'Search by request_id (what customers paste into tickets).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the integration identity and the account it acted on to every row",
+        "evidence": "client_id and tenant_id columns.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds latency to the row",
+        "evidence": "duration_ms and stage_timings.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an error detail or reason field naming which field or condition failed, constructed without echoing the payload itself",
+        "evidence": "field_paths with reasons; error templates with no values.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires credentials, tokens and signing secrets to be stripped unconditionally rather than partially masked, because a prefix plus a length is often enough to attack",
+        "evidence": "'Never log Authorization, cookies'; no body-derived prefixes or hashes.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires any withheld field to be visibly marked as withheld so the integrator can tell it was suppressed rather than absent",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires tenant isolation to be enforced structurally rather than by an application-code filter on account ID",
+        "evidence": "Only 'tenant_id scoping a hard requirement'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the redaction rule set as a published contract once integrators build against it, noting that loosening it later is a privacy incident and tightening it later breaks their tooling",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prioritises the synchronous request log over the other surfaces on the strength of the 70% synchronous share of the support pile",
+        "evidence": "Whole design targets synchronous POSTs and the '70%' ticket share.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not propose negotiating with legal or seeking an exception as the path forward",
+        "evidence": "Accepts Legal's no; only confirms field reasons.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

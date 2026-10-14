@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Warns that silently rerouting retired-version calls keeps apps running while their behavior changes underneath them - a silent-drift failure, not a safe outcome.",
+        "evidence": "\"your app keeps running while its behaviour changes underneath you.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a hard cutoff as the default enforcement style at the sunset date.",
+        "evidence": "\"every /v1/* request returns 410 Gone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the retired version should return a clear, described error rather than silence or connection drops.",
+        "evidence": "The body is application/problem+json with code, retired_at, migration_guide_url and support_contact.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a grace period after the sunset date returning 410 Gone so callers get a diagnosable error.",
+        "evidence": "\"The 410 response continues for 30 days after [D].\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a machine-findable pointer to the replacement version (successor-version link relation or equivalent link in the error body).",
+        "evidence": "\"Each response carries Link: <\u2026/v2/\u2026>; rel=\\\"successor-version\\\".\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points out that routing /v1 requests into the /v2 handler sends callers onto an incompatible contract - the plan delivers the breaking change silently; where fall-forward exists as a documented practice it routes to the oldest still-accessible version, not the newest.",
+        "evidence": "\"Meta falls forward to an older, compatible version. This plan jumps to a new contract, which is riskier.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a fall-forward style is retained at all, requires it to be documented loudly and states that documented is not the same as noticed - documented silent rerouting still generates persistent complaints about behavior drift.",
+        "evidence": "Fall-forward is rejected outright, and the 'documented is not the same as noticed' point is never made.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the chosen enforcement style must be written into the policy, and that if enforcement differs per API surface, both styles must be written down.",
+        "evidence": "No statement that enforcement style must be written down or that per-surface differences need both documented. It only scopes the section to REST /v1.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames deprecation as staged (announce, deprecate, sunset, removal) rather than a single October event.",
+        "evidence": "The transcript has pre-sunset, sunset, grace and removal pieces but never frames them as the announce, deprecate, sunset, removal stages.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping a Deprecation header on v1 responses ahead of the sunset, noting it can ship before or independently of the sunset date and changes no behavior.",
+        "evidence": "It recommends the `Deprecation` header (RFC 9745) but does not say it can ship independently of the sunset date or that it changes no behavior.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a Sunset header carrying the firm retirement timestamp on the deprecated version's responses only.",
+        "evidence": "\"`Sunset: [D]` (RFC 8594) once the date is firm\" on v1 responses.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires migration support (migration guide, tooling where feasible, support channel) as part of the plan - announcing the sunset and leaving integrators to figure it out is named as a failure mode, not a middle ground.",
+        "evidence": "\"A migration guide covering each v1\u2192v2 change with concrete steps, plus a support channel.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Warns that silently rerouting retired-version calls keeps apps running while their behavior changes underneath them - a silent-drift failure, not a safe outcome.",
+        "evidence": "\"v1 clients parse it fine and act on different data... a wrong part gets ordered. That is worse than an error.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a hard cutoff as the default enforcement style at the sunset date.",
+        "evidence": "It recommends a compatibility adapter for 6 months before the cutoff.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the retired version should return a clear, described error rather than silence or connection drops.",
+        "evidence": "\"At removal, `/v1/*` returns `410 Gone` with the v1 error format and `migration_url`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a grace period after the sunset date returning 410 Gone so callers get a diagnosable error.",
+        "evidence": "The adapter period keeps serving v1 responses. 410 appears only at final removal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a machine-findable pointer to the replacement version (successor-version link relation or equivalent link in the error body).",
+        "evidence": "`Link: <migration-guide-url>; rel=\"deprecation\"` and `migration_url` in the error body.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points out that routing /v1 requests into the /v2 handler sends callers onto an incompatible contract - the plan delivers the breaking change silently; where fall-forward exists as a documented practice it routes to the oldest still-accessible version, not the newest.",
+        "evidence": "\"If v2 differs from v1 in any way... a raw reroute means one of two things\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a fall-forward style is retained at all, requires it to be documented loudly and states that documented is not the same as noticed - documented silent rerouting still generates persistent complaints about behavior drift.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the chosen enforcement style must be written into the policy, and that if enforcement differs per API surface, both styles must be written down.",
+        "evidence": "It supplies a policy section but never states this principle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames deprecation as staged (announce, deprecate, sunset, removal) rather than a single October event.",
+        "evidence": "A T-90/60/30/7 communication table, then the enforcement date, then \"Adapter removal\" in 6.9.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping a Deprecation header on v1 responses ahead of the sunset, noting it can ship before or independently of the sunset date and changes no behavior.",
+        "evidence": "The header is in 6.6 but is not framed as shippable early or independently.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a Sunset header carrying the firm retirement timestamp on the deprecated version's responses only.",
+        "evidence": "\"Sunset: <HTTP-date>: the date the adapter itself is removed\" on every /v1 response.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires migration support (migration guide, tooling where feasible, support channel) as part of the plan - announcing the sunset and leaving integrators to figure it out is named as a failure mode, not a middle ground.",
+        "evidence": "Migration guide, `migration_url`, a named Meridian contact, and a per-customer usage report.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

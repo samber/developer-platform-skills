@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to spend the quarter going straight to the try-it console and samples while earlier stages are missing, and sequences the rollout stages strictly in order",
+        "evidence": "'Do not start with the try-it console'; stages 1 to 5 ordered by week.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the language tabs as converted or relabeled HTTP snippets that do not count as per-language parity because they never exercise the shipped SDKs",
+        "evidence": "'A widget that converts curl... is relabeled curl... This audit does not count it as parity.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scores current snippet parity at or near zero rather than crediting the three existing tabs",
+        "evidence": "The tabs are said not to count, but no zero or near-zero score is given. The benchmark only says 'No, translated curl'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts adopting the source of truth first: the reference renders from the spec and pages stop being hand-edited",
+        "evidence": "'Stage 1, adopt the source of truth... no reference page is ever edited independently of the spec.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the already-approved quarter of docs investment is exactly the condition that promotes the full generated-docs migration, since the marginal cost of the platform move is small",
+        "evidence": "'You have a full quarter funded, which makes the effort affordable.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places a spec lint gate in CI before contract testing in the sequence",
+        "evidence": "Stage 2 lint (weeks 3-6) comes before stage 3 contract tests (weeks 5-8).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes contract testing because a safely-callable staging environment exists, naming a property-based or spec-driven tool such as Schemathesis, Portman, or Prism",
+        "evidence": "'Staging is safe to call... Run Schemathesis against staging in CI.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the expectation that a first contract-test run on a production schema typically surfaces 5 to 15 issues, framed as normal rather than a tool failure",
+        "evidence": "'Practitioners report 5 to 15 issues on a first run... normal.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Achieves sample parity through x-codeSamples produced by an SDK generator (Speakeasy, Fern, Stainless, APIMatic, or OpenAPI Generator) or through a Twilio-style CI-tested snippet repository",
+        "evidence": "Generator 'x-codeSamples overlays' or a Twilio-style snippet repo.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If the Twilio snippet-repository model is described, it includes the fake API server validating every snippet in CI before merge, not just a shared snippets repo",
+        "evidence": "'CI runs every sample against staging or a fake server before merge'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the try-it console ships with pre-filled test credentials, the Stripe model",
+        "evidence": "'Embed the platform's console, with a pre-filled test key... Stripe pattern.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns the mostly-right swagger file must pass lint and contract verification before it becomes the source of truth, because an unverified spec passes every lie into the reference",
+        "evidence": "'The swagger file is unverified... a console built on it would execute wrong examples'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the parity pass condition as every shipped language having a working sample on every operation",
+        "evidence": "'every shipped language has a working sample on every operation'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to spend the quarter going straight to the try-it console and samples while earlier stages are missing, and sequences the rollout stages strictly in order",
+        "evidence": "'Don't start with the console. Start by making the spec and the samples trustworthy.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the language tabs as converted or relabeled HTTP snippets that do not count as per-language parity because they never exercise the shipped SDKs",
+        "evidence": "'The tabs show raw HTTP, not your SDKs... teach the one path you don't want people on.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scores current snippet parity at or near zero rather than crediting the three existing tabs",
+        "evidence": "No explicit parity score is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts adopting the source of truth first: the reference renders from the spec and pages stop being hand-edited",
+        "evidence": "Only 'Decide where truth lives: spec as source, or code... Pick one.' It doesn't require generated pages.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the already-approved quarter of docs investment is exactly the condition that promotes the full generated-docs migration, since the marginal cost of the platform move is small",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places a spec lint gate in CI before contract testing in the sequence",
+        "evidence": "Phase 1 step 1 is Spectral in CI, then the drift check.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes contract testing because a safely-callable staging environment exists, naming a property-based or spec-driven tool such as Schemathesis, Portman, or Prism",
+        "evidence": "'replay every documented endpoint against staging... Schemathesis or Dredd.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the expectation that a first contract-test run on a production schema typically surfaces 5 to 15 issues, framed as normal rather than a tool failure",
+        "evidence": "No such expectation is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Achieves sample parity through x-codeSamples produced by an SDK generator (Speakeasy, Fern, Stainless, APIMatic, or OpenAPI Generator) or through a Twilio-style CI-tested snippet repository",
+        "evidence": "SDK sample files in samples/ run in CI against staging: 'A sample that doesn't run doesn't ship.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If the Twilio snippet-repository model is described, it includes the fake API server validating every snippet in CI before merge, not just a shared snippets repo",
+        "evidence": "Samples run against staging with a throwaway key, not a fake server.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies the try-it console ships with pre-filled test credentials, the Stripe model",
+        "evidence": "'Fill in the signed-in user's sandbox key and meter IDs... Stripe'; a sandbox key issued per user.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns the mostly-right swagger file must pass lint and contract verification before it becomes the source of truth, because an unverified spec passes every lie into the reference",
+        "evidence": "'Every drift between spec and API becomes a customer-visible failed request'; Phase 1 comes first with drift green as exit criterion.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the parity pass condition as every shipped language having a working sample on every operation",
+        "evidence": "The exit criterion covers only quickstart and top endpoints.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

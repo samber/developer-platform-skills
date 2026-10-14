@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a click inside the app is not approval, and that a write requested by the app passes the same step-3 risk-tier gate - dry-run, confirmation, spend cap or human approval - exactly as if the model had called the tool directly.",
+        "evidence": "\"A click inside the app is not approval.\" A UI-initiated write must pass its tier's gate",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the approved_in_ui=true flag as a bypass, applying the test that enforcement lives server-side so an end user cannot skip it by switching clients, since any caller can set that flag.",
+        "evidence": "\"fails that test\"; \"Any model, script, other MCP client... can send approved_in_ui=true\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms that stepping through an approval queue item by item is a legitimate app use case, and positions the app as the rendering of the human-in-the-loop step with the server still owning and recording each approval.",
+        "evidence": "\"stepping through a queue item by item is a listed MCP Apps use case\"; \"server-side attribution... async audit\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires idempotency keys on pay_batch and a spend cap because it moves money, regardless of how the call was initiated.",
+        "evidence": "\"spend caps per manager, company and day\"; \"batch idempotency key\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a dry-run preflight on pay_batch whose planned payout (who gets paid, how much) the app renders before the live call.",
+        "evidence": "\"Add a `dry_run` on `pay_batch` that returns the payees, amounts and total.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the calendar hand-off as consent-gated host delegation and refuses to let batch completion depend on that consent being granted - the batch is complete when pay_batch's own result lands.",
+        "evidence": "\"Define completion from server state... Never gate state on it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the wildcard on *.okerlund.io and requires _meta.ui.csp to list only the exact origins the app truly loads, stating that every extra origin widens what a compromised dependency can reach, and recommends bundling assets into the resource to shrink the list.",
+        "evidence": "\"List exact origins.\" \"Bundle React into the single HTML file\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses the camera permission until receipt capture actually ships, requesting permissions only for features the job needs now.",
+        "evidence": "\"Drop `camera` now... Add it in the release that ships receipt capture.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the sandbox protects the host, not the app's own integrity, and requires escaping model- and user-supplied data (receipt merchant names, memo text) in the UI like untrusted input.",
+        "evidence": "Says \"escape all receipt and employee data in the UI\" but never states that the sandbox protects the host, not the app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Versions the ui:// resource with pay_batch: ships the grouped-by-employee result change and the app update in the same release and keeps the flat shape readable during the deprecation window, because a result-shape change breaks the app silently.",
+        "evidence": "\"Version the `ui://` resource with the tool and ship them in the same release.\"; \"Keep the flat list and add a `by_employee` field\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a click inside the app is not approval, and that a write requested by the app passes the same step-3 risk-tier gate - dry-run, confirmation, spend cap or human approval - exactly as if the model had called the tool directly.",
+        "evidence": "\"a click inside an iframe is weak evidence\"; \"Also enforce server-side, independent of the UI\" (limits, separation of duties, idempotency).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the approved_in_ui=true flag as a bypass, applying the test that enforcement lives server-side so an end user cannot skip it by switching clients, since any caller can set that flag.",
+        "evidence": "\"`approved_in_ui=true` is a client-supplied flag, not proof of a click... Any caller can send\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms that stepping through an approval queue item by item is a legitimate app use case, and positions the app as the rendering of the human-in-the-loop step with the server still owning and recording each approval.",
+        "evidence": "\"The queue UX itself is sound\" and approve/reject go through server-verified tokens.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires idempotency keys on pay_batch and a spend cap because it moves money, regardless of how the call was initiated.",
+        "evidence": "\"`pay_batch` takes an idempotency key\" and \"Per-manager amount limits apply.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a dry-run preflight on pay_batch whose planned payout (who gets paid, how much) the app renders before the live call.",
+        "evidence": "\"`prepare_payment(batch_id)`... snapshots the batch (ids, amounts, destinations, total)\" and shows count and total.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the calendar hand-off as consent-gated host delegation and refuses to let batch completion depend on that consent being granted - the batch is complete when pay_batch's own result lands.",
+        "evidence": "\"Batch status follows the payment outcome only... The reminder is best-effort and non-blocking.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the wildcard on *.okerlund.io and requires _meta.ui.csp to list only the exact origins the app truly loads, stating that every extra origin widens what a compromised dependency can reach, and recommends bundling assets into the resource to shrink the list.",
+        "evidence": "\"`*.okerlund.io` trusts every current and future subdomain... List exact hosts\" and \"Inline the React bundle\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses the camera permission until receipt capture actually ships, requesting permissions only for features the job needs now.",
+        "evidence": "\"Request `_meta.ui.permissions` camera only when receipt capture ships.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the sandbox protects the host, not the app's own integrity, and requires escaping model- and user-supplied data (receipt merchant names, memo text) in the UI like untrusted input.",
+        "evidence": "It discusses the prompt injection path via receipt text but never requires escaping receipt merchant names or memo text in the UI.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Versions the ui:// resource with pay_batch: ships the grouped-by-employee result change and the app update in the same release and keeps the flat shape readable during the deprecation window, because a result-shape change breaks the app silently.",
+        "evidence": "\"Ship the app first as a tolerant reader that handles both shapes... Deprecate the flat shape only after usage drops.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

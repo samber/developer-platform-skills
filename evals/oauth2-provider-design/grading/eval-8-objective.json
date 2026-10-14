@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the single big-cutover release in favour of a staged sequence.",
+        "evidence": "\"Verdict: don't do one big cutover\" and a phased table (Phase 0 to 4 plus buffer) with shadow, warn, brownout and enforce per cohort.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the build order: protocol core first, then scope taxonomy and consent screen, then registration and verification, then advanced hardening.",
+        "evidence": "The phases are organised by deprecation and rollout timing. Scopes are deferred as a 'dated roadmap item' and the verification program is 'Start with publisher identity verification'. The protocol, then scope and consent, then registration and verification, then hardening order is never given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends modelling compliance as separately named, independently toggleable boolean gates per requirement (PKCE enforcement, exact redirect matching, rotation, and so on) rather than a single 'OAuth 2.1 mode' flag.",
+        "evidence": "\"Use one named, independently toggleable gate per requirement. This is the Django OAuth Toolkit COMPLIANT_BCP_RFC9700_* pattern.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the per-requirement gates by auditability: a partial rollout can point at exactly which requirements are and are not enforced yet.",
+        "evidence": "\"The gate history doubles as audit evidence.\" The control matrix has 'One row per requirement, with the gate flag, the automated test, and the evidence location.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires removing the implicit grant and the resource-owner password grant, migrating the dashboard and the iOS app to authorization_code with PKCE.",
+        "evidence": "\"Migrate your own dashboard from implicit to code + PKCE\"; \"Remove implicit for third parties\"; \"Hard-disable password grant\"; iOS uses \"ASWebAuthenticationSession\" (system browser).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces prefix redirect matching with exact string matching.",
+        "evidence": "\"Enforce exact redirect matching and PKCE by cohort\" and \"Redirects: Run exact matching in shadow first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a non-rotating, never-expiring refresh token held by a public client is banned under OAuth 2.1, not merely a weaker option.",
+        "evidence": "Only \"Confidential clients: Never-expiring tokens will fail review.\" It does not say this is banned for public clients under 2.1.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires designing the refresh-token family relationship into newly issued grants, noting that retrofitting family grouping onto an already-issued ungrouped population is materially harder.",
+        "evidence": "It describes token families and lazy migration ('Legacy tokens become family roots on first use'). It never says to design families into new grants or that retrofitting grouping is harder.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the forced-retrofit precedent: a 2025 OAuth-token campaign against a connected app hit more than 700 organizations and led a major platform to mandate PKCE and refresh-token rotation on all connected apps, with de-listing as the penalty.",
+        "evidence": "No mention of any such campaign or precedent anywhere in the transcript.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that what the auditor gets shown is a discovery document plus a conformance pass verified by test, not an assertion of compliance.",
+        "evidence": "\"Discovery document: grant_types_supported has no implicit or password...\" and \"Negative conformance tests in CI, plus a prod smoke test\"; also \"A release is not evidence.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the single big-cutover release in favour of a staged sequence.",
+        "evidence": "'Don't do one big cutover.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the build order: protocol core first, then scope taxonomy and consent screen, then registration and verification, then advanced hardening.",
+        "evidence": "The order given is measure, additive changes, then enforcement. It is not that taxonomy.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends modelling compliance as separately named, independently toggleable boolean gates per requirement (PKCE enforcement, exact redirect matching, rotation, and so on) rather than a single 'OAuth 2.1 mode' flag.",
+        "evidence": "It proposes one per-client legacy/strict profile flag, not named gates per requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies the per-requirement gates by auditability: a partial rollout can point at exactly which requirements are and are not enforced yet.",
+        "evidence": "The flag is justified by a burn-down metric, not by per-requirement auditability.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires removing the implicit grant and the resource-owner password grant, migrating the dashboard and the iOS app to authorization_code with PKCE.",
+        "evidence": "'Migrate your own dashboard from implicit to code + PKCE'; iOS on ASWebAuthenticationSession; ROPC off in Mar.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces prefix redirect matching with exact string matching.",
+        "evidence": "'Run exact redirect matching in shadow mode'; Feb enforcement.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a non-rotating, never-expiring refresh token held by a public client is banned under OAuth 2.1, not merely a weaker option.",
+        "evidence": "'Refresh tokens (public clients) | Sender-constrained or one-time-use rotation | \u274c'; 'Rotation is mandatory for public clients.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires designing the refresh-token family relationship into newly issued grants, noting that retrofitting family grouping onto an already-issued ungrouped population is materially harder.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the forced-retrofit precedent: a 2025 OAuth-token campaign against a connected app hit more than 700 organizations and led a major platform to mandate PKCE and refresh-token rotation on all connected apps, with de-listing as the penalty.",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that what the auditor gets shown is a discovery document plus a conformance pass verified by test, not an assertion of compliance.",
+        "evidence": "'Dated configuration snapshots: AS metadata...' and 'Negative tests in CI, also run as weekly synthetic probes'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

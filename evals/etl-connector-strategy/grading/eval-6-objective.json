@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects both the 'certified' and the 'supported by the platform' claims for a freshly merged marketplace-tier connector.",
+        "evidence": "\"Both halves of the phrase are wrong\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that marketplace-tier connectors are explicitly outside the platform's support SLAs and may ship backward-incompatible breaking changes with no notice.",
+        "evidence": "Quotes \"not covered by Airbyte support SLAs\u2026 may experience backward-incompatible, breaking changes with no notice.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes listing, which is passing the platform's standard test suite, from certification, which is optional and earned.",
+        "evidence": "Marketplace inclusion means passing standard test suite; certification is optional and earned.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the Partner Certified tier covers destination connectors only, so a source connector cannot earn that badge.",
+        "evidence": "\"It applies to destination connectors only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that no platform charges a source vendor a fee for certification and none pays for it either: the cost is engineering time.",
+        "evidence": "\"no fee on any platform... none pays you for it. The cost is engineering time\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the quantitative bars: at least 95% first-sync success, at least 95% overall sync success, first response within 3 business days, and the connector updated at least every 6 months.",
+        "evidence": "95% first-sync, 95% overall, 3 business days, update every 6 months.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends adopting those bars as the connector's own SLOs and feeding them into the maintenance plan even where the tier does not formally require them.",
+        "evidence": "\"Adopt those as Sablefin's own SLOs now\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the certification framing that reliability and usability beat feature count, rather than treating certification as a feature-completeness bar.",
+        "evidence": "\"judged on reliability rather than feature count\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the certification-grade behaviors to build regardless: every supported sync mode integration-tested, incremental sync wherever the source allows it, and failures that are fast and actionable rather than a configuration the platform accepts but that is guaranteed to break.",
+        "evidence": "Sync modes tested, incremental, fast actionable failures.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises targeting certification only once the connector holds up across real syncs, rather than scheduling it backwards from the March conference date.",
+        "evidence": "\"Certification is earned after the connector holds up in real syncs\"; March a stretch goal.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects both the 'certified' and the 'supported by the platform' claims for a freshly merged marketplace-tier connector.",
+        "evidence": "'Don't publish \"Certified connector, supported by the platform.\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that marketplace-tier connectors are explicitly outside the platform's support SLAs and may ship backward-incompatible breaking changes with no notice.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes listing, which is passing the platform's standard test suite, from certification, which is optional and earned.",
+        "evidence": "Says certification is 'usually a separate program' but does not define listing as passing a standard test suite.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the Partner Certified tier covers destination connectors only, so a source connector cannot earn that badge.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that no platform charges a source vendor a fee for certification and none pays for it either: the cost is engineering time.",
+        "evidence": "Asks about 'application fee, annual fee, or revenue share'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the quantitative bars: at least 95% first-sync success, at least 95% overall sync success, first response within 3 business days, and the connector updated at least every 6 months.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends adopting those bars as the connector's own SLOs and feeding them into the maintenance plan even where the tier does not formally require them.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the certification framing that reliability and usability beat feature count, rather than treating certification as a feature-completeness bar.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the certification-grade behaviors to build regardless: every supported sync mode integration-tested, incremental sync wherever the source allows it, and failures that are fast and actionable rather than a configuration the platform accepts but that is guaranteed to break.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises targeting certification only once the connector holds up across real syncs, rather than scheduling it backwards from the March conference date.",
+        "evidence": "Plans around March and a mid-November decision date.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

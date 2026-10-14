@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the published error-budget and SLO literature is written consumer-side, for a team measuring its own dependence on someone else's API, and does not transfer wholesale to a provider publishing numbers for partners",
+        "evidence": "\"the literature... is written for a team measuring its own dependence on someone else's API.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects presenting the multi-vendor multiplicative availability argument to Marrowpoint's partners, because that arithmetic describes the consumer's position rather than Marrowpoint's",
+        "evidence": "\"The multi-vendor message is the wrong direction... does not transfer to the provider side.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that an integration measurement includes the partner's own code and their customers' configuration, so committing to a number derived from it is a promise Marrowpoint only partly controls",
+        "evidence": "\"The measurement includes the partner's own code and their customers' configs, so you'd be promising something you only partly control.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes formal SLA and uptime publication to a separate status-and-incident-communication scope rather than deriving it from the integration health view",
+        "evidence": "\"Formal SLA or uptime publication belongs to... api-status-communication.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps per-integration and per-endpoint granularity as a part that does transfer, against a single blended platform number",
+        "evidence": "\"Use per-endpoint SLIs, not one blended number. This part of the SRE literature does transfer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps multi-window burn-rate detection as a part that does transfer: a long window confirming the problem is sustained plus a short window confirming it is still active",
+        "evidence": "\"multi-window burn-rate alerting: a short window for sudden breaks, a long window for slow degradation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that nothing in the published record establishes what a provider-side integration SLO should contain",
+        "evidence": "\"Nothing in the published record defines what a provider-side integration SLO should contain.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against publishing any per-partner number before Marrowpoint can defend how it is computed",
+        "evidence": "\"Do not publish a per-partner reliability number until you can defend how it is computed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not simply approve writing the 99.9% per-partner SLO spec as requested",
+        "evidence": "\"Verdict: don't write the spec as asked.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an internal prioritisation view first, and distinguishes it from a partner-facing published grade as two different products with different obligations",
+        "evidence": "Proposes internal SLIs and an informational partner view, but never frames an internal prioritisation view versus a published grade as two products with different obligations.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a partner-facing number becomes a contract the moment partners start optimising against it",
+        "evidence": "Only says it \"gets quoted back in commercial conversations\". The optimise-against-it contract point is absent.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the published error-budget and SLO literature is written consumer-side, for a team measuring its own dependence on someone else's API, and does not transfer wholesale to a provider publishing numbers for partners",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects presenting the multi-vendor multiplicative availability argument to Marrowpoint's partners, because that arithmetic describes the consumer's position rather than Marrowpoint's",
+        "evidence": "Applies the math itself and suggests a worked example for partners.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that an integration measurement includes the partner's own code and their customers' configuration, so committing to a number derived from it is a promise Marrowpoint only partly controls",
+        "evidence": "Only excludes partner-caused 4xx.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes formal SLA and uptime publication to a separate status-and-incident-communication scope rather than deriving it from the integration health view",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps per-integration and per-endpoint granularity as a part that does transfer, against a single blended platform number",
+        "evidence": "Raises per-partner SLO as a poor fit and prefers one global SLO.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps multi-window burn-rate detection as a part that does transfer: a long window confirming the problem is sustained plus a short window confirming it is still active",
+        "evidence": "Burn-rate alerts are mentioned with no multi-window detail.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that nothing in the published record establishes what a provider-side integration SLO should contain",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises against publishing any per-partner number before Marrowpoint can defend how it is computed",
+        "evidence": "Says 'Baseline first' but no clear warning against publishing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not simply approve writing the 99.9% per-partner SLO spec as requested",
+        "evidence": "'Don't write the spec as asked.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an internal prioritisation view first, and distinguishes it from a partner-facing published grade as two different products with different obligations",
+        "evidence": "Not distinguished.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a partner-facing number becomes a contract the moment partners start optimising against it",
+        "evidence": "Only says 'A published SLO becomes a de facto SLA'; no partner-optimisation point.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

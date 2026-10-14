@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Returns a no-go rather than approving the launch.",
+        "evidence": "'NO-GO on the docs as written'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grades the docs against a five-element rubric and identifies the retry-policy element as the failing one.",
+        "evidence": "'3. Retry policy, exact schedule: Fails.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that four of five rubric elements is a fail, not a pass.",
+        "evidence": "The transcript never says that four of five elements is still a fail.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects \"we retry with exponential backoff\" as insufficient and requires the exact published schedule: attempt count and intervals.",
+        "evidence": "'the exact example the rubric rejects'; 'exact intervals', total span.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies a second, separate gate on contract completeness covering five specific facts.",
+        "evidence": "'Gate 1: delivery contract completeness'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the delivery guarantee, at-least-once, as a required contract fact and flags it missing from the page.",
+        "evidence": "'Not mentioned. Confirm it's stated'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the ordering position as a required contract fact and flags it missing from the page.",
+        "evidence": "'Not mentioned. Without a best-effort statement, subscribers assume FIFO.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the ack timeout as a required contract fact and flags it missing from the page.",
+        "evidence": "'Ack timeout | Not mentioned.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names which header or field carries the dedup ID as a required contract fact and flags it missing from the page.",
+        "evidence": "'Not mentioned. Name the header or field'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that each contract fact left implicit becomes a subscriber assumption and then a support ticket.",
+        "evidence": "'Anything left implicit becomes a subscriber assumption, then a support ticket.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a concrete ack timeout to publish, around 10 seconds, citing the Shopify and GitHub convention.",
+        "evidence": "Only the placeholder 'within [N] seconds'. No 10-second figure or Shopify/GitHub citation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells subscribers to queue the work and return fast, and states that a slow-but-correct handler must not be treated as a failed delivery.",
+        "evidence": "'Queue the work and respond fast.' It does not say a slow-but-correct handler must not be treated as failed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Returns a no-go rather than approving the launch.",
+        "evidence": "\"Call: conditional GO. Ship date holds if the reliability section is fixed first.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Grades the docs against a five-element rubric and identifies the retry-policy element as the failing one.",
+        "evidence": "Says \"Four of your five parts look ship-ready\" about the user's parts, not a rubric, though it does single out the retry sentence.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that four of five rubric elements is a fail, not a pass.",
+        "evidence": "Treats four of five as near ship-ready with a conditional GO.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects \"we retry with exponential backoff\" as insufficient and requires the exact published schedule: attempt count and intervals.",
+        "evidence": "\"'We retry failed deliveries with exponential backoff' is not a reliability policy\"; requires attempt count, window and schedule.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies a second, separate gate on contract completeness covering five specific facts.",
+        "evidence": "No separate completeness gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the delivery guarantee, at-least-once, as a required contract fact and flags it missing from the page.",
+        "evidence": "\"Whether delivery is at-least-once, which means duplicates.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the ordering position as a required contract fact and flags it missing from the page.",
+        "evidence": "\"Whether ordering is guaranteed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the ack timeout as a required contract fact and flags it missing from the page.",
+        "evidence": "\"Your per-request timeout.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names which header or field carries the dedup ID as a required contract fact and flags it missing from the page.",
+        "evidence": "Appears only in the template (\"Dedupe on `<event id field>`\"), not flagged as missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that each contract fact left implicit becomes a subscriber assumption and then a support ticket.",
+        "evidence": "\"Receivers who guess wrong lose events silently, and that is the failure you will get support tickets for.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a concrete ack timeout to publish, around 10 seconds, citing the Shopify and GitHub convention.",
+        "evidence": "Leaves `<N>` seconds as a placeholder.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells subscribers to queue the work and return fast, and states that a slow-but-correct handler must not be treated as a failed delivery.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

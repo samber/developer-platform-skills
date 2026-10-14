@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States explicitly that no industry-standard screenshot geometry exists across app marketplaces",
+        "evidence": "\"Across the eight benchmarked marketplaces there is no standard screenshot size and no standard video length.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at least two mutually incompatible screenshot aspect ratios in production use (for example 16:9 and 8:5, or approximately 3:2)",
+        "evidence": "\"16:9 (Shopify), 8:5 (Slack), and roughly 3:2 (Salesforce)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs Loomside to pick its own geometry and publish it rather than adopting a borrowed number as an industry constant",
+        "evidence": "\"the numbers below are ours, not 'the industry's'\"; \"1600 \u00d7 900 and 1200 \u00d7 1200. These are our picks.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies exactly one published geometry per visual asset type, not a menu of acceptable alternatives presented as equally valid",
+        "evidence": "Screenshots \"exactly 1600 \u00d7 900 px (16:9). Any other ratio is rejected.\" Icon \"1200 \u00d7 1200 px (1:1), PNG.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the demo-video ceiling at roughly 30 seconds, justified by the admin and committee evaluation mode rather than by a market average",
+        "evidence": "\"Video length tracks who evaluates the listing... customer IT admins and... vendor-review committee... 30 seconds maximum.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bans marketing or promotional footage in the video given the diligence-oriented buyer",
+        "evidence": "\"Marketing footage, animated intros, logos-and-music sequences, and ads are banned.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not compute or recommend an average of other marketplaces' video ceilings",
+        "evidence": "\"Don't average the benchmarks.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires captions on video",
+        "evidence": "\"Captions: required. A video without captions is rejected.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires at least one screenshot showing the actual application UI",
+        "evidence": "\"At least 1 screenshot must show the real app UI.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bans personally identifiable information in screenshots",
+        "evidence": "\"No personal data: no real names, emails, customer records, or tokens.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bans pricing claims or review and rating claims baked into screenshot images",
+        "evidence": "\"No claims baked into images: no pricing, review scores, or '#1' statements.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names an off-topic, distorted, or wrong-ratio image as an explicit rejection trigger the submitter can self-check before submitting",
+        "evidence": "Named rejection trigger 1: \"Screenshot is not 1600 \u00d7 900.\" The section says each can be checked before submitting.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an accessibility floor covering descriptive alt text on informative images, captioned video, and contrast or legibility minimums, referencing WCAG 2.2 AA",
+        "evidence": "Alt text of 140 characters or fewer; captions required; \"at least 4.5:1 contrast (WCAG 2.2 AA)\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States explicitly that no industry-standard screenshot geometry exists across app marketplaces",
+        "evidence": "\"There's no single industry standard for either number. Directories differ...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at least two mutually incompatible screenshot aspect ratios in production use (for example 16:9 and 8:5, or approximately 3:2)",
+        "evidence": "Only 16:9 is named; no second ratio such as 8:5 or 3:2 appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs Loomside to pick its own geometry and publish it rather than adopting a borrowed number as an industry constant",
+        "evidence": "\"The values below are common, defensible choices, and they are Loomside's decisions to make.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies exactly one published geometry per visual asset type, not a menu of acceptable alternatives presented as equally valid",
+        "evidence": "Icon 512 \u00d7 512 px; screenshots 1600 \u00d7 900 px; video 1920 \u00d7 1080 px. The 1280\u00d7720 minimum is a floor at the same ratio, not an alternative geometry.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the demo-video ceiling at roughly 30 seconds, justified by the admin and committee evaluation mode rather than by a market average",
+        "evidence": "Video is \"60 to 120 seconds\" with a maximum of 120 seconds.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Bans marketing or promotional footage in the video given the diligence-oriented buyer",
+        "evidence": "\"No pricing or promotions\"; \"Use the production product. Record a real flow, not an animation of one\"; \"Avoid hype.\" This is a soft ban.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not compute or recommend an average of other marketplaces' video ceilings",
+        "evidence": "No average is computed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires captions on video",
+        "evidence": "\"Add captions or subtitles in English.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires at least one screenshot showing the actual application UI",
+        "evidence": "\"Real product only. Capture the app running inside Loomside.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bans personally identifiable information in screenshots",
+        "evidence": "\"No real customer data... blur or remove names, emails, tokens...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bans pricing claims or review and rating claims baked into screenshot images",
+        "evidence": "The pricing ban appears only in the video section; the screenshot rules do not ban pricing or rating claims.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names an off-topic, distorted, or wrong-ratio image as an explicit rejection trigger the submitter can self-check before submitting",
+        "evidence": "No wrong-ratio or distorted-image rejection trigger is stated; the checklist only lists sizes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends an accessibility floor covering descriptive alt text on informative images, captioned video, and contrast or legibility minimums, referencing WCAG 2.2 AA",
+        "evidence": "No WCAG, alt text or contrast requirement appears.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

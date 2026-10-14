@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Logs the absence of a machine-readable spec as an Improvement finding in its own right",
+        "evidence": "Finding 4, bucketed as Improvement.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proceeds with the checklist walk rather than refusing to review without a spec",
+        "evidence": "It reviews the described behaviors and dimensions without a spec.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the three different error shapes as the top review-level error finding, citing the rule against mixing patterns",
+        "evidence": "Finding 1: 'One error envelope on every endpoint and every status\u2026 don't mix patterns'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that mixed error patterns leave the consumer unable to predict behavior across endpoints",
+        "evidence": "No such explanation for the mixed envelopes. It only explains that clients can't tell null from empty.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags returning null with a 200 for a missing resource and requires 404 with the surface's standard envelope",
+        "evidence": "Finding 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names RFC 9457 rather than RFC 7807 when referring to the problem-details envelope",
+        "evidence": "'RFC 9457 problem details'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that RFC 9457 obsoletes RFC 7807",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the error review at envelope-shape level and defers code taxonomy, message wording, and retry signaling to samber/developer-platform-skills@api-error-design",
+        "evidence": "'Code taxonomy, message wording and retry signals belong to api-error-design.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not design an error-code catalog, subcode scheme, or retryability flag as part of this review",
+        "evidence": "It keeps the existing numeric code as an extension member only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks that no 500 body leaks a stack trace, database error text, internal path, or config, and labels that a security finding rather than only a developer-experience one",
+        "evidence": "Finding 3 and the 'leak test for ISO 27001'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Covers all five sibling-boundary checks - versioning, idempotency, auth model, rate-limit signaling, documentation - at roughly one line each",
+        "evidence": "The 'Five adjacent checks' section.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects writing the spec after launch with the point that the schema is the documentation and is written first",
+        "evidence": "It rejects the idea on Hyrum's Law grounds and 'one source of truth', not on schema-first documentation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Walks all eight checklist dimensions rather than only the dimensions the prompt raised",
+        "evidence": "The dimension summary lists all 8, with most marked not assessed for lack of data.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Logs the absence of a machine-readable spec as an Improvement finding in its own right",
+        "evidence": "Treated as P1, not an Improvement finding",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proceeds with the checklist walk rather than refusing to review without a spec",
+        "evidence": "Full review given despite no spec",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the three different error shapes as the top review-level error finding, citing the rule against mixing patterns",
+        "evidence": "'P0 ... 1. Return one error shape everywhere'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that mixed error patterns leave the consumer unable to predict behavior across endpoints",
+        "evidence": "'A client can't write one error handler against this'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags returning null with a 200 for a missing resource and requires 404 with the surface's standard envelope",
+        "evidence": "'Replace 200 null with 404... standard envelope'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names RFC 9457 rather than RFC 7807 when referring to the problem-details envelope",
+        "evidence": "'RFC 9457 application/problem+json'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that RFC 9457 obsoletes RFC 7807",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the error review at envelope-shape level and defers code taxonomy, message wording, and retry signaling to samber/developer-platform-skills@api-error-design",
+        "evidence": "Designs it itself",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not design an error-code catalog, subcode scheme, or retryability flag as part of this review",
+        "evidence": "'Use string codes... code catalog', legacy_code field",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that no 500 body leaks a stack trace, database error text, internal path, or config, and labels that a security finding rather than only a developer-experience one",
+        "evidence": "'Audit what error strings contain (ISO 27001 relevant)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Covers all five sibling-boundary checks - versioning, idempotency, auth model, rate-limit signaling, documentation - at roughly one line each",
+        "evidence": "Versioning, idempotency, auth/BOLA, rate limiting, spec/docs all covered",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects writing the spec after launch with the point that the schema is the documentation and is written first",
+        "evidence": "'Writing it after things settle is the wrong order'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Walks all eight checklist dimensions rather than only the dimensions the prompt raised",
+        "evidence": "Not systematic; no checklist walk",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

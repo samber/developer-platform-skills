@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the simultaneous multi-surface launch and sequences one new surface at a time within a stated capacity number",
+        "evidence": "\"It ships four new surfaces at once\"; the proposed sequence is weeks 1-3, 3-9, 8-13 with a concurrency gate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reason: several concurrent launches yield half-measured surfaces with no clean signal from any, plus a standing maintenance bill for all",
+        "evidence": "\"you couldn't tell afterwards which surface matters\"; \"five release pipelines, five idiom reviews and five support queues, for years\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks for or forces a sustained-capacity number: how many surfaces the team can build, document, support, and keep releasing for years",
+        "evidence": "\"How many surfaces can the team really sustain at once?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Blocks the five-language SDK plan until the spec is a linted source of truth in CI, because SDKs derive from that contract",
+        "evidence": "\"No derived surface is scheduled before this\"; the spec is moved into the repo and linted in CI.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the hand-updated wiki OpenAPI file as spec drift to fix before any derived surface is scheduled",
+        "evidence": "\"The spec lives in a wiki and drifts\"; \"A hand-edited wiki page would force you to fix every SDK separately.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the one-spec-propagates-everywhere pattern (major platforms generating SDKs, docs, and MCP from one OpenAPI source of truth)",
+        "evidence": "\"Stripe, Twilio and Cloudflare each generate them from one source of truth, so a single change propagates everywhere.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defers or removes the GraphQL endpoint absent a named, integrator-confirmed pain",
+        "evidence": "\"GraphQL has no named pain... It earns a slot only when integrators confirm.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves per-client and per-surface usage telemetry instrumentation to an early plan item instead of after launch",
+        "evidence": "\"Telemetry must come first. The plan says 'analytics after the surfaces are live', which is backwards.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps webhooks as the near-term addition riding the existing REST infrastructure",
+        "evidence": "Webhooks are near-term (weeks 3-9), but the plan never says they ride the existing REST infrastructure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the capacity-matched precedent: SDK languages added only once tooling made supporting them sustainable, or the principle that two surfaces done properly beat six done badly",
+        "evidence": "\"Twilio added languages only once its tooling could support them sustainably\"; \"two surfaces done properly beat six done badly\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns surviving surfaces reversal-cost tiers, including server SDKs as high because method signatures bake directly into customer code",
+        "evidence": "\"Server SDKs have a high reversal cost because their method signatures end up in customer code (Hyrum's Law).\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the simultaneous multi-surface launch and sequences one new surface at a time within a stated capacity number",
+        "evidence": "Phase 2 ships webhooks and 2 SDKs together. No capacity number is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the reason: several concurrent launches yield half-measured surfaces with no clean signal from any, plus a standing maintenance bill for all",
+        "evidence": "Says 'multi-year maintenance commitment' but not the no-clean-signal reasoning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks for or forces a sustained-capacity number: how many surfaces the team can build, document, support, and keep releasing for years",
+        "evidence": "Asks how many engineers work full time, not how many surfaces can be sustained.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Blocks the five-language SDK plan until the spec is a linted source of truth in CI, because SDKs derive from that contract",
+        "evidence": "'Make the OpenAPI spec the source of truth first... Add a CI lint (Spectral)'. SDKs come in Phase 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the hand-updated wiki OpenAPI file as spec drift to fix before any derived surface is scheduled",
+        "evidence": "'A hand-edited wiki spec means the SDKs ship wrong on day one and drift further.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the one-spec-propagates-everywhere pattern (major platforms generating SDKs, docs, and MCP from one OpenAPI source of truth)",
+        "evidence": "Says everything depends on the spec but cites no platform pattern.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defers or removes the GraphQL endpoint absent a named, integrator-confirmed pain",
+        "evidence": "'Gate it on evidence: at least 3 named customers asking.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves per-client and per-surface usage telemetry instrumentation to an early plan item instead of after launch",
+        "evidence": "'Add API usage analytics now, not after launch.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps webhooks as the near-term addition riding the existing REST infrastructure",
+        "evidence": "'Ship webhooks first.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the capacity-matched precedent: SDK languages added only once tooling made supporting them sustainable, or the principle that two surfaces done properly beat six done badly",
+        "evidence": "No precedent is cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns surviving surfaces reversal-cost tiers, including server SDKs as high because method signatures bake directly into customer code",
+        "evidence": "Only notes 'you can't change it cheaply' for SDK policy; no tiers.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

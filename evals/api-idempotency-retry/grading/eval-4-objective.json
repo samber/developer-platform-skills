@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Attributes the duplicates to the replay window (24h) being shorter than the longest retry chain (the 5-6 day DLQ replay runbook)",
+        "evidence": "\"The 61 duplicates are the cost of a window shorter than the replay chain.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 6-hour retention proposal",
+        "evidence": "\"Don't cut to 6 hours.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the replay window is set from the longest retry chain, explicitly not from storage cost",
+        "evidence": "\"Derive it from the longest retry chain, not from storage cost.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a replay window covering the DLQ replay horizon (about 7 days or more), or shortening the replay runbook's horizon to fit - either way the two must be reconciled",
+        "evidence": "Replay window 14 days; DLQ max age 7 days enforced.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits retention into two horizons: a replay window governing correctness and a longer reaper threshold governing operational recovery",
+        "evidence": "Table lists replay window 14 days and reaper threshold 17 days (window + 72h).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the reaper threshold keeps failed records alive for human recovery (e.g. a Friday incident's failed requests surviving the weekend)",
+        "evidence": "\"Records stay for human recovery, then get deleted.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a key reused after the replay window is treated as a brand-new request, not answered with an error",
+        "evidence": "\"After expiry, a reused key is a new request.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the stored record to hold the full response verbatim (status and body) so the replay is indistinguishable from the original",
+        "evidence": "\"Store the full response verbatim.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the replay window published to integrators as a concrete number, with the post-expiry behavior spelled out",
+        "evidence": "\"Publish the number to integrators, and tell them what happens after expiry ('treated as a new request').\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises integrators to complete their retry logic well within the documented window",
+        "evidence": "No advice to integrators to complete retry logic well within the documented window.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the in-window duplicate side-effect rate as a zero-by-definition alarm on regression, not a threshold to tune",
+        "evidence": "\"the production duplicate-purchase rate within the window should be zero. Any non-zero value means a gate regressed.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Attributes the duplicates to the replay window (24h) being shorter than the longest retry chain (the 5-6 day DLQ replay runbook)",
+        "evidence": "\"24h already fails: that is where the 61 duplicates came from.\" Replays arrive up to 6 days late.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 6-hour retention proposal",
+        "evidence": "\"Do not cut to 6 hours.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the replay window is set from the longest retry chain, explicitly not from storage cost",
+        "evidence": "\"Storage cost doesn't enter into that.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a replay window covering the DLQ replay horizon (about 7 days or more), or shortening the replay runbook's horizon to fit - either way the two must be reconciled",
+        "evidence": "\"Set the key TTL to 14 days\" and a runbook age cap of 7 days.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits retention into two horizons: a replay window governing correctness and a longer reaper threshold governing operational recovery",
+        "evidence": "It has a single TTL, and tiering applies per endpoint.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains the reaper threshold keeps failed records alive for human recovery (e.g. a Friday incident's failed requests surviving the weekend)",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a key reused after the replay window is treated as a brand-new request, not answered with an error",
+        "evidence": "Post-expiry behavior is never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the stored record to hold the full response verbatim (status and body) so the replay is indistinguishable from the original",
+        "evidence": "It advises the opposite: \"store a request fingerprint, the status, and a pointer to the result instead.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the replay window published to integrators as a concrete number, with the post-expiry behavior spelled out",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises integrators to complete their retry logic well within the documented window",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the in-window duplicate side-effect rate as a zero-by-definition alarm on regression, not a threshold to tune",
+        "evidence": "Not mentioned. It only says to alert when a replay is older than half the TTL.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

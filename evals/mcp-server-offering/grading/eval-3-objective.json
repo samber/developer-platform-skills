@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects client-rendered confirmation dialogs and description-level instructions as the control, because the user can switch MCP clients and bypass them.",
+        "evidence": "\"\u274c Not a control\" for both; \"A retailer who swaps clients... never sees the dialog.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that read-only and destructive annotations are advisory hints for clients, never security controls.",
+        "evidence": "\"Annotations are hints for clients, not security.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the explicit test that an end user must not be able to bypass the control by switching clients.",
+        "evidence": "Mentions swapping clients but never states it as the test every control must pass.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns each of the three actions exactly one risk tier using the four-tier classification (Read Only, Minimal Impact, Contained Write, Critical).",
+        "evidence": "Table assigns Contained Write to cancel/refund/notice, Critical for refund over $500, Read Only for reads.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the default rung: scoped or restricted credentials plus a verified read-only mode, human-in-the-loop approval on contained writes, and irreversible tools disabled by default.",
+        "evidence": "\"Scoped credentials per retailer\"; \"Verified read-only mode\"; \"Server-side approval\"; cancel Critical \"disabled by default\" option.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires idempotency keys on every write and a spend or rate cap on the refund tool because it moves money.",
+        "evidence": "\"Idempotency key on every write\"; \"Per-call cap: $500... Aggregate cap\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends dry-run preflight where feasible while flagging dry-run as an uncommon pattern in the ecosystem rather than a standard one.",
+        "evidence": "\"Dry-run is rare in the ecosystem, which makes it a differentiator\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the rule that when dry-run is not feasible, the destructive tool stays behind an approval gate rather than shipping live-only.",
+        "evidence": "No such rule stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the customer-email tool as consequential because it reaches a real human, and gates it rather than handling it as an ordinary write.",
+        "evidence": "\"Contained Write (messages humans)\" with approval, dry-run preview, rate cap",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that undo and rollback are largely absent across the MCP ecosystem, and that attribution plus immutable audit logs are the substitute rather than a solved reversibility answer.",
+        "evidence": "\"Undo is largely absent across the industry, so attribution and audit are your substitute\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects confirming every tool including reads, warning that approval fatigue on trivial calls trains users to click through the ones that matter.",
+        "evidence": "\"Approval fatigue teaches users to click through... Reads should pass without a prompt.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names risk-tiered server-side policy gates as the high-protection, high-effort option and gives the conditions that promote it - unattended background agents, write volume beyond human approval capacity, or a first write incident.",
+        "evidence": "Gates are described, but not named as the high-protection/high-effort option with promotion conditions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the safety patterns on more than one axis - protection and effort or efficiency stated separately - instead of one blended ordering.",
+        "evidence": "Only \"cheapest control with the best protection per unit of effort\"; no two-axis ranking.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects client-rendered confirmation dialogs and description-level instructions as the control, because the user can switch MCP clients and bypass them.",
+        "evidence": "\"Annotations are hints, not enforcement... Other clients, API agents, and headless runs may show nothing.\" and \"'Ask the user first'... is not a control.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that read-only and destructive annotations are advisory hints for clients, never security controls.",
+        "evidence": "\"MCP clients may ignore `destructiveHint`, and the spec says to treat server annotations as untrusted.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the explicit test that an end user must not be able to bypass the control by switching clients.",
+        "evidence": "No such test is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns each of the three actions exactly one risk tier using the four-tier classification (Read Only, Minimal Impact, Contained Write, Critical).",
+        "evidence": "No tier classification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the default rung: scoped or restricted credentials plus a verified read-only mode, human-in-the-loop approval on contained writes, and irreversible tools disabled by default.",
+        "evidence": "There is no scoped read-only credentials / HITL on contained writes / irreversible disabled by default ladder.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires idempotency keys on every write and a spend or rate cap on the refund tool because it moves money.",
+        "evidence": "An idempotency key is required only for `issue_refund`, not for every write.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends dry-run preflight where feasible while flagging dry-run as an uncommon pattern in the ecosystem rather than a standard one.",
+        "evidence": "Dry-run is not mentioned. It proposes a prepare/execute two-step flow instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the rule that when dry-run is not feasible, the destructive tool stays behind an approval gate rather than shipping live-only.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the customer-email tool as consequential because it reaches a real human, and gates it rather than handling it as an ordinary write.",
+        "evidence": "\"treat it as a gated write\" and \"Treat the email tool as a phishing risk.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that undo and rollback are largely absent across the MCP ecosystem, and that attribution plus immutable audit logs are the substitute rather than a solved reversibility answer.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects confirming every tool including reads, warning that approval fatigue on trivial calls trains users to click through the ones that matter.",
+        "evidence": "\"Dialogs on every call teach users to click 'allow' without reading, so the three dialogs that matter get approved by reflex.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names risk-tiered server-side policy gates as the high-protection, high-effort option and gives the conditions that promote it - unattended background agents, write volume beyond human approval capacity, or a first write incident.",
+        "evidence": "Server-side enforcement is recommended, but no promotion conditions (unattended agents, write volume, first incident) are given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the safety patterns on more than one axis - protection and effort or efficiency stated separately - instead of one blended ordering.",
+        "evidence": "No ranking of patterns.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

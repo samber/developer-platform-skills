@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the initial admission review could not have prevented this incident, because the compromise was of publisher credentials and rode the update channel",
+        "evidence": "\"A stricter front door only checks the first submission. The compromise happened afterward.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to treat the incident as a review-gate failure and does not assert a causal review-process change from it",
+        "evidence": "\"This was a publisher-account compromise, not a review failure. Don't write the incident up as 'review missed it.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prioritizes publish-channel hardening ahead of deepening the admission review",
+        "evidence": "\"The fix is to harden the channel that ships code to tenants, and then to deepen review\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends phishing-resistant (FIDO) two-factor authentication on publisher accounts as a default control",
+        "evidence": "\"Phishing-resistant FIDO 2FA required on every publisher account\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends short-lived scoped publish tokens, citing a 7-day default and 90-day maximum lifetime",
+        "evidence": "\"7-day default and 90-day maximum (the npm model after its 2025 worm)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a publish-to-propagation hold of 24-48 hours between a cleared update and auto-propagation to installed tenants",
+        "evidence": "\"24-48 hours between 'cleared' and 'auto-propagates' to tenants\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an operator kill switch usable inside the propagation-hold window",
+        "evidence": "\"with a kill switch inside the window\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an expedite path through the hold for genuine security fixes",
+        "evidence": "\"an expedite path for genuine security fixes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the propagation hold as mandatory rather than optional, because updates auto-propagate to installed tenants",
+        "evidence": "\"This is mandatory when updates auto-propagate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names OIDC trusted publishing from CI/CD as the promotion once publisher count outgrows token hygiene",
+        "evidence": "\"OIDC trusted publishing | Promote it as the publisher count grows\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the controls must be layered rather than relying on any single one, noting that published marketplace controls have demonstrated real-world bypasses",
+        "evidence": "\"Layer these controls. Independent researchers demonstrated bypasses of a major marketplace's documented controls in 2025\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not adopt a mandatory third-party penetration test on every new submission as the primary remediation",
+        "evidence": "\"Don't make a pen test on every new submission the main change.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the initial admission review could not have prevented this incident, because the compromise was of publisher credentials and rode the update channel",
+        "evidence": "\"A pre-listing penetration test would not have stopped this incident. The app passed review as a legitimate product.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to treat the incident as a review-gate failure and does not assert a causal review-process change from it",
+        "evidence": "\"The failures were all after listing\"; \"Make 'stricter review' mean controls on identity, updates, and runtime.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prioritizes publish-channel hardening ahead of deepening the admission review",
+        "evidence": "MFA, staged rollout and diff review come in 30 days; risk-tiered review is at 90 days (change 8).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends phishing-resistant (FIDO) two-factor authentication on publisher accounts as a default control",
+        "evidence": "\"Phishing-resistant MFA for all publisher accounts. Use passkeys or hardware keys\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends short-lived scoped publish tokens, citing a 7-day default and 90-day maximum lifetime",
+        "evidence": "No mention of publish tokens or lifetimes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a publish-to-propagation hold of 24-48 hours between a cleared update and auto-propagation to installed tenants",
+        "evidence": "Only \"hold times between stages\" in a 1%/10%/100% rollout; no 24-48 hour figure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes an operator kill switch usable inside the propagation-hold window",
+        "evidence": "\"Build a one-click global 'halt and revert app X' that you control\" alongside staged rollout.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an expedite path through the hold for genuine security fixes",
+        "evidence": "No expedite path is described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the propagation hold as mandatory rather than optional, because updates auto-propagate to installed tenants",
+        "evidence": "The staged rollout is recommended, but no mandatory hold is argued from auto-propagation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names OIDC trusted publishing from CI/CD as the promotion once publisher count outgrows token hygiene",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the controls must be layered rather than relying on any single one, noting that published marketplace controls have demonstrated real-world bypasses",
+        "evidence": "No statement about layering or documented real-world bypasses.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not adopt a mandatory third-party penetration test on every new submission as the primary remediation",
+        "evidence": "\"Keep the pentest, but only for high-risk apps\"; low tier gets automated scanning only.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

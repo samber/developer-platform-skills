@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects shipping the spec-generated mock server as the sandbox.",
+        "evidence": "\"Don't ship it as 'Sandbox'... Ship it as a Mock API\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the statefulness reason: the order lifecycle spans a sequence of calls, and a static request-to-response mapping cannot validate logic that depends on what happened on a prior call.",
+        "evidence": "\"No state. After POST /orders, a GET returns the spec example... cancel after shipped succeeds\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the drift failure mode: when the API changes, the mock keeps simulating the old behavior while production breaks silently, which vendor-exercised real objects cannot do.",
+        "evidence": "\"when the real API's behavior changes, the mock keeps simulating the old behavior while production breaks.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the bugs a stateless mock misses are the state-dependent ones surfacing weeks into an integration, not day-one request-shape errors.",
+        "evidence": "\"The skill calls this the week-three gap: bugs a stateless mock cannot reproduce\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends building a real stateful test mode instead, with the soft toggle named as the default isolation rung.",
+        "evidence": "\"build the real sandbox as a soft test-mode toggle\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the docs to state the isolation level explicitly rather than shipping the bare label 'Sandbox'.",
+        "evidence": "\"State the isolation level in the docs\" with suggested wording",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every documented failure outcome in the lifecycle (failed allocation, mid-flow cancellation) to be deterministically triggerable via magic values or simulation endpoints.",
+        "evidence": "Magic value table incl. TEST-OOS and cancel after shipped, plus advance endpoint",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends sandbox state-forcing endpoints that move an order into a specific lifecycle state on demand.",
+        "evidence": "\"POST /v1/test/orders mints an order directly in a target state\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an explicit fire-this-event-now mechanism for the shipped and delivered webhook events.",
+        "evidence": "\"POST /v1/test/orders/{id}/events with {\"type\": \"order.shipped\"}\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the failure-path coverage gate at 100%, with one untriggerable failure path failing the audit.",
+        "evidence": "\"Failure-path coverage (gate: 100%)... Today's Prism proposal covers none\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies mode-prefixed test credentials with the recognized _test_/_live_ substring shape for the real test mode, rather than reusing live keys against a different host.",
+        "evidence": "\"`hl_test_` and `hl_live_`, modeled on the externally recognized `_test_`/`_live_` shape\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects shipping the spec-generated mock server as the sandbox.",
+        "evidence": "\"don't call it 'Sandbox.' Call it 'Mock server'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the statefulness reason: the order lifecycle spans a sequence of calls, and a static request-to-response mapping cannot validate logic that depends on what happened on a prior call.",
+        "evidence": "\"Each call is independent... status never advances.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the drift failure mode: when the API changes, the mock keeps simulating the old behavior while production breaks silently, which vendor-exercised real objects cannot do.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the bugs a stateless mock misses are the state-dependent ones surfacing weeks into an integration, not day-one request-shape errors.",
+        "evidence": "Not stated this way.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends building a real stateful test mode instead, with the soft toggle named as the default isolation rung.",
+        "evidence": "Proposes a separate sandbox.hookline.dev service; no soft toggle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the docs to state the isolation level explicitly rather than shipping the bare label 'Sandbox'.",
+        "evidence": "Limitations box covers stateless and no webhooks, not isolation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires every documented failure outcome in the lifecycle (failed allocation, mid-flow cancellation) to be deterministically triggerable via magic values or simulation endpoints.",
+        "evidence": "\"Cancellation cases are scriptable\"; asks about triggering allocation outcomes.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends sandbox state-forcing endpoints that move an order into a specific lifecycle state on demand.",
+        "evidence": "\"POST /sandbox/orders/{id}/advance\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an explicit fire-this-event-now mechanism for the shipped and delivered webhook events.",
+        "evidence": "\"Send test webhook\" action.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the failure-path coverage gate at 100%, with one untriggerable failure path failing the audit.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies mode-prefixed test credentials with the recognized _test_/_live_ substring shape for the real test mode, rather than reusing live keys against a different host.",
+        "evidence": "Says separate keys only.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the default recommendation is buying a managed platform - a gateway-bundled portal or a hosted docs/portal product - rather than building.",
+        "evidence": "'Buy the credentials and docs layer... Don't build the portal'; the skill's ranking puts managed platform first on efficiency.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the ranking across the options explicitly as a value, effort and efficiency ordering instead of leaving it implied by the order of discussion.",
+        "evidence": "'efficiency managed platform > assembled stack > custom build, and value custom build > assembled stack > managed platform.' Effort is not separately ranked.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects branding and pixel-level control on its own as a sufficient reason to promote a custom build.",
+        "evidence": "Resolves design's demand through layering; 'Reject any platform that locks the shell'; the cost of full pixel control 'means a funded platform team and permanent ownership'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the content team's CMS authoring need as a genuine promotion condition for the custom path.",
+        "evidence": "Table: 'Business authors need a real CMS beside spec-driven docs | Yes... \u2705'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the full set of custom-build promotion conditions: compliance or data-residency requirements no managed platform meets, business-side authors needing a real CMS alongside spec-driven docs, and a multi-gateway API portfolio no single vendor portal unifies.",
+        "evidence": "Table lists compliance/data residency, CMS need, multi-gateway portfolio, and named owner.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points out that Halcyon runs a single gateway across all products, so that gateway's bundled portal comes nearly free and the multi-gateway argument does not apply here.",
+        "evidence": "'an org standardized on one gateway gets that gateway's bundled portal nearly free.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the assembled-stack middle option: a docs platform for content composed with the gateway for credentials under one navigation.",
+        "evidence": "'Use an assembled stack with the gateway or a hosted docs platform as its core'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named, ongoing owner as a precondition before any custom build is approved.",
+        "evidence": "'never to promote a custom build without a named, ongoing owner.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that two contractors on a 10-week window do not constitute that permanent owner.",
+        "evidence": "'Contractors leave at week 10'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that an unowned portal decays rapidly.",
+        "evidence": "'an unowned portal decays rapidly.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the decision by platform category rather than resolving it to one specific named vendor product.",
+        "evidence": "'Gateway-bundled portal or hosted docs platform'; no vendor is named.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the default recommendation is buying a managed platform - a gateway-bundled portal or a hosted docs/portal product - rather than building.",
+        "evidence": "'Build the shell, buy the engine.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the ranking across the options explicitly as a value, effort and efficiency ordering instead of leaving it implied by the order of discussion.",
+        "evidence": "No explicit ranking is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects branding and pixel-level control on its own as a sufficient reason to promote a custom build.",
+        "evidence": "It uses design control as a main reason against buying.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the content team's CMS authoring need as a genuine promotion condition for the custom path.",
+        "evidence": "'Marketing would have to move off the CMS they already use.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the full set of custom-build promotion conditions: compliance or data-residency requirements no managed platform meets, business-side authors needing a real CMS alongside spec-driven docs, and a multi-gateway API portfolio no single vendor portal unifies.",
+        "evidence": "It lacks compliance/data-residency and the multi-gateway condition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points out that Halcyon runs a single gateway across all products, so that gateway's bundled portal comes nearly free and the multi-gateway argument does not apply here.",
+        "evidence": "It notes one gateway only as the spec source and never considers the bundled portal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the assembled-stack middle option: a docs platform for content composed with the gateway for credentials under one navigation.",
+        "evidence": "The fallback is a bought reference renderer under a custom shell, not docs platform plus gateway credentials.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a named, ongoing owner as a precondition before any custom build is approved.",
+        "evidence": "'Name an internal owner now, or the site rots.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that two contractors on a 10-week window do not constitute that permanent owner.",
+        "evidence": "'contractors leave.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that an unowned portal decays rapidly.",
+        "evidence": "'or the site rots.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the decision by platform category rather than resolving it to one specific named vendor product.",
+        "evidence": "It names Astro, Next.js, Scalar, Redoc, Pagefind, Algolia, Mintlify and ReadMe.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

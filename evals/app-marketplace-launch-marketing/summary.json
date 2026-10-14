@@ -1,0 +1,358 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "app-marketplace-launch-marketing",
+  "scenarios": 8,
+  "expectations_total": 91,
+  "expectations_subjective": 1,
+  "expectations_objective": 90,
+  "pass_rate_with_skill_pct": 81.3,
+  "pass_rate_without_skill_pct": 33.0,
+  "delta_pp": 48.3,
+  "uplift_multiplier": 2.46,
+  "trigger_accuracy_pct": 51.2,
+  "trigger_queries": 80,
+  "trigger_positive_fire_rate": 0.1,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Offers exactly two honest paths: stand up the review gate before launch, or drop every curated/vetted claim from the launch language"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Routes the review-gate work to the sibling skill samber/developer-platform-skills@app-marketplace-review, or names designing that review process as a prerequisite step owned elsewhere"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Asks its clarifying questions one at a time rather than delivering a single batched list of questions"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States explicitly that selection is not made on logo size alone"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes the a16z framework advises 5-10 high-quality design partners over a large day-one cohort"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the default cohort shape being stepped down from - a curated vetted cohort of roughly 15-65 apps anchored by 3-6 marquee logos"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the hard conference date promotes fast-acting options and demotes slow compounding ones"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that no partner release publishes before Draycott's own reveal"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes the badge and the rotation compose, and that Shopify runs both in parallel on one marketplace"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends capping partners at one application per quarter, as AMP does"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the condition that would promote a paid catalog anyway: partner co-marketing demand outstripping team capacity even after tier-gating"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites Atlassian's stated posture of focusing on general promotion of the marketplace rather than individual co-marketing with partners"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds an invitation cohort for partners too new to have climbed the tier ladder, citing HubSpot's Partner Growth Accelerator or Salesforce's Builders Initiative"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies objective tier thresholds a partner can read - an ARR band or a trailing-12-month sales bar - citing monday.com unlocking MDF and lead sharing from Silver up, or Microsoft tiering benefits by trailing-12-month marketplace sales"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that partner programs funding only what ranks well over-serve sales-adjacent co-marketing"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Deliberately promotes the high-value, high-effort options because the mandate is a compounding asset rather than a one-off win"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that no industry pass-standard exists for a marketing-program artifact, so the program's pass gates are self-set"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that a cohort's credibility claim is only as strong as the review gate behind it"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Offers exactly two honest paths: stand up the review gate before launch, or drop every curated/vetted claim from the launch language"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Routes the review-gate work to the sibling skill samber/developer-platform-skills@app-marketplace-review, or names designing that review process as a prerequisite step owned elsewhere"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Warns that press counts launch-day app numbers independently instead of accepting the operator's figure"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Cites monday.com's marketplace launch as precedent: the operator claimed over a hundred apps and press counted 78"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Cites Atlassian Marketplace's 2012 \"~1,000 add-ons\" as a migrated plugin catalog rather than a curated cohort"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that catalog migration buys a large headline number cheaply and near-zero vetting credibility"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Proposes tiering inside the cohort - a smaller vetted subset named separately from the 412-listing breadth claim - citing HubSpot's 2017 split of 65 launch integrations into 30 beta integrators and 35 certified partners"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Asks its clarifying questions one at a time rather than delivering a single batched list of questions"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends a design-partner micro-cohort of roughly 3 to 6 launch partners"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites Notion's 2021 integrations debut with 3 launch partners as the micro-cohort precedent"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Selects the partners on the a16z design-partner criteria: urgency, capability, and representativeness"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States explicitly that selection is not made on logo size alone"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes the a16z framework advises 5-10 high-quality design partners over a large day-one cohort"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the default cohort shape being stepped down from - a curated vetted cohort of roughly 15-65 apps anchored by 3-6 marquee logos"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the hard conference date promotes fast-acting options and demotes slow compounding ones"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Flags that with no live reviewer the cohort cannot honestly be marketed as vetted"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends coordinating social posts within roughly 15 minutes of the wire time"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends 1-2 weeks of embargo lead specifically because the payment-data apps make this a security-sensitive launch"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires partner quotes to be pre-approved by each partner's comms team and embedded in Draycott's own release"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the operator release is drafted first so both sides reuse the same pre-cleared language"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Specifies the kit contents: approved boilerplate for both brands, the pre-cleared quote, and logo and banner assets"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains the kit's purpose as removing the partner's extra approval round-trip on launch day"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Labels the embargo mechanics as inferred from standard PR practice rather than operator-disclosed"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that always-on quality-gated badges are the mechanic structurally worst at surfacing new apps"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends adding a time-boxed editorial rotation alongside the badge rather than replacing the badge with one"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Specifies the rotation selects explicitly not on existing install base"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gives the rotation a cadence of roughly weekly, citing Shopify Staff Picks"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes the badge and the rotation compose, and that Shopify runs both in parallel on one marketplace"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Identifies the 49% new-installs-in-14-days figure as operator-published and requires that label to travel with it"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the search-ranking claim because independent developer rank-tracking found no organic keyword-rank change from the badge, making the effect contested"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Frames the badge as buying eligibility, a trust signal, and an install bump - never a guaranteed rank boost"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Warns that partners run their own rank trackers and will call out an overclaim publicly"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires the badge eligibility gates to be published and re-audited on a cycle, with badge loss dropping the endorsement rather than the listing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites Salesforce's AppExchange Marketing Program as the menu-priced paid-catalog precedent with operator-published price points"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Reproduces at least two AMP price points accurately from: ~$4K industry e-books, ~$14K webinar promotions, $5K-$7.5K paid-media extensions"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends capping partners at one application per quarter, as AMP does"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the menu-priced paid catalog as the highest-fulfillment-effort option, which loses every efficiency ranking"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the condition that would promote a paid catalog anyway: partner co-marketing demand outstripping team capacity even after tier-gating"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Splits marketplace marketing into two structurally different motions rather than treating it as one budget"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Identifies marketplace-wide demand generation - marketplace SEO, curated collections, category pages, keynote launches - as non-rival, where one partner benefiting costs the others nothing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Identifies per-partner co-marketing - MDF, co-sell, custom campaigns, spotlights - as rival, consuming operator staff time or budget per engagement"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Funds the non-rival demand-gen baseline broadly, for all 130 partners by default"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites Atlassian's stated posture of focusing on general promotion of the marketplace rather than individual co-marketing with partners"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds an invitation cohort for partners too new to have climbed the tier ladder, citing HubSpot's Partner Growth Accelerator or Salesforce's Builders Initiative"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies objective tier thresholds a partner can read - an ARR band or a trailing-12-month sales bar - citing monday.com unlocking MDF and lead sharing from Silver up, or Microsoft tiering benefits by trailing-12-month marketplace sales"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Starts the program design at the ongoing featuring and spotlight program rather than at cohort sizing or reveal planning"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the efficiency ratchet: funding only what measures well starves new-app surfacing and technical enablement"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that partner programs funding only what ranks well over-serve sales-adjacent co-marketing"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Deliberately promotes the high-value, high-effort options because the mandate is a compounding asset rather than a one-off win"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires re-promoting the starved options on a schedule, not only when metrics demand it"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Warns that non-rival demand-gen spend cannot show per-partner attributable pipeline by construction, so that metric is the wrong gate for it"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Proposes measuring the share of partner-marketing spend on non-rival demand gen versus rival co-marketing, plus the count of partners touched by each motion"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Reframes the CMO's \"launch plan\" request as an ongoing program and states plainly which debut-launch steps do not apply here"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Identifies Salesforce's \"575 apps / 250 ISVs\" as a fiscal-year-end snapshot months after the 2005 launch, not a launch-day figure"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Identifies Atlassian's ~1,000 add-ons as a migrated plugin catalog rather than a launch cohort"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Reports press pickup and partner same-day posts relative to the 28-app cohort size, alongside the 2,100 day-one installs"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Reports the split of partner-marketing spend between non-rival demand gen and rival per-partner co-marketing"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Reports the count of partners touched by each of the two motions"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that the rival co-marketing layer touching only the top tier is by design, while the demand-gen layer touching only some partners is a bug"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that no industry pass-standard exists for a marketing-program artifact, so the program's pass gates are self-set"
+      }
+    ]
+  }
+}

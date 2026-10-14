@@ -1,0 +1,370 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "connector-marketplace-strategy",
+  "scenarios": 8,
+  "expectations_total": 84,
+  "expectations_subjective": 0,
+  "expectations_objective": 84,
+  "pass_rate_with_skill_pct": 73.8,
+  "pass_rate_without_skill_pct": 29.8,
+  "delta_pp": 44.0,
+  "uplift_multiplier": 2.48,
+  "trigger_accuracy_pct": 50.0,
+  "trigger_queries": 76,
+  "trigger_positive_fire_rate": 0.132,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States the four trigger conditions as explicit promotion criteria for revisiting the build decision later"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks interview questions before proposing any operating model, despite the same-week deadline"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks one question per message rather than batching the questions into a single list"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks the effort ceiling: engineering hours, partner-team headcount, subsidy budget, or appetite for irreversible public commitments"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks whether this is a one-off win or a compounding asset"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks by when a result must land"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Waits for the user's pick before detailing governance, curation, take-rate, and seeding"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Drafts the document section by section with user validation between sections rather than delivering every section at once"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that zero take-rate is a deliberate architecture rather than a transitional state, citing a major marketplace that charges no revenue share and funds itself as a retention asset"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the promotion condition to a volume-tiered rate: billing flowing through the platform plus some partners visibly winning"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives the volume-tiered archetype with its threshold shape (0% under $1M per year, 15% above)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Presents the curation choice as a ranked spectrum of four rungs, not a binary open-versus-closed decision"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the default rung is hybrid: open admission with a minimal automated bar plus a separate certified tier"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Attributes that three-part definition of platform governance to a named source (_Platform Revolution_)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Assigns a named owner to each of the three governance answers"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Maps the undisclosed data-forwarding incident to information asymmetry"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the promotion condition off first-party complements: when the catalog must outgrow what first-party engineering can build"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the two conditions that would promote hackathons anyway: a compounding mandate plus an existing developer community"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that both hackathon promotion conditions fail here, citing the fixed four-month deadline and the absence of a developer community"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires the strategy document to name which single case carries the decision"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites buyer research placing integration capability among the top SaaS purchase criteria (86% importance)"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that build is justified for market leaders with the scale and proprietary data to sustain an independent ecosystem, at multi-year, eight-figure-plus investment"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Applies a build / join / buy gate before proposing any marketplace design"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names all four build trigger conditions that must hold before choosing build"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the four trigger conditions as explicit promotion criteria for revisiting the build decision later"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Warns that building without confirmed supply and demand produces little more than an expensive partner directory"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks interview questions before proposing any operating model, despite the same-week deadline"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks one question per message rather than batching the questions into a single list"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks the effort ceiling: engineering hours, partner-team headcount, subsidy budget, or appetite for irreversible public commitments"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks whether this is a one-off win or a compounding asset"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks by when a result must land"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Presents 2-3 candidate operating models that differ across the whole bundle (curation level, partner mix, take-rate, seeding), not on a single dial"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives each candidate the real-platform archetype it resembles, what it optimizes for, what it costs, and the failure mode it courts"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends one candidate with reasoning tied back to specific interview answers"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Waits for the user's pick before detailing governance, curation, take-rate, and seeding"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Drafts the document section by section with user validation between sections rather than delivering every section at once"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a zero take-rate during the seeding phase"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that zero take-rate is a deliberate architecture rather than a transitional state, citing a major marketplace that charges no revenue share and funds itself as a retention asset"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains that taxing the hard side during the cold start selects against the supply the network's survival depends on"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a 15-25% flat rate is earned by distribution the partner cannot replicate, naming the procurement-gate position (91% of one platform's customers using at least one marketplace app) as what earns it"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the promotion condition to a volume-tiered rate: billing flowing through the platform plus some partners visibly winning"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives the volume-tiered archetype with its threshold shape (0% under $1M per year, 15% above)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Pairs whatever rate is chosen with an anti-circumvention rule carrying a delisting path"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Presents the curation choice as a ranked spectrum of four rungs, not a binary open-versus-closed decision"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the default rung is hybrid: open admission with a minimal automated bar plus a separate certified tier"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Promotes the single hard review gate above the default for this case, because every app can read regulated or sensitive customer data"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Says explicitly which interview answer (data sensitivity = high) moved which rung"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Acknowledges that the single hard review gate loses the efficiency ranking because review cost scales with every submission"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Warns that an uncertified-but-listed tier is an incident waiting to be attributed to the platform when apps read sensitive data"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the openness counter-argument (heavy gatekeeping inflates prices, hampers innovation, costs choice) as the live trade-off rather than ignoring it"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Structures the governance rules around three questions: admission, value split, and conflict resolution"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Attributes that three-part definition of platform governance to a named source (_Platform Revolution_)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Assigns a named owner to each of the three governance answers"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Checks the draft rules against the four named causes of platform market failure"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names all four causes: information asymmetry, externalities, monopoly power, and risk"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Treats a market-failure cause with no rule written against it as a gap in the document"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Maps the undisclosed data-forwarding incident to information asymmetry"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Prescribes pooling scale for smaller complementors - shared analytics, shared marketing infrastructure - as the standing concentration countermeasure"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Schedules a recurring governance review rather than treating the launch rules as permanent, because platforms tend to grow more open over time"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the connector and app developers as the hard side of this network"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that the hard side determines whether the network survives and must be given a reason to build before customers see value"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Defines the atomic network as the smallest self-sustaining cluster - one use case, dense and mutually reinforcing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the promotion condition off first-party complements: when the catalog must outgrow what first-party engineering can build"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Demotes the hackathon, stating that social mechanisms lose every efficiency round"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the two conditions that would promote hackathons anyway: a compounding mandate plus an existing developer community"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that both hackathon promotion conditions fail here, citing the fixed four-month deadline and the absence of a developer community"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the sequential / Trojan-horse option - ship a stand-alone tool the hard side wants on its own merits, 'come for the tool, stay for the network' - as the rung for a hard side with no reason to show up yet"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires the strategy document to name which single case carries the decision"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that a document blending the two cases cannot be falsified"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites the retention evidence that customers integrating multiple tools churn measurably less"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the 4+ integrations cluster as the switching-cost threshold to watch"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites buyer research placing integration capability among the top SaaS purchase criteria (86% importance)"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Leads the year-one metric set with supply-side metrics, stating the supply side is the hard side and fails first"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Labels mature-platform figures such as 91% of customers using at least one marketplace app as context anchors, not year-one targets"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that marketplace-attributed deal influence is inherently soft attribution rather than presenting it as a hard number"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Runs the build / join / buy gate before responding to the marketplace request"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Contrasts the embedded-iPaaS pace (a sourced case building 100+ integrations in a year) against the stated in-house pace of about five per year"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that build is justified for market leaders with the scale and proprietary data to sustain an independent ecosystem, at multi-year, eight-figure-plus investment"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Evaluates join - listing on the established marketplaces customers already trust - as the pragmatic default that borrows existing distribution and trust"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Does not design a take-rate, curation ladder, or partner-tier program for a path that was not selected"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Declines to specify payout cadence and merchant-of-record posture, routing that question to the marketplace monetization skill"
+      }
+    ]
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "partner-app-onboarding",
+  "scenarios": 8,
+  "expectations_total": 71,
+  "expectations_subjective": 0,
+  "expectations_objective": 71,
+  "pass_rate_with_skill_pct": 81.7,
+  "pass_rate_without_skill_pct": 32.4,
+  "delta_pp": 49.3,
+  "uplift_multiplier": 2.52,
+  "trigger_accuracy_pct": 64.1,
+  "trigger_queries": 64,
+  "trigger_positive_fire_rate": 0.5,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Describes the cost of the current plan as partners churning silently in the gap between signup and the ability to test"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks how long a competent developer needs to reach a first working app on the platform, offering hours / days / weeks-to-months as the answer set"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks how sensitive the data partner apps touch is, in regulatory-exposure or customer-trust terms"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks at most one question per message rather than delivering a block of questions at once"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends keeping education as an optional parallel track available from day one, required by nothing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends that registration carry only a click-through program agreement needing a single legal sign-off and no per-partner review"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ties any revenue-reporting obligation to first sale rather than to registration"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that production-mirror sandboxes are heavy enough that real platforms ration them, via quotas or by gating them behind a paid tier"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends real-time community chat as the response to the clustered repeated questions, rather than headcount"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Gives an explicit ordering of the support rungs on efficiency, leading with docs plus community forum"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that answered forum threads compound, each one deflecting the next partner's ticket"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that named partner managers scale only with headcount, which is why they lose on efficiency despite carrying the highest unblock power"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends naming the journey stages explicitly, including the post-launch stage, so the walls are visible from the entry docs"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Recommends self-service signup - a form plus a program-agreement checkbox with no human reviewer - as the entry gate, rejecting the manual application review"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that application-reviewed registration earns its cost only when build complexity runs to weeks-to-months or when data sensitivity requires knowing who is building before granting access"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Rejects the Bronze/Silver/Gold entry ladder outright rather than renaming, resizing, or simplifying it"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that entry tiers gate nothing at most real partner programs and that partner tiers are earned post-launch on performance"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Routes the design of a post-launch tier ladder to samber/developer-platform-skills@connector-marketplace-strategy instead of designing it here"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats a staged pre-launch ladder (Registered then Exploration then Build) as a documented exception justified by build complexity, not a pattern to copy"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Identifies gating sandbox and credential provisioning behind the partner-approval step as the central problem and names it as a recognized failure mode"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that ungated build access is the shape most major B2B marketplaces use, not a risk-tolerant outlier"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks how long a competent developer needs to reach a first working app on the platform, offering hours / days / weeks-to-months as the answer set"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks how sensitive the data partner apps touch is, in regulatory-exposure or customer-trust terms"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks at most one question per message rather than delivering a block of questions at once"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Defers review-pipeline and approval-checkpoint mechanics to samber/developer-platform-skills@app-marketplace-review instead of designing the review process here"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the 22% first-review fail rate sits below the roughly 30-40% threshold at which mandatory education is even considered"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that mandatory pre-submission certification is not standard practice on any major B2B marketplace"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends keeping education as an optional parallel track available from day one, required by nothing"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Locates quality enforcement at the review gate, with education positioned to help partners pass it faster"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Offers a credentialed but still non-gating education path with named, displayable certificates as the upgrade when partner credibility is a buyer-facing signal"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that promoting mandatory certification would additionally require failure analysis tracing failures to partner knowledge gaps rather than documentation gaps"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags that the cited failure causes (OAuth scope misuse, missing data-deletion webhooks) read as documentation or checklist gaps rather than a case for a four-hour course"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that no published industry benchmark for time-to-first-submitted-app exists, because marketplaces keep partner-onboarding conversion numbers internal"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that time-to-first-submitted-app is a self-defined metric and must be labelled as such wherever it is reported"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names time-to-first-call - signup to first successful API call - as the established named metric sitting before it"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names time-to-first-deal - partner-agreement signature to first registered opportunity - as the named partner-ecosystem metric sitting after it"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gives roughly 10 minutes as the working threshold above which provisioned-to-first-API-call means onboarding friction gets fixed before anything else"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Attributes the drop-off evidence behind that threshold to general developer-tool funnels rather than to marketplace-partner data"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Moves the pricing-model choice (free / platform-billed / vendor-billed) out of registration to the launch stage, as the last gate before listing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Moves the reseller or seller agreement to first listing rather than registration"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends that registration carry only a click-through program agreement needing a single legal sign-off and no per-partner review"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Describes the agreement-split shape: building stays ungated for everyone, and a separate verified seller track carries the agreement signature plus KYC/KYB identity checks"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that a partner forced to price an app they have not built answers randomly"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ties any revenue-reporting obligation to first sale rather than to registration"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Instructs deleting the own-account-as-sandbox option outright rather than keeping it as a later fallback or a demoted rung"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Explains that an option ruled out by constraints but parked at the bottom of a menu silently reappears later as scope"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends instant dedicated dev tenancy - a free dev instance or account created at signup, no time limit, no payment information required - as the rung to build"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Keeps provisioning at signup rather than deferring it because of the tight deadline"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that production-mirror sandboxes are heavy enough that real platforms ration them, via quotas or by gating them behind a paid tier"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Defers test-key prefixing, magic test values, isolation architecture, and graduation-to-live mechanics to samber/developer-platform-skills@api-test-mode-design"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends real-time community chat as the response to the clustered repeated questions, rather than headcount"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends office hours staffed by a platform engineer for the recurring hard steps - event-schema versioning and the review gate - that peers cannot answer"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States explicitly that the support rungs stack and never substitute for one another"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Gives an explicit ordering of the support rungs on efficiency, leading with docs plus community forum"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that answered forum threads compound, each one deflecting the next partner's ticket"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that named partner managers scale only with headcount, which is why they lose on efficiency despite carrying the highest unblock power"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Identifies the problem as disclosure timing rather than the existence of the thresholds themselves"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends disclosing the 5-active-install review-eligibility threshold inside the onboarding documentation"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the general rule that every post-launch threshold is disclosed at onboarding, never at the moment the partner hits it"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names hidden post-launch walls as a recognized failure pattern that hits partners after they believe onboarding is complete"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that both threshold shapes - an install count before review can start, and tenure plus install counts before certification - exist on real major B2B marketplaces"
+      }
+    ]
+  }
+}

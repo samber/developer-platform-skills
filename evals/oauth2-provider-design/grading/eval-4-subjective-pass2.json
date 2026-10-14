@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Accepts scope proliferation where resource types genuinely differ in sensitivity instead of collapsing them for tidiness.",
+        "evidence": "The answer turns down the broad `full_write` catch-all. It proposes 8 `resource:action` scopes (projects, tasks, comments and timesheets, each with read and write) and treats timesheets differently because of sensitivity. Timesheets get verification tier 3, a 'hold' on integration tokens and an allowlist, on the grounds that 'org-wide timesheet read reaches other users' data'. Projects, tasks and comments are grouped as 'shared workspace data' at lower tiers. It also adds a rule against single broad catch-all scopes. It does not score 5 because it never explicitly argues that the larger scope ",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Accepts scope proliferation where resource types genuinely differ in sensitivity instead of collapsing them for tidiness.",
+        "evidence": "The draft keeps 12 granular scopes: 4 resources \u00d7 read/write/delete. It splits `delete` out instead of folding it into `write`. It gives `timesheets:*` its own sensitive tier, justified as 'personal work-hours data and often feed payroll and billing', with admin consent and a distinct consent-screen warning. It sets per-flavour rules, including \u274c for integration `timesheets:delete`. It labels the coarse `full_write` 'discouraged for new apps' and expands it to granular scopes at issue time. It even suggests a separate approved-integration path for payroll exports. It does not collapse scopes f",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

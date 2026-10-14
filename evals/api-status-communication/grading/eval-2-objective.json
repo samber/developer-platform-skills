@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Removes the human confirmation/approval gate as a precondition for the first public status change",
+        "evidence": "\"humans enrich the incident. They never gate the first disclosure.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends auto-opening an Investigating incident directly from the monitoring alert",
+        "evidence": "\"Auto-opens an 'Investigating' incident\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the human role as enrichment (adding substance, scope, cadence) after disclosure, never as first disclosure",
+        "evidence": "On-call \"confirms or adds scope\" after the auto-open.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects or re-scopes the support-lead wording review so it cannot delay the initial public post",
+        "evidence": "\"Support lead reviews after publication... never blocking\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends writing down a staged escalation pipeline: an explicit rule for when an internal event becomes a public communication (alerts, incidents of note, triage, problems, status updates, published report)",
+        "evidence": "There is a process table and confirmation rule, but no explicit staged rule for alert, incident, triage, problem, status update and published report.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding at least one workflow-level probe exercising a real multi-step user journey, not only infrastructure checks",
+        "evidence": "\"Add at least one workflow-level probe, a real multi-step user journey\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes infrastructure-green from product-broken as different claims when justifying the workflow probe",
+        "evidence": "\"catch 'infrastructure green, product broken'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Installs detection-to-disclosure lag (alert-fired to page-updated) as a per-incident measurement driven to minutes",
+        "evidence": "\"measured per incident as alert fired to page updated\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a lag in the tens of minutes indicates a human gate is still in the loop",
+        "evidence": "\"Tens of minutes means a human gate is still in the loop.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Installs zero third-party-first disclosures (no aggregator or social post beating the page) as a binary per-incident gate",
+        "evidence": "\"Third-party-first disclosures is zero.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies customer migration to third-party complaint aggregators as the failure signal of lost trust in the page",
+        "evidence": "\"the Reddit thread shows people go to a third party first\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends calibrated accuracy rather than maximal alarm, noting an honestly earned green history is itself valuable",
+        "evidence": "It says honest false alarms cost less than a green lie, but never frames calibrated accuracy or an earned green history as valuable.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Removes the human confirmation/approval gate as a precondition for the first public status change",
+        "evidence": "Step 2 \"On-call confirms the problem is real\" is still required before step 3 publishes. Only the review gate is removed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends auto-opening an Investigating incident directly from the monitoring alert",
+        "evidence": "\"Auto-post a generic 'Investigating' notice when an uptime probe fails on N consecutive checks\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the human role as enrichment (adding substance, scope, cadence) after disclosure, never as first disclosure",
+        "evidence": "\"Support lead reviews and edits the live post\"; \"Review moves off the critical path.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects or re-scopes the support-lead wording review so it cannot delay the initial public post",
+        "evidence": "\"If the support lead hasn't reviewed within 10 minutes, the template message stays live. Review never blocks.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends writing down a staged escalation pipeline: an explicit rule for when an internal event becomes a public communication (alerts, incidents of note, triage, problems, status updates, published report)",
+        "evidence": "There is a step table and escalation timers, but no staged taxonomy (alert, incident, triage, problem, update, report) or rule for when an internal event becomes public.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding at least one workflow-level probe exercising a real multi-step user journey, not only infrastructure checks",
+        "evidence": "Only \"health checks, latency thresholds, and uptime probes\" on endpoints are mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes infrastructure-green from product-broken as different claims when justifying the workflow probe",
+        "evidence": "Not discussed. The data-quality variant is mentioned only as a message template.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Installs detection-to-disclosure lag (alert-fired to page-updated) as a per-incident measurement driven to minutes",
+        "evidence": "\"Time to first public update (target: under 15 min)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a lag in the tens of minutes indicates a human gate is still in the loop",
+        "evidence": "The 45 minutes is attributed to sequential people, but this heuristic is never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Installs zero third-party-first disclosures (no aggregator or social post beating the page) as a binary per-incident gate",
+        "evidence": "\"Number of incidents where customers reported first (target: zero)\"; \"A customer report beating your page means the process failed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies customer migration to third-party complaint aggregators as the failure signal of lost trust in the page",
+        "evidence": "Public channels are watched as triggers, but aggregator migration as a lost-trust signal is never identified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends calibrated accuracy rather than maximal alarm, noting an honestly earned green history is itself valuable",
+        "evidence": "\"a handful of retractions is acceptable, and far cheaper than silence\". This favors alarm, with no mention of the value of a green history.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Routes the immediate task to `samber/developer-platform-skills@api-versioning-policy` rather than to `public-api-design-review`, despite the user asking for a review",
+        "evidence": "\"Route: `api-versioning-policy`\"; design review would misroute.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the boundary explicitly: what are we allowed to change is policy, is this surface well designed is review",
+        "evidence": "\"what you are allowed to change, and who decides\" vs \"audits a surface against a promise\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the absence of a written breaking-change definition as the blocking gap instead of just answering whether the rename is breaking",
+        "evidence": "\"no written definition of 'breaking'... the real problem.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the absence of a breaking-change sign-off owner as a second gap the session must close",
+        "evidence": "\"no named person who signs off on one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the macro-strategy class to rung 1 regardless of the session's stated goal",
+        "evidence": "Versioning policy promoted to first place.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places `samber/developer-platform-skills@public-api-design-review` in the short-list or in \"Not now\", not as the route",
+        "evidence": "Short-list #2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The short-list holds between 5 and 8 entries",
+        "evidence": "Five entries.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every short-list entry names both the bottleneck it attacks and what the session costs",
+        "evidence": "Each has Bottleneck and Cost lines.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not rank the routing table or present the collection's skills as ordered by preference",
+        "evidence": "Only the short-list is ranked by value/effort.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes or updates `developer-platform-context.md`, including a session-log line",
+        "evidence": "\"I did not write `developer-platform-context.md`\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names no skill outside the collection's routing table and invents none",
+        "evidence": "All names are collection skills.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Routes the immediate task to `samber/developer-platform-skills@api-versioning-policy` rather than to `public-api-design-review`, despite the user asking for a review",
+        "evidence": "No skill is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the boundary explicitly: what are we allowed to change is policy, is this surface well designed is review",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the absence of a written breaking-change definition as the blocking gap instead of just answering whether the rename is breaking",
+        "evidence": "'Write the policy first. This is the document that ends the argument. Define \"breaking\"...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the absence of a breaking-change sign-off owner as a second gap the session must close",
+        "evidence": "No owner is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes the macro-strategy class to rung 1 regardless of the session's stated goal",
+        "evidence": "No short-list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places `samber/developer-platform-skills@public-api-design-review` in the short-list or in \"Not now\", not as the route",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The short-list holds between 5 and 8 entries",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Every short-list entry names both the bottleneck it attacks and what the session costs",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not rank the routing table or present the collection's skills as ordered by preference",
+        "evidence": "No routing table is presented.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes or updates `developer-platform-context.md`, including a session-log line",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names no skill outside the collection's routing table and invents none",
+        "evidence": "No skill is named.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Notes that 3,100 live integrations shift the effort ranking, so the rotation rollout is re-ranked against the retrofit scale instead of applying the greenfield default unexamined.",
+        "evidence": "The verdict says: 'Rotating refresh tokens is the riskiest change for third parties... The skill says a retrofit with thousands of live integrations makes rotation the expensive rung.' The sequence acts on that ranking. Rotation starts as opt-in, then becomes the default for new grants in Phase 2, and is forced only in Phase 3. It also gets a per-client compat mode, lazy migration of legacy tokens, a dated sunset and a bounded exception fallback. The re-ranking is explicit and changes the plan. It loses a point because it never directly compares this ordering with what a greenfield build would",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Notes that 3,100 live integrations shift the effort ranking, so the rotation rollout is re-ranked against the retrofit scale instead of applying the greenfield default unexamined.",
+        "evidence": "The transcript uses the 3,100 apps mainly to argue against a big cutover ('you can't un-break 3,100 integrations'). It does adapt rotation to existing clients. Rotation goes behind a per-client legacy/strict flag with a grace window. It notes that rotation is mandatory only for public clients and optional for confidential ones. The old iOS client is exempted because it 'may not persist a rotated refresh token'. However, it never explicitly says that retrofitting rotation onto 3,100 live integrations changes its effort or priority relative to the other gaps. Rotation is never re-ranked against ",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

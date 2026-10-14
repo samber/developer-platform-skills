@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Treats that solution layer as first-class rather than optional filler.",
+        "evidence": "The navigation tree labels Solutions '[S \u00b7 E, D] \u2190 first-class layer' and sets a required structure for each page: the business problem, the endpoints or webhooks that solve it, an example payload, and integration effort in plain terms. The P1 launch gate includes '3-4 Solutions pages'. 'Thin or missing Solutions pages' is listed as a failure mode. Build vs buy names a CMS for Solutions pages as a reason to choose a custom build, because 'those pages hold the content your buyers read first'. Marketing-site API pages are also routed to the Solutions layer.",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Treats that solution layer as first-class rather than optional filler.",
+        "evidence": "In the structure, the solution layer gets real weight. The design premise says every page has a plain-language top layer for the ops director. Use cases and 'For your integrator' are top-level sections with their own URLs, required contents (problem, data flow, effort estimate, 'what you need from your side') and links in both directions with the API reference. Product and solutions pages on the main site also link into the use cases. The build order demotes the same layer, though. Use cases and integrator scoping are only 'At launch if possible'. The integrator directory, partner program and ",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

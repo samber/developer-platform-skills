@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies gating sandbox and credential provisioning behind the partner-approval step as the central problem and names it as a recognized failure mode",
+        "evidence": "\"That is the 'sandbox behind the review gate' failure mode.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends provisioning the dev account, sandbox tenancy, and credentials at signup, before any human review",
+        "evidence": "\"provision the sandbox and credentials at signup, not after review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the principle that starting to build is decoupled from getting approved",
+        "evidence": "\"'decouple building from approval' looks like as infrastructure.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concentrates human review at the app-submission gate, where it protects end customers",
+        "evidence": "\"Move human review to the end, where it protects your utility customers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that ungated build access is the shape most major B2B marketplaces use, not a risk-tolerant outlier",
+        "evidence": "\"four of the five ecosystems studied let anyone sign up with a form... Salesforce shape, which is the outlier.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the cost of the current plan as partners churning silently in the gap between signup and the ability to test",
+        "evidence": "Only says \"Partners wait 2-4 business days, with no sandbox and nothing to build\"; never describes silent churn from that gap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks how long a competent developer needs to reach a first working app on the platform, offering hours / days / weeks-to-months as the answer set",
+        "evidence": "Q3 appears only as \"if it's weeks-to-months\" in a change list; no question with that answer set is asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks how sensitive the data partner apps touch is, in regulatory-exposure or customer-trust terms",
+        "evidence": "Data sensitivity is assumed \"High... Inference\"; only a request at the end for \"answers to Q3, Q4 and Q5\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks at most one question per message rather than delivering a block of questions at once",
+        "evidence": "\"Your answers to Q3, Q4 and Q5 would let me firm this up\" plus a block of Q3-Q9 conditions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defers review-pipeline and approval-checkpoint mechanics to samber/developer-platform-skills@app-marketplace-review instead of designing the review process here",
+        "evidence": "\"review mechanics (SLA, fee, criteria) belong to `app-marketplace-review`.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies gating sandbox and credential provisioning behind the partner-approval step as the central problem and names it as a recognized failure mode",
+        "evidence": "Says 'The 2-4 day company review blocks the wrong step' but never calls it a recognized failure mode, and frames the main objection more broadly.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends provisioning the dev account, sandbox tenancy, and credentials at signup, before any human review",
+        "evidence": "'Make sandbox self-serve and instant, with email verification and click-through sandbox terms.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the principle that starting to build is decoupled from getting approved",
+        "evidence": "'Vet at the point of risk instead: production access, listing, and installation'; sandbox 'exposes no customer data'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concentrates human review at the app-submission gate, where it protects end customers",
+        "evidence": "'Move the company review to the gate before production or listing.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that ungated build access is the shape most major B2B marketplaces use, not a risk-tolerant outlier",
+        "evidence": "No claim about what major marketplaces do.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the cost of the current plan as partners churning silently in the gap between signup and the ability to test",
+        "evidence": "'A multi-day wait before they can make one API call loses most of the casual and exploratory partners.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks how long a competent developer needs to reach a first working app on the platform, offering hours / days / weeks-to-months as the answer set",
+        "evidence": "No such question among the four closing questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks how sensitive the data partner apps touch is, in regulatory-exposure or customer-trust terms",
+        "evidence": "Asks 'Can partner apps write to work orders or touch crew location data' \u2013 not framed as regulatory exposure or trust.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks at most one question per message rather than delivering a block of questions at once",
+        "evidence": "Ends with a block of four numbered questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defers review-pipeline and approval-checkpoint mechanics to samber/developer-platform-skills@app-marketplace-review instead of designing the review process here",
+        "evidence": "Designs review tiers, SLAs and resubmission loops itself; no skill referral.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

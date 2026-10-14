@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects a single platform-wide floor of ten calls per hour, and explains that integrations differ in traffic shape by orders of magnitude",
+        "evidence": "\"Traffic shapes differ by orders of magnitude between integrations... 3 calls/hour pages constantly... 50,000 drops to 500 never fires.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires comparing each integration's call volume against that integration's own recent baseline instead of a fixed number",
+        "evidence": "\"Real fix: compare each integration to its own baseline.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that an absence of calls produces no errors and therefore appears nowhere in an error log or error-rate view",
+        "evidence": "\"An absence produces no errors, so it can't be a side effect of error logging.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the volume-drop signal as its own design item rather than a side effect of the error logging already in place",
+        "evidence": "\"Silent: Expected calls are missing (new, separate signal).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires silent integrations to appear in the provider-side fleet view alongside the erroring ones",
+        "evidence": "\"Put silence in the provider-side fleet view... Silent integrations list ranked by blast radius.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that silent failures are frequently the most expensive class precisely because neither side has noticed",
+        "evidence": "No such claim. The cost argument is limited to this partner's stock sync.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying the partner about the drop rather than waiting for them to ask",
+        "evidence": "\"Only silence that survives these checks goes to the partner as 'we've seen no calls'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the volume-drop signal outside the 4xx, 5xx and 429 status-code buckets rather than inside them",
+        "evidence": "\"Silence is its own failure class\", separate from the Failing state split into 4xx/5xx/429.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records this failure class as its own row in the visibility audit alongside the error classes",
+        "evidence": "The visibility audit and failure-class table are never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not claim that better error alerting or a lower error threshold would have caught this",
+        "evidence": "\"Green currently means 'no errors seen'... No data must never render as healthy.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects a single platform-wide floor of ten calls per hour, and explains that integrations differ in traffic shape by orders of magnitude",
+        "evidence": "'not as a flat 10 calls/hour'; table of failure cases.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires comparing each integration's call volume against that integration's own recent baseline instead of a fixed number",
+        "evidence": "'compute a baseline from the trailing 4 weeks, bucketed by hour-of-week.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that an absence of calls produces no errors and therefore appears nowhere in an error log or error-rate view",
+        "evidence": "'Zero requests produce zero errors, which computes to a 0% error rate and a green status.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the volume-drop signal as its own design item rather than a side effect of the error logging already in place",
+        "evidence": "Dedicated silence and partial-collapse detectors.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires silent integrations to appear in the provider-side fleet view alongside the erroring ones",
+        "evidence": "Fourth 'silent' state on the board; registry-driven evaluation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that silent failures are frequently the most expensive class precisely because neither side has noticed",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying the partner about the drop rather than waiting for them to ask",
+        "evidence": "Silence alerts go to partner success 'include... a draft outreach message.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the volume-drop signal outside the 4xx, 5xx and 429 status-code buckets rather than inside them",
+        "evidence": "Not explicitly stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records this failure class as its own row in the visibility audit alongside the error classes",
+        "evidence": "No audit row mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not claim that better error alerting or a lower error threshold would have caught this",
+        "evidence": "Argues the board treats no data as healthy, not that error thresholds are too high.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

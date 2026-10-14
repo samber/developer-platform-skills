@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Asks clarifying questions before proposing any language list",
+        "evidence": "It offers a provisional list: \"Python, TypeScript/Node, Java, C#/.NET, Go, and either Ruby or PHP as a starting hypothesis\" alongside its questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks one question per message rather than delivering the whole questionnaire in a single block",
+        "evidence": "All six questions are delivered in one block.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which developer vertical the integrators belong to",
+        "evidence": "It guesses the integrators (\"in-house engineers or integration partners\") instead of asking about the vertical.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether a machine-readable OpenAPI-style spec exists and what state it is in",
+        "evidence": "\"Do you have an OpenAPI spec, and is it accurate?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks which languages the team can genuinely maintain in-house over years",
+        "evidence": "\"Which languages can your team actually maintain for years?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks whether procurement and security can accept a hosted commercial generator",
+        "evidence": "\"Is there a vendor or procurement constraint on hosted generators?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks whether per-language client traffic telemetry exists today",
+        "evidence": "\"What does API traffic show by language?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks whether this is a one-off catch-up or a compounding portfolio policy the team will run for years",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Verifies that SDKs were actually chosen as an integration surface, and defers that decision to the separate integration-surface-strategy skill if it has not been made",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the Friday deadline as an explicit re-ranking input, noting a hard deadline promotes generated coverage over handwritten SDKs",
+        "evidence": "Friday is only the date for the board slide; it is not used to re-rank toward generated coverage.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents 2-3 candidate portfolio shapes with trade-offs and a recommendation instead of a single answer",
+        "evidence": "Only one plan is presented.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names candidate shapes such as a lean core plus self-service long tail, broad generated coverage on one pipeline, or a handwritten flagship plus generated rest",
+        "evidence": "Lean core, broad generated, and flagship-plus-generated shapes are not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the strategy is complete only when all seven workflow steps end in a written, user-approved policy",
+        "evidence": "\"none of that is needed for Friday.\"",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Asks clarifying questions before proposing any language list",
+        "evidence": "Proposes the six-language table immediately.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks one question per message rather than delivering the whole questionnaire in a single block",
+        "evidence": "Gives a numbered block of four action items, not a single question.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which developer vertical the integrators belong to",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether a machine-readable OpenAPI-style spec exists and what state it is in",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which languages the team can genuinely maintain in-house over years",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether procurement and security can accept a hosted commercial generator",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether per-language client traffic telemetry exists today",
+        "evidence": "Tells the user to check user agents, but does not ask whether such telemetry exists.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether this is a one-off catch-up or a compounding portfolio policy the team will run for years",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Verifies that SDKs were actually chosen as an integration surface, and defers that decision to the separate integration-surface-strategy skill if it has not been made",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the Friday deadline as an explicit re-ranking input, noting a hard deadline promotes generated coverage over handwritten SDKs",
+        "evidence": "Friday is only the date for the slide. No link is made to generated coverage.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents 2-3 candidate portfolio shapes with trade-offs and a recommendation instead of a single answer",
+        "evidence": "Gives a single six-language list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names candidate shapes such as a lean core plus self-service long tail, broad generated coverage on one pipeline, or a handwritten flagship plus generated rest",
+        "evidence": "None named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the strategy is complete only when all seven workflow steps end in a written, user-approved policy",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Frames federation as an internal composition architecture rather than a public exposure mechanism.",
+        "evidence": "The answer says 'subgraph isolation is fundamental to Federation's security model.' It also says 'The router stays the only public component and the subgraphs stay private,' and explains that `_service` and `_entities` exist for composition and coordination between subgraphs. Its sign-off conditions require that subgraphs be unreachable from outside the network. Together these present subgraphs as internal building blocks behind a single public router. The answer never states the general principle outright, though, for example that federation composes internal services and is not a way to publ",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Frames federation as an internal composition architecture rather than a public exposure mechanism.",
+        "evidence": "The answer treats subgraphs as internal parts behind the router. It says subgraphs 'typically trust the router and its forwarded identity headers', that `_service { sdl }` exists because 'composition and the router need it', and that the safeguards 'fit an internal-only subgraph'. It also suggests keeping the router in the path, for example with a dedicated router instance. It never states the principle outright: federation composes internal subgraphs, the supergraph or router is the public contract, and subgraphs are not meant to be exposed. It also lists conditions for direct exposure, which",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

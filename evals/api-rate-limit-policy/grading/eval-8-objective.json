@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects post-execution-only costing: admission control requires a static worst-case cost estimate charged before execution, with the difference against actual cost refunded afterward",
+        "evidence": "'Pre-charge a static estimate, run the query, then refund the difference.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prices cost from the query's shape and fields via a published formula an integrator can compute before sending, not from response size",
+        "evidence": "The cost formula table and worked example (652 estimated).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Exposes both requested and actual cost on every response (such as an extensions cost object) so clients can see the pre-charge and refund accounting",
+        "evidence": "'extensions.cost' with requestedQueryCost and actualQueryCost.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins the single-query maximum cost independently of plan and states it explicitly, rejecting a plan-scaled max query cost",
+        "evidence": "'One per-query cap for every plan'; 1,000 in every column.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the portability trap motivating the plan-independent cap: a query written against a bigger plan's allowance instantly fails on a smaller-plan account",
+        "evidence": "'A query written against a Premium store fails on a Standard store.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Weights mutations above reads of equivalent shape (general guidance 2-5x, with a named vendor precedent at 10x), rejecting equal costing",
+        "evidence": "'Mutations carry a fixed base cost of 10.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes per-field weights, not just the budget, for example scalar 0, object 1, and connections sized by their first/last pagination arguments",
+        "evidence": "The table gives scalar 0, object 1 and connection 2+N\u00d7node.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Exposes the remaining budget and the restore rate on every response so a client can model the bucket locally",
+        "evidence": "'throttleStatus': maximumAvailable, currentlyAvailable, restoreRate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Expresses the budget as bucket depth plus restore rate, burst and sustained as two numbers, not one blended figure",
+        "evidence": "'Burst and sustained are two separate numbers.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a debug affordance returning a per-field cost breakdown so integrators can understand why a query costs what it costs",
+        "evidence": "'a debug flag... returns a per-field cost breakdown.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a budget-introspection mechanism that costs nothing to query, so a client can check its remaining budget for free",
+        "evidence": "'a zero-cost introspection field for the live budget'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps structural query guards (depth ceilings, required pagination arguments, persisted queries) out of scope as schema design owned by the GraphQL API design discipline, while owning the pricing and budget policy",
+        "evidence": "'Structural guards... are schema design, covered by public-graphql-api-design.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects post-execution-only costing: admission control requires a static worst-case cost estimate charged before execution, with the difference against actual cost refunded afterward",
+        "evidence": "'Estimate cost before execution... refund the difference'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prices cost from the query's shape and fields via a published formula an integrator can compute before sending, not from response size",
+        "evidence": "Per-field cost table and the worked example of 652 points.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Exposes both requested and actual cost on every response (such as an extensions cost object) so clients can see the pre-charge and refund accounting",
+        "evidence": "'requestedQueryCost' and 'actualQueryCost' in extensions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins the single-query maximum cost independently of plan and states it explicitly, rejecting a plan-scaled max query cost",
+        "evidence": "'One max cost per query for every plan.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the portability trap motivating the plan-independent cap: a query written against a bigger plan's allowance instantly fails on a smaller-plan account",
+        "evidence": "The reason given is risk to shared infrastructure, not queries failing on smaller plans.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Weights mutations above reads of equivalent shape (general guidance 2-5x, with a named vendor precedent at 10x), rejecting equal costing",
+        "evidence": "'Mutation | 10 + payload selection'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes per-field weights, not just the budget, for example scalar 0, object 1, and connections sized by their first/last pagination arguments",
+        "evidence": "Scalar 0, node 1, connection 2 + first \u00d7 node.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Exposes the remaining budget and the restore rate on every response so a client can model the bucket locally",
+        "evidence": "throttleStatus with currentlyAvailable and restoreRate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Expresses the budget as bucket depth plus restore rate, burst and sustained as two numbers, not one blended figure",
+        "evidence": "Bucket size 2,000 with restore 100/s.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a debug affordance returning a per-field cost breakdown so integrators can understand why a query costs what it costs",
+        "evidence": "The breakdown appears only on rejection errors.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a budget-introspection mechanism that costs nothing to query, so a client can check its remaining budget for free",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps structural query guards (depth ceilings, required pagination arguments, persisted queries) out of scope as schema design owned by the GraphQL API design discipline, while owning the pricing and budget policy",
+        "evidence": "It specifies depth, aliases and page-size limits itself.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

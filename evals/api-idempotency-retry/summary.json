@@ -1,0 +1,218 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-idempotency-retry",
+  "scenarios": 8,
+  "expectations_total": 94,
+  "expectations_subjective": 1,
+  "expectations_objective": 93,
+  "pass_rate_with_skill_pct": 89.4,
+  "pass_rate_without_skill_pct": 64.9,
+  "delta_pp": 24.5,
+  "uplift_multiplier": 1.38,
+  "trigger_accuracy_pct": 65.5,
+  "trigger_queries": 84,
+  "trigger_positive_fire_rate": 0.571,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Does not treat the Idempotency-Key header as a ratified standard - notes the IETF draft expired unratified, so TTL, mismatch and concurrency semantics must be explicitly designed and documented"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions row lock + SERIALIZABLE as the mechanism to promote only when a request spans external non-rollbackable calls, not for this case"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Offers blocking for the bounded result and 202-plus-status-URL as the alternatives for synchronous callers and long-running effects respectively"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Advises integrators to complete their retry logic well within the documented window"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names decorrelated jitter as the variant to promote when a tight user-facing deadline makes time-to-success outweigh fleet load"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Excludes equal jitter and no-jitter from the recommended menu (equal jitter identified as the loser among jittered options; no jitter re-synchronizes the fleet into the original spike)"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Quantifies the amplification risk: a 200-instance fleet each retrying a few times multiplies load on a struggling downstream several-hundred-fold while every instance looks reasonable in isolation"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "When pairing with a circuit breaker, states the stacking order Retry then CircuitBreaker then RateLimiter then Bulkhead"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "For call chains, propagates the remaining deadline downward with the request (relative timeouts on the wire) so no hop starts work exceeding what the top-level caller has left"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes RFC 9110 defines method-level idempotency but says nothing about the Idempotency-Key retrofit, so 'per the HTTP spec' does not cover these endpoints"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Recommends event-derived key derivation as the default (a key built from an identifier the caller already holds, e.g. their own transfer or order id)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Presents derivation options as a ranking - event-derived over request-scoped over a random UUID reused across retries - not an unordered list"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Specifies that the same key arriving with a different request body is rejected with a conflict (409), never silently replayed"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Makes or demands an explicit decision whether a stored failure replays verbatim or the operation is re-attempted without side effects (the Stripe v1 vs v2 fork)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Does not treat the Idempotency-Key header as a ratified standard - notes the IETF draft expired unratified, so TTL, mismatch and concurrency semantics must be explicitly designed and documented"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Removes the Redis option from the menu entirely (or requires fencing tokens layered on top if Redis were unavoidable) rather than ranking it last as a fallback"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions row lock + SERIALIZABLE as the mechanism to promote only when a request spans external non-rollbackable calls, not for this case"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Diagnoses the root cause as a binary seen/not-seen key model with no representation of an in-flight request"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Defaults the in-flight response to a conflict (409) telling the caller to wait and retry"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires the in-flight conflict and the payload-mismatch conflict to carry distinct machine-readable error codes"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that in-flight conflict and completed replay are different responses by design, never fallbacks of each other"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Allows takeover of an abandoned request only after a lock timeout, via an atomic conditional update on the lock timestamp"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends an active completer background job that pushes abandoned in-flight requests through to completion, not passive expiry"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a reaper job that deletes expired records and logs what it could not finish for a human"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Splits retention into two horizons: a replay window governing correctness and a longer reaper threshold governing operational recovery"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains the reaper threshold keeps failed records alive for human recovery (e.g. a Friday incident's failed requests surviving the weekend)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States a key reused after the replay window is treated as a brand-new request, not answered with an error"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires the stored record to hold the full response verbatim (status and body) so the replay is indistinguishable from the original"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires the replay window published to integrators as a concrete number, with the post-expiry behavior spelled out"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Advises integrators to complete their retry logic well within the documented window"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Treats the in-window duplicate side-effect rate as a zero-by-definition alarm on regression, not a threshold to tune"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Treats 500 separately from the allowlist - retried cautiously, since some 500s are real bugs that fail identically on retry"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names decorrelated jitter as the variant to promote when a tight user-facing deadline makes time-to-success outweigh fleet load"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Excludes equal jitter and no-jitter from the recommended menu (equal jitter identified as the loser among jittered options; no jitter re-synchronizes the fleet into the original spike)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires logging every retry with attempt number, error, and next wait"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Points integrators at an established retry library (tenacity, Resilience4j, or equivalent) ahead of hand-rolled formulas"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Quantifies the amplification risk: a 200-instance fleet each retrying a few times multiplies load on a struggling downstream several-hundred-fold while every instance looks reasonable in isolation"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the token-bucket retry-quota implementation with its figures: 14 tokens per transient-error retry, 5 per throttle retry"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Sets single-attempt timeouts at 2-3x measured p99 latency, never an OS default or a round number"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "When pairing with a circuit breaker, states the stacking order Retry then CircuitBreaker then RateLimiter then Bulkhead"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "For call chains, propagates the remaining deadline downward with the request (relative timeouts on the wire) so no hop starts work exceeding what the top-level caller has left"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes RFC 9110 defines method-level idempotency but says nothing about the Idempotency-Key retrofit, so 'per the HTTP spec' does not cover these endpoints"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Grounds the checklist in the fact that no ratified standard exists, so this documentation is the integrators' only normative source"
+      }
+    ]
+  }
+}

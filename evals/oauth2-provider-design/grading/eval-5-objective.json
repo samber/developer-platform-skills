@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to supply a consent drop-off conversion figure as measured fact.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "States that no rigorous public study of consent-screen conversion exists and that circulating percentages trace to vendor blog posts rather than measurements.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Addresses the specific 50% figure the user raised instead of silently omitting it.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Argues the redesign on security and UX grounds rather than on a conversion number.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Replaces the grouped buckets with one plain-language sentence per individual scope.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Forbids showing the raw scope string to the user.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Replaces all-or-nothing consent with support for partial grants.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Requires the server to diff the granted scope set against the requested one on every authorization response.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Warns that the granted set can differ from the requested set even when the user appears to approve everything, and that assuming they match ships a silent capability mismatch into every integrating app.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Recommends incremental authorization, requesting a scope when the feature needs it rather than upfront.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      },
+      {
+        "text": "Requires the re-consent screen to show only the net-new scope rather than re-displaying everything already granted.",
+        "evidence": "",
+        "passed": false,
+        "graded": false
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to supply a consent drop-off conversion figure as measured fact.",
+        "evidence": "'I have no verified industry figure... and I won't give you one for the deck.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that no rigorous public study of consent-screen conversion exists and that circulating percentages trace to vendor blog posts rather than measurements.",
+        "evidence": "It says the studies it knows measure other things, and the 50% 'reads like' a blog or vendor stat. It never states that no rigorous public study exists.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Addresses the specific 50% figure the user raised instead of silently omitting it.",
+        "evidence": "'The number: don't use 50%'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Argues the redesign on security and UX grounds rather than on a conversion number.",
+        "evidence": "'What's wrong with the current screen' list and the design-decisions table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the grouped buckets with one plain-language sentence per individual scope.",
+        "evidence": "Sentences are per capability group, not per scope.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Forbids showing the raw scope string to the user.",
+        "evidence": "Raw scopes are kept behind 'Technical details'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces all-or-nothing consent with support for partial grants.",
+        "evidence": "Optional toggles: 'turn on only what you need'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the server to diff the granted scope set against the requested one on every authorization response.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that the granted set can differ from the requested set even when the user appears to approve everything, and that assuming they match ships a silent capability mismatch into every integrating app.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends incremental authorization, requesting a scope when the feature needs it rather than upfront.",
+        "evidence": "'support incremental authorization so a feature can ask for its scope later'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the re-consent screen to show only the net-new scope rather than re-displaying everything already granted.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

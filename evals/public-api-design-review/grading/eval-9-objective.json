@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Splits the 9 items into 4 Must-change and 5 Improvement strictly on whether a written rule is cited",
+        "evidence": "'Must-change is a violation of a written rule... Improvement has no rule behind it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the ship gate as zero Must-change findings open at GA, with Improvement findings permitted to ship open",
+        "evidence": "'the ship gate is zero Must-change items open'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows the five uncited reviewer suggestions to ship open without a fix",
+        "evidence": "'Ship the five Improvements open.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers recording a documented deviation as a legitimate alternative to fixing a Must-change before the date",
+        "evidence": "'Fix, or sign a deviation'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names expediency - a deadline that cannot accommodate the better design - as one of the enumerated deviation reasons available",
+        "evidence": "'the reason (expediency, a launch date that can't move)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires any such deviation to carry a written rationale that leaves a trace, rather than a verbal or informal exception",
+        "evidence": "'Write each deviation down. The record has the rule, the reason, an owner, and a removal date'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to let the 200-with-error endpoint ship unresolved without either a fix or a recorded deviation",
+        "evidence": "Item 4 is 'Fix, or sign a deviation', and it is listed as one to fix first.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the review arriving three weeks after implementation was finished as a named failure mode of review programs",
+        "evidence": "'This review arrived after the code was finished, which is the late-gate failure mode.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes the late-review pattern to Google's documented pre-reform state, where teams were forced to start over",
+        "evidence": "There is no mention of Google.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes triggering future reviews at design time against the spec, before the code exists",
+        "evidence": "'Reviewing the spec before implementation... trigger the review at beta, on the spec.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns no numeric readiness score or percentage to the launch decision",
+        "evidence": "None given.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks that the review walked every checklist dimension, treating a skipped dimension as an incomplete review rather than a lean one",
+        "evidence": "'The ship gate also needs all eight dimensions walked... ask the reviewer which dimensions they walked.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Splits the 9 items into 4 Must-change and 5 Improvement strictly on whether a written rule is cited",
+        "evidence": "Splits on fixable-later-without-breaking",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the ship gate as zero Must-change findings open at GA, with Improvement findings permitted to ship open",
+        "evidence": "Gate framed by breaking-ness",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Allows the five uncited reviewer suggestions to ship open without a fix",
+        "evidence": "'The five reviewer suggestions can wait'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers recording a documented deviation as a legitimate alternative to fixing a Must-change before the date",
+        "evidence": "Fallbacks are exclude endpoint or move date",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names expediency - a deadline that cannot accommodate the better design - as one of the enumerated deviation reasons available",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires any such deviation to carry a written rationale that leaves a trace, rather than a verbal or informal exception",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to let the 200-with-error endpoint ship unresolved without either a fix or a recorded deviation",
+        "evidence": "Requires fix or fallbacks, no recorded deviation",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the review arriving three weeks after implementation was finished as a named failure mode of review programs",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attributes the late-review pattern to Google's documented pre-reform state, where teams were forced to start over",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes triggering future reviews at design time against the spec, before the code exists",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns no numeric readiness score or percentage to the launch decision",
+        "evidence": "None given",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks that the review walked every checklist dimension, treating a skipped dimension as an incomplete review rather than a lean one",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

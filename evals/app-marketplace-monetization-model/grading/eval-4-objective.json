@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Blocks publishing metered or usage-based pricing until the checkout is confirmed to support it",
+        "evidence": "\"Metered usage can't ship \u274c (blocker)\"; \"Say 'usage-based: roadmap'\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the rails cap the pricing menu rather than the menu driving the rails choice",
+        "evidence": "\"The skill says the rails cap the pricing menu, not the other way around (\u00a75).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the promised metered tier as unsupported by the described checkout and requires either removing it from Monday's menu or changing the rails first",
+        "evidence": "Options A (cut metered) and C (replace the checkout).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the verification order explicitly: verify each promised model against the rails before publishing the menu to developers",
+        "evidence": "\"Per-seat needs a 30-minute test... Don't promise it until that passes.\" Checklist step 2 before the deck.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a marketplace-billed posture does not by itself rule out usage-based billing, citing a platform-as-merchant-of-record marketplace that supports metered billing natively",
+        "evidence": "Option B moves metered to developer-billed rails, and no marketplace with native metering is cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats usage-based pricing as a maturity ladder (simple metering versus dimensional, contract-grade metering) and scopes which rung vendors actually need",
+        "evidence": "No discussion of metering maturity levels.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects modeling plan tiers as price variants of one product and requires each tier to be modeled as its own product object",
+        "evidence": "\"model each pricing tier as its own product object, never as price variants of one product.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: variants of one product become indistinguishable on customer invoices",
+        "evidence": "\"Variants of one product look identical on customer invoices.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects mandating the 14-day free trial, and recommends the marketplace recommend defaults such as trials or an entry plan rather than mandate them",
+        "evidence": "\"make it a recommended default... pre-fill 14 days and let vendors change it or turn it off.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the pricing-model menu is deliberately unranked because developer demand and rails capability decide it jointly",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes a monetization stack is at least three systems (payment, entitlement or licensing provisioning, and partner revenue reporting) and that the checkout decision leaves the other two unspecified",
+        "evidence": "\"at least three systems: payment, entitlement (licences) and vendor revenue reporting. Does your commerce vendor cover the last two?\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Blocks publishing metered or usage-based pricing until the checkout is confirmed to support it",
+        "evidence": "\"Cut it from the deck\"; \"ask the commerce vendor... Is there any usage-reporting API?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the rails cap the pricing menu rather than the menu driving the rails choice",
+        "evidence": "The principle is not stated. It only compares deck against checkout item by item.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the promised metered tier as unsupported by the described checkout and requires either removing it from Monday's menu or changing the rails first",
+        "evidence": "\"Metered usage | Not listed... \u274c Gap\"; \"Revise the deck: drop or relabel metered.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the verification order explicitly: verify each promised model against the rails before publishing the menu to developers",
+        "evidence": "\"Before Monday: 1. Get answers from the commerce vendor... 3. Revise the deck.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a marketplace-billed posture does not by itself rule out usage-based billing, citing a platform-as-merchant-of-record marketplace that supports metered billing natively",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats usage-based pricing as a maturity ladder (simple metering versus dimensional, contract-grade metering) and scopes which rung vendors actually need",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects modeling plan tiers as price variants of one product and requires each tier to be modeled as its own product object",
+        "evidence": "It recommends the opposite: \"Variants only for tiers and billing periods of the same model (Basic / Pro, monthly / annual).\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: variants of one product become indistinguishable on customer invoices",
+        "evidence": "Its reasons concern trials, entitlements and price changes. Invoice indistinguishability is not given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects mandating the 14-day free trial, and recommends the marketplace recommend defaults such as trials or an entry plan rather than mandate them",
+        "evidence": "\"I'd push back on the mandate\"; \"Make the trial a default-on option per subscription plan, with vendor opt-out.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the pricing-model menu is deliberately unranked because developer demand and rails capability decide it jointly",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes a monetization stack is at least three systems (payment, entitlement or licensing provisioning, and partner revenue reporting) and that the checkout decision leaves the other two unspecified",
+        "evidence": "It only notes it doesn't know whether checkout handles payouts and tax. The three-system framing is absent.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

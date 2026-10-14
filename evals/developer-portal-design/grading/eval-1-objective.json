@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Names time to first call (TTFC) as the governing metric for this work and sets an explicit target figure for Ledgerwell.",
+        "evidence": "'## TTFC target' sets 'M1: ... median under 15 minutes' and 'M2: ... median under 60 minutes'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Anchors that target to the API's complexity class - OAuth plus webhooks - landing near an hour rather than a sub-15-minute figure.",
+        "evidence": "'Complexity class: OAuth2 plus webhooks. The skill's practitioner anchor is under one hour for this class.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that no universal TTFC benchmark exists, instead of presenting one number as an industry standard.",
+        "evidence": "'There is no universal benchmark.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends instrumenting TTFC in increments, at minimum landing-to-signup and signup-to-first-call, rather than as a single end-to-end number.",
+        "evidence": "Step 1 lists events for landing, signup, email verified, credential created, token obtained, first 2xx call and webhook steps.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the funnel data, once instrumented, outranks the default ordering of fixes: whichever stage stalls gets its fix promoted.",
+        "evidence": "'The largest drop-off gets fix priority, even where it differs from my ordering below. Funnel data outranks the default ranking.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recognizes that docs, catalog and pricing are already ungated, so the ungated-exploration rung is already satisfied and the work starts further up the ladder.",
+        "evidence": "'Docs, catalog and pricing are already public... ungated exploration, is done, so you start one rung up.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping an importable, forkable, ready-to-run collection of working example calls.",
+        "evidence": "'Ship a forkable Postman-style collection' with a token pre-request script.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends auto-provisioned sandbox keys injected into quickstart snippets and try-it calls as the fix for a stall sitting between signup and first call.",
+        "evidence": "Step 2: 'Create a sandbox OAuth client at signup... Inject the client_id and secret into every quickstart snippet and into the try-it console.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explicitly demotes or defers role-and-use-case personalized onboarding intake, tying that to the six-week deadline and the part-time engineering capacity.",
+        "evidence": "'Personalized onboarding. Highest effort, and the skill says a hard deadline demotes it.' The weekly plan shows part-time engineers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Any first-call acceleration figure attributed to a ready-to-run collection is expressed as a ratio of roughly 1.7x, labeled vendor-reported, with no baseline minute count carried over.",
+        "evidence": "'Postman reports about 1.7x faster first calls... That is a vendor number: keep the ratio, don't copy the minutes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that TTFC is a leading indicator only, and names downstream activation or retention as a trend to watch alongside it.",
+        "evidence": "'A first call isn't an activated integrator, so track repeat calls and webhook receipt'; step 6 reports the 7-day activation rate; 'I'd frame the result as a trend'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Names time to first call (TTFC) as the governing metric for this work and sets an explicit target figure for Ledgerwell.",
+        "evidence": "Metric is '7-day first 2xx share plus median time to first call'; 'Target: don't commit to a number yet.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Anchors that target to the API's complexity class - OAuth plus webhooks - landing near an hour rather than a sub-15-minute figure.",
+        "evidence": "No TTFC target or complexity-class anchoring appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that no universal TTFC benchmark exists, instead of presenting one number as an industry standard.",
+        "evidence": "'No trustworthy public rate exists' refers to the signup-to-call conversion rate, not TTFC.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends instrumenting TTFC in increments, at minimum landing-to-signup and signup-to-first-call, rather than as a single end-to-end number.",
+        "evidence": "Seven events start at 'signup'; there is no landing or visit stage.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the funnel data, once instrumented, outranks the default ordering of fixes: whichever stage stalls gets its fix promoted.",
+        "evidence": "'Earliest leaking stage wins' and the 'If week 1 shows\u2026' table promote the fix for whichever stage stalls.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recognizes that docs, catalog and pricing are already ungated, so the ungated-exploration rung is already satisfied and the work starts further up the ladder.",
+        "evidence": "'Your docs, catalog and pricing are public'; 'Gating docs. They're already public.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping an importable, forkable, ready-to-run collection of working example calls.",
+        "evidence": "'Ship a Postman collection or OpenAPI import and one minimal SDK snippet per language.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends auto-provisioned sandbox keys injected into quickstart snippets and try-it calls as the fix for a stall sitting between signup and first call.",
+        "evidence": "'Auto-issue sandbox credentials at signup. Add a dashboard \"copy this curl\" with a live token already in it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explicitly demotes or defers role-and-use-case personalized onboarding intake, tying that to the six-week deadline and the part-time engineering capacity.",
+        "evidence": "Personalized onboarding intake is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Any first-call acceleration figure attributed to a ready-to-run collection is expressed as a ratio of roughly 1.7x, labeled vendor-reported, with no baseline minute count carried over.",
+        "evidence": "No acceleration figure is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that TTFC is a leading indicator only, and names downstream activation or retention as a trend to watch alongside it.",
+        "evidence": "The board caveat covers webhook-to-production rate, not TTFC as a leading indicator or retention.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

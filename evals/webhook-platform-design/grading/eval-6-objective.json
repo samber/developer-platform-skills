@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies an API version bump silently reshaping event payloads that existing subscribers already store as the core failure.",
+        "evidence": "Quotes the skill: 'An API version bump silently reshaping event payloads a subscriber already stores.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires choosing exactly one schema-versioning camp deliberately, and warns against drifting into both by accident.",
+        "evidence": "'The skill requires picking one camp deliberately'; current approach called 'neither camp'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the first camp as pinning each webhook endpoint to an API version and rendering payloads per that version, attributed to Stripe.",
+        "evidence": "'Camp 1: pin each endpoint to an API version and render per that version (Stripe).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the second camp as versioning the event type itself, with a new type name per breaking change and additive-only evolution otherwise, attributed to Svix or Standard Webhooks.",
+        "evidence": "'Camp 2: version the event type, with additive-only evolution otherwise (Svix and Standard Webhooks).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies that the header-split envelope means the delivery log must capture headers as well as the body, or replay is unfaithful.",
+        "evidence": "'A delivery log that stores only the body while the envelope carries metadata in headers.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the delivery log must be built to store headers from day one rather than retrofitted.",
+        "evidence": "'The skill says to build the log for this from day one.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises thin payloads as a first-class alternative and states that a thin payload never changes shape when the API version bumps.",
+        "evidence": "'They remove this entire class of problem, because the notification never changes shape'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that thin payloads move the versioning question to the API call the consumer subsequently makes.",
+        "evidence": "Not stated. It only says thin payloads remove the problem.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the recommendation to keep payloads small, roughly under 20kb.",
+        "evidence": "'Stay under about 20kb.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the dual-run migration pattern for a full-to-thin move: emit both event flavors during the transition with a discriminator field so consumers can dual-run idempotently.",
+        "evidence": "'Stripe's dual-run pattern (emit both flavors with a discriminator field)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends documenting the outbound events in the same OpenAPI document as the inbound API, using OpenAPI 3.1's webhooks section.",
+        "evidence": "'from the same OpenAPI 3.1 webhooks spec that drives delivery'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to recommend adopting CloudEvents unless the platform must interoperate with an event mesh that already speaks it.",
+        "evidence": "CloudEvents is not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies an API version bump silently reshaping event payloads that existing subscribers already store as the core failure.",
+        "evidence": "\"an API version bump is also a webhook breaking change... every endpoint gets the new shape on the next delivery\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires choosing exactly one schema-versioning camp deliberately, and warns against drifting into both by accident.",
+        "evidence": "Offers pinning and additive options but does not frame two camps or warn against mixing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the first camp as pinning each webhook endpoint to an API version and rendering payloads per that version, attributed to Stripe.",
+        "evidence": "Recommends per-endpoint pinning but never attributes it to Stripe or frames it as a camp.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the second camp as versioning the event type itself, with a new type name per breaking change and additive-only evolution otherwise, attributed to Svix or Standard Webhooks.",
+        "evidence": "Not described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies that the header-split envelope means the delivery log must capture headers as well as the body, or replay is unfaithful.",
+        "evidence": "\"Event type, timestamp, delivery id, and signature are missing\"; \"Store headers (minus secrets), the pinned version, and the rendered body.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the delivery log must be built to store headers from day one rather than retrofitted.",
+        "evidence": "No day-one or retrofit framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Raises thin payloads as a first-class alternative and states that a thin payload never changes shape when the API version bumps.",
+        "evidence": "Not raised.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that thin payloads move the versioning question to the API call the consumer subsequently makes.",
+        "evidence": "Not raised.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the recommendation to keep payloads small, roughly under 20kb.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers the dual-run migration pattern for a full-to-thin move: emit both event flavors during the transition with a discriminator field so consumers can dual-run idempotently.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends documenting the outbound events in the same OpenAPI document as the inbound API, using OpenAPI 3.1's webhooks section.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines to recommend adopting CloudEvents unless the platform must interoperate with an event mesh that already speaks it.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

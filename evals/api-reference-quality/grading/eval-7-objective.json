@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the docs-site-builds-green check as a quality gate, because a site rebuilds cleanly from a spec that lies about the API",
+        "evidence": "'A site rebuilds green from a spec that lies... accepting \"the docs site rebuilds green\" as a gate' is a failure mode.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a spec with no contract-test coverage is unverified (for example, unverified prose with better formatting) and that the generated reference inherits every lie in it",
+        "evidence": "'Generation keeps the docs faithful to the spec. Nothing in your pipeline checks the spec against the API.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends property-based contract testing against the staging environment, naming Schemathesis or a category peer",
+        "evidence": "'Schemathesis against staging'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the contract gate criteria as CI failing on any generated-input 500, any schema-violating response, and any undiffed breaking change",
+        "evidence": "'CI fails on any generated-input 500, any schema-violating response, and any undiffed breaking change.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the expectation that the first contract-test run typically surfaces 5 to 15 issues, framed as normal",
+        "evidence": "'Practitioners report 5-15 issues... Treat findings as normal'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend Optic, noting it was archived, and recommends a maintained breaking-change differ such as oasdiff instead",
+        "evidence": "'Optic is archived (January 2026)... Use oasdiff'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the AI-coding-agent hallucination problem to a dedicated coding-agent docs-optimization discipline or skill rather than folding spec-annotation rules into this audit",
+        "evidence": "'coding-agent-docs-optimization'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends probing whether the live API carries undocumented-but-valid routes or parameters despite the spec existing, since spec-inference testing has found such surface in production APIs",
+        "evidence": "'RESTSpecIT... found undocumented-but-valid routes'; cross-check gateway logs.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a spec lint gate for completeness alongside the contract tests for accuracy",
+        "evidence": "Row 2: Spectral or Redocly CLI, 'Spec completeness'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the two gates' roles: the linter verifies the spec describes itself, the contract tests verify it tells the truth",
+        "evidence": "Row 2 'Spec completeness' vs row 3 'Spec vs running API'; 'Nothing... checks the spec against the API'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Selects the lint-plus-contract-tests default rung, since docs already render from the spec and a safely-callable staging environment exists",
+        "evidence": "'Contract tests are in scope because you have staging'; stage stated as 'Stage 1 already done'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the docs-site-builds-green check as a quality gate, because a site rebuilds cleanly from a spec that lies about the API",
+        "evidence": "'The docs build proves one thing: the spec parses and renders... can't catch a spec that disagrees with the API.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a spec with no contract-test coverage is unverified (for example, unverified prose with better formatting) and that the generated reference inherits every lie in it",
+        "evidence": "'Docs generated from the spec can't disagree with the spec'; 'Nobody has tested it, so \"honest\" is unproven.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends property-based contract testing against the staging environment, naming Schemathesis or a category peer",
+        "evidence": "Layer 3: Schemathesis against staging.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the contract gate criteria as CI failing on any generated-input 500, any schema-violating response, and any undiffed breaking change",
+        "evidence": "Layer 3 checks response schemas and no 5xx on valid input; layer 4 is a blocking oasdiff.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the expectation that the first contract-test run typically surfaces 5 to 15 issues, framed as normal",
+        "evidence": "'probably dozens of findings'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend Optic, noting it was archived, and recommends a maintained breaking-change differ such as oasdiff instead",
+        "evidence": "'Either is fine', and it is unsure of Optic's status.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the AI-coding-agent hallucination problem to a dedicated coding-agent docs-optimization discipline or skill rather than folding spec-annotation rules into this audit",
+        "evidence": "It folds the agent fixes into this plan (problem B, layer 6) and names no dedicated skill.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends probing whether the live API carries undocumented-but-valid routes or parameters despite the spec existing, since spec-inference testing has found such surface in production APIs",
+        "evidence": "Layer 2 route-set diff catches 'shadow endpoints (real, undocumented)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a spec lint gate for completeness alongside the contract tests for accuracy",
+        "evidence": "Layer 1 Spectral or Redocly, blocking on PRs.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the two gates' roles: the linter verifies the spec describes itself, the contract tests verify it tells the truth",
+        "evidence": "Layer 1 is 'spec quality'; layer 3 is 'spec \u2192 running API'; the build only 'proves the spec parses'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Selects the lint-plus-contract-tests default rung, since docs already render from the spec and a safely-callable staging environment exists",
+        "evidence": "Layers 1 and 3 are combined, with staging available.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

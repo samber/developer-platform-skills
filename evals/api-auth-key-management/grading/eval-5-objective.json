@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Corrects the myth: PCI-DSS 4.0 does not mandate any fixed rotation interval",
+        "evidence": "\"It sets no fixed interval.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Requirement 8.6.3 (or the 8.6.x set) and notes it became mandatory in 2025",
+        "evidence": "\"Requirement 8.6.3 has been mandatory since April 1, 2025.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the cadence to be justified by a documented targeted risk analysis (Requirement 12.3.1), which the auditor will ask to see",
+        "evidence": "\"documented targeted risk analysis (Requirement 12.3.1)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States compromise-triggered rotation is unconditional - immediate on suspicion or confirmation, regardless of the analyzed cadence",
+        "evidence": "\"changed immediately on suspicion or confirmation of compromise, whatever the schedule says.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Links complexity to cadence: slower rotation demands stronger keys, satisfied by a high entropy floor",
+        "evidence": "\"Credential complexity matches the rotation frequency. A 120+ bit random key meets this easily.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Covers the PCI logging obligation: tamper-resistant logs retained 12 months with the latest 3 months immediately accessible",
+        "evidence": "No mention of 12-month retention with 3 months immediately accessible.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the SOC 2 plan as failing by construction: Type II requires controls operating consistently across a 3-12-month observation window",
+        "evidence": "\"This fails by construction if the audit is Type II... observation window of 3 to 12 months.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes Type I (point-in-time) from Type II, noting a week-before policy could at most satisfy Type I",
+        "evidence": "\"A policy adopted the week before satisfies Type I, a point-in-time check. It fails Type II\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States SOC 2 auditors check evidence the policy operates (key-event logs, periodic access reviews, approval records), not that it exists",
+        "evidence": "\"key-event logs, access reviews, approval records, and rotations that actually happened.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the relevant criteria (CC7.2 / C1.2) or the required lifecycle coverage: provisioning, rotation, revocation, destruction",
+        "evidence": "\"Covers provisioning, rotation, revocation and destruction (CC7.2, C1.2).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends automating evidence generation from day one rather than assembling it before the audit",
+        "evidence": "\"Start generating evidence now.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps auditor expectations to product features: mandatory expiration, expiry warnings and forced-rotation reminders, audit logging of every key event, service accounts",
+        "evidence": "Audit logs, expiry warnings and forced-rotation reminders, service accounts and org-owned keys",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting the rationale for the chosen authentication mechanism, since 'it was already there' is itself an audit finding",
+        "evidence": "No mention that 'it was already there' is an audit finding or that the mechanism choice must be documented.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Corrects the myth: PCI-DSS 4.0 does not mandate any fixed rotation interval",
+        "evidence": "\"PCI requires rotation, but it does not set 90 days for API keys.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Requirement 8.6.3 (or the 8.6.x set) and notes it became mandatory in 2025",
+        "evidence": "\"Req 8.6.3 applies... It has been mandatory since 2025-03-31.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the cadence to be justified by a documented targeted risk analysis (Requirement 12.3.1), which the auditor will ask to see",
+        "evidence": "\"at a frequency set by your own targeted risk analysis (Req 12.3.1)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States compromise-triggered rotation is unconditional - immediate on suspicion or confirmation, regardless of the analyzed cadence",
+        "evidence": "\"You must also change them on suspected compromise.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Links complexity to cadence: slower rotation demands stronger keys, satisfied by a high entropy floor",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Covers the PCI logging obligation: tamper-resistant logs retained 12 months with the latest 3 months immediately accessible",
+        "evidence": "No log retention mention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the SOC 2 plan as failing by construction: Type II requires controls operating consistently across a 3-12-month observation window",
+        "evidence": "\"This fails for Type II... operating effectiveness over an observation window, usually 3 to 12 months\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes Type I (point-in-time) from Type II, noting a week-before policy could at most satisfy Type I",
+        "evidence": "\"sales may have meant Type I (design only, point in time)\"; may fail for Type I as well.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States SOC 2 auditors check evidence the policy operates (key-event logs, periodic access reviews, approval records), not that it exists",
+        "evidence": "\"The auditor samples evidence... rotation tickets, access reviews, approvals, dated logs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the relevant criteria (CC7.2 / C1.2) or the required lifecycle coverage: provisioning, rotation, revocation, destruction",
+        "evidence": "No CC7.2/C1.2 or lifecycle list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends automating evidence generation from day one rather than assembling it before the audit",
+        "evidence": "Only \"keep the evidence in one folder\"; no automation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Maps auditor expectations to product features: mandatory expiration, expiry warnings and forced-rotation reminders, audit logging of every key event, service accounts",
+        "evidence": "No mapping to expiry warnings, audit logging, service accounts as features.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting the rationale for the chosen authentication mechanism, since 'it was already there' is itself an audit finding",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

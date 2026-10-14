@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects splitting the event name across an HTTP header and a body field, on the grounds that no single string then names the event.",
+        "evidence": "'no single string names the event.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the Object-Action resource.action pattern, dot-delimited.",
+        "evidence": "'Format: resource.action, action in past tense, dot-delimited'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the action segment to be past tense, and corrects at least one proposed name accordingly, such as invoice.paid, customer.updated, or payrun.executed.",
+        "evidence": "Table: customer_update \u2192 customer.updated, payrunExecute \u2192 payrun.executed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the underscore-joined and verb-first camelCase name forms in the proposal.",
+        "evidence": "Table: 'Underscore-joined, verb-first, present tense'; 'camelCase, verb-first'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restricts event identifiers to the [a-zA-Z0-9_.] character set.",
+        "evidence": "'identifiers limited to [a-zA-Z0-9_.]'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes the dot-delimited past-tense resource.action convention to Standard Webhooks and/or Stripe.",
+        "evidence": "'invoice.paid is the Stripe and Standard Webhooks convention.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to pick one delimiter convention at launch and never mix conventions afterward.",
+        "evidence": "'Pick this once and never mix conventions.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Answers the bubbling question by requiring an explicit documented decision rather than defaulting to firing all three events.",
+        "evidence": "'Rule to write down: subresource events do not bubble to parent events.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Stripe's position that subresource events never bubble to parent events, for example that customer.subscription.updated fires no customer.updated.",
+        "evidence": "'customer.subscription.updated fires no customer.updated'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that leaving the bubbling rule unstated breeds subscriber assumptions.",
+        "evidence": "'silence breeds subscriber assumptions'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every event type to have a stable name, a description, and a payload schema before it ships.",
+        "evidence": "'Each event gets a stable name, a description and a payload schema.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks events against the five design principles by name: self-contained, immutable, traceable, actionable, debuggable.",
+        "evidence": "'self-contained, immutable, traceable, actionable, debuggable'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects splitting the event name across an HTTP header and a body field, on the grounds that no single string then names the event.",
+        "evidence": "\"Keep `X-Northwind-Event` plus `action` in the body\"; only repeats the type in the body.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the Object-Action resource.action pattern, dot-delimited.",
+        "evidence": "Uses separate `\"event\": \"invoice\", \"action\": \"paid\"` fields.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the action segment to be past tense, and corrects at least one proposed name accordingly, such as invoice.paid, customer.updated, or payrun.executed.",
+        "evidence": "\"Action is a past-tense verb... `payrunExecute` becomes `payrun` + `executed`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the underscore-joined and verb-first camelCase name forms in the proposal.",
+        "evidence": "\"`customer_update` becomes `customer` + `updated`. `payrunExecute` becomes `payrun` + `executed`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restricts event identifiers to the [a-zA-Z0-9_.] character set.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attributes the dot-delimited past-tense resource.action convention to Standard Webhooks and/or Stripe.",
+        "evidence": "Mentions only GitHub.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says to pick one delimiter convention at launch and never mix conventions afterward.",
+        "evidence": "\"Use one naming convention... Fix it now, because names cannot change once customers subscribe.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Answers the bubbling question by requiring an explicit documented decision rather than defaulting to firing all three events.",
+        "evidence": "Gives a rule (\"Do not fire cascade events\") but does not require a documented bubbling decision.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Stripe's position that subresource events never bubble to parent events, for example that customer.subscription.updated fires no customer.updated.",
+        "evidence": "Stripe is not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that leaving the bubbling rule unstated breeds subscriber assumptions.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires every event type to have a stable name, a description, and a payload schema before it ships.",
+        "evidence": "Asks only for a naming table with one sentence per event.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks events against the five design principles by name: self-contained, immutable, traceable, actionable, debuggable.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags PUT /v2/orders/{id}/notes as retry-unsafe despite the method, because each call appends to the activity log",
+        "evidence": "\"PUT /v2/orders/{id}/notes | idempotent | appends a note on every call | \u274c\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags DELETE /v2/credits/{id} as retry-unsafe despite the method, because each call decrements the balance",
+        "evidence": "\"DELETE /v2/credits/{id} | ... decrements the balance on every call | \u274c\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the rule: verify claimed idempotency against actual behavior, never trust the HTTP method",
+        "evidence": "\"The skill says to verify claimed idempotency rather than trust the method (\u00a71)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes RFC 9110 defines method-level idempotency but says nothing about the Idempotency-Key retrofit, so 'per the HTTP spec' does not cover these endpoints",
+        "evidence": "RFC 9110 is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires every state-changing endpoint to either accept the key or be explicitly documented as unsafe to retry - the appending PUT and decrementing DELETE get keys or an explicit warning",
+        "evidence": "\"All four write endpoints get the same contract.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers which endpoints accept the key, the header name, and the maximum key length",
+        "evidence": "Checklist lists the four endpoints, \"`Idempotency-Key` and the 255-character cap.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers a recommended key derivation for clients",
+        "evidence": "\"Document the derivation ranking, with the default first: Event-derived... Request-scoped... random UUID\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers per-caller scoping and the replay window as a concrete number",
+        "evidence": "\"keys are per account\"; \"Give the replay window as a concrete number (24h)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers post-expiry behavior (a reused key is treated as a new request)",
+        "evidence": "\"say what happens after it: the key is treated as a new request.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers both conflict behaviors - payload mismatch and in-flight duplicate - each with its own distinct error code",
+        "evidence": "\"`409 invalid_idempotent_request`... `409 concurrent_idempotent_requests`, with example JSON\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers whether a stored failure replays verbatim or is re-attempted",
+        "evidence": "\"stored failures, including 500s, replay verbatim, and that the integrator needs a new key\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grounds the checklist in the fact that no ratified standard exists, so this documentation is the integrators' only normative source",
+        "evidence": "\"no standard defines these semantics (the IETF draft expired unratified in April 2026), your docs are the only normative source.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags PUT /v2/orders/{id}/notes as retry-unsafe despite the method, because each call appends to the activity log",
+        "evidence": "\"PUT /v2/orders/{id}/notes... appends a new activity-log entry per call \u274c duplicate notes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags DELETE /v2/credits/{id} as retry-unsafe despite the method, because each call decrements the balance",
+        "evidence": "\"DELETE /v2/credits/{id}... decrements balance per call \u274c balance drained repeatedly\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the rule: verify claimed idempotency against actual behavior, never trust the HTTP method",
+        "evidence": "\"The HTTP spec defines idempotency by intended server state, not by how the endpoint is implemented.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes RFC 9110 defines method-level idempotency but says nothing about the Idempotency-Key retrofit, so 'per the HTTP spec' does not cover these endpoints",
+        "evidence": "RFC 9110 and the Idempotency-Key retrofit are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires every state-changing endpoint to either accept the key or be explicitly documented as unsafe to retry - the appending PUT and decrementing DELETE get keys or an explicit warning",
+        "evidence": "\"Accept `Idempotency-Key` on three endpoints\", including the PUT notes endpoint. DELETE is fixed at the resource level with the repeat response documented.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers which endpoints accept the key, the header name, and the maximum key length",
+        "evidence": "\"Which endpoints accept it, which require it\"; \"Format, length limit, allowed characters\"; the `Idempotency-Key` header is named in section 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers a recommended key derivation for clients",
+        "evidence": "\"Recommend UUIDv4 or a random string. Warn against timestamps, sequential IDs, or hashes of user data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers per-caller scoping and the replay window as a concrete number",
+        "evidence": "\"Scope: per account, method, and path\"; \"Retention window (24h)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers post-expiry behavior (a reused key is treated as a new request)",
+        "evidence": "\"what happens after expiry: the key is treated as new and the operation runs again\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers both conflict behaviors - payload mismatch and in-flight duplicate - each with its own distinct error code",
+        "evidence": "`idempotency_key_reused` (422) and `idempotency_request_in_progress` (409)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Docs checklist covers whether a stored failure replays verbatim or is re-attempted",
+        "evidence": "\"Which responses are cached and which are not (validation, auth, rate limit)\"; section 3 decides that deterministic 4xx business errors are stored.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grounds the checklist in the fact that no ratified standard exists, so this documentation is the integrators' only normative source",
+        "evidence": "No mention that docs are the integrators' only normative source.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

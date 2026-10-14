@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects applying a closed operation allowlist to third-party traffic as blanket policy.",
+        "evidence": "\"Reject: allowlist for third-party traffic.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reason third-party allowlisting is impossible: the operations external clients send cannot be known or pre-registered in advance.",
+        "evidence": "\"900 integrators write queries you have never seen and can't pre-approve\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that the mandate as written would reject every legitimate third-party query from day one.",
+        "evidence": "\"rejects every legitimate integrator query on day one\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits the persisted-query policy by traffic class rather than issuing one endpoint-wide rule.",
+        "evidence": "Sections 3 and 4 give separate first-party and third-party policies.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a closed allowlist for first-party traffic, with every operation extracted from the company's own client codebases at build time, registered, and everything else rejected.",
+        "evidence": "\"Extract every operation from the iOS and Android codebases at build time... Execute only registered hashes and reject raw query strings\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers optional persisted queries to third parties as a bandwidth and CDN-cacheability performance feature, explicitly not as a security control.",
+        "evidence": "\"Label this a performance feature, not a security control.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to retire the depth ceiling and complexity budget, stating the guardrails stay mandatory on every traffic class, allowlisted or not.",
+        "evidence": "\"The ceilings stay mandatory on every traffic class.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that third-party traffic is protected by the depth, breadth, and page-size ceilings instead of by allowlisting.",
+        "evidence": "\"Protection comes from the ceilings in section 5\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats allowlisting as defense-in-depth rather than a complete answer.",
+        "evidence": "\"Allowlisting is defense-in-depth, never a complete answer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites a concrete precedent of an attack landing before any per-operation guardrail applies (Apollo Router CVE-2025-32032 exhausting the query planner with recursive fragments) or names allowlist bypass as a recurring vulnerability class.",
+        "evidence": "\"Apollo Router CVE-2025-32032 exhausted the query planner with recursive fragments\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a hash-identified GET can be cached at CDNs the way a REST URL is, recovering part of GraphQL's caching disadvantage.",
+        "evidence": "Only says optional hashes help \"bandwidth and CDN cacheability\"; does not state hash GETs recover the caching gap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends designing the endpoint for the third-party consumer while serving first-party traffic through the stricter policies it uniquely enables.",
+        "evidence": "Says \"one logical API with two policies\" but never recommends designing for the third-party consumer.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects applying a closed operation allowlist to third-party traffic as blanket policy.",
+        "evidence": "\"The server executes only operations whose hash is in the registry\" applies to the whole public endpoint, with third parties registering.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the reason third-party allowlisting is impossible: the operations external clients send cannot be known or pre-registered in advance.",
+        "evidence": "It says only \"some of them compose queries dynamically\" and offers self-service registration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that the mandate as written would reject every legitimate third-party query from day one.",
+        "evidence": "It says only \"A hard 'no raw queries, no exceptions' will break some of them.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Splits the persisted-query policy by traffic class rather than issuing one endpoint-wide rule.",
+        "evidence": "It gives client-specific mechanics, but the rule stays one endpoint-wide allowlist.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a closed allowlist for first-party traffic, with every operation extracted from the company's own client codebases at build time, registered, and everything else rejected.",
+        "evidence": "\"Extract operations at build time and register them in CI before release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers optional persisted queries to third parties as a bandwidth and CDN-cacheability performance feature, explicitly not as a security control.",
+        "evidence": "Not offered. Registration is mandatory for third parties.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to retire the depth ceiling and complexity budget, stating the guardrails stay mandatory on every traffic class, allowlisted or not.",
+        "evidence": "\"reject, in part\"; complexity is kept at runtime and depth moves to registration time.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that third-party traffic is protected by the depth, breadth, and page-size ceilings instead of by allowlisting.",
+        "evidence": "The allowlist is applied to third parties; it is not replaced by ceilings.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats allowlisting as defense-in-depth rather than a complete answer.",
+        "evidence": "\"An allowlist fixes the document. It does not fix cost.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites a concrete precedent of an attack landing before any per-operation guardrail applies (Apollo Router CVE-2025-32032 exhausting the query planner with recursive fragments) or names allowlist bypass as a recurring vulnerability class.",
+        "evidence": "No CVE or bypass-class citation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a hash-identified GET can be cached at CDNs the way a REST URL is, recovering part of GraphQL's caching disadvantage.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends designing the endpoint for the third-party consumer while serving first-party traffic through the stricter policies it uniquely enables.",
+        "evidence": "Not recommended.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

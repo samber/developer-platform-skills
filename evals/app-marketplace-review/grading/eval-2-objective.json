@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects 'substantial change' as a re-review trigger rather than refining its wording",
+        "evidence": "\"Don't try to fix 'substantial' with a better definition.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason that a subjective trigger cannot be self-assessed by the developer and decays into apps that are never resubmitted",
+        "evidence": "\"'Substantial' can't be self-assessed. So the developer decides, the incentive is to say 'not substantial'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces it with an objective trigger list",
+        "evidence": "Section 2 routine update checklist with five conditions",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes a request for new OAuth scopes",
+        "evidence": "\"No new OAuth scopes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes new external endpoints",
+        "evidence": "\"No new external endpoints\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes a change to data handling",
+        "evidence": "\"No change to data handling\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes a payment-model change",
+        "evidence": "\"No payment-model change\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes a new app type or edition",
+        "evidence": "\"No new app type | A new surface, runtime, or edition\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the test of an objective trigger is that a developer can self-assess it before submitting",
+        "evidence": "\"You can decide which one yours is before you submit... No reviewer judgment is involved.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pairs the minor-update fast path with automated scanning on every release",
+        "evidence": "\"Automated checks run on every release\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that without that scanning the fast path becomes the gap it was meant to close",
+        "evidence": "\"The fast path without scanning becomes the gap.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the objective minor-update fast path as the default rung",
+        "evidence": "Routine updates get no resubmission or waiting for human review; this is the default policy",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States unconditional re-certification of every post-approval change is viable only where a deterministic automated test suite returns a report fast enough to keep it cheap, benchmarked around 24 working hours",
+        "evidence": "No mention of unconditional re-certification or the 24-hour benchmark.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States periodic approval expiry is the only rung that catches drift in apps that never ship an update, and promotes it as an annual floor for the restricted-scope tier rather than as the main policy",
+        "evidence": "\"the app is re-reviewed [annually], even with no updates, because an app that never ships can still drift.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects 'substantial change' as a re-review trigger rather than refining its wording",
+        "evidence": "\"You do not need to judge whether a change is 'substantial'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason that a subjective trigger cannot be self-assessed by the developer and decays into apps that are never resubmitted",
+        "evidence": "\"asks the developer to judge 'substantial', which gives a partner an incentive to answer 'no'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces it with an objective trigger list",
+        "evidence": "Tier 1 has 8 factual items.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes a request for new OAuth scopes",
+        "evidence": "\"Adds or changes an OAuth scope, API permission\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes new external endpoints",
+        "evidence": "\"sends data to a new third party, domain, or hosting region\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes a change to data handling",
+        "evidence": "Tier 1 item 2, \"Data\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes a payment-model change",
+        "evidence": "Tier 1 item 6, \"Money\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Trigger list includes a new app type or edition",
+        "evidence": "The identity item covers name, category and purpose, not a new app type or edition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the test of an objective trigger is that a developer can self-assess it before submitting",
+        "evidence": "The text says the questions are yes/no facts but never states self-assessment as the test.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pairs the minor-update fast path with automated scanning on every release",
+        "evidence": "\"We compare each release against its previous version, including scopes, domains, and endpoints.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that without that scanning the fast path becomes the gap it was meant to close",
+        "evidence": "Only says that without tooling \"you are back to reviewers reading changelogs\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends the objective minor-update fast path as the default rung",
+        "evidence": "Tier 2 ship-then-notify and Tier 3 no-action are the default for anything not on the Tier 1 list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States unconditional re-certification of every post-approval change is viable only where a deterministic automated test suite returns a report fast enough to keep it cheap, benchmarked around 24 working hours",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States periodic approval expiry is the only rung that catches drift in apps that never ship an update, and promotes it as an annual floor for the restricted-scope tier rather than as the main policy",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

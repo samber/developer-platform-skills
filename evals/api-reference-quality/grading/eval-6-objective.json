@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags the absence of any documented response code beyond 200, requiring at least one 4xx, at blocker severity",
+        "evidence": "Row 6 'Response codes | Fail | Blocker | Only 200 is listed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the 402 insufficient_funds and 422 currency_mismatch errors to be documented with both cause and fix, not just their code values",
+        "evidence": "Row 7: 'insufficient_funds and currency_mismatch have no cause and no fix.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scores the error surface as its own rubric row, never folded into the examples row",
+        "evidence": "Row 7 is separate from Row 4/5 examples.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the missing idempotency and retry note as a finding, since the page never states the Idempotency-Key support",
+        "evidence": "Row 11 Fail Major.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the missing invocation-ordering constraint (source account must clear KYC verification before transfers) as a finding",
+        "evidence": "Row 12: source account must have cleared KYC.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the four paragraphs of double-entry architecture prose as quadrant drift, explanation content on a lookup-shaped reference page, despite the user's fondness for it",
+        "evidence": "Row 14 'explanation on a lookup page'; 'good writing and it is padding here'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the architecture prose no credit toward completeness",
+        "evidence": "'it is padding here... Prose like this makes a page feel complete when it isn't.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the missing version statement as a finding",
+        "evidence": "Row 10 Fail.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the missing authentication or scope requirements as a finding, since nothing states what permissions the call needs",
+        "evidence": "Row 13 Fail.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags parameter-depth gaps, such as destination_account_id lacking a description or example and currency listing no allowed values",
+        "evidence": "Row 3: 'destination_account_id has no description or example... currency has no format or allowed values'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grades the missing idempotency note and ordering constraint at major severity, distinct from the blocker-level undocumented error surface",
+        "evidence": "Rows 11/12 Major; rows 6/7 Blocker.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The verdict states the page is not done, refusing the most-polished-page framing on the strength of the failed rubric rows",
+        "evidence": "'**Not done.** The page reads well, but...'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags the absence of any documented response code beyond 200, requiring at least one 4xx, at blocker severity",
+        "evidence": "Row 7 is '\u274c Missing' but no blocker severity is assigned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the 402 insufficient_funds and 422 currency_mismatch errors to be documented with both cause and fix, not just their code values",
+        "evidence": "'table with columns for status, code, cause, and fix'; 'at minimum it needs 402 insufficient_funds and 422 currency_mismatch'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scores the error surface as its own rubric row, never folded into the examples row",
+        "evidence": "Row 7 'Error responses' is separate from row 10 'Working request example'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the missing idempotency and retry note as a finding, since the page never states the Idempotency-Key support",
+        "evidence": "Row 5 'Idempotency-Key header \u274c Missing'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the missing invocation-ordering constraint (source account must clear KYC verification before transfers) as a finding",
+        "evidence": "Row 8 Prerequisites: source account must be KYC verified.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the four paragraphs of double-entry architecture prose as quadrant drift, explanation content on a lookup-shaped reference page, despite the user's fondness for it",
+        "evidence": "'Four paragraphs on double-entry accounting don't belong on a reference page.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the architecture prose no credit toward completeness",
+        "evidence": "The verdict is that prose quality isn't the measure; the essay is moved out, and scope is its own row.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the missing version statement as a finding",
+        "evidence": "No version issue is raised.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the missing authentication or scope requirements as a finding, since nothing states what permissions the call needs",
+        "evidence": "Row 4 'Nothing on authentication or scopes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags parameter-depth gaps, such as destination_account_id lacking a description or example and currency listing no allowed values",
+        "evidence": "Row 3 lists accepted currency codes, maximum amount and other constraints.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grades the missing idempotency note and ordering constraint at major severity, distinct from the blocker-level undocumented error surface",
+        "evidence": "No major/blocker severity tiers are used.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The verdict states the page is not done, refusing the most-polished-page framing on the strength of the failed rubric rows",
+        "evidence": "'# Verdict: not done'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

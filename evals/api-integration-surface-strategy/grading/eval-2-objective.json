@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Declines to schedule a public GraphQL surface now because the over-fetching pain is first-party mobile, not confirmed by external integrators",
+        "evidence": "\"The only party asking for GraphQL is first-party... integrators have not confirmed it, so it is not yet a public-surface case.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GraphQL is promoted only on named, integrator-confirmed pain (client-driven data access, over/under-fetching, N+1), never as a default REST replacement",
+        "evidence": "\"The framework promotes GraphQL only on named pain that integrators confirm.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the roughly 20-40% initial-build overhead plus N+1 and authorization complexity as GraphQL's standing cost",
+        "evidence": "\"Expect roughly 20-40% overhead on the initial build, plus N+1 and authorization complexity.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies a public GraphQL schema as a high reversal-cost, tight and binding contract, in contrast with additive REST changes being cheap to unwind",
+        "evidence": "\"Reversal cost is the highest tier. A GraphQL schema is a tight, binding public contract (Hyrum's Law). REST is cheap to extend additively.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rebuts the 'REST is legacy' claim with REST's dominant adoption (on the order of 93% vs 33% for GraphQL, or equivalent framing of REST as the near-universal substrate)",
+        "evidence": "\"Postman 2025 shows 93% REST adoption against 33% GraphQL.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Shopify's GraphQL-first Admin API in both directions: evidence a major platform anchored on it, and evidence of significant developer pushback over verbosity",
+        "evidence": "\"Shopify went GraphQL-first, marked REST legacy in October 2024, and took heavy developer pushback over verbosity. Cite that case in both directions.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that surfaces persist for different consumers rather than replacing one another, so GraphQL would not retire the REST contract integrators depend on",
+        "evidence": "\"A parallel REST and GraphQL stack, because you cannot drop REST without breaking live integrators.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the team's lack of internal GraphQL experience as raising the option's cost (a team already running GraphQL internally gets it cheaper)",
+        "evidence": "\"You have 6 engineers and no GraphQL experience.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the paradigm switch as a long-horizon (about two-year) commitment rather than a quarter project",
+        "evidence": "\"Paradigm switches are two-year decisions.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the condition that would promote GraphQL anyway: external integrators confirming the data-access pain",
+        "evidence": "\"Two or more integrators independently confirm over- or under-fetch pain.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the stable spec-driven REST-plus-webhooks foundation as the base later surfaces derive from",
+        "evidence": "The plan assumes OpenAPI is the linted source of truth, lists REST and webhooks as live and stable, and generates SDKs \"from the OpenAPI spec\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Declines to schedule a public GraphQL surface now because the over-fetching pain is first-party mobile, not confirmed by external integrators",
+        "evidence": "'The pain sits on one screen of one client you control.' and 'Do not put GraphQL on the public surface roadmap now.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GraphQL is promoted only on named, integrator-confirmed pain (client-driven data access, over/under-fetching, N+1), never as a default REST replacement",
+        "evidence": "Trigger: 'Several integrators ask for flexible querying or complain about chatty multi-call workflows.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the roughly 20-40% initial-build overhead plus N+1 and authorization complexity as GraphQL's standing cost",
+        "evidence": "Gives N+1 and field-level authz and a '2 to 3 engineer-quarter' estimate, but no 20-40% overhead figure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies a public GraphQL schema as a high reversal-cost, tight and binding contract, in contrast with additive REST changes being cheap to unwind",
+        "evidence": "Discusses dual support and migration, but never classifies the schema's reversal cost against additive REST changes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rebuts the 'REST is legacy' claim with REST's dominant adoption (on the order of 93% vs 33% for GraphQL, or equivalent framing of REST as the near-universal substrate)",
+        "evidence": "Calls it 'a fashion argument' and gives no adoption figures.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Shopify's GraphQL-first Admin API in both directions: evidence a major platform anchored on it, and evidence of significant developer pushback over verbosity",
+        "evidence": "Shopify is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that surfaces persist for different consumers rather than replacing one another, so GraphQL would not retire the REST contract integrators depend on",
+        "evidence": "'Two public APIs, not a replacement... integrators will not migrate on your schedule.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the team's lack of internal GraphQL experience as raising the option's cost (a team already running GraphQL internally gets it cheaper)",
+        "evidence": "'Six engineers with no GraphQL experience would take on a second public API plus a learning curve.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the paradigm switch as a long-horizon (about two-year) commitment rather than a quarter project",
+        "evidence": "'Expect 12 to 24 months of dual support' and 'Schema design is a long-lived governance job.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the condition that would promote GraphQL anyway: external integrators confirming the data-access pain",
+        "evidence": "'Revisit GraphQL for the public API if... Several integrators ask for flexible querying.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the stable spec-driven REST-plus-webhooks foundation as the base later surfaces derive from",
+        "evidence": "'Your OpenAPI contract, SDK generation, and webhooks work.' and 'Webhooks stay as they are.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

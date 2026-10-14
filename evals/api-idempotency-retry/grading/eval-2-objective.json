@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Names the SELECT-then-INSERT pattern as a check-then-insert (TOCTOU) race in which both concurrent requests observe the key as absent and both proceed",
+        "evidence": "\"Two requests 30ms apart are enough for both SELECTs to run before either INSERT. This is a TOCTOU race.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces it with an atomic claim: an INSERT arbitrated by a unique constraint on (account_id, idempotency_key), e.g. INSERT ... ON CONFLICT DO NOTHING",
+        "evidence": "\"IdempotencyKey.insert(... unique_by: :idx_idempotency_keys_account_key, # ON CONFLICT DO NOTHING\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The losing request learns it lost from the insert result itself (constraint violation or no returned row), not from a separate application-level existence check",
+        "evidence": "\"claimed = ...insert(...).rows.first\"; \"if claimed ... else existing = find_by!\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the key claim and the invoice creation to commit in one database transaction, stated as a hard requirement rather than a nice-to-have",
+        "evidence": "\"the claim commits in the same transaction as the invoice\"; \"Claim and invoice commit or abort together\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the Redis SETNX + TTL lock as the claim mechanism",
+        "evidence": "\"don't ship the Redis `SETNX` lock.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the SETNX rejection with the fencing problem: a client paused past its lease expiry can still write after the lock has moved on, and no timeout tuning fixes it",
+        "evidence": "\"If a request stalls past 10s... the lock expires... the first can still write. Kleppmann's analysis is that without a fencing token, no timing assumption fixes this.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the Redis option from the menu entirely (or requires fencing tokens layered on top if Redis were unavoidable) rather than ranking it last as a fallback",
+        "evidence": "Redis is rejected outright; fencing would need Postgres checks \"which makes Postgres the arbiter again\"; no fallback ranking.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Given Postgres is the store, does not offer DynamoDB-style conditional writes as a live alternative",
+        "evidence": "Only Postgres unique index is offered; DynamoDB is never mentioned.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions row lock + SERIALIZABLE as the mechanism to promote only when a request spans external non-rollbackable calls, not for this case",
+        "evidence": "Section 4 describes recovery_point phases for external calls but SERIALIZABLE and row locks are never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "After losing the claim, the request reads the existing key row and branches on its state instead of returning a generic failure",
+        "evidence": "\"existing = IdempotencyKey.find_by!... if fingerprint != ... 409 ... elsif existing.response_status replay ... else 409 concurrent\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The concurrent duplicate receives a conflict response or the stored replay - under no path does a second invoice get created",
+        "evidence": "\"B replays A's stored response verbatim... no duplicate exists.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes the concurrency verification: fire N identical concurrent requests with one key and require exactly one side effect, as a binary pass/fail gate",
+        "evidence": "\"Fire 20 or more simultaneous identical requests with one key. Exactly one invoice row must exist... Run it in CI.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Names the SELECT-then-INSERT pattern as a check-then-insert (TOCTOU) race in which both concurrent requests observe the key as absent and both proceed",
+        "evidence": "\"The controller does check-then-act... Both see nothing, and both create an invoice.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces it with an atomic claim: an INSERT arbitrated by a unique constraint on (account_id, idempotency_key), e.g. INSERT ... ON CONFLICT DO NOTHING",
+        "evidence": "\"add_index :idempotency_keys, [:account_id, :key], unique: true\" and \"INSERT ... ON CONFLICT DO NOTHING RETURNING id\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The losing request learns it lost from the insert result itself (constraint violation or no returned row), not from a separate application-level existence check",
+        "evidence": "\"if claimed.rows.empty?\" after insert_all with unique_by",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the key claim and the invoice creation to commit in one database transaction, stated as a hard requirement rather than a nice-to-have",
+        "evidence": "\"Invoice creation and key claim must share one transaction.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the Redis SETNX + TTL lock as the claim mechanism",
+        "evidence": "\"Don't ship the Redis lock as the fix.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the SETNX rejection with the fencing problem: a client paused past its lease expiry can still write after the lock has moved on, and no timeout tuning fixes it",
+        "evidence": "\"The 10s TTL can expire mid-request... A lock without fencing can't fix this.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the Redis option from the menu entirely (or requires fencing tokens layered on top if Redis were unavoidable) rather than ranking it last as a fallback",
+        "evidence": "\"A Redis lock is acceptable only as an optional optimization to shed load.\" This leaves Redis as a retained option, though the summary also says to drop the Redis lock.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Given Postgres is the store, does not offer DynamoDB-style conditional writes as a live alternative",
+        "evidence": "Only Postgres mechanisms are proposed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions row lock + SERIALIZABLE as the mechanism to promote only when a request spans external non-rollbackable calls, not for this case",
+        "evidence": "It suggests a Stripe-style two-phase pattern for external calls and never mentions row lock or SERIALIZABLE as the promotion path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "After losing the claim, the request reads the existing key row and branches on its state instead of returning a generic failure",
+        "evidence": "\"existing = IdempotencyKey.find_by!(...)\" then branches on fingerprint mismatch (422) versus replay of the stored response.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The concurrent duplicate receives a conflict response or the stored replay - under no path does a second invoice get created",
+        "evidence": "\"B's insert is a no-op... replays the stored response.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes the concurrency verification: fire N identical concurrent requests with one key and require exactly one side effect, as a binary pass/fail gate",
+        "evidence": "\"two threads released together through a barrier... exactly one `Invoice` exists... Run it a few hundred iterations.\" Also: drop the index and confirm the test fails.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

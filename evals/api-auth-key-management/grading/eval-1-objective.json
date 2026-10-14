@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends SHA-256 (fast hash) over bcrypt for the stored key hashes",
+        "evidence": "\"use SHA-256, not bcrypt, for these keys.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grounds the choice in entropy: slow hashes exist to defend low-entropy human passwords, and brute force is infeasible against a high-entropy generated key at any per-hash cost",
+        "evidence": "\"Passwords are low-entropy and human-chosen... A 40-character random key has about 160 bits... slow hash adds cost without adding security.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites bcrypt's 72-byte input truncation as a mechanical strike against bcrypt for long keys",
+        "evidence": "\"A 72-byte input limit. bcrypt silently truncates input at 72 bytes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points out that salted slow hashes cannot be looked up by hash equality, breaking the proposed loop-and-compare design",
+        "evidence": "\"Salted bcrypt hashes cannot be matched with WHERE hash = ?. That is why the loop exists\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a short indexed plaintext key_prefix column for O(1) candidate lookup",
+        "evidence": "key_prefix column and idx_api_keys_prefix; \"plaintext lookup handle\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires constant-time comparison on the final hash check, naming the timing leak of a naive equality comparison",
+        "evidence": "\"Do not use ==, which leaks timing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schema carries lifecycle columns: owner, scopes, created_at, last_used_at, expires_at or equivalents",
+        "evidence": "owner_id, scopes, created_at, last_used_at, expires_at in schema",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lookup flow begins with structural validation (known prefix, length, checksum) rejecting malformed keys before any database round-trip",
+        "evidence": "\"Parse and validate the shape... On failure, return 401 with no database call.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes last_used_at asynchronously, fire-and-forget, never blocking the request path on telemetry",
+        "evidence": "\"Enqueue the last_used_at update asynchronously, fire-and-forget\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes default restrictive; omitted scopes never mean full access",
+        "evidence": "\"empty never means all\"; \"Never default to full access.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the entropy-floor precondition (at least ~120 bits / 32+ random characters) that makes fast hashing safe",
+        "evidence": "\"The floor is 120 bits and 32 or more characters... fast hashing is only safe when this holds.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the default rung irretrievable: full key shown exactly once at creation, only the hash stored afterward",
+        "evidence": "\"Show the full key exactly once, in the creation response.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats zero plaintext keys at rest as the gate, verified by schema audit rather than policy assertion",
+        "evidence": "\"A schema audit shows zero plaintext keys at rest.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Designs storage to support two simultaneously valid keys per identity (expires_at doubling as the rotation grace window, no unique-active-key constraint)",
+        "evidence": "\"No unique-active-key constraint per account. Rotation needs two valid keys at once.\"; expires_at \"end of a rotation grace window\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends SHA-256 (fast hash) over bcrypt for the stored key hashes",
+        "evidence": "\"Baseline: `SHA-256(key)` as raw bytes. It is fast, unsalted and indexable.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grounds the choice in entropy: slow hashes exist to defend low-entropy human passwords, and brute force is infeasible against a high-entropy generated key at any per-hash cost",
+        "evidence": "\"Bcrypt exists to slow down guessing of low-entropy secrets... Brute-forcing it is infeasible even against plain SHA-256\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites bcrypt's 72-byte input truncation as a mechanical strike against bcrypt for long keys",
+        "evidence": "No mention of input truncation anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points out that salted slow hashes cannot be looked up by hash equality, breaking the proposed loop-and-compare design",
+        "evidence": "\"Bcrypt's per-row salt is the root cause of the loop: salted hashes can't be indexed, so you must scan.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a short indexed plaintext key_prefix column for O(1) candidate lookup",
+        "evidence": "Only `last4` (display only) and a unique index on key_hash; no prefix lookup column.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires constant-time comparison on the final hash check, naming the timing leak of a naive equality comparison",
+        "evidence": "Constant-time compare is only optional \"belt and braces\"; the transcript says lookup-timing leaks give nothing useful.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Schema carries lifecycle columns: owner, scopes, created_at, last_used_at, expires_at or equivalents",
+        "evidence": "Has account_id, created_at, expires_at, last_used_at, but no scopes column.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lookup flow begins with structural validation (known prefix, length, checksum) rejecting malformed keys before any database round-trip",
+        "evidence": "\"Parse + shape check... exactly 40 chars of [A-Za-z0-9] - fail \u2192 401 (no DB call...)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes last_used_at asynchronously, fire-and-forget, never blocking the request path on telemetry",
+        "evidence": "\"enqueue last_used_at update (async, throttled)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes default restrictive; omitted scopes never mean full access",
+        "evidence": "No scopes discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the entropy-floor precondition (at least ~120 bits / 32+ random characters) that makes fast hashing safe",
+        "evidence": "Mentions 200+ bits for these keys but never states a minimum floor as the precondition for fast hashing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the default rung irretrievable: full key shown exactly once at creation, only the hash stored afterward",
+        "evidence": "\"The key is shown to the merchant once at creation and never retrievable again.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats zero plaintext keys at rest as the gate, verified by schema audit rather than policy assertion",
+        "evidence": "Test plan: \"After the contract step, `SELECT` on the table shows no plaintext column\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Designs storage to support two simultaneously valid keys per identity (expires_at doubling as the rotation grace window, no unique-active-key constraint)",
+        "evidence": "\"Key rotation: a merchant creates a new key while the old one stays valid... Overlapping keys need no extra schema.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

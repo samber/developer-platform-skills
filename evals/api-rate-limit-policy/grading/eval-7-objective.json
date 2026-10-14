@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a rate-limit change is treated industry-wide as non-breaking and requires no version bump, rejecting the v2-with-Sunset-headers plan",
+        "evidence": "'No version bump, no 18-month window, no Sunset header.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Also rejects flipping the number overnight: precisely because no deprecation machinery fires on a limit change, a written notice policy must carry the communication",
+        "evidence": "'A 70% cut with zero notice breaks every well-behaved integrator.' Step 7 is a written change-notice policy.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps version-deprecation machinery (multi-month windows, Deprecation and Sunset headers) as a separate regime owned by the versioning policy, not applied to limit changes",
+        "evidence": "'That machinery belongs to the reset swap, not the limit.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scales notice to blast radius and applies a lead-time floor to the decrease, citing the 6-week vendor precedent as a symmetric floor",
+        "evidence": "'Notice scales with blast radius, and Stripe's 6-week floor... applies symmetrically to decreases.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rolls the tightening out via the observe (log without enforcement), baseline (enforce at a high ceiling), refine (tighten from observed data) sequence on live traffic",
+        "evidence": "Rollout table: Observe + announce, Baseline at 600/hr, Refine at 300/hr.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires communicating with affected callers before each tightening step",
+        "evidence": "Reminder email at baseline and 'Final warning email' before 2026-11-16.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the reset-semantics switch from epoch seconds to seconds-remaining as a change that breaks client parsing invisibly and warrants a major announcement by itself, never shipped silently alongside the limit cut",
+        "evidence": "'Silent change breaks client parsing with no visible error. It needs its own major announcement.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reserves emergency reductions for platform stability in writing, so they are policy rather than surprise",
+        "evidence": "'An emergency reduction is legitimate only if reserved in writing.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Counters the part-of-the-contract framing: published limits are operational hints, not an SLA, and the policy says so",
+        "evidence": "'Rate limits are operational hints, not contract or SLA.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Considers a secondary abuse guard triggered by request shape as a complement to cutting every free caller's quota, with its existence and trigger shape documented",
+        "evidence": "'Add a secondary guard keyed on request shape... Publish the guard's existence and its trigger shape.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses in-band header exposure so well-behaved clients adapt automatically, alongside the out-of-band notice",
+        "evidence": "'X-RateLimit-Limit shows the currently enforced number at every phase.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces a standing written change-notice policy that explains the reasons for changes, not just a one-off migration email",
+        "evidence": "'Step 7: Change-notice policy (publish this document too)'; the announcement includes 'the reason'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a rate-limit change is treated industry-wide as non-breaking and requires no version bump, rejecting the v2-with-Sunset-headers plan",
+        "evidence": "'a policy change, not a schema change | Notice period (60\u201390 days), not API v2'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Also rejects flipping the number overnight: precisely because no deprecation machinery fires on a limit change, a written notice policy must carry the communication",
+        "evidence": "'A silent flip tonight is the highest-risk option'; email and changelog notice.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps version-deprecation machinery (multi-month windows, Deprecation and Sunset headers) as a separate regime owned by the versioning policy, not applied to limit changes",
+        "evidence": "'Sunset headers (RFC 8594) are for retiring a resource, not for changing a quota.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scales notice to blast radius and applies a lead-time floor to the decrease, citing the 6-week vendor precedent as a symmetric floor",
+        "evidence": "It uses 60\u201390 days, shrinkable to 30, and does not cite the 6-week precedent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rolls the tightening out via the observe (log without enforcement), baseline (enforce at a high ceiling), refine (tighten from observed data) sequence on live traffic",
+        "evidence": "It uses 1,000 to 600 to 300 step-downs with no log-only observe phase.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires communicating with affected callers before each tightening step",
+        "evidence": "'Send a reminder to keys that exceeded 300/hr' before the step-down; the email goes out first.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the reset-semantics switch from epoch seconds to seconds-remaining as a change that breaks client parsing invisibly and warrants a major announcement by itself, never shipped silently alongside the limit cut",
+        "evidence": "'The reset header change is the real break'; it is handled additively and separately.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reserves emergency reductions for platform stability in writing, so they are policy rather than surprise",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Counters the part-of-the-contract framing: published limits are operational hints, not an SLA, and the policy says so",
+        "evidence": "It treats the limit as a contract term 'only if you documented it as one'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Considers a secondary abuse guard triggered by request shape as a complement to cutting every free caller's quota, with its existence and trigger shape documented",
+        "evidence": "It lists abuse controls but does not say their existence or triggers are documented.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses in-band header exposure so well-behaved clients adapt automatically, alongside the out-of-band notice",
+        "evidence": "'X-RateLimit-Policy-Notice' header on every call during the window.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces a standing written change-notice policy that explains the reasons for changes, not just a one-off migration email",
+        "evidence": "It gives a one-off plan, not a standing policy.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

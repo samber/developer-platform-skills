@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends that consumers of high-stakes event types run periodic reconciliation against the API, framed as endorsed practice rather than a workaround for a defect.",
+        "evidence": "The recommendation is there. Step 3 tells the troubleshooting page to include 'A recommendation to reconcile periodically against your API for high-stakes events,' and the 'Why a missing schedule matters' section says subscribers size 'their reconciliation jobs' from the retry span. The framing is mixed, though. The recommendation sits under troubleshooting and failure recovery, and its other mention is a fallback: 'If there is no delivery log or replay at launch, say so and give the reconciliation path.' That fallback reads like a workaround for missing tooling. The transcript never says reco",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends that consumers of high-stakes event types run periodic reconciliation against the API, framed as endorsed practice rather than a workaround for a defect.",
+        "evidence": "The response never tells consumers to reconcile periodically against the API. It mentions recovering missed events via 'manual redelivery, replay API, or a dashboard button', but frames those as post-failure recovery tools, not a routine practice for high-stakes event types.",
+        "score": 0,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

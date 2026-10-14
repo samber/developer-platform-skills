@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Returns every failing field in one response through an errors array with multiple entries, instead of one error per resubmission",
+        "evidence": "\"return all failures together, as errors[] inside one 422\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives each field error structured members: the field name, a specific code, a message, the value provided, and the violated constraints",
+        "evidence": "field, code, message, value_provided, constraints",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the payoff as one API error mapping to multiple form-field indicators in a single round trip",
+        "evidence": "Not framed as one error mapping to multiple form-field indicators in one round trip.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects attaching the date rule to renewal_date alone: a cross-field constraint is never forced into the single-field shape",
+        "evidence": "\"Do not attach it to renewal_date alone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shapes the cross-field error with a fields array naming both fields and a values_provided map carrying both submitted values",
+        "evidence": "\"fields is an array... values_provided is a map with both values.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the bulk endpoint's per-item failures to reuse the same standard error shape, rejecting the ad hoc {ok: false, reason} string objects",
+        "evidence": "\"Per-item error is the same object as a top-level problem body.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a 200 response mixing success and per-item failures is acceptable only for bulk or long-running operations and rejected everywhere else",
+        "evidence": "\"The skill rejects mixed-outcome 200s in general and permits them for bulk operations.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses a specific per-reason code on each field error (such as OUT_OF_RANGE or INVALID_FORMAT) beneath the top-level validation code",
+        "evidence": "INVALID_FORMAT, INVALID_ENUM, RENEWAL_TOO_SOON under VALIDATION_ERROR",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rides the whole validation payload on the API's one standard error envelope with a top-level code pinned to one status",
+        "evidence": "\"VALIDATION_ERROR returns 422\"; RFC 9457 on every endpoint and status",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Each message names the field, the value received, and the constraint violated",
+        "evidence": "\"counterparty.email must be a valid email address; received 'ops@@acme'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps structured fields as the signal machine callers branch on, so a prose reason string is never the only information carried",
+        "evidence": "constraints carries min_gap_days etc. \"so the client can suggest a fix without parsing prose\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every validation code and sub-reason to appear in the published error catalog, enumerable before a client ever hits it",
+        "evidence": "\"Gatekeeper. No code ships without a catalog entry.\"; catalog table lists subcodes",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Returns every failing field in one response through an errors array with multiple entries, instead of one error per resubmission",
+        "evidence": "'Collect every violation and return them all in one response' with an `errors` array.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives each field error structured members: the field name, a specific code, a message, the value provided, and the violated constraints",
+        "evidence": "Entries have `code`, `pointer`, `message` and `params`, but no value provided.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames the payoff as one API error mapping to multiple form-field indicators in a single round trip",
+        "evidence": "Not framed that way. It argues only that 'One error at a time is the bug'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects attaching the date rule to renewal_date alone: a cross-field constraint is never forced into the single-field shape",
+        "evidence": "'Attaching the error to `renewal_date` is fine as the primary location.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Shapes the cross-field error with a fields array naming both fields and a values_provided map carrying both submitted values",
+        "evidence": "It uses `pointer` plus `related_pointers`, with no `values_provided`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the bulk endpoint's per-item failures to reuse the same standard error shape, rejecting the ad hoc {ok: false, reason} string objects",
+        "evidence": "'Reuse the exact error object from case 1 for each failed item'; the `reason` string is rejected.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a 200 response mixing success and per-item failures is acceptable only for bulk or long-running operations and rejected everywhere else",
+        "evidence": "It endorses 200 for bulk but never states it is rejected elsewhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses a specific per-reason code on each field error (such as OUT_OF_RANGE or INVALID_FORMAT) beneath the top-level validation code",
+        "evidence": "Top-level type 'validation-failed'; per-field codes `required`, `invalid_format`, `renewal_too_soon`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rides the whole validation payload on the API's one standard error envelope with a top-level code pinned to one status",
+        "evidence": "RFC 9457 problem with a 422 status and an `errors` extension shared by single create and bulk.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Each message names the field, the value received, and the constraint violated",
+        "evidence": "'Must be a valid email address.' names no field and no received value.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps structured fields as the signal machine callers branch on, so a prose reason string is never the only information carried",
+        "evidence": "'Clients branch and localise on it, never on `message`.'; `params` carry the numbers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every validation code and sub-reason to appear in the published error catalog, enumerable before a client ever hits it",
+        "evidence": "Rollout step 1: 'Define the error object and the `code` catalog (30+ field codes plus the cross-field ones).'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

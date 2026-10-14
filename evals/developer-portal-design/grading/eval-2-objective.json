@@ -1,0 +1,106 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Declines to produce the requested plugin architecture and partner-facing navigation built on the internal service-catalog framework.",
+        "evidence": "'Verdict: don't open Backstage to partners' and 'Architecture: components, not Backstage plugins'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the security reason: that framework's threat model assumes untrusted external actors have no access to it.",
+        "evidence": "'Backstage and similar internal-portal frameworks assume untrusted external actors have no access.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that this option is ruled out entirely, not merely ranked lower, deferred, or made conditional on extra hardening.",
+        "evidence": "'Backstage is ruled out as the foundation. It isn't demoted, it's excluded.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends running a separate external developer portal alongside the internal instance rather than converting or exposing the internal one.",
+        "evidence": "'Build a separate external partner portal. Keep Backstage internal, and feed the new portal from it one way.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes an internal developer portal (service catalog, infrastructure provisioning for a company's own engineers) from an external API-consumer portal as different disciplines with different security models.",
+        "evidence": "Threat-model bullet, plus 'The platform team's Backstage knowledge applies to the spec pipeline, not to the portal itself.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the self-service credential lifecycle - sign up, create, rotate and revoke keys without filing a ticket - as what the external partner surface must deliver.",
+        "evidence": "'self-service credentials: partners create, rotate, and revoke keys without a ticket.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names partner-specific requirements the external portal needs, including at least two of: approval-gated signup, team-owned applications, page-level visibility control, SSO/SCIM provisioning.",
+        "evidence": "Invite or approval-gated signup, Organization \u2192 Project tenancy, page-level visibility, SSO/SCIM.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not present exposing the internal instance as a viable path if the external auth layer is strong enough.",
+        "evidence": "'An auth layer in front doesn't change what sits behind it.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Declines to produce the requested plugin architecture and partner-facing navigation built on the internal service-catalog framework.",
+        "evidence": "It recommends 'a second, partner-only instance' of Backstage and produces the full architecture and navigation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the security reason: that framework's threat model assumes untrusted external actors have no access to it.",
+        "evidence": "It cites permission-framework leakage risks but never says the framework assumes no untrusted external actors.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that this option is ruled out entirely, not merely ranked lower, deferred, or made conditional on extra hardening.",
+        "evidence": "Option A is described as 'Works on day one, but the leak risk is permanent', ranked lower and not ruled out.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends running a separate external developer portal alongside the internal instance rather than converting or exposing the internal one.",
+        "evidence": "'Don't open the internal Backstage instance to partners. Run a second, partner-only instance'; Option C is a gateway portal.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes an internal developer portal (service catalog, infrastructure provisioning for a company's own engineers) from an external API-consumer portal as different disciplines with different security models.",
+        "evidence": "Both are treated as the same product with different configuration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the self-service credential lifecycle - sign up, create, rotate and revoke keys without filing a ticket - as what the external partner surface must deliver.",
+        "evidence": "'partner-keys: Create, label, rotate, and revoke keys.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names partner-specific requirements the external portal needs, including at least two of: approval-gated signup, team-owned applications, page-level visibility control, SSO/SCIM provisioning.",
+        "evidence": "It has invite-only onboarding and entitlement filtering, but not approval-gated signup, team-owned apps, page-level visibility or SSO/SCIM as named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not present exposing the internal instance as a viable path if the external auth layer is strong enough.",
+        "evidence": "'the leak risk is permanent and every future plugin needs a partner-exposure review.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

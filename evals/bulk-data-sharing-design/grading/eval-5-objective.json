@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends against bundling the export free, stating that no free-tier precedent exists in this feature class",
+        "evidence": "The recommended option is 'bundle in all tiers with guardrails'. Only unconditional free is rejected.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites that every vendor studied gates bulk export behind an enterprise tier, a paid plan, or a usage-priced add-on, naming at least one example such as Stripe's transaction-count subscription, Braze's enterprise contract, or HubSpot's top tier",
+        "evidence": "Stripe by subscription, Braze by enterprise contract, HubSpot by top tier",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that in cross-region native sharing the provider can end up paying egress that scales with consumer query volume",
+        "evidence": "Says transfer scales with refresh bytes changed, not with consumer query volume.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies egress as the decisive line item, citing that cross-region and cross-cloud transfer can reach up to roughly 70% of total data-transfer cost",
+        "evidence": "No 70% figure and egress is not called decisive.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes same-region transfer is typically free, making the us-east-1 consumers the cheap case and eu-central-1/ap-southeast-2 the expensive ones",
+        "evidence": "Table: Data transfer: 'None' same-region vs 'Us' cross-region; us-east-1 cheap, EU/APAC costly.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Snowflake's Egress Cost Optimizer - replicate once, pay egress on increments - as a mitigation, treating its savings figure as a vendor claim",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates what Slatewave charges from who pays the underlying infrastructure, treating them as independent decisions",
+        "evidence": "Pricing and cost allocation are not explicitly treated as independent decisions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that under a native share nothing is copied, so there is no storage duplication and the consumer pays only query compute",
+        "evidence": "Instead says 'This corrects the skill's \"zero copies, zero egress\" line' for cross-region.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires writing down before launch, per delivery model, who pays storage, compute and egress, explicitly including the cross-region path",
+        "evidence": "Measurement gate 1: 'Cost allocation named: the table above covers it, including the cross-region case.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends against bundling the export free, stating that no free-tier precedent exists in this feature class",
+        "evidence": "\"Bundle free in all three tiers, with fair-use limits\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites that every vendor studied gates bulk export behind an enterprise tier, a paid plan, or a usage-priced add-on, naming at least one example such as Stripe's transaction-count subscription, Braze's enterprise contract, or HubSpot's top tier",
+        "evidence": "No vendor precedents are cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that in cross-region native sharing the provider can end up paying egress that scales with consumer query volume",
+        "evidence": "Transfer cost is modeled on changed bytes per refresh, not consumer query volume.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies egress as the decisive line item, citing that cross-region and cross-cloud transfer can reach up to roughly 70% of total data-transfer cost",
+        "evidence": "No 70% figure appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes same-region transfer is typically free, making the us-east-1 consumers the cheap case and eu-central-1/ap-southeast-2 the expensive ones",
+        "evidence": "\"Same-region customers (us-east-1): about $0 marginal cost... eu-central-1 and ap-southeast-2... we pay for that replica.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Snowflake's Egress Cost Optimizer - replicate once, pay egress on increments - as a mitigation, treating its savings figure as a vendor claim",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates what Slatewave charges from who pays the underlying infrastructure, treating them as independent decisions",
+        "evidence": "The pricing decision is derived from cost, and the two are not separated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that under a native share nothing is copied, so there is no storage duplication and the consumer pays only query compute",
+        "evidence": "\"They query the share with their own compute. Nothing is copied\"; \"Consumer storage of shared data. There is none.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires writing down before launch, per delivery model, who pays storage, compute and egress, explicitly including the cross-region path",
+        "evidence": "No such requirement.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

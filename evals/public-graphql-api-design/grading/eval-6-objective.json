@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects 25 as a public depth ceiling and lowers it to the low end of the published starting ranges.",
+        "evidence": "\"set the default at 7\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the documented starting ranges: roughly 5-7 levels for a simple API, 7-10 for a complex one, 10-15 for internal tooling.",
+        "evidence": "Cites 5-7 and 7-10 only; 10-15 for internal tooling is absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a written justification for each raise above the default rather than a blanket increase.",
+        "evidence": "\"raise to 10 with a written reason\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the depth check to reject at parse time, before any resolver runs.",
+        "evidence": "\"Enforce at parse time, before any resolver runs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects post-response cost logging as a guardrail and requires pre-execution admission control, with an over-budget query rejected without doing any work.",
+        "evidence": "\"Reject over-budget queries with no work done.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Shopify's static pre-execution cost analysis as the precedent for that admission-control posture.",
+        "evidence": "\"Shopify does this.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds breadth ceilings beyond depth: page size, aliases per operation, root fields per operation, and batched operations per request.",
+        "evidence": "Lists page-size cap, aliases, root fields, batched operations.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reason breadth ceilings are needed: depth alone does not stop a wide, shallow query from fanning out.",
+        "evidence": "\"Depth alone doesn't stop a wide, shallow query\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prices mutations far above reads when a cost model exists, naming Shopify's 10x weighting.",
+        "evidence": "\"Weight mutations far above reads. Shopify uses 10x.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Turns introspection off for anonymous production callers while keeping it available for development and authenticated tooling.",
+        "evidence": "\"introspection off for anonymous production callers, on for development and authenticated tooling\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every ceiling to be published in the public docs together with the exact error a violating query receives.",
+        "evidence": "\"The exact error a violating query receives, for each ceiling.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the per-parent lookups on `Account.contacts`, `Contact.activities` and `Deal.notes` as N+1 must-fix findings at the same severity as a missing pagination cap, prescribing a per-request batching loader.",
+        "evidence": "\"must-fix finding. It has the same severity as a missing pagination cap... DataLoader\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves point formulas, per-window budgets, and cost headers to rate-limit policy rather than specifying the scoring mechanics here.",
+        "evidence": "\"Cost-scoring mechanics (formula, budget per window, headers) belong to api-rate-limit-policy.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects 25 as a public depth ceiling and lowers it to the low end of the published starting ranges.",
+        "evidence": "It proposes \"roughly 8\u201312\", not the 5\u20137 range.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the documented starting ranges: roughly 5-7 levels for a simple API, 7-10 for a complex one, 10-15 for internal tooling.",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a written justification for each raise above the default rather than a blanket increase.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the depth check to reject at parse time, before any resolver runs.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects post-response cost logging as a guardrail and requires pre-execution admission control, with an over-budget query rejected without doing any work.",
+        "evidence": "\"Compute cost statically before execution... Reject queries over a per-query maximum.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Shopify's static pre-execution cost analysis as the precedent for that admission-control posture.",
+        "evidence": "Shopify is not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds breadth ceilings beyond depth: page size, aliases per operation, root fields per operation, and batched operations per request.",
+        "evidence": "\"limits on aliases, root fields per request, query size... Require first/limit... hard max.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reason breadth ceilings are needed: depth alone does not stop a wide, shallow query from fanning out.",
+        "evidence": "\"Depth is also a poor proxy for cost... depth 4 already reaches about 10\u2078 nodes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prices mutations far above reads when a cost model exists, naming Shopify's 10x weighting.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Turns introspection off for anonymous production callers while keeping it available for development and authenticated tooling.",
+        "evidence": "\"Disable introspection and the playground for unauthenticated requests.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every ceiling to be published in the public docs together with the exact error a violating query receives.",
+        "evidence": "\"Every limit and its value\" and \"Error text must name the limit and its value.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the per-parent lookups on `Account.contacts`, `Contact.activities` and `Deal.notes` as N+1 must-fix findings at the same severity as a missing pagination cap, prescribing a per-request batching loader.",
+        "evidence": "\"all four items are launch blockers\"; \"Batch each with a per-request DataLoader.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves point formulas, per-window budgets, and cost headers to rate-limit policy rather than specifying the scoring mechanics here.",
+        "evidence": "It specifies token buckets, extensions.cost fields and headers, and 429.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

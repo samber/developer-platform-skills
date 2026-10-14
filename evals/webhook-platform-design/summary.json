@@ -1,0 +1,394 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "webhook-platform-design",
+  "scenarios": 9,
+  "expectations_total": 111,
+  "expectations_subjective": 1,
+  "expectations_objective": 110,
+  "pass_rate_with_skill_pct": 87.4,
+  "pass_rate_without_skill_pct": 34.2,
+  "delta_pp": 53.2,
+  "uplift_multiplier": 2.56,
+  "trigger_accuracy_pct": 64.0,
+  "trigger_queries": 100,
+  "trigger_positive_fire_rate": 0.46,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that the per-event ID must ship from day one, because retrofitting it later cannot help subscribers who already built without it."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Offers FIFO only as an explicit opt-in for subscribers who structurally cannot tolerate reordering, never as the platform default."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that self-hosted gateway and in-house build tie on control and on compliance cost, because both keep event data on the platform's own infrastructure."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that thin payloads move the versioning question to the API call the consumer subsequently makes."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Declines to recommend adopting CloudEvents unless the platform must interoperate with an event mesh that already speaks it."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Documents config-change propagation lag, a subscription edit taking a minute or two to reach the delivery path, as expected behavior rather than a bug."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Specifies delivery logs filterable by endpoint, event type, and status."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Surfaces exhausted deliveries as incidents grouped by endpoint and status code with notification, rather than as rows in a queue behind a bare replay button."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Documents the 200-then-crash blackhole: a handler that acknowledges then throws has reported success, and no debugging surface can see inside it."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that a design good enough for the most sophisticated consumer segment still fails no-code consumers, because the consumer segments do not nest."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that four of five rubric elements is a fail, not a pass."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Gives a concrete ack timeout to publish, around 10 seconds, citing the Shopify and GitHub convention."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Tells subscribers to queue the work and return fast, and states that a slow-but-correct handler must not be treated as a failed delivery."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends that consumers of high-stakes event types run periodic reconciliation against the API, framed as endorsed practice rather than a workaround for a defect."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Explains that a subscriber which processes an event then crashes before returning 200 will receive that event again."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that offerings marketed as exactly-once are at-least-once plus deduplication tooling."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the per-event ID must ship from day one, because retrofitting it later cannot help subscribers who already built without it."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States best-effort, non-guaranteed ordering as the position on the page instead of promising ordering."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives retries and parallel delivery workers as the reason ordering cannot be guaranteed."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Offers FIFO only as an explicit opt-in for subscribers who structurally cannot tolerate reordering, never as the platform default."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Warns subscribers not to infer event order from event timestamps."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends adopting the Standard Webhooks spec rather than keeping a bespoke scheme."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies the three delivery headers webhook-id, webhook-timestamp, and webhook-signature."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives the signed content as {id}.{timestamp}.{raw_body}, with literal dot separators."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies base64 encoding of the HMAC-SHA256 output rather than the current hex encoding."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies that the signature header carries multiple space-delimited signatures so the old and new secrets validate simultaneously during a rotation window."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives an ordered rotation flow in which the old secret is revoked only after delivery success under the new secret is confirmed."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Offers asymmetric ed25519 signing as an additional mode, naming the whsk_/whpk_ key prefixes or the v1a signature identifier, for consumers who should not hold a shared secret."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Tells the docs to instruct consumers to exempt the webhook route from session-auth middleware, since the route authenticates by signature."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Tells the docs to require signature verification on every request without exception, including notification-only handlers."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a fixed exponential-backoff schedule spanning roughly a day as the default."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites at least one documented vendor schedule as the reference for that span, such as Svix's 8 attempts over about 27.5 hours or Stripe's up to 3 days."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Says to size the total retry span against realistic subscriber incident durations, contrasting a deploy taking minutes against an outage taking hours, rather than picking a round number."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects retrying non-retriable 4xx responses and routes them straight to the dead-letter queue."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives dead-lettering exactly two triggers: the retry budget being exhausted, and a non-retriable error class."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gives the reason for deleting rather than demoting: an option parked at the bottom on a compliance ground reappears as scope the next time a deadline bites, without the legal review that ruled it out."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the re-promotion trigger that would put the managed option back on the menu: a signed DPA plus a data-residency posture covering the vendor."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends a self-hosted open-source webhook gateway as the choice under this constraint."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that self-hosted gateway and in-house build tie on control and on compliance cost, because both keep event data on the platform's own infrastructure."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Ranks in-house build as the highest-effort option and names what would promote it, such as webhook delivery being the product sold or third-party code also being ruled out."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Cites the order-of-magnitude in-house estimate as engineer-years rather than engineer-weeks, on the order of 3-5 engineers for 6-12 months plus a standing on-call."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Flags that engineer-years figure as a vendor's own self-interested estimate while accepting its order of magnitude."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Ties the seven-week hard date explicitly into the ranking, promoting the faster-to-effect option."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that buying or self-hosting the delivery machinery does not buy the event taxonomy, the delivery contract, or the documentation, all of which still have to be designed."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the ranking is a default to be re-ranked against the team's actual situation, not a law."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects splitting the event name across an HTTP header and a body field, on the grounds that no single string then names the event."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Prescribes the Object-Action resource.action pattern, dot-delimited."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Restricts event identifiers to the [a-zA-Z0-9_.] character set."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Attributes the dot-delimited past-tense resource.action convention to Standard Webhooks and/or Stripe."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Answers the bubbling question by requiring an explicit documented decision rather than defaulting to firing all three events."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites Stripe's position that subresource events never bubble to parent events, for example that customer.subscription.updated fires no customer.updated."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that leaving the bubbling rule unstated breeds subscriber assumptions."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires every event type to have a stable name, a description, and a payload schema before it ships."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Checks events against the five design principles by name: self-contained, immutable, traceable, actionable, debuggable."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires choosing exactly one schema-versioning camp deliberately, and warns against drifting into both by accident."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Describes the first camp as pinning each webhook endpoint to an API version and rendering payloads per that version, attributed to Stripe."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Describes the second camp as versioning the event type itself, with a new type name per breaking change and additive-only evolution otherwise, attributed to Svix or Standard Webhooks."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Says the delivery log must be built to store headers from day one rather than retrofitted."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Raises thin payloads as a first-class alternative and states that a thin payload never changes shape when the API version bumps."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that thin payloads move the versioning question to the API call the consumer subsequently makes."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites the recommendation to keep payloads small, roughly under 20kb."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Offers the dual-run migration pattern for a full-to-thin move: emit both event flavors during the transition with a discriminator field so consumers can dual-run idempotently."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends documenting the outbound events in the same OpenAPI document as the inbound API, using OpenAPI 3.1's webhooks section."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Declines to recommend adopting CloudEvents unless the platform must interoperate with an event mesh that already speaks it."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Defines paused as subscriber-initiated and disabled as platform-initiated after sustained failure."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Warns that recreating a subscription under the same name restarts from the default position, so the subscriber silently loses or double-replays a backlog."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Specifies two independently configured replay positions: where a newly created subscription starts, and where a subscription resumes after a platform-side incident."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that those two replay positions can legitimately differ, and that both must be specified."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps the two filtering axes independent: event type selected against the catalog, and recipient or channel scoping."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that an endpoint with no filter configured receives everything, and that this must be documented explicitly."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Documents config-change propagation lag, a subscription edit taking a minute or two to reach the delivery path, as expected behavior rather than a bug."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects treating a customer-facing consumer portal as a phase-2 nice-to-have, and states that the portal is table stakes in this market."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Specifies delivery logs filterable by endpoint, event type, and status."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Specifies per-attempt inspection covering request headers, request body, response code, and timing."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Defines replay as re-ingesting the original as a new event."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Offers both single-event and range replay, gating a large replay window behind an explicit cost confirmation."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Surfaces exhausted deliveries as incidents grouped by endpoint and status code with notification, rather than as rows in a queue behind a bare replay button."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Documents the 200-then-crash blackhole: a handler that acknowledges then throws has reported success, and no debugging surface can see inside it."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that a design good enough for the most sophisticated consumer segment still fails no-code consumers, because the consumer segments do not nest."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Returns a no-go rather than approving the launch."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Grades the docs against a five-element rubric and identifies the retry-policy element as the failing one."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that four of five rubric elements is a fail, not a pass."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Applies a second, separate gate on contract completeness covering five specific facts."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Names which header or field carries the dedup ID as a required contract fact and flags it missing from the page."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Gives a concrete ack timeout to publish, around 10 seconds, citing the Shopify and GitHub convention."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Tells subscribers to queue the work and return fast, and states that a slow-but-correct handler must not be treated as a failed delivery."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends that consumers of high-stakes event types run periodic reconciliation against the API, framed as endorsed practice rather than a workaround for a defect."
+      }
+    ]
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-rate-limit-policy",
+  "scenarios": 9,
+  "expectations_total": 109,
+  "expectations_subjective": 0,
+  "expectations_objective": 109,
+  "pass_rate_with_skill_pct": 88.1,
+  "pass_rate_without_skill_pct": 51.4,
+  "delta_pp": 36.7,
+  "uplift_multiplier": 1.71,
+  "trigger_accuracy_pct": 80.2,
+  "trigger_queries": 106,
+  "trigger_positive_fire_rate": 0.887,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Asks batched clarifying questions before publishing numbers, covering at least abuse pressure, region count, gateway/edge capability, and deadline or effort ceiling"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Frames limits as identity/auth-scope x endpoint-class x account-override, treating the plan-to-limit mapping as a deliberate choice rather than the automatic default"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States which identifier each tier is keyed on and changes it up the ladder (IP for anonymous callers, API key or org for paid tiers)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Structures the tier ladder so anonymous/free callers learn limits from headers, self-serve paid tiers get a documented exact-numbers table, and any enterprise tier gets a process rather than a public number"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites a named platform precedent that accepts fixed window's flaw purely for simplicity in a low-stakes context (Sentry), and distinguishes that context from Ferroline's"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that token bucket and leaky bucket are an effort tie (both maintain one bucket per key, differing in intent, not implementation weight), so the simplicity argument does not favor fixed window over them"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Conditions any promotion of the sliding-window option on adversarial or scraping pressure, naming its higher compute cost"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the weighted-sharing trade: a deterministic guaranteed rate is given up to eliminate the fully-blocked-small-tenant cliff"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Acknowledges the quota paradox knowingly: throttling reduces the throttled tenant's own availability even when spare capacity existed, and this is an accepted trade, not a hidden one"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Specifies Retry-After as delay-seconds rather than HTTP-date, citing the client bug where an HTTP-date is parseInt-ed into NaN and triggers a retry storm"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Retry guidance states the consequence for continuing to hammer while throttled, such as banning the integration"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Presents the named override shapes (ticket-based with lead time, spend-based auto-promotion, plan-gated, time-boxed self-serve burst) and picks one deliberately"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Ties the doubled support tickets to a measurement plan baselined from Corvana's own first month, covering per-tier 429 rate, the share of 429s retried inside the Retry-After window, limit-related tickets, and override-request volume, since no industry thresholds exist"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Asks batched clarifying questions before publishing numbers, covering at least abuse pressure, region count, gateway/edge capability, and deadline or effort ceiling"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Rejects a single 300 req/min limit shared across REST and GraphQL: REST is metered by request counting and GraphQL by cost points, as two separately published models"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Expresses the GraphQL limit as a budget of cost points per window with a published cost formula, not a request count"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Publishes burst and sustained as two explicit numbers per tier, never one blended figure"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends token bucket as the default algorithm, mapping bucket depth to the burst number and refill rate to the sustained quota"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Frames limits as identity/auth-scope x endpoint-class x account-override, treating the plan-to-limit mapping as a deliberate choice rather than the automatic default"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States which identifier each tier is keyed on and changes it up the ladder (IP for anonymous callers, API key or org for paid tiers)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Carves expensive operations out of the general budget with per-endpoint-class limits instead of one account-wide number"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the geographic scope of the published limit (global vs per-region enforcement)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Labels the published numbers operational hints rather than an SLA, reserving in writing the right to lower limits for stability"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Structures the tier ladder so anonymous/free callers learn limits from headers, self-serve paid tiers get a documented exact-numbers table, and any enterprise tier gets a process rather than a public number"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Flags token bucket vs leaky bucket as a commonly inverted naming pair and requires the published policy to describe the behavior (whether idle time banks burst capacity) rather than rely on the algorithm name"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Declines the fixed-window switch for this public developer API, confining fixed window to internal or low-stakes limits where the boundary flaw is harmless"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites a named platform precedent that accepts fixed window's flaw purely for simplicity in a low-stakes context (Sentry), and distinguishes that context from Ferroline's"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that token bucket and leaky bucket are an effort tie (both maintain one bucket per key, differing in intent, not implementation weight), so the simplicity argument does not favor fixed window over them"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Conditions any promotion of the sliding-window option on adversarial or scraping pressure, naming its higher compute cost"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the weighted-sharing trade: a deterministic guaranteed rate is given up to eliminate the fully-blocked-small-tenant cliff"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Distinguishes load shedding from rate limiting (it keys off overall system state, so a well-behaved tenant can still be shed) and requires the published policy to disclose this rather than overclaim fairness"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Keeps internal fairness machinery (weights, deficit round robin, shedders) out of the published policy, documenting only externally observable effects"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Acknowledges the quota paradox knowingly: throttling reduces the throttled tenant's own availability even when spare capacity existed, and this is an accepted trade, not a hidden one"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Cites thin IETF adoption (GitHub and Stripe emit no IETF fields) and that the spec is a pre-RFC Internet-Draft"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names a re-promotion trigger for IETF-fields-alone: the draft reaching RFC status, or a second Tier-1 platform adopting it"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Cites RateLimit-Policy's distinct value: it lets a well-behaved client self-throttle before its first 429, which the legacy trio cannot express"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Cites named Tier-1 production adoption of both header families (Cloudflare) as traction evidence for the both-families option"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that headers are advisory hints, never guarantees: a remaining count does not promise that many successful calls"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Weighs the 60% own-SDK traffic share when ranking: an audience you control at both ends weakens the legacy trio's compatibility argument, since the fleet can move in one SDK release"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Replaces the 403 with HTTP 429 plus a Retry-After header on every REST throttle, no exceptions"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Specifies Retry-After as delay-seconds rather than HTTP-date, citing the client bug where an HTTP-date is parseInt-ed into NaN and triggers a retry storm"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Retry guidance states the consequence for continuing to hammer while throttled, such as banning the integration"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the precedence rule: Retry-After takes precedence over any reset time computed from limit-state headers"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Applies the machine-readability gate: 100% of throttle responses must carry a machine-readable signal a documented client can branch on, and the undocumented 200 path currently fails it"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Publishes retry expectations only, leaving client-side retry mechanics (backoff implementation, retry budgets, idempotency keys) to the idempotency-and-retry discipline"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects publishing a fixed public Enterprise number: self-serve tiers publish exact numbers, the top tier publishes a process"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Presents the named override shapes (ticket-based with lead time, spend-based auto-promotion, plan-gated, time-boxed self-serve burst) and picks one deliberately"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies a lead time for increase requests, citing vendor precedent such as at least 6 weeks for large increases or 24-hour-minimum structured tickets"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names at least one limit dimension that no override touches, and says so in the policy"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Reserves in writing the right to lower any granted override for platform stability"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Flags persistent override-request volume per quarter as the signal that the published tiers are set too low"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Scales notice to blast radius and applies a lead-time floor to the decrease, citing the 6-week vendor precedent as a symmetric floor"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rolls the tightening out via the observe (log without enforcement), baseline (enforce at a high ceiling), refine (tighten from observed data) sequence on live traffic"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Reserves emergency reductions for platform stability in writing, so they are policy rather than surprise"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Counters the part-of-the-contract framing: published limits are operational hints, not an SLA, and the policy says so"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Considers a secondary abuse guard triggered by request shape as a complement to cutting every free caller's quota, with its existence and trigger shape documented"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Produces a standing written change-notice policy that explains the reasons for changes, not just a one-off migration email"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names the portability trap motivating the plan-independent cap: a query written against a bigger plan's allowance instantly fails on a smaller-plan account"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends a debug affordance returning a per-field cost breakdown so integrators can understand why a query costs what it costs"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends a budget-introspection mechanism that costs nothing to query, so a client can check its remaining budget for free"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Keeps structural query guards (depth ceilings, required pagination arguments, persisted queries) out of scope as schema design owned by the GraphQL API design discipline, while owning the pricing and budget policy"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Treats the region multiplication as a real exploit vector, not a documentation nit"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Flags the MSA language: a published limit cited in a contract as an SLA commitment without the policy saying it is one is a named failure mode, and published numbers are operational hints"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Where a separate pre-production quota is kept, shapes it as an aggregate volume-and-scope cap against evaluation abuse, not a faster per-minute limiter"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Treats any resulting tightening, such as enforcing 1,200 truly globally, as a limit change requiring notice scaled to blast radius or an observe-baseline-refine rollout, not a silent configuration fix"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Ties the doubled support tickets to a measurement plan baselined from Corvana's own first month, covering per-tier 429 rate, the share of 429s retried inside the Retry-After window, limit-related tickets, and override-request volume, since no industry thresholds exist"
+      }
+    ]
+  }
+}

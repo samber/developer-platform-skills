@@ -1,0 +1,290 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-versioning-policy",
+  "scenarios": 8,
+  "expectations_total": 98,
+  "expectations_subjective": 0,
+  "expectations_objective": 98,
+  "pass_rate_with_skill_pct": 88.8,
+  "pass_rate_without_skill_pct": 49.0,
+  "delta_pp": 39.8,
+  "uplift_multiplier": 1.81,
+  "trigger_accuracy_pct": 70.2,
+  "trigger_queries": 94,
+  "trigger_positive_fire_rate": 0.745,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Places the notice-period commitment for the 40 contracted partners in the contract or SLA rather than only on a public policy page."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that repeatedly slipping sunset dates teaches integrators to ignore all future dates."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "If a fall-forward style is retained at all, requires it to be documented loudly and states that documented is not the same as noticed - documented silent rerouting still generates persistent complaints about behavior drift."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the chosen enforcement style must be written into the policy, and that if enforcement differs per API surface, both styles must be written down."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Frames deprecation as staged (announce, deprecate, sunset, removal) rather than a single October event."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends shipping a Deprecation header on v1 responses ahead of the sunset, noting it can ship before or independently of the sunset date and changes no behavior."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the Deprecation header with RFC 9745 and notes it can ship before any sunset date exists and changes no behavior."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the open-enum rationale: it shifts tolerance onto callers and cuts version churn, as a documented backward-compatible carve-out."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that without a published definition every dispute becomes a judgment call - which is exactly what happened here - so the definition must be published."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends that enforcement at the sunset date be followed by a grace period returning 410 Gone rather than dropping connections."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the cost of deprecated-and-default: the deprecation label loses credibility while new integrators keep being handed the deprecated version."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Recommends against adopting date-based account-pinned versioning for this team rather than drafting the policy around it as asked."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the conditions that would justify account-pinned versioning (breaking changes wanted many times a year plus a long tail of integrators that cannot be forced to migrate) and observes that neither holds for Ledgerbird."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends URI path major versioning (/v1-style) as the appropriate scheme for this case."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States a ranking of scheme options in terms of value per unit of effort explicitly in prose, not merely implied by the order options are listed in."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Uses the hard end-of-Q1 deadline for the queued breaking change as an argument favoring the low-machinery scheme."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that unversioned access must never be allowed as a fallback path once versioning ships."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that removing an unversioned access path later is itself a breaking change."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Places the notice-period commitment for the 40 contracted partners in the contract or SLA rather than only on a public policy page."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Presents two or more coherent candidate policy bundles with trade-offs and names a recommendation, rather than a single take-it-or-leave-it policy."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes a standing health metric: breaking-change frequency above roughly two per year signals the scheme or compatibility discipline is wrong."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Identifies continuous schema evolution (one continuously live schema, additive changes) as GraphQL's default policy, not a versioned v1/v2 endpoint model."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps a written breaking-change definition applied at the field level as part of the policy."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires field removals to pass the same breaking-change approval/governance step as any other breaking change."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects the 6-month window as below the floor for a fully public API."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Raises the recommendation to at least 24 months specifically because Trackpole's consumers ship mobile apps."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives the reason for the 24-month floor: app-store update cycles and end-user update lag are slow and outside the provider's control."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Replaces the notice period for the 9 internal services with consumer-driven contract testing and coordinated deploys rather than applying the same window to them."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Notes that the clock-start choice moves real dates by months and that ambiguity there turns into support disputes, citing the pattern where a guarantee's clock starts only when the next version ships."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites external benchmark figures as floors ('at least X months'), never as exact values to copy."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Treats published sunset dates as firm commitments and tracks slipped dates with a target of zero."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that repeatedly slipping sunset dates teaches integrators to ignore all future dates."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends a hard cutoff as the default enforcement style at the sunset date."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends a grace period after the sunset date returning 410 Gone so callers get a diagnosable error."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "If a fall-forward style is retained at all, requires it to be documented loudly and states that documented is not the same as noticed - documented silent rerouting still generates persistent complaints about behavior drift."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the chosen enforcement style must be written into the policy, and that if enforcement differs per API surface, both styles must be written down."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends shipping a Deprecation header on v1 responses ahead of the sunset, noting it can ship before or independently of the sunset date and changes no behavior."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the Deprecation header with RFC 9745 and notes it can ship before any sunset date exists and changes no behavior."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the Sunset header with RFC 8594 and notes that RFC is Informational rather than Standards Track, citing it accordingly."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Adds a successor-version link relation so tooling can find the replacement without scraping prose."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Marks the deprecated operations with deprecated: true in the OpenAPI document so docs and codegen surface it."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends tracking deprecated-version traffic share after each communication wave to learn which channels actually reach integrators, treating a flat line after an email blast as evidence the channel failed."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the open-enum rationale: it shifts tolerance onto callers and cuts version churn, as a documented backward-compatible carve-out."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Declares what is explicitly not contractual (such as message text, ordering, or timing), reflecting that with enough users every observable behavior gets depended on."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that without a published definition every dispute becomes a judgment call - which is exactly what happened here - so the definition must be published."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes the operational health metric: needing breaking changes more than roughly twice a year signals the scheme or compatibility discipline is wrong."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Classifies changing the status code or content type for the same scenario as breaking in the written list."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Classifies changes to the length or format of opaque strings (such as ID prefixes) as non-breaking in the written list."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the invariant that holds at every governance stage: no breaking change ships without the governance layer's approval."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the 14% of traffic still on v1 as evidence migration is incomplete: version removal is gated on observed usage, never on the calendar window elapsing."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the announced window elapsing proves nothing about who actually migrated."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends watching deprecated-version traffic share after each outreach wave to see whether the channel worked."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Addresses date integrity rather than casually moving March 1: repeated slippage teaches integrators that dates are not final, so any adjustment must be handled deliberately, with slipped dates counted against a target of zero."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Sets the removal criterion as zero or a consciously accepted residue of real traffic - does not endorse flipping the kill switch on March 1 purely because the window was honored."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends requiring the version header and returning an error on unversioned calls rather than applying any default silently."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Contrasts the two header-scheme defaults - silently pinning callers to a version versus refusing unversioned calls with an error - and picks the refusal style as safer."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gives the reason: a required version can never drift under a caller silently."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects coupling SDK major versions to API version identifiers as the versioning story."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes the SDK major-bump trigger is stricter than the API's version rule, because a library's compiled surface breaks in ways a tolerant HTTP caller does not."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends writing the SDK versioning policy as its own separate policy rather than folding it into this document."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that later removing the unversioned (header-less) access path is itself a breaking change that needs its own notice and communication."
+      }
+    ]
+  }
+}

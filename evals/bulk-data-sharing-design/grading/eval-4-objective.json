@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects routing export downloads through Ferrolane's own API servers, naming the API fleet as both the throughput ceiling and the egress payer",
+        "evidence": "You become the throughput ceiling and the egress payer at once.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes short-lived pre-signed URLs or scoped temporary credentials so the recipient reads object storage directly",
+        "evidence": "returns a manifest of short-lived signed URLs ... the customer's client reads from storage directly.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the service's remaining job is authorization plus URL-signing",
+        "evidence": "Make the endpoint authorize and sign, not stream.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the long-lived shared access keys, prescribing per-recipient credentials instead",
+        "evidence": "Issue no static keys.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names cross-account IAM roles with an ExternalId as the AWS mechanism, in place of distributing key material",
+        "evidence": "a cross-account role with an ExternalId is the stronger option.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names SAS tokens as the Azure equivalent for the Azure-hosted third of customers",
+        "evidence": "a user-delegation SAS scoped to that tenant's container",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes one KMS grant per recipient so revoking one customer never touches another",
+        "evidence": "one KMS grant per recipient, so revocation touches only that customer.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lays out the isolation ladder in order - dedicated bucket per tenant, shared bucket with prefix isolation, per-recipient access points, broker-minted short-term credentials - and advises climbing it only as tenant count forces",
+        "evidence": "The ladder starts at 'prefix isolation on the shared bucket', then access points, then broker. The dedicated-bucket rung is missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins the access-review cadence to the credential TTL/expiry rather than the quarterly calendar process",
+        "evidence": "The skill's rule is to pin the review cadence to the credential TTL.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that key rotation under CMEK/SSE-KMS must not require re-encrypting historical data",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions per-file Parquet encryption as the finer-grained option when one shared bucket serves recipients of differing trust levels",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects routing export downloads through Ferrolane's own API servers, naming the API fleet as both the throughput ceiling and the egress payer",
+        "evidence": "\"Slow or large downloads pin goroutines, sockets, and pod bandwidth\" and \"Double the cost. You pay for S3 to pod to internet\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes short-lived pre-signed URLs or scoped temporary credentials so the recipient reads object storage directly",
+        "evidence": "\"Return a 302 or JSON with a pre-signed URL that expires in 5 to 15 minutes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the service's remaining job is authorization plus URL-signing",
+        "evidence": "\"keep authz in the API but move the bytes off it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the long-lived shared access keys, prescribing per-recipient credentials instead",
+        "evidence": "\"no static credentials at all\"; \"IAM role per customer\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names cross-account IAM roles with an ExternalId as the AWS mechanism, in place of distributing key material",
+        "evidence": "\"Customers assume it with short-lived credentials (1 hour) via an external ID or federation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names SAS tokens as the Azure equivalent for the Azure-hosted third of customers",
+        "evidence": "\"hand out user-delegation SAS tokens.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes one KMS grant per recipient so revoking one customer never touches another",
+        "evidence": "It only asks \"Is it one KMS key for everyone? Per-tenant keys give you cryptographic revocation\". Per-recipient KMS grants are not prescribed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lays out the isolation ladder in order - dedicated bucket per tenant, shared bucket with prefix isolation, per-recipient access points, broker-minted short-term credentials - and advises climbing it only as tenant count forces",
+        "evidence": "There is no ladder from bucket per tenant through prefixes and access points to broker-minted credentials, and no advice to climb it as tenant count forces.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins the access-review cadence to the credential TTL/expiry rather than the quarterly calendar process",
+        "evidence": "It says \"Keys or sessions expire automatically, so nothing needs reviewing\" and keeps a quarterly review for exceptions. It does not tie the cadence to the TTL.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that key rotation under CMEK/SSE-KMS must not require re-encrypting historical data",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions per-file Parquet encryption as the finer-grained option when one shared bucket serves recipients of differing trust levels",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

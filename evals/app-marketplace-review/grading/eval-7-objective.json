@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the roadmap justification, on the rule that high-risk scopes require demonstrated necessity rather than declared intent",
+        "evidence": "\"high-risk scopes need demonstrated necessity, not declared intent\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the review's job is to check the app does not ask for more than it actually uses",
+        "evidence": "\"An app may request only the scopes that a shipped, reviewable feature uses.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes scope minimization as a named per-scope rule rather than a general least-privilege principle",
+        "evidence": "R-7 scope necessity rule",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the ledger.write request as escalating the app up one review tier",
+        "evidence": "\"moves the app up one review tier\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the tier-escalation trigger to be objective enough for a developer to self-assess it before submitting",
+        "evidence": "\"Escalation trigger (developer self-assessable)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Extends the data-access review past the grant itself to where data goes after consent - external endpoints, subprocessors, and retention",
+        "evidence": "endpoints, owner, data fields, retention, subprocessor agreement",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the unrecognized third-party enrichment vendor as a subprocessor question inside that review",
+        "evidence": "\"a third-party endpoint receiving financial data is a subprocessor\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States secrets-handling rules as prohibitions covering source repositories, URL strings, and logs",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies codebase scanning for prohibited patterns as a reviewer verification technique",
+        "evidence": "Not applied.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies configuration and manifest inspection, plus UI/UX verification, as reviewer verification techniques",
+        "evidence": "Screenshots are used but no manifest/UI verification technique is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies OAuth, billing and install flow tracing as a reviewer verification technique",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies scope-necessity assessment against the app's declared functionality as a reviewer verification technique",
+        "evidence": "\"the reviewer must see that feature working\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the roadmap justification, on the rule that high-risk scopes require demonstrated necessity rather than declared intent",
+        "evidence": "\"A justification that refers to a future feature, a roadmap, or 'planned' work does not count.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the review's job is to check the app does not ask for more than it actually uses",
+        "evidence": "\"Unused scopes are removed, not deferred.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes scope minimization as a named per-scope rule rather than a general least-privilege principle",
+        "evidence": "\"Rule: scope and data-flow justification\"; \"Match each scope to something the reviewer can see.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the ledger.write request as escalating the app up one review tier",
+        "evidence": "Only a second reviewer is required; no tier escalation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the tier-escalation trigger to be objective enough for a developer to self-assess it before submitting",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Extends the data-access review past the grant itself to where data goes after consent - external endpoints, subprocessors, and retention",
+        "evidence": "Discloses \"the recipient, the fields sent, the purpose, and the retention terms\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the unrecognized third-party enrichment vendor as a subprocessor question inside that review",
+        "evidence": "\"Add the vendor to your privacy policy and sub-processor list.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States secrets-handling rules as prohibitions covering source repositories, URL strings, and logs",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies codebase scanning for prohibited patterns as a reviewer verification technique",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies configuration and manifest inspection, plus UI/UX verification, as reviewer verification techniques",
+        "evidence": "Only sandbox traffic capture and screenshots.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies OAuth, billing and install flow tracing as a reviewer verification technique",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies scope-necessity assessment against the app's declared functionality as a reviewer verification technique",
+        "evidence": "Each scope must map to functionality that exists in the build and appears in the screenshots.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

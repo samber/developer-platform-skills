@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Diffs the spec's 52 operations against the 49 published pages in both directions, checking for documented-but-removed pages as well as live-but-undocumented operations",
+        "evidence": "Census table has a 'Pages with no spec match' row; 'Pages may document removed endpoints... hide live-but-undocumented operations'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies any endpoint documented in the reference but absent from the spec or live API as a blocker (documented-but-removed destroys trust), not a minor cleanup item",
+        "evidence": "'documented-but-removed: blocker'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the spec as the census source and audits the published reference against it, never auditing the rendered pages against themselves",
+        "evidence": "Census table has 52 spec rows; the spec is checked with Spectral/Vacuum 'before trusting it as the census source'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends probing for undocumented-but-valid surface beyond the spec (gateway logs, SDK internals, or support tickets), rather than treating the spec as the whole truth",
+        "evidence": "'I will also probe beyond the spec. Sources: gateway logs, SDK internals, and support tickets'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the census as a table with columns for operation, in spec, in published reference, in SDKs, and discrepancy",
+        "evidence": "Columns: Operation | In spec? | In reference? | In SDKs? | Discrepancy",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States in the report's first paragraph or verdict that the reference is hand-maintained, so every finding will recur until pages render from the spec",
+        "evidence": "Verdict: 'The reference is hand-maintained, so every finding will recur.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the full generated-docs migration tier because the reference is hand-maintained, instead of stopping at the lint plus contract-test default",
+        "evidence": "'Recommended remediation: migrate to spec-rendered docs, with lint and contract gates on top'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reports coverage as percentages against the census (operations documented, parameters fully documented, responses including at least one 4xx, error codes with cause and fix, snippet parity), not as a flat issue list",
+        "evidence": "Coverage scores table with five dimensions and 100% gates, marked not measured.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns each finding a severity tier using blocker, major, and minor definitions",
+        "evidence": "Findings labeled 'row 11, major', 'row 7, blocker'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Benchmarks against Stripe and Twilio by checkable mechanisms (spec-generated reference, embedded personalized test keys, CI-tested snippet repository, per-endpoint error tables), not by reputation",
+        "evidence": "Benchmark table lists spec-generated reference, live test keys, typed ID prefixes, per-endpoint error tables, CI-tested snippets.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Counts snippet parity only for samples that exercise the Python and Node SDKs, excluding relabeled curl or generic HTTP blocks",
+        "evidence": "'Check that Python and Node snippets call the SDK, not relabeled curl.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pushes back on the expectation of only polish findings by citing that incompleteness is the measured industry norm (for example the 67.11 percent mean documentation quality or parameter examples absent from 86.95 percent of specs)",
+        "evidence": "'OASQuali... 2,529 public specs: mean documentation quality 67.11%'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends installing a standing CI gate behind the audit rather than shipping the findings as a one-off fix list",
+        "evidence": "'Lint gate... on every PR touching the spec'; stage 5 institutionalize with quarterly re-audit.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Diffs the spec's 52 operations against the 49 published pages in both directions, checking for documented-but-removed pages as well as live-but-undocumented operations",
+        "evidence": "Coverage diff: 'Operations with no page. Pages with no operation (stale).' It is described, not run, since no data was available.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies any endpoint documented in the reference but absent from the spec or live API as a blocker (documented-but-removed destroys trust), not a minor cleanup item",
+        "evidence": "Blocker is defined as 'integrator... gets money, data or auth wrong'. Stale pages are not rated as blockers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the spec as the census source and audits the published reference against it, never auditing the rendered pages against themselves",
+        "evidence": "'The spec is the source of truth' and the diff is driven from openapi.json.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends probing for undocumented-but-valid surface beyond the spec (gateway logs, SDK internals, or support tickets), rather than treating the spec as the whole truth",
+        "evidence": "No mention of gateway logs, SDK internals or support tickets.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Delivers the census as a table with columns for operation, in spec, in published reference, in SDKs, and discrepancy",
+        "evidence": "No census table; the only table is the severity rubric.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States in the report's first paragraph or verdict that the reference is hand-maintained, so every finding will recur until pages render from the spec",
+        "evidence": "The first paragraph says the audit couldn't run. Hand-written pages are mentioned only in section 1.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes the full generated-docs migration tier because the reference is hand-maintained, instead of stopping at the lint plus contract-test default",
+        "evidence": "Only partial: 'Generate the contract parts from the spec... Writers keep the prose.' No full migration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Reports coverage as percentages against the census (operations documented, parameters fully documented, responses including at least one 4xx, error codes with cause and fix, snippet parity), not as a flat issue list",
+        "evidence": "No percentage metrics are specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns each finding a severity tier using blocker, major, and minor definitions",
+        "evidence": "Table of \ud83d\udd34 Blocker, \ud83d\udfe0 Major, \ud83d\udfe1 Minor, \ud83d\udfe2 Polish with meanings.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Benchmarks against Stripe and Twilio by checkable mechanisms (spec-generated reference, embedded personalized test keys, CI-tested snippet repository, per-endpoint error tables), not by reputation",
+        "evidence": "Neither Stripe nor Twilio is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Counts snippet parity only for samples that exercise the Python and Node SDKs, excluding relabeled curl or generic HTTP blocks",
+        "evidence": "It only says 'check that the method exists in the current SDK' and doesn't exclude curl or generic HTTP blocks.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pushes back on the expectation of only polish findings by citing that incompleteness is the measured industry norm (for example the 67.11 percent mean documentation quality or parameter examples absent from 86.95 percent of specs)",
+        "evidence": "Its prior is based on reasoning, with no corpus statistics cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends installing a standing CI gate behind the audit rather than shipping the findings as a one-off fix list",
+        "evidence": "'Add a CI drift check... The audit is a one-time cleanup. The drift will return unless the process changes.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

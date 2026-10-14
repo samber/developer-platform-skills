@@ -1,0 +1,398 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "integration-error-observability",
+  "scenarios": 11,
+  "expectations_total": 136,
+  "expectations_subjective": 3,
+  "expectations_objective": 133,
+  "pass_rate_with_skill_pct": 86.8,
+  "pass_rate_without_skill_pct": 48.5,
+  "delta_pp": 38.3,
+  "uplift_multiplier": 1.79,
+  "trigger_accuracy_pct": 66.7,
+  "trigger_queries": 120,
+  "trigger_positive_fire_rate": 0.467,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Names the request log, the event log, and the webhook delivery-attempt log as three distinct surfaces rather than one combined dashboard"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the delivery-attempt log answers 'did you tell me about it', the request log answers 'did my call work', and the event log answers 'what did it change'"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Warns that a surface shipping only failure counts with no detail behind it converts a silent failure into a support ticket rather than into a fix"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Asks whether this is a one-off fix after a bad support quarter or a compounding surface Freightwise will run for years, and ties that answer to which rung it recommends"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Distinguishes a request ID, which identifies one HTTP call and its response, from a correlation ID, which identifies a multi-call transaction spanning several request IDs"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends accepting and echoing a client-supplied identifier when one arrives rather than overwriting it"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the digest and the threshold alert must not be routed to the same destination at the same cadence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires tagging each request with the integration identity at ingestion, and rejects reconstructing the tag afterwards by joining auth-service logs"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Attributes 4xx to the integrator's side and 5xx to Gridwell's side, and states that a blended number cannot say whose problem the errors are"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends reading how errors are distributed rather than volume alone, distinguishing a clustered pattern (logic bug or bulk operation) from an evenly spread one (infrastructure)"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends an installs-affected against installs-total measure per ISV app, and reads that ratio as the diagnosis"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Interprets a high installs-affected ratio as a partner-side release and a low one as configuration trouble at a few customers"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that silent failures are frequently the most expensive class precisely because neither side has noticed"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Records this failure class as its own row in the visibility audit alongside the error classes"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires first-seen timestamps aligned against both Sablecrest's release timeline and, where known, the partner's"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends an internal prioritisation view first, and distinguishes it from a partner-facing published grade as two different products with different obligations"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes that a partner-facing number becomes a contract the moment partners start optimising against it"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires credentials, tokens and signing secrets to be stripped unconditionally rather than partially masked, because a prefix plus a length is often enough to attack"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Names the request log, the event log, and the webhook delivery-attempt log as three distinct surfaces rather than one combined dashboard"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the delivery-attempt log answers 'did you tell me about it', the request log answers 'did my call work', and the event log answers 'what did it change'"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Lists the fields a delivery-attempt row carries, including event ID, destination endpoint, attempt number, attempt timestamp, and next scheduled retry time"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Warns that a surface shipping only failure counts with no detail behind it converts a silent failure into a support ticket rather than into a fix"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Asks or establishes what an integrator can see today without contacting Freightwise, as the audit baseline"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Asks whether request and response bodies carry PII, secrets, or another tenant's data, and who signs off on exposing them to a third party"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Asks whether this is a one-off fix after a bad support quarter or a compounding surface Freightwise will run for years, and ties that answer to which rung it recommends"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires the dashboard to display the same identifiers Freightwise returns to integrators rather than internal primary keys"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that echoing the header without an external surface that resolves it leaves integrators quoting a string nobody outside Palmate can look up"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends making the identifier searchable in a developer-facing log the integrator can reach themselves, and pairs that with the header rather than treating either rung as sufficient alone"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Distinguishes a request ID, which identifies one HTTP call and its response, from a correlation ID, which identifies a multi-call transaction spanning several request IDs"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Justifies promoting downstream propagation by pointing at Palmate's current inability to see into failures that came from a provider it calls"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires Palmate's own internal retries to carry the original identifier rather than generating a fresh one per attempt"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends accepting and echoing a client-supplied identifier when one arrives rather than overwriting it"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies an opaque random value such as a UUIDv4 and rejects sequential or timestamp-derived identifiers because they leak volume or timing and collide under concurrency"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Does not redesign the error response payload shape, or explicitly defers the question of whether the ID rides in the error body to a separate error-design scope"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends documenting the lookup path next to the error documentation rather than on a separate observability page"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends threshold alerting with a cooldown specifically for the two payment-adjacent partners, tying that promotion to their losing money within hours"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Specifies a cooldown period during which the same integration cannot alert again, and explains that without it one ongoing incident produces a continuous stream until the recipient mutes the channel permanently"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Advises deriving the cooldown length from Nooklet's own typical incident duration rather than copying a borrowed number"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Treats integration state changes such as revoked credentials, a disabled integration, or a lapsed subscription as a separate immediate rung with no threshold and no cooldown"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires every alert to name the top machine-readable error codes and to link directly into the log filtered to those failures"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires a threshold alert to state whether a Nooklet release falls in the window, so the partner knows what the platform has already ruled out"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires a threshold alert to state the earliest time the next alert for that integration can arrive"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the digest and the threshold alert must not be routed to the same destination at the same cadence"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends tracking the share of alerts partners act on, and treats a sustained decline as the design failing rather than the partners failing"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires tagging each request with the integration identity at ingestion, and rejects reconstructing the tag afterwards by joining auth-service logs"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that retrofitting the identity tag leaves the preceding history unqueryable per integration, which is exactly the period any investigation needs"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Replaces the single 5% platform-wide threshold with a comparison of each integration against its own recent baseline"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that one global percentage is either noise for low-traffic integrations or blindness for high-traffic ones"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires explicit window start and end on each aggregate rather than a floating rate"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires the top machine-readable error codes per bucket in the aggregate"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Overlays Gridwell's own deploy or release markers on the error-rate view, and requires checking a 5xx spike against that timeline before telling a partner anything"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Specifies both a short detection window measured in minutes for sudden breaks and a long window of hours to a day for slow degradation, and states that a single window misses half the failure types"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends reading how errors are distributed rather than volume alone, distinguishing a clustered pattern (logic bug or bulk operation) from an evenly spread one (infrastructure)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Refuses to build a replay button that re-issues the failed POST /orders request on the integrator's behalf, and explains that re-issuing it creates side effects nobody authorised"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends instead surfacing the full request detail so the integrator's own client re-issues the call"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Defines a bounded window measured from event creation beyond which replay is not offered, and requires publishing it"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies replay as the highest-effort item on the visibility menu rather than a quick win"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Distinguishes the single-account integrator segment from the ISV-fleet segment, and states that a surface designed for the first does not finish the job for the second"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends an installs-affected against installs-total measure per ISV app, and reads that ratio as the diagnosis"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Interprets a high installs-affected ratio as a partner-side release and a low one as configuration trouble at a few customers"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends deciding explicitly who can read each surface: the account owner, any user of the account, and the partner engineer outside the account"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that silent failures are frequently the most expensive class precisely because neither side has noticed"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Places the volume-drop signal outside the 4xx, 5xx and 429 status-code buckets rather than inside them"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Records this failure class as its own row in the visibility audit alongside the error classes"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects sorting the fleet view by raw error count and requires ranking by blast radius instead"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Explains that a partner app failing across many installs outranks a single account throwing more absolute errors, because one conversation fixes many problems"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires installs affected against installs total per partner app as a dimension of the view"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires a named contact owner on each row, on the grounds that a ranked list with no contact becomes a report nobody acts on"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires first-seen timestamps aligned against both Sablecrest's release timeline and, where known, the partner's"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Separates integrations broken since Sablecrest's own deploy into a distinct view or tab from the partner-outreach queue, and identifies the first as Sablecrest's own regression queue"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires silent integrations whose call volume dropped toward zero to appear in the view"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires the inputs behind any partner-facing score to be inspectable by that partner: error counts, install coverage, and the windows used"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that the published error-budget and SLO literature is written consumer-side, for a team measuring its own dependence on someone else's API, and does not transfer wholesale to a provider publishing numbers for partners"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects presenting the multi-vendor multiplicative availability argument to Marrowpoint's partners, because that arithmetic describes the consumer's position rather than Marrowpoint's"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Warns that an integration measurement includes the partner's own code and their customers' configuration, so committing to a number derived from it is a promise Marrowpoint only partly controls"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Routes formal SLA and uptime publication to a separate status-and-incident-communication scope rather than deriving it from the integration health view"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Keeps per-integration and per-endpoint granularity as a part that does transfer, against a single blended platform number"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Keeps multi-window burn-rate detection as a part that does transfer: a long window confirming the problem is sustained plus a short window confirming it is still active"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that nothing in the published record establishes what a provider-side integration SLO should contain"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Advises against publishing any per-partner number before Marrowpoint can defend how it is computed"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Frames the goal of being the trustworthy real-time source of integration health as a design intent rather than an industry standard to cite to partners"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends an internal prioritisation view first, and distinguishes it from a partner-facing published grade as two different products with different obligations"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes that a partner-facing number becomes a contract the moment partners start optimising against it"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Adds a machine-readable error code to every row, and states that a bare 400 tells the integrator nothing their own client did not already know"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires any withheld field to be visibly marked as withheld so the integrator can tell it was suppressed rather than absent"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires tenant isolation to be enforced structurally rather than by an application-code filter on account ID"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Treats the redaction rule set as a published contract once integrators build against it, noting that loosening it later is a privacy incident and tightening it later breaks their tooling"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Requires the retention window to be published rather than discovered during an incident"
+      }
+    ]
+  }
+}

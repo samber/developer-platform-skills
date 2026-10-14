@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that CURRENT_USER() and CURRENT_ROLE() return NULL inside a secure view once it crosses an account-to-account share, so the catch-all view matches nothing or everything depending on the predicate's shape",
+        "evidence": "\"`CURRENT_USER()` and `CURRENT_ROLE()` return `NULL` inside a secure view once it crosses an account-to-account share. The predicate matches nothing, or everything, depending on its shape.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names CURRENT_ACCOUNT() as the share-aware identity function that is safe across a share boundary",
+        "evidence": "\"join a private entitlement table on `CURRENT_ACCOUNT()`. It is the only identity function that is safe across a share.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a single secure view joining a private base table to a private entitlement or mapping table on the caller's account identity, instead of one view per customer",
+        "evidence": "\"one secure view, one share, one entitlement table\" plus the SQL joining priv.mart_headcount to priv.entitlement WHERE e.snowflake_account = CURRENT_ACCOUNT().",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the base fact table and the entitlement mapping table must never enter the share",
+        "evidence": "\"never share base or mapping tables\"; gate step 5 asserts the base and entitlement tables are absent from SHOW GRANTS TO SHARE.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects putting the base fact table into the share for drill-down",
+        "evidence": "\"The 'drill down' use case is a full breach.\" and \"Add a second secure view with more columns and the same predicate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the four-year clean record of the application-layer tenant filter as evidence this design is safe, on the grounds that an external SQL handle leaves no application layer to intercept a query",
+        "evidence": "\"This evidence covers the API layer. A SQL share has no API layer, so the evidence doesn't transfer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the engine-level policy must make a query that omits the tenant filter return nothing, rather than relying on every query being written correctly",
+        "evidence": "Says \"put isolation in the engine\" but never states that a query omitting the filter returns nothing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects verifying isolation by querying the views from the provider's own account",
+        "evidence": "\"Your account is the provider. There `CURRENT_USER()` returns a real user, so the NULL trap in item 2 stays invisible.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires probing isolation from the consumer side, naming Snowflake's SIMULATED_DATA_SHARING_CONSUMER session parameter or a second test account",
+        "evidence": "\"Set `SIMULATED_DATA_SHARING_CONSUMER` to a test consumer account, or use a real second account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the isolation gate as zero foreign rows across every shared view and policy, as a binary pass/fail check before GA",
+        "evidence": "\"Zero foreign rows is a binary pass/fail.\" and \"Assert `COUNT(*) WHERE customer_id <> expected` equals `0`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the isolation probe to be re-run after every policy or schema change, not only once at launch",
+        "evidence": "\"Run this for every view, in CI, on every policy or schema change.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the same NULL-identity trap applies to row-access policies, where IS_DATABASE_ROLE_IN_SESSION() is the equivalent primitive",
+        "evidence": "Row-access policies and IS_DATABASE_ROLE_IN_SESSION are never mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that CURRENT_USER() and CURRENT_ROLE() return NULL inside a secure view once it crosses an account-to-account share, so the catch-all view matches nothing or everything depending on the predicate's shape",
+        "evidence": "It says CURRENT_USER() 'returns the consumer's own user name, which the consumer controls', not NULL, and it never mentions CURRENT_ROLE().",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names CURRENT_ACCOUNT() as the share-aware identity function that is safe across a share boundary",
+        "evidence": "'Use `CURRENT_ACCOUNT()` instead. The consumer cannot fake it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a single secure view joining a private base table to a private entitlement or mapping table on the caller's account identity, instead of one view per customer",
+        "evidence": "'The view filters with customer_id IN (SELECT customer_id FROM entitlement WHERE consumer_account = CURRENT_ACCOUNT())' and 'The 180 per-customer views are redundant.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the base fact table and the entitlement mapping table must never enter the share",
+        "evidence": "'Never put the base table... in a share' and, for the entitlement table, 'Don't expose the table in any share.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects putting the base fact table into the share for drill-down",
+        "evidence": "'\"Drill down when the view lacks detail\" is the wrong fix.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the four-year clean record of the application-layer tenant filter as evidence this design is safe, on the grounds that an external SQL handle leaves no application layer to intercept a query",
+        "evidence": "'The API filter doesn't exist in the share path. This is a new tenant-isolation implementation with zero track record.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the engine-level policy must make a query that omits the tenant filter return nothing, rather than relying on every query being written correctly",
+        "evidence": "It only says 'An account with no match must return zero rows'. It never requires an engine policy that applies when a query omits the filter.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects verifying isolation by querying the views from the provider's own account",
+        "evidence": "'Querying from your own account tests nothing'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires probing isolation from the consumer side, naming Snowflake's SIMULATED_DATA_SHARING_CONSUMER session parameter or a second test account",
+        "evidence": "'Create at least two test consumer accounts, or reader accounts, each mapped to a different synthetic customer'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the isolation gate as zero foreign rows across every shared view and policy, as a binary pass/fail check before GA",
+        "evidence": "'COUNT(*) WHERE customer_id <> expected = 0' and 'Fail the build on any extra object.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the isolation probe to be re-run after every policy or schema change, not only once at launch",
+        "evidence": "'Run these on every deploy. A new column or table in the share must trip the allow-list.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the same NULL-identity trap applies to row-access policies, where IS_DATABASE_ROLE_IN_SESSION() is the equivalent primitive",
+        "evidence": "Row-access policies and IS_DATABASE_ROLE_IN_SESSION() are never mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

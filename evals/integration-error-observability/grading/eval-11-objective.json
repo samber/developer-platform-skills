@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a 24-hour retention window against monthly reconciliation guarantees the evidence expires before the investigation starts",
+        "evidence": "\"Your log expired 27 or more days earlier, so every such ticket is unanswerable by the integrator.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the retention window to exceed the time it realistically takes a Plumridge customer to notice a failure, and sizes it against the monthly cycle",
+        "evidence": "\"Longer than your slowest realistic reconciliation lag. Start at about 90 days and set it from ticket data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the retention window to be published rather than discovered during an incident",
+        "evidence": "\"Publish the windows. An undocumented window gets discovered during an incident.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the no-code and non-engineer builders as a distinct audience segment with different needs from engineers integrating directly",
+        "evidence": "\"Single-account integrators... about 40%. No-code and agent builders... about 60%.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a plain-language failure list scoped to that builder's own flow rather than raw JSON request and response pairs",
+        "evidence": "\"one plain-language failure list scoped to their flow\"; the plain-language row example.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a 'what to do about it' line next to each failure entry for that segment",
+        "evidence": "\"with a 'what do I do' line on each entry\"; the row example has \"What to do\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the detail useful to an engineering integrator reads as noise to the no-code segment",
+        "evidence": "\"Raw JSON is noise to the no-code segment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the detailed surface for the engineering segment rather than replacing it wholesale with the simplified one",
+        "evidence": "\"Keep raw JSON, but behind a 'Technical details' toggle for the engineers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends classifying Plumridge's 'it's not working' tickets by failure class to decide which surface to build first",
+        "evidence": "The measurement section classifies the last 20 tickets by failure class; open question 3 says \"This sets the retention window and the build order.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the retention change and the audience change as two separate items rather than one",
+        "evidence": "Separate sections: \"1. Fix retention...\" and \"2. Change what the viewer shows\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names log retention shorter than time-to-notice as a failure mode that generates tickets regardless of how good the log row is",
+        "evidence": "Diagnosis table quotes: \"Log retention shorter than the time it takes a partner to notice, so the evidence expires before the investigation starts.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a 24-hour retention window against monthly reconciliation guarantees the evidence expires before the investigation starts",
+        "evidence": "'Why 24h of raw logs is the wrong fix point'; monthly reconciliation needs longer records.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the retention window to exceed the time it realistically takes a Plumridge customer to notice a failure, and sizes it against the monthly cycle",
+        "evidence": "Ledger kept 13\u201315 months 'covers monthly reconciliation... late disputes'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the retention window to be published rather than discovered during an incident",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the no-code and non-engineer builders as a distinct audience segment with different needs from engineers integrating directly",
+        "evidence": "'About 60% of your users think in pay runs and employees'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a plain-language failure list scoped to that builder's own flow rather than raw JSON request and response pairs",
+        "evidence": "Outcome categories, error catalog, timeline by business object.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a 'what to do about it' line next to each failure entry for that segment",
+        "evidence": "'Fix in Zapier: add a Formatter \u2192 Date/Time step'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the detail useful to an engineering integrator reads as noise to the no-code segment",
+        "evidence": "'Engineers still get everything. Everyone else gets a readable default.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the detailed surface for the engineering segment rather than replacing it wholesale with the simplified one",
+        "evidence": "'Keep raw JSON, but move it' behind Technical details.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends classifying Plumridge's 'it's not working' tickets by failure class to decide which surface to build first",
+        "evidence": "'Pull them from the last few months of tickets'; 'tagging a sample of tickets by tool and cause'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the retention change and the audience change as two separate items rather than one",
+        "evidence": "Part 1 vs Part 2: 'two problems with two fixes'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names log retention shorter than time-to-notice as a failure mode that generates tickets regardless of how good the log row is",
+        "evidence": "Success metric: reconciliation tickets and 'can you resend the logs' requests 'should fall toward zero'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

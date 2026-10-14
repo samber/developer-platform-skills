@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Runs an explicit gate on whether gRPC belongs at the public edge before designing any proto or service layout",
+        "evidence": "\"Section 1 comes before any proto layout because it changes the design\"; \"## 1. Gate verdict: gRPC inside, JSON outside\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that REST still carries the large majority of public APIs (roughly 83% in recent tracked counts) and that dual-stack - gRPC internally, REST or transcoded JSON externally - is the practitioner default rather than either/or",
+        "evidence": "No 83% figure or REST-share statistic appears; only Square/Dropbox/Cloudflare examples.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that browsers structurally cannot speak gRPC's raw HTTP/2 framing, making a proxy layer mandatory given the React dashboards described",
+        "evidence": "\"Browsers can't speak gRPC's HTTP/2 framing, and your merchant dashboards call you directly.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Protobuf's binary encoding as a concrete debuggability cost for external consumers: nothing readable in a network tab, inspection needs grpcurl-class tooling partners rarely have installed",
+        "evidence": "No mention of unreadable network tab or grpcurl-class tooling.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that every external caller pays the protoc/stub-regeneration cost that an internal fleet amortizes",
+        "evidence": "Only says \"Your 200 outside engineers have never met your protos\"; no stub/protoc cost.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that gRPC at the edge limits the ability to augment or remediate API behavior in proxies and API-management tooling",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks the three genuine triggers that would justify public gRPC anyway - confirmed SDK-mediated or proto-fluent consumers, genuinely streaming-shaped workload, measured performance bottleneck consumers can absorb tooling cost for",
+        "evidence": "A2 on SDK-mediated audience, A4 on streaming, and the \"measured bottleneck\" performance trigger are each addressed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concludes that 'we already run gRPC internally' and 'it's faster' are not among the qualifying triggers",
+        "evidence": "\"The other two stated reasons don't change that\"; \"That is a fact about your inside.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the 200 mixed-shop partner engineers as not a confirmed SDK-mediated audience, so Temporal's control-plane precedent does not transfer here",
+        "evidence": "\"Temporal's public gRPC works because its audience is control-plane engineers... A broad partner platform for payments is the opposite audience.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the audience-reach argument explicitly: limiting to gRPC-only risks missing developers not equipped or experienced enough to consume gRPC services",
+        "evidence": "No explicit argument that gRPC-only would miss developers not equipped to consume gRPC.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends gRPC inside with JSON outside rather than raw public gRPC as the only surface",
+        "evidence": "\"Gate verdict: gRPC inside, JSON outside\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the gate's verdict determines which transcoding/gateway options are even in play for the next design step",
+        "evidence": "Gate rules out raw gRPC, but never says the verdict determines which gateway options are in play for the next step.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Runs an explicit gate on whether gRPC belongs at the public edge before designing any proto or service layout",
+        "evidence": "The design opens with \"You decided on gRPC for the public surface, and this design keeps that.\" It runs no gate on whether gRPC belongs at the edge.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that REST still carries the large majority of public APIs (roughly 83% in recent tracked counts) and that dual-stack - gRPC internally, REST or transcoded JSON externally - is the practitioner default rather than either/or",
+        "evidence": "No statistic or claim that REST dominates public APIs appears anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that browsers structurally cannot speak gRPC's raw HTTP/2 framing, making a proxy layer mandatory given the React dashboards described",
+        "evidence": "\"Browsers cannot speak native gRPC. fetch and XHR give JS no control over HTTP/2 framing or trailers.\" It then adds Envoy grpc_web.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Protobuf's binary encoding as a concrete debuggability cost for external consumers: nothing readable in a network tab, inspection needs grpcurl-class tooling partners rarely have installed",
+        "evidence": "Debuggability and grpcurl tooling for partners are never raised as a cost.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that every external caller pays the protoc/stub-regeneration cost that an internal fleet amortizes",
+        "evidence": "Stub generation is not named as a burden on external callers. BSR-generated SDKs are only mentioned as distribution.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that gRPC at the edge limits the ability to augment or remediate API behavior in proxies and API-management tooling",
+        "evidence": "The transcript does not say this.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks the three genuine triggers that would justify public gRPC anyway - confirmed SDK-mediated or proto-fluent consumers, genuinely streaming-shaped workload, measured performance bottleneck consumers can absorb tooling cost for",
+        "evidence": "No trigger check for SDK-mediated consumers, streaming workloads, or measured bottlenecks.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Concludes that 'we already run gRPC internally' and 'it's faster' are not among the qualifying triggers",
+        "evidence": "It only says \"The speed argument matters less for third parties than for your mesh.\" It never addresses 'we already run gRPC internally'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the 200 mixed-shop partner engineers as not a confirmed SDK-mediated audience, so Temporal's control-plane precedent does not transfer here",
+        "evidence": "There is no Temporal reference and no analysis of whether the audience is SDK-mediated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes the audience-reach argument explicitly: limiting to gRPC-only risks missing developers not equipped or experienced enough to consume gRPC services",
+        "evidence": "The JSON path \"removes the biggest adoption risk with 200 mixed-stack engineers\". It also says \"PHP, Ruby, and no-code partners will struggle\" with gRPC-only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gRPC inside with JSON outside rather than raw public gRPC as the only surface",
+        "evidence": "It recommends one proto served over native gRPC, gRPC-Web and transcoded JSON: \"I recommend the JSON path as well.\" It keeps gRPC on the mesh.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the gate's verdict determines which transcoding/gateway options are even in play for the next design step",
+        "evidence": "There is no gate. Envoy transcoder vs Connect appears only as an open question in \u00a711.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

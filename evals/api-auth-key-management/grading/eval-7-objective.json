@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the single account-wide do-everything key outright as the anti-pattern, not an acceptable bottom rung",
+        "evidence": "\"Do not ship the PM's 'full-access default'\"; Admin explicit only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the fail-open default: keys must be restrictive by default, and an opt-out unticking panel is the named failure to design against",
+        "evidence": "\"Almost nobody unticks boxes in an advanced panel.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names or describes the SendGrid precedent (omitted scopes at creation granting full access) as the fail-open example",
+        "evidence": "\"SendGrid is the cited example: omit scopes and you get Full Access.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the expansion rule: widen a key's scope only when usage logs prove the consumer needs more",
+        "evidence": "Widening requires a new key via roll; nothing says widen only when usage logs prove need.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends both bottom rungs together: one key per service per environment plus a coarse read/write per-product-area scope set",
+        "evidence": "\"One key per service per environment\" plus coarse presets",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the stacking payoff: a leaked key then compromises one service in one environment with one permission set",
+        "evidence": "No statement that a leak compromises one service, one environment, one permission set.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-ranks the ladder against the existing RBAC: reusing the 40-permission system makes fine-grained scoping nearly free, flipping the effort ordering and the winner",
+        "evidence": "\"Your 40-permission RBAC flips the effort ranking. Fine-grained scoping is nearly free\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the fine-grained rung concretely: per-resource grants, granular permissions, mandatory expiration",
+        "evidence": "Custom grouped permissions, public scope vocabulary, mandatory expiry on every key",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions scoping as authorization layered on the identity the key establishes - complementary controls, not substitutes",
+        "evidence": "Not framed as complementary to authentication/identity.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that team or internal-service trust is not a security boundary; the key's own scope is the only enforceable one",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting every key by what it does: name, consuming service, allowed and denied actions, owning team",
+        "evidence": "\"Record each key's name, owner, scopes and consuming service.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pairs scoping with expiry, citing the undocumented never-expiring key that becomes invisible infrastructure",
+        "evidence": "Pairs with mandatory expiry but never cites the undocumented never-expiring key / invisible infrastructure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates billing and administrative permissions from ordinary read/write scopes so one key never holds both",
+        "evidence": "\"Billing changes and user management: not grantable to API keys.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the single account-wide do-everything key outright as the anti-pattern, not an acceptable bottom rung",
+        "evidence": "Keeps \"Full access\" as a preset and grandfathers legacy full-access keys; doesn't reject the pattern outright.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the fail-open default: keys must be restrictive by default, and an opt-out unticking panel is the named failure to design against",
+        "evidence": "\"Reject the PM's 'full-access by default, untick in an advanced panel' design.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names or describes the SendGrid precedent (omitted scopes at creation granting full access) as the fail-open example",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the expansion rule: widen a key's scope only when usage logs prove the consumer needs more",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends both bottom rungs together: one key per service per environment plus a coarse read/write per-product-area scope set",
+        "evidence": "Only scopes; no per-service per-environment keys.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the stacking payoff: a leaked key then compromises one service in one environment with one permission set",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-ranks the ladder against the existing RBAC: reusing the 40-permission system makes fine-grained scoping nearly free, flipping the effort ordering and the winner",
+        "evidence": "Reuses RBAC for enforcement but doesn't re-rank the ladder.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the fine-grained rung concretely: per-resource grants, granular permissions, mandatory expiration",
+        "evidence": "Only a future `meters:read:site=<id>` mention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Positions scoping as authorization layered on the identity the key establishes - complementary controls, not substitutes",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that team or internal-service trust is not a security boundary; the key's own scope is the only enforceable one",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting every key by what it does: name, consuming service, allowed and denied actions, owning team",
+        "evidence": "Mentions only showing scopes in list and audit logs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pairs scoping with expiry, citing the undocumented never-expiring key that becomes invisible infrastructure",
+        "evidence": "Optional expiry mentioned, without the rationale.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates billing and administrative permissions from ordinary read/write scopes so one key never holds both",
+        "evidence": "Full access preset still holds billing, users and keys:write together.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

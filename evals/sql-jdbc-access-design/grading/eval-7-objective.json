@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Names the custom VQL dialect as the anti-pattern, since a language not already widely supported makes every BI-tool integration start from zero",
+        "evidence": "\"a custom dialect where a standard wire protocol was available.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends speaking an existing wire protocol, specifically a Postgres wire-protocol endpoint, as the cheapest connectivity rung, because every BI tool, psql, and every ORM already ships a Postgres driver",
+        "evidence": "\"use a standard wire protocol... Tableau and Power BI use their existing PostgreSQL connectors, with no `.taco`, no certification cycle\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the cost of the wire-protocol rung: commitment to the Postgres dialect and its type system, and nothing exotic",
+        "evidence": "Says customers write ClickHouse SQL; the Postgres-dialect commitment is not stated as a cost.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'a sprint or two and then it's done' scoping and frames BI-tool support as an ongoing certification tax budgeted as continuing engineering rather than a one-time integration",
+        "evidence": "\"A driver is a recurring cost, not a one-off build.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires accurate SQLSTATEs if a driver is shipped, specifically SQLSTATE 28000 for invalid credentials, warning that a generic error instead can break Tableau connector behavior",
+        "evidence": "\"Returning a generic error instead of 28000 for bad credentials can break connector behavior.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names signed per-tool connector packages whose signing certificates expire and must be renewed on a schedule",
+        "evidence": "\"signed `.taco`. An expired signing certificate makes Tableau reject it outright.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Power BI certification requires documented customer demand via a public ideas-forum thread and submission by pull request to Microsoft's connector repository",
+        "evidence": "\"documented customer demand (a public ideas-forum thread). You submit by pull request to Microsoft's connector repository.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that certification transfers distribution but not support, with first-line connectivity issues routed back to the data-source owner",
+        "evidence": "\"Microsoft distributes the connector but routes customer issues back to you.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects admitting arbitrary customer SQL onto the shared production ClickHouse cluster, naming the blast radius across the whole application",
+        "evidence": "\"customer SQL admitted onto the shared production cluster\" is a named failure mode; PostHog \"basically untenable\"; worst-case query threatens the product.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends single-tenant or per-organization engine instances fronted by one wire-protocol endpoint as the fix for the isolation and connectivity problems at once",
+        "evidence": "PostHog \"rebuilt on per-organization engine instances behind a Postgres wire-protocol endpoint\"; per-tenant compute isolation named as target state.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names engine drift as a distinct risk: a query engine changing results between releases or depending on enabled settings, which a vendor's own regression suite never covers across arbitrary customer query shapes",
+        "evidence": "\"Engine drift is a documented risk. PostHog saw ClickHouse change results between releases, and your test suite can't cover every customer query shape.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a connection-setup page per supported client covering the URL template, the driver class or download, the auth method, and TLS stated as an explicit requirement rather than left to client defaults",
+        "evidence": "Says \"Publish a connection-setup page per tool\" and \"Enforce TLS\" separately, without specifying the page contents.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Names the custom VQL dialect as the anti-pattern, since a language not already widely supported makes every BI-tool integration start from zero",
+        "evidence": "VQL is called 'the hard part' needing support or translation. It is not named as an anti-pattern because BI integrations start from zero.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends speaking an existing wire protocol, specifically a Postgres wire-protocol endpoint, as the cheapest connectivity rung, because every BI tool, psql, and every ORM already ships a Postgres driver",
+        "evidence": "'Postgres-wire-compatible endpoint on the gateway. Tableau and Power BI both ship native PostgreSQL connectors.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the cost of the wire-protocol rung: commitment to the Postgres dialect and its type system, and nothing exotic",
+        "evidence": "It only says 'You still need the SQL layer and a curated schema'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'a sprint or two and then it's done' scoping and frames BI-tool support as an ongoing certification tax budgeted as continuing engineering rather than a one-time integration",
+        "evidence": "'Ongoing ownership About 0.5\u20131 FTE... recertification'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires accurate SQLSTATEs if a driver is shipped, specifically SQLSTATE 28000 for invalid credentials, warning that a generic error instead can break Tableau connector behavior",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names signed per-tool connector packages whose signing certificates expire and must be renewed on a schedule",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Power BI certification requires documented customer demand via a public ideas-forum thread and submission by pull request to Microsoft's connector repository",
+        "evidence": "It says only 'Certified status requires Microsoft's review.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that certification transfers distribution but not support, with first-line connectivity issues routed back to the data-source owner",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects admitting arbitrary customer SQL onto the shared production ClickHouse cluster, naming the blast radius across the whole application",
+        "evidence": "'Pointing the driver straight at the shared cluster is a security hole... BI workloads hurt every other customer.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends single-tenant or per-organization engine instances fronted by one wire-protocol endpoint as the fix for the isolation and connectivity problems at once",
+        "evidence": "It proposes a gateway on the shared cluster, not per-org instances.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names engine drift as a distinct risk: a query engine changing results between releases or depending on enabled settings, which a vendor's own regression suite never covers across arbitrary customer query shapes",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a connection-setup page per supported client covering the URL template, the driver class or download, the auth method, and TLS stated as an explicit requirement rather than left to client defaults",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies enterprise agent fleets as the most demanding agent-consumer type present and requires designing for it, noting a surface safe for unattended fleets serves supervised assistants for free but not the reverse.",
+        "evidence": "Says \"most demanding type\" but never states the asymmetry that a fleet-safe surface serves supervised assistants for free.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires testing that write tools are actually absent under the read-only flag rather than trusting the configuration, citing a documented vendor bug where a read-only flag failed to omit write tools.",
+        "evidence": "\"GitHub issue #2156, where the read-only flag failed to omit write tools\"; \"try to call each write tool by name directly\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that annotations such as readOnlyHint are client hints and not enforcement.",
+        "evidence": "\"annotations are hints, never security controls. Enforcement belongs server-side.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires agent and session attribution on every write, with asynchronous audit logging so it adds no request latency.",
+        "evidence": "\"Write it asynchronously so it adds no latency\"; session ID, agent identity",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the human as the principal - the agent operates under the employee's own permissions plus agent and session context - and rejects creating separate agent accounts.",
+        "evidence": "\"the human stays the principal, with no separate agent accounts\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires immutable audit logs regardless of approval outcome.",
+        "evidence": "\"keep it immutable\"; record includes \"Outcome\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires server-side enforcement on the grounds that the customer's own platform team controls and can swap the client.",
+        "evidence": "\"a user or operator can bypass them by switching clients\"; \"the bank's platform team may not control it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Addresses the mirrored internal catalog: registry metadata and version history must stay accurate because machines re-consume it to apply policy, not just humans browsing.",
+        "evidence": "\"Banks mirror your entry into an allowlisted catalog, and machines then apply policy to it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags tool-description text itself as an attack surface for prompt injection and tool poisoning that a lockdown mode does not cover, warranting sanitization.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends risk-tiered server-side policy gates given unattended overnight agents, rather than leaving human-in-the-loop approval as the top control.",
+        "evidence": "\"risk-tiered server-side policy gates, is the answer. It gets promoted the moment background agents run unattended.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies enterprise agent fleets as the most demanding agent-consumer type present and requires designing for it, noting a surface safe for unattended fleets serves supervised assistants for free but not the reverse.",
+        "evidence": "Overnight runs are discussed, but the point that a fleet-safe surface serves supervised assistants for free is not made.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires testing that write tools are actually absent under the read-only flag rather than trusting the configuration, citing a documented vendor bug where a read-only flag failed to omit write tools.",
+        "evidence": "It prescribes a test that calls every write tool name directly and asserts rejection, but cites no vendor bug.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that annotations such as readOnlyHint are client hints and not enforcement.",
+        "evidence": "\"`readOnlyHint` is advisory... clients must treat annotations as untrusted\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires agent and session attribution on every write, with asynchronous audit logging so it adds no request latency.",
+        "evidence": "It requires attribution per call but says nothing about asynchronous logging.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the human as the principal - the agent operates under the employee's own permissions plus agent and session context - and rejects creating separate agent accounts.",
+        "evidence": "It uses `sub` plus `act`, but never rejects separate agent accounts, and it proposes a separate read-only registry entry.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires immutable audit logs regardless of approval outcome.",
+        "evidence": "\"Log it for allowed calls and for denied ones\" and \"append-only storage\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires server-side enforcement on the grounds that the customer's own platform team controls and can swap the client.",
+        "evidence": "It prefers backend enforcement, but the swap-the-client rationale is not given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Addresses the mirrored internal catalog: registry metadata and version history must stay accurate because machines re-consume it to apply policy, not just humans browsing.",
+        "evidence": "\"Publish a per-version tool manifest... The mirrored entry is what the bank's platform team reviews\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags tool-description text itself as an attack surface for prompt injection and tool poisoning that a lockdown mode does not cover, warranting sanitization.",
+        "evidence": "\"changes a tool description (a tool-poisoning vector)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends risk-tiered server-side policy gates given unattended overnight agents, rather than leaving human-in-the-loop approval as the top control.",
+        "evidence": "It proposes scopes, budgets and a kill switch, but no risk-tiered policy gates.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
