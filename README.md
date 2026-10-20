@@ -134,6 +134,7 @@ This collection covers the full developer-platform surface.
 ### SDKs and client libraries
 
 - [`sdk-portfolio-strategy`](./skills/sdk-portfolio-strategy): Decides which languages get official SDKs and in what order, with build model, support tiers, versioning, and end-of-life policy.
+- [`sdk-package-publishing`](./skills/sdk-package-publishing): Plans and hardens SDK publishing to npm, PyPI, Maven Central, NuGet, Go, crates.io and Docker Hub, plus dependency-confusion-safe private package consumption.
 
 ### Developer portal
 
