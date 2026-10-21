@@ -97,6 +97,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `samber/developer-platform-skills@developer-portal-design`         | _(macro)_ The portal as a product surface: information architecture for evaluators and integrators, the signup-to-first-call path governed by time to first call, where each self-service surface is placed, RBAC and tenancy, build vs buy           |
 | `samber/developer-platform-skills@api-test-mode-design`            | The test/sandbox mode integrators build against: soft test-mode toggle vs hard separate sandbox, test-key prefixing, magic test values and simulated personas, on-demand test events, deterministic time, reset and seeding, graduation to live       |
+| `samber/developer-platform-skills@sample-app-strategy`             | _(macro)_ The sample-code portfolio: which quickstart repos, reference apps, deploy templates and playgrounds exist per developer job and language, named owners, sandbox-run CI and dependency cadence, archive-with-redirect rules, one canonical sample index |
 | `samber/developer-platform-skills@integration-error-observability` | What an integrator can see when _their_ integration breaks: per-integration logs with replay, correlation IDs surviving into a support ticket, error-rate aggregation per key or app, partner notification with cooldowns, a provider-side fleet view |
 | `samber/developer-platform-skills@api-status-communication`        | What the whole platform tells all consumers: status-page component modeling, monitoring-driven status, pull and push channels, incident-update cadence, public postmortems, SLA/SLO reporting                                                         |
 
@@ -126,12 +127,13 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 | `samber/developer-platform-skills@developer-platform-career`  | Candidate side - breaking into an API PM, platform engineer, or partner/integration engineer role, interview prep, offer evaluation |
 | `samber/developer-platform-skills@developer-platform-hiring`  | Employer side - scorecard and job posting, interview loop design, sourcing, compensation stance                                     |
 
-**The altitude rule.** Seven skills sit at macro altitude, and each shares subject keywords with a tactical sibling:
+**The altitude rule.** Eight skills sit at macro altitude, and each shares subject keywords with a tactical sibling:
 
 - `api-integration-surface-strategy` decides which surfaces exist before any per-surface skill runs.
 - `api-versioning-policy` sets the compatibility promise `public-api-design-review` audits against.
 - `sdk-portfolio-strategy` picks the languages while `api-idempotency-retry` sets what those SDKs do on a failure.
 - `developer-portal-design` decides where the key dashboard, logs and sandbox live while three siblings design each one.
+- `sample-app-strategy` decides which sample repos exist and when they retire, while `api-test-mode-design` builds the sandbox they run against.
 - `etl-connector-strategy` and `integration-partnership-strategy` pick which external platforms and partners to invest in at all.
 - `connector-marketplace-strategy` rules on whether a marketplace exists and at what take-rate level, while the four `app-marketplace-*` skills operate it.
 

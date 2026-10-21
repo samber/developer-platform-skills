@@ -4,12 +4,13 @@ Route only from the declared scopes below. Every "do not route here" line comes 
 
 Nothing here is ranked, and nothing in it should be. Scope is a match test, not a ratio. Ranking lives in the kickoff's short-list and routine set, where several skills compete for one session (see `samber/developer-platform-skills@developer-platform-kickoff` § 4 and § 7).
 
-Seven skills sit at macro altitude:
+Eight skills sit at macro altitude:
 
 - `api-integration-surface-strategy`
 - `api-versioning-policy`
 - `sdk-portfolio-strategy`
 - `developer-portal-design`
+- `sample-app-strategy`
 - `etl-connector-strategy`
 - `integration-partnership-strategy`
 - `connector-marketplace-strategy`
@@ -134,6 +135,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: designing or restructuring a portal, console or API dashboard, cutting time to first call, deciding where each self-service surface sits, portal search, RBAC and tenancy, build vs buy.
 - Do not route here: internal service catalogs; designing any individual surface the portal hosts - each has its own sibling.
 
+### `samber/developer-platform-skills@sample-app-strategy`
+
+- Route here: which sample apps, quickstart repos, reference apps, starter or deploy templates and playgrounds to keep; too many or broken sample repos; who owns samples; CI and dependency cadence for sample repos; archiving or redirecting samples; a sample gallery or `samples create` CLI.
+- Do not route here: quality and CI tier of snippets inside docs pages (`samber/developer-relations-skills@docs-code-sample-standards`), which SDK languages exist (`sdk-portfolio-strategy`), writing one quickstart page (`samber/developer-relations-skills@developer-quickstart-guide`), the sandbox itself (`api-test-mode-design`).
+
 ### `samber/developer-platform-skills@api-test-mode-design`
 
 - Route here: designing a sandbox or test mode, choosing the isolation model, magic test values and simulated personas, on-demand test events, reset and seeding, graduation to live.
@@ -213,6 +219,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **api-versioning-policy vs public-api-design-review** - "What are we allowed to change?" → policy. "Is this surface well-designed?" → review. A review that finds no agreed breaking-change definition escalates up to the policy.
 - **sdk-portfolio-strategy vs api-idempotency-retry** - "Which SDKs first?" → portfolio. "What should the SDK do on a 503?" → idempotency-retry.
 - **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
+- **sample-app-strategy vs sdk-portfolio-strategy / api-test-mode-design** - "Which sample repos do we keep, and in which languages?" → samples. "Which SDK languages exist?" → SDK portfolio. "What do the samples run against?" → test mode. SDK tiers feed sample coverage; never the reverse.
 - **developer-portal-design vs api-auth-key-management / api-test-mode-design / integration-error-observability / api-reference-quality** - "Where does the key dashboard live and what else belongs on that page?" → portal. "What does a key look like and how does rotation work?" → key management. The portal decides which self-service surfaces exist and where; each sibling designs one of them.
 - **connector-marketplace-strategy vs the four app-marketplace skills** - "Should we build one?" and "what take-rate?" → strategy. "How do we collect it?" → monetization-model. "What must a listing contain?" → listing-standards. "What gets rejected?" → review. "How do we launch it?" → launch-marketing.
 - **integration-partnership-strategy vs partner-app-onboarding / etl-connector-strategy / integration-listing-optimization** - "Which partners matter?" → strategy. "How does a partner get from signup to first app?" → onboarding. "How do we get listed on their ETL catalog?" → etl-connector-strategy. "Why is our listing not converting?" → listing-optimization.
