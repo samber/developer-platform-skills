@@ -355,6 +355,7 @@ Out of scope by design, not gaps to fill later:
 
 - Server or client code generation.
 - CLI implementation and argument-parser code; `cli-interface-design` covers the CLI's design layer only.
+- Skill-writing quality, and standalone skill collections with no code version to lock to; `agent-skill-offering` covers shipping a skill beside the code it documents.
 - Spec generation.
 - Gateway and throttling infrastructure configuration.
 - Internal service catalogs.
