@@ -3,7 +3,7 @@
 
 Usage:
     python3 check-skill-version.py <expected-version> [--skills-dir skills]
-        [--manifest PATH ...] [--tag-prefix PREFIX] [--write]
+        [--manifest PATH ...] [--tag-prefix PREFIX] [--allow-nested KEY ...] [--write]
 
 <expected-version> is the code version being released: the git tag ("v1.4.0"), or the
 value the release tool already bumped (package.json, pyproject.toml, a version constant).
@@ -13,7 +13,8 @@ component prefix first, for monorepo tags such as "acme-cli-v1.4.0" or "cli/v1.4
 Checks, all offline and read-only:
   1. Every SKILL.md under <skills-dir> (any depth) has a quoted `metadata.version`
      equal to the expected version. `metadata` must be a flat block map of strings,
-     as the Agent Skills spec defines it.
+     as the Agent Skills spec defines it, except for keys named with --allow-nested
+     (for example `openclaw`, which OpenClaw reads only as an indented block map).
   2. No SKILL.md carries a top-level `version:` key (the spec has none), and no
      `metadata` key appears twice.
   3. A body line "Skill version: X.Y.Z" outside code fences (the agent-visible copy of
@@ -31,7 +32,8 @@ job: a bump made after tagging never reaches the tag. Line endings and a trailin
 comment on the version line (such as "# x-release-please-version") are preserved.
 
 Supported frontmatter: block maps and block scalars. Multi-line plain scalars and flow
-maps under `metadata` are rejected rather than guessed at.
+maps (`{...}`, `[...]`) under `metadata` are rejected rather than guessed at: strict
+YAML loaders, including the spec's reference validator, refuse flow style.
 
 Exit codes: 0 all checks pass; 1 at least one mismatch or unreadable SKILL.md in check
 mode; 2 usage error, or any read/parse error under --write (nothing is written then).
@@ -57,6 +59,8 @@ BLOCK_SCALAR = re.compile(r"^[|>][+-]?\d*$")
 KEY_LINE = re.compile(r"^(?P<indent>[ \t]*)(?P<key>[A-Za-z0-9_.-]+)\s*:(?P<rest>.*)$")
 # The agent-visible version line in the SKILL.md body, e.g. "Skill version: 1.4.0".
 BODY_VERSION = re.compile(r"^(?P<lead>[\s>*_`-]*Skill version:[*_`]*\s*`?)(?P<value>[^\s`*_]+)(?P<tail>.*)$")
+# A flow collection value (`{...}` or `[...]`) after `key:` or a `- ` list marker.
+FLOW_VALUE = re.compile(r"^[ \t]*(?:-[ \t]+)?(?:[A-Za-z0-9_.-]+[ \t]*:[ \t]*)?[{\[]")
 # Split "value  # comment" so a trailing comment survives a rewrite.
 VALUE_AND_COMMENT = re.compile(r"^(?P<value>.*?)(?P<comment>\s+#.*)?$")
 
@@ -103,13 +107,14 @@ def indent_of(line):
     return len(line) - len(line.lstrip(" \t"))
 
 
-def locate_versions(lines, end):
+def locate_versions(lines, end, allow_nested=()):
     """Find the top-level `version` line and the `metadata.version` line.
 
     Returns (top_level_index, metadata_index, metadata_version_index, child_indent),
     each None when absent. Only direct children of `metadata` count, the first
-    `version` child wins, block-scalar text is skipped, and nested or flow maps under
-    `metadata` raise SkillParseError instead of being guessed at.
+    `version` child wins, block-scalar text is skipped, a nested block map is skipped
+    only under a key listed in allow_nested, and any other nested or flow map under
+    `metadata` raises SkillParseError instead of being guessed at.
     """
     top_level = None
     metadata_at = None
@@ -117,6 +122,7 @@ def locate_versions(lines, end):
     child_indent = None
     in_metadata = False
     skip_deeper_than = None
+    in_allowed_nested = False
     seen_keys = set()
     for index in range(1, end):
         line = lines[index]
@@ -124,8 +130,11 @@ def locate_versions(lines, end):
             continue
         depth = indent_of(line)
         if skip_deeper_than is not None and depth > skip_deeper_than:
+            if in_allowed_nested and FLOW_VALUE.match(line):
+                raise SkillParseError(f"line {index + 1}: flow value inside an allowed nested metadata block; use block style")
             continue
         skip_deeper_than = None
+        in_allowed_nested = False
         match = KEY_LINE.match(line)
         rest = match.group("rest").split(" #", 1)[0].strip() if match else ""
         if depth == 0:
@@ -146,12 +155,17 @@ def locate_versions(lines, end):
             child_indent = depth
         if depth != child_indent or not match:
             raise SkillParseError(f"line {index + 1}: metadata must be a flat map of string values")
+        key = match.group("key")
         if not rest:
-            raise SkillParseError(f"line {index + 1}: nested map under metadata.{match.group('key')}; the spec allows string values only")
-        if BLOCK_SCALAR.match(rest):
+            if key not in allow_nested:
+                raise SkillParseError(f"line {index + 1}: nested map under metadata.{key}; the spec allows string values only (pass --allow-nested {key} to accept it)")
+            skip_deeper_than = depth
+            in_allowed_nested = True
+        elif rest[:1] in ("{", "["):
+            raise SkillParseError(f"line {index + 1}: flow value under metadata.{key}; write it as an indented block map")
+        elif BLOCK_SCALAR.match(rest):
             skip_deeper_than = depth
             continue
-        key = match.group("key")
         if key in seen_keys:
             raise SkillParseError(f"line {index + 1}: metadata.{key} appears twice; YAML readers keep the last one")
         seen_keys.add(key)
@@ -191,10 +205,10 @@ def body_versions(lines, end):
     return found
 
 
-def write_skill_version(skill_file, expected):
+def write_skill_version(skill_file, expected, allow_nested=()):
     """Set metadata.version (quoted), adding the key or the metadata map when absent."""
     lines, newline, end = read_skill(skill_file)
-    _, metadata_at, version_at, child_indent = locate_versions(lines, end)
+    _, metadata_at, version_at, child_indent = locate_versions(lines, end, allow_nested)
     if version_at is not None:
         line = lines[version_at]
         match = KEY_LINE.match(line)
@@ -232,7 +246,7 @@ def write_manifest_version(manifest, expected):
     write_raw(manifest, text.replace("\n", newline) + newline)
 
 
-def check_skills(skills_dir, expected, prefix, errors, warnings):
+def check_skills(skills_dir, expected, prefix, errors, warnings, allow_nested=()):
     skill_files = sorted(skills_dir.rglob("SKILL.md"))
     if not skill_files:
         errors.append(f"no SKILL.md found under {skills_dir}/ - is --skills-dir right?")
@@ -240,7 +254,7 @@ def check_skills(skills_dir, expected, prefix, errors, warnings):
     for skill_file in skill_files:
         try:
             lines, _, end = read_skill(skill_file)
-            top_level, _, version_at, _ = locate_versions(lines, end)
+            top_level, _, version_at, _ = locate_versions(lines, end, allow_nested)
             value, quoted = version_value(lines[version_at]) if version_at is not None else (None, False)
         except (OSError, UnicodeDecodeError, SkillParseError) as err:
             errors.append(f"{skill_file}: {err}")
@@ -292,9 +306,13 @@ def main():
     parser.add_argument("--skills-dir", default="skills", help="directory holding the skills (default: skills)")
     parser.add_argument("--manifest", action="append", default=[], help="JSON manifest to check; repeatable")
     parser.add_argument("--tag-prefix", default="", help="component prefix to strip, e.g. 'acme-cli-' or 'cli/'")
+    parser.add_argument("--allow-nested", action="append", default=[], metavar="KEY", help="metadata key allowed to hold a nested block map, e.g. 'openclaw'; repeatable")
     parser.add_argument("--write", action="store_true", help="rewrite versions to the expected version before checking")
     args = parser.parse_args()
 
+    if "version" in args.allow_nested:
+        print("error: --allow-nested version is not allowed; metadata.version must stay a quoted string", file=sys.stderr)
+        return EXIT_USAGE
     expected = normalize(args.expected_version, args.tag_prefix)
     if not expected:
         print("error: expected version is empty", file=sys.stderr)
@@ -316,12 +334,12 @@ def main():
             for skill_file in sorted(skills_dir.rglob("SKILL.md")):
                 current = skill_file
                 lines, _, end = read_skill(skill_file)
-                _, _, version_at, _ = locate_versions(lines, end)
+                _, _, version_at, _ = locate_versions(lines, end, args.allow_nested)
                 if version_at is not None:
                     version_value(lines[version_at])
             for skill_file in sorted(skills_dir.rglob("SKILL.md")):
                 current = skill_file
-                write_skill_version(skill_file, expected)
+                write_skill_version(skill_file, expected, args.allow_nested)
             for manifest in args.manifest:
                 current = manifest
                 if Path(manifest).is_file():
@@ -333,7 +351,7 @@ def main():
 
     errors = []
     warnings = []
-    count = check_skills(skills_dir, expected, args.tag_prefix, errors, warnings)
+    count = check_skills(skills_dir, expected, args.tag_prefix, errors, warnings, args.allow_nested)
     for manifest in args.manifest:
         path = Path(manifest)
         if not path.is_file():

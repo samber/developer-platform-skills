@@ -1,6 +1,6 @@
 ---
 name: agent-skill-offering
-description: Ships an Agent Skill (SKILL.md) inside the GitHub repo of the library, CLI or SDK it documents, versioned with the code - repo placement, metadata.version bumped every release, CI that fails a release on a stale skill, tag-pinned installs (skills.sh, gh skill, plugin marketplaces), multi-harness plugin manifests, skill vs MCP vs CLI. Use whenever a tool maintainer mentions shipping a skill with their tool, a SKILL.md for their library, keeping a skill in sync with releases, or plugin.json versions for a skill beside code - even if they never say "agent skill". Not for standalone skill collections. Do NOT use for CLI command or --json design - use samber/developer-platform-skills@cli-interface-design; nor for MCP servers - use samber/developer-platform-skills@mcp-server-offering.
+description: Ships an Agent Skill (SKILL.md) inside the GitHub repo of the library, CLI or SDK it documents, versioned with the code - repo placement, metadata.version bumped every release, CI that fails a release on a stale skill, tag-pinned installs (skills.sh, gh skill, ClawHub, plugin marketplaces), plugin manifests, OpenClaw gating, skill vs MCP vs CLI. Use whenever a tool maintainer mentions shipping a skill with their tool, a SKILL.md for their library, keeping a skill in sync with releases, or plugin.json versions for a skill beside code - even if they never say "agent skill". Not for standalone skill collections. Do NOT use for CLI command or --json design - use samber/developer-platform-skills@cli-interface-design; nor for MCP servers - use samber/developer-platform-skills@mcp-server-offering.
 license: MIT
 metadata:
   author: Samuel Berthe
@@ -131,7 +131,7 @@ Run on every pull request that touches code or skills, and again before the tag 
 The version-equality / spec-validation tie is real: both are one offline command, and each catches a failure the other cannot.
 
 1. **Spec validation** - the reference validator from the spec (pin its version) or an equivalent frontmatter check. Fails on a missing field, a name not matching its directory, a description over 1,024 characters.
-2. **Version equality** - copy this skill's `scripts/check-skill-version.py` (Python 3.8+ standard library; `--help` lists the options) into the tool's repo. Run it on every pull request against the version source of truth (for tag-only repos, the last tag: `git describe --tags --abbrev=0`), on the release PR or in `make release` before tagging, and once more on the tag as a backstop (a tag-time failure means deleting the tag). It checks `metadata.version`, the `Skill version:` body line and every manifest; it rejects a top-level `version:`, unquoted, duplicate or nested `metadata` keys, and strips monorepo tag prefixes with `--tag-prefix`.
+2. **Version equality** - copy this skill's `scripts/check-skill-version.py` (Python 3.8+ standard library; `--help` lists the options) into the tool's repo. Run it on every pull request against the version source of truth (for tag-only repos, the last tag: `git describe --tags --abbrev=0`), on the release PR or in `make release` before tagging, and once more on the tag as a backstop (a tag-time failure means deleting the tag). It checks `metadata.version`, the `Skill version:` body line and every manifest; it rejects a top-level `version:`, unquoted, duplicate, flow-style or nested `metadata` keys (`--allow-nested openclaw` admits OpenClaw's block), and strips monorepo tag prefixes with `--tag-prefix`.
 3. **Content check** - on the artifact the release will publish (built with the release version stamping, before any publish step), compare the skill against a machine-readable surface (`<tool> help --json`, nested `--help`, the exported API). Stale direction: every command, flag and identifier the skill names must exist. New-surface direction: every public command added since the last release must be mentioned or allowlisted. For libraries, compile or type-check every code block. Also assert the packaged artifact contains `skills/`. Projects whose version checks stayed green have shipped skills naming APIs removed a major version earlier; this gate is what catches that.
 4. **Changed-surface check** (pull requests) - when the public surface changes and no file under `skills/` changed, fail or require an explicit "skill unaffected" label.
 5. **Golden agent tasks** (starved) - a handful of real tasks an agent runs against the built tool with the skill installed, scored on two numbers: trigger rate (did the agent load the skill) and pass rate. Highest effort, so it is always deferred. Promote it once agents are a main user channel, or after the first issue traced to a wrong skill.
@@ -163,16 +163,19 @@ Per-channel commands, ref syntax, lockfiles, update behaviour and manifest field
 - Every manifest's `version` comes from step 4's source of truth and is checked by gate 2.
 - Copy author, homepage, repository and license from the repo's existing package metadata; never publish placeholder owners.
 - Keep the skill itself harness-neutral: no harness-only frontmatter, no harness paths, capabilities described rather than tool names.
+- OpenClaw needs no extra manifest: it installs the repo as a bundle at a git tag (from any of the manifests above) or a ClawHub publish. Add a `metadata.openclaw` block map whose `requires.bins` block list names the tool's binary, so OpenClaw offers the skill only where the tool is installed. It is a spec deviation; allow it in gate 2 only for that key. Keys, ClawHub publishing and the MIT-0 catch: [references/distribution-channels.md](references/distribution-channels.md) § OpenClaw and ClawHub.
+- Every `plugin.json` and `marketplace.json` field, source form and directory check: [references/plugin-manifest-fields.md](references/plugin-manifest-fields.md).
 
 ## 8. List and measure
 
 - Install-ranked directories (skills.sh) index a repo's `SKILL.md` folders and rank them by installs reported by the installer's telemetry. The README install section is the listing's real driver.
 - Add repository topics that directory crawlers index (`agent-skills`, `gemini-cli-extension`), and link the install command from the tool's official docs.
+- Submit the plugin to Anthropic's Claude plugin directory from `https://claude.ai/directory/manage` (paid claude.ai plan): **Submit new**, **Plugin bundle**, the repository, then **Validate**. Set **Branch or tag** to the `stable` branch moved only at release (step 6): left empty it follows the default branch, so every merge becomes a candidate version that goes live once auto-publish is on or someone selects **Publish**. A tracked tag must be re-pointed each release. A README under 40 words or a missing license blocks the listing.
 - Publish under the organization's own namespace and claim obvious name variants: agents hallucinate skill names, and attackers register them.
 - Expect public security audits of listed skills, and pass them before launch:
   - Keep `scripts/` few, readable, offline and dependency-pinned; call the tool's own published CLI instead of bundling binaries.
   - Never tell the agent to fetch and follow remote content: the most common audit finding on benign skills is exactly that indirect-injection exposure.
-  - Run an agent-skill security scanner in CI next to the spec validator, and sign release tags.
+  - Run an agent-skill security scanner such as Snyk Agent Scan (`snyk-agent-scan`) in CI next to the spec validator, and sign release tags. Workflow step, token and flag cautions: [references/ci-release-gates.md](references/ci-release-gates.md) § Gate 6.
 - Measure correctness, not reach. Install counts measure interest and can be inflated. The signals that matter: trigger and pass rate per release (gate 5), issues tagged "agent misuse", and how often the drift notice fires.
 
 ## Failure modes
@@ -185,6 +188,9 @@ Per-channel commands, ref syntax, lockfiles, update behaviour and manifest field
 - SKILL.md is a pasted flag reference -> stale on the next release; defer WHAT to `--help`.
 - Version bumped by hand in five manifests -> one drifts; generate them (step 4).
 - `version` set in both the plugin manifest and its marketplace entry -> one silently wins; keep it in the plugin manifest.
+- ClawHub publish without `--version` -> the registry picks its own next patch; pass the release version.
+- `metadata.openclaw` copied in flow form (`{...}` or `[...]`) -> strict YAML validators reject the file; convert to block style.
+- Directory submission tracking the default branch -> every merge becomes a candidate listing version; track the `stable` branch.
 - CI checks only version strings -> a removed flag ships in a "matching" skill; add gate 3.
 - Version gate run only on the tag -> the stale tag already exists; run it before tagging.
 - Skill script downloads and runs remote code -> fails audits and opens an injection path.
