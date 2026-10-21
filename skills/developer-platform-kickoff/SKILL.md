@@ -77,6 +77,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 | Skill                                                    | Route here when the task is…                                                                                                                                                                                                               |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `samber/developer-platform-skills@api-versioning-policy` | _(macro)_ The versioning and deprecation policy: version scheme, a written breaking-change definition, notice windows by audience, RFC 9745/8594 sunset signalling, enforcement, breaking-change governance                                |
+| `samber/developer-platform-skills@public-roadmap-strategy` | _(macro)_ Whether and how to publish the product roadmap to customers or the public: posture from no page to dated quarters, commitment vocabulary capped by release phase, the exclusion gate, disclaimers and sales citation rules, voting boards, the slipped-item playbook |
 | `samber/developer-platform-skills@api-reference-quality` | Audit the published reference at the endpoint level against the spec surface - undocumented operations, parameters, response codes and errors, missing examples, snippet parity - then stop the drift with CI lint and contract-test gates |
 
 ### Integration surfaces
@@ -127,7 +128,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 | `samber/developer-platform-skills@developer-platform-career`  | Candidate side - breaking into an API PM, platform engineer, or partner/integration engineer role, interview prep, offer evaluation |
 | `samber/developer-platform-skills@developer-platform-hiring`  | Employer side - scorecard and job posting, interview loop design, sourcing, compensation stance                                     |
 
-**The altitude rule.** Eight skills sit at macro altitude, and each shares subject keywords with a tactical sibling:
+**The altitude rule.** Nine skills sit at macro altitude, and each shares subject keywords with a tactical sibling:
 
 - `api-integration-surface-strategy` decides which surfaces exist before any per-surface skill runs.
 - `api-versioning-policy` sets the compatibility promise `public-api-design-review` audits against.
@@ -136,6 +137,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 - `sample-app-strategy` decides which sample repos exist and when they retire, while `api-test-mode-design` builds the sandbox they run against.
 - `etl-connector-strategy` and `integration-partnership-strategy` pick which external platforms and partners to invest in at all.
 - `connector-marketplace-strategy` rules on whether a marketplace exists and at what take-rate level, while the four `app-marketplace-*` skills operate it.
+- `public-roadmap-strategy` decides what the platform publicly promises next, while `api-versioning-policy` and `api-status-communication` handle what it retires and what is broken now.
 
 Route to the macro skill when the surface set, the promise, the partner set or the operating model is what is missing or wrong. Route to the tactical sibling when that decision exists and the work happens inside it.
 
@@ -145,7 +147,7 @@ Name the gap explicitly when the task needs something no skill covers (§ 8). Sa
 
 Before naming a gap, check whether the task belongs to a sibling `samber` collection instead of this one:
 
-- **DevRel practice** - site-wide docs information architecture, the quickstart page, tutorials, developer content and SEO, community and events, open-source strategy, agent-facing documentation, the product-to-platform decision upstream of a marketplace, or the devtools revenue model → recommend installing `samber/developer-relations-skills`.
+- **DevRel practice** - site-wide docs information architecture, the quickstart page, tutorials, developer content and SEO, community and events, open-source strategy, agent-facing documentation, docs translation, routing developer feedback to product and back, coordinated vulnerability disclosure for an open-source SDK, the product-to-platform decision upstream of a marketplace, or the devtools revenue model → recommend installing `samber/developer-relations-skills`.
 - **Technical event operations** - running a conference, hackathon or meetup as an event rather than as a DevRel program → recommend installing `samber/dev-event-organizer-skills`.
 
 Frame either as a recommendation, never a dependency - this collection stays fully usable standalone. See `references/skill-routing.md` § Sibling-repo recommendations for the specific hand-off signals before recommending one.
@@ -174,10 +176,10 @@ The user's question at that moment is never "which of these exists" but "which o
 2. **Self-serve error contract** - `api-error-design`, `api-idempotency-retry`. Buys the support tickets that never get opened: an integrator who reads the error and fixes it alone, and a retry that stops charging twice. Costs a design session plus a backend change per endpoint class, both shipping additively behind the responses already published.
 3. **Published policy surfaces** - `api-rate-limit-policy`, `api-auth-key-management`, `oauth2-provider-design`. Buys the documented contract that prevents the noisy-neighbour and leaked-credential incidents before either happens. Costs a policy session plus gateway or credential-store configuration and a rotation path - and a published limit or scope is reversible only in the generous direction.
 4. **Debuggability** - `integration-error-observability`, `api-test-mode-design`, `api-status-communication`. Buys integrators who diagnose themselves at 2am and partners who learn their integration broke before the customer tells them. Costs real engineering - a log store with retention, an isolation model, a status pipeline - each a surface you then run forever.
-5. **Second surfaces** - `webhook-platform-design`, `sdk-portfolio-strategy`, `sdk-package-publishing`, `developer-portal-design`. Buys the step-change in what integration feels like: push instead of polling, an idiomatic client instead of raw HTTP, one place answering every self-service question. Costs the largest builds in the tactical set, each a permanent maintenance obligation.
+5. **Second surfaces** - `webhook-platform-design`, `sdk-portfolio-strategy`, `sdk-package-publishing`, `sample-app-strategy`, `developer-portal-design`. Buys the step-change in what integration feels like: push instead of polling, an idiomatic client instead of raw HTTP, a maintained sample to fork instead of a blank file, one place answering every self-service question. Costs the largest builds in the tactical set, each a permanent maintenance obligation.
 6. **Specialist protocol surfaces** - `public-graphql-api-design`, `public-grpc-api-design`, `sql-jdbc-access-design`, `bulk-data-sharing-design`, `mcp-server-offering`. Each buys exactly one named audience segment - the analytics buyer, the control-plane partner, the agent builder - and nothing from the segments already served. Costs a whole new surface with its own versioning, limits and on-call.
 7. **Ecosystem execution** - `partner-app-onboarding`, `integration-listing-optimization`, `app-marketplace-review`, `app-marketplace-listing-standards`, `app-marketplace-monetization-model`, `app-marketplace-launch-marketing`. Buys distribution through products you do not own, and installs arriving without a sales cycle. Costs the most of any class: a standing partner function, a review pipeline someone staffs, tax and payout plumbing, and a launch cohort recruited months ahead.
-8. **Macro strategy** - `api-integration-surface-strategy`, `api-versioning-policy`, `etl-connector-strategy`, `integration-partnership-strategy`, `connector-marketplace-strategy`. Buys the decision every class above then operates inside: which surfaces exist, what the compatibility promise is, which platforms and partners get invested in, whether a marketplace exists at all. Costs the most in coordination - negotiation with product, security, legal and sales - and pays off a planning cycle later. Nothing here is reversible by the platform team alone.
+8. **Macro strategy** - `api-integration-surface-strategy`, `api-versioning-policy`, `public-roadmap-strategy`, `etl-connector-strategy`, `integration-partnership-strategy`, `connector-marketplace-strategy`. Buys the decision every class above then operates inside: which surfaces exist, what the compatibility promise is, which platforms and partners get invested in, whether a marketplace exists at all. Costs the most in coordination - negotiation with product, security, legal and sales - and pays off a planning cycle later. Nothing here is reversible by the platform team alone.
 
 The axes disagree, which is exactly where the choice is hard:
 
@@ -369,7 +371,7 @@ Out of scope by design, not gaps to fill later:
 - **Forcing a match.** Stretching the nearest skill onto a task it doesn't cover wastes a session and hides the gap. Say "none fits" and name the gap - or point at `samber/developer-relations-skills` / `samber/dev-event-organizer-skills` when the task belongs to one of them (see § 3).
 - **Re-interviewing on a warm start.** The artifact exists precisely so questions aren't repeated. Ask only the session goal.
 - **Routing from a guessed scope.** Route only from the declared scopes in `references/skill-routing.md`; a plausible guess misroutes confidently.
-- **Routing an altitude, not a subject.** Seven macro skills share subject keywords with a tactical sibling each. Sending "should we even build an app marketplace" to `app-marketplace-review`, or "what counts as a breaking change" to `public-api-design-review`, hands the user a session at the wrong altitude - the answer arrives correct and useless.
+- **Routing an altitude, not a subject.** Nine macro skills share subject keywords with a tactical sibling each. Sending "should we even build an app marketplace" to `app-marketplace-review`, or "what counts as a breaking change" to `public-api-design-review`, hands the user a session at the wrong altitude - the answer arrives correct and useless.
 - **Routing a side, not a subject.** Three pairs split by which side of the table the user sits on:
   - Operator vs submitter on a marketplace.
   - Issuer vs consumer on OAuth.

@@ -228,3 +228,4 @@ See also:
 - `samber/developer-platform-skills@public-api-design-review` - refer when the friction is the API surface itself, which no portal redesign fixes.
 - `samber/developer-platform-skills@api-integration-surface-strategy` - refer for the umbrella decision on which surfaces exist at all, which feeds into step 4's placement decisions.
 - `samber/developer-platform-skills@sample-app-strategy` - refer for which sample apps, templates and playgrounds the portal links to, and how they stay current.
+- `samber/developer-platform-skills@public-roadmap-strategy` - refer for whether a roadmap page exists at all and what it may promise; this skill only places it.

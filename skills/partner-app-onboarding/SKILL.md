@@ -135,6 +135,7 @@ These rungs stack - each layers on the previous, never replaces it.
 - **Default rung: docs plus a self-serve community forum.** Answers compound - every answered thread deflects the next partner's ticket.
 - **Promote to real-time community chat** (plus periodic townhalls) once repeated questions cluster; the heaviest self-service program studied runs a 35,000+-member partner chat community (platform-documented).
 - **Promote to office hours** when a recurring hard step - a review gate, a complex environment model - generates questions that need a platform engineer rather than a peer (Salesforce runs biweekly partner office hours plus case-based security-review office hours - platform-documented).
+  Design the program itself - slot, rotation, scope card - with samber/developer-relations-skills@developer-office-hours-program.
 - **Starved option: named partner managers.** Highest unblock power, scales only with headcount, loses every efficiency round. Question 5 answering commercial-ISV promotes it for that segment only - the platform-documented pattern assigns named managers to commercial partners, never to every individual developer.
 
 ## 6. Sequence commercial decisions late

@@ -238,3 +238,4 @@ See also, same collection:
 - `samber/developer-platform-skills@webhook-platform-design` - the webhook delivery machinery a status webhook-push channel rides on, and delivery status of webhooks themselves.
 - `samber/developer-platform-skills@integration-error-observability` - per-integration error surfacing to an individual consumer, versus this skill's one-to-many broadcast.
 - `samber/developer-platform-skills@developer-portal-design` - the portal that links the status page as a first-class entry point.
+- `samber/developer-platform-skills@public-roadmap-strategy` - a slipped roadmap item is a roadmap update, not an incident; it never goes on the status page.

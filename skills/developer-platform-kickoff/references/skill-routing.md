@@ -4,10 +4,11 @@ Route only from the declared scopes below. Every "do not route here" line comes 
 
 Nothing here is ranked, and nothing in it should be. Scope is a match test, not a ratio. Ranking lives in the kickoff's short-list and routine set, where several skills compete for one session (see `samber/developer-platform-skills@developer-platform-kickoff` § 4 and § 7).
 
-Eight skills sit at macro altitude:
+Nine skills sit at macro altitude:
 
 - `api-integration-surface-strategy`
 - `api-versioning-policy`
+- `public-roadmap-strategy`
 - `sdk-portfolio-strategy`
 - `developer-portal-design`
 - `sample-app-strategy`
@@ -89,6 +90,11 @@ Both kinds are collected under Boundary pairs below.
 
 - Route here: picking a version scheme, writing the breaking-change definition, setting notice windows, sunset signalling and enforcement, breaking-change governance. Asks the API paradigm first - REST's version-and-sunset and GraphQL's continuous evolution are different policies.
 - Do not route here: client SDK versioning, which is plain SemVer; auditing whether one surface is well-designed.
+
+### `samber/developer-platform-skills@public-roadmap-strategy`
+
+- Route here: "should we publish a roadmap", "our sales team keeps promising features", a GitHub roadmap repo or roadmap page, now/next/later vs dated quarters, roadmap disclaimers, a feature voting board on the roadmap, announcing a slipped or cancelled roadmap item.
+- Do not route here: internal roadmap planning or prioritization; triaging individual feature requests (`samber/developer-relations-skills@developer-feedback-loop`); deprecation notices (`api-versioning-policy`); joint roadmaps with a partner (`integration-partnership-strategy`).
 
 ### `samber/developer-platform-skills@api-reference-quality`
 
@@ -243,6 +249,11 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 
   Scan frequency and freshness expectations decide between the first two; who the customer already pays decides the third.
 
+- **public-roadmap-strategy vs api-versioning-policy vs api-status-communication** - three horizons of telling consumers about change:
+  - What is coming, and how firmly → public-roadmap-strategy. "Customers keep asking what's next" routes here.
+  - What is going away, on what notice → api-versioning-policy. "We need to retire /v1" routes here.
+  - What is broken right now → api-status-communication.
+
 - **api-rate-limit-policy vs public-graphql-api-design** - GraphQL's depth and complexity ceilings are schema design decisions and live with the schema; the published quota, tier numbers, headers and 429 contract are policy and live with rate-limit-policy. A GraphQL cost model needs both, in that order.
 - **partner-app-onboarding vs app-marketplace-review vs api-test-mode-design** - three stages of the same partner's path:
   - Getting to a first submission → onboarding.
@@ -275,6 +286,9 @@ Recommend the sibling repo, not a skill above, when the task is:
 - Making an existing SDK, API or protocol consumable by a coding agent unattended → `samber/developer-relations-skills@coding-agent-docs-optimization`. Distinct from `mcp-server-offering`, which builds a _new_ agent-facing tool surface rather than documenting an existing one.
 - Whether to evolve from product to platform at all, and how far up the openness ladder → `samber/developer-relations-skills@developer-ecosystem-strategy`. Upstream of `connector-marketplace-strategy`: the ecosystem question is "should we be a platform", the marketplace question is "should we run a catalog".
 - The devtools revenue model, or what to open-source → `samber/developer-relations-skills@devtools-business-model`, `samber/developer-relations-skills@oss-distribution-strategy`.
+- Feature requests scattered across community, support and sales channels, and closing the loop with requesters → `samber/developer-relations-skills@developer-feedback-loop`. Distinct from `public-roadmap-strategy`, which publishes what those decisions add up to.
+- A vulnerability report against an open-source SDK, SECURITY.md, CVE and advisory, the disclosure embargo → `samber/developer-relations-skills@oss-security-disclosure`. `sdk-package-publishing` still ships the patched version.
+- Whether and how to translate the docs, and keeping translations current → `samber/developer-relations-skills@docs-localization-strategy`.
 - Anything else in the DevRel practice - developer content and SEO, community, events, open-source program operations. Start at `samber/developer-relations-skills@developer-relations-kickoff` when the boundary is unclear.
 
 Distinguish from this collection: `developer-platform-skills` owns what the platform _is_ and what integrating with it costs; `developer-relations-skills` owns how developers hear about it, learn it, and stay. "Design our webhook platform" stays here; "write the tutorial that teaches it" goes to the sibling.
