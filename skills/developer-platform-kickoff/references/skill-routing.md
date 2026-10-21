@@ -186,6 +186,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: improving your own listing's conversion or search rank on someone else's marketplace, winning installs and compliant reviews, badge pursuit, defending rank against decay.
 - Do not route here: anything the marketplace _operator_ decides - standards, review, monetization, promotion.
 
+### `samber/developer-platform-skills@zapier-playbook`
+
+- Route here: building or auditing your integration on Zapier, writing it with the zapier-platform CLI or Platform UI, converting UI to CLI, an inherited private Zapier integration, polling vs instant triggers, a Zapier trigger that misses or duplicates records, submitting to Zapier's app directory, the 90-day beta, Partner Program tier, publishing Zap templates, the Workflow Element embed, promoting, migrating or deprecating integration versions.
+- Do not route here: building Zaps as an end user; Make, n8n or Power Automate connectors; whether to embed an iPaaS in your own product (`connector-marketplace-strategy`); listing copy and ranking on marketplaces generally (`integration-listing-optimization`); the webhook subscription API a REST hook trigger calls (`webhook-platform-design`).
+
 ### `samber/developer-platform-skills@connector-marketplace-strategy`
 
 - Route here: "should we build an app store", "is our ecosystem ready", setting the take-rate _level_ and curation posture, governing third-party apps at the policy level, seeding a two-sided ecosystem from zero, build vs join vs embedded iPaaS.
@@ -254,6 +259,8 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **developer-portal-design vs api-auth-key-management / api-test-mode-design / integration-error-observability / api-reference-quality** - "Where does the key dashboard live and what else belongs on that page?" → portal. "What does a key look like and how does rotation work?" → key management. The portal decides which self-service surfaces exist and where; each sibling designs one of them.
 - **connector-marketplace-strategy vs the four app-marketplace skills** - "Should we build one?" and "what take-rate?" → strategy. "How do we collect it?" → monetization-model. "What must a listing contain?" → listing-standards. "What gets rejected?" → review. "How do we launch it?" → launch-marketing.
 - **integration-partnership-strategy vs partner-app-onboarding / etl-connector-strategy / integration-listing-optimization** - "Which partners matter?" → strategy. "How does a partner get from signup to first app?" → onboarding. "How do we get listed on their ETL catalog?" → etl-connector-strategy. "Why is our listing not converting?" → listing-optimization.
+
+- **zapier-playbook vs integration-listing-optimization / webhook-platform-design** - one platform's mechanics vs the generic method. "How do we build, review, launch and version our Zapier app?" → the playbook. "Why does our listing not convert across marketplaces?" → listing-optimization. "How does our API let anyone subscribe to events?" → webhook-platform-design, which the playbook's REST hook triggers then call.
 
 **Split by side of the table:**
 
