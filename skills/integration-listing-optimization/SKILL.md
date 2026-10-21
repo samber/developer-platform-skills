@@ -4,7 +4,7 @@ description: Optimize a B2B SaaS vendor's own listing on a third-party app marke
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Integration Listing Optimization

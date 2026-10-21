@@ -4,7 +4,7 @@ description: Design the OAuth2 authorization-server surface a B2B SaaS offers th
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # OAuth2 Provider Design
