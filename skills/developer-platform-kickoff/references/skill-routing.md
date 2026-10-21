@@ -136,6 +136,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: "customers want to run us in CI", an official or `setup-<tool>` GitHub Action, `action.yml` inputs and outputs, moving the `v1` tag, immutable releases, a node24 major for the vendor's action, GitHub OIDC token exchange into the vendor API, script injection or tag hijack in the vendor's action, adopting a community-written action, Marketplace listing of an action, GitLab CI/CD components, CircleCI orbs, Bitbucket Pipes or Azure DevOps tasks for the product.
 - Do not route here: a team's own workflows or pinning third-party actions; the CLI the action wraps (`cli-interface-design`); publishing the CLI's binaries or packages (`sdk-package-publishing`); API key formats and rotation (`api-auth-key-management`); GitHub Apps and Marketplace app listings.
 
+### `samber/developer-platform-skills@terraform-provider-offering`
+
+- Route here: "customers want to manage us with Terraform", should we build or take over a Terraform/OpenTofu provider, terraform-plugin-framework resource design, a perpetual diff or "inconsistent result after apply" in our provider, import blocks and state upgrades, provider acceptance tests, GPG signing and publishing on the Terraform Registry or OpenTofu Registry, Partner or Partner Premier badge, deprecating or renaming provider resources and attributes.
+- Do not route here: writing Terraform modules or HCL for the platform's own infrastructure; Pulumi, Crossplane or CDK offerings; which surfaces to offer at all (`api-integration-surface-strategy`); SDK and CLI package registries (`sdk-package-publishing`); the API's own versioning policy (`api-versioning-policy`).
+
 ### `samber/developer-platform-skills@sql-jdbc-access-design`
 
 - Route here: "offer SQL access to customers", a JDBC/ODBC endpoint, connecting customer BI tools to product data, tenant isolation, the schema-stability contract, pricing a SQL add-on.
@@ -258,6 +263,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **cli-interface-design vs sdk-package-publishing** - "What does the CLI do and promise?" → CLI design. "How do we ship its binaries and packages?" → publishing.
 - **github-action-offering vs cli-interface-design / sdk-package-publishing** - "What does our action take, output and promise, and how do we tag and secure it?" → action. "What do the CLI's commands and exit codes promise?" → CLI. "How do we publish the CLI binary to registries and Homebrew?" → publishing. A new action usually needs all three, in that reverse order: CLI contract, then binaries, then the action.
 - **agent-skill-offering vs mcp-server-offering / cli-interface-design** - "Ship instructions that teach agents to drive our CLI or SDK, versioned with it" → agent skill. "Expose our product as remote tools an agent without a shell can call" → MCP. "Design the CLI's commands and `--json` contract" → CLI design. The skill's step 1 hands the other two over.
+- **terraform-provider-offering vs sdk-package-publishing / api-integration-surface-strategy** - "Should we have an IaC surface at all, next to SDKs and a CLI?" → surface strategy. "Design, sign and publish our Terraform/OpenTofu provider" → provider offering. "Ship our Go SDK or CLI binary to a registry" → publishing; the provider's own GoReleaser and Registry flow stays with the provider skill.
 - **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
 - **sdk-package-publishing vs github-engagement-playbook** - "How does the package reach the registry?" → publishing. "How does the GitHub Release reach watchers, and what do we post in Discussions?" → playbook. One release usually needs both, publishing first.
 - **stackoverflow-playbook vs api-error-design** - "What does the error response say?" → error design. "Where does the fix live when a developer pastes that error into a search engine?" → the playbook's canonical Q&A, mirrored by `samber/developer-relations-skills@developer-troubleshooting-docs` on your own docs.
@@ -309,6 +315,7 @@ Propose a chain only when the task genuinely decomposes this way; never fabricat
 - `connector-marketplace-strategy` → `app-marketplace-listing-standards` → `app-marketplace-review` → `app-marketplace-monetization-model` → `app-marketplace-launch-marketing` - settle whether and at what curation level, write what a listing must contain, define what gets rejected, wire up collection, then launch. Launching first means grandfathering every early listing.
 - `developer-portal-design` → `api-test-mode-design` → `api-reference-quality` - the portal decides which self-service surfaces exist and where; the sandbox and the reference each land in a slot it already reserved.
 - `integration-partnership-strategy` → `etl-connector-strategy` or `integration-listing-optimization` - the prioritization decides which platform is worth the connector or listing. Building either first pays a maintenance tax for a platform nobody's customers use.
+- `public-api-design-review` → `api-idempotency-retry` → `terraform-provider-offering` - the provider's readiness gate fails on non-idempotent creates and fields never read back; fix the contract before mapping it to resources, or every gap ships as a perpetual diff.
 - `webhook-platform-design` → `integration-error-observability` - delivery logs and replay are the debugging surface for the deliveries the first link creates.
 
 ## Sibling-repo recommendations

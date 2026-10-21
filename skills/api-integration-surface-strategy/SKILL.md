@@ -164,6 +164,8 @@ Embedded components have no dedicated sibling - record their design decisions in
 
 A technology-specific agent skill shipped with a CLI, SDK or library belongs to `samber/developer-platform-skills@agent-skill-offering`, which keeps it versioned with the code.
 
+A Terraform/OpenTofu provider for the platform's long-lived configuration objects belongs to `samber/developer-platform-skills@terraform-provider-offering`. It derives from the REST contract like SDKs do, so schedule it after that contract is stable; record here only its audience (platform and infrastructure teams) and demand signal.
+
 ## 6. Set the review cadence
 
 A surface plan decays as signals change. Set a review date (quarterly is a reasonable default) and the triggers that reopen it early:
