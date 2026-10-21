@@ -121,6 +121,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: "should we ship an MCP server", choosing which tools to expose, securing write-capable tools, versioning the tool surface, judging MCP ROI.
 - Do not route here: code-generation MCP builder skills, which scaffold what this skill specifies; documenting an existing SDK for agent consumption (`samber/developer-relations-skills@coding-agent-docs-optimization`).
 
+### `samber/developer-platform-skills@cli-interface-design`
+
+- Route here: designing or reviewing the CLI that wraps the platform's API, "mirror every endpoint as a command", command naming and grammar, `--json` output and exit codes, CLI login and CI tokens, `--wait` and pagination flags, deprecating CLI flags, CLI telemetry, a CLI that hangs in CI or confuses coding agents.
+- Do not route here: whether to offer a CLI at all (`api-integration-surface-strategy`), API-less tools, argument-parser code, an Agent Skill shipped with the CLI (`agent-skill-offering`), shipping the CLI's binaries or packages - Homebrew tap, deb/rpm, release binaries, registries (`sdk-package-publishing`).
+
 ### `samber/developer-platform-skills@sql-jdbc-access-design`
 
 - Route here: "offer SQL access to customers", a JDBC/ODBC endpoint, connecting customer BI tools to product data, tenant isolation, the schema-stability contract, pricing a SQL add-on.
@@ -224,6 +229,8 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **api-integration-surface-strategy vs every per-surface skill** - "Should we add GraphQL?" → strategy. "Design our GraphQL schema" → the surface skill. A surface question arriving with no audience attached is always the strategy question in disguise.
 - **api-versioning-policy vs public-api-design-review** - "What are we allowed to change?" → policy. "Is this surface well-designed?" → review. A review that finds no agreed breaking-change definition escalates up to the policy.
 - **sdk-portfolio-strategy vs api-idempotency-retry** - "Which SDKs first?" → portfolio. "What should the SDK do on a 503?" → idempotency-retry.
+- **cli-interface-design vs mcp-server-offering** - "What commands, flags and `--json` contract does our CLI expose?" → CLI. "Which tools does our MCP server expose?" → MCP. Both may serve agents; which surface to build first is `api-integration-surface-strategy`.
+- **cli-interface-design vs sdk-package-publishing** - "What does the CLI do and promise?" → CLI design. "How do we ship its binaries and packages?" → publishing.
 - **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
 - **sample-app-strategy vs sdk-portfolio-strategy / api-test-mode-design** - "Which sample repos do we keep, and in which languages?" → samples. "Which SDK languages exist?" → SDK portfolio. "What do the samples run against?" → test mode. SDK tiers feed sample coverage; never the reverse.
 - **developer-portal-design vs api-auth-key-management / api-test-mode-design / integration-error-observability / api-reference-quality** - "Where does the key dashboard live and what else belongs on that page?" → portal. "What does a key look like and how does rotation work?" → key management. The portal decides which self-service surfaces exist and where; each sibling designs one of them.
@@ -288,6 +295,7 @@ Recommend the sibling repo, not a skill above, when the task is:
 - The devtools revenue model, or what to open-source → `samber/developer-relations-skills@devtools-business-model`, `samber/developer-relations-skills@oss-distribution-strategy`.
 - Feature requests scattered across community, support and sales channels, and closing the loop with requesters → `samber/developer-relations-skills@developer-feedback-loop`. Distinct from `public-roadmap-strategy`, which publishes what those decisions add up to.
 - A vulnerability report against an open-source SDK, SECURITY.md, CVE and advisory, the disclosure embargo → `samber/developer-relations-skills@oss-security-disclosure`. `sdk-package-publishing` still ships the patched version.
+- A maintainer burning out on an open-source SDK, wanting to step back, hand it over or archive it → `samber/developer-relations-skills@oss-maintainer-sustainability`. `sdk-package-publishing` still owns the registry deprecation and ownership mechanics it triggers.
 - Whether and how to translate the docs, and keeping translations current → `samber/developer-relations-skills@docs-localization-strategy`.
 - Anything else in the DevRel practice - developer content and SEO, community, events, open-source program operations. Start at `samber/developer-relations-skills@developer-relations-kickoff` when the boundary is unclear.
 
