@@ -102,7 +102,12 @@ Both kinds are collected under Boundary pairs below.
 ### `samber/developer-platform-skills@sdk-portfolio-strategy`
 
 - Route here: "which SDK languages first", generated vs handwritten, tiering and promoting community SDKs, sunsetting a low-usage SDK, release cadence, decoupling SDK SemVer from API versioning.
-- Do not route here: single-SDK ergonomics, registry publishing mechanics, whether to offer SDKs as a surface at all.
+- Do not route here: single-SDK ergonomics, registry publishing mechanics (`samber/developer-platform-skills@sdk-package-publishing`), whether to offer SDKs as a surface at all.
+
+### `samber/developer-platform-skills@sdk-package-publishing`
+
+- Route here: npm, PyPI, Maven Central (Java, Kotlin, Scala, Gradle plugins), NuGet, Go module, crates.io, pub.dev (Dart, Flutter), RubyGems, Packagist, Hex, SwiftPM, CocoaPods, React Native library or Docker Hub publishing; shipping CLI and other binaries (GoReleaser, cargo-dist, Homebrew tap, winget, Scoop, deb/rpm, `curl | sh` installers, signing and notarization); tag-triggered CI auto-publishing; Artifactory or another private feed for any ecosystem; moving CI off long-lived registry tokens to trusted publishing; dist-tags and pre-releases; rolling back a bad package version; publishing to a private feed; `.npmrc`, `pip.conf`, `settings.xml`, `nuget.config`, `GOPRIVATE` or `.cargo/config.toml` for private packages; dependency confusion.
+- Do not route here: which SDK languages to build (`sdk-portfolio-strategy`), API version numbering (`api-versioning-policy`), deploying the platform's own service images, app-store or extension-marketplace submission, MCP registry listing (`mcp-server-offering`), CLI command, flag and output design (`cli-interface-design`), the agent skill bundled in the package (`agent-skill-offering`), registry discoverability and README codes (`samber/developer-relations-skills@oss-distribution-strategy`).
 
 ### `samber/developer-platform-skills@mcp-server-offering`
 
@@ -207,6 +212,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **api-integration-surface-strategy vs every per-surface skill** - "Should we add GraphQL?" → strategy. "Design our GraphQL schema" → the surface skill. A surface question arriving with no audience attached is always the strategy question in disguise.
 - **api-versioning-policy vs public-api-design-review** - "What are we allowed to change?" → policy. "Is this surface well-designed?" → review. A review that finds no agreed breaking-change definition escalates up to the policy.
 - **sdk-portfolio-strategy vs api-idempotency-retry** - "Which SDKs first?" → portfolio. "What should the SDK do on a 503?" → idempotency-retry.
+- **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
 - **developer-portal-design vs api-auth-key-management / api-test-mode-design / integration-error-observability / api-reference-quality** - "Where does the key dashboard live and what else belongs on that page?" → portal. "What does a key look like and how does rotation work?" → key management. The portal decides which self-service surfaces exist and where; each sibling designs one of them.
 - **connector-marketplace-strategy vs the four app-marketplace skills** - "Should we build one?" and "what take-rate?" → strategy. "How do we collect it?" → monetization-model. "What must a listing contain?" → listing-standards. "What gets rejected?" → review. "How do we launch it?" → launch-marketing.
 - **integration-partnership-strategy vs partner-app-onboarding / etl-connector-strategy / integration-listing-optimization** - "Which partners matter?" → strategy. "How does a partner get from signup to first app?" → onboarding. "How do we get listed on their ETL catalog?" → etl-connector-strategy. "Why is our listing not converting?" → listing-optimization.
@@ -272,4 +278,4 @@ Distinguish from this collection: `developer-platform-skills` owns what the plat
 
 Recommend the sibling repo when the task is running a conference, hackathon, meetup or developer event as an _event_ - venue, sponsorship, CFP, speakers, budget, logistics - rather than as a DevRel program. A marketplace launch keynote is `app-marketplace-launch-marketing` here; producing the conference the keynote happens at is the sibling repo.
 
-Coverage gaps this collection does not fill at all - per-marketplace submission playbooks, package-registry publishing mechanics, API changelog automation, federated-graph offerings, API monetization, connector certification programs, and deployed-integration health monitoring - are listed with their boundaries in `samber/developer-platform-skills@developer-platform-kickoff` § 8. Name the gap from there; never promise a skill exists.
+Coverage gaps this collection does not fill at all - per-marketplace submission playbooks, API changelog automation, federated-graph offerings, API monetization, connector certification programs, and deployed-integration health monitoring - are listed with their boundaries in `samber/developer-platform-skills@developer-platform-kickoff` § 8. Name the gap from there; never promise a skill exists.

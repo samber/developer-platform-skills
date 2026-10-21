@@ -182,7 +182,7 @@ Decide, in writing, how community SDKs are treated: welcomed and listed with an 
 - [references/tier-promotion-and-eol-playbooks.md](references/tier-promotion-and-eol-playbooks.md) - MCP/Azure/Google tier frameworks, two-tier disclaimer language, the Anthropic-Ruby promotion case, AWS's five phases, Sentry's three-phase EOL playbook, worked timelines.
 - [references/language-order-and-versioning-cases.md](references/language-order-and-versioning-cases.md) - documented language-order cases by vertical, Stripe's three decoupled versioning policies, release-cadence norms, the SDK-to-API mapping table artifact.
 
-Registry-specific publishing mechanics (package discoverability, readme codes, download-trust signals) sit outside this skill's scope: it decides which SDKs exist, not how each package is published. The third-party `sdk-dx` skill on skills.sh covers single-SDK ergonomics and polish - this skill decides the portfolio, not any one SDK's developer experience.
+Registry publishing mechanics (trusted publishing, dist-tags, rollback, private feeds) belong to `samber/developer-platform-skills@sdk-package-publishing`: this skill decides which SDKs exist, that one ships each package. The third-party `sdk-dx` skill on skills.sh covers single-SDK ergonomics and polish - this skill decides the portfolio, not any one SDK's developer experience.
 
 See also, same owner:
 
