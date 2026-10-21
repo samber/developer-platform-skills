@@ -168,6 +168,7 @@ Per-channel commands, ref syntax, lockfiles, update behaviour and manifest field
 
 - Install-ranked directories (skills.sh) index a repo's `SKILL.md` folders and rank them by installs reported by the installer's telemetry. The README install section is the listing's real driver.
 - Add repository topics that directory crawlers index (`agent-skills`, `gemini-cli-extension`), and link the install command from the tool's official docs.
+- Submit the plugin to Anthropic's Claude plugin directory at `https://claude.ai/directory/manage/new/plugin`: paste the GitHub repository URL, and Anthropic runs validation checks before listing it.
 - Publish under the organization's own namespace and claim obvious name variants: agents hallucinate skill names, and attackers register them.
 - Expect public security audits of listed skills, and pass them before launch:
   - Keep `scripts/` few, readable, offline and dependency-pinned; call the tool's own published CLI instead of bundling binaries.
