@@ -193,3 +193,7 @@ See also, same collection:
 - `samber/developer-platform-skills@developer-portal-design` - the docs and portal surface the whole journey runs through.
 - `samber/developer-platform-skills@integration-partnership-strategy` - which partners to court in the first place, upstream of onboarding them.
 - `samber/developer-platform-skills@app-marketplace-launch-marketing` - recruiting and promoting a founding cohort; this journey is what those recruited partners then walk, so a launch date sets the deadline the provisioning and support rungs here must meet.
+
+See also, sibling collection:
+
+- `samber/developer-relations-skills@developer-certification-program` - designs the partner-engineer credential itself (exam format, proctoring, renewal, verification) once the credentialed education loop is chosen here.
