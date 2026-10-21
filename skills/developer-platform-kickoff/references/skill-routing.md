@@ -211,6 +211,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: launching a marketplace, sizing the founding cohort, coordinating the reveal and partner embargoes, featured-app and spotlight rotations, allocating MDF and per-partner co-marketing budget.
 - Do not route here: a vendor optimizing its own listing on someone else's marketplace.
 
+### `samber/developer-platform-skills@github-presence-playbook`
+
+- Route here: "our GitHub stars are flat", whether and how to run Discussions on an SDK repository, getting releases noticed by watchers, which topics to set, a board deck that reports stars, a request to buy, trade or reward stars.
+- Do not route here: the launch itself (`samber/developer-relations-skills@oss-launch`), README text and sidebar copy (`samber/developer-relations-skills@readme-optimization`), a profile page (`samber/developer-relations-skills@github-profile-optimization`), the cross-channel distribution mix (`samber/developer-relations-skills@oss-distribution-strategy`), publishing the package behind a release (`sdk-package-publishing`).
+
 ### `samber/developer-platform-skills@developer-platform-career`
 
 - Route here: breaking into an API Product Manager, Platform Engineer/Architect, or Partner/Integration Engineer role, prepping a platform-engineering or API-PM interview, evaluating an offer against this track's own ladder and comp benchmark.
@@ -238,6 +243,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **cli-interface-design vs sdk-package-publishing** - "What does the CLI do and promise?" → CLI design. "How do we ship its binaries and packages?" → publishing.
 - **agent-skill-offering vs mcp-server-offering / cli-interface-design** - "Ship instructions that teach agents to drive our CLI or SDK, versioned with it" → agent skill. "Expose our product as remote tools an agent without a shell can call" → MCP. "Design the CLI's commands and `--json` contract" → CLI design. The skill's step 1 hands the other two over.
 - **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
+- **sdk-package-publishing vs github-presence-playbook** - "How does the package reach the registry?" → publishing. "How does the GitHub Release reach watchers, and what do we post in Discussions?" → playbook. One release usually needs both, publishing first.
 - **sample-app-strategy vs sdk-portfolio-strategy / api-test-mode-design** - "Which sample repos do we keep, and in which languages?" → samples. "Which SDK languages exist?" → SDK portfolio. "What do the samples run against?" → test mode. SDK tiers feed sample coverage; never the reverse.
 - **developer-portal-design vs api-auth-key-management / api-test-mode-design / integration-error-observability / api-reference-quality** - "Where does the key dashboard live and what else belongs on that page?" → portal. "What does a key look like and how does rotation work?" → key management. The portal decides which self-service surfaces exist and where; each sibling designs one of them.
 - **connector-marketplace-strategy vs the four app-marketplace skills** - "Should we build one?" and "what take-rate?" → strategy. "How do we collect it?" → monetization-model. "What must a listing contain?" → listing-standards. "What gets rejected?" → review. "How do we launch it?" → launch-marketing.
@@ -303,6 +309,7 @@ Recommend the sibling repo, not a skill above, when the task is:
 - A vulnerability report against an open-source SDK, SECURITY.md, CVE and advisory, the disclosure embargo → `samber/developer-relations-skills@oss-security-disclosure`. `sdk-package-publishing` still ships the patched version.
 - A maintainer burning out on an open-source SDK, wanting to step back, hand it over or archive it → `samber/developer-relations-skills@oss-maintainer-sustainability`. `sdk-package-publishing` still owns the registry deprecation and ownership mechanics it triggers.
 - Whether and how to translate the docs, and keeping translations current → `samber/developer-relations-skills@docs-localization-strategy`.
+- A repository about to go public, or a launch-day Trending push → `samber/developer-relations-skills@oss-launch`; the README page itself → `samber/developer-relations-skills@readme-optimization`. Distinct from `github-presence-playbook`, which tends the repository's GitHub surfaces after launch.
 - Anything else in the DevRel practice - developer content and SEO, community, events, open-source program operations. Start at `samber/developer-relations-skills@developer-relations-kickoff` when the boundary is unclear.
 
 Distinguish from this collection: `developer-platform-skills` owns what the platform _is_ and what integrating with it costs; `developer-relations-skills` owns how developers hear about it, learn it, and stay. "Design our webhook platform" stays here; "write the tutorial that teaches it" goes to the sibling.
@@ -313,4 +320,4 @@ Distinguish from this collection: `developer-platform-skills` owns what the plat
 
 Recommend the sibling repo when the task is running a conference, hackathon, meetup or developer event as an _event_ - venue, sponsorship, CFP, speakers, budget, logistics - rather than as a DevRel program. A marketplace launch keynote is `app-marketplace-launch-marketing` here; producing the conference the keynote happens at is the sibling repo.
 
-Coverage gaps this collection does not fill at all - per-marketplace submission playbooks, API changelog automation, federated-graph offerings, API monetization, connector certification programs, and deployed-integration health monitoring - are listed with their boundaries in `samber/developer-platform-skills@developer-platform-kickoff` § 8. Name the gap from there; never promise a skill exists.
+Coverage gaps this collection does not fill at all - per-marketplace submission playbooks, publishing-platform playbooks beyond GitHub, API changelog automation, federated-graph offerings, API monetization, connector certification programs, and deployed-integration health monitoring - are listed with their boundaries in `samber/developer-platform-skills@developer-platform-kickoff` § 8. Name the gap from there; never promise a skill exists.
