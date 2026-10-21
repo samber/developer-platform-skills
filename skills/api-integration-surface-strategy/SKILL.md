@@ -162,6 +162,8 @@ The gRPC surface's design belongs to `samber/developer-platform-skills@public-gr
 
 Embedded components have no dedicated sibling - record their design decisions in the plan itself. A CLI's design belongs to `samber/developer-platform-skills@cli-interface-design`; record here only its audience and the dual-audience promise (Plaid's 2025 pattern - readable tables for humans, JSON with clean stdout/stderr separation for agents).
 
+A technology-specific agent skill shipped with a CLI, SDK or library belongs to `samber/developer-platform-skills@agent-skill-offering`, which keeps it versioned with the code.
+
 ## 6. Set the review cadence
 
 A surface plan decays as signals change. Set a review date (quarterly is a reasonable default) and the triggers that reopen it early:

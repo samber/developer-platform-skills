@@ -126,6 +126,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: designing or reviewing the CLI that wraps the platform's API, "mirror every endpoint as a command", command naming and grammar, `--json` output and exit codes, CLI login and CI tokens, `--wait` and pagination flags, deprecating CLI flags, CLI telemetry, a CLI that hangs in CI or confuses coding agents.
 - Do not route here: whether to offer a CLI at all (`api-integration-surface-strategy`), API-less tools, argument-parser code, an Agent Skill shipped with the CLI (`agent-skill-offering`), shipping the CLI's binaries or packages - Homebrew tap, deb/rpm, release binaries, registries (`sdk-package-publishing`).
 
+### `samber/developer-platform-skills@agent-skill-offering`
+
+- Route here: shipping a SKILL.md with a library, CLI or SDK; keeping a skill's version in sync with releases; CI that fails a release on a stale skill; tag-pinned skill installs; plugin.json, marketplace.json, Codex, Cursor or Gemini manifests for a skill beside code; skill vs MCP vs CLI for a coding-agent audience.
+- Do not route here: designing the MCP server itself (`mcp-server-offering`); the CLI's commands, `--json` or exit codes (`cli-interface-design`); docs written for coding agents (`samber/developer-relations-skills@coding-agent-docs-optimization`); standalone skill collections with no code version.
+
 ### `samber/developer-platform-skills@sql-jdbc-access-design`
 
 - Route here: "offer SQL access to customers", a JDBC/ODBC endpoint, connecting customer BI tools to product data, tenant isolation, the schema-stability contract, pricing a SQL add-on.
@@ -231,6 +236,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **sdk-portfolio-strategy vs api-idempotency-retry** - "Which SDKs first?" → portfolio. "What should the SDK do on a 503?" → idempotency-retry.
 - **cli-interface-design vs mcp-server-offering** - "What commands, flags and `--json` contract does our CLI expose?" → CLI. "Which tools does our MCP server expose?" → MCP. Both may serve agents; which surface to build first is `api-integration-surface-strategy`.
 - **cli-interface-design vs sdk-package-publishing** - "What does the CLI do and promise?" → CLI design. "How do we ship its binaries and packages?" → publishing.
+- **agent-skill-offering vs mcp-server-offering / cli-interface-design** - "Ship instructions that teach agents to drive our CLI or SDK, versioned with it" → agent skill. "Expose our product as remote tools an agent without a shell can call" → MCP. "Design the CLI's commands and `--json` contract" → CLI design. The skill's step 1 hands the other two over.
 - **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
 - **sample-app-strategy vs sdk-portfolio-strategy / api-test-mode-design** - "Which sample repos do we keep, and in which languages?" → samples. "Which SDK languages exist?" → SDK portfolio. "What do the samples run against?" → test mode. SDK tiers feed sample coverage; never the reverse.
 - **developer-portal-design vs api-auth-key-management / api-test-mode-design / integration-error-observability / api-reference-quality** - "Where does the key dashboard live and what else belongs on that page?" → portal. "What does a key look like and how does rotation work?" → key management. The portal decides which self-service surfaces exist and where; each sibling designs one of them.
