@@ -25,6 +25,7 @@ Boundaries:
 - Feature-request intake, dedup and per-request replies belong to `samber/developer-relations-skills@developer-feedback-loop`, which also sets the per-request status vocabulary this skill reuses (`not planned`). This skill only decides whether the roadmap exposes a voting or comment surface.
 - Release-note wording belongs to `samber/developer-relations-skills@changelog-writing`. This skill only wires roadmap items to changelog entries.
 - Deprecation notice windows and sunset mechanics belong to `samber/developer-platform-skills@api-versioning-policy`.
+- What each preview phase promises customers (SLA, change notice, data terms) is the stage contract written by `samber/developer-platform-skills@api-beta-program`. This skill only shows which phase an item is in.
 
 **Memory (advised):** Store the chosen posture, vocabulary, exclusion gate and sales rules in `developer-platform-context.md` when memory lives in a file; otherwise use the harness memory. Later runs (a slipped item, a new board) then start from the policy instead of re-deriving it.
 
