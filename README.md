@@ -139,6 +139,7 @@ This collection covers the full developer-platform surface.
 ### Developer portal
 
 - [`developer-portal-design`](./skills/developer-portal-design): Designs an external developer portal: information architecture, the signup-to-first-call path, self-service surface placement, search, RBAC, and build-vs-buy.
+- [`sample-app-strategy`](./skills/sample-app-strategy): Decides the sample-code portfolio: which quickstart repos, reference apps, templates and playgrounds exist, per developer job and language, with owners, CI-tested freshness, and archive rules.
 
 ### Status and incident communication
 

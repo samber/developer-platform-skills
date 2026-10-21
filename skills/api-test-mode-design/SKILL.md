@@ -203,3 +203,4 @@ What replaces them there: the published integrator-isolation guidance exists, an
 - [references/magic-value-catalogs.md](references/magic-value-catalogs.md) - worked magic-value catalogs across payments, communications, and data aggregation, with the design lessons each teaches.
 - [references/graduation-gates-and-cutover-checklist.md](references/graduation-gates-and-cutover-checklist.md) - five compliance-gate shapes, the cutover checklist, the five pitfalls, and reactive go-back triggers.
 - `samber/developer-platform-skills@api-integration-surface-strategy` - the umbrella decision that schedules each surface; every surface it schedules needs a test mode before partners go live, and this skill designs that layer.
+- `samber/developer-platform-skills@sample-app-strategy` - the sample portfolio whose CI and playgrounds run against this sandbox; flows the sandbox cannot simulate leave samples compile-only.
