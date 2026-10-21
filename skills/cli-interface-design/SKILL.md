@@ -233,3 +233,4 @@ Track after launch, as trends rather than thresholds: share of API traffic from 
 - [references/agent-readiness-and-incidents.md](references/agent-readiness-and-incidents.md) - agent requirements, CLI-versus-MCP evidence with quality labels, documented failures.
 - [references/cli-design-spec-template.md](references/cli-design-spec-template.md) - the deliverable.
 - `samber/developer-platform-skills@developer-portal-design` - where the CLI reference, install guide and token page live.
+- `samber/developer-platform-skills@github-action-offering` - the GitHub Action and CI ports that wrap this CLI; its contract inherits the CLI's flags and exit codes.

@@ -220,3 +220,4 @@ The setup passes when all hold:
 
 - `samber/developer-platform-skills@api-integration-surface-strategy` - for a SaaS platform choosing among all its integration surfaces; this skill starts once an agent skill is chosen.
 - `samber/developer-platform-skills@sdk-package-publishing` - registry publishing mechanics for the package the skill rides in.
+- `samber/developer-platform-skills@github-action-offering` - the same release discipline (frozen contract, immutable tags, CI gates) for the tool's official GitHub Action.

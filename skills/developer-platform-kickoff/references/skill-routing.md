@@ -114,7 +114,7 @@ Both kinds are collected under Boundary pairs below.
 ### `samber/developer-platform-skills@sdk-package-publishing`
 
 - Route here: npm, PyPI, Maven Central (Java, Kotlin, Scala, Gradle plugins), NuGet, Go module, crates.io, pub.dev (Dart, Flutter), RubyGems, Packagist, Hex, SwiftPM, CocoaPods, React Native library or Docker Hub publishing; shipping CLI and other binaries (GoReleaser, cargo-dist, Homebrew tap, winget, Scoop, deb/rpm, `curl | sh` installers, signing and notarization); tag-triggered CI auto-publishing; Artifactory or another private feed for any ecosystem; moving CI off long-lived registry tokens to trusted publishing; dist-tags and pre-releases; rolling back a bad package version; publishing to a private feed; `.npmrc`, `pip.conf`, `settings.xml`, `nuget.config`, `GOPRIVATE` or `.cargo/config.toml` for private packages; dependency confusion.
-- Do not route here: which SDK languages to build (`sdk-portfolio-strategy`), API version numbering (`api-versioning-policy`), deploying the platform's own service images, app-store or extension-marketplace submission, MCP registry listing (`mcp-server-offering`), CLI command, flag and output design (`cli-interface-design`), the agent skill bundled in the package (`agent-skill-offering`), registry discoverability and README codes (`samber/developer-relations-skills@oss-distribution-strategy`).
+- Do not route here: which SDK languages to build (`sdk-portfolio-strategy`), API version numbering (`api-versioning-policy`), deploying the platform's own service images, app-store or extension-marketplace submission, MCP registry listing (`mcp-server-offering`), CLI command, flag and output design (`cli-interface-design`), the agent skill bundled in the package (`agent-skill-offering`), registry discoverability and README codes (`samber/developer-relations-skills@oss-distribution-strategy`), the vendor's GitHub Action or CI integration that customers run (`github-action-offering`).
 
 ### `samber/developer-platform-skills@mcp-server-offering`
 
@@ -124,12 +124,17 @@ Both kinds are collected under Boundary pairs below.
 ### `samber/developer-platform-skills@cli-interface-design`
 
 - Route here: designing or reviewing the CLI that wraps the platform's API, "mirror every endpoint as a command", command naming and grammar, `--json` output and exit codes, CLI login and CI tokens, `--wait` and pagination flags, deprecating CLI flags, CLI telemetry, a CLI that hangs in CI or confuses coding agents.
-- Do not route here: whether to offer a CLI at all (`api-integration-surface-strategy`), API-less tools, argument-parser code, an Agent Skill shipped with the CLI (`agent-skill-offering`), shipping the CLI's binaries or packages - Homebrew tap, deb/rpm, release binaries, registries (`sdk-package-publishing`).
+- Do not route here: whether to offer a CLI at all (`api-integration-surface-strategy`), API-less tools, argument-parser code, an Agent Skill shipped with the CLI (`agent-skill-offering`), shipping the CLI's binaries or packages - Homebrew tap, deb/rpm, release binaries, registries (`sdk-package-publishing`), the GitHub Action or CI integration wrapping the CLI (`github-action-offering`).
 
 ### `samber/developer-platform-skills@agent-skill-offering`
 
 - Route here: shipping a SKILL.md with a library, CLI or SDK; keeping a skill's version in sync with releases; CI that fails a release on a stale skill; tag-pinned skill installs; plugin.json, marketplace.json, Codex, Cursor or Gemini manifests for a skill beside code; every Claude plugin manifest field and Claude plugin directory submission checks for that plugin; OpenClaw `metadata.openclaw` gating and ClawHub publishing of a tool's skill; skill vs MCP vs CLI for a coding-agent audience.
 - Do not route here: designing the MCP server itself (`mcp-server-offering`); the CLI's commands, `--json` or exit codes (`cli-interface-design`); docs written for coding agents (`samber/developer-relations-skills@coding-agent-docs-optimization`); standalone skill collections with no code version.
+
+### `samber/developer-platform-skills@github-action-offering`
+
+- Route here: "customers want to run us in CI", an official or `setup-<tool>` GitHub Action, `action.yml` inputs and outputs, moving the `v1` tag, immutable releases, a node24 major for the vendor's action, GitHub OIDC token exchange into the vendor API, script injection or tag hijack in the vendor's action, adopting a community-written action, Marketplace listing of an action, GitLab CI/CD components, CircleCI orbs, Bitbucket Pipes or Azure DevOps tasks for the product.
+- Do not route here: a team's own workflows or pinning third-party actions; the CLI the action wraps (`cli-interface-design`); publishing the CLI's binaries or packages (`sdk-package-publishing`); API key formats and rotation (`api-auth-key-management`); GitHub Apps and Marketplace app listings.
 
 ### `samber/developer-platform-skills@sql-jdbc-access-design`
 
@@ -251,6 +256,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **sdk-portfolio-strategy vs api-idempotency-retry** - "Which SDKs first?" → portfolio. "What should the SDK do on a 503?" → idempotency-retry.
 - **cli-interface-design vs mcp-server-offering** - "What commands, flags and `--json` contract does our CLI expose?" → CLI. "Which tools does our MCP server expose?" → MCP. Both may serve agents; which surface to build first is `api-integration-surface-strategy`.
 - **cli-interface-design vs sdk-package-publishing** - "What does the CLI do and promise?" → CLI design. "How do we ship its binaries and packages?" → publishing.
+- **github-action-offering vs cli-interface-design / sdk-package-publishing** - "What does our action take, output and promise, and how do we tag and secure it?" → action. "What do the CLI's commands and exit codes promise?" → CLI. "How do we publish the CLI binary to registries and Homebrew?" → publishing. A new action usually needs all three, in that reverse order: CLI contract, then binaries, then the action.
 - **agent-skill-offering vs mcp-server-offering / cli-interface-design** - "Ship instructions that teach agents to drive our CLI or SDK, versioned with it" → agent skill. "Expose our product as remote tools an agent without a shell can call" → MCP. "Design the CLI's commands and `--json` contract" → CLI design. The skill's step 1 hands the other two over.
 - **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
 - **sdk-package-publishing vs github-engagement-playbook** - "How does the package reach the registry?" → publishing. "How does the GitHub Release reach watchers, and what do we post in Discussions?" → playbook. One release usually needs both, publishing first.
