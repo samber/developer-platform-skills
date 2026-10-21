@@ -153,3 +153,5 @@ Iterate until every gate passes:
 - `samber/developer-platform-skills@api-versioning-policy` - API versioning, which SDK SemVer stays decoupled from.
 - `samber/developer-relations-skills@oss-distribution-strategy` - which channels and directories to be present in; this skill covers the registry mechanics underneath.
 - `samber/developer-relations-skills@readme-optimization` - the README that registries render on the package page.
+- `samber/developer-platform-skills@cli-interface-design` - the CLI's commands, flags, `--json` output and exit codes; this skill ships the binary.
+- `samber/developer-platform-skills@agent-skill-offering` - the agent skill versioned and released inside the same repo as the package or CLI.
