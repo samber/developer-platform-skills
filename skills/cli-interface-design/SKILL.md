@@ -191,7 +191,7 @@ Shipping an Agent Skill inside the CLI's repo belongs to `samber/developer-platf
 
 - Version the CLI with SemVer, separately from the API. Pin each CLI release to an explicit API version and offer an override flag; the API's own policy belongs to `samber/developer-platform-skills@api-versioning-policy`.
 - Check for updates at most daily, only on a terminal, never in CI, with an env var to disable it. Never self-update without consent.
-- Binary install channels and signing sit outside this skill; package-registry publishing belongs to `samber/developer-platform-skills@sdk-package-publishing`.
+- Shipping the CLI itself - binaries per platform, Homebrew tap, deb/rpm, language registries, signing - belongs to `samber/developer-platform-skills@sdk-package-publishing`.
 
 Telemetry posture:
 

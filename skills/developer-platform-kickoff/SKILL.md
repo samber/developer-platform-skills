@@ -88,7 +88,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 | `samber/developer-platform-skills@sdk-portfolio-strategy`   | _(macro)_ Which languages get official SDKs and in what order, generated vs handwritten, official and community support tiers with a promotion gate, SDK deprecation, SemVer decoupled from API versioning                                               |
 | `samber/developer-platform-skills@sdk-package-publishing`   | Shipping SDK packages and CLI binaries to npm, PyPI, Maven Central, NuGet, Go, crates.io, pub.dev, RubyGems, Packagist, Hex, SwiftPM, CocoaPods or Docker Hub: trusted publishing and CI auto-publishing, library vs binary releases, rollback of a bad version, private feeds and dependency-confusion-safe consumption config |
 | `samber/developer-platform-skills@mcp-server-offering`      | The product's MCP server as the surface AI agents operate: build sizing, a curated 5-15 workflow-tool set, write-safety patterns, remote hosting with OAuth 2.1, tool-surface versioning, adoption telemetry                                             |
-| `samber/developer-platform-skills@cli-interface-design`     | The public CLI wrapping the API: curated workflow commands plus a raw `api` escape hatch instead of a 1:1 REST mirror, noun-verb grammar, a frozen `--json` and exit-code contract, login and CI tokens, `--wait`, severe-action guards, agent readiness, flag deprecation, telemetry posture |
+| `samber/developer-platform-skills@cli-interface-design`     | The public CLI wrapping the API: curated commands plus a raw `api` escape hatch instead of a 1:1 REST mirror, grammar, flag/env/config precedence, a frozen `--json` and exit-code contract, TTY behavior, login and CI tokens, pagination and `--wait`, errors, help, flag deprecation, telemetry, safe use by scripts and coding agents |
 | `samber/developer-platform-skills@sql-jdbc-access-design`   | Live customer-facing SQL: a JDBC/ODBC endpoint, warehouse share or hosted query surface - the architecture gate on scan economics, engine-level tenant isolation, an additive-only schema contract, BI-tool certification, pricing shape                 |
 | `samber/developer-platform-skills@bulk-data-sharing-design` | Bulk file and lake export: Parquet drops on object storage vs native warehouse/lake sharing, partitioning and schema-evolution contract, cadence and freshness posture, per-recipient credentials, residency                                             |
 | `samber/developer-platform-skills@etl-connector-strategy`   | _(macro)_ Being a source connector on customers' ETL/ELT platforms: demand-validation gate, platform selection, the build-path menu ranked by who absorbs the maintenance tax, extraction-readiness audit, honest CDC scoping, a funded maintenance plan |
@@ -353,6 +353,7 @@ No skill in the collection covers these. Name the gap; never promise or invent a
 Out of scope by design, not gaps to fill later:
 
 - Server or client code generation.
+- CLI implementation and argument-parser code; `cli-interface-design` covers the CLI's design layer only.
 - Spec generation.
 - Gateway and throttling infrastructure configuration.
 - Internal service catalogs.
