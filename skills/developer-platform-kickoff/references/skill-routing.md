@@ -295,6 +295,7 @@ Recommend the sibling repo, not a skill above, when the task is:
 - The devtools revenue model, or what to open-source → `samber/developer-relations-skills@devtools-business-model`, `samber/developer-relations-skills@oss-distribution-strategy`.
 - Feature requests scattered across community, support and sales channels, and closing the loop with requesters → `samber/developer-relations-skills@developer-feedback-loop`. Distinct from `public-roadmap-strategy`, which publishes what those decisions add up to.
 - A vulnerability report against an open-source SDK, SECURITY.md, CVE and advisory, the disclosure embargo → `samber/developer-relations-skills@oss-security-disclosure`. `sdk-package-publishing` still ships the patched version.
+- A maintainer burning out on an open-source SDK, wanting to step back, hand it over or archive it → `samber/developer-relations-skills@oss-maintainer-sustainability`. `sdk-package-publishing` still owns the registry deprecation and ownership mechanics it triggers.
 - Whether and how to translate the docs, and keeping translations current → `samber/developer-relations-skills@docs-localization-strategy`.
 - Anything else in the DevRel practice - developer content and SEO, community, events, open-source program operations. Start at `samber/developer-relations-skills@developer-relations-kickoff` when the boundary is unclear.
 
