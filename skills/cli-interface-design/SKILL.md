@@ -234,3 +234,4 @@ Track after launch, as trends rather than thresholds: share of API traffic from 
 - [references/cli-design-spec-template.md](references/cli-design-spec-template.md) - the deliverable.
 - `samber/developer-platform-skills@developer-portal-design` - where the CLI reference, install guide and token page live.
 - `samber/developer-platform-skills@github-action-offering` - the GitHub Action and CI ports that wrap this CLI; its contract inherits the CLI's flags and exit codes.
+- `samber/developer-platform-skills@ide-extension-offering` - the VS Code or JetBrains extension that wraps this CLI and reuses its login.
