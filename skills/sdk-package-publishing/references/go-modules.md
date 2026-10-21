@@ -38,6 +38,7 @@
   - `sboms`: syft, installed in a prior step (the action installs neither syft nor cosign);
   - `homebrew_casks`: `brews` formulas are deprecated since v2.10; casks target macOS, so serve Linux users with `nfpms`;
   - `nfpms`: deb, rpm, apk;
+  - `scoops` and `winget`: Windows channels, with the credential limits in release-workflow.md;
   - `dockers_v2` (v2.12+, marked provisional) or `dockers` with `docker_manifests`.
 - The Homebrew tap lives in another repository, so the built-in token cannot push to it. Use a token scoped to the tap repository only, stored in the `release` environment.
 - Attest every archive with `actions/attest@<sha>` and `subject-checksums: dist/checksums.txt`; `subject-path` on the checksum file attests only that file, and `gh attestation verify <archive>` then fails.

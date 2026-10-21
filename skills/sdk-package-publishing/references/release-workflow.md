@@ -5,7 +5,7 @@
 - Repository protection setup
 - Two-job skeleton (GitHub Actions)
 - Publish steps per registry
-- Binary releases
+- Binary releases and distribution channels (Homebrew, Scoop, winget, `curl | sh`)
 - GitLab CI differences
 - Monorepos and multi-package releases
 - Dependency-confusion probe
@@ -118,13 +118,24 @@ CLIs, agents and standalone executables ship as release assets, beside or instea
 3. Collect the signed binaries in one job, package archives and write `checksums.txt` (SHA-256).
 4. Sign the checksum file keylessly (`cosign sign-blob --bundle checksums.txt.sigstore.json checksums.txt --yes`) and attest every archive (`actions/attest@<sha>` with `subject-checksums: checksums.txt`, `id-token: write` and `attestations: write`). Attestations on private repositories need GitHub Enterprise Cloud.
 5. Create the release from the protected tag as a draft, with `contents: write`, in the `release` environment; upload archives, checksums and signature bundle; then publish it.
-6. Update distribution channels last (Homebrew tap, winget, Scoop, npm platform packages), each with a credential scoped to that channel only.
+6. Update distribution channels last (Distribution channels, below; npm platform packages in npm.md), each with the narrowest credential that channel allows.
 
 - Never replace an asset on a published release: checksums, SwiftPM binary targets and installers all pin the original bytes. Enable GitHub immutable releases where available: once published, the release's tag and assets can no longer change, which is why step 5 attaches everything to the draft first. Configure GoReleaser's release as a draft for the same reason, then publish it in a final step (`gh release edit <tag> --draft=false`) before channels update.
 - GoReleaser OSS builds, signs and publishes in one job, so the job split does not apply; the environment gate, cache ban and pinned tools stand in for it. Its `notarize` section signs and notarizes macOS binaries from Linux, which puts the Apple identity in the job that compiles every dependency: accept that for low-dependency CLIs, or sign `dist/` output in a separate job.
-- A `curl | sh` installer must fetch a pinned version and verify its checksum (and signature when cosign is present) before installing. dist generates installers; check what yours verifies and add the signature check yourself.
-- winget updates go through a pull request to `microsoft/winget-pkgs` from a fork, which needs a bot account's token with public-repository scope; keep that bot's token in the `release` environment only.
 - Users verify with `gh attestation verify <archive> --repo <owner>/<repo>` or `cosign verify-blob` against the bundle, the workflow identity and the CI issuer.
+
+### Distribution channels
+
+Rank by trust per unit of effort: `package-manager channel you control (Homebrew tap, Scoop bucket) > community-reviewed index (winget, homebrew-core) > curl | sh script`. Offer the script as a fallback, never as the only path.
+
+- **Homebrew tap** (`corp/homebrew-tap`): a cask or formula pinning the asset URL and SHA-256. Push with a token scoped to the tap repository only. Casks for unsigned or unnotarized macOS binaries trip Gatekeeper.
+- **Scoop bucket** (`corp/scoop-bucket`): a JSON manifest pinning `url` and `hash` per architecture, plus `checkver` and `autoupdate`; users run `scoop bucket add corp https://github.com/corp/scoop-bucket`. GoReleaser `scoops` and dist write it; push with a token scoped to the bucket repository.
+- **winget:** manifests submitted by pull request to `microsoft/winget-pkgs`, validated automatically and approved by moderators, so a release reaches users hours to days later. Generate them with `wingetcreate`, `komac` or GoReleaser `winget`. The pull request comes from a fork, so the bot needs a token with public-repository scope that cannot be narrowed to one repository: keep it on a dedicated bot account, in the `release` environment only, and keep the fork in sync.
+- **`curl | sh` installer:**
+  - Trade-offs: the user runs unreviewed remote code; whoever controls the host or the script serves every installer at once; a dropped connection can execute a truncated script; a checksum fetched from the same host proves integrity, not authenticity.
+  - Build it so that it: wraps the body in a function called on the last line (a truncated download runs nothing); downloads over HTTPS only (`curl --proto '=https' --tlsv1.2 -fsSL`); installs a pinned version (overridable by an environment variable) into a user directory, never with `sudo` by default; verifies the archive against `checksums.txt` and, when cosign is present, verifies the checksum bundle against the release workflow identity (`cosign verify-blob --bundle ... --certificate-identity <workflow ref> --certificate-oidc-issuer https://token.actions.githubusercontent.com`), failing closed on mismatch.
+  - Serve the script from the release itself or a host you control with a pinned path, and document the "download, read, then run" form beside the one-liner.
+  - dist generates shell and PowerShell installers; check what yours verifies and add the signature check yourself.
 
 ## GitLab CI differences
 

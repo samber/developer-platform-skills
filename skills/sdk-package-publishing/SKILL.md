@@ -75,7 +75,7 @@ Answers 7-9 re-rank the menus below. When answer 7 names an incident or a deadli
 ## Workflow
 
 1. **Inventory.** List every package and binary, registry, publish path (CI job or laptop), credential with scope and expiry, and owner accounts with their 2FA type and email domain. A credential nobody can locate counts as compromised. Flag any user claim that contradicts a reference date: a two-year-old npm token cannot still work.
-2. **Split libraries from binaries.** Each reference's "Library vs binary" section says where each artifact goes. Libraries publish to the registry; binaries ship as signed release assets plus channel packages (Homebrew, platform npm packages, dotnet tools). Go binaries use GoReleaser while the module stays a tag.
+2. **Split libraries from binaries.** Each reference's "Library vs binary" section says where each artifact goes. Libraries publish to the registry; binaries ship as signed release assets plus channel packages (Homebrew, Scoop, winget, platform npm packages, dotnet tools), with a verified `curl | sh` installer only as a fallback. Go binaries use GoReleaser while the module stays a tag.
 3. **Choose the credential model per registry** from the ladder below.
 4. **Claim the namespace** before the first public release: npm org scope, PyPI organization, Maven domain namespace, Gradle plugin ID, NuGet ID prefix, crates.io team owner, pub.dev verified publisher, Packagist vendor, Docker org. Keep at least two owners with phishing-resistant 2FA.
 5. **Preflight the package shape** with the registry's dry-run and lint tools before every release.
@@ -151,6 +151,8 @@ Iterate until every gate passes:
 
 - `samber/developer-platform-skills@sdk-portfolio-strategy` - decides which SDKs exist and their support tiers; this skill ships them.
 - `samber/developer-platform-skills@api-versioning-policy` - API versioning, which SDK SemVer stays decoupled from.
+- `samber/developer-platform-skills@cli-interface-design` - CLI command, flag, output and exit-code design; this skill ships the built binary.
+- `samber/developer-platform-skills@agent-skill-offering` - an agent skill bundled in the package (`skills/` in the published files) and versioned with it.
 - `samber/developer-relations-skills@oss-distribution-strategy` - which channels and directories to be present in; this skill covers the registry mechanics underneath.
 - `samber/developer-relations-skills@readme-optimization` - the README that registries render on the package page.
 - `samber/developer-platform-skills@cli-interface-design` - the CLI's commands, flags, `--json` output and exit codes; this skill ships the binary.
