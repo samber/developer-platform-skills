@@ -128,7 +128,7 @@ Both kinds are collected under Boundary pairs below.
 
 ### `samber/developer-platform-skills@agent-skill-offering`
 
-- Route here: shipping a SKILL.md with a library, CLI or SDK; keeping a skill's version in sync with releases; CI that fails a release on a stale skill; tag-pinned skill installs; plugin.json, marketplace.json, Codex, Cursor or Gemini manifests for a skill beside code; skill vs MCP vs CLI for a coding-agent audience.
+- Route here: shipping a SKILL.md with a library, CLI or SDK; keeping a skill's version in sync with releases; CI that fails a release on a stale skill; tag-pinned skill installs; plugin.json, marketplace.json, Codex, Cursor or Gemini manifests for a skill beside code; every Claude plugin manifest field and Claude plugin directory submission checks for that plugin; OpenClaw `metadata.openclaw` gating and ClawHub publishing of a tool's skill; skill vs MCP vs CLI for a coding-agent audience.
 - Do not route here: designing the MCP server itself (`mcp-server-offering`); the CLI's commands, `--json` or exit codes (`cli-interface-design`); docs written for coding agents (`samber/developer-relations-skills@coding-agent-docs-optimization`); standalone skill collections with no code version.
 
 ### `samber/developer-platform-skills@sql-jdbc-access-design`

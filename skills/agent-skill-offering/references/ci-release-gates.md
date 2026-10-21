@@ -95,8 +95,24 @@ On pull requests:
 
 ## Gate 6: security scan
 
-- Run an agent-skill security scanner over `skills/` in CI, for example `snyk-agent-scan --skills`, which checks prompt injection, malware payloads, untrusted content fetching and hardcoded secrets. Most scanners need an account token stored as a CI secret.
-- Treat a finding of "third-party content exposure" as a design defect: remove the instruction that makes the agent fetch and follow remote content.
+- Run an agent-skill security scanner over `skills/` in CI. Snyk Agent Scan checks skills for prompt injection, malicious code and downloads, credential handling, secrets and third-party content exposure (`docs/risks.md` in its repo lists every risk):
+
+```yaml
+      - name: Run Snyk Agent Scan
+        run: uvx snyk-agent-scan@latest --ci --dangerously-run-mcp-servers --skills ./skills
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+```
+
+- `SNYK_TOKEN` comes from a repository or organization secret; never write the token inline.
+- `--dangerously-run-mcp-servers` starts and contacts every MCP server the scanned configs declare, so run it only on trusted code, never on `pull_request_target` from forks. With only `./skills` as target it starts nothing; `--ci` requires it.
+- Fork pull requests get no secrets, so the scan fails there: skip the step with `if: github.event.pull_request.head.repo.full_name == github.repository` and rely on the release-job run.
+- `--ci` fails the job on findings or runtime failures and requires `--dangerously-run-mcp-servers`.
+- `--skills` is an on/off switch, on by default; `./skills` is the scan target.
+- Install `uv` on the runner first (for example `astral-sh/setup-uv`).
+- The scan uploads skill content to Snyk; clear that for private repos.
+- Pin a version (replace `@latest` with `@<version>`) to make release gates reproducible: the scanner's output and risk names change between releases, so gate on the exit code, never on parsed output.
+- Treat a "third-party content exposure" finding as a design defect: remove the instruction that makes the agent fetch and follow remote content. When fetching is the tool's purpose, mark fetched content as data, never instructions, and pass `--ignore-risks third_party_content_exposure` with the reason in a comment.
 - Admission scanners are evadable, so a clean scan is a floor, never a trust claim.
 
 ## Plugin-tool agreement checks
