@@ -158,6 +158,7 @@ This collection covers the full developer-platform surface.
 ### Publishing-platform playbooks
 
 - [`github-presence-playbook`](./skills/github-presence-playbook): Plans a repository's engagement on GitHub after launch: flat-star diagnosis, releases as feed events, Discussions, topics, and the limits on star tactics.
+- [`stackoverflow-playbook`](./skills/stackoverflow-playbook): Runs a vendor's Stack Overflow presence: product-tag ownership, disclosed staff answers, backlog triage by views, and canonical Q&A that ranks in search.
 
 ### Connector marketplace
 
