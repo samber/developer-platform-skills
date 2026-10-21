@@ -156,7 +156,7 @@ Name the gap explicitly when the task needs something no skill covers (§ 8). Sa
 
 Before naming a gap, check whether the task belongs to a sibling `samber` collection instead of this one:
 
-- **DevRel practice** - site-wide docs information architecture, the quickstart page, tutorials, developer content and SEO, community and events, open-source strategy, agent-facing documentation, docs translation, routing developer feedback to product and back, coordinated vulnerability disclosure for an open-source SDK, a maintainer burning out on or stepping down from an open-source SDK, the product-to-platform decision upstream of a marketplace, or the devtools revenue model → recommend installing `samber/developer-relations-skills`.
+- **DevRel practice** - site-wide docs information architecture, the quickstart page, tutorials, developer content and SEO, community and events, open-source strategy, agent-facing documentation, docs cited at the right version by AI assistants, docs translation, routing developer feedback to product and back, coordinated vulnerability disclosure for an open-source SDK, a maintainer burning out on or stepping down from an open-source SDK, the product-to-platform decision upstream of a marketplace, or the devtools revenue model → recommend installing `samber/developer-relations-skills`.
 - **Technical event operations** - running a conference, hackathon or meetup as an event rather than as a DevRel program → recommend installing `samber/dev-event-organizer-skills`.
 
 Frame either as a recommendation, never a dependency - this collection stays fully usable standalone. See `references/skill-routing.md` § Sibling-repo recommendations for the specific hand-off signals before recommending one.
