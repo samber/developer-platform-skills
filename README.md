@@ -117,6 +117,7 @@ This collection covers the full developer-platform surface.
 ### API lifecycle
 
 - [`api-versioning-policy`](./skills/api-versioning-policy): Defines an API's versioning and deprecation policy: version scheme, breaking-change definition, notice windows, sunset signalling, and enforcement.
+- [`public-roadmap-strategy`](./skills/public-roadmap-strategy): Decides whether and how to publish a product roadmap: posture, commitment vocabulary, exclusion gate, sales guardrails, and the slipped-item playbook.
 
 ### Integration surfaces
 

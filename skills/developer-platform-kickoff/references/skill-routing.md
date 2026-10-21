@@ -4,10 +4,11 @@ Route only from the declared scopes below. Every "do not route here" line comes 
 
 Nothing here is ranked, and nothing in it should be. Scope is a match test, not a ratio. Ranking lives in the kickoff's short-list and routine set, where several skills compete for one session (see `samber/developer-platform-skills@developer-platform-kickoff` § 4 and § 7).
 
-Eight skills sit at macro altitude:
+Nine skills sit at macro altitude:
 
 - `api-integration-surface-strategy`
 - `api-versioning-policy`
+- `public-roadmap-strategy`
 - `sdk-portfolio-strategy`
 - `developer-portal-design`
 - `sample-app-strategy`
@@ -89,6 +90,11 @@ Both kinds are collected under Boundary pairs below.
 
 - Route here: picking a version scheme, writing the breaking-change definition, setting notice windows, sunset signalling and enforcement, breaking-change governance. Asks the API paradigm first - REST's version-and-sunset and GraphQL's continuous evolution are different policies.
 - Do not route here: client SDK versioning, which is plain SemVer; auditing whether one surface is well-designed.
+
+### `samber/developer-platform-skills@public-roadmap-strategy`
+
+- Route here: "should we publish a roadmap", "our sales team keeps promising features", a GitHub roadmap repo or roadmap page, now/next/later vs dated quarters, roadmap disclaimers, a feature voting board on the roadmap, announcing a slipped or cancelled roadmap item.
+- Do not route here: internal roadmap planning or prioritization; triaging individual feature requests (`samber/developer-relations-skills@developer-feedback-loop`); deprecation notices (`api-versioning-policy`); joint roadmaps with a partner (`integration-partnership-strategy`).
 
 ### `samber/developer-platform-skills@api-reference-quality`
 
@@ -242,6 +248,11 @@ Where two or more siblings collide on keywords, decide from these declared-scope
   - A third-party ETL platform pulls from your API on the customer's behalf → etl-connector-strategy.
 
   Scan frequency and freshness expectations decide between the first two; who the customer already pays decides the third.
+
+- **public-roadmap-strategy vs api-versioning-policy vs api-status-communication** - three horizons of telling consumers about change:
+  - What is coming, and how firmly → public-roadmap-strategy. "Customers keep asking what's next" routes here.
+  - What is going away, on what notice → api-versioning-policy. "We need to retire /v1" routes here.
+  - What is broken right now → api-status-communication.
 
 - **api-rate-limit-policy vs public-graphql-api-design** - GraphQL's depth and complexity ceilings are schema design decisions and live with the schema; the published quota, tier numbers, headers and 429 contract are policy and live with rate-limit-policy. A GraphQL cost model needs both, in that order.
 - **partner-app-onboarding vs app-marketplace-review vs api-test-mode-design** - three stages of the same partner's path:
