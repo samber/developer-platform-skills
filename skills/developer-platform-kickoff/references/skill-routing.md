@@ -106,7 +106,7 @@ Both kinds are collected under Boundary pairs below.
 
 ### `samber/developer-platform-skills@sdk-package-publishing`
 
-- Route here: npm, PyPI, Maven Central, NuGet, Go module, crates.io or Docker Hub publishing; moving CI off long-lived registry tokens to trusted publishing; dist-tags and pre-releases; rolling back a bad package version; publishing to a private feed; `.npmrc`, `pip.conf`, `settings.xml`, `nuget.config`, `GOPRIVATE` or `.cargo/config.toml` for private packages; dependency confusion.
+- Route here: npm, PyPI, Maven Central (Java, Kotlin, Scala, Gradle plugins), NuGet, Go module, crates.io, pub.dev, RubyGems, Packagist, Hex, SwiftPM, CocoaPods, React Native library or Docker Hub publishing; GoReleaser or other binary releases; Artifactory as a private feed; moving CI off long-lived registry tokens to trusted publishing; dist-tags and pre-releases; rolling back a bad package version; publishing to a private feed; `.npmrc`, `pip.conf`, `settings.xml`, `nuget.config`, `GOPRIVATE` or `.cargo/config.toml` for private packages; dependency confusion.
 - Do not route here: which SDK languages to build (`sdk-portfolio-strategy`), API version numbering (`api-versioning-policy`), deploying the platform's own service images, registry discoverability and README codes (`samber/developer-relations-skills@oss-distribution-strategy`).
 
 ### `samber/developer-platform-skills@mcp-server-offering`

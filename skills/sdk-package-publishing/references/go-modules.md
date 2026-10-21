@@ -2,19 +2,49 @@
 
 ## Contents
 
-- Public publishing: release mechanics, major versions, retraction
+- Library vs binary
+- CI auto-publishing: library tags, GoReleaser for binaries
+- Public publishing: major versions, retraction
 - Private publishing
 - Private consumption
+- Dated changes
 
-## Public publishing
+## Library vs binary
 
-**Release mechanics**
+- **Library (SDK module):** a pushed semver tag is the whole release. No build artifact, no GoReleaser.
+- **Binary (CLI, agent, server):** build with GoReleaser from the same tag: archives per OS and architecture on the GitHub release, `checksums.txt`, a cosign signature bundle, SBOMs, a Homebrew tap, container images and deb/rpm/apk packages. Users who prefer source can still `go install example.com/sdk/cmd/corp@v1.4.2`.
+- A repository that holds both cuts one tag: the tag releases the module, and GoReleaser builds the binaries from it.
+
+## CI auto-publishing
+
+**Library tags**
 
 - No upload step and no publish credential: the module path is the repository URL, and a pushed semver tag (`v1.4.2`) is the release. `proxy.golang.org` caches it on first request and `sum.golang.org` records its checksum forever.
-- Release flow: `go mod tidy`, `go test ./...`, tag from a protected branch, push the tag, then warm the proxy with `GOPROXY=proxy.golang.org go list -m example.com/sdk@v1.4.2`.
+- Release flow: `go mod tidy`, `go test ./...` as a required status check on the release branch (a test job triggered by the tag only detects, since the tag already is the release), tag only commits already on the protected branch (a tag job running `git merge-base --is-ancestor "$GITHUB_SHA" origin/main` detects violations), push the tag, then warm the proxy with `GOPROXY=proxy.golang.org go list -m example.com/sdk@v1.4.2`.
 - Never move or re-push a tag. The checksum database already holds the first content; every consumer then gets a security error.
 - Protect release tags in the forge (tag protection rules, restricted pushers): tag control is the publish credential for Go.
 - Submodules in a monorepo tag with the directory prefix: `sdk/go/v1.4.2`.
+- Provenance: the checksum database is the integrity record; there is nothing to sign for a library.
+
+**GoReleaser for binaries**
+
+- Config `version: 2` in `.goreleaser.yaml`; preflight with `goreleaser check` and `goreleaser release --snapshot --clean` in the build job.
+- Trigger on the protected tag. The job needs `fetch-depth: 0`, `contents: write` (release), `packages: write` (ghcr.io images), `id-token: write` (keyless cosign), and `attestations: write` when attesting.
+- GoReleaser builds and publishes in one job, so that job holds the release token while it compiles. Run it in the `release` environment, with no restored caches and pinned tool versions.
+- `notarize` (open-source edition) signs and notarizes macOS binaries from Linux with `MACOS_SIGN_P12`, `MACOS_SIGN_PASSWORD`, `MACOS_NOTARY_KEY`, `MACOS_NOTARY_KEY_ID` and `MACOS_NOTARY_ISSUER_ID` in the `release` environment. Casks for unnotarized binaries trip Gatekeeper.
+- Sections to configure:
+  - `archives` and `checksum` (`checksums.txt`);
+  - `signs`: `cosign sign-blob --bundle=${signature} ${artifact} --yes` on the checksum file, keyless through the CI identity;
+  - `sboms`: syft, installed in a prior step (the action installs neither syft nor cosign);
+  - `homebrew_casks`: `brews` formulas are deprecated since v2.10; casks target macOS, so serve Linux users with `nfpms`;
+  - `nfpms`: deb, rpm, apk;
+  - `dockers_v2` (v2.12+, marked provisional) or `dockers` with `docker_manifests`.
+- The Homebrew tap lives in another repository, so the built-in token cannot push to it. Use a token scoped to the tap repository only, stored in the `release` environment.
+- Attest every archive with `actions/attest@<sha>` and `subject-checksums: dist/checksums.txt`; `subject-path` on the checksum file attests only that file, and `gh attestation verify <archive>` then fails.
+- GoReleaser OSS cannot split build from publish. There, the environment gate, the cache ban and pinned tools replace the unprivileged build job of release-workflow.md.
+- GoReleaser Pro features (npm publishing, DMG/MSI installers, split builds, apt/yum repositories) are not in the open-source edition; confirm the edition before designing around them.
+
+## Public publishing
 
 **Major versions**
 
@@ -60,3 +90,9 @@ machine github.com login ci-bot password <GO_READ_TOKEN value>
 
 - With a private proxy serving everything, set `GOPROXY=https://goproxy.internal.example.com` and `GONOSUMDB=corp.example.com`. A comma between proxies falls back only on 404/410; a pipe falls back on any error, which can leak private paths during an outage.
 - Import paths are URLs, so Go has no flat namespace to squat; dependency confusion here means a leaked path or a vanity domain you no longer control. Keep vanity domains renewed.
+
+## Dated changes
+
+- 2024-05: GoReleaser v2 (`--clean` replaces `--rm-dist`).
+- GoReleaser v2.10: `homebrew_casks` added, `brews` deprecated (harder deprecation in v2.16).
+- GoReleaser v2.12: `dockers_v2`, planned to replace `dockers` and `docker_manifests` in v3.

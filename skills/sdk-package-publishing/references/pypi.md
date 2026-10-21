@@ -2,14 +2,26 @@
 
 ## Contents
 
-- Public publishing: credentials, attestations, namespace, package shape, versions, removal
+- Library vs binary: pure and platform wheels, CLI entry points
+- CI auto-publishing: trusted publishers, attestations, token fallback
+- Public publishing: namespace, package shape, versions, removal
 - Private publishing
 - Private consumption
 - Dated changes
 
-## Public publishing
+## Library vs binary
 
-**Credentials**
+- **Pure-Python library:** one sdist and one `py3-none-any` wheel.
+- **Compiled extension:** platform wheels (`manylinux_x_y`, `musllinux_x_y`, macOS, Windows) built with `pypa/cibuildwheel@<sha>  # v4` on a runner matrix. Each matrix job uploads its wheels as an artifact; the publish job downloads them all and uploads once. Build `abi3` wheels where the extension allows it: one wheel then covers every CPython version and shrinks the matrix.
+- **Rust extension:** maturin; `maturin generate-ci github` writes the matrix workflow, and `[tool.maturin.generate-ci.github] trusted-publishing = true` makes it publish with OIDC.
+- **CLI tool:** declare `[project.scripts]` entry points; users run `uv tool install corp-cli` or `uvx corp-cli`. The CLI ships as a normal wheel.
+- **Frozen standalone executable** (PyInstaller and similar): release assets, never PyPI.
+
+## CI auto-publishing
+
+- **Trigger:** a protected tag push. Pipeline shape: release-workflow.md.
+
+**Trusted publishers**
 
 - Trusted publishers: GitHub Actions, GitLab CI/CD (GitLab.com; self-managed in beta), Google Cloud, ActiveState. No CircleCI. Minted upload tokens live 15 minutes.
 - Publish with `pypa/gh-action-pypi-publish` pinned to a full commit SHA (`release/v1` is a mutable branch) or `uv publish`. Build in a separate job and pass the dists as an artifact; give `id-token: write` only to the upload job.
@@ -25,6 +37,8 @@
 
 - PEP 740 attestations upload automatically under trusted publishing with the official action. PyPI accepts them only from trusted-publisher identities. Leave them on.
 
+## Public publishing
+
 **Namespace**
 
 - Register the project under a PyPI organization so ownership survives staff changes. Corporate organizations pay a monthly fee.
@@ -32,7 +46,7 @@
 
 **Package shape**
 
-- Build sdist and every wheel in one job (`python -m build`, or cibuildwheel for platform wheels), then `twine check --strict dist/*`.
+- Build the sdist and wheels in unprivileged jobs (`python -m build`, or the cibuildwheel matrix), then run `twine check --strict dist/*` on the merged set before the publish job.
 - List the sdist contents (`tar tzf dist/*.tar.gz`) before release: sdists sweep in tests, fixtures and stray `.env` files unless the build backend excludes them.
 - Set `requires-python` and project URLs; the README must render (`twine check` validates it).
 

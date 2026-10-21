@@ -2,14 +2,27 @@
 
 ## Contents
 
-- Public publishing: credentials, staged publishing, first publish, provenance, tokens, namespace, package shape, dist-tags, removal
+- Library vs binary
+- CI auto-publishing: trusted publishing, staged publishing, first publish, provenance, tokens
+- Public publishing: namespace, package shape, dist-tags, removal
 - Private publishing
 - Private consumption
 - Dated changes
 
-## Public publishing
+## Library vs binary
 
-**Credentials**
+- **Library:** one package; `exports`, `types` and `files` below.
+- **JS CLI:** add `bin` (`{"corp": "dist/cli.js"}`) with a `#!/usr/bin/env node` shebang. Users run it with `npx @corp/cli` or a global install.
+- **Native binary (Go, Rust, Zig CLI):** one package per platform (`@corp/cli-linux-x64`, `@corp/cli-darwin-arm64`) declaring `os`, `cpu` and, on Linux, `libc`; the main package lists them all as `optionalDependencies` pinned to the exact same version, and npm installs only the matching one.
+  - Never download the binary in `postinstall`: npm 12 silently skips dependency install scripts the consumer has not approved, and `npx` and global installs have no project policy to approve them.
+  - Each platform package needs its own trusted publisher configuration.
+  - Publish platform packages first, the main package last, so the main package never points at missing versions.
+
+## CI auto-publishing
+
+- **Trigger:** a protected tag push. Pipeline shape, dist-tag guard and staged publish: release-workflow.md.
+
+**Trusted publishing**
 
 - Trusted publishing (OIDC) works from GitHub Actions on GitHub-hosted runners, GitLab CI/CD on GitLab.com shared runners, and CircleCI cloud. Self-hosted runners are not supported.
 - Node 22.14.0+ and npm CLI 11.5.1+ for OIDC publish, 11.10.0+ for `npm trust`, 11.15.0+ for `npm stage`. Pin 11.15.0+ in the release job: Node's bundled npm may be older.
@@ -40,6 +53,8 @@
 - Classic and automation tokens no longer exist. Granular write tokens live 90 days at most.
 - Tokens with "bypass 2FA" are losing account-management and direct-publish rights; plan any token-based pipeline as temporary.
 - `npm login` issues short session tokens: they suit a human first publish, never CI.
+
+## Public publishing
 
 **Namespace**
 

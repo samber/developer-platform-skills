@@ -2,12 +2,23 @@
 
 ## Contents
 
-- Public publishing: credentials, tags and immutability, signing and attestations, namespace, removal
+- Library vs binary
+- CI auto-publishing: credentials
+- Public publishing: tags and immutability, signing and attestations, namespace, removal
 - Private publishing
 - Private consumption
 - Dated changes
 
-## Public publishing
+## Library vs binary
+
+- Every image is a binary artifact: a CLI, agent, server or SDK playground packaged with its runtime. Libraries never ship as images; their image is at most a dev container or example.
+- Multi-architecture images (`linux/amd64`, `linux/arm64`) go out as one manifest list per tag, built once in the build job.
+- Go binaries built by GoReleaser can publish their images from the same release (go-modules.md).
+
+## CI auto-publishing
+
+- **Trigger:** a protected tag push. Pipeline shape: release-workflow.md, which pushes the prebuilt OCI layout and signs by digest.
+- **Provenance:** sign and attest every pushed digest (Signing and attestations, below).
 
 **Credentials**
 
@@ -16,6 +27,8 @@
 - Free or Pro personal namespaces: a personal access token with read-write scope and an expiry, owned by a dedicated bot account, not a person. Move SDK images to an organization once OIDC or OATs matter.
 - Log in with `--password-stdin`, never a password argument that lands in shell history and logs.
 - On GitHub, publishing to `ghcr.io` needs only the workflow's built-in token with `packages: write`; add the `org.opencontainers.image.source` label to link the repository.
+
+## Public publishing
 
 **Tags and immutability**
 
