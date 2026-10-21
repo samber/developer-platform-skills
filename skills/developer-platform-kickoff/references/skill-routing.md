@@ -121,6 +121,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: "should we ship an MCP server", choosing which tools to expose, securing write-capable tools, versioning the tool surface, judging MCP ROI.
 - Do not route here: code-generation MCP builder skills, which scaffold what this skill specifies; documenting an existing SDK for agent consumption (`samber/developer-relations-skills@coding-agent-docs-optimization`).
 
+### `samber/developer-platform-skills@cli-interface-design`
+
+- Route here: designing or reviewing the CLI that wraps the platform's API, "mirror every endpoint as a command", command naming and grammar, `--json` output and exit codes, CLI login and CI tokens, `--wait` and pagination flags, deprecating CLI flags, CLI telemetry, a CLI that hangs in CI or confuses coding agents.
+- Do not route here: whether to offer a CLI at all (`api-integration-surface-strategy`), local tools with no API, argument-parser code, shipping an Agent Skill inside the CLI repo (`agent-skill-offering`), publishing the CLI package to registries (`sdk-package-publishing`).
+
 ### `samber/developer-platform-skills@sql-jdbc-access-design`
 
 - Route here: "offer SQL access to customers", a JDBC/ODBC endpoint, connecting customer BI tools to product data, tenant isolation, the schema-stability contract, pricing a SQL add-on.
@@ -224,6 +229,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **api-integration-surface-strategy vs every per-surface skill** - "Should we add GraphQL?" → strategy. "Design our GraphQL schema" → the surface skill. A surface question arriving with no audience attached is always the strategy question in disguise.
 - **api-versioning-policy vs public-api-design-review** - "What are we allowed to change?" → policy. "Is this surface well-designed?" → review. A review that finds no agreed breaking-change definition escalates up to the policy.
 - **sdk-portfolio-strategy vs api-idempotency-retry** - "Which SDKs first?" → portfolio. "What should the SDK do on a 503?" → idempotency-retry.
+- **cli-interface-design vs mcp-server-offering** - "What commands, flags and `--json` contract does our CLI expose?" → CLI. "Which tools does our MCP server expose?" → MCP. Both may serve agents; which surface to build first is `api-integration-surface-strategy`.
 - **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
 - **sample-app-strategy vs sdk-portfolio-strategy / api-test-mode-design** - "Which sample repos do we keep, and in which languages?" → samples. "Which SDK languages exist?" → SDK portfolio. "What do the samples run against?" → test mode. SDK tiers feed sample coverage; never the reverse.
 - **developer-portal-design vs api-auth-key-management / api-test-mode-design / integration-error-observability / api-reference-quality** - "Where does the key dashboard live and what else belongs on that page?" → portal. "What does a key look like and how does rotation work?" → key management. The portal decides which self-service surfaces exist and where; each sibling designs one of them.

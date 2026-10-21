@@ -160,10 +160,7 @@ The division of labor is fixed:
 
 The gRPC surface's design belongs to `samber/developer-platform-skills@public-grpc-api-design`; the bulk-data/lake surface's belongs to `samber/developer-platform-skills@bulk-data-sharing-design` (file/lake exports) or `@etl-connector-strategy` (rows synced through an ELT tool), depending on which shape the demand signal points to.
 
-CLI and embedded components have no dedicated sibling - record their design decisions in the plan itself. For a CLI, copy Plaid's 2025 dual-audience pattern - one surface, both audiences:
-
-- Readable table output for humans.
-- JSON with clean stdout/stderr separation for agents.
+Embedded components have no dedicated sibling - record their design decisions in the plan itself. A CLI's design belongs to `samber/developer-platform-skills@cli-interface-design`; record here only its audience and the dual-audience promise (Plaid's 2025 pattern - readable tables for humans, JSON with clean stdout/stderr separation for agents).
 
 ## 6. Set the review cadence
 
