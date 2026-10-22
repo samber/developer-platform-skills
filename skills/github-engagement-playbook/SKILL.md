@@ -30,7 +30,7 @@ Read the sidebar, Releases, Discussions and `.github/` first; without access, as
 
 Asked to buy, trade or reward stars: answer with the § 5 risk paragraph and template 7 first, then diagnose.
 
-1. Archive traffic weekly via `/repos/{owner}/{repo}/traffic/views`, `/clones`, `/popular/referrers`, `/popular/paths`: 14 days kept, top 10 only, push access needed [documented]. Run `scripts/github-kpi-sheet/` (Google Apps Script) to append them to a spreadsheet as weekly time series, add Google Alerts for off-GitHub mentions, and read OSS Insight for star and contributor history; setup in [references/tracking-tools.md](./references/tracking-tools.md).
+1. Archive traffic weekly via `/repos/{owner}/{repo}/traffic/views`, `/clones`, `/popular/referrers`, `/popular/paths`: 14 days kept, top 10 only, push access needed [documented]. Run the Google Apps Script files in `scripts/` to append them to a spreadsheet as weekly time series, add Google Alerts for off-GitHub mentions, and read OSS Insight for star and contributor history; setup in [references/tracking-tools.md](./references/tracking-tools.md).
 2. Read watchers, dependents ("Used by") and registry downloads beside stars, as trends against the same window a quarter earlier. No absolute threshold exists.
 3. Classify the curve. The row sets the headline and first action; § 2-4 still build the standing asset.
 

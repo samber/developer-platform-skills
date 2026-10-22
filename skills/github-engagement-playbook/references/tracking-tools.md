@@ -22,7 +22,7 @@ The tie is real: Alerts and OSS Insight each take minutes once, then cost nothin
 
 ## 2. GitHub KPI sheet (bundled Apps Script)
 
-`scripts/github-kpi-sheet/` holds Google Apps Script files that append one dated row per repository on every run. The sheet becomes a time series you can chart.
+`scripts/` holds Google Apps Script files that append one dated row per repository on every run. The sheet becomes a time series you can chart.
 
 | File                          | Entry point              | Writes to                                                         |
 | ----------------------------- | ------------------------ | ----------------------------------------------------------------- |
