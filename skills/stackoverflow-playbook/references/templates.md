@@ -4,11 +4,15 @@ Replace every `<...>`. Staff write the technical body; no generative AI.
 
 ## Disclosure lines
 
-```
-// ✓ Good - names the relationship and the product, in the post
-Disclosure: I work at <Vendor>, which maintains <product>.
+✓ Good - names the relationship and the product, in the post:
 
-// ✗ Bad - disclosure only in the profile, or hidden in a link title
+```
+Disclosure: I work at <Vendor>, which maintains <product>.
+```
+
+✗ Bad - disclosure only in the profile, or hidden in a link title:
+
+```
 See our guide: <link>
 ```
 
@@ -30,18 +34,22 @@ Reference: <link to the docs page that this answer summarizes>
 
 Tick "Answer your own question" on the Ask page (15 rep). Both posts must meet normal quality rules.
 
+Question:
+
 ```
 Title: <tool> fails with "<literal error string>" when <condition>
 
-Question:
 I run <command or code> with <product> <version> on <environment>.
 It fails with:
     <full error output>
 Expected: <what should happen>.
 What I tried: <one or two things that do not work>.
 Disclosure: I work at <Vendor>, which maintains <product>; I'm posting this Q&A to document a common fix.
+```
 
 Answer:
+
+```
 Cause: <one sentence>.
 Fix:
     <code or config>
@@ -52,21 +60,27 @@ Disclosure: I work at <Vendor>, which maintains <product>.
 
 ## Redirect comments
 
-```
 Bug report:
-Thanks, this looks like a bug rather than a usage question. Please file it at <public issue URL>
-with the output above; I've posted the workaround below. (I work at <Vendor>.)
+
+```
+Thanks, this looks like a bug rather than a usage question. Please file it at <public issue URL> with the output above; I've posted the workaround below. (I work at <Vendor>.)
+```
 
 Feature request:
-<product> doesn't support this today. Feature requests are tracked at <URL>, where the team
-replies. (I work at <Vendor>.)
+
+```
+<product> doesn't support this today. Feature requests are tracked at <URL>, where the team replies. (I work at <Vendor>.)
+```
 
 Account, billing or private data:
-This needs access to your account, which nobody here has. Please contact <support route>.
-Flagging to close as not about programming. (I work at <Vendor>.)
 
-Duplicate: flag or vote as duplicate of the canonical; the site posts the link comment itself.
-Add your own comment only to point at the version-specific part:
+```
+This needs access to your account, which nobody here has. Please contact <support route>. Flagging to close as not about programming. (I work at <Vendor>.)
+```
+
+Duplicate: flag or vote as duplicate of the canonical; the site posts the link comment itself. Add your own comment only to point at the version-specific part:
+
+```
 The <version> fix is in the second code block of the linked answer. (I work at <Vendor>.)
 ```
 
@@ -74,12 +88,15 @@ The <version> fix is in the second code block of the linked answer. (I work at <
 
 The excerpt is usage guidance shown in the tag picker, not marketing.
 
-```
-// ✓ Good
-<Product> is <one-line neutral definition>. Use for questions about using <product>'s
-<SDK/CLI/API>. For bugs, feature requests or account issues, use <Vendor>'s own channels.
+✓ Good:
 
-// ✗ Bad
+```
+<Product> is <one-line neutral definition>. Use for questions about using <product>'s <SDK/CLI/API>. For bugs, feature requests or account issues, use <Vendor>'s own channels.
+```
+
+✗ Bad:
+
+```
 <Product> is the fastest, most loved <category> platform. Try it free at <link>!
 ```
 
