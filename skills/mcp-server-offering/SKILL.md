@@ -4,7 +4,7 @@ description: Design a SaaS product's MCP server as a product surface AI agents o
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # MCP Server Offering

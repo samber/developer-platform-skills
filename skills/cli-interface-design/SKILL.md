@@ -4,7 +4,7 @@ description: Design the public CLI that wraps a developer platform's API - which
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # CLI Interface Design
