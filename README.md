@@ -129,6 +129,7 @@ This collection covers the full developer-platform surface.
 - [`github-action-offering`](./skills/github-action-offering): Ships a vendor's official GitHub Action and its CI ports: offering shape, action type, a frozen `action.yml` contract, immutable releases, OIDC auth, and hardening against injection and tag hijack.
 - [`mcp-server-offering`](./skills/mcp-server-offering): Designs a product's MCP server for AI agents: a curated workflow-level tool set, write-safety patterns, hosting and auth posture, and versioning.
 - [`sql-jdbc-access-design`](./skills/sql-jdbc-access-design): Designs customer-facing live SQL access: the architecture gate on scan economics, tenant isolation, schema-stability contract, BI connectivity, and pricing shape.
+- [`terraform-provider-offering`](./skills/terraform-provider-offering): Decides whether a platform ships its own Terraform/OpenTofu provider, then designs, tests, signs, publishes and versions it on both registries.
 - [`webhook-platform-design`](./skills/webhook-platform-design): Designs a provider-side outbound webhook platform: event taxonomy, signed payload envelope, retry and dead-letter policy, and the consumer debugging surface.
 
 ### Testing and sandbox
