@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Sequences the API fixes ahead of the connector build rather than alongside it or after it.",
+        "evidence": "\"Do not start writing the connector next sprint\"; \"Connector code starts once steps 1 to 5 pass\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that fixing the extraction API cuts build and maintenance cost on every build path simultaneously, including customers' own hand-rolled pipelines.",
+        "evidence": "Not stated as benefiting all paths and hand-rolled pipelines.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags offset pagination as unsafe under concurrent writes, because offsets shift under mid-scan inserts and deletes, and recommends an opaque stable cursor instead.",
+        "evidence": "\"Offsets shift under concurrent inserts and deletes\"; fix: keyset or opaque cursor.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags approvals and vendors as unable to sync incrementally until they expose a cursor or modification timestamp stable across syncs.",
+        "evidence": "Table: approvals/vendors cursor \"None\", \"Fail\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the absent delete signal as the single most common gap, noting that most application APIs do not return deletes as changes so connectors silently miss them.",
+        "evidence": "Not called the most common gap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that records hard-deleted past the 90-day soft-delete window are lost permanently from the extraction path.",
+        "evidence": "\"Any connector paused or broken for more than about 80 days ... loses deletes forever.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a durable 'changes or deletes since <cursor>' feed as the buildable upgrade over relying on the is_active flag alone.",
+        "evidence": "\"a durable 'changes and deletes since cursor' feed that outlives 90 days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a bulk or async backfill export endpoint separate from the UI-grade paginated endpoints, citing the 4M-row first sync and rate-limit exhaustion.",
+        "evidence": "\"No bulk or backfill path. The 4M-row first sync is the problem case.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the 429 response to carry Retry-After so a connector can back off programmatically.",
+        "evidence": "\"Fix: send Retry-After\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the overlap-window reconciliation pattern: persist the last cursor, re-query a small overlap window, upsert by stable key, and pair it with periodic full reconciliation.",
+        "evidence": "Sync design steps 3 and 5: overlap window, upsert by stable key, periodic full reconciliation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grades each resource pass/fail against the checklist, with any resource that cannot pass carrying an explicit exclusion note rather than a silent skip.",
+        "evidence": "Resource table with verdicts; \"needs an exclusion note\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises versioning and deprecation discipline, noting that the large majority of breaking API versions ship with no deprecation notice at all (87.3% across 1,068 specifications), so monitoring rather than changelog-watching is the detection mechanism.",
+        "evidence": "Cites 87.3% but not 1,068 specs, and does not tie it to monitoring over changelog-watching.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Sequences the API fixes ahead of the connector build rather than alongside it or after it.",
+        "evidence": "Treats API questions as pre-sprint asks. Does not say to fix the API before building.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that fixing the extraction API cuts build and maintenance cost on every build path simultaneously, including customers' own hand-rolled pipelines.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags offset pagination as unsafe under concurrent writes, because offsets shift under mid-scan inserts and deletes, and recommends an opaque stable cursor instead.",
+        "evidence": "'Rows inserted or deleted mid-crawl shift every later offset'; 'ask for cursor or keyset pagination (after_id= or an opaque cursor)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags approvals and vendors as unable to sync incrementally until they expose a cursor or modification timestamp stable across syncs.",
+        "evidence": "Table: Approvals 'no', Vendors 'no'. 'Ask Palladia to add modified_at to approvals.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the absent delete signal as the single most common gap, noting that most application APIs do not return deletes as changes so connectors silently miss them.",
+        "evidence": "Calls deletes 'the subtlest problem' but does not say most APIs omit deletes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that records hard-deleted past the 90-day soft-delete window are lost permanently from the extraction path.",
+        "evidence": "'a record deleted and then purged leaves no trace.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a durable 'changes or deletes since <cursor>' feed as the buildable upgrade over relying on the is_active flag alone.",
+        "evidence": "Recommends reconciliation only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a bulk or async backfill export endpoint separate from the UI-grade paginated endpoints, citing the 4M-row first sync and rate-limit exhaustion.",
+        "evidence": "'a bulk endpoint (async export job, S3 dump) is far better than 40k+ paginated calls.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the 429 response to carry Retry-After so a connector can back off programmatically.",
+        "evidence": "'Ask Palladia to add Retry-After and a JSON error body.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the overlap-window reconciliation pattern: persist the last cursor, re-query a small overlap window, upsert by stable key, and pair it with periodic full reconciliation.",
+        "evidence": "'Subtract an overlap such as 5-10 minutes... Upserts keyed by id'; 'Run a periodic reconciliation.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grades each resource pass/fail against the checklist, with any resource that cannot pass carrying an explicit exclusion note rather than a silent skip.",
+        "evidence": "Gives a strategy table, not a checklist grade.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Raises versioning and deprecation discipline, noting that the large majority of breaking API versions ship with no deprecation notice at all (87.3% across 1,068 specifications), so monitoring rather than changelog-watching is the detection mechanism.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

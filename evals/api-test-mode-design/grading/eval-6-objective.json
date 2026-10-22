@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the key swap alone is not enough: graduation is never purely technical and needs a designed gate plus a cutover checklist.",
+        "evidence": "\"No, the key swap is not enough... Graduation is never purely a credential swap.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies a compliance/review gate matching the payments domain (KYC-style activation) and recommends submitting it early because review can take days.",
+        "evidence": "\"Review can take days regardless of vendor... Submit the review step today\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the plain 401 for unapproved accounts with an explicit, legible 'environment not yet approved' error.",
+        "evidence": "\"`account_not_approved_for_live`... Your account has not completed review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires fresh live-mode webhook endpoints and event subscriptions with newly captured live signing secrets, because test-mode signing secrets do not carry over.",
+        "evidence": "\"The test signing secret does not carry over.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires test credentials removed from production configuration, not merely live credentials added.",
+        "evidence": "\"Remove `sk_test` from production config.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires abuse-prevention and fraud rules configured before the first live transaction, not after an incident.",
+        "evidence": "\"Turn on live-mode abuse controls before the first live payment\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a small live canary transaction per integration path before the integration is declared launched.",
+        "evidence": "\"Run one small real canary per integration path\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the canary must confirm both the operation's effect/settlement and its event delivery, and ideally be reversed or refunded afterwards.",
+        "evidence": "\"Confirm two things: the payment effect and the webhook delivery. Refund it afterwards.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a green sandbox run is necessary but not sufficient: the sandbox does not replicate real card networks, live settlement timing, or full-strength fraud systems.",
+        "evidence": "\"400 green sandbox payments prove... works against the sandbox. They do not prove it works on live.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing the cutover checklist and the recurring cutover pitfalls to integrators as documentation.",
+        "evidence": "\"Rewrite the activation doc... cutover checklist... five pitfalls\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the cross-environment paste pitfall (live key in a sandbox context or vice versa) and its opaque authentication-failure symptom as a recurring support generator.",
+        "evidence": "\"Pasting a live key into a sandbox context, or the reverse, and getting an opaque auth failure.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names under-tested real-money failure paths (real declines, disputes, settlement delay) as a pitfall that sandbox happy-path testing never forces.",
+        "evidence": "\"Test real-money failure paths the sandbox never forced: real declines, a dispute, a refund, and slow settlement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a reactive go-back trigger: webhooks silently stopping after launch usually means a stale or unregistered live-mode endpoint from a silently skipped cutover step.",
+        "evidence": "\"Webhooks going silent with no errors means a stale or unregistered live endpoint.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the key swap alone is not enough: graduation is never purely technical and needs a designed gate plus a cutover checklist.",
+        "evidence": "\"No. The swap changes the credential.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies a compliance/review gate matching the payments domain (KYC-style activation) and recommends submitting it early because review can take days.",
+        "evidence": "\"confirm the review will finish\"; tell integrator today.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the plain 401 for unapproved accounts with an explicit, legible 'environment not yet approved' error.",
+        "evidence": "\"Return 403 Forbidden\" with account_not_activated.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires fresh live-mode webhook endpoints and event subscriptions with newly captured live signing secrets, because test-mode signing secrets do not carry over.",
+        "evidence": "\"Test-mode webhook registrations don't carry over\"; live signing secret.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires test credentials removed from production configuration, not merely live credentials added.",
+        "evidence": "Only says to keep test and live keys separated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires abuse-prevention and fraud rules configured before the first live transaction, not after an incident.",
+        "evidence": "\"Make sure your own fraud and risk monitoring is watching... from the first live payment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a small live canary transaction per integration path before the integration is declared launched.",
+        "evidence": "\"run a small real payment with a real card\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the canary must confirm both the operation's effect/settlement and its event delivery, and ideally be reversed or refunded afterwards.",
+        "evidence": "\"live webhook arrives... Then refund it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a green sandbox run is necessary but not sufficient: the sandbox does not replicate real card networks, live settlement timing, or full-strength fraud systems.",
+        "evidence": "\"Behavior the sandbox didn't prove\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing the cutover checklist and the recurring cutover pitfalls to integrators as documentation.",
+        "evidence": "\"Rewrite the activation doc... go-live checklist\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the cross-environment paste pitfall (live key in a sandbox context or vice versa) and its opaque authentication-failure symptom as a recurring support generator.",
+        "evidence": "Not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names under-tested real-money failure paths (real declines, disputes, settlement delay) as a pitfall that sandbox happy-path testing never forces.",
+        "evidence": "Declines, 3DS, disputes, refunds.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a reactive go-back trigger: webhooks silently stopping after launch usually means a stale or unregistered live-mode endpoint from a silently skipped cutover step.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the \"exactly-once delivery\" claim and does not reproduce it anywhere in the drafted page.",
+        "evidence": "The opening explains both halves are claims the system can't keep. The drafted page itself never promises exactly-once.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States at-least-once as the promised delivery guarantee, in explicit words on the page.",
+        "evidence": "Table: 'At-least-once. We retry until your endpoint acknowledges.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a subscriber which processes an event then crashes before returning 200 will receive that event again.",
+        "evidence": "'If your server processes an event but fails before replying 200... We retry, and you receive the event again.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that offerings marketed as exactly-once are at-least-once plus deduplication tooling.",
+        "evidence": "'Every \"exactly-once\" claim in this market is at-least-once delivery plus dedup tooling.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a stable per-event ID that carries the same value across every retry of the same event.",
+        "evidence": "'The webhook-id header is identical across every retry of the same event.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the per-event ID must ship from day one, because retrofitting it later cannot help subscribers who already built without it.",
+        "evidence": "Open item 3 says to ship the supporting features before the page but never says a retrofitted ID can't help subscribers who already built without it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Documents a deduplication recommendation instructing subscribers to key on that per-event ID.",
+        "evidence": "'Read webhook-id... Check whether you have already processed that ID.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States best-effort, non-guaranteed ordering as the position on the page instead of promising ordering.",
+        "evidence": "'Ordering | Best-effort, not guaranteed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives retries and parallel delivery workers as the reason ordering cannot be guaranteed.",
+        "evidence": "'Retries and parallel delivery can reorder events.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that strict ordering makes one failing delivery block the entire per-endpoint queue.",
+        "evidence": "'strict ordering means one failing endpoint blocks its whole queue'; the FIFO note says 'one failing delivery blocks that endpoint's queue'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers FIFO only as an explicit opt-in for subscribers who structurally cannot tolerate reordering, never as the platform default.",
+        "evidence": "Only a bracketed note: 'if you offer per-endpoint FIFO as an opt-in, document it'. It does not say who it is for or that it must never be the default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns subscribers not to infer event order from event timestamps.",
+        "evidence": "'Don't infer order from arrival time or from webhook-timestamp'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the \"exactly-once delivery\" claim and does not reproduce it anywhere in the drafted page.",
+        "evidence": "\"I didn't keep the opening sentence verbatim\"; page says under \"What we do not guarantee\": \"Exactly-once delivery. No system that talks over a network can guarantee it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States at-least-once as the promised delivery guarantee, in explicit words on the page.",
+        "evidence": "\"Every event is delivered at least once.\" and \"Delivery | At-least-once\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a subscriber which processes an event then crashes before returning 200 will receive that event again.",
+        "evidence": "Only says timeouts and slow responses are retried; the process-then-crash case is never described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that offerings marketed as exactly-once are at-least-once plus deduplication tooling.",
+        "evidence": "Says \"We deliver at least once and give you what you need to deduplicate\" but never says that exactly-once offerings are really this.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a stable per-event ID that carries the same value across every retry of the same event.",
+        "evidence": "\"Every event carries a unique `event_id`, identical across all retries.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the per-event ID must ship from day one, because retrofitting it later cannot help subscribers who already built without it.",
+        "evidence": "No day-one or retrofit argument is made.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Documents a deduplication recommendation instructing subscribers to key on that per-event ID.",
+        "evidence": "\"Deduplicate on `event_id`. Store processed IDs, and ignore any you've already seen.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States best-effort, non-guaranteed ordering as the position on the page instead of promising ordering.",
+        "evidence": "Page says \"Order is guaranteed per resource\" and \"Per-resource `sequence`, strictly increasing\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives retries and parallel delivery workers as the reason ordering cannot be guaranteed.",
+        "evidence": "Mentions retries (\"If event 4 fails and event 5 succeeds\") but not parallel workers, and still promises per-resource order.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that strict ordering makes one failing delivery block the entire per-endpoint queue.",
+        "evidence": "\"Waiting behind A means one dead customer endpoint stalls everything behind it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers FIFO only as an explicit opt-in for subscribers who structurally cannot tolerate reordering, never as the platform default.",
+        "evidence": "No FIFO opt-in is offered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns subscribers not to infer event order from event timestamps.",
+        "evidence": "Not mentioned; it points to `sequence` instead.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,41 +1,92 @@
-**Verdict: no, not as stated.** Keep DCR, but don't make open `/register` plus metadata validation plus rate limiting your whole trust model.
+**Verdict: not as stated.** Keep `/register` for compatibility, but don't treat registration as trust. Registration can stay open. Privilege cannot.
+
+First next action: read the current MCP authorization spec revision. I couldn't check it in this session. As I recall, the 2025-11-25 revision made Client ID Metadata Documents (CIMD) the preferred path and demoted DCR to a compatibility fallback. Verify that before the team cites "the spec pointed at DCR".
 
 ## Two premises to fix
 
-1. **Open registration isn't how agents discover you.** Discovery runs through RFC 9728 (protected resource metadata, pointed to by the `WWW-Authenticate` header) and RFC 8414 (authorization server metadata). Registration comes after discovery and is a separate choice.
-2. **The MCP spec doesn't require open DCR.** I haven't re-checked the current revision, so verify this. The 2025-06-18 revision said servers SHOULD support DCR. The 2025-11-25 revision, as I recall it, added Client ID Metadata Documents (CIMD) as the preferred path and kept DCR as a fallback. Check which revision your MCP team read.
+1. **"Only way agents discover us at runtime" is wrong.**
+   - Discovery uses RFC 9728 (protected resource metadata) and RFC 8414 (AS metadata). Registration is a separate step after discovery.
+   - CIMD also gives runtime onboarding with no pre-registration. The `client_id` is an HTTPS URL that hosts the client's metadata.
+2. **"No human in the loop" is fine for registration and wrong for authorization.**
+   - Your data is incident data: security events and customer impact. A human must still see a consent screen and approve each grant.
+   - Open DCR makes that screen the only control. Attackers fully control what it displays.
 
-## What actually breaks
+## Why open DCR hurts here
 
-Registering without a human is fine. The danger is what a registered client can then reach, because incident data is sensitive.
+1. **Consent phishing.**
+   - An attacker registers "Verity Ops Official" with a convincing logo and a redirect to their own host.
+   - Your employee clicks Allow. The attacker holds a token for incident data.
+   - Metadata validation checks format, not truth. It cannot stop this.
+2. **`logo_uri`, `client_uri`, `tos_uri`, `policy_uri` are attack surface.**
+   - Fetching them server-side is SSRF.
+   - Rendering them on the consent page leaks the user's IP to the attacker and allows hostile image content.
+3. **Redirect URIs.**
+   - Wildcards or loose matching give open redirects and code theft.
+   - Custom schemes and `javascript:`/`data:` need rejecting.
+4. **Hard rate limits fail in both directions.**
+   - IP limits don't stop botnets.
+   - They do lock out legitimate agents behind shared cloud egress IPs.
+   - Agents that re-register on every start also bloat your client table.
+5. **Registered clients accumulate with no owner.** You get no inventory, no cleanup, and a weak audit trail for SOC 2-style questions.
 
-1. **Consent phishing is the main risk.** An attacker self-registers "Verity Ops Security Scanner" with their own `redirect_uri` and sends a victim the authorize link. The victim approves and the attacker gets a token for incident data. Validating metadata and rate limiting don't stop this, because the attacker's metadata is valid.
-2. **`client_name` and `logo_uri` are attacker-controlled text and images on your consent screen.** They enable impersonation, so you can't treat them as identity.
-3. **`logo_uri`, `client_uri`, `tos_uri` and `policy_uri` are SSRF bait if you fetch them.** They are also a tracking and content risk if the browser loads them from the consent page.
-4. **Rate limiting `/register` by IP is weak.** Botnets get around it, while legitimate agents behind shared cloud egress get throttled. Unbounded stored clients are a slow resource-exhaustion risk.
-5. **If any of these agents run machine-to-machine (`client_credentials`), no human ever consents.** Self-registration there means self-granted access. That case needs admin-issued credentials.
+## Recommended design: trust tiers
 
-## Design I'd ship
+**Tier 0: DCR at `/register`, anonymous.** Mandatory limits:
+- Public clients only: `token_endpoint_auth_method: none`.
+- Grants limited to `authorization_code` and `refresh_token`. Never `client_credentials`.
+- PKCE S256 required.
+- Read-only minimum scopes.
+- Short refresh-token lifetime.
+- Garbage-collect clients that never completed a grant within about 24h.
+- Consent screen says "Unverified app" and shows the redirect host in plain text.
+- Per-consent approval. Never remember approval by `client_name`.
 
-1. **Support CIMD first.** The `client_id` is an HTTPS URL, and you fetch its metadata at authorization time.
-   - The domain becomes the identity you show on the consent screen.
-   - You store no registration state.
-   - Harden the fetch: block private and link-local ranges, cap size, set a short timeout, don't follow redirects blindly.
-2. **Keep DCR as an "unverified" tier.**
-   - Allow public clients only (`token_endpoint_auth_method: none`) and require PKCE S256.
-   - Match `redirect_uri` exactly with no wildcards or fragments. Allow `https`, or `http` on loopback only. Reject `javascript:` and `data:`. Restrict custom schemes.
-   - Never fetch or render `logo_uri` for unverified clients. Show the redirect host prominently instead of the client-supplied name.
-   - Show an "unverified application" warning on the consent screen.
-   - Cap scopes at a read-only subset, with short-lived access tokens and rotating refresh tokens.
-3. **Add a verified tier.** Pre-registered vendors, or a software statement or initial access token (both are in RFC 7591). Only this tier gets full scopes and a logo.
-4. **Add tenant-admin policy.** Admins can allowlist, deny or require approval for unverified clients. This is the control enterprise buyers will ask for.
-5. **Add hygiene.**
-   - Garbage-collect clients that have never completed an authorization within about 7 days (the number is a placeholder to tune).
-   - Apply a global cap on unauthorized clients plus a per-IP limit.
-   - Keep audit logs of registrations and grants, and make revocation easy for users and admins.
+**Tier 1: CIMD.**
+- Fetch the metadata document through an SSRF-hardened fetcher: block private ranges, cap size and redirects, set timeouts, cache.
+- The domain is the identity, and the consent screen shows it as TLS-verified.
+- Redirect URIs must appear in the document.
+- Scopes can be somewhat broader.
 
-## One question that changes the design
+**Tier 2: allowlisted or pre-registered clients.**
+- Known vendors get a verified badge and the broadest scopes.
+- Org admins can allow or block clients per tenant, which is essential for enterprise.
+- Headless service-to-service use goes here, with provisioned credentials. It does not go through open DCR.
 
-Do these agents act on behalf of a logged-in human user (authorization code flow), or run unattended (client credentials)? The design above assumes the first. For the second, drop self-registration and use admin-issued credentials.
+## Metadata validation rules
 
-**Next:** answer that question. Then I can draft the scope split between the unverified and verified tiers, which is the first thing to settle.
+- **Allowlist fields.** Ignore everything else.
+- **Redirect URIs:**
+  - Exact match only.
+  - HTTPS, or loopback per RFC 8252.
+  - No wildcards.
+  - No fragments.
+- **`client_name`:**
+  - Cap the length.
+  - Strip control and bidi characters.
+  - Reject Unicode lookalikes of your brand and of known vendors.
+- **Logos:**
+  - Never hotlink them.
+  - For Tier 0, skip them entirely.
+  - Otherwise fetch once, check content type, re-encode, and serve from your own domain.
+- **Management endpoint (RFC 7592):** offer none, or require the `registration_access_token`.
+
+## Rate limiting
+
+- Limit per IP, per IPv6 /64, and globally.
+- Starting point: 10 registrations per hour per IP and a global ceiling. These numbers are guesses. Tune them on real traffic.
+- Deduplicate: return the existing client when the metadata is identical. This reduces re-registration churn.
+
+## Operational controls to ship with it
+
+- Kill switch per `client_id` and per redirect host.
+- Audit log of `client_id`, user, scopes, and each query.
+- Short access-token lifetimes and revocation.
+- Alert on a sudden burst of new clients.
+
+## Decisions for you
+
+1. Does consent show the user's tenant, and can an admin restrict which clients users may approve? If not, that is the first gap to close.
+2. Will any agents run headless with no user? Those need Tier 2 credentials, not DCR.
+3. Is CIMD support on your roadmap? Tier 0 DCR plus CIMD covers most MCP clients.
+
+**Next:** answer decision 1. Everything else in the design follows from it.

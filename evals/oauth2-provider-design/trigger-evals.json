@@ -8,10 +8,10 @@
     {
       "query": "design the OAuth provider side of our new third-party app directory",
       "should_trigger": true,
-      "trigger_rate": 0.5,
-      "triggers": 1,
+      "trigger_rate": 1.0,
+      "triggers": 2,
       "runs": 2,
-      "pass": false
+      "pass": true
     },
     {
       "query": "we're adding \"Sign in with Loomis\" to our product - what do we actually have to build",
@@ -24,10 +24,10 @@
     {
       "query": "how long should our access tokens live and should refresh tokens rotate",
       "should_trigger": true,
-      "trigger_rate": 1.0,
-      "triggers": 2,
+      "trigger_rate": 0.5,
+      "triggers": 1,
       "runs": 2,
-      "pass": true
+      "pass": false
     },
     {
       "query": "define the scope taxonomy for our public API's OAuth apps",
@@ -40,26 +40,26 @@
     {
       "query": "we only have one full_access scope and it's starting to scare me",
       "should_trigger": true,
-      "trigger_rate": 1.0,
-      "triggers": 2,
-      "runs": 2,
-      "pass": true
-    },
-    {
-      "query": "our consent screen is a wall of scary permissions and admins keep rejecting installs",
-      "should_trigger": true,
       "trigger_rate": 0.0,
       "triggers": 0,
       "runs": 2,
       "pass": false
     },
     {
+      "query": "our consent screen is a wall of scary permissions and admins keep rejecting installs",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
       "query": "should we support dynamic client registration",
       "should_trigger": true,
-      "trigger_rate": 1.0,
-      "triggers": 2,
+      "trigger_rate": 0.5,
+      "triggers": 1,
       "runs": 2,
-      "pass": true
+      "pass": false
     },
     {
       "query": "design the app verification program before we open the integrations directory",
@@ -80,24 +80,24 @@
     {
       "query": "what should the lifetime of an authorization code be on our server",
       "should_trigger": true,
-      "trigger_rate": 1.0,
-      "triggers": 2,
-      "runs": 2,
-      "pass": true
-    },
-    {
-      "query": "third-party apps need to act on behalf of our customers - how do we let them do that safely",
-      "should_trigger": true,
       "trigger_rate": 0.5,
       "triggers": 1,
       "runs": 2,
       "pass": false
     },
     {
+      "query": "third-party apps need to act on behalf of our customers - how do we let them do that safely",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
       "query": "should we implement DPoP",
       "should_trigger": true,
-      "trigger_rate": 0.0,
-      "triggers": 0,
+      "trigger_rate": 0.5,
+      "triggers": 1,
       "runs": 2,
       "pass": false
     },
@@ -112,8 +112,8 @@
     {
       "query": "partners keep asking for an API that acts as the logged-in user, not a service account",
       "should_trigger": true,
-      "trigger_rate": 0.5,
-      "triggers": 1,
+      "trigger_rate": 0.0,
+      "triggers": 0,
       "runs": 2,
       "pass": false
     },
@@ -128,10 +128,10 @@
     {
       "query": "what should happen on our side if someone replays a refresh token we already consumed",
       "should_trigger": true,
-      "trigger_rate": 1.0,
-      "triggers": 2,
+      "trigger_rate": 0.0,
+      "triggers": 0,
       "runs": 2,
-      "pass": true
+      "pass": false
     },
     {
       "query": "we want apps to ask for fewer permissions up front and more later as features need them",
@@ -240,16 +240,16 @@
     {
       "query": "review our authorization server design before we ship it",
       "should_trigger": true,
-      "trigger_rate": 0.0,
-      "triggers": 0,
+      "trigger_rate": 1.0,
+      "triggers": 2,
       "runs": 2,
-      "pass": false
+      "pass": true
     },
     {
       "query": "we're the identity provider for our own ecosystem now - what's the checklist",
       "should_trigger": true,
-      "trigger_rate": 0.0,
-      "triggers": 0,
+      "trigger_rate": 0.5,
+      "triggers": 1,
       "runs": 2,
       "pass": false
     },
@@ -296,16 +296,16 @@
     {
       "query": "how many refresh tokens should one app be allowed to hold per user account",
       "should_trigger": true,
-      "trigger_rate": 0.5,
-      "triggers": 1,
+      "trigger_rate": 0.0,
+      "triggers": 0,
       "runs": 2,
       "pass": false
     },
     {
       "query": "right now anyone can self-register an OAuth client with us and I'm nervous about it",
       "should_trigger": true,
-      "trigger_rate": 0.5,
-      "triggers": 1,
+      "trigger_rate": 0.0,
+      "triggers": 0,
       "runs": 2,
       "pass": false
     },
@@ -328,10 +328,10 @@
     {
       "query": "designing permissions for apps that read other users' data, not just the installer's own",
       "should_trigger": true,
-      "trigger_rate": 1.0,
-      "triggers": 2,
+      "trigger_rate": 0.5,
+      "triggers": 1,
       "runs": 2,
-      "pass": true
+      "pass": false
     },
     {
       "query": "our app review is a one-time questionnaire at submission - is that enough",
@@ -352,8 +352,8 @@
     {
       "query": "how do we let developers test their integration before they've been approved",
       "should_trigger": true,
-      "trigger_rate": 0.0,
-      "triggers": 0,
+      "trigger_rate": 0.5,
+      "triggers": 1,
       "runs": 2,
       "pass": false
     },
@@ -376,26 +376,26 @@
     {
       "query": "we're opening our API to third-party apps for the first time - what's the auth design",
       "should_trigger": true,
-      "trigger_rate": 0.5,
-      "triggers": 1,
+      "trigger_rate": 1.0,
+      "triggers": 2,
       "runs": 2,
-      "pass": false
+      "pass": true
     },
     {
       "query": "how do we stop an app from requesting more access at runtime than it declared to us",
       "should_trigger": true,
-      "trigger_rate": 0.0,
-      "triggers": 0,
+      "trigger_rate": 1.0,
+      "triggers": 2,
       "runs": 2,
-      "pass": false
+      "pass": true
     },
     {
       "query": "set up the authorization endpoints and discovery document for our platform",
       "should_trigger": true,
-      "trigger_rate": 0.5,
-      "triggers": 1,
+      "trigger_rate": 1.0,
+      "triggers": 2,
       "runs": 2,
-      "pass": false
+      "pass": true
     },
     {
       "query": "design the API key format and rotation policy for our public API",
@@ -456,8 +456,8 @@
     {
       "query": "find the OAuth misconfigurations in this third-party authorization server",
       "should_trigger": false,
-      "trigger_rate": 0.5,
-      "triggers": 1,
+      "trigger_rate": 1.0,
+      "triggers": 2,
       "runs": 2,
       "pass": false
     },

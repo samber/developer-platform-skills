@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Ties review depth to the maximum data grant an app can hold, not to the marketplace's market, buyer size, or enterprise positioning",
+        "evidence": "\"Review rigor tracks data sensitivity, not the buyer's market.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the enterprise-B2B framing as the input that sets review depth",
+        "evidence": "\"Why the CTO's analogy doesn't hold\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the consequence explicitly: a consumer-adjacent marketplace whose apps hold restricted scopes should out-review a B2B marketplace whose apps only read metadata",
+        "evidence": "Not stated as a consequence.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a lighter depth - functional and scope-focused rather than a mandated multi-week security review - for the metadata-only grant",
+        "evidence": "\"functional review plus automated checks\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that functional-only review is the right depth for a metadata-only tier inside a larger process, not a whole-marketplace shape once apps reach business data",
+        "evidence": "\"At that point the light tier no longer applies.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps post-publication automated scanning in place despite the lighter admission gate",
+        "evidence": "\"Routine updates clear instantly, with automated scanning on each release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines an objective escalation trigger that moves an app up a review tier if it later requests write access or restricted scopes",
+        "evidence": "\"Tier up for any app that requests write access, customer data...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires that escalation trigger to be written so a developer can self-assess it before submitting",
+        "evidence": "\"Write this so a developer can self-assess it before submitting.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses a no-review registry as an option rather than offering it as the cheapest choice",
+        "evidence": "No mention of rejecting a no-review registry.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fits the recommendation inside the stated 4-hour-per-week reviewer ceiling rather than proposing a process that exceeds it",
+        "evidence": "Staffing table totalling about 4 h/week",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that the sensitivity tiering must be settled early, because changing it late forces a rewrite of the re-review, hardening and enforcement sections built on top of it",
+        "evidence": "No warning about late tiering changes forcing rewrites.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Ties review depth to the maximum data grant an app can hold, not to the marketplace's market, buyer size, or enterprise positioning",
+        "evidence": "\"review depth is tied to the data and permissions exposed\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the enterprise-B2B framing as the input that sets review depth",
+        "evidence": "Rejects the Salesforce analogy because \"Your directory has none of that\" (customer data).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the consequence explicitly: a consumer-adjacent marketplace whose apps hold restricted scopes should out-review a B2B marketplace whose apps only read metadata",
+        "evidence": "The consequence is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a lighter depth - functional and scope-focused rather than a mandated multi-week security review - for the metadata-only grant",
+        "evidence": "\"lightweight, tiered review of about 8 engineer-hours\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that functional-only review is the right depth for a metadata-only tier inside a larger process, not a whole-marketplace shape once apps reach business data",
+        "evidence": "\"Triggers to move up a tier\" lists OAuth, write scope and customer data.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps post-publication automated scanning in place despite the lighter admission gate",
+        "evidence": "Only a monthly manual usage-anomaly review; no automated scanning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defines an objective escalation trigger that moves an app up a review tier if it later requests write access or restricted scopes",
+        "evidence": "\"Any write scope is added.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires that escalation trigger to be written so a developer can self-assess it before submitting",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses a no-review registry as an option rather than offering it as the cheapest choice",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fits the recommendation inside the stated 4-hour-per-week reviewer ceiling rather than proposing a process that exceeds it",
+        "evidence": "\"Your engineer's 4 hours a week covers that comfortably.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that the sensitivity tiering must be settled early, because changing it late forces a rewrite of the re-review, hardening and enforcement sections built on top of it",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,92 +1,114 @@
-# OAuth redesign: admin governance and workspace bots
+# OAuth design changes for Hollowpine: org-level app control and workspace bots
 
-The current design has one principal, the installing user, and the user's click is the only authorization. Both enterprise IT governance and bots break that assumption. The fix is to stop treating the grant as "a user's token" and model it as an installation owned by the workspace, with policy sitting above it.
+## Summary
 
-## 1. Core change: three grant types
+Today the design has one consent party, the installing user. You need two changes:
 
-| Type | Who consents | Acts as | Token acquisition | Effective permission |
-|---|---|---|---|---|
-| **User grant** (today) | The user | The user | Authorization code + PKCE | app scopes ∩ admin ceiling ∩ the user's own access |
-| **Admin-approved app** | A workspace admin, once | Each user who then connects | Authorization code, no per-user scope prompt beyond a light confirm | Same intersection |
-| **Workspace bot** | A workspace admin | Itself (bot principal) | Client credentials | app scopes ∩ admin ceiling ∩ the bot's explicit content grants |
+1. **Two-party consent for delegated apps.** The workspace admin sets policy and the user then consents inside it. This answers the question your last three enterprise deals asked.
+2. **A second kind of principal for bots.** A bot is a workspace-owned service identity with its own permissions, authorized by an admin. It is not a user's token with the human removed.
 
-Today's model collapses all three into the first. The key rule is that a user token never exceeds what that user can do in the product.
+Don't extend the user-grant model to cover bots. A bot has no person to click Allow, so it needs its own principal, grant path and lifecycle.
 
-## 2. Data model
+## 1. Delegated apps: add workspace policy above user consent
 
-- **`app_installation`** (new, owned by the workspace): `workspace_id`, `app_id`, `status` (`pending`, `approved`, `blocked`, `revoked`), `approved_scopes`, `approved_by`, `approved_at`, `created_at`, `deleted_at`.
-- **`oauth_grant`**: add `installation_id` and `principal_type` (`user` or `bot`). The user grant is now a child of an installation, not a standalone record.
-- **`bot_principal`** (new): `workspace_id`, `installation_id`, `name`, `role`, `owner_user_id` or `owner_team`, `created_at`, `deleted_at`. It has its own identity and appears in member lists and audit logs flagged as a bot.
-- **`bot_content_grant`**: which spaces and collections the bot can read or write. The default is none.
-- **`workspace_app_policy`**: `mode` (`allow_all`, `allowlist`, `admin_approval_required`, `block_all`), `scope_ceiling`, `allowed_app_ids`, `blocked_app_ids`.
-- **`app_access_request`**: `user_id`, `app_id`, `requested_scopes`, `justification`, `status`, `decided_by`.
+### Data model
 
-Per the SQL rules, no `ON DELETE CASCADE`. Revocation is explicit application logic with an audit entry, and rows are soft-deleted.
+| Entity | Purpose |
+|---|---|
+| `App` | Global client registry: publisher, verified flag, maximum scopes, redirect URIs. |
+| `AppInstallation` | Workspace × App. Status is `pending`, `approved` or `blocked`. Holds a **scope ceiling**, `approved_by` and `approved_at`. |
+| `UserGrant` | User × Installation. Holds the scopes the user accepted (a subset of the ceiling) and the refresh-token family. |
+| `AccessRequest` | A user asks for an app. Holds the reason, the admin decision and who decided. |
+| `WorkspacePolicy` | The consent mode, the always-admin scope list, and optional group/role restrictions. |
 
-## 3. Admin controls (what IT asked about)
+The grant is scoped to the workspace, not the user globally. You sell per workspace, and one person can belong to several workspaces with different policies.
 
-1. **Policy modes** per workspace, with the default flipped to `admin_approval_required` on the enterprise plan. SMB workspaces keep `allow_all`.
-2. **Risk tiers for scopes:**
-   - Low (read own content) can be user-consentable even under a permissive policy.
-   - Write and read-all require admin approval.
-   - Admin and bot scopes are always admin-only, regardless of policy.
-3. **Request-access flow:**
-   - When policy blocks a user, `/authorize` redirects to a "Request admin approval" screen instead of failing.
-   - The admin gets a queue, notified by email, Slack and webhook.
-   - The admin can approve for the whole workspace, approve with narrowed scopes, or deny with a reason.
-4. **Admin consent URL:** `/oauth/admin/authorize?workspace=…` lets an app developer send an admin a direct link.
-5. **Inventory and kill switch:**
-   - A page lists every installation, its users, its scopes, and its last-used time.
-   - Admins can revoke an installation, which cascades to all of its tokens.
-   - Admins can also block an app workspace-wide.
-6. **Audit and export:** log every consent, approval, denial, token issue, revocation, and bot action, with the actor and the acting app. Expose the log through API and SIEM export.
-7. **Lifecycle via the IdP:** SCIM deprovisioning or SSO session termination revokes that user's grants. App tokens are not left alive behind a disabled employee.
-8. **Public app API for admins:** list, approve, and revoke installations. Enterprise IT will want to script this.
+### Workspace policy modes
 
-## 4. Workspace bots
+- **Open:** users may consent to anything except high-risk scopes.
+- **Verified only:** users may consent only to verified apps with low-risk scopes.
+- **Admin-approved only:** users may connect only apps on the allowlist. This is the one enterprise buyers will pick.
+- **Blocked:** no third-party apps at all.
 
-- **Auth:** client credentials grant with `private_key_jwt` (preferred) or a client secret. No human is in the loop and there are no refresh tokens. Access tokens are short-lived (≤ 1h).
-- **Install:** admin-only, or a custom "manage apps" permission. Installation creates the bot principal and shows the exact content grants the admin must pick.
-- **Token claims:** `sub = bot_id`, `workspace_id` as audience/tenant, `principal_type=bot`. Authorization is evaluated on every request against the bot's content grants, not just baked into the token.
-- **Attribution:** posts and edits show "Bot name (app)", never a human name. Each bot has a named accountable owner for the audit trail.
-- **Secrets:** support two active secrets or keys at once for zero-downtime rotation, and a per-bot revoke.
-- **Limits:** a bot cannot approve apps, manage members, or read private user content unless explicitly granted. It gets its own rate limits so one runaway bot cannot starve users.
-- **Ownership transfer:** if the owner leaves, the bot keeps running but flags "no owner" to admins. Do not tie its lifetime to the installer, because that is exactly the failure mode of today's design.
-- **If any bot is LLM-driven:** it reads untrusted content, so prompt injection is a real path to unwanted writes. Default new bots to read-only, and require explicit write grants per space.
+High-risk scopes always need an admin in every mode except Blocked, where no apps connect at all. Examples are write on all content, export, member management and admin APIs.
 
-## 5. Enforcement points
+### Authorization flow
 
-- **Evaluate policy at request time**, not only at grant time. A block or ceiling change must take effect immediately, so the resource server checks installation status, the scope ceiling and the principal's access on each call. If tokens are JWTs, cache installation status with a short TTL (around 60s) or use introspection.
-- Effective scope = `token scopes ∩ installation.approved_scopes ∩ policy.scope_ceiling`.
-- Always scope tokens to one workspace. Never issue a cross-workspace token.
+1. The authorize request resolves the workspace context first.
+2. The server evaluates policy before rendering consent.
+3. If the app is allowed, it shows the normal Allow screen. That screen now names the workspace, the publisher, the verified status and the scopes.
+4. If the app is not allowed, it shows "Request admin approval" instead of Allow. This creates an `AccessRequest` and notifies admins. Don't just return an error.
+5. The effective scope is the intersection of the requested scopes, the installation ceiling, and the user's own permissions in that workspace. An app can never exceed what its user could do.
 
-## 6. Threats this adds or closes
+### Enforcement beyond the consent screen
 
-- 🔐 **Consent phishing** (a malicious app tricking users into broad grants): mitigated by risk tiers, `admin_approval_required` and a verified-app badge.
-- 🔐 **Orphaned access** (the installer leaves): mitigated by workspace-owned installations.
-- 🔐 **Confused deputy** (bot used to read what its caller cannot): require the bot's content grants to be explicit, and never let a bot act on behalf of a user without a user token.
-- ⚠️ **Over-granting at admin approval:** show scopes in plain language, and allow narrowing before approval.
+- Check installation status on every token refresh and on every API call, or use access tokens with a TTL of 5–10 minutes plus revocation events. "Blocked" must take effect within minutes, not at token expiry.
+- Revoke grants automatically on user removal, on SCIM deprovisioning, and when SSO sessions are terminated.
+- Give admins a one-click "revoke all tokens for app X" action.
 
-## 7. Migration
+### Admin surface
 
-1. Backfill an `app_installation` for every existing grant, with `approved_by` set to the original installer. Mark these as `legacy`.
-2. Ship the new tables and the intersection check in shadow mode: log would-be denials but don't enforce.
-3. When an enterprise workspace turns on `admin_approval_required`, show a one-time review of existing installations, with bulk approve and revoke. Give a grace period (for example 14 days) before unapproved legacy grants stop working.
-4. Tell app developers early. Apps must handle a new `admin_approval_required` outcome and send users or admins to the approval flow. Without that, existing integrations show an opaque failure.
+- Installed apps list, with users per app and scopes granted.
+- A pending-requests queue.
+- Block, revoke and change-ceiling actions.
+- An audit log of consents, requests, approvals, revocations and token issuance, with SIEM export. Enterprise IT will ask for this in the same breath as app control.
 
-## 8. Build order
+### Migration
 
-1. Installation entity, backfill, policy table and request-time enforcement.
-2. Admin console: policy modes, inventory, revoke, audit log.
-3. Request-access queue and admin consent URL.
-4. Bot principals with client credentials, content grants and attribution.
-5. SCIM-driven revocation, SIEM export, admin API.
+Existing installs were made without org policy. Convert each one into an `AppInstallation` with status `legacy-unreviewed`. Show them to admins in a "discovered apps" queue and give them a grace period, for example 30 days, to approve or block. Don't silently approve them and don't silently break them.
 
-Steps 1–3 answer the three enterprise asks. Step 4 is independent once step 1 lands.
+### Protocol hygiene
 
-## 9. Decisions you need to make
+- Require PKCE and exact-match redirect URIs.
+- Treat dynamically registered or unverified clients as untrusted. They default to `pending` in every workspace.
+- Surface policy denials with distinct errors such as `admin_approval_required`, so app developers can show a useful message.
 
-1. **Bot billing:** does a bot count as a seat? Per-workspace pricing suggests no, but you need rate limits to compensate.
-2. **Default policy for current paying customers:** do you flip the default to approval-required, or make it opt-in until they ask?
-3. **Marketplace review:** do you build a verified-app program now, or rely on admin allowlists until the third-party app count justifies it?
-4. **Bot user-impersonation:** do bots ever need to act on behalf of a user? I recommend no for v1, since it needs a separate delegated-token design.
+## 2. Workspace bots: a separate principal
+
+### Identity and grant path
+
+- A `Bot` principal belongs to the workspace, not to a user. It has its own ID and appears in content as a bot, for example "Release Notes Bot, installed by Dana".
+- An **admin consent flow** installs it. The admin approves the bot's scopes and its resource access once. No end user ever sees an Allow screen.
+- It authenticates with the client-credentials grant, using `private_key_jwt` or a rotating secret. Access tokens are short-lived (1 hour or less) and have no refresh token.
+- Only workspace admins with an install permission can install bots. Make "app-only" scopes a separate set from delegated scopes, so an app can't quietly request a bot-grade scope through a user.
+
+### Permissions: least privilege by default
+
+- A new bot can read nothing. An admin or the space owner explicitly grants each collection or space.
+- "Reads and posts as itself" means its permissions are its own. They are not a union of the installer's permissions.
+- A private space needs a grant from that space's owner, not just from a workspace admin.
+- A bot can't take admin actions, approve other apps, or mint other bots.
+
+### Ownership and lifecycle
+
+- Every bot has a named human owner for accountability. When that person leaves, the bot must be reassigned. Alert admins about orphaned bots rather than letting the bot die with the installer's account.
+- Support suspend, rotate (two secrets active during rotation), and delete.
+- Add per-bot rate limits and quotas. If bots don't consume seats, quotas are what protect your costs. See the pricing question below.
+- Optional IP allowlisting for enterprise.
+
+### Attribution
+
+Every bot write is audited as bot X, installed by Y, authorized by Z. The UI must make bot content visibly distinct, and bot content can't be edited as if a human wrote it.
+
+### The confused-deputy risk
+
+A bot answering questions for many users can expose content that a given asker couldn't see. Two rules:
+
+- If a bot acts on a specific user's request, use a delegated, on-behalf-of token for that user.
+- If it uses its own identity, its permissions are the ceiling for everything it serves. Tell admins this at grant time: whatever a bot can read can leave the workspace through that bot.
+
+## 3. Suggested rollout
+
+1. **Policy foundation:** `AppInstallation`, `WorkspacePolicy`, policy check at authorize and refresh, allowlist UI, audit log, and the legacy-install migration. This alone answers the enterprise deals.
+2. **Request flow:** the access-request queue, scope ceilings, and group/role restrictions.
+3. **Bots:** principal, client credentials, resource grants, ownership and rotation.
+4. **Enterprise integrations:** SIEM export and SCIM-driven revocation.
+
+## Decisions for you
+
+1. **Default policy for new workspaces.** I recommend verified-only for self-serve and admin-approved-only for enterprise.
+2. **Do bots take seats?** I recommend no seats, with per-bot quotas, since you price per workspace.
+3. **Plan packaging.** Decide whether full app governance (SIEM export, group-based policy) sits in the enterprise tier. I recommend basic allow/block for all plans and the rest for enterprise.
+4. **Legacy grace period length.** I suggest 30 days.
+
+I didn't read your codebase, so this is a design-level answer. I can map it onto your current OAuth implementation if you want.

@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the problem is structural rather than a matter of awareness, and rejects promoting the existing dashboard as the fix",
+        "evidence": "\"Promoting the dashboard harder won't fix this. The dashboard is good. It's pointed at the wrong audience.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a per-account dashboard cannot serve an ISV whose app is installed across thousands of accounts, because nobody watches thousands of dashboards",
+        "evidence": "Quotes the skill: \"a per-account dashboard is structurally useless to them: nobody watches a thousand dashboards.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires cross-install aggregation keyed on the app or client ID, spanning every install of one ISV's app, as the missing surface",
+        "evidence": "\"No per-app view. Nothing aggregates by app across installs\"; \"a partner-scoped cross-install view\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires push notification to the ISV rather than relying on them to come and look",
+        "evidence": "\"No push... it can only be pulled, never pushed\"; per-app digest and state-change alerts.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the access model as a distinct gap: the ISV engineer who maintains the integration is typically not a user of the customer's account and therefore cannot open the per-account dashboard at all",
+        "evidence": "\"The ISV's engineers usually aren't admins of those accounts... an access-model gap, not a logging gap.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the single-account integrator segment from the ISV-fleet segment, and states that a surface designed for the first does not finish the job for the second",
+        "evidence": "Three-segment table; \"Your dashboard serves the first segment well. Your 22 ISVs are the second.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an installs-affected against installs-total measure per ISV app, and reads that ratio as the diagnosis",
+        "evidence": "Used for ranking and alert content (\"blast radius\"), but the ratio is never read as a diagnosis of the failure cause.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Interprets a high installs-affected ratio as a partner-side release and a low one as configuration trouble at a few customers",
+        "evidence": "No such interpretation. Only \"app X is failing on 200 of 240 installs\" appears as an example.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not conclude that Tuliphase's existing per-account request log was the wrong thing to have built",
+        "evidence": "\"The dashboard is good.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends deciding explicitly who can read each surface: the account owner, any user of the account, and the partner engineer outside the account",
+        "evidence": "Names ISV engineers outside customer accounts, customer admins for the per-customer dashboard, and a separate cross-tenant data-classification decision for the ISV view.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes the notification audience to the 22 ISVs rather than to the individual customer accounts",
+        "evidence": "\"Send a per-app digest to a named partner contact\"; \"Collect a named technical alert contact per ISV.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the problem is structural rather than a matter of awareness, and rejects promoting the existing dashboard as the fix",
+        "evidence": "'the dashboard has the wrong reader. More promotion won't fix that.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a per-account dashboard cannot serve an ISV whose app is installed across thousands of accounts, because nobody watches thousands of dashboards",
+        "evidence": "'scoped to one customer's account'; 'across 6,000 installs needs aggregate error rates'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires cross-install aggregation keyed on the app or client ID, spanning every install of one ISV's app, as the missing surface",
+        "evidence": "'Add a partner-level view... across its own installs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires push notification to the ISV rather than relying on them to come and look",
+        "evidence": "'Push failure alerts to ISVs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the access model as a distinct gap: the ISV engineer who maintains the integration is typically not a user of the customer's account and therefore cannot open the per-account dashboard at all",
+        "evidence": "The people who can fix the app are the ISVs, who 'can't see the log'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the single-account integrator segment from the ISV-fleet segment, and states that a surface designed for the first does not finish the job for the second",
+        "evidence": "Not framed as segments.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends an installs-affected against installs-total measure per ISV app, and reads that ratio as the diagnosis",
+        "evidence": "No ratio proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Interprets a high installs-affected ratio as a partner-side release and a low one as configuration trouble at a few customers",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not conclude that Tuliphase's existing per-account request log was the wrong thing to have built",
+        "evidence": "'the dashboard is good, but it is aimed at the customer'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends deciding explicitly who can read each surface: the account owner, any user of the account, and the partner engineer outside the account",
+        "evidence": "No explicit read-access decision per surface.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes the notification audience to the 22 ISVs rather than to the individual customer accounts",
+        "evidence": "Alerts go per app to ISVs; the 22 ISVs are the audience.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

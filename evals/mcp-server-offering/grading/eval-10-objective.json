@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Decides app-or-no-app per tool rather than per server, and rejects giving all nine tools a widget for visual consistency.",
+        "evidence": "\"Drop 'a widget on all 9 tools.' Decide per tool.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps get_vehicle_status and lookup_driver as plain tool results, stating that a lookup or a status check gains nothing from a UI.",
+        "evidence": "\"`get_vehicle_status` and `lookup_driver` stay plain.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the stub result and requires the full structured and text result on every call, with the UI as a richer view of that same data rather than a replacement for it.",
+        "evidence": "\"Every app-backed tool keeps returning its full structured and text result.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that the extension is opt-in - client and server must both declare it during capability negotiation - so hosts without it, headless clients and background agent fleets receive only the plain result, and names Wrenfield's overnight gateway-run agents as such clients.",
+        "evidence": "\"The extension is opt-in on both sides. Hosts without it, headless clients and background fleets get only the plain result.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an app answers the human and the model sees only what the app pushes back into its context, so a stub result leaves the model with nothing to reason over or summarize.",
+        "evidence": "\"Even in a host that renders the app, the model sees only the stub.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prices each app as a second front-end with its own build, tests, accessibility and security review, maintained for as long as the tool exists.",
+        "evidence": "\"Nine widgets is nine front-ends. Each one needs its own build, tests, accessibility and security review\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the route-planning job to the existing web app behind a link, applying the test that the job needs no surrounding conversation context, no tool calls back into the server, and no use of the host's other connected capabilities.",
+        "evidence": "Builds an MCP app for route planning; link-out only as fallback, no test applied.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes the first app to the single highest-value workflow, as the differentiation stage prescribes, instead of nine apps in one quarter.",
+        "evidence": "\"Build one app in Q1: route planning.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that host support varies and the client matrix is community-maintained, and requires re-checking it before the Microsoft 365 Copilot and Goose promise to the prospect stands, rather than confirming support from memory.",
+        "evidence": "\"community extension matrix... The skill says to re-check before promising a host\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires testing in at least two hosts plus one client without the extension to prove the plain-result fallback, and points at the ext-apps repository's basic-host example for rendering apps locally.",
+        "evidence": "Two hosts plus one client without the extension are required, but there is no mention of the ext-apps basic-host example.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instruments app-rendered versus text-only calls per client plus completion of the interactive job, and commits to retiring any app that is rendered but never used while keeping its tool.",
+        "evidence": "\"Track app-rendered versus text-only calls per client... retire it and keep the tool.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Decides app-or-no-app per tool rather than per server, and rejects giving all nine tools a widget for visual consistency.",
+        "evidence": "\"Not 9 widgets. Widget only where interaction or visuals beat text\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps get_vehicle_status and lookup_driver as plain tool results, stating that a lookup or a status check gains nothing from a UI.",
+        "evidence": "\"A single-record lookup (`get_vehicle_status`, `lookup_driver`) answers fine as text.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the stub result and requires the full structured and text result on every call, with the UI as a richer view of that same data rather than a replacement for it.",
+        "evidence": "\"Drop the stub result... keep the full result in the model-visible `content`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that the extension is opt-in - client and server must both declare it during capability negotiation - so hosts without it, headless clients and background agent fleets receive only the plain result, and names Wrenfield's overnight gateway-run agents as such clients.",
+        "evidence": "\"Only add widget output when the client declares MCP Apps support. Everyone else gets today's response\"; \"Overnight agents have no UI.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an app answers the human and the model sees only what the app pushes back into its context, so a stub result leaves the model with nothing to reason over or summarize.",
+        "evidence": "\"Even in a rendering client, the model can't see the data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prices each app as a second front-end with its own build, tests, accessibility and security review, maintained for as long as the tool exists.",
+        "evidence": "It mentions test surface and a failure mode, but not a second front-end with ongoing accessibility and security review.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the route-planning job to the existing web app behind a link, applying the test that the job needs no surrounding conversation context, no tool calls back into the server, and no use of the host's other connected capabilities.",
+        "evidence": "It builds an embeddable planner widget in weeks 8\u201311.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes the first app to the single highest-value workflow, as the differentiation stage prescribes, instead of nine apps in one quarter.",
+        "evidence": "It ships 3 widgets in Q1.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that host support varies and the client matrix is community-maintained, and requires re-checking it before the Microsoft 365 Copilot and Goose promise to the prospect stands, rather than confirming support from memory.",
+        "evidence": "\"tell sales to stop confirming... You have not tested either client yet\" and the Phase 0 matrix.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires testing in at least two hosts plus one client without the extension to prove the plain-result fallback, and points at the ext-apps repository's basic-host example for rendering apps locally.",
+        "evidence": "It tests four hosts but names no client without the extension, and does not mention the ext-apps basic-host.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instruments app-rendered versus text-only calls per client plus completion of the interactive job, and commits to retiring any app that is rendered but never used while keeping its tool.",
+        "evidence": "It instruments widget opens, but has no per-client rendered-versus-text comparison or retire-unused-app commitment.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

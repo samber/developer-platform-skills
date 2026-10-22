@@ -3,73 +3,73 @@
     "expectations": [
       {
         "text": "Rejects one uniform review bar and requires review depth scaled to data sensitivity.",
-        "evidence": "scale review depth to data sensitivity",
+        "evidence": "\"A single questionnaire bar is the wrong design\"; \"scale review depth to data sensitivity, never one bar for all apps\"; tiered table keyed to scopes.",
         "passed": true,
         "graded": true
       },
       {
         "text": "Names the bright line: the moment a scope reaches other users' data or PII rather than only the requesting user's own, mandatory independent third-party security assessment applies.",
-        "evidence": "Mandatory independent testing starts when a scope reaches other users' data or PII",
+        "evidence": "\"That is access to other users' data and PII... The skill treats that as the bright line. At that point every studied program requires independent testing\"; Tier 3: \"Any scope reaching other users' data\".",
         "passed": true,
         "graded": true
       },
       {
         "text": "Applies that line to the described apps (full vendor list, every employee's expense reports) and places them above the questionnaire tier.",
-        "evidence": "Tier 2 ... vendor list, all expense reports",
+        "evidence": "Tier 3 trigger: \"Any scope reaching other users' data, bulk vendor data or employee expense reports\" with third-party assessment, above Tier 2 questionnaire.",
         "passed": true,
         "graded": true
       },
       {
         "text": "Rejects one 'Verified' badge conflating identity verification, self-attestation, and independent audit, and requires the signals to stay visually distinct on the listing surface.",
-        "evidence": "Show three separate signals",
+        "evidence": "\"One 'Verified' badge conflates three different things\"; separate badges \"Identity verified\", \"Security self-attested\", \"Independently assessed\" per tier.",
         "passed": true,
         "graded": true
       },
       {
         "text": "States that publisher identity verification proves continuity of identity, not quality.",
-        "evidence": "doesn't imply or indicate quality criteria",
-        "passed": true,
+        "evidence": "Says Microsoft's identity badge \"doesn't imply or indicate quality criteria\" \u2014 conveys not-quality but never states it proves continuity of identity.",
+        "passed": false,
         "graded": true
       },
       {
         "text": "Recommends publisher identity verification (verified domain plus verified partner account, no fee) as the default rung for every listed app.",
-        "evidence": "Tier 0 Publisher identity verification (domain plus verified account)",
+        "evidence": "Tier 1: \"Every listed app | Publisher identity verification: domain plus verified business account, no fee.\"",
         "passed": true,
         "graded": true
       },
       {
         "text": "Places self-attestation as the middle rung and states it is explicitly not independently verified by the platform.",
-        "evidence": "isn't independently verified",
-        "passed": true,
+        "evidence": "Tier 2 is self-attested, and \"Microsoft says outright that its attestations are not independently verified\" \u2014 attributed to Microsoft, not stated as the platform's own label/disclosure.",
+        "passed": false,
         "graded": true
       },
       {
         "text": "States that the developer, not the platform, pays the third-party assessor fee.",
-        "evidence": "paid for by the developer",
+        "evidence": "\"The developer pays the assessor.\"",
         "passed": true,
         "graded": true
       },
       {
         "text": "Notes the full manual pentest tier costs roughly an order of magnitude more than the automated scan tier.",
-        "evidence": "Not mentioned",
-        "passed": false,
+        "evidence": "\"about $500+ for the scan tier and $5,000+ for the pentest tier\".",
+        "passed": true,
         "graded": true
       },
       {
         "text": "Requires the assessment to recur on an annual / 12-month cadence rather than being one-time at submission.",
-        "evidence": "annual recurrence, re-review on scope change",
+        "evidence": "Tier 3: \"repeated annually and on new scope\"; \"Google, Microsoft and Atlassian reassess annually\".",
         "passed": true,
         "graded": true
       },
       {
         "text": "Rejects a warning banner as the entire unverified lane and requires a hard enforced ceiling, such as a lifetime cap on test users plus short-lived test tokens.",
-        "evidence": "A warning banner isn't a control.",
+        "evidence": "\"A warning banner is a weak control\"; \"Google caps unverified apps at 100 users for the app's lifetime, plus 7-day test-token expiry\"; Tier 1 testing lane \"with a hard user cap\".",
         "passed": true,
         "graded": true
       },
       {
         "text": "Requires runtime enforcement that any requested scope is a subset of what was declared and approved at registration, because declarations drift.",
-        "evidence": "rejecting any scope request that isn't a subset",
+        "evidence": "\"Reject any scope request that isn't a subset of what was approved at registration.\" under \"Declarations drift.\"",
         "passed": true,
         "graded": true
       }
@@ -79,26 +79,26 @@
     "expectations": [
       {
         "text": "Rejects one uniform review bar and requires review depth scaled to data sensitivity.",
-        "evidence": "'Tier by data access, not by app.'",
+        "evidence": "'A single bar treats unequal risk as equal... Tier by data access'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Names the bright line: the moment a scope reaches other users' data or PII rather than only the requesting user's own, mandatory independent third-party security assessment applies.",
-        "evidence": "Tier 2 org-wide read 'Needs evidence, not claims: SOC 2 Type II or ISO 27001 report, a pen-test summary'.",
-        "passed": true,
+        "evidence": "Tier 3 is a 'Ledgerline review'. Third-party assessment is not mandated.",
+        "passed": false,
         "graded": true
       },
       {
         "text": "Applies that line to the described apps (full vendor list, every employee's expense reports) and places them above the questionnaire tier.",
-        "evidence": "Tier 2 'vendor list, all employees' expenses'; Tier 1 gets the questionnaire.",
+        "evidence": "'Tier 3, org-wide vendor list or all employees' expense reports'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Rejects one 'Verified' badge conflating identity verification, self-attestation, and independent audit, and requires the signals to stay visually distinct on the listing surface.",
-        "evidence": "'If you only collect a self-attested questionnaire, use \"Self-assessed\"... Reserve \"Verified\"'.",
-        "passed": true,
+        "evidence": "It rejects the single binary badge but does not separate identity, self-attestation, and audit signals.",
+        "passed": false,
         "graded": true
       },
       {
@@ -109,43 +109,43 @@
       },
       {
         "text": "Recommends publisher identity verification (verified domain plus verified partner account, no fee) as the default rung for every listed app.",
-        "evidence": "Not recommended.",
+        "evidence": "Not proposed.",
         "passed": false,
         "graded": true
       },
       {
         "text": "Places self-attestation as the middle rung and states it is explicitly not independently verified by the platform.",
-        "evidence": "Only labelled 'Self-assessed'; no rung structure.",
+        "evidence": "It says 'Nobody at Ledgerline has checked the answers' and suggests a 'Self-attested' label. It sets up no rung structure.",
         "passed": false,
         "graded": true
       },
       {
         "text": "States that the developer, not the platform, pays the third-party assessor fee.",
-        "evidence": "Not stated.",
+        "evidence": "Not mentioned.",
         "passed": false,
         "graded": true
       },
       {
         "text": "Notes the full manual pentest tier costs roughly an order of magnitude more than the automated scan tier.",
-        "evidence": "Not stated.",
+        "evidence": "Not mentioned.",
         "passed": false,
         "graded": true
       },
       {
         "text": "Requires the assessment to recur on an annual / 12-month cadence rather than being one-time at submission.",
-        "evidence": "'Re-verify annually.'",
+        "evidence": "'Re-attest annually, and re-review on any scope increase.'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Rejects a warning banner as the entire unverified lane and requires a hard enforced ceiling, such as a lifetime cap on test users plus short-lived test tokens.",
-        "evidence": "Banner replaced by disclosure; no test-user cap or short-lived test tokens.",
-        "passed": false,
+        "evidence": "'Replace the banner with a gate. Unreviewed apps shouldn't be able to request Tier 3 scopes at all.'",
+        "passed": true,
         "graded": true
       },
       {
         "text": "Requires runtime enforcement that any requested scope is a subset of what was declared and approved at registration, because declarations drift.",
-        "evidence": "Says scope list is source of truth and broader scopes return to review; no runtime subset enforcement.",
+        "evidence": "Only re-review on scope increase is mentioned, with no runtime enforcement.",
         "passed": false,
         "graded": true
       }

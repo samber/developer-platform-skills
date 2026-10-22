@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Opens with an explicit GraphQL-or-not gate before proposing any schema, type, or SDL.",
+        "evidence": "\"Start with the step 1 gate, not a schema.\" and \"Gate verdict: no trigger fires, so stay on REST\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that REST, not GraphQL, is the default choice for a public API surface.",
+        "evidence": "\"The skill's default for a public API is REST.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks the described consumer mix against the named GraphQL triggers (multiple client types needing different shapes of the same data, nested highly variable data that would force many round trips, mobile or high-latency consumers where round-trip count dominates) and reports that none holds for Kettleworth.",
+        "evidence": "Trigger table with all three rows marked \"No\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the loss of free URL-keyed HTTP and CDN caching on a single POST endpoint as a concrete cost, tying it to the 70% cache-served traffic figure given.",
+        "evidence": "\"Your 70% CDN hit rate... On GraphQL's single POST endpoint you would have to rebuild that caching.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the ecosystem's auth, rate-limiting, and debugging tooling assuming REST first as a second reason REST wins by default.",
+        "evidence": "Not mentioned; only CDN caching is given as a reason REST wins.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a fixed, enumerable endpoint surface being easier for an unfamiliar third party to reason about than a graph as a third reason.",
+        "evidence": "No statement about a fixed endpoint surface being easier to reason about.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents a hybrid outcome (REST for the stable cacheable surface, GraphQL only where a trigger holds) as a legitimate result of the gate rather than a failure to decide.",
+        "evidence": "\"Hybrid is a legitimate outcome... Keep REST as the stable cacheable surface and add GraphQL only where a trigger holds.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not deliver a full public GraphQL schema or SDL as the primary deliverable for this request.",
+        "evidence": "\"I therefore haven't produced SDL, pagination, error unions or ceilings.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the CTO's existing commitment does not exempt the decision from the gate, since commitment by momentum is what the gate exists to catch.",
+        "evidence": "Only says \"Frame it as the gate's result, not a refusal\"; never says commitment by momentum is what the gate catches.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends handing the work to REST-surface design rather than proceeding to GraphQL schema conventions and pagination.",
+        "evidence": "\"The skill's exit for this case is to stop and hand the work to the REST-side skills.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Opens with an explicit GraphQL-or-not gate before proposing any schema, type, or SDL.",
+        "evidence": "\"Start with the requirement, not the schema.\" and \"Step 0: Decide what the GraphQL API is for\" come before the SDL in Step 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that REST, not GraphQL, is the default choice for a public API surface.",
+        "evidence": "It never says REST is the default. It only recommends \"ship GraphQL as an additive second surface and keep REST.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks the described consumer mix against the named GraphQL triggers (multiple client types needing different shapes of the same data, nested highly variable data that would force many round trips, mobile or high-latency consumers where round-trip count dominates) and reports that none holds for Kettleworth.",
+        "evidence": "\"Flat, three-resource data... little nesting\" and \"One first-party client. There is no mobile or web client team asking for flexible queries.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the loss of free URL-keyed HTTP and CDN caching on a single POST endpoint as a concrete cost, tying it to the 70% cache-served traffic figure given.",
+        "evidence": "\"Standard GraphQL is a single POST /graphql, which the CDN can't cache. Without extra work, that 70% lands on origin.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the ecosystem's auth, rate-limiting, and debugging tooling assuming REST first as a second reason REST wins by default.",
+        "evidence": "No mention of ecosystem tooling assuming REST.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a fixed, enumerable endpoint surface being easier for an unfamiliar third party to reason about than a graph as a third reason.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents a hybrid outcome (REST for the stable cacheable surface, GraphQL only where a trigger holds) as a legitimate result of the gate rather than a failure to decide.",
+        "evidence": "\"ship GraphQL as an additive second surface and keep REST... offer the CTO a smaller fix.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not deliver a full public GraphQL schema or SDL as the primary deliverable for this request.",
+        "evidence": "Step 2 gives an extensive SDL skeleton, and Step 3 covers pagination and nullability conventions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the CTO's existing commitment does not exempt the decision from the gate, since commitment by momentum is what the gate exists to catch.",
+        "evidence": "It only says to ask the CTO what outcome they want. It never says the commitment does not exempt the decision.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends handing the work to REST-surface design rather than proceeding to GraphQL schema conventions and pagination.",
+        "evidence": "It proceeds to GraphQL schema conventions, pagination and a sequence for shipping GraphQL beta.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

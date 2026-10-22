@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the '78% of enterprises use MCP in production' figure and states it is debunked.",
+        "evidence": "\"'78% of enterprises use MCP in production'... An independent tracker debunked both.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses the '28% of Fortune 500 run production MCP deployments' figure and states it is debunked.",
+        "evidence": "\"'28% of the Fortune 500 run production MCP deployments.' An independent tracker debunked both.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses the '73% of outages originate at the transport/protocol layer' figure, or labels it an uncorroborated single-vendor analysis rather than a statistic.",
+        "evidence": "\"This is a single-vendor analysis with no independent corroboration.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to attribute MCP-specific revenue to Stripe or Linear, stating that neither publishes MCP adoption or revenue metrics and that such claims are unverifiable.",
+        "evidence": "\"Both are private companies and have published no MCP-specific adoption or revenue metrics.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Substitutes the roughly 41% limited-to-broad production figure from the December 2025 survey of 300 senior technical leaders as the citable adoption baseline.",
+        "evidence": "\"survey of 300 senior technical leaders (Stacklok) found about 41%\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the strongest first-party dataset available - over 5 million tool calls per working day with roughly a third of them writes.",
+        "evidence": "\"5M+ tool calls per working day, about a third of them writes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the 44% more accurate answers using 48% fewer tokens result from that same first-party disclosure.",
+        "evidence": "\"44% more accurate answers using 48% fewer tokens\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that only 11-14% of enterprise agentic pilots reach production and ties the stall to identity, audit, and access-control gaps.",
+        "evidence": "\"Only 11-14% of enterprise agentic pilots reach production. They stall on identity, audit and access-control gaps.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames MCP for Latchkey as defensive positioning becoming procurement table stakes rather than a new revenue channel, because Latchkey already ships a public REST API.",
+        "evidence": "\"a defensive duplicate of an existing surface, not a new acquisition channel\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the competitive question has moved from 'supports MCP' to 'supports MCP well'.",
+        "evidence": "The phrase or equivalent does not appear.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats RFP pressure as a qualitative signal and attaches no percentage to it.",
+        "evidence": "\"That is a qualitative signal, so we attach no percentage to it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates demo-grade effort from production-grade effort, citing an order of 150-250 hours for a simple hand-built API-integration server plus a standing maintenance commitment.",
+        "evidence": "\"150-250 hours... Production-grade... takes months and carries a standing annual maintenance commitment.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the '78% of enterprises use MCP in production' figure and states it is debunked.",
+        "evidence": "It cuts the figure as hard to square and unsourced, and tells the user to find the original survey. It never calls it debunked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses the '28% of Fortune 500 run production MCP deployments' figure and states it is debunked.",
+        "evidence": "It says it would be \"surprising\" and to find the source. It does not call it debunked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses the '73% of outages originate at the transport/protocol layer' figure, or labels it an uncorroborated single-vendor analysis rather than a statistic.",
+        "evidence": "\"It has no obvious source, and I couldn't tie it to MCP.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to attribute MCP-specific revenue to Stripe or Linear, stating that neither publishes MCP adoption or revenue metrics and that such claims are unverifiable.",
+        "evidence": "\"neither company has publicly attributed revenue to its MCP server\" - reworded to \"have published MCP servers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Substitutes the roughly 41% limited-to-broad production figure from the December 2025 survey of 300 senior technical leaders as the citable adoption baseline.",
+        "evidence": "No replacement adoption figure is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the strongest first-party dataset available - over 5 million tool calls per working day with roughly a third of them writes.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the 44% more accurate answers using 48% fewer tokens result from that same first-party disclosure.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that only 11-14% of enterprise agentic pilots reach production and ties the stall to identity, audit, and access-control gaps.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames MCP for Latchkey as defensive positioning becoming procurement table stakes rather than a new revenue channel, because Latchkey already ships a public REST API.",
+        "evidence": "It frames MCP around customers moving into assistants and \"invisible\" otherwise, and does not tie this to the existing REST API as defensive table stakes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the competitive question has moved from 'supports MCP' to 'supports MCP well'.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats RFP pressure as a qualitative signal and attaches no percentage to it.",
+        "evidence": "RFPs are mentioned only in passing (\"if customers start asking for it in RFPs\") and are not framed as a qualitative signal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates demo-grade effort from production-grade effort, citing an order of 150-250 hours for a simple hand-built API-integration server plus a standing maintenance commitment.",
+        "evidence": "Effort is left as [X] weeks placeholders.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

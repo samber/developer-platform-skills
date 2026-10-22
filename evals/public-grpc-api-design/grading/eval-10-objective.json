@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects v2 importing from v1: a new major version must not depend on the previous major version of the same API",
+        "evidence": "\"A new major version must not depend on the previous one (AIP-185)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the resource-name changes for stable resources: resource names stay identical across majors so a v2 client can address a resource a v1 client created",
+        "evidence": "\"Stable resources must keep identical resource names across majors\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that renaming sku_code to product_code is semantically remove-and-add and is therefore a breaking change, not a clarity refactor",
+        "evidence": "\"A rename is remove-and-add, so it is always breaking (AIP-180).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the three deleted fields to be marked `reserved` and their tags never reused or renumbered",
+        "evidence": "\"reserved both the tag numbers and the names of the three removed fields\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects shipping the unbaked realtime inventory feature inside the v1 package, stating that v1 is reserved for stable and that claiming beta functionality under v1 is a review finding",
+        "evidence": "\"Beta functionality under v1 is the review finding the skill flags by name.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Directs the pre-stable feature to a v1beta or v1alpha channel instead",
+        "evidence": "\"Ship it as sablefen.catalog.v1beta1\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the two legitimate evolution strategies - channel-based (long-lived beta/stable channels updated in place) and release-based (v1beta1 to v1beta2 for an incompatible beta-only change)",
+        "evidence": "Neither strategy is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires `deprecated = true` on anything being retired, noting the option is available on messages, enums, enum values and services, not only fields",
+        "evidence": "Only mentions `deprecated = true` on sku_code.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a deprecation comment stating why the component is deprecated and what replaces it, so generated docs explain the replacement",
+        "evidence": "\"deprecated = true with an AIP-192 comment saying what replaces it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the channel-differentiated sunset expectations: alpha may be removed without notice, beta after a deprecation period with 180 days as the recommended floor",
+        "evidence": "Gives only \"180 days is the recommended floor\" for beta; alpha is not covered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that an in-place breaking change to a stable component is an extreme course of action reserved for security or regulatory necessity",
+        "evidence": "\"the 'extreme course of action' reserved for security or regulatory needs\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects v2 importing from v1: a new major version must not depend on the previous major version of the same API",
+        "evidence": "\"(1) Importing v1 types into v2 \u274c... Make v2 self-contained.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the resource-name changes for stable resources: resource names stay identical across majors so a v2 client can address a resource a v1 client created",
+        "evidence": "It says \"Needs a translation layer and a migration plan\" and accepts the change, only advising to keep leaf IDs stable.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that renaming sku_code to product_code is semantically remove-and-add and is therefore a breaking change, not a clarity refactor",
+        "evidence": "It says the rename is \"Fine inside v2\" and \"wire-compatible\" but changes JSON names.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the three deleted fields to be marked `reserved` and their tags never reused or renumbered",
+        "evidence": "\"Reserve the deleted fields. Use reserved <numbers>; reserved \"<names>\"; ... Never reuse those numbers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects shipping the unbaked realtime inventory feature inside the v1 package, stating that v1 is reserved for stable and that claiming beta functionality under v1 is a review finding",
+        "evidence": "\"Don't. v1 is a stable contract, and everything you add to it is permanent.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Directs the pre-stable feature to a v1beta or v1alpha channel instead",
+        "evidence": "\"Ship it as sablefen.catalog.v1beta1 or sablefen.inventory.v1beta1.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the two legitimate evolution strategies - channel-based (long-lived beta/stable channels updated in place) and release-based (v1beta1 to v1beta2 for an incompatible beta-only change)",
+        "evidence": "Neither strategy is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires `deprecated = true` on anything being retired, noting the option is available on messages, enums, enum values and services, not only fields",
+        "evidence": "deprecated = true is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a deprecation comment stating why the component is deprecated and what replaces it, so generated docs explain the replacement",
+        "evidence": "It asks for a migration guide but no deprecation comments.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the channel-differentiated sunset expectations: alpha may be removed without notice, beta after a deprecation period with 180 days as the recommended floor",
+        "evidence": "It says only that alpha and beta packages may break. No 180 days.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that an in-place breaking change to a stable component is an extreme course of action reserved for security or regulatory necessity",
+        "evidence": "This is not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

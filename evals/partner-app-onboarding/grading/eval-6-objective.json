@@ -1,0 +1,106 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Returns a no-go on using the partner's own live account as the test environment",
+        "evidence": "\"No-go on 'partner mode on live account.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bases the no-go on partner apps touching money and irreversible actions, and on other tenants' data being reachable",
+        "evidence": "\"once apps touch money, irreversible actions, or other tenants' data... all three.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs deleting the own-account-as-sandbox option outright rather than keeping it as a later fallback or a demoted rung",
+        "evidence": "\"delete the own-account-as-sandbox rung. Do not demote it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that an option ruled out by constraints but parked at the bottom of a menu silently reappears later as scope",
+        "evidence": "\"The parked option comes back as scope, and costs more then.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends instant dedicated dev tenancy - a free dev instance or account created at signup, no time limit, no payment information required - as the rung to build",
+        "evidence": "\"Create it at signup, free, with no time limit and no card.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps provisioning at signup rather than deferring it because of the tight deadline",
+        "evidence": "\"Do not put it behind review\"; the 6 partners get tenants in week 1, though self-service automation follows in weeks 2-4.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that production-mirror sandboxes are heavy enough that real platforms ration them, via quotas or by gating them behind a paid tier",
+        "evidence": "Says production-mirror sandboxes are \"too heavy for your deadline\" but never says platforms ration them via quotas or paid tiers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defers test-key prefixing, magic test values, isolation architecture, and graduation-to-live mechanics to samber/developer-platform-skills@api-test-mode-design",
+        "evidence": "\"belong to `samber/developer-platform-skills@api-test-mode-design`. Hand that design there.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Returns a no-go on using the partner's own live account as the test environment",
+        "evidence": "'Decision: no-go on \"live account + partner-mode flag\".'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bases the no-go on partner apps touching money and irreversible actions, and on other tenants' data being reachable",
+        "evidence": "'Partners will test on real rails'; flag leak could reach 'a real customer's sub-account'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs deleting the own-account-as-sandbox option outright rather than keeping it as a later fallback or a demoted rung",
+        "evidence": "Keeps the flag as 'the on-switch' and offers a live-org controlled pilot as fallback.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that an option ruled out by constraints but parked at the bottom of a menu silently reappears later as scope",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends instant dedicated dev tenancy - a free dev instance or account created at signup, no time limit, no payment information required - as the rung to build",
+        "evidence": "Recommends a minimal simulator with staggered release, not signup-time tenancy.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps provisioning at signup rather than deferring it because of the tight deadline",
+        "evidence": "Defers: 'Staggered release: open the remaining partners when the minimum bar is met.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that production-mirror sandboxes are heavy enough that real platforms ration them, via quotas or by gating them behind a paid tier",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defers test-key prefixing, magic test values, isolation architecture, and graduation-to-live mechanics to samber/developer-platform-skills@api-test-mode-design",
+        "evidence": "Designs the five-point bar itself; no skill referral.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

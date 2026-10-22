@@ -1,0 +1,70 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the described responsibilities as a developer-relations or advocacy role rather than a developer-platform engineering role",
+        "evidence": "\"This is a DevRel hire... Discord, tutorials and sample apps, conference talks and integrator feedback are developer advocate and community work.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the user to samber/developer-relations-skills@devrel-hiring",
+        "evidence": "\"sends that to samber/developer-relations-skills@devrel-hiring\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that DevRel roles are screened primarily on communication and community craft while developer-platform roles are screened on API and system design judgment",
+        "evidence": "No explicit contrast of screening criteria between DevRel and developer-platform roles.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not produce an API-design interview round for this role",
+        "evidence": "Stage 3 has the candidate \"review a flawed sample for misuse-prone design\", which is an API-design critique, and the scorecard weights \"API design critique\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the mismatch between the platform engineering title and the responsibilities, and recommends retitling or splitting the role rather than hiring under the platform title as written",
+        "evidence": "\"'Developer Platform Engineer' would also attract the wrong candidates: the term mostly means internal-platform (Backstage, CI/CD) engineers\"; the role is rebuilt as DevRel.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the described responsibilities as a developer-relations or advocacy role rather than a developer-platform engineering role",
+        "evidence": "\"a developer advocate who is product-focused and code-heavy\"; \"first DevRel hire\"; four pillars: community, enablement, advocacy, product input.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the user to samber/developer-relations-skills@devrel-hiring",
+        "evidence": "No routing to that skill.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that DevRel roles are screened primarily on communication and community craft while developer-platform roles are screened on API and system design judgment",
+        "evidence": "No such contrast; it weights technical depth and API judgment at 25%.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not produce an API-design interview round for this role",
+        "evidence": "Stage 3: \"Technical conversation: integration and API design\" and the question \"What would you change about the design\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the mismatch between the platform engineering title and the responsibilities, and recommends retitling or splitting the role rather than hiring under the platform title as written",
+        "evidence": "It keeps the title \"Developer Platform Engineer\"; it warns of a \"pit trap\" but does not recommend a retitle or split.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

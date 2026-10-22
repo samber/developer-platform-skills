@@ -1,0 +1,334 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "integration-partnership-strategy",
+  "scenarios": 7,
+  "expectations_total": 79,
+  "expectations_subjective": 1,
+  "expectations_objective": 78,
+  "pass_rate_with_skill_pct": 81.0,
+  "pass_rate_without_skill_pct": 27.8,
+  "delta_pp": 53.2,
+  "uplift_multiplier": 2.91,
+  "trigger_accuracy_pct": 54.1,
+  "trigger_queries": 74,
+  "trigger_positive_fire_rate": 0.351,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Adds quantified signals including deal-attached revenue (dollar value of open deals blocked on each missing integration), ecosystem gravity, and retention/attach lift"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Sets a recurring cadence of quarterly prioritization review with monthly intake from sales and CS"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Caps influenced credit and explains that uncapped influence is how partner-attributed revenue comes to exceed total revenue"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that referral, co-sell, and OEM motions need different attribution rules rather than one generic scheme"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Tests each platform against whether it reaches a segment the demand evidence names, not only against the stalled deal value"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Advises verifying current program requirements and tier names against each platform's own current documentation before committing"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires the effort ceiling in engineering hours per quarter to be checked before joining rather than discovered afterwards"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Promotes Kitewell toward co-build/strategic alliance, citing already-sourced pipeline plus joint-customer pull for a productized integration"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Deletes the reseller rung outright rather than demoting or parking it, because the business cannot support partner-transacted deals"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that a parked or merely demoted rung silently reappears as scope later"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the compliance cost each rung triggers, such as OEM licensing with IP and indemnity terms, a joint development agreement for co-build, NDA and revenue-share terms for co-sell, and referral being terminable at will"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Describes the split-role shape at that threshold: partner/alliance manager plus a partner or integration engineer plus an integration product manager"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends treating the top 10-15 partners as named strategic accounts once the split happens"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ranks the three placements explicitly on effort, value, and efficiency instead of presenting them as a flat list of options"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that the 2024-2026 period was a restructuring wave that renamed tiers across nearly every major platform"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Asks clarifying questions before delivering a finished strategy, or explicitly gates the strategy on interview answers covering deadline, one-off-win vs compounding-asset, and effort ceiling"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires every shortlisted partner to carry a written demand-evidence line (named deals, request counts, or retention data)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats the conference relationship as non-evidence for Gusto, while keeping Gusto on the strength of the 40-odd support tickets and the payroll win/loss mentions"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names the three primary selection filters: customer and prospect demand, market/SAM expansion, and competitive necessity"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Adds quantified signals including deal-attached revenue (dollar value of open deals blocked on each missing integration), ecosystem gravity, and retention/attach lift"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Proposes 2-3 candidate portfolio shapes with trade-offs (such as few-and-deep, category-coverage breadth, platform-anchor) and recommends one, instead of delivering a single finished list"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Places selected partners on the five-rung depth ladder running referral, reseller, co-sell/integration alliance, co-build/strategic alliance, OEM/embed"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names co-sell/integration alliance as the default depth rung rather than opening every partner at a deep alliance"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends proving 1-3 partner types first before adding depth or more partners"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Sets a recurring cadence of quarterly prioritization review with monthly intake from sales and CS"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Splits reporting into two separate numbers, partner-sourced and partner-influenced, and refuses to report a single blended partner-touched figure"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Defines sourced as a deal that would not exist without the partner, and influenced as a deal that already existed and the partner materially advanced"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Caps influenced credit and explains that uncapped influence is how partner-attributed revenue comes to exceed total revenue"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies a short attribution window of roughly 14 days from deal creation"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Limits credit to one sourced partner per deal"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires credit caps set before the quarter starts rather than after results are known"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Calls for equalizing AE compensation on partner deals, because AEs paid less on partner deals deprioritize them"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rolls partner pipeline into the same forecast review and the same exit criteria as direct pipeline"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that referral, co-sell, and OEM motions need different attribution rules rather than one generic scheme"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Reports an executive KPI set inside dashboards leadership already checks - sourced vs influenced revenue, activation rate, time to first deal, partner CAC vs direct CAC - rather than a standalone partner report"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the AppExchange security review carries a $999 per-submission fee"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the AppExchange review takes roughly 6-9 weeks initially plus 2-3 weeks per resubmission"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that roughly half of first AppExchange submissions fail, and budgets at least one resubmission cycle"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that Built for NetSuite must be renewed at every major NetSuite release, twice yearly"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Notes Built for NetSuite is revocable at any time the standards lapse"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names a renewal owner for each certification joined"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Tests each platform against whether it reaches a segment the demand evidence names, not only against the stalled deal value"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires the effort ceiling in engineering hours per quarter to be checked before joining rather than discovered afterwards"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Places each partner on the five-rung ladder: referral, reseller, co-sell/integration alliance, co-build/strategic alliance, OEM/embed"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Promotes Kitewell toward co-build/strategic alliance, citing already-sourced pipeline plus joint-customer pull for a productized integration"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Deletes the reseller rung outright rather than demoting or parking it, because the business cannot support partner-transacted deals"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that a parked or merely demoted rung silently reappears as scope later"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Distinguishes white-label from true OEM: white-label hides the vendor brand but typically carries no roadmap commitment, so it is its own category rather than a synonym"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that OEM/embed revenue share runs roughly 10-30% of the partner's revenue from the powered feature"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Flags OEM/embed as the hardest rung to unwind once the partner's customers depend on it, with minimum commitments as a precondition for promotion"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gates every graduation on proven joint economics plus the three-fit test, requiring product fit, commercial fit, and operational fit to line up simultaneously"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes the co-build commitment shape: a 12-18 month joint roadmap with shared pipeline targets"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the compliance cost each rung triggers, such as OEM licensing with IP and indemnity terms, a joint development agreement for co-build, NDA and revenue-share terms for co-sell, and referral being terminable at will"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the ranking is a default to be re-ranked against the deadline, one-off-vs-compounding, and effort-ceiling answers"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the standalone Alliances org as the highest-value and highest-cost option that an efficiency ranking never picks, and states the condition that promotes it anyway, such as partner-sourced revenue becoming a board-level metric or deep-rung governance needing dedicated owners"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that reporting into Sales costs zero reorganization and keeps an unproven function tied to revenue"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names roughly the 100-employee mark as the threshold for splitting into dedicated roles, well above the current 38"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Describes the split-role shape at that threshold: partner/alliance manager plus a partner or integration engineer plus an integration product manager"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends treating the top 10-15 partners as named strategic accounts once the split happens"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the condition for migrating integrations under Product: when productizing integrations becomes the goal, so they get built for scale instead of as bespoke BD favors"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ranks the three placements explicitly on effort, value, and efficiency instead of presenting them as a flat list of options"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Diagnoses the two calls as status updates rather than QBRs, because they produced no dated commitments"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies a QBR as a working session reviewing last quarter against the previous QBR's commitments and setting the next quarter's"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires a joint business plan with shared targets on a timeline and an explicit statement of which side carries the heavier lift at each phase, so a stall obligates the other side to unblock"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Reframes the integration as a product with its own roadmap, quality bar, security review, and definition of done, instead of a project"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Warns that project framing makes post-launch decay the default outcome"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Flags Base/Ridge/Crest/Summit as Salesforce's retired legacy Trailblazer-Score ISV tiers, replaced in July 2024"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Gives the current Salesforce ISV journey stages: Registered, Exploration, Build, Select, Summit"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Corrects the Atlassian Gold threshold to $750K in cloud sales, and gives Silver at $150K and Platinum at $3M"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that Atlassian Gold and above additionally require SOC 2 Type 2 or ISO 27001"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Labels the 53% and 46% ecosystem-qualified-deal figures as vendor-published and drawn from top-performing cohorts, so they read as directional ceilings rather than median outcomes"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that the 2024-2026 period was a restructuring wave that renamed tiers across nearly every major platform"
+      }
+    ]
+  }
+}

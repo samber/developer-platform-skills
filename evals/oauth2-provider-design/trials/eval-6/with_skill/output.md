@@ -1,95 +1,83 @@
-# Verdict: no, not as proposed
-
-Don't ship wide-open RFC 7591 at `/register`. Keep dynamic registration, but gate it and limit what an unvetted client can do. Agents can still discover you at runtime, and your MCP team gets most of what they want.
-
-I answered without your replies to the skill's clarifying questions, so I've listed my assumptions at the end. Please correct them.
+**No. Don't ship open `/register`.** Ship gated DCR (RFC 7591) instead. It keeps agent discovery and puts a human gate in front of data access.
 
 ## Why open DCR fails
 
-1. **Validation can't fix self-asserted metadata.**
-   - Anyone can register `client_name: "Verity Ops Official"` with a lookalike logo.
-   - Format checks on name, logo URI, and redirect URIs prove the strings are well-formed, not that they're true.
-   - The consent screen then shows an attacker's claim next to your brand. That makes the open endpoint a phishing kit, unless the metadata is cryptographically attested.
-2. **Rate limiting doesn't help.** One registration is enough for a phishing campaign. Rate limits only stop table-flooding.
-3. **Peer evidence:**
-   - No major B2B SaaS platform (GitHub, Slack, Stripe, Salesforce) offers ungated public DCR.
-   - A May 2026 preprint probed 119 OAuth-enabled remote MCP servers and found DCR flaws in 96.6% of them.
-   - The MCP spec itself moved DCR from SHOULD to MAY to deprecated across 2025-2026.
-   - "The spec pointed at it when we started" is therefore stale. Check the current MCP authorization spec revision before relying on it.
-4. **Your data raises the stakes.** Incident data likely includes other users' data and operational detail. That is the sensitivity tier where every review program studied requires stronger vetting.
-5. **"No human in the loop" is partly false.** The end user still consents, and in B2B an org admin may too. The consent screen is therefore the main place to defend. An open `/register` lets an attacker choose what that screen says.
-6. **Discovery isn't registration.** Publishing RFC 8414 metadata lets agents find you at runtime. It doesn't require that anyone may register without a gate.
+1. **Metadata validation can't fix impersonation.** `client_name` and `logo_uri` are self-asserted. Any agent can register as "Claude" or "Verity Ops Official" with a real-looking logo. Your consent screen then shows a stranger's claim as if it were fact. An open endpoint is a phishing kit.
+2. **Rate limiting stops volume, not one bad client.** An attacker needs a single registration, and the hard limit doesn't touch it.
+3. **The data raises the stakes.** Incident data probably reaches other users' and org-wide data. That is the highest verification tier in the skill.
+4. **The evidence is bad.**
+   - A May 2026 preprint probed 119 OAuth-enabled remote MCP servers and found DCR flaws in 96.6%.
+   - The skill reports the MCP spec moved DCR from SHOULD to MAY to deprecated across 2025-2026. Re-check the current spec revision before you cite it to your team.
+   - No major B2B SaaS platform offers ungated public DCR (GitHub, Slack, Stripe, Salesforce).
+5. **Your premise is half right.** MCP agents are the one population that can't pre-register, so DCR is justified for them. That justifies *gated* DCR, not *open* DCR.
 
-## Recommended design
+## Design to ship
 
-Use **gated DCR**. The skill allows it for exactly your case, an MCP/agent ecosystem that can't pre-register everywhere.
+**Registration**
+1. Require an **initial access token** at `/register`.
+2. A human mints the token: an org admin in the Verity Ops dashboard, or your team for a named MCP host vendor.
+3. Keep rate limits. Treat every metadata field as untrusted input.
+4. Never fetch `logo_uri` server-side without SSRF protection. Proxy and re-encode it, or don't render it at all.
+5. Redirect URIs: exact match only. Allow `https` and loopback, with the port as the only wildcard. No patterns.
+6. Reject `client_name` values that collide with verified publishers.
 
-**1. Gate `/register`**
-- Require an **initial access token** (RFC 7591), or a signed **software statement** that attests the metadata.
-- Issue tokens through a self-serve developer portal, with domain verification of the publisher.
-- Publish `/.well-known/oauth-authorization-server` (RFC 8414) with the `registration_endpoint`.
-- Keep the rate limit as defense in depth.
-- Treat every metadata field as untrusted input:
-  - Fetch no URLs server-side without SSRF protection.
-  - Reject non-HTTPS redirect URIs, with the localhost-port exception only.
-  - Match redirect URIs exactly, with no patterns.
-  - Never render raw HTML or SVG.
+**Protocol core (OAuth 2.1 profile)**
+- `authorization_code` with PKCE S256, required for every client.
+- `refresh_token` and `device_authorization`.
+- No implicit or password grant.
+- No bearer tokens in query strings.
+- Authorization codes are single-use, max 10 minutes.
+- Access tokens last about 1 hour.
+- Refresh tokens rotate with family reuse detection and a 10-30 second grace window.
+- Agent tokens are long-lived and widen the theft blast radius, so consider DPoP later (step 4 in the skill).
 
-**2. Treat dynamically registered clients as unverified, with these limits**
-- **Consent screen:**
-  - Show the verified redirect-URI domain and an "unverified app" warning.
-  - Don't display self-asserted logos or names as trusted text.
-- **Grants:**
-  - Public clients only.
-  - `authorization_code` with PKCE S256.
-  - `refresh_token`, and `device_authorization` if you need it.
-  - No `client_credentials`.
-- **Scopes:**
-  - Read-only scopes, in `resource:action` form.
-  - Nothing that reaches other users' or bulk incident data.
-  - Reject any runtime scope request that isn't a subset of what was approved at registration.
-- **Testing-lane ceiling:**
-  - A hard cap on users per unverified client, enforced rather than documented.
-  - Short-lived refresh tokens, for example 7 days like Google's testing lane.
-- **B2B:** let org admins block or approve unverified apps before an end user can consent.
+**Scopes and consent**
+- Use `resource:action` scopes, read-only by default (e.g. `incidents:read`).
+- Never add a catch-all `full_access` scope.
+- Bind scopes to token type (user-delegated vs app identity) from day one.
+- Write per-scope plain-language consent copy.
+- Always diff granted scopes against requested scopes on the server.
+- Support incremental consent that shows only the net-new scope.
+- B2B means two gates. The end user consents, and an org admin can approve installs and review org-wide grants.
 
-**3. Add a path up for clients that need more**
-- Run publisher identity verification (domain and verified account), Microsoft-style. It proves who the publisher is, not that the app is good.
-- Make the unverified tier a real consent gate, not a badge.
-- Give well-known MCP hosts manual, reviewed registration with a verified name and logo.
-- Require a third-party security assessment before any scope that touches other users' data.
-- Keep identity, attestation, and audit visually distinct as three signals.
+**Verification lane**
+1. **Unverified (every DCR client by default).**
+   - Show a visible warning screen. Display the client as "unverified" and show the redirect host.
+   - Cap it at named users, using Google's model of a lifetime cap of 100 users. The cap must be enforced in code, not documented.
+   - Test tokens expire after 7 days.
+   - Scopes are limited to read-only on the requesting user's own data.
+2. **Publisher verified.** Domain plus verified account, and no scopes beyond basic profile without it. List known MCP hosts here.
+3. **Third-party assessed.** Required before any scope reaches other users' data or PII, and reassessed yearly.
 
-**4. Keep the protocol baseline** (this applies whichever registration route you pick)
-- PKCE for every client.
-- No implicit or password grants.
-- Access tokens of about 1 hour.
-- Refresh-token rotation with family reuse detection and a 10-30 second grace window.
-- Hold DPoP back unless these tokens guard regulated data or agent tokens live long.
+Keep identity, attestation and audit as three distinct signals in the UI, not one checkmark.
 
-## Tell your MCP team
-
-- **Still true:** agents can discover your server and register at runtime.
-- **What changes:** registration needs an initial access token or a software statement. Unvetted clients get a low-privilege tier. Full trust requires verification.
-- **If they push back,** ask for the concrete client population. Named hosts such as Claude, Cursor, and your own agents can be pre-registered or verified. A truly unknown long tail only ever needs the restricted tier.
-- **Unverified:** I haven't checked whether newer MCP-spec mechanisms such as client ID metadata documents suit your case better than DCR. Look at them before building.
+**Runtime enforcement**
+- Reject any scope request that isn't a subset of what was declared and approved at registration.
+- Expire and clean up unused registrations.
 
 ## Gates before launch
 
-- A conformance test shows no implicit or password grant, PKCE rejected if absent, and exact redirect matching.
-- `/register` without a valid token returns 401, and the test proves it.
-- A malicious-metadata test suite passes. Include a lookalike name, a `javascript:` or SSRF logo URI, a wildcard redirect, and an oversized payload.
-- A concurrent-refresh test passes with no false logout, and a replayed refresh token revokes its family.
-- Every scope has a named tier. Runtime subset-of-approved enforcement is live. The unverified user cap is enforced.
-- From launch, baseline: registrations per day, share of unverified clients, scope-denial rate, and reuse-detection trip rate.
+- Test shows PKCE-less requests are rejected, with no implicit or password grant in discovery.
+- Staging replay of a consumed refresh token revokes the family. A concurrent refresh doesn't log users out.
+- Partial-grant integration test exercises the scope diff.
+- Test shows a client with no initial access token gets 401 at `/register`.
+- Test shows an unverified client past the user cap is blocked.
 
-## Assumptions to confirm
+Track from launch: median review turnaround, share of apps requesting scopes they never use, and reuse-detection trip rate.
 
-1. Greenfield server, no live clients.
-2. Clients are MCP hosts and AI agents, plus possibly browser or native apps.
-3. Users act on their own behalf. Do any apps need org-wide or app-identity access?
-4. Incident data includes other users' or customers' data.
-5. Do org admins gate installs?
-6. Which substrate and deadline? A one-off unblock favors the minimal gated version above. A foundation for an app ecosystem favors adding verification tiers early.
+## What your MCP team gets
 
-If any of these differ, the scope limits and verification bar change.
+Agents still register at runtime, with no per-client ticket. The human step moves to token issuance and to the admin install gate. Known MCP hosts can go in the verified tier so users see no warning for them.
+
+## Open questions
+
+These change the tiers. I assumed the answers noted below.
+
+1. Greenfield, or are there existing registered apps and grants?
+2. Which clients: MCP hosts only, or SPAs, CLIs and server-side apps too?
+3. Do agents act only as a signed-in user, or also with their own identity?
+4. Can any scope reach other users' or bulk data? I assumed yes.
+5. Who approves an install: end users only, or org admins too? I assumed both.
+6. What are your substrate and deadline? Do you build the authorization server yourself, or sit on an identity product that ships rotation and DPoP?
+
+**Next step:** answer 4 and 5 and I'll turn this into the scope list and tier table (about 20 minutes).

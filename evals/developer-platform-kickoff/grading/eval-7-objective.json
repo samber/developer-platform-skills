@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Routes the unresolved keys-or-OAuth decision to `samber/developer-platform-skills@api-auth-key-management`, which owns that decision boundary",
+        "evidence": "Decides \"Choose OAuth\" itself and runs oauth2-provider-design.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that `samber/developer-platform-skills@oauth2-provider-design` designs the issuer surface once the decision lands rather than deciding between the two",
+        "evidence": "Skill used to make the decision; ordering inverted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the split test: a customer's own backend calling on its own behalf takes API keys, a third-party app acting on the users' behalf needs delegated consent",
+        "evidence": "Keys for customers' own backend; OAuth for apps acting for customers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that apps acting on end-user data cannot ship on long-lived API keys, making OAuth a prerequisite rather than an option for this audience",
+        "evidence": "\"apps acting on user data cannot ship on API keys.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The chain runs `api-auth-key-management`, then `samber/developer-platform-skills@api-rate-limit-policy`, then `samber/developer-platform-skills@integration-error-observability`",
+        "evidence": "Chain starts with oauth2-provider-design.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the dependency reason: you cannot meter or attribute traffic you cannot identify",
+        "evidence": "\"Per-app attribution depends on OAuth identity.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the ecosystem-execution class above the debuggability class because the audience is a third-party builder ecosystem",
+        "evidence": "api-test-mode-design #5 is below integration-error-observability #4.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States out loud which answer moved which class",
+        "evidence": "Re-ranks stated out loud.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the chain in dependency order and does not rank it",
+        "evidence": "\"Ordered chain (dependency order)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The short-list holds between 5 and 8 entries, each naming the bottleneck it attacks and what the session costs",
+        "evidence": "Six-row table with both columns.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not specify the key format, the token lifetimes, or the scope taxonomy itself",
+        "evidence": "Only lists what the session must settle.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Routes the unresolved keys-or-OAuth decision to `samber/developer-platform-skills@api-auth-key-management`, which owns that decision boundary",
+        "evidence": "No skill is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that `samber/developer-platform-skills@oauth2-provider-design` designs the issuer surface once the decision lands rather than deciding between the two",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the split test: a customer's own backend calling on its own behalf takes API keys, a third-party app acting on the users' behalf needs delegated consent",
+        "evidence": "Keeps customer personal keys for 'a customer's own scripts' as first-party use, and OAuth for 'third-party delegation'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that apps acting on end-user data cannot ship on long-lived API keys, making OAuth a prerequisite rather than an option for this audience",
+        "evidence": "'The question is delegated authorization... API keys can't express that well.' 'Decision: run OAuth 2.0.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The chain runs `api-auth-key-management`, then `samber/developer-platform-skills@api-rate-limit-policy`, then `samber/developer-platform-skills@integration-error-observability`",
+        "evidence": "No chain.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the dependency reason: you cannot meter or attribute traffic you cannot identify",
+        "evidence": "The metering point appears only as an argument for OAuth, not as a chain dependency.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes the ecosystem-execution class above the debuggability class because the audience is a third-party builder ecosystem",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States out loud which answer moved which class",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the chain in dependency order and does not rank it",
+        "evidence": "No chain.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The short-list holds between 5 and 8 entries, each naming the bottleneck it attacks and what the session costs",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not specify the key format, the token lifetimes, or the scope taxonomy itself",
+        "evidence": "'Access token lives about 15\u201360 min' and scopes such as `dashboards:read`.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

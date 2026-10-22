@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Replaces blanket immediate delisting with a severity-tiered enforcement ladder",
+        "evidence": "\"Why 'delisted immediately' fails\" and severity table + ladder",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The ladder runs: finding raised, remediation SLA by severity, listing hidden, new installs suspended, tokens revoked or kill switch, then delisting with notification to affected customers",
+        "evidence": "Rungs 1-6: finding, SLA, hidden, installs suspended, kill switch, delisting with notification",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every rung names an owner",
+        "evidence": "Owner column populated",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every rung names a developer-notice period",
+        "evidence": "Notice to publisher column",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Every rung names the evidence that fires it",
+        "evidence": "\"Fires when\" column",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that this ladder carries no efficiency or effort ranking, because severity and the developer's response pick the rung rather than the operator's effort budget",
+        "evidence": "No such statement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds graduated publisher-level enforcement for chronic non-responsive or low-quality submitters, distinct from rejecting or removing a single app",
+        "evidence": "\"A publisher who ignores two or more findings gets partner-level consequences\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the proposed announce-in-two-weeks, enforce-next-month runway for the SBOM requirement",
+        "evidence": "\"A 14-day cutoff for 300 listed apps would produce mass non-compliance\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets at least six months of notice before a new requirement takes effect on already-listed apps",
+        "evidence": "2027-05-01 \"about six and a half months after the announcement\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: retroactive rule changes without runway burn the partner trust the review program exists to build",
+        "evidence": "Reason given is mass non-compliance/exemptions, not partner trust.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a named security contact per partner as a standing discovery channel",
+        "evidence": "\"Every partner must keep a security contact on file.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an incident-reporting channel feeding the ladder",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists vulnerability discovery through internal scanning, a disclosure program, and a bug bounty as the program matures",
+        "evidence": "Not listed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Replaces blanket immediate delisting with a severity-tiered enforcement ladder",
+        "evidence": "A4 clocks by severity; \"A confirmed vulnerability alone is not grounds for immediate delisting.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The ladder runs: finding raised, remediation SLA by severity, listing hidden, new installs suspended, tokens revoked or kill switch, then delisting with notification to affected customers",
+        "evidence": "The actions are Suspend/Disable, with no staged sequence including token revocation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Every rung names an owner",
+        "evidence": "Owners are not named per rung.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Every rung names a developer-notice period",
+        "evidence": "Clocks exist, but not for every rung.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Every rung names the evidence that fires it",
+        "evidence": "Not per rung.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that this ladder carries no efficiency or effort ranking, because severity and the developer's response pick the rung rather than the operator's effort budget",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds graduated publisher-level enforcement for chronic non-responsive or low-quality submitters, distinct from rejecting or removing a single app",
+        "evidence": "Enforcement is per app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the proposed announce-in-two-weeks, enforce-next-month runway for the SBOM requirement",
+        "evidence": "\"Two weeks of notice is thin for 300 apps.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets at least six months of notice before a new requirement takes effect on already-listed apps",
+        "evidence": "Window runs Oct 16 to Feb 1, about 3.5 months.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason: retroactive rule changes without runway burn the partner trust the review program exists to build",
+        "evidence": "The reason given is avoiding delisting slow or on-holiday publishers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a named security contact per partner as a standing discovery channel",
+        "evidence": "Only checks existing contacts; not required as a standing channel.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires an incident-reporting channel feeding the ladder",
+        "evidence": "Not explicit.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists vulnerability discovery through internal scanning, a disclosure program, and a bug bounty as the program matures",
+        "evidence": "Not listed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

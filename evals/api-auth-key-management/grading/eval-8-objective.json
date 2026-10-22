@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Accepts the retrievable rung as legitimate for this profile (low-stakes data, lost-key support load dominates) rather than forcing hash-only storage",
+        "evidence": "Ships hash-only: \"Ship hash-only plus the self-service roll\"; retrievable only as a later conditional step-up.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces app-config encryption with AES-256-GCM whose key-encryption-key is held in a KMS, never application-managed",
+        "evidence": "\"AES-256-GCM, with the key-encryption-key in a KMS (not the config file)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores a SHA-256 hash alongside the ciphertext so request-path validation never performs a decrypt",
+        "evidence": "\"a SHA-256 hash stored alongside for validation\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restricts decryption to an explicit dashboard reveal action that is itself audit-logged",
+        "evidence": "\"an audit-logged 'reveal' action\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the compliance cost of going retrievable: it creates a surface an auditor samples (KMS key custody plus the reveal path)",
+        "evidence": "No mention of auditor-sampled KMS custody and reveal path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the built-in fallback key: a missing secret must crash the service at startup, because a hardcoded dev fallback authenticates in production exactly like a real key",
+        "evidence": "\"A missing secret must crash at startup.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Masks keys everywhere after creation (first and last characters only), removing the full-key-on-every-page-load display",
+        "evidence": "\"a masked key (qh_live_AbC\u2026x9Zk, first and last characters only)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the list view per key: human-readable label, creation date, last-used timestamp, status badge, and direct rotate/revoke actions",
+        "evidence": "Label, masked key, scopes, created date, last-used, status badge, Roll and Revoke buttons",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Verifies all four self-service actions complete without a support ticket: sign up, create a key, rotate a key, revoke a key",
+        "evidence": "\"Self-service means four actions with no support ticket: sign up, create, roll, revoke.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Updates last-used asynchronously, fire-and-forget, off the request path",
+        "evidence": "\"Update last_used_at asynchronously, never on the request path.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the alternative honestly: on the hash-only rung the lost-key path is reissue, so retrievability is a deliberate trade, not the default",
+        "evidence": "\"I'm stating the trade-off plainly\"; measure tickets, step up only if they stay high",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates per-key usage (and spend) from the last-used signal: one answers whether the key is alive, the other what it is doing",
+        "evidence": "\"Last-used answers 'is this key alive', and usage answers 'what is it doing'.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Accepts the retrievable rung as legitimate for this profile (low-stakes data, lost-key support load dominates) rather than forcing hash-only storage",
+        "evidence": "\"Recoverable keys are the wrong tool.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces app-config encryption with AES-256-GCM whose key-encryption-key is held in a KMS, never application-managed",
+        "evidence": "Rejects encryption; no KMS design.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Stores a SHA-256 hash alongside the ciphertext so request-path validation never performs a decrypt",
+        "evidence": "No ciphertext stored.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Restricts decryption to an explicit dashboard reveal action that is itself audit-logged",
+        "evidence": "Reveal happens only at create/rotate, not as audited decrypt.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the compliance cost of going retrievable: it creates a surface an auditor samples (KMS key custody plus the reveal path)",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the built-in fallback key: a missing secret must crash the service at startup, because a hardcoded dev fallback authenticates in production exactly like a real key",
+        "evidence": "\"a missing secret must crash startup, never degrade.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Masks keys everywhere after creation (first and last characters only), removing the full-key-on-every-page-load display",
+        "evidence": "Columns show `qh_live_ab12cd34\u2026wxyz`; \"Never on this page: the full key\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the list view per key: human-readable label, creation date, last-used timestamp, status badge, and direct rotate/revoke actions",
+        "evidence": "\"Columns: label... created date, last used... status. Per-row actions: Rotate, Revoke, Rename.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Verifies all four self-service actions complete without a support ticket: sign up, create a key, rotate a key, revoke a key",
+        "evidence": "Targets a ticket drop but no verification of sign up/create/rotate/revoke.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Updates last-used asynchronously, fire-and-forget, off the request path",
+        "evidence": "\"Update `last_used_at` at most once per minute\" is throttling, not async.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the alternative honestly: on the hash-only rung the lost-key path is reissue, so retrievability is a deliberate trade, not the default",
+        "evidence": "Retrievability is rejected rather than presented as a trade.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates per-key usage (and spend) from the last-used signal: one answers whether the key is alive, the other what it is doing",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

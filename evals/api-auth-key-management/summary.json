@@ -1,0 +1,342 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-auth-key-management",
+  "scenarios": 8,
+  "expectations_total": 104,
+  "expectations_subjective": 0,
+  "expectations_objective": 104,
+  "pass_rate_with_skill_pct": 84.6,
+  "pass_rate_without_skill_pct": 44.2,
+  "delta_pp": 40.4,
+  "uplift_multiplier": 1.91,
+  "trigger_accuracy_pct": 59.2,
+  "trigger_queries": 98,
+  "trigger_positive_fire_rate": 0.612,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Treats the already-leaked key as confirmed compromise requiring immediate zero-grace revocation"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a routine grace window in the 24-hour-to-7-day range, tied to deploy cadence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Defines the service-account property: credential validity decoupled from any human's employment status"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Sets the forward ownership policy: individual keys reserved for personal experimentation, production and automation on service accounts or org keys"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Adds org-tier governance: admin approval before issuance and admin review and revocation of members' keys"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Installs an offboarding runbook to run on every future departure"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires every live key to carry an owner, scope documentation, and an expiry or documented exemption going forward"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Covers the PCI logging obligation: tamper-resistant logs retained 12 months with the latest 3 months immediately accessible"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires documenting the rationale for the chosen authentication mechanism, since 'it was already there' is itself an audit finding"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Sets the expansion rule: widen a key's scope only when usage logs prove the consumer needs more"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the stacking payoff: a leaked key then compromises one service in one environment with one permission set"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Positions scoping as authorization layered on the identity the key establishes - complementary controls, not substitutes"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that team or internal-service trust is not a security boundary; the key's own scope is the only enforceable one"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Pairs scoping with expiry, citing the undocumented never-expiring key that becomes invisible infrastructure"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Accepts the retrievable rung as legitimate for this profile (low-stakes data, lost-key support load dominates) rather than forcing hash-only storage"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names the compliance cost of going retrievable: it creates a surface an auditor samples (KMS key custody plus the reveal path)"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Cites bcrypt's 72-byte input truncation as a mechanical strike against bcrypt for long keys"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Adds a short indexed plaintext key_prefix column for O(1) candidate lookup"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires constant-time comparison on the final hash check, naming the timing leak of a naive equality comparison"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Schema carries lifecycle columns: owner, scopes, created_at, last_used_at, expires_at or equivalents"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Scopes default restrictive; omitted scopes never mean full access"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the entropy-floor precondition (at least ~120 bits / 32+ random characters) that makes fast hashing safe"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Sets an entropy floor of at least 120 bits (32+ random characters)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites the GitHub-style benchmark: roughly 30-character Base62 body around 178 bits plus a CRC32 checksum"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Accepts roughly 10 characters of extra token length as an overhead explicitly worth paying"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Describes the partner mechanics: an HTTPS endpoint receives reported matches, and any reported match is treated as compromised - revoke and notify the owner"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Treats the already-leaked key as confirmed compromise requiring immediate zero-grace revocation"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes partner-pattern alerts run automatically on public repositories, enabling revocation before the customer notices the leak"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns against splitting rotation into two manual steps where the expiry half gets forgotten"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives agent fleets and queued workloads a longer grace window than the human default"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires last-used telemetry and forbids disabling or deleting an old key before its traffic hits zero"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Sequences deactivate-then-delete with a 24-48 hour wait, noting deactivation is reversible and deletion is not"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites a named vendor dual-key mechanic (Stripe's up-to-7-day roll or AWS's two-active-key cap forcing overlap)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Fires an expiry-approaching alert and extends the window when old-key traffic persists, rather than breaking a live consumer"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Stages the cutover: staging first, then production, then agent fleets and queued workloads last"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the doubled-attack-surface invariant: never create a new key without scheduling the old one's revocation"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "First step enumerates every key the leaver created or could see, flagging the missing admin key-inventory view as a gap to build"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Revokes the leaver's user-owned keys with zero grace, explicitly accepting the downtime"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Defines the service-account property: credential validity decoupled from any human's employment status"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Labels production integrations running on personal keys a standing process failure, not a one-off cleanup"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Logs every offboarding action for the audit trail and access-review evidence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends a permanent org-admin filterable view of every key a given user created or can see"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Sets the forward ownership policy: individual keys reserved for personal experimentation, production and automation on service accounts or org keys"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Adds org-tier governance: admin approval before issuance and admin review and revocation of members' keys"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Links complexity to cadence: slower rotation demands stronger keys, satisfied by a high entropy floor"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Covers the PCI logging obligation: tamper-resistant logs retained 12 months with the latest 3 months immediately accessible"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the relevant criteria (CC7.2 / C1.2) or the required lifecycle coverage: provisioning, rotation, revocation, destruction"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends automating evidence generation from day one rather than assembling it before the audit"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Maps auditor expectations to product features: mandatory expiration, expiry warnings and forced-rotation reminders, audit logging of every key event, service accounts"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires documenting the rationale for the chosen authentication mechanism, since 'it was already there' is itself an audit finding"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Substitutes server-side minting of short-lived scoped tokens (ephemeral, minutes-long TTL) for the browser SDK"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States workload identity's trade honestly: highest effort (federation infrastructure) bought for nothing-to-leak security"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Identifies CI and agent workloads as the segment actively migrating off static keys"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects the single account-wide do-everything key outright as the anti-pattern, not an acceptable bottom rung"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names or describes the SendGrid precedent (omitted scopes at creation granting full access) as the fail-open example"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Sets the expansion rule: widen a key's scope only when usage logs prove the consumer needs more"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends both bottom rungs together: one key per service per environment plus a coarse read/write per-product-area scope set"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the stacking payoff: a leaked key then compromises one service in one environment with one permission set"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Re-ranks the ladder against the existing RBAC: reusing the 40-permission system makes fine-grained scoping nearly free, flipping the effort ordering and the winner"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Describes the fine-grained rung concretely: per-resource grants, granular permissions, mandatory expiration"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Positions scoping as authorization layered on the identity the key establishes - complementary controls, not substitutes"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that team or internal-service trust is not a security boundary; the key's own scope is the only enforceable one"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires documenting every key by what it does: name, consuming service, allowed and denied actions, owning team"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Pairs scoping with expiry, citing the undocumented never-expiring key that becomes invisible infrastructure"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Separates billing and administrative permissions from ordinary read/write scopes so one key never holds both"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Accepts the retrievable rung as legitimate for this profile (low-stakes data, lost-key support load dominates) rather than forcing hash-only storage"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Replaces app-config encryption with AES-256-GCM whose key-encryption-key is held in a KMS, never application-managed"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Stores a SHA-256 hash alongside the ciphertext so request-path validation never performs a decrypt"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Restricts decryption to an explicit dashboard reveal action that is itself audit-logged"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names the compliance cost of going retrievable: it creates a surface an auditor samples (KMS key custody plus the reveal path)"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Verifies all four self-service actions complete without a support ticket: sign up, create a key, rotate a key, revoke a key"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Updates last-used asynchronously, fire-and-forget, off the request path"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Presents the alternative honestly: on the hash-only rung the lost-key path is reissue, so retrievability is a deliberate trade, not the default"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Separates per-key usage (and spend) from the last-used signal: one answers whether the key is alive, the other what it is doing"
+      }
+    ]
+  }
+}

@@ -271,3 +271,5 @@ See also, same collection:
 
 - `samber/developer-platform-skills@api-rate-limit-policy` - the quota and throttle policy agent traffic runs under, including per-tool and per-credential limits.
 - `samber/developer-platform-skills@developer-portal-design` - where the MCP server's docs, connection guide, and credentials live in the developer portal.
+- `samber/developer-platform-skills@cli-interface-design` - the CLI surface agents with a shell often reach first; same curated-over-mirror logic, different contract.
+- `samber/developer-platform-skills@agent-skill-offering` - the Agent Skill shipped beside the server or CLI, versioned with the code; covers the skill vs MCP decision for coding agents with a shell.

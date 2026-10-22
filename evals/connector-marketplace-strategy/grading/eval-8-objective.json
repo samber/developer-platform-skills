@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Runs the build / join / buy gate before responding to the marketplace request",
+        "evidence": "Section 1 'Gate: build, join, or buy' with four triggers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the buy path (embedded iPaaS) as the fit for this situation",
+        "evidence": "'Buy embedded iPaaS for the long tail'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the buy trigger explicitly: the problem is needing many integrations fast, not needing to become a distribution hub",
+        "evidence": "'The real problem is throughput, not distribution... The skill's answer to \"we need many integrations fast\" is buy.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Contrasts the embedded-iPaaS pace (a sourced case building 100+ integrations in a year) against the stated in-house pace of about five per year",
+        "evidence": "'about 8 years of backlog... One cited case went from its in-house pace to 100+ integrations in a year'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that build is justified for market leaders with the scale and proprietary data to sustain an independent ecosystem, at multi-year, eight-figure-plus investment",
+        "evidence": "Only says 'lacks the scale the skill reserves for market leaders'. No multi-year or eight-figure investment is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Evaluates join - listing on the established marketplaces customers already trust - as the pragmatic default that borrows existing distribution and trust",
+        "evidence": "'This borrows their distribution and trust'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not treat 40 RFP-requested integrations as evidence of a supply signal",
+        "evidence": "'That is demand for connectors, not a developer ecosystem.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not design a take-rate, curation ladder, or partner-tier program for a path that was not selected",
+        "evidence": "Only a brief note of defaults 'to confirm later, not a decision now'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to specify payout cadence and merchant-of-record posture, routing that question to the marketplace monetization skill",
+        "evidence": "'I'm not giving a cadence or MoR setup... routes them to app-marketplace-monetization-model.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Runs the build / join / buy gate before responding to the marketplace request",
+        "evidence": "No explicit gate; it opens with 'Do not build the marketplace now'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends the buy path (embedded iPaaS) as the fit for this situation",
+        "evidence": "'Buy the long tail. Evaluate an embedded iPaaS or unified-API vendor (Workato, Tray, Paragon, Merge, Nango)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the buy trigger explicitly: the problem is needing many integrations fast, not needing to become a distribution hub",
+        "evidence": "'The gap is too little capacity, not too few builders.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Contrasts the embedded-iPaaS pace (a sourced case building 100+ integrations in a year) against the stated in-house pace of about five per year",
+        "evidence": "It cites 5 a year in-house but gives no sourced iPaaS pace.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that build is justified for market leaders with the scale and proprietary data to sustain an independent ecosystem, at multi-year, eight-figure-plus investment",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Evaluates join - listing on the established marketplaces customers already trust - as the pragmatic default that borrows existing distribution and trust",
+        "evidence": "Listing on established marketplaces is not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not treat 40 RFP-requested integrations as evidence of a supply signal",
+        "evidence": "'you have no counted demand from them'; the 40 is framed as a capacity gap.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not design a take-rate, curation ladder, or partner-tier program for a path that was not selected",
+        "evidence": "It specifies referral payouts, a later paid-apps model with 'Take-rate: zero until a market exists', and monthly cadence with clawback.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines to specify payout cadence and merchant-of-record posture, routing that question to the marketplace monetization skill",
+        "evidence": "It specifies 'quarterly, in arrears, net-45', Stripe Connect and an MoR approach, and does not route to a monetization skill.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

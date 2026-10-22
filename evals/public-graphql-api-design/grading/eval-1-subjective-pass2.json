@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Treats the decision as a binary gate against a trigger list rather than scoring GraphQL against REST on an efficiency, effort, or value ranking.",
+        "evidence": "Section 1 runs a table that checks each of three triggers with a yes/no 'Fires?' column. It then states outright: 'the gate is a binary check against the trigger list. It doesn't rank GraphQL and REST by value or effort.' The CDN argument backs up the decision, but the verdict comes from no trigger firing. It is not a weighted comparison.",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Treats the decision as a binary gate against a trigger list rather than scoring GraphQL against REST on an efficiency, effort, or value ranking.",
+        "evidence": "The response does test four conditions: flat data with little nesting, 70% CDN-cached traffic, partner polling, and a single first-party client. It also includes a conditional gate: 'If step 0 shows no real demand... offer the CTO a smaller fix' and 'If the step 0 data shows no partner demand...'. However, it frames these as a comparison ('Your numbers make GraphQL the weaker fit'), not as an explicit pass/fail trigger list. It weighs the cost of each option ('a forced migration would cost you partner goodwill for no measurable gain', 'Model the origin load... This is the number that will pers",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

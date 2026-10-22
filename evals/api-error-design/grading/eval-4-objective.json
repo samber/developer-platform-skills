@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the in-place rename of shipped error codes, treating error codes as API contract whose change is a breaking change",
+        "evidence": "\"I wouldn't ship the plan as written... never rename, repurpose, or delete a shipped code.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Invokes Hyrum's Law: with enough users, someone depends on every observable behavior, including undocumented codes and message text",
+        "evidence": "\"some integrations branch on billing_failed, ERR_17 or INVALID-METER... different string to every ==, switch\"; Hyrum's Law is not named.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to silently drop the dozen codes, noting that 'nobody should be using them' is not evidence nobody does",
+        "evidence": "\"'Nobody should be using' isn't the same as 'nobody is using'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the evolution rule as addition only: new codes and new optional fields may be added freely, but a shipped code is never repurposed, renamed, or deleted",
+        "evidence": "\"codes evolve by addition only: never rename, repurpose, or delete\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes any code retirement through the API's deprecation machinery so a code disappears only on a version boundary, never silently",
+        "evidence": "\"A code only disappears on a version boundary, through the deprecation machinery.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an explicit mapping from every old code identity to its new identity rather than dropping old identities",
+        "evidence": "\"A published mapping table (legacy_code \u2192 new_code)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declares stability explicitly in the catalog: the code is stable and safe to branch on, while message/detail text may change without notice",
+        "evidence": "\"code is stable and safe to branch on. message and detail are not contractual.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the Google-style stability model where the error identity must stay consistent over time and message text is explicitly non-contractual",
+        "evidence": "No reference to Google/AIP-style stability.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Installs a catalog gatekeeper - an owner or review step - protecting the invariant that no code reaches production without a catalog entry",
+        "evidence": "\"Gatekeeper: one owner or review step. No code reaches production without a catalog entry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requests 5-10 real production error responses across different endpoints before designing the migration, since this is a retrofit",
+        "evidence": "\"Pull 5 to 10 real error responses\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks which codes, fields, or message strings existing clients already branch on, treating those as contract",
+        "evidence": "Per-key emission counts and asking support/solutions teams which codes big customers asked about.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags codes invented ad hoc at call sites and missing from the published catalog as design defects to resolve in the same pass",
+        "evidence": "\"Lint the codebase for ad hoc error strings.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the in-place rename of shipped error codes, treating error codes as API contract whose change is a breaking change",
+        "evidence": "'Don't rename in place... After an in-place rename, that branch silently stops matching.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Invokes Hyrum's Law: with enough users, someone depends on every observable behavior, including undocumented codes and message text",
+        "evidence": "Hyrum's Law is not named and the 'someone depends on every observable behavior' principle is not stated. It only says consumers match on codes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to silently drop the dozen codes, noting that 'nobody should be using them' is not evidence nobody does",
+        "evidence": "'\"Nobody should be using them\" is a hypothesis. Test it before cutting.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the evolution rule as addition only: new codes and new optional fields may be added freely, but a shipped code is never repurposed, renamed, or deleted",
+        "evidence": "'Never remove a code that clients can still receive. Mark it deprecated, keep it in the registry, and drop it only at sunset.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes any code retirement through the API's deprecation machinery so a code disappears only on a version boundary, never silently",
+        "evidence": "Per-key API version, `status: active | deprecated | removed`, `Deprecation` header and sunset phase.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an explicit mapping from every old code identity to its new identity rather than dropping old identities",
+        "evidence": "Registry has `legacy: [billing_failed]` and `replaced_by`; the transition response carries both codes.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declares stability explicitly in the catalog: the code is stable and safe to branch on, while message/detail text may change without notice",
+        "evidence": "No statement that message text is non-contractual.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the Google-style stability model where the error identity must stay consistent over time and message text is explicitly non-contractual",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Installs a catalog gatekeeper - an owner or review step - protecting the invariant that no code reaches production without a catalog entry",
+        "evidence": "'Add a contract test that every code the API can emit is in the registry. A CI failure on an unregistered code stops new drift.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requests 5-10 real production error responses across different endpoints before designing the migration, since this is a retrofit",
+        "evidence": "Not requested. It asks only about the versioning mechanism, sunset length and ERR_17 ownership.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which codes, fields, or message strings existing clients already branch on, treating those as contract",
+        "evidence": "Phase 0 inventories emissions per code per key and every internal consumer; it contacts the named consumers still emitting a code.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags codes invented ad hoc at call sites and missing from the published catalog as design defects to resolve in the same pass",
+        "evidence": "Registry plus a contract test failing 'if any emitted code is missing from the registry or breaks the naming regex'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

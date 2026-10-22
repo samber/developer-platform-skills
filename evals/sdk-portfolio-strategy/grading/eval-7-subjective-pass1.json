@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Raises vendor acquisition and continuity risk as a first-order selection criterion, not an afterthought",
+        "evidence": "The first section, 'Why config niceness is the wrong tiebreaker', builds its argument on 2026 vendor consolidation. It cites Postman acquiring Fern and Anthropic acquiring Stainless, including the wind-down of Stainless's hosted generator, closed signups and the lost sync pipeline, and it concludes that Stainless 'is off the list.' In 'What to compare', item 2 is 'Exit plan', which asks who regenerates the SDKs if the vendor vanishes. Item 3 is 'Continuity and ownership', which covers acquisitions, wind-down terms, code ownership and notice. The transcript says items 1 to 3 'can eliminate a ve",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Raises vendor acquisition and continuity risk as a first-order selection criterion, not an afterthought",
+        "evidence": "The transcript never directly names the risk that a vendor gets acquired, shuts down or runs out of money, and it never mentions vendor stability or funding. It does cover related mitigations. It treats proprietary config as lock-in ('Proprietary config is lock-in... lets you switch vendors later'). It lists 'Exit terms' as item 8: 'whether you own the generated code, whether the license lets you keep it and stop paying, and whether you can eject and maintain it yourself'. It weights exit terms double in the scoring, so it treats them as a main criterion. These points help guard against a vend",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

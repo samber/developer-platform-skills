@@ -3,67 +3,67 @@
     "expectations": [
       {
         "text": "Recommends against making DPoP the launch baseline for this platform.",
-        "evidence": "No to DPoP on everything before launch.",
+        "evidence": "'**Verdict: no. Don't make DPoP mandatory for the partner directory launch.**'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Recommends rotation with token-family reuse detection as what ships instead.",
-        "evidence": "Ship an OAuth 2.1 profile with PKCE, refresh-token rotation with reuse detection",
+        "evidence": "'Refresh tokens: rotation with token-family reuse detection.'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Cites the issuer-survey evidence that zero of 18 surveyed mainstream issuers with a working discovery document advertised DPoP support.",
-        "evidence": "0 of 18 mainstream issuers ... advertise DPoP (MojoAuth issuer survey)",
+        "evidence": "'0 of 18 mainstream issuers with a working discovery document advertised DPoP.'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Identifies absent client-library and ecosystem support, not performance, as the blocker.",
-        "evidence": "The runtime cost (~2-10 ms per request) isn't the issue. Missing library support is.",
+        "evidence": "'Your clients can't do it ... Small ATS and payroll vendors on off-the-shelf OAuth libraries'.",
         "passed": true,
         "graded": true
       },
       {
         "text": "States that DPoP's runtime cost is small (roughly single-digit milliseconds per request), so performance is not the argument against it.",
-        "evidence": "~2-10 ms per request",
-        "passed": true,
+        "evidence": "No statement about per-request latency cost.",
+        "passed": false,
         "graded": true
       },
       {
         "text": "Names the conditions that would promote DPoP: tokens guarding financial or health data, FAPI-adjacent sensitivity, or long-lived AI-agent tokens widening the theft blast radius.",
-        "evidence": "financial or health data, or for long-lived AI-agent tokens",
+        "evidence": "'A regulated scope appears ... Long-lived agent tokens ... Partners can support it.'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Applies those conditions to the stated data sensitivity (employee directory and time-off, no payments or health records) and concludes they are not met.",
-        "evidence": "You have no payments, no health records and no agent ecosystem.",
+        "evidence": "'Neither trigger is met today.'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Places DPoP in an advanced-hardening stage rather than in the protocol core.",
-        "evidence": "DPoP as an opt-in (weeks 7-8 groundwork, build later)",
+        "evidence": "'DPoP and PAR: later, with explicit triggers' and 'opt-in per client'.",
         "passed": true,
         "graded": true
       },
       {
         "text": "Acknowledges DPoP is production-viable at scale (for example Bluesky's mandatory deployment), so the objection is ecosystem readiness rather than feasibility.",
-        "evidence": "No acknowledgement of DPoP running at scale anywhere",
+        "evidence": "No mention of production deployments.",
         "passed": false,
         "graded": true
       },
       {
         "text": "States the ranking is a default that flips if the build substrate ships DPoP as configuration rather than custom work.",
-        "evidence": "Keycloak 26.4 ships DPoP as configuration, which flips that cost.",
-        "passed": true,
+        "evidence": "Only: 'That would lower DPoP's effort cost, but not within 8 weeks.' It does not say the ranking flips.",
+        "passed": false,
         "graded": true
       },
       {
         "text": "Never claims DPoP is required by OAuth 2.1.",
-        "evidence": "Mandatory DPoP is not part of that mandate.",
+        "evidence": "The text says OAuth 2.1 only demands 'sender-constrained or rotated' for public clients.",
         "passed": true,
         "graded": true
       }
@@ -73,67 +73,67 @@
     "expectations": [
       {
         "text": "Recommends against making DPoP the launch baseline for this platform.",
-        "evidence": "'DPoP on everything at launch: no.'",
+        "evidence": "'Don't make DPoP a launch gate.'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Recommends rotation with token-family reuse detection as what ships instead.",
-        "evidence": "'Rotate refresh tokens on every use. On reuse, revoke the whole token family.'",
+        "evidence": "'Refresh tokens rotate on every use, with reuse detection that revokes the whole grant family'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Cites the issuer-survey evidence that zero of 18 surveyed mainstream issuers with a working discovery document advertised DPoP support.",
-        "evidence": "No survey is cited.",
+        "evidence": "No issuer survey is cited.",
         "passed": false,
         "graded": true
       },
       {
         "text": "Identifies absent client-library and ecosystem support, not performance, as the blocker.",
-        "evidence": "'Partner libraries... Many of those libraries have no DPoP support'.",
+        "evidence": "'Their library lacks DPoP... Library support has been improving, but check'",
         "passed": true,
         "graded": true
       },
       {
         "text": "States that DPoP's runtime cost is small (roughly single-digit milliseconds per request), so performance is not the argument against it.",
-        "evidence": "No runtime cost figure is given.",
+        "evidence": "Performance cost is never discussed.",
         "passed": false,
         "graded": true
       },
       {
         "text": "Names the conditions that would promote DPoP: tokens guarding financial or health data, FAPI-adjacent sensitivity, or long-lived AI-agent tokens widening the theft blast radius.",
-        "evidence": "'If the directory later adds payroll or health data... Sender-constraining would then be well justified'; public clients; SOC 2 requirements.",
-        "passed": true,
+        "evidence": "The triggers are high-risk scopes, enterprise contracts, incidents, and partner library support. FAPI-adjacent, financial/health, and AI-agent conditions are absent.",
+        "passed": false,
         "graded": true
       },
       {
         "text": "Applies those conditions to the stated data sensitivity (employee directory and time-off, no payments or health records) and concludes they are not met.",
-        "evidence": "'no payments or health data, and you have about 450 tenants.'",
-        "passed": true,
+        "evidence": "It argues the data is sensitive PII ('don't undersell it') but does not conclude the promotion conditions are unmet.",
+        "passed": false,
         "graded": true
       },
       {
         "text": "Places DPoP in an advanced-hardening stage rather than in the protocol core.",
-        "evidence": "Opt-in at launch; mandatory later only for the highest-risk scope classes.",
-        "passed": true,
+        "evidence": "It frames DPoP as opt-in now and mandatory later, without placing it in an advanced-hardening stage.",
+        "passed": false,
         "graded": true
       },
       {
         "text": "Acknowledges DPoP is production-viable at scale (for example Bluesky's mandatory deployment), so the objection is ecosystem readiness rather than feasibility.",
-        "evidence": "Only says DPoP is a published standard (RFC 9449); no at-scale deployment is cited.",
+        "evidence": "No mention of large-scale deployments.",
         "passed": false,
         "graded": true
       },
       {
         "text": "States the ranking is a default that flips if the build substrate ships DPoP as configuration rather than custom work.",
-        "evidence": "Flip conditions concern partner libraries, not a build substrate shipping DPoP as config.",
+        "evidence": "It only suggests considering node-oidc-provider and does not say the ranking flips.",
         "passed": false,
         "graded": true
       },
       {
         "text": "Never claims DPoP is required by OAuth 2.1.",
-        "evidence": "No such claim is made.",
+        "evidence": "OAuth 2.1 is not mentioned.",
         "passed": true,
         "graded": true
       }

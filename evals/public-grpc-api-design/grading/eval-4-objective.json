@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires the package to end in a major-version component, i.e. `almandine.ledger.v1`, not `almandine.ledger`",
+        "evidence": "\"package almandine.ledger.v1;\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the directory structure to mirror the package exactly, i.e. `almandine/ledger/v1/`",
+        "evidence": "\"almandine/ledger/v1/ledger.proto\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the version appearing in the filename (`ledger_v1.proto`), because it produces bizarre generated imports",
+        "evidence": "\"ledger_v1.proto puts the version in the filename, and the directory doesn't mirror the package.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `v1.2` as a public version: major version only, never SemVer minors or patch segments in the package or the URI",
+        "evidence": "\"Public API versions are major-only... There is no v1.2.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the bare scalar `string` request on GetEntry and requires a dedicated wrapper message",
+        "evidence": "\"GetEntry(string) uses a bare scalar (AIP-131)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one dedicated `<Method>Request` / `<Method>Response` wrapper per RPC, so ListEntries and SearchEntries stop sharing LedgerQuery and LedgerEntryList",
+        "evidence": "\"give each RPC its own request and response\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason a shared message is rejected: every change to it ripples across every RPC referencing it, while a wrapper can gain optional fields without breaking wire compatibility",
+        "evidence": "\"ripples across every RPC that references it\"; \"A wrapper can gain fields later without breaking anything.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the enum zero value to be an `_UNSPECIFIED` member rather than ACTIVE = 0",
+        "evidence": "\"ENTRY_STATUS_UNSPECIFIED = 0\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the removed `legacy_ref` field's tag 4 to be marked `reserved`, and states that a tag is never reused or renumbered",
+        "evidence": "\"reserved 4; reserved \\\"legacy_ref\\\"... reusing tag 4 would corrupt old data\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires per-language package options (such as `java_package`) so generated code stays idiomatic instead of leaking the raw proto path",
+        "evidence": "\"set go_package, java_package and the other per-language options\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends modeling the surface resource-oriented with standard List/Get/Create/Update/Delete methods, reserving the `:verb` custom-method suffix for cases no standard verb fits",
+        "evidence": "\"drop it and use List with a filter field (AIP-132)... custom method and gets the :search suffix (AIP-136)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends well-known types (google.protobuf.Timestamp, FieldMask, google.rpc.*) over hand-rolled equivalents",
+        "evidence": "No recommendation of Timestamp, FieldMask or google.rpc types.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the buf lint rules that mechanize these findings, such as PACKAGE_VERSION_SUFFIX, RPC_REQUEST_RESPONSE_UNIQUE and ENUM_ZERO_VALUE_SUFFIX",
+        "evidence": "PACKAGE_VERSION_SUFFIX, RPC_REQUEST_RESPONSE_UNIQUE, ENUM_ZERO_VALUE_SUFFIX",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires the package to end in a major-version component, i.e. `almandine.ledger.v1`, not `almandine.ledger`",
+        "evidence": "\"Proto files should live at almandine/ledger/v1/ledger.proto with package almandine.ledger.v1;\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the directory structure to mirror the package exactly, i.e. `almandine/ledger/v1/`",
+        "evidence": "\"Move the file to almandine/ledger/v1/ledger.proto\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the version appearing in the filename (`ledger_v1.proto`), because it produces bizarre generated imports",
+        "evidence": "It flags \"the file is ledger/ledger_v1.proto\" as mismatched and moves it to v1/ledger.proto. The generated-imports reason is not given.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `v1.2` as a public version: major version only, never SemVer minors or patch segments in the package or the URI",
+        "evidence": "\"Marketing's 'v1.2' doesn't go in the proto... A v1_2 package would fork the wire contract.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the bare scalar `string` request on GetEntry and requires a dedicated wrapper message",
+        "evidence": "\"GetEntry(string) won't compile... Wrap it as GetEntryRequest\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one dedicated `<Method>Request` / `<Method>Response` wrapper per RPC, so ListEntries and SearchEntries stop sharing LedgerQuery and LedgerEntryList",
+        "evidence": "\"Don't share LedgerQuery between the two RPCs... Both RPCs also return a shared LedgerEntryList\"; it proposes per-RPC requests and responses.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason a shared message is rejected: every change to it ripples across every RPC referencing it, while a wrapper can gain optional fields without breaking wire compatibility",
+        "evidence": "\"couples the two contracts... Any field you add for one then shows up on the other.\" The GetEntryRequest wrapper \"lets you add fields later\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the enum zero value to be an `_UNSPECIFIED` member rather than ACTIVE = 0",
+        "evidence": "\"ENTRY_STATUS_UNSPECIFIED = 0;\" with an explanation of the ACTIVE=0 risk.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the removed `legacy_ref` field's tag 4 to be marked `reserved`, and states that a tag is never reused or renumbered",
+        "evidence": "\"Add reserved 4; reserved \"legacy_ref\"; ... someone will reuse tag 4\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires per-language package options (such as `java_package`) so generated code stays idiomatic instead of leaking the raw proto path",
+        "evidence": "\"Add option go_package and the other language options.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends modeling the surface resource-oriented with standard List/Get/Create/Update/Delete methods, reserving the `:verb` custom-method suffix for cases no standard verb fits",
+        "evidence": "Resource-oriented design and standard methods are not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends well-known types (google.protobuf.Timestamp, FieldMask, google.rpc.*) over hand-rolled equivalents",
+        "evidence": "\"Timestamps should be google.protobuf.Timestamp\" and \"google.type.Money\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the buf lint rules that mechanize these findings, such as PACKAGE_VERSION_SUFFIX, RPC_REQUEST_RESPONSE_UNIQUE and ENUM_ZERO_VALUE_SUFFIX",
+        "evidence": "Cites \"RPC_REQUEST_RESPONSE_UNIQUE and RPC_REQUEST_STANDARD_NAME\" and \"SERVICE_SUFFIX\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

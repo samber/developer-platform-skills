@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Corrects FAILED_PRECONDITION to 400, not 412, and identifies 412 as the recurring point of confusion",
+        "evidence": "\"The skill calls this 'the recurring point of confusion'. Gateways use 400.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects CANCELLED to 499 (non-standard 'Client Closed Request', no formal IANA status), not 408",
+        "evidence": "\"499 (non-standard 'Client Closed Request', no formal IANA status)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects OUT_OF_RANGE to 400, not 416",
+        "evidence": "\"416 is wrong... Gateways use 400.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the gRPC project's own documentation forbids servers from using the canonical status-mapping table to determine an HTTP status code",
+        "evidence": "\"servers must not use its HTTP\u2194gRPC table to pick an HTTP status\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the canonical mappings are neither symmetric nor 1-to-1, and that the table exists for clients or intermediaries interpreting a response that arrived without a grpc-status",
+        "evidence": "\"the mappings are neither symmetric nor 1-to-1\"; \"exists for clients interpreting responses that arrived without a grpc-status\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the gateway to have its own deliberate mapping, confirmed against the transcoding implementation actually in use rather than assumed universal",
+        "evidence": "\"Confirm it against the transcoder you actually run, because grpc-gateway and Envoy tables can differ.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the 400 collapse point: INVALID_ARGUMENT, FAILED_PRECONDITION and OUT_OF_RANGE all land on 400",
+        "evidence": "\"Three codes share 400\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the 409 collapse point: ALREADY_EXISTS and ABORTED both land on 409",
+        "evidence": "\"two share 409\"; corrected table groups ALREADY_EXISTS, ABORTED",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the partner docs to state that the HTTP status line is lossy and the structured envelope in the response body is the source of truth",
+        "evidence": "\"The HTTP status is lossy... the structured error body... is the source of truth.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the unclassified-falls-through-to-INTERNAL rule as the named anti-pattern, because aggregating every failure into one code flattens status dashboards into a single bucket",
+        "evidence": "\"Don't default to UNKNOWN or INTERNAL, which flattens your status dashboards into one bucket.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires returning the most specific applicable code, for example OUT_OF_RANGE over FAILED_PRECONDITION when both technically apply",
+        "evidence": "\"Return OUT_OF_RANGE over FAILED_PRECONDITION where both apply.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that RESOURCE_EXHAUSTED at 429 should be paired with a RetryInfo detail, and that UNAVAILABLE (503) is the only code generally safe to auto-retry without extra signal",
+        "evidence": "\"429 (pair with RetryInfo)\"; \"Only UNAVAILABLE (503) is safe to retry automatically.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Corrects FAILED_PRECONDITION to 400, not 412, and identifies 412 as the recurring point of confusion",
+        "evidence": "The FAILED_PRECONDITION row corrects 412 to \"400\". The note says \"HTTP 412 means a conditional header failed (If-Match...)\" and suggests a separate explicit rule.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects CANCELLED to 499 (non-standard 'Client Closed Request', no formal IANA status), not 408",
+        "evidence": "The CANCELLED row corrects 408 to \"499\". The text says \"it's nonstandard, but it's the canonical value\" and mentions the IANA registry.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects OUT_OF_RANGE to 400, not 416",
+        "evidence": "The OUT_OF_RANGE row corrects 416 to \"400\", noting 416 is only for an unsatisfiable Range header.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the gRPC project's own documentation forbids servers from using the canonical status-mapping table to determine an HTTP status code",
+        "evidence": "It instead says the canonical mapping is \"also used by grpc-gateway and Google's AIP-193\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the canonical mappings are neither symmetric nor 1-to-1, and that the table exists for clients or intermediaries interpreting a response that arrived without a grpc-status",
+        "evidence": "This is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the gateway to have its own deliberate mapping, confirmed against the transcoding implementation actually in use rather than assumed universal",
+        "evidence": "It only says to diff the table against googleapis code.proto.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the 400 collapse point: INVALID_ARGUMENT, FAILED_PRECONDITION and OUT_OF_RANGE all land on 400",
+        "evidence": "All three map to 400 in the table, but the collapse and its loss of information are never named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the 409 collapse point: ALREADY_EXISTS and ABORTED both land on 409",
+        "evidence": "\"Two 409 sources: ALREADY_EXISTS and ABORTED both map to 409. Say that partners must read the error body's status or code field to tell them apart.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the partner docs to state that the HTTP status line is lossy and the structured envelope in the response body is the source of truth",
+        "evidence": "It only advises distinguishing the two 409 cases via the body, and does not state the general principle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the unclassified-falls-through-to-INTERNAL rule as the named anti-pattern, because aggregating every failure into one code flattens status dashboards into a single bucket",
+        "evidence": "It objects only that the fallthrough misreports specific codes as 500, and says nothing about dashboards.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires returning the most specific applicable code, for example OUT_OF_RANGE over FAILED_PRECONDITION when both technically apply",
+        "evidence": "This is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that RESOURCE_EXHAUSTED at 429 should be paired with a RetryInfo detail, and that UNAVAILABLE (503) is the only code generally safe to auto-retry without extra signal",
+        "evidence": "It mentions Retry-After headers and lists several retry-safe codes (503, 504, 429, 409), not RetryInfo or UNAVAILABLE alone.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

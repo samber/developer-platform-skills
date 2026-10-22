@@ -1,0 +1,438 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "sql-jdbc-access-design",
+  "scenarios": 9,
+  "expectations_total": 105,
+  "expectations_subjective": 0,
+  "expectations_objective": 105,
+  "pass_rate_with_skill_pct": 73.3,
+  "pass_rate_without_skill_pct": 33.3,
+  "delta_pp": 40.0,
+  "uplift_multiplier": 2.2,
+  "trigger_accuracy_pct": 55.3,
+  "trigger_queries": 94,
+  "trigger_positive_fire_rate": 0.128,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States the engine-level policy must make a query that omits the tenant filter return nothing, rather than relying on every query being written correctly"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes the same NULL-identity trap applies to row-access policies, where IS_DATABASE_ROLE_IN_SESSION() is the equivalent primitive"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Presents three architecture rungs: zero-copy warehouse share, replicated copy or dedicated read endpoint, and per-tenant compute isolation"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names zero-copy warehouse sharing as the default rung and justifies it by the data already living in a cloud warehouse"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the zero-copy share is a metadata grant with no data copied, and that live access is paid per query scan plus cross-region egress"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps the roughly 40 low-frequency mid-market accounts on the zero-copy share rung"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires WITH CHECK alongside USING on write-path policies, because USING filters only reads and a USING-only policy lets a tenant write rows attributed to another tenant"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that multiple permissive policies on a table combine with OR, so a single USING (true) policy silently defeats every stricter policy, and requires auditing all of a table's policies together"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that RLS does not itself grant SELECT/INSERT/UPDATE/DELETE, so matching GRANTs and column grants are still required"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects schema-per-tenant at roughly 900 tenants, naming connection pooling and DDL migrations as what breaks down"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that schema changes are more dangerous than API changes because they often happen accidentally, such as a source-system update or a readability rename, and propagate downstream with no deprecation header"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names a shipped additive-only precedent such as Amplitude's event schema, which only ever adds tables and columns as new event types arrive"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that none of these controls are on by default and each must be configured per external warehouse or engine before GA"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Prescribes moving a tenant that regularly queues others or trips monitors onto isolated or larger compute"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Explicitly rejects raising the shared cap for everyone to accommodate one heavy tenant"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Distinguishes capping compute seconds and spend on a long-running engine from counting requests at an API gateway, and requires endpoint-level connection or query-rate limits to stay consistent with the published API rate-limit policy"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the consumer-pays alternative at the same rung, where compute bills to the customer's own account, citing HubSpot's Snowflake share gated to its top data tier"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that a price is itself a governance control on a surface that is expensive to over-serve"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires metering on a business unit the buyer already understands, citing Stripe Sigma tiering on monthly charge volume with queries themselves unmetered"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the ranking explicitly across efficiency, effort, and value rather than leaving it implied by the order the options are listed in"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the consumption rung as the starved option, highest value and highest effort so it loses every efficiency round, and states the condition that promotes it anyway"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the cost of the wire-protocol rung: commitment to the Postgres dialect and its type system, and nothing exotic"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires a connection-setup page per supported client covering the URL template, the driver class or download, the auth method, and TLS stated as an explicit requirement rather than left to client defaults"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the answer to which problem this is must be written down explicitly, because a design that answers the wrong one ships the wrong isolation primitive"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Inventories the concrete consumers with their expected query shape, such as dashboard refresh, ad-hoc exploration, scheduled extract, and agent traffic"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that a BI-tool consumer needs a certified driver, stable column names, and predictable types, because they never read the docs, only their tool's connection dialog"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the design targets the most demanding consumer type present rather than the average one"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes the industry trajectory retiring static database passwords, citing a staged deprecation that moves service users onto key-pair, OAuth, PAT, or workload identity"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that CURRENT_USER() and CURRENT_ROLE() return NULL inside a secure view once it crosses an account-to-account share, so the catch-all view matches nothing or everything depending on the predicate's shape"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the engine-level policy must make a query that omits the tenant filter return nothing, rather than relying on every query being written correctly"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes the same NULL-identity trap applies to row-access policies, where IS_DATABASE_ROLE_IN_SESSION() is the equivalent primitive"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that scan frequency, not customer size, tier, or contract value, is the variable that gates the architecture"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Presents three architecture rungs: zero-copy warehouse share, replicated copy or dedicated read endpoint, and per-tenant compute isolation"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names zero-copy warehouse sharing as the default rung and justifies it by the data already living in a cloud warehouse"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the zero-copy share is a metadata grant with no data copied, and that live access is paid per query scan plus cross-region egress"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites the tipping heuristic of roughly 20 scans per day on a roughly 200 GB table, past which live re-scanning costs more per month than a replicated copy costs per year"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Labels that tipping heuristic as one practitioner's rule of thumb rather than a benchmark or a measured figure"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Places the 50-viewer weekday-morning dashboard cohort past the tipping line and recommends the replicated copy or dedicated read endpoint rung for it"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps the roughly 40 low-frequency mid-market accounts on the zero-copy share rung"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the price of the replicated rung: staleness to the last refresh, plus a second copy of the data and its PII to govern"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the two conditions that promote per-tenant compute isolation (arbitrary customer-authored SQL at dashboard-or-agent frequency across many tenants, or a shared cluster whose worst-case query already threatens the product) and does not promote it here on contract size"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns against pointing the replicated copy at the live operational schema"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires WITH CHECK alongside USING on write-path policies, because USING filters only reads and a USING-only policy lets a tenant write rows attributed to another tenant"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that multiple permissive policies on a table combine with OR, so a single USING (true) policy silently defeats every stricter policy, and requires auditing all of a table's policies together"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires WITH (security_invoker = true) on the four reporting views, since a view otherwise runs with its creator's privileges and returns every row regardless of caller"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns about infinite policy recursion when a helper function called from a policy reads another RLS-protected table, and prescribes SECURITY DEFINER with SET search_path pinned"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends wrapping a per-row function call in a subquery so the predicate evaluates once per query rather than once per row"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that RLS does not itself grant SELECT/INSERT/UPDATE/DELETE, so matching GRANTs and column grants are still required"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that an OLTP-only stack with no warehouse deletes the zero-copy sharing rung entirely rather than demoting it"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Specifies the contract in four parts: schema (columns, types, nullability), quality (completeness thresholds), freshness (refresh SLA), and availability (uptime or latency)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that schema changes are more dangerous than API changes because they often happen accidentally, such as a source-system update or a readability rename, and propagate downstream with no deprecation header"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names a shipped additive-only precedent such as Amplitude's event schema, which only ever adds tables and columns as new event types arrive"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the schema gate as zero breaking changes reaching the customer-facing schema past the CI contract check, and that a breaking change that ships is a gate failure even if no customer noticed"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Adds a queued-statement timeout so queries do not wait indefinitely for a slot"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Adds a concurrency cap per tenant or workload so one customer's parallel dashboard refresh cannot occupy shared compute"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that none of these controls are on by default and each must be configured per external warehouse or engine before GA"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the cost gate: every external compute handle has a statement timeout, a concurrency cap, and a spend cap before the first customer connects, audited as a pass/fail checklist per handle"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Prescribes moving a tenant that regularly queues others or trips monitors onto isolated or larger compute"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Explicitly rejects raising the shared cap for everyone to accommodate one heavy tenant"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Distinguishes capping compute seconds and spend on a long-running engine from counting requests at an API gateway, and requires endpoint-level connection or query-rate limits to stay consistent with the published API rate-limit policy"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names the consumer-pays alternative at the same rung, where compute bills to the customer's own account, citing HubSpot's Snowflake share gated to its top data tier"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects shipping SQL access as a free feature and requires it be packaged as a paid tier or an add-on"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that a price is itself a governance control on a surface that is expensive to over-serve"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Presents three pricing shapes: flat add-on or tier gate, consumption or volume-tiered, and provider-pays-compute passthrough"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the flat add-on or tier gate as the default rung because it needs near-zero billing engineering"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Promotes the consumption or volume-tiered rung here and names both triggering conditions present: consumption-based cost exposure of its own, and customer data volumes spanning orders of magnitude"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires metering on a business unit the buyer already understands, citing Stripe Sigma tiering on monthly charge volume with queries themselves unmetered"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the pricing metric is revisable after launch, citing Sigma having changed its own pricing model after shipping"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the ranking explicitly across efficiency, effort, and value rather than leaving it implied by the order the options are listed in"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the consumption rung as the starved option, highest value and highest effort so it loses every efficiency round, and states the condition that promotes it anyway"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the custom VQL dialect as the anti-pattern, since a language not already widely supported makes every BI-tool integration start from zero"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the cost of the wire-protocol rung: commitment to the Postgres dialect and its type system, and nothing exotic"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires accurate SQLSTATEs if a driver is shipped, specifically SQLSTATE 28000 for invalid credentials, warning that a generic error instead can break Tableau connector behavior"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names signed per-tool connector packages whose signing certificates expire and must be renewed on a schedule"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that Power BI certification requires documented customer demand via a public ideas-forum thread and submission by pull request to Microsoft's connector repository"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that certification transfers distribution but not support, with first-line connectivity issues routed back to the data-source owner"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends single-tenant or per-organization engine instances fronted by one wire-protocol endpoint as the fix for the isolation and connectivity problems at once"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names engine drift as a distinct risk: a query engine changing results between releases or depending on enabled settings, which a vendor's own regression suite never covers across arbitrary customer query shapes"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires a connection-setup page per supported client covering the URL template, the driver class or download, the auth method, and TLS stated as an explicit requirement rather than left to client defaults"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Labels the partner-agency request as sharing data with partner organizations, which reuses the sharing mechanics but is not the same problem"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Labels the shared-analytics-database contention as isolating compute per tenant inside the product's own analytics, an internal architecture concern, and states the pricing and BI-connectivity work do not apply to it"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Labels the Looker request as giving customers a queryable SQL endpoint to their own data, and identifies it as the one needing the full design"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the answer to which problem this is must be written down explicitly, because a design that answers the wrong one ships the wrong isolation primitive"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names the sibling bulk data sharing skill as the handoff target for the Parquet request"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Inventories the concrete consumers with their expected query shape, such as dashboard refresh, ad-hoc exploration, scheduled extract, and agent traffic"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that a BI-tool consumer needs a certified driver, stable column names, and predictable types, because they never read the docs, only their tool's connection dialog"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks where the data lives today and asks for scan-frequency evidence with table sizes before recommending any architecture rung"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the design targets the most demanding consumer type present rather than the average one"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects recipient-property partition filtering as an access-control mechanism, stating it is documented as a best-effort performance optimization"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires hard isolation to come from a dynamic view predicate filtered on current_recipient(), not from partition pruning"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Gives the credential preference order: short-lived token, then managed secret, then static password"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Replaces the service-account password with key-pair authentication signing a short-lived JWT, so no password crosses the network"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires marking machine identities as service-type so the engine refuses password auth for them and the password fallback is closed"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Replaces the pasted BI-tool passwords with OAuth, using the authorization-code grant with PKCE for desktop BI tools, so the tool never stores a database password"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States the degradation path: a client that cannot hold and refresh a token falls back to key-pair or a PAT service account, never to a static password, and requires verifying each supported client's refresh capability before promising OAuth everywhere"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects annual rotation over email as the design and requires customer self-service issuance and revocation in the product"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Scopes every credential to one tenant's entitlement mapping by construction and states TLS as an explicit named requirement rather than a client-library default"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes the industry trajectory retiring static database passwords, citing a staged deprecation that moves service users onto key-pair, OAuth, PAT, or workload identity"
+      }
+    ]
+  }
+}

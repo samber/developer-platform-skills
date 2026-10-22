@@ -1,0 +1,374 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "etl-connector-strategy",
+  "scenarios": 9,
+  "expectations_total": 95,
+  "expectations_subjective": 0,
+  "expectations_objective": 95,
+  "pass_rate_with_skill_pct": 82.1,
+  "pass_rate_without_skill_pct": 31.6,
+  "delta_pp": 50.5,
+  "uplift_multiplier": 2.6,
+  "trigger_accuracy_pct": 76.2,
+  "trigger_queries": 84,
+  "trigger_positive_fire_rate": 0.667,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Ranks the payoff sources with support-ticket deflection and customer retention first and revenue share last."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Places competitive-parity distribution above co-marketing or partner-tier demand-gen in that same ranking."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that co-marketing and partner-tier benefits require an active partnership relationship, not merely a listed connector."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that each additional connector is an independent recurring obligation and that nothing amortizes across connectors."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Presents the honest substitute ladder in order of completeness: timestamp/cursor polling, then webhooks, then a vendor-side change/deletion feed, then periodic full re-import reconciliation."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Does not produce a build plan, platform pick, or delivery timeline as the primary deliverable."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Conducts the intake as an interview asking one question at a time rather than delivering a single block of questions."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Shows an explicit ranked ordering across more than one axis rather than a flat list of options."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that compliance cost runs in the opposite direction to effort: highest on the platform-managed path, lowest on the custom path."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Justifies that inversion by the platform-managed path's external source review, which can reject the source outright, and by its binding release-phase promotion clock."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that control over quality and cadence ties between the custom and vendor-SDK paths, and justifies the tie by the vendor keeping every implementation decision on both."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the platform-managed path's real costs: a review gate of weeks that can reject the source, zero control over feature scope and cadence, and a fit limited to stable, non-dynamic schemas."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that fixing the extraction API cuts build and maintenance cost on every build path simultaneously, including customers' own hand-rolled pipelines."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the absent delete signal as the single most common gap, noting that most application APIs do not return deletes as changes so connectors silently miss them."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Raises versioning and deprecation discipline, noting that the large majority of breaking API versions ship with no deprecation notice at all (87.3% across 1,068 specifications), so monitoring rather than changelog-watching is the detection mechanism."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that the open spec solved initial connector coverage but never ongoing maintenance."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires a named owner for each connector before its launch, rather than treating the 2-FTE headline as the ownership answer."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States explicitly that no ETL/ELT platform pays a source vendor for its connector."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Any revenue-share program mentioned is described as announced but never delivered as described, not as an existing precedent to plan around."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Describes the program that actually shipped as flat one-time per-task bounties rather than a revenue share, citing at least one amount in the $10-$150 range (for example $150 for a new sync mode or $50 for a minor bug)."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Ranks the payoff sources with support-ticket deflection and customer retention first and revenue share last."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Places competitive-parity distribution above co-marketing or partner-tier demand-gen in that same ranking."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that co-marketing and partner-tier benefits require an active partnership relationship, not merely a listed connector."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Budgets recurring annual maintenance at 15-30% of the original build cost, and notes it can reach roughly 50% in mature, high-change phases."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that each additional connector is an independent recurring obligation and that nothing amortizes across connectors."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Frames the connector as a cost center bought for distribution, retention, and support-cost deflection rather than as a revenue source."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats any build-cost benchmark figures as order-of-magnitude ranges rather than as quotes."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Answers the payback request without inventing an ROI figure or a modeled revenue number."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that this product cannot use that mechanism because neither an external platform nor a public API has access to the internal transaction log of a multi-tenant SaaS backing database."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Frames that limitation as a structural boundary rather than a maturity gap or a roadmap item."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Any webhook proposal is scoped as a freshness supplement that is not a backfill substitute and captures nothing before the connection date."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Presents the honest substitute ladder in order of completeness: timestamp/cursor polling, then webhooks, then a vendor-side change/deletion feed, then periodic full re-import reconciliation."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Treats a vendor-side deletion feed as a later completeness upgrade triggered by reported missed deletes, not as a launch-day promise."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the categories of verifiable demand evidence to collect first: support tickets naming a platform, lost-deal or churn notes citing data-stack mismatch, API-log evidence of hand-rolled extraction, and security or procurement questionnaires asking about warehouse sync."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Describes the API-log evidence concretely as high-frequency paginated scans from data-team service accounts."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends improving the raw API or a direct-to-storage delivery path as the alternative investment instead of building the connector now."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that a connector shipped without evidence still bills its annual maintenance percentage every year regardless of use."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Does not produce a build plan, platform pick, or delivery timeline as the primary deliverable."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Conducts the intake as an interview asking one question at a time rather than delivering a single block of questions."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires the demand evidence to be attached to the decision record, with each claimed driver citing at least one verifiable artifact."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends the platform-managed listing, where the platform builds and maintains the connector, as the default path for this case."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Shows an explicit ranked ordering across more than one axis rather than a flat list of options."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Orders maintenance-tax exposure with the custom outside-platform path highest and the platform-managed listing lowest."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that compliance cost runs in the opposite direction to effort: highest on the platform-managed path, lowest on the custom path."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Justifies that inversion by the platform-managed path's external source review, which can reject the source outright, and by its binding release-phase promotion clock."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that control over quality and cadence ties between the custom and vendor-SDK paths, and justifies the tie by the vendor keeping every implementation decision on both."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the platform-managed path's real costs: a review gate of weeks that can reject the source, zero control over feature scope and cadence, and a fit limited to stable, non-dynamic schemas."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explicitly ties the hard renewal deadline to promoting the platform-managed queue in the ranking."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explicitly ties the 4-hours-per-month ceiling to demoting the higher-effort paths, or to the option of not building yet."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Checks the platform-managed path's own clock, including weeks of initial API-documentation analysis plus its advertised post-acceptance turnaround, against the five-month deadline instead of assuming it lands in time."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Presents 2-3 candidate strategies, each combining a platform, a build path, and a resource scope, with trade-offs stated."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Ends with one argued recommendation and asks the user for an explicit pick before moving on to the API readiness audit."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Sequences the API fixes ahead of the connector build rather than alongside it or after it."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that fixing the extraction API cuts build and maintenance cost on every build path simultaneously, including customers' own hand-rolled pipelines."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the absent delete signal as the single most common gap, noting that most application APIs do not return deletes as changes so connectors silently miss them."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends a durable 'changes or deletes since <cursor>' feed as the buildable upgrade over relying on the is_active flag alone."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Grades each resource pass/fail against the checklist, with any resource that cannot pass carrying an explicit exclusion note rather than a silent skip."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Raises versioning and deprecation discipline, noting that the large majority of breaking API versions ship with no deprecation notice at all (87.3% across 1,068 specifications), so monitoring rather than changelog-watching is the detection mechanism."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that marketplace-tier connectors are explicitly outside the platform's support SLAs and may ship backward-incompatible breaking changes with no notice."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Distinguishes listing, which is passing the platform's standard test suite, from certification, which is optional and earned."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that the Partner Certified tier covers destination connectors only, so a source connector cannot earn that badge."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that no platform charges a source vendor a fee for certification and none pays for it either: the cost is engineering time."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the quantitative bars: at least 95% first-sync success, at least 95% overall sync success, first response within 3 business days, and the connector updated at least every 6 months."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends adopting those bars as the connector's own SLOs and feeding them into the maintenance plan even where the tier does not formally require them."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the certification framing that reliability and usability beat feature count, rather than treating certification as a feature-completeness bar."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Lists the certification-grade behaviors to build regardless: every supported sync mode integration-tested, incremental sync wherever the source allows it, and failures that are fast and actionable rather than a configuration the platform accepts but that is guaranteed to break."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Advises targeting certification only once the connector holds up across real syncs, rather than scheduling it backwards from the March conference date."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the custom or open-spec tap path carries 100% of the maintenance tax, with no part of it absorbed by a platform."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that the open-spec ecosystem has no entry gate and therefore no quality floor."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites the ecosystem's decay record: taps of unknowable quality until used, several breaking upstream changes per year, and maintainers disappearing once sponsor attention moved."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that the open spec solved initial connector coverage but never ongoing maintenance."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires active monitoring and alerting on sync failures and schema-drift errors rather than waiting for customer tickets to surface breakage."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that upstream APIs will not announce their breaking changes, so changelog-watching is not a viable detection mechanism."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Identifies the partners-building-into-our-app-directory request as the opposite direction: third parties building into the vendor's own marketplace, a different problem from being a source in someone else's catalog."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the direction distinction explicitly: ETL connector strategy covers the vendor being extracted from by platforms the customer runs."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that none of the three requests as described constitutes demand evidence for ETL catalog presence."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Asks which extraction platforms the customers' data teams actually run before recommending any catalog target."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Reduces the plan to one platform first, with a second only after the first connector's maintenance load has been measured."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that the maintenance obligation compounds linearly with connector count and that nothing amortizes across connectors."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Cites the threshold that self-built connector maintenance is manageable at roughly three to five sources and punishing beyond about ten."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Names the three platform archetypes and how each gates differently: the curated platform gatekeeps entry, the open-contribution platform gatekeeps labels, and the open-spec tap ecosystem has no gate at all."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires a named owner for each connector before its launch, rather than treating the 2-FTE headline as the ownership answer."
+      }
+    ]
+  }
+}

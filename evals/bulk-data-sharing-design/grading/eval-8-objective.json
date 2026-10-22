@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Accepts streaming push only against the three named conditions: genuinely event-shaped data, consumer demand for sub-minute delivery, and consumer acceptance of the durability trade-off",
+        "evidence": "The conditions listed are event-shaped, sub-minute demand, and '3-hour batch fails the use case'. Consumer acceptance of the durability trade-off is missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that with a non-replayable stream a consumer whose endpoint was down recovers nothing from the provider",
+        "evidence": "Braze Currents can't replay events, so a consumer outage means permanent loss.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies streaming push as the highest-effort rung and the one that loses every efficiency comparison",
+        "evidence": "The skill ranks streaming push last on effort and efficiency.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends also shipping a file-drop or batch surface for historical backfill, which the stream cannot serve",
+        "evidence": "hourly Parquet drop ... covers late data, lost events and ML backfills.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that Avro, with schema-registry-based evolution, rather than Parquet, is the format used on the streaming rung",
+        "evidence": "Uses a JSON envelope; Avro not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not promise replay, at-least-once recovery or gap-filling unless a separate durable buffer is explicitly designed for it",
+        "evidence": "Replay depends on the internal bus holding 7 days with time-range replay, flagged 'Verify before you publish the replay promise.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the streaming surface gated behind a paid or enterprise contract rather than self-serve, consistent with the precedent in this feature class",
+        "evidence": "Sell this as a paid add-on or top-tier feature.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States an explicit freshness posture for the stream, labeled as fixed cadence, best-effort target, or contractual SLA",
+        "evidence": "Freshness posture: best-effort target, not an SLA",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions entity-count batching (such as splitting files per 5,000 users) as an alternative to time-window batching on this rung",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Accepts streaming push only against the three named conditions: genuinely event-shaped data, consumer demand for sub-minute delivery, and consumer acceptance of the durability trade-off",
+        "evidence": "No such conditions are stated. It builds streaming unconditionally.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that with a non-replayable stream a consumer whose endpoint was down recovers nothing from the provider",
+        "evidence": "It promises \"7 days of replay\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies streaming push as the highest-effort rung and the one that loses every efficiency comparison",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends also shipping a file-drop or batch surface for historical backfill, which the stream cannot serve",
+        "evidence": "\"Batch exports: keep them. This surface is additive.\" There is no backfill rationale.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Avro, with schema-registry-based evolution, rather than Parquet, is the format used on the streaming rung",
+        "evidence": "The format is JSON envelopes. Avro is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not promise replay, at-least-once recovery or gap-filling unless a separate durable buffer is explicitly designed for it",
+        "evidence": "Replay is promised, but the design includes a durable per-destination queue and a \"replay store (7 d)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the streaming surface gated behind a paid or enterprise contract rather than self-serve, consistent with the precedent in this feature class",
+        "evidence": "\"Pricing: I did not decide it.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States an explicit freshness posture for the stream, labeled as fixed cadence, best-effort target, or contractual SLA",
+        "evidence": "\"Beta: the numbers above are targets, with no SLA. GA: the latency number becomes an SLO, and a monthly delivery-success SLA of 99.9%\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions entity-count batching (such as splitting files per 5,000 users) as an alternative to time-window batching on this rung",
+        "evidence": "Batches close at 100 events, 256 KB or 250 ms. There is no per-user-count file splitting.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

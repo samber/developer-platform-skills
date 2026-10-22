@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects waiting until next quarter: a departed employee's still-valid personal keys are treated as a live incident",
+        "evidence": "\"Do not wait until next quarter. Start today\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "First step enumerates every key the leaver created or could see, flagging the missing admin key-inventory view as a gap to build",
+        "evidence": "Step 2 builds inventory; step 8 \"Build the missing admin view.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Revokes the leaver's user-owned keys with zero grace, explicitly accepting the downtime",
+        "evidence": "\"Offboarding is the compromise case. The skill says revoke with zero grace and accept the downtime.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rotates shared or org credentials the leaver had access to, not only their personal keys",
+        "evidence": "\"Rotate every shared credential he could read.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reissues the four integrations on service-account or org-owned keys, never on another employee's personal keys",
+        "evidence": "\"Create a service account or org-owned identity per integration.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines the service-account property: credential validity decoupled from any human's employment status",
+        "evidence": "Never states that credential validity is decoupled from any human's employment.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels production integrations running on personal keys a standing process failure, not a one-off cleanup",
+        "evidence": "\"treat a production integration on a personal key as a standing incident.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Logs every offboarding action for the audit trail and access-review evidence",
+        "evidence": "\"Log every action with who, when, and why.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a permanent org-admin filterable view of every key a given user created or can see",
+        "evidence": "\"Build the missing admin view. It filters keys by creator or by who can see them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the forward ownership policy: individual keys reserved for personal experimentation, production and automation on service accounts or org keys",
+        "evidence": "Only \"default new production keys to service accounts\"; no policy reserving individual keys for personal experimentation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds org-tier governance: admin approval before issuance and admin review and revocation of members' keys",
+        "evidence": "No admin approval before issuance or admin review of members' keys is described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Installs an offboarding runbook to run on every future departure",
+        "evidence": "The plan is one-off for this leaver; no standing runbook is installed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires every live key to carry an owner, scope documentation, and an expiry or documented exemption going forward",
+        "evidence": "Mentions mandatory expiry and admin view columns, but never requires every live key to carry owner, scope documentation and expiry.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects waiting until next quarter: a departed employee's still-valid personal keys are treated as a live incident",
+        "evidence": "\"Why 'clean it up next quarter' is the wrong call\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "First step enumerates every key the leaver created or could see, flagging the missing admin key-inventory view as a gap to build",
+        "evidence": "Builds an inventory from the consumer side but never proposes building an admin key-inventory view.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Revokes the leaver's user-owned keys with zero grace, explicitly accepting the downtime",
+        "evidence": "\"Don't revoke his keys right now. It would cause the outage you're trying to prevent.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rotates shared or org credentials the leaver had access to, not only their personal keys",
+        "evidence": "\"Treat anything he could see as exposed... shared vault, CI secrets, and env vars... Rotate those too.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reissues the four integrations on service-account or org-owned keys, never on another employee's personal keys",
+        "evidence": "\"Create a replacement owned by a service account or machine identity, not a person.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines the service-account property: credential validity decoupled from any human's employment status",
+        "evidence": "Says \"not a person\" but never defines the decoupling property.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels production integrations running on personal keys a standing process failure, not a one-off cleanup",
+        "evidence": "Not framed as a process failure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Logs every offboarding action for the audit trail and access-review evidence",
+        "evidence": "Records owner/purpose/rotation date and a post-mortem, but no audit log of offboarding actions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a permanent org-admin filterable view of every key a given user created or can see",
+        "evidence": "Not recommended.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the forward ownership policy: individual keys reserved for personal experimentation, production and automation on service accounts or org keys",
+        "evidence": "No policy reserving individual keys for experimentation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds org-tier governance: admin approval before issuance and admin review and revocation of members' keys",
+        "evidence": "No admin approval or review of member keys.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Installs an offboarding runbook to run on every future departure",
+        "evidence": "\"Add a credential inventory step to the offboarding checklist.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every live key to carry an owner, scope documentation, and an expiry or documented exemption going forward",
+        "evidence": "\"Use least privilege... Record the owner, purpose, and rotation date... Set expiry and rotation on all service keys.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

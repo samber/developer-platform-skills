@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Declines to commit a specific deflection percentage as a forecast in the business case.",
+        "evidence": "'We plan on ~80/month (20%)', with a floor of 40 and a plan case of 20%.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that published deflection figures around the 20-40% range are vendor-reported and directional only.",
+        "evidence": "'Published figures... (vendor-reported, not independent) put deflection at 20\u201340%'; 'Every deflection figure is vendor-reported.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires measuring against Verdanta's own pre-assistant ticket baseline before claiming ROI, and recommends capturing that baseline before launch.",
+        "evidence": "'Baseline, 4 weeks before launch' and 'validate against your own baseline before claiming ROI'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the existing classic full-text or semantic search rather than replacing it with the assistant.",
+        "evidence": "'Don't replace search.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Co-locates the Ask AI widget with the search box.",
+        "evidence": "'Sits next to the existing search box.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every assistant answer to cite a linkable source page.",
+        "evidence": "'Every answer cites a linkable source page. No citation, no answer.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the assistant to say it does not know rather than guess when the docs do not cover a question.",
+        "evidence": "'Says \"I don't know\" when docs don't cover the question.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes unanswered and low-confidence questions into the documentation backlog, using the assistant as a content-gap detector.",
+        "evidence": "'Unanswered and low-confidence questions go to a docs backlog. The assistant doubles as a content-gap detector.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats support-ticket deflection as a watched trend rather than a gate the project passes or fails on.",
+        "evidence": "'Treat deflection as a watched trend, not a pass/fail gate.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Declines to commit a specific deflection percentage as a forecast in the business case.",
+        "evidence": "Headline: 'Plan for about 80 fewer tickets a month, roughly 20% of volume.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that published deflection figures around the 20-40% range are vendor-reported and directional only.",
+        "evidence": "It cites '50\u201370%' vendor claims, not the 20-40% range.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires measuring against Verdanta's own pre-assistant ticket baseline before claiming ROI, and recommends capturing that baseline before launch.",
+        "evidence": "It uses a holdout group and a ticket audit rather than a pre-launch baseline.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the existing classic full-text or semantic search rather than replacing it with the assistant.",
+        "evidence": "Search is mentioned only as a cheaper alternative to compare.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Co-locates the Ask AI widget with the search box.",
+        "evidence": "Placement is on docs pages and the support form.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires every assistant answer to cite a linkable source page.",
+        "evidence": "'Every claim must carry a citation link to the page and anchor.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the assistant to say it does not know rather than guess when the docs do not cover a question.",
+        "evidence": "'If retrieval is weak, say \"I couldn't find this\"... Do not guess.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes unanswered and low-confidence questions into the documentation backlog, using the assistant as a content-gap detector.",
+        "evidence": "'read the \"couldn't find\" and thumbs-down queries. Fix or write the missing docs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats support-ticket deflection as a watched trend rather than a gate the project passes or fails on.",
+        "evidence": "It sets a launch gate (85% correct, under 5% confident-wrong) and treats the deflection estimate as the business-case figure.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

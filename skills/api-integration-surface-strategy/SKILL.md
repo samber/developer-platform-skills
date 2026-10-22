@@ -4,7 +4,7 @@ description: Decide which integration surfaces a platform offers external develo
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # API Integration Surface Strategy
@@ -160,10 +160,11 @@ The division of labor is fixed:
 
 The gRPC surface's design belongs to `samber/developer-platform-skills@public-grpc-api-design`; the bulk-data/lake surface's belongs to `samber/developer-platform-skills@bulk-data-sharing-design` (file/lake exports) or `@etl-connector-strategy` (rows synced through an ELT tool), depending on which shape the demand signal points to.
 
-CLI and embedded components have no dedicated sibling - record their design decisions in the plan itself. For a CLI, copy Plaid's 2025 dual-audience pattern - one surface, both audiences:
+Embedded components have no dedicated sibling - record their design decisions in the plan itself. A CLI's design belongs to `samber/developer-platform-skills@cli-interface-design`; record here only its audience and the dual-audience promise (Plaid's 2025 pattern - readable tables for humans, JSON with clean stdout/stderr separation for agents).
 
-- Readable table output for humans.
-- JSON with clean stdout/stderr separation for agents.
+A technology-specific agent skill shipped with a CLI, SDK or library belongs to `samber/developer-platform-skills@agent-skill-offering`, which keeps it versioned with the code.
+
+A Terraform/OpenTofu provider for the platform's long-lived configuration objects belongs to `samber/developer-platform-skills@terraform-provider-offering`. It derives from the REST contract like SDKs do, so schedule it after that contract is stable; record here only its audience (platform and infrastructure teams) and demand signal.
 
 ## 6. Set the review cadence
 

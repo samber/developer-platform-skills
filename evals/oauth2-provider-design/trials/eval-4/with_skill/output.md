@@ -1,131 +1,112 @@
-# Orrery OAuth scope taxonomy (draft v1)
+**Do not ship the plan as written.** Three parts of it are the failure modes this design guide names. A taxonomy that avoids them is below.
 
-I followed `oauth2-provider-design` (step 2, scope taxonomy and consent) plus its scope-archetypes and consent-screen references. I did not read the other references (protocol baseline, app verification program). I also did not ask the skill's clarifying questions, because the task needs a single deliverable. My assumptions are at the end.
+## Verdict
 
-## Decision up front: don't redefine `full_access`
+1. **Do not redefine `full_access`.** Keep it exactly as is.
+2. **Do not add `full_write`.** Use `resource:action` scopes instead.
+3. **Do not defer the integration/user token split.** Bind every scope to a token type now. Logs from the existing 120 apps already show how they use tokens, so you can check usage now, before you ship.
 
-Your plan has two parts. I'd keep `full_write` out and not redefine `full_access` as read-only. Both break rules this skill treats as non-negotiable:
+## Why
 
-- **Scopes are additive-only.** Changing what `full_access` means silently changes what ~120 existing consents authorize. Every write-capable app breaks on the day you flip it.
-- **Old and new grants become indistinguishable.** Your grant store and audit logs would hold the same string with two meanings. You could no longer tell what a given `full_access` grant meant when it was issued.
-- **`full_access` meaning "read-only" is a trap.** Every new developer will assume the name is true.
-- **`full_write` is a second catch-all.** The skill deletes that pattern. One broad scope per direction is the same failure mode as GitHub's classic `repo`.
+- **Redefinition repurposes a scope.** Scopes must be additive-only. Existing grants and live tokens currently authorize read and write. After the change, one of two things happens:
+  - The tokens become read-only. Every writing app gets 403s, and you touch all 120 registrations anyway, during an incident.
+  - The tokens are grandfathered. Then `full_access` means two things depending on grant date.
+- **The name lies.** Old docs, SDKs, and Stack Overflow answers say `full_access` means write. New developers will request it and break.
+- **`full_write` is another catch-all.** It is the single broad scope again, with write added on. Under your plan every app still reads all timesheets of all users, because `full_access` still grants all reads. You cut write blast radius and left read blast radius untouched.
+- **Deferred binding costs a reauthorization.** Slack's `chat:write` posts as the app on a bot token and as the human on a user token. Slack documents that changing the binding later "requires reauthorization from every user". You would pay that price after shipping `full_write`.
 
-Your real goal is to avoid touching the 120 registrations. You can still meet it:
+Your goal was "don't touch the 120 registrations". Freezing `full_access` as-is meets that goal. Redefining it does not.
 
-- **Freeze `full_access`.** It keeps today's exact meaning, which is everything the token can do across the four current resources.
-- **Close it to new requests.** New registrations and new authorization requests can't ask for it.
-- **Add the granular scopes below next to it.**
-- **Migrate on a schedule, below.** Existing apps keep working untouched until you choose to sunset it.
+## Taxonomy
 
-## Scope list
+**Naming:** `resource:action`, using the API's own nouns: `projects`, `tasks`, `comments`, `timesheets`. Two actions, `read` and `write`.
 
-The pattern is `resource:action`, using the same nouns as the API.
+- `:write` means create and update only.
+- `:write` does not imply `:read`. An app requests both when it needs both.
+- A write response may return the written object. Nothing more.
+- No delete scope at launch. Delete is not grantable to new apps. Add `:delete` later when traffic shows demand. Adding a scope is additive, but shrinking `:write` later would be repurposing.
+- Embedded or expanded related objects in a response are filtered by the caller's scopes. For example, `tasks:read` must not leak `projects` fields unless `projects:read` is also held.
 
-- `read` means read only.
-- `write` means create and update. It never includes delete.
-- `delete` is its own scope. Splitting it out of `write` later would narrow an existing scope, which breaks the additive-only rule. So decide now.
+| Scope | Integration token | User token | Verification tier |
+|---|---|---|---|
+| `projects:read` | yes | yes | 1 |
+| `projects:write` | yes | yes | 2 |
+| `tasks:read` | yes | yes | 1 |
+| `tasks:write` | yes | yes | 2 |
+| `comments:read` | yes | yes | 1 |
+| `comments:write` | yes, posts as the app | yes, posts as the person | 2 |
+| `timesheets:read` | hold | yes | 3 |
+| `timesheets:write` | hold | yes | 3 |
+| `full_access` (legacy) | yes | yes | grandfathered (see below) |
 
-That gives 12 scopes plus the frozen legacy one.
+**Token types:** An integration token acts as the app itself (`client_credentials`). A user token acts as a signed-in person (`authorization_code` with PKCE). The same scope name works on both. The token type decides who acts, and the table above says which type may hold each scope.
 
-| Scope | Meaning |
-|---|---|
-| `projects:read` / `projects:write` / `projects:delete` | Read, create or update, delete projects |
-| `tasks:read` / `tasks:write` / `tasks:delete` | Same for tasks |
-| `comments:read` / `comments:write` / `comments:delete` | Same for comments |
-| `timesheets:read` / `timesheets:write` / `timesheets:delete` | Same for time entries |
-| `full_access` (legacy) | Frozen. All 12 scopes above that are valid for the token's flavour. Never grows to cover new resources. Not requestable by new apps. |
+- **Integration tokens:** An org admin always approves the install. App identity is org-wide, as with Microsoft's application permissions.
+- **User tokens:** The end user consents, and a user token can never exceed what that person can do. Add an org-level policy so admins can gate or block specific scopes.
+- **`hold`:** The scope is not grantable on that token type yet. It can be widened later without changing any existing grant.
+- **Why timesheets integration is on hold:** Org-wide timesheet read reaches other users' data. That needs the tier 3 review (below) to exist first. Existing integrations keep timesheet access through legacy `full_access`.
 
-Rules to put in the scope registry:
+**Verification tiers (proposed, based on the skill's ladder):**
 
-- **Immutable definitions.** Each scope has one definition, a creation date, and a change log. A definition is never edited.
-- **Read is the default.** Registration and consent flows start read-only.
-- **New resources get new scopes.** `full_access` never extends to them.
+- **Tier 1:** publisher identity verification.
+- **Tier 2:** tier 1 plus self-attestation.
+- **Tier 3:** a third-party security assessment, annual.
 
-## Token-flavour binding (decide now)
+The skill draws the tier 3 line at "scope reaches other users' data or PII". Timesheets are my judgement call for that line. Projects, tasks, and comments are shared workspace data. Until tier 3 exists, grant timesheet scopes only to apps you have allowlisted by manual review.
 
-You proposed deciding this after seeing usage. I'd decide it now, for two reasons:
+At runtime, reject any scope request that is not a subset of what the app declared and had approved at registration.
 
-- **Slack's migration guidance.** Changing a scope's token-type binding later "requires reauthorization from every user".
-- **Usage can't answer it.** With every app holding `full_access`, scope usage tells you nothing about which flavour a scope belongs to.
+## Consent copy (one plain sentence per scope)
 
-You can narrow now and widen later, because adding a binding is additive. You can't narrow after launch. So start conservative.
-
-Terms: *user token* means an app acting as a signed-in person. *Integration token* means an app acting as itself.
+Write each sentence when the scope is created. A scope that cannot be explained in one sentence is a design smell.
 
 | Scope | User token | Integration token |
 |---|---|---|
-| `projects:read`, `tasks:read`, `comments:read` | ✅ | ✅ |
-| `projects:write`, `tasks:write`, `comments:write` | ✅ | ✅ |
-| `tasks:delete`, `comments:delete` | ✅ | ✅ |
-| `projects:delete` | ✅ | ❌ |
-| `timesheets:read` | ✅ | ✅ |
-| `timesheets:write`, `timesheets:delete` | ✅ | ❌ |
+| `projects:read` | See your projects and who is in them. | See all projects in this workspace. |
+| `projects:write` | Create and edit projects as you. | Create and edit projects as the app. |
+| `tasks:read` | See tasks you can see. | See all tasks in this workspace. |
+| `tasks:write` | Create and edit tasks as you. | Create and edit tasks as the app. |
+| `comments:read` | See comments you can see. | See all comments in this workspace. |
+| `comments:write` | Post and edit comments as you. | Post and edit comments as the app. |
+| `timesheets:read` | See time entries you can see, including your team's if you are a manager. | not available yet |
+| `timesheets:write` | Create and edit time entries as you. | not available yet |
 
-Semantics that must be written into each scope's definition:
+**Consent mechanics:**
 
-- **User tokens never exceed the person.** A user token can only do what that person can do in the Orrery UI. Delegated access is bounded by the user.
-- **Same name, different actor.** `comments:write` posts as the person on a user token and as the app on an integration token. This is Slack's `chat:write` pattern. Record the actor in the audit log.
-- **Integration tokens are org-wide.** Every integration-token scope requires an org admin to install. A single user's "yes" is not enough. This is Microsoft's application-permission model.
-- **Timesheets stay narrow.** `timesheets:read` on an integration token reads everyone's hours and needs admin consent. Writing time for other people is a different action, so it gets its own scope later, for example `timesheets:write_for_others`. Adding that is additive. Don't overload `timesheets:write`.
-- **Integration deletes are limited to sync cases.** `tasks:delete` and `comments:delete` are allowed on integration tokens for sync tools. `projects:delete` is not.
+- Support partial grants. A user may allow `tasks:read` and deny `tasks:write`.
+- Always return the granted scope set in the token response. Integration tests must cover the granted-versus-requested diff.
+- Re-consent shows only the net-new scopes. Test this explicitly.
+- Do not quote any consent drop-off percentage. No rigorous study exists.
 
-## Consent copy (one sentence per scope)
+## Legacy `full_access`
 
-The consent screen shows the plain sentence, never the raw string. Write the copy when the scope is created. A scope you can't explain in one sentence is a design smell.
+**Definition:** `full_access` equals the union of the 8 scopes above, frozen to the four current resources. It never grows when you add new API resources. Its consent copy stays as it is today.
 
-| Scope | User consent screen | Admin install screen |
-|---|---|---|
-| `projects:read` | View the projects you can access | View all projects in your workspace |
-| `projects:write` | Create and edit projects as you | Create and edit projects as the app |
-| `projects:delete` | Delete projects as you | (not offered) |
-| `tasks:read` | View tasks you can access | View all tasks in your workspace |
-| `tasks:write` | Create and edit tasks as you | Create and edit tasks as the app |
-| `tasks:delete` | Delete tasks as you | Delete tasks as the app |
-| `comments:read` | Read comments you can access | Read all comments in your workspace |
-| `comments:write` | Post and edit comments as you | Post and edit comments as the app |
-| `comments:delete` | Delete comments as you | Delete comments as the app |
-| `timesheets:read` | View time entries you can access | View every member's time entries |
-| `timesheets:write` | Log and edit time entries as you | (not offered) |
-| `timesheets:delete` | Delete time entries as you | (not offered) |
+**Migration steps:**
 
-Consent mechanics:
+1. **Instrument now (about 1–2 days, if request logs are queryable).** Per app, record token type, read versus write calls, and the resources touched. This gives you the minimal scope set for each of the 120 apps. It also settles your "sort out the flavours later" question using existing traffic.
+2. **Ship the 8 scopes.** Close `full_access` to new registrations from that date. Existing grants are untouched.
+3. **Show recommendations in the developer portal:** "Your app only uses `tasks:read` and `comments:write`. Switch." Moving to new scopes is a new grant and needs consent. Batch the move so users see one re-consent, not several.
+4. **Deprecate.** Announce with a notice window and sunset signalling, following your API versioning policy. Choose the length yourself. For about 120 B2B apps, I would plan on the order of a year.
+5. **Keep the coarse tier alive until the fine-grained scopes cover the edge cases.** GitHub's fine-grained model "cannot accomplish every task" the broad one can. Expect the same gap, and do not force a lossy cutover.
 
-- **Partial grants.** Users can approve some scopes and decline others.
-- **Server-side diff.** Return the granted set explicitly and diff it against the request. Never assume they match.
-- **Net-new only on re-consent.** Incremental requests show only the new scope, not everything already granted. Test this explicitly.
-- **No conversion numbers.** Don't cite consent drop-off percentages. No rigorous study exists.
+**Admin control:** Give org admins a list of installed apps holding `full_access`, and a policy to block it. Apps that keep timesheet access through `full_access` should either pass tier 3 or drop timesheet calls.
 
-## Review tiers per scope (proposal)
+## Rules that stay in force
 
-This is a proposal, because the data-sensitivity answer is open (question 3 below).
+- Additive-only, forever. Never change the meaning of a shipped scope.
+- Every scope has a token-type binding, consent copy, and a verification tier before it ships.
+- Widen bindings and tiers only additively.
+- Never create a single broad catch-all scope. No `full_write`.
 
-| Tier | Applies to | Requirement |
-|---|---|---|
-| 1 | Every listed app | Publisher identity verification |
-| 2 | Any `:write` or `:delete` scope | Tier 1 plus self-attestation |
-| 3 | `timesheets:read` on an integration token (bulk, other people's hours) | Tier 2 plus third-party security assessment |
+## Assumptions to confirm
 
-Other review rules:
+These are not known from your message. Each answer can change the table.
 
-- **Runtime enforcement.** Reject any scope request that isn't a subset of what the app declared and had approved at registration.
-- **Legacy apps.** Their declaration is `full_access` until they migrate.
-- **Badges.** Keep identity, attestation, and assessment visually distinct. Don't show one combined checkmark.
+1. Does the API have DELETE endpoints? If yes, I need to know whether any new app needs them at launch.
+2. Are timesheets only ever the requesting user's own data? If yes, tier 3 drops to tier 2.
+3. Do payroll or billing integrations exist that need org-wide timesheets? If yes, plan tier 3 first and unhold that cell.
+4. Does admin consent for integrations match your current install flow? If no, the admin approval surface is the first thing to build.
+5. Do the 120 apps use both token types today? If so, the split affects them directly.
 
-## Migrating the 120 apps
-
-1. **Freeze first.** Close `full_access` to new requests and mark it deprecated in the docs.
-2. **Derive a suggested scope set per app.** Use API logs of HTTP method by endpoint for each app, not scope telemetry. Apps that only issue GETs map to read scopes, and apps that mutate map to the matching write scopes.
-3. **Notify app owners** with their suggested set. Set the notice window and sunset signalling under your API versioning policy. I'd allow at least 6 months, but that's your call.
-4. **Stage the cutover.** Let apps re-consent to the granular scopes voluntarily, and track the share migrated. Then pick a sunset date and enforce it.
-5. **Expect re-consent.** Changing an app's scope set invalidates its refresh tokens and sends users through consent again. Batch the changes so users aren't prompted twice.
-
-## Assumptions and open questions
-
-Please confirm these. Each one changes the design:
-
-1. **Greenfield or retrofit?** I assumed retrofit: ~120 live apps and unknown refresh rotation. Is rotation on?
-2. **Do today's 120 apps hold user tokens, integration tokens, or both?** This determines how `full_access` maps per flavour.
-3. **Do timesheets carry rates, pay data, or regulated working-time records?** If yes, Tier 3 may cover more than `timesheets:read`.
-4. **Who approves an install today?** I assumed users only, with admins newly gating integration tokens. If admins already approve apps, the admin screen is a refinement, not new.
-5. **Is `delete` as its own scope acceptable?** If you'd rather fold it into `write`, say so now. It can't be split out later.
+**Next action:** Run the step 1 usage query on the 120 apps' existing token traffic. Then check which assumptions above it answers.

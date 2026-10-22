@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Models the subscription as a first-class stateful object with full CRUD rather than fire-and-forget registration.",
+        "evidence": "Subscription object JSON and the endpoints table (POST/GET/PATCH/DELETE).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies three explicit states: active, paused, and disabled.",
+        "evidence": "'status has three values.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines paused as subscriber-initiated and disabled as platform-initiated after sustained failure.",
+        "evidence": "'active and paused can be set by the customer. disabled is platform-only'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Answers the maintenance-window question with the paused state, not with delete-and-recreate and not with the existing enabled: false flag.",
+        "evidence": "'The customer pauses the subscription before the window, or sets paused_until.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags delete-and-recreate as destroying the subscription's replay and delivery-tracking state.",
+        "evidence": "'Deleting destroys the subscription's delivery and replay state.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that recreating a subscription under the same name restarts from the default position, so the subscriber silently loses or double-replays a backlog.",
+        "evidence": "'The new subscription starts at \"new events only\", so every stuck event is either silently lost or double-replayed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies two independently configured replay positions: where a newly created subscription starts, and where a subscription resumes after a platform-side incident.",
+        "evidence": "replay: on_create 'latest', on_resume 'earliest_undelivered'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that those two replay positions can legitimately differ, and that both must be specified.",
+        "evidence": "'The two positions are configured separately, as the skill's lifecycle section requires.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to expose only the states a customer-created subscription may legally reach, rejecting internal-only states at the API boundary.",
+        "evidence": "'disabled is platform-only and is rejected on write.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the two filtering axes independent: event type selected against the catalog, and recipient or channel scoping.",
+        "evidence": "'scope is a second filter, independent of event_types.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an endpoint with no filter configured receives everything, and that this must be documented explicitly.",
+        "evidence": "'null means all events. Say so in the docs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents config-change propagation lag, a subscription edit taking a minute or two to reach the delivery path, as expected behavior rather than a bug.",
+        "evidence": "Propagation lag is not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Models the subscription as a first-class stateful object with full CRUD rather than fire-and-forget registration.",
+        "evidence": "Subscription object plus GET, PATCH, DELETE endpoints, pause/resume, replay.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies three explicit states: active, paused, and disabled.",
+        "evidence": "Status table includes `active`, `paused` and `disabled` (plus `failing` and `suspended`).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines paused as subscriber-initiated and disabled as platform-initiated after sustained failure.",
+        "evidence": "`disabled` is \"customer, explicit only\"; the system-set state is `suspended`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Answers the maintenance-window question with the paused state, not with delete-and-recreate and not with the existing enabled: false flag.",
+        "evidence": "\"`paused` | Capturing events, not delivering | customer, or a maintenance window\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags delete-and-recreate as destroying the subscription's replay and delivery-tracking state.",
+        "evidence": "\"It drops the backlog... It resets failure state.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that recreating a subscription under the same name restarts from the default position, so the subscriber silently loses or double-replays a backlog.",
+        "evidence": "Says it may drop the backlog but never mentions a default start position or double replay.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies two independently configured replay positions: where a newly created subscription starts, and where a subscription resumes after a platform-side incident.",
+        "evidence": "Not specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that those two replay positions can legitimately differ, and that both must be specified.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says to expose only the states a customer-created subscription may legally reach, rejecting internal-only states at the API boundary.",
+        "evidence": "\"`status` (`active` or `paused` only)\" writable; others system-set.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the two filtering axes independent: event type selected against the catalog, and recipient or channel scoping.",
+        "evidence": "Only `event_types` filtering; no recipient/channel scoping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that an endpoint with no filter configured receives everything, and that this must be documented explicitly.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Documents config-change propagation lag, a subscription edit taking a minute or two to reach the delivery path, as expected behavior rather than a bug.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

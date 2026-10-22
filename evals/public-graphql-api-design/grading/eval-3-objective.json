@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the direct subgraph access and names it the critical finding, ranked above every other issue raised in the message.",
+        "evidence": "\"do not sign off\"; \"is the critical finding in this skill's federation checklist.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that in a federated architecture exactly one component is ever publicly reachable: the router.",
+        "evidence": "\"The router stays the only public component and the subgraphs stay private.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that disabling introspection does not make a subgraph safe to expose.",
+        "evidence": "\"Why 'introspection off' doesn't protect you\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names `Query._service { sdl }` as returning the subgraph's complete schema, defeating the introspection-off argument.",
+        "evidence": "\"returns the subgraph's full schema. That is an introspection dump under another name\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names `Query._entities` as resolving any `@key`-tagged entity directly by its key fields, bypassing the access-control logic in the subgraph's normal resolvers.",
+        "evidence": "\"resolves any @key entity directly from its key fields. It bypasses the access-control logic\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the `_entities` resolver is auto-generated and cannot be selectively locked down without breaking composition.",
+        "evidence": "\"its resolver is auto-generated, so you can't lock it down selectively\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects reading the deployment config as verification and requires probing each subgraph's address from outside the private network.",
+        "evidence": "\"Reading deployment config doesn't count.\" probe every subgraph address from outside",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the expected probe result is a connection failure, not a GraphQL response.",
+        "evidence": "\"expect a connection failure, not a GraphQL response\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects tagging every new type with `@key`, defaulting new types to plain value types and promoting them to entities only when another subgraph genuinely needs to extend them.",
+        "evidence": "\"The default should be plain value types. Promote a type to @key only when another subgraph truly needs to extend it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends `@inaccessible` to keep internal-only fields out of the composed public supergraph.",
+        "evidence": "\"Use @inaccessible to keep internal-only fields out of the public supergraph.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes serving the partner's reporting job through the router rather than around it.",
+        "evidence": "\"Run a dedicated router instance or ingress for partner batch traffic\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the direct subgraph access and names it the critical finding, ranked above every other issue raised in the message.",
+        "evidence": "\"Don't sign off yet.\" and \"a direct subgraph route isn't the right fix.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that in a federated architecture exactly one component is ever publicly reachable: the router.",
+        "evidence": "The principle is never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that disabling introspection does not make a subgraph safe to expose.",
+        "evidence": "\"It doesn't protect any data, and it isn't an access control.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names `Query._service { sdl }` as returning the subgraph's complete schema, defeating the introspection-off argument.",
+        "evidence": "\"Federated subgraphs usually still serve `_service { sdl }`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names `Query._entities` as resolving any `@key`-tagged entity directly by its key fields, bypassing the access-control logic in the subgraph's normal resolvers.",
+        "evidence": "\"served directly through `_entities(representations: [...])`. A caller who knows an ID can fetch the object.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the `_entities` resolver is auto-generated and cannot be selectively locked down without breaking composition.",
+        "evidence": "Not stated. It advises enforcing authorization in `_entities` and `@key` resolvers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects reading the deployment config as verification and requires probing each subgraph's address from outside the private network.",
+        "evidence": "It says \"I haven't inspected your configs\" and \"verify\", with no outside probe.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the expected probe result is a connection failure, not a GraphQL response.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects tagging every new type with `@key`, defaulting new types to plain value types and promoting them to entities only when another subgraph genuinely needs to extend them.",
+        "evidence": "\"Narrow `@key`... Reserve it for types that genuinely cross subgraphs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends `@inaccessible` to keep internal-only fields out of the composed public supergraph.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes serving the partner's reporting job through the router rather than around it.",
+        "evidence": "\"Give the partner their own router instance or listener... every policy stays in place.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

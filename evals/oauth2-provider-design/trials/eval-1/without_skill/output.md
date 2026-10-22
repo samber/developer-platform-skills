@@ -1,82 +1,82 @@
-# Connect with Tessaract: OAuth grants, redirect rules, and security-review wording
+# Connect with Tessaract: OAuth grants, redirect rules, security-review wording
 
-## 1. What to name in the doc (for legal)
+I wrote this from memory and didn't check the RFC Editor index. Before legal signs, confirm the RFC numbers and statuses below at rfc-editor.org. Also check that OAuth 2.1 is still an Internet-Draft with no RFC number. It was one as of my knowledge.
 
-**Don't cite "OAuth 2.1" with an RFC number.** As of my knowledge (cutoff June 2026), OAuth 2.1 (`draft-ietf-oauth-v2-1`) is an IETF Internet-Draft, not an RFC. I can't check its status today, so confirm at datatracker.ietf.org before signing. If it has since been published, use the number from there. Don't take one from me or from a blog post.
+## 1. Grant list
 
-Name the published RFCs instead, which are stable and citable:
+| Grant | Who uses it | Spec | Notes |
+|---|---|---|---|
+| Authorization code + PKCE (S256) | Third-party apps, including the partner SPA | RFC 6749 §4.1, RFC 7636 | PKCE is required for every client, confidential or public. Reject `plain`. |
+| Device authorization | `tsq` on headless build servers | RFC 8628 | The user approves on a second device. No browser is needed on the build server. |
+| Refresh token | Both of the above | RFC 6749 §6, RFC 9700 §4.14 | Rotate on every use and revoke the whole chain on reuse. Bind to client and user. Give them a finite lifetime. |
+| Client credentials | Optional, for app-to-app or CI service accounts | RFC 6749 §4.4 | Only if you want machine identities with no user. This is a product decision. If yes, the token acts as the app, never as a customer user. |
 
-| Role | Spec |
-|---|---|
-| Core framework | RFC 6749, OAuth 2.0 Authorization Framework |
-| Bearer token usage | RFC 6750 |
-| Security hardening | RFC 9700 (BCP 240), OAuth 2.0 Security Best Current Practice |
-| PKCE | RFC 7636 |
-| Headless CLI | RFC 8628, Device Authorization Grant |
-| Issuer mix-up defence | RFC 9207, `iss` response parameter |
-| Discovery | RFC 8414, Authorization Server Metadata |
-| Revocation | RFC 7009 |
+**Not offered:**
+- Implicit grant. RFC 9700 says not to use it.
+- Resource owner password credentials. RFC 9700 says it MUST NOT be used.
+- Loopback redirect for `tsq`. It needs a local browser, which headless hosts don't have.
 
-Optional, if adopted: RFC 9449 (DPoP), RFC 9126 (PAR), RFC 8707 (resource indicators), RFC 9068 (JWT access tokens), RFC 7591 (dynamic client registration).
+**Device grant hardening (RFC 8628 §5):**
+- The consent screen shows the client name, the requesting `tsq` host or IP and location hint, and requires explicit confirmation. Device-code phishing is the main attack here.
+- The user code is short but high-entropy, and entry attempts are rate-limited per code and per account.
+- The device code expires in 10 to 15 minutes. Enforce the polling `interval` and return `slow_down`.
+- Scope is the minimum needed (read dashboards). Show the scope on the consent screen.
 
-**Suggested wording:**
+**Tokens and endpoints:**
+- Access tokens are short-lived (5 to 15 minutes) and sent with the Bearer scheme (RFC 6750).
+- Publish the authorization server metadata (RFC 8414).
+- Include the `iss` parameter in authorization responses (RFC 9207), which protects against mix-up attacks.
+- Provide revocation (RFC 7009). Introspection (RFC 7662) is needed if tokens are opaque.
+- If tokens are JWTs, follow RFC 9068.
+- Optional later: PAR (RFC 9126) and DPoP (RFC 9449).
 
-> Connect with Tessaract implements the OAuth 2.0 Authorization Framework (RFC 6749) and Bearer Token Usage (RFC 6750). It conforms to the OAuth 2.0 Security Best Current Practice (RFC 9700, BCP 240). Authorization-code clients must use PKCE (RFC 7636). The `tsq` CLI uses the Device Authorization Grant (RFC 8628). The authorization response carries the `iss` parameter (RFC 9207), and server metadata is published per RFC 8414. The implicit and resource-owner-password grants are not supported. Redirect URIs are matched by exact string comparison. Access tokens are accepted only in the `Authorization` header. This profile is consistent with the direction of the OAuth 2.1 Internet-Draft (draft-ietf-oauth-v2-1), which is a work in progress and not an RFC; we do not claim conformance to it as a standard.
+## 2. Redirect URI rules
 
-The wildcard redirect request below would make the RFC 9700 line false. Resolve that before the doc is signed.
+1. **Exact string match** against pre-registered URIs. This applies at the authorization request and again at the token request (RFC 9700 §4.1).
+2. **No wildcards in host, path, or query.** `https://*.preview.acme-partner.dev` is **rejected**.
+3. HTTPS only. The one exception is the loopback IP literals `127.0.0.1` and `[::1]` (RFC 8252 §7.3). A variable port is allowed only there, and only for native apps.
+4. No fragments and no userinfo in registered URIs. Cap the number of URIs per client.
+5. If `redirect_uri` is missing, unregistered, or invalid, show an error page. Never redirect to it.
+6. Require `state` or PKCE, and always return `iss`.
 
-## 2. Grant list
+**Why the wildcard fails:**
+- Any dangling DNS record, subdomain takeover, or preview deployment someone else can claim under that suffix receives the authorization code.
+- PKCE limits the damage, but the redirect rule is meant to stop this class of attack outright.
+- Preview hosts are also the places most likely to run unreviewed code and log URLs.
 
-| Client | Grant | Notes |
-|---|---|---|
-| Third-party web apps with a backend | Authorization code + PKCE (S256) | Confidential client: secret or private-key JWT, plus PKCE. |
-| Third-party SPAs and mobile (public clients) | Authorization code + PKCE (S256) | No client secret. Refresh tokens are rotated with reuse detection, or sender-constrained (DPoP). |
-| `tsq` on a developer's machine or interactive session | Device authorization (RFC 8628) | User approves on another device. Short `user_code`, rate-limited polling, 5–10 minute expiry. |
-| `tsq` on unattended build servers | Client credentials, with a per-customer service-account client | The device grant needs a human at least once, so it is not a fit for CI jobs that run unattended. Scope these clients narrowly and make them revocable and rotatable. |
-| Refresh token | Yes, for the grants above | Rotate on use. Revoke the whole family on reuse. |
+**Ways to keep partner previews working:**
+- **Preferred: one stable callback.** The partner registers a single exact URI, such as `https://auth.acme-partner.dev/callback`. Previews send users there, and the partner's own code hands the result back to the preview. We never see preview hosts. The partner must not turn this hop into an open redirect, so tell them to validate the return target against their own allow-list.
+- **Programmatic exact registration.** Offer a client-management API (or RFC 7591 dynamic registration) so the partner's CI registers the exact preview URL at deploy time and deletes it on teardown. Use a short TTL and a per-client cap.
+- **Dev-only clients.** A separate sandbox client ID with loose registration, test data only, and never connected to production tenants.
 
-**Not supported:** implicit grant and resource-owner password credentials. RFC 9700 forbids both.
+## 3. Access token in the query string
 
-**Rules for all grants:**
-- PKCE is mandatory for every authorization-code request. Accept only `S256`, and reject `plain`.
-- Authorization codes are single-use and live 60 seconds or less. Bind each code to the client, the `redirect_uri`, and the `code_challenge`.
-- Access tokens are short-lived (5–15 minutes) and scoped to read-only dashboards.
-- Return `iss` in every authorization response (RFC 9207).
-- Per-client allowed grants and scopes are registered server-side. Reject any request outside them.
+**No.** Reject `?access_token=` at the gateway and log it as a policy violation.
 
-## 3. Redirect rules
+- RFC 6750 §2.3 allows it only as a last resort, and §5.3 warns about the leakage. The token ends up in access logs, browser history, proxies, and `Referer` headers. For a log-analytics product that handles customer data, that is unacceptable.
+- The Authorization header is not hard in `fetch`:
+  ```js
+  fetch(url, { headers: { Authorization: `Bearer ${token}` } })
+  ```
+  The likely snag is CORS. Our API must answer preflight with `Access-Control-Allow-Headers: Authorization`. Check that before blaming the wrapper.
+- For SPAs, recommend code + PKCE with the token held in memory. A small backend-for-frontend that keeps the tokens server-side is stronger (RFC 9700 §4.16).
+- Never deliver tokens in the URL fragment either. That is implicit-grant behavior.
 
-1. **Exact string match** against pre-registered URIs (RFC 9700 §4.1.3). No wildcards, no prefix matching, no pattern matching.
-2. HTTPS only. The only exceptions are native-app loopback (`http://127.0.0.1:<port>` or `[::1]`, where any port is allowed per RFC 8252) and private-use schemes (reverse-domain) for native apps.
-3. Reject fragments, userinfo (`user@host`), and relative URIs.
-4. If `client_id` or `redirect_uri` is invalid, show an error page. **Never redirect** to an unverified URI.
-5. Make `state` or PKCE-based CSRF protection mandatory.
-6. Never put tokens in the redirect URI. Only the code goes there.
-7. `tsq` uses the device grant, so it needs no redirect URI at all.
+## 4. What to write in the security review doc
 
-## 4. Frontend asks
+> **Specification conformance.** Connect with Tessaract implements the OAuth 2.0 Authorization Framework, **RFC 6749**, with Bearer Token Usage, **RFC 6750**. It supports the Authorization Code grant with Proof Key for Code Exchange, **RFC 7636**, and the Device Authorization Grant, **RFC 8628** (used by the `tsq` CLI). It follows the OAuth 2.0 Security Best Current Practice, **RFC 9700** (BCP 240). Native-app handling follows **RFC 8252** (BCP 212). Authorization server metadata follows **RFC 8414**, issuer identification follows **RFC 9207**, and token revocation follows **RFC 7009**.
+>
+> **Deliberate deviations and restrictions.**
+> - Redirect URIs are matched by exact string. Wildcards are not supported.
+> - PKCE (S256) is required for all clients.
+> - The Implicit and Resource Owner Password Credentials grants are not supported.
+> - Access tokens are accepted only in the `Authorization` header. The URI query parameter method (RFC 6750 §2.3) is disabled.
+> - Refresh tokens are rotated, with reuse detection.
 
-### Wildcard `https://*.preview.acme-partner.dev`: **No**
+**Legal note:** do not write "OAuth 2.1 compliant". It is an IETF Internet-Draft (`draft-ietf-oauth-v2-1`) with no RFC number, so there is nothing for legal to cite. If asked, say "aligned with the practices consolidated in the OAuth 2.1 draft", and keep the RFC list above as the normative claim.
 
-- If an attacker takes over any dangling subdomain (a common failure with preview hosts), they receive valid authorization codes for real customers' dashboards.
-- Any XSS or open redirect on any preview deployment leaks codes the same way.
-- It contradicts RFC 9700 §4.1.3, which the doc will claim conformance to.
+## Open decisions for you
 
-**Alternatives, in order of preference:**
-1. **Stable callback with relay.** The partner registers one URI, such as `https://auth.acme-partner.dev/callback`. That page forwards the user to the right preview afterwards. The partner owns the relay and validates its own `state`.
-2. **Per-preview registration through an API.** Use dynamic client registration (RFC 7591) or a management API. CI registers each preview URL exactly when it deploys and deletes it on teardown.
-3. **Separate test client.** Give previews a non-production client that can only see sandbox or demo tenant data. A wildcard there is a bounded risk, but still not RFC 9700-conformant, so exclude it from the production claim.
-
-### Access token in the query string: **No**
-
-- RFC 6750 §2.3 allows it only with warnings. RFC 9700 says not to send access tokens in URI query parameters. The OAuth 2.1 draft removes it.
-- URLs leak through `Referer` headers, browser history, proxy and CDN logs, and our own access logs. We are a log-analytics vendor, so we would ingest customer tokens ourselves.
-- **Server rule:** reject `access_token` as a query or form parameter with `400`, and strip it from logs.
-- **Their fix:** adding `Authorization: Bearer <token>` in the fetch wrapper is a one-line change.
-- **Better for SPAs:** use a backend-for-frontend (BFF) that holds the tokens and gives the browser a same-site session cookie. The IETF browser-based-apps BCP recommends this. I am not certain of its RFC status, so check before citing it.
-
-## 5. Open items to confirm before signing
-
-1. Check the OAuth 2.1 draft status on datatracker today.
-2. Decide whether the unattended-CI path (client credentials) is in scope for v1. If it isn't, say in the doc that `tsq` is interactive-only.
-3. Decide whether to adopt DPoP or PAR. If you adopt them, add the RFC numbers (9449, 9126) to the doc.
+1. Is client credentials in scope for v1, for CI service accounts?
+2. Which partner-preview option do you want to offer: stable callback, programmatic registration, or both?
+3. Are access tokens JWTs (RFC 9068) or opaque (introspection)?

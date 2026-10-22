@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Challenges the single-cutover assumption for a legacy population that cannot migrate in one cycle, given the multi-year customer contracts already signed",
+        "evidence": "\"do not ship 'all 180, single cutover, no exceptions' on Jan 1\"; blocker 1 on three-year contracts.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the configurable-per-app posture, running both merchant-of-record postures at once, as what a phased migration actually requires",
+        "evidence": "\"A legacy population that can't migrate in one cycle promotes the 'configurable per app' posture.\" The recommended design keeps a legacy developer-billed branch.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States its real cost: two billing branches, two tax postures, two payout systems, and doubled developer documentation",
+        "evidence": "The cost is not enumerated; only \"adding a second billing branch\" is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the compliance review runs twice under the configurable posture, and flags the two-person billing team with no compliance headcount as the binding effort ceiling",
+        "evidence": "The ceiling is flagged (\"Two engineers cannot build the system\"), but the compliance-runs-twice point is absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the developer-billed branch to be framed as a closing legacy path with a stated end direction, never as an option offered to new developers",
+        "evidence": "\"Announce an end date and the 6-month notice now. Legacy apps stay developer-billed until their contract ends.\" New apps go marketplace-billed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the roughly $4M off-marketplace back-book as what promotes migration incentives from the starved rung",
+        "evidence": "\"This is the skill's 'back-book,' so it promotes the migration incentive.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that with no measurable back-book the migration-incentive shape should be deleted from the menu rather than parked at the bottom of it",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes differential rates as the migration lever, pairing an accelerated benefit on the preferred path with a deferred increase on the legacy one, rather than only waiving fees",
+        "evidence": "Proposes waiving fees for year one and a migration incentive, not differential rates.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the differential-rate lever is worth more than the waived fees themselves",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the rate changes involved to run under the published notice commitment, with the unfavorable leg deferred",
+        "evidence": "Requires 6 months' notice but does not mention deferring the unfavorable leg.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Challenges the single-cutover assumption for a legacy population that cannot migrate in one cycle, given the multi-year customer contracts already signed",
+        "evidence": "\"Replace the single cutover with waves\"; the three-year contracts are discussed under existing contracts.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the configurable-per-app posture, running both merchant-of-record postures at once, as what a phased migration actually requires",
+        "evidence": "It proposes waves with a negotiated wave 3 but never names a dual-posture, per-app configurable model.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States its real cost: two billing branches, two tax postures, two payout systems, and doubled developer documentation",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the compliance review runs twice under the configurable posture, and flags the two-person billing team with no compliance headcount as the binding effort ceiling",
+        "evidence": "It flags two engineers and no compliance headcount, but not that compliance review runs twice.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the developer-billed branch to be framed as a closing legacy path with a stated end direction, never as an option offered to new developers",
+        "evidence": "It has a stated date for the last wave but does not frame a developer-billed legacy branch or bar it for new developers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the roughly $4M off-marketplace back-book as what promotes migration incentives from the starved rung",
+        "evidence": "It says \"forecast $0 of it\" and \"Take the $4M out of the plan\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that with no measurable back-book the migration-incentive shape should be deleted from the menu rather than parked at the bottom of it",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes differential rates as the migration lever, pairing an accelerated benefit on the preferred path with a deferred increase on the legacy one, rather than only waiving fees",
+        "evidence": "Only \"lower take rate on migrated deals, co-selling, faster payouts\". No deferred increase on the legacy path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the differential-rate lever is worth more than the waived fees themselves",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the rate changes involved to run under the published notice commitment, with the unfavorable leg deferred",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

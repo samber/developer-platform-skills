@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the Slack Marketplace exposes no listing analytics to publishers: no views, no installs, no conversion, and no search-term data.",
+        "evidence": "Says Slack gives 'no view, install, or conversion data' but never mentions search-term data.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies the Slack Marketplace as a data-dark marketplace and says the measure-and-iterate loop does not apply there.",
+        "evidence": "'The skill classifies Slack as data-dark'; 'Write the Slack listing once'; the only listing edit is the port of the winning copy.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines the six-week A/B test specifically because no funnel exists to read a result from, not merely because the sample is small.",
+        "evidence": "'No view data. The listing is one page, so you can't split traffic.' A/B moved to own landing page.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack exposes no review or rating system to submitters, so the 40-review goal cannot be executed on that marketplace at all.",
+        "evidence": "'Slack exposes no review system, so there is nowhere to post a review.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a self-built install ledger and names the vendor's own OAuth token store as the install record.",
+        "evidence": "'the OAuth token store as the install record'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names subscribing to the app_uninstalled event, or an org-level uninstall event, as the churn signal to wire up.",
+        "evidence": "'the app_uninstalled and org-level uninstall events'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack itself monitors the app's usage and uninstalls and contacts the developer directly.",
+        "evidence": "Not stated anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises writing the best listing once and driving traffic from outside the marketplace instead of iterating on the listing.",
+        "evidence": "'Write the Slack listing once, from buyer language'; A/B on own landing page; UTM on Add to Slack buttons.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that Slack discoverability runs on editorial curation and categories rather than a published or inferable ranking algorithm.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the absent analytics as deliberate platform design rather than a documentation gap or a request the vendor could file.",
+        "evidence": "Never characterised as deliberate; only 'check Slack's current partner docs'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags an unmaintained Slack listing as a removal-risk trigger and assigns a named owner to a periodic refresh.",
+        "evidence": "Names a listing owner and refresh, but never flags removal risk.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the Slack Marketplace exposes no listing analytics to publishers: no views, no installs, no conversion, and no search-term data.",
+        "evidence": "The plan tells the reader to pull 'weekly listing views and installs from the Slack Marketplace dashboard'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies the Slack Marketplace as a data-dark marketplace and says the measure-and-iterate loop does not apply there.",
+        "evidence": "The plan builds a full iterate-and-measure loop around dashboard data.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines the six-week A/B test specifically because no funnel exists to read a result from, not merely because the sample is small.",
+        "evidence": "It keeps a six-week counterbalanced test and only warns about statistical power.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Slack exposes no review or rating system to submitters, so the 40-review goal cannot be executed on that marketplace at all.",
+        "evidence": "It plans a 40-review campaign and only asks 'Does Slack apply a minimum review count'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a self-built install ledger and names the vendor's own OAuth token store as the install record.",
+        "evidence": "'Installs (ground truth) | Your OAuth callback log' with weekly reconciliation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names subscribing to the app_uninstalled event, or an org-level uninstall event, as the churn signal to wire up.",
+        "evidence": "Uninstalls appear only as a guardrail; no event subscription is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Slack itself monitors the app's usage and uninstalls and contacts the developer directly.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises writing the best listing once and driving traffic from outside the marketplace instead of iterating on the listing.",
+        "evidence": "The plan iterates on the listing with variants A and B.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Slack discoverability runs on editorial curation and categories rather than a published or inferable ranking algorithm.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the absent analytics as deliberate platform design rather than a documentation gap or a request the vendor could file.",
+        "evidence": "The plan assumes analytics exist.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags an unmaintained Slack listing as a removal-risk trigger and assigns a named owner to a periodic refresh.",
+        "evidence": "No listing-refresh cadence or removal-risk warning appears.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

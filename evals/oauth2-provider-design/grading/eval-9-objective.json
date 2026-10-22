@@ -3,69 +3,69 @@
     "expectations": [
       {
         "text": "States that no industry thresholds exist for these metrics and declines to attach benchmark numbers to them.",
-        "evidence": "I can't give you an industry benchmark ... no industry thresholds exist",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Prescribes baselining the metrics as trends from launch instead of comparing against an external benchmark.",
-        "evidence": "Set the real thresholds after about 2 weeks of baseline.",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Names median app-review turnaround as a trend to baseline.",
-        "evidence": "Median app-review turnaround",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Names the share of apps requesting scopes their traffic never uses as a trend to baseline.",
-        "evidence": "apps requesting scopes their traffic never uses",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Names reuse-detection trip rate as a trend to baseline.",
-        "evidence": "Reuse-detection trips",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "States that reuse-detection trip rate is ambiguous, proxying both real attacks and a grace window set too tight.",
-        "evidence": "points to a too-tight window or a client bug",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Requires a gate proving by test, not assertion, that the discovery document and a conformance pass show no implicit or password grant, PKCE rejected-if-absent for every client, and exact redirect matching.",
-        "evidence": "A1-A3 with conformance run and negative tests",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Requires a staging demonstration that a replayed refresh token revokes the whole family.",
-        "evidence": "B2 Staging replay test",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Requires a concurrent-refresh test that passes without a false-positive logout.",
-        "evidence": "B3 Concurrency test",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Requires a gate that every scope has per-scope plain-language consent copy and that a partial-grant integration test exercises the server-side diff.",
-        "evidence": "C1, C2",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       },
       {
         "text": "Requires gates that every scope is classified into a verification tier with a named review requirement, that runtime subset-of-approved enforcement is live, and that the unverified-lane cap is enforced rather than merely documented.",
-        "evidence": "D1, D2, D3",
-        "passed": true,
-        "graded": true
+        "evidence": "",
+        "passed": false,
+        "graded": false
       }
     ]
   },
@@ -73,61 +73,61 @@
     "expectations": [
       {
         "text": "States that no industry thresholds exist for these metrics and declines to attach benchmark numbers to them.",
-        "evidence": "Gives 99.9%-99.99% availability, Apple 90% in 24h, and many 'Proposed' numeric thresholds.",
-        "passed": false,
+        "evidence": "'No public industry benchmark exists for most of these metrics... I won't invent numbers.'",
+        "passed": true,
         "graded": true
       },
       {
         "text": "Prescribes baselining the metrics as trends from launch instead of comparing against an external benchmark.",
-        "evidence": "'compare against your own trailing baseline first... Declare those two weeks \"baseline mode\"'.",
+        "evidence": "'Replace the starting thresholds with your own p50 and p95 after 2 weeks of production data.'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Names median app-review turnaround as a trend to baseline.",
-        "evidence": "Metric 5: 'p90 time-to-decision'.",
+        "evidence": "Metric 4: 'p50 and p95 time from submission to decision'",
         "passed": true,
         "graded": true
       },
       {
         "text": "Names the share of apps requesting scopes their traffic never uses as a trend to baseline.",
-        "evidence": "Not mentioned.",
+        "evidence": "Not a metric.",
         "passed": false,
         "graded": true
       },
       {
         "text": "Names reuse-detection trip rate as a trend to baseline.",
-        "evidence": "Metric 3 'Reuse-detection triggers'.",
+        "evidence": "Metric 2: 'reuse-detection events per 1,000 refreshes'",
         "passed": true,
         "graded": true
       },
       {
         "text": "States that reuse-detection trip rate is ambiguous, proxying both real attacks and a grace window set too tight.",
-        "evidence": "Attributes spikes to partner retry bug, server race or real attack; does not name a too-tight grace window.",
-        "passed": false,
+        "evidence": "'client bug... server bug, such as the A3 race, or a real token theft. Check the A3 grace window first.'",
+        "passed": true,
         "graded": true
       },
       {
         "text": "Requires a gate proving by test, not assertion, that the discovery document and a conformance pass show no implicit or password grant, PKCE rejected-if-absent for every client, and exact redirect matching.",
-        "evidence": "Checks B6 and B7 cover redirect and PKCE, but there is no discovery-document gate.",
+        "evidence": "D1 asserts conformance but requires no discovery-document or conformance-pass check.",
         "passed": false,
         "graded": true
       },
       {
         "text": "Requires a staging demonstration that a replayed refresh token revokes the whole family.",
-        "evidence": "A2: 'Replaying a rotated token revokes the whole token family'.",
+        "evidence": "'A2. Replaying a rotated token revokes the whole token family' with a test.",
         "passed": true,
         "graded": true
       },
       {
         "text": "Requires a concurrent-refresh test that passes without a false-positive logout.",
-        "evidence": "A3 and A4 test determinism and a single success, not that users are not logged out.",
-        "passed": false,
+        "evidence": "A3: a legitimate retry after a network drop does not kill the family.",
+        "passed": true,
         "graded": true
       },
       {
         "text": "Requires a gate that every scope has per-scope plain-language consent copy and that a partial-grant integration test exercises the server-side diff.",
-        "evidence": "B1 and B2 test subset grants; no per-scope copy gate or server-diff test.",
+        "evidence": "B1 tests a partial grant and B2 requires plain language, but there is no per-scope copy gate and no server-side diff.",
         "passed": false,
         "graded": true
       },

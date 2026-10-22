@@ -1,0 +1,358 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "app-marketplace-listing-standards",
+  "scenarios": 9,
+  "expectations_total": 108,
+  "expectations_subjective": 0,
+  "expectations_objective": 108,
+  "pass_rate_with_skill_pct": 90.7,
+  "pass_rate_without_skill_pct": 37.0,
+  "delta_pp": 53.7,
+  "uplift_multiplier": 2.45,
+  "trigger_accuracy_pct": 59.4,
+  "trigger_queries": 96,
+  "trigger_positive_fire_rate": 0.458,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 4,
+        "expectation": "Assigns listing fees to marketplace monetization and revenue design rather than to the decay policy"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that no benchmarked marketplace operator publishes a hard numeric update-or-be-removed cadence"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that running no badge program at all is a legitimate architecture rather than an oversight"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends the all-or-nothing capability declaration for the Japanese enterprise buyers who treat language support as purchase-blocking, because it is the only posture where the listing's language claim is guaranteed true in the product"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that a region-locked posture should only be adopted together with region-based visibility gating, never on its own"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Flags that visual and promotional assets may not localize alongside text fields, and instructs Halyard to check its own asset pipeline for that gap"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that parking principles at the bottom instead of deleting them lets 'we'll use judgment' reappear as scope whenever writing a real trigger feels like work"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Enumerates named rejection triggers for the remaining fields, including misleading or out-of-date metadata, numerically defined keyword spam, and unattributed testimonials"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires every trigger to be self-checkable by the submitter before submitting"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the efficiency ordering explicitly rather than leaving it implied by the order the options are listed in"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Names at least two mutually incompatible screenshot aspect ratios in production use (for example 16:9 and 8:5, or approximately 3:2)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Sets the demo-video ceiling at roughly 30 seconds, justified by the admin and committee evaluation mode rather than by a market average"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Bans pricing claims or review and rating claims baked into screenshot images"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names an off-topic, distorted, or wrong-ratio image as an explicit rejection trigger the submitter can self-check before submitting"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends an accessibility floor covering descriptive alt text on informative images, captioned video, and contrast or legibility minimums, referencing WCAG 2.2 AA"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the rule as leading with the customer outcome rather than the feature's technical mechanism, and connecting each feature claim to a measurable result"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names keyword spam as a rejection trigger defined numerically - a stated repetition count, or lists of brands, sites, or regions adding no value - never as an unquantified 'do not stuff keywords'"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires a publicly accessible landing page reachable without login"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires a privacy policy meeting a stated minimum-coverage checklist covering data collected, use, retention, the access or deletion request process, and a real contact channel"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that these off-listing trust surfaces gate approval independently of how good the marketing copy is"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names misrepresentation, including undisclosed third-party account dependencies and their cost, as a content violation"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives the reason: an uncapped multi-select degenerates into every listing claiming every plausible tag until categories stop discriminating"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects the eight-category self-selection and recommends a hard per-listing cap of roughly one or two categories"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Handles the 40 drifted listings with a staleness downgrade - marking them uncategorized and dropping them off browse and filter surfaces - rather than delisting them"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Describes that downgrade as soft, self-correcting because the vendor can fix it at any time, and automatable"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Offers structured tags layered on top of categories as the promotion path once search overtakes browsing as the discovery route"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Caps those tags and requires one idea per search term"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names operator-curated layers such as editorial collections, 'works with' labels, or persona groupings as the high-discovery-value, high-standing-effort option that loses the efficiency ranking"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the condition that promotes curated layers anyway: a compounding mandate and a catalog that has outgrown browsing"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that curated placement must never be purchasable, because sellable curation stops being a discovery signal and becomes ad inventory"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Assigns listing fees to marketplace monetization and revenue design rather than to the decay policy"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends version-currency enforcement as the strongest available rung, explicitly because Cadenza already ships versioned releases with scheduled deprecations"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the platform's own release cadence performs the freshness detection, which is what makes this rung affordable for Cadenza specifically"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects new submissions built on unsupported platform versions"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names 'out-of-date listing content' as an explicit, rejectable violation in the published policy"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Adds an operator-side calendar review sweep aligned to Cadenza's own release cycle"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that no benchmarked marketplace operator publishes a hard numeric update-or-be-removed cadence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Labels any cited 12-month auto-removal rule as coming from an adjacent marketplace ecosystem and treats it as an internal worst-case freshness SLA rather than an external requirement"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires a notice runway before any new content requirement takes effect on already-listed apps, on the grounds that retroactive enforcement without runway burns the partner trust the standard exists to build"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Offers the compositional alternative naming three components and naming it as Tidewell's own program: WCAG for accessibility, recognized security attestations for security posture, and Tidewell's own published rubric for content"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Separates badge eligibility from badge display, assigning eligibility to the app-review process and display to the listing rulebook"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Specifies what that surface carries: data-storage location, earned badges, and compliance certifications"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Describes an inline badge chip in search results as a complement to the trust surface rather than a substitute, because it asserts trust without the substantiating detail a diligence buyer needs"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names renewal-linked display automation - display wired to eligibility data so a lapsed badge disappears without human intervention - as the highest-effort option that loses the efficiency ranking"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the condition that promotes it: badges carrying quantitative, lapsable thresholds on a renewal cycle"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Classifies the vendor-embeddable off-marketplace badge as marketing reach rather than listing trust"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires a brand-usage rulebook for that badge covering use-as-provided, minimum clear space, size parity with competing badges, and a mandatory link back to the listing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that running no badge program at all is a legitimate architecture rather than an oversight"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends auto-translate with vendor override as the posture, explicitly because Halyard already owns the machine-translation pipeline"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names which piece of context moved the ranking - the already-owned asset re-ranking the menu - rather than presenting the default as fixed"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the trust cost of machine translation plainly: the output carries the operator's own name"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Warns that removing an override reverts that field to machine output"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names opt-in per market as the cheaper default posture that applies while only one primary market exists"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends the all-or-nothing capability declaration for the Japanese enterprise buyers who treat language support as purchase-blocking, because it is the only posture where the listing's language claim is guaranteed true in the product"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that the all-or-nothing posture carries the highest vendor effort and the least listing reach, which is why it loses the efficiency ranking as a default"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that a region-locked posture should only be adopted together with region-based visibility gating, never on its own"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Flags that visual and promotional assets may not localize alongside text fields, and instructs Halyard to check its own asset pipeline for that gap"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Gives the reason: two reviewers reading the same principles reject different listings, and the gap surfaces as appeal noise"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that parking principles at the bottom instead of deleting them lets 'we'll use judgment' reappear as scope whenever writing a real trigger feels like work"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends exact per-field limits across the board, explicitly because the 1,200 listings are vendor-self-maintained at volume"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that consistency then depends on the spec rather than on which of the three reviewers reads the listing"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names which piece of the user's context moved which rung"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the efficiency ordering explicitly rather than leaving it implied by the order the options are listed in"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends tracking the rejection-reason distribution, and reads a rising 'unclear content' share as spec ambiguity rather than submitter failure"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Moves OAuth-scope and permission auditing out of the listing-content rulebook"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Moves re-review-on-update triggers out of the listing-content rulebook"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Assigns both to the app-review process and cross-references them instead of duplicating them"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gives the reason: content standards and safety gates kept in one document drift apart and contradict each other"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that content triggers fire independently of security and functionality - a blurry screenshot or a keyword-stuffed description is rejected regardless of whether the app is secure and works"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that a ranking-penalty lever presupposes ranked search infrastructure, which is why it loses the efficiency ranking as a general default, and names the condition that promotes it: an asset that should be encouraged rather than required"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that no industry pass-standard for a listing rulebook exists, and flags the gates it supplies as self-set"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that no external certification body exists to borrow a pass bar from"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Supplies a gate requiring every required field to carry an objective reject criterion a submitter can self-check before submitting"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Supplies a gate requiring exactly one published geometry per visual asset type"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Supplies a gate requiring the taxonomy to carry a hard per-listing cap, an operator-curated layer, or both"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Supplies a gate requiring every listing to have a decay trigger with a named owner and a stated consequence"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Supplies a gate requiring every displayable badge to have a display location and a currency rule"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Proposes operating KPIs including first-pass content-approval rate, listing completion rate, and the share of the catalog stale beyond the freshness SLA"
+      }
+    ]
+  }
+}

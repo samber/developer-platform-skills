@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Scopes the review to the REST surface only and declines to apply this checklist to the GraphQL and gRPC surfaces",
+        "evidence": "'The skill covers REST only.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands the GraphQL gateway to samber/developer-platform-skills@public-graphql-api-design",
+        "evidence": "Listed under 'GraphQL gateway'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands the gRPC surface to samber/developer-platform-skills@public-grpc-api-design",
+        "evidence": "Listed under 'gRPC with transcoding'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the handoff as a conventions mismatch that would make this checklist actively mislead, not as a convenience or a scope cut",
+        "evidence": "'misleads on other paradigms... false findings on GraphQL, such as verbs in names'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points at samber/developer-platform-skills@api-integration-surface-strategy for whether a surface belongs on the roadmap at all before it is reviewed",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs a spec linter such as Spectral or Zally against the OpenAPI 3.1 file before any human-judgment check",
+        "evidence": "'Run a Spectral-class linter on the OpenAPI 3.1 file first.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that linting owns the mechanical findings and human reviewers own the semantic ones, and does not invert that split",
+        "evidence": "'It covers mechanical findings and I cover semantic ones.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the limitation that a linter cannot judge whether an operation makes sense to a consumer",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks for 5-10 real production responses across endpoints rather than reviewing from the spec alone",
+        "evidence": "'Collect 5\u201310 real production responses'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a spec can claim a consistency the production traffic does not actually have",
+        "evidence": "'A spec can claim consistency that traffic doesn't have.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Inventories the endpoints and tags each as collection, mutating, or both",
+        "evidence": "No such inventory or tagging.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks its clarifying questions in one batch rather than one question per message",
+        "evidence": "'Batch your answers:' followed by a numbered list.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Scopes the review to the REST surface only and declines to apply this checklist to the GraphQL and gRPC surfaces",
+        "evidence": "Reviews all three surfaces",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Hands the GraphQL gateway to samber/developer-platform-skills@public-graphql-api-design",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Hands the gRPC surface to samber/developer-platform-skills@public-grpc-api-design",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains the handoff as a conventions mismatch that would make this checklist actively mislead, not as a convenience or a scope cut",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points at samber/developer-platform-skills@api-integration-surface-strategy for whether a surface belongs on the roadmap at all before it is reviewed",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs a spec linter such as Spectral or Zally against the OpenAPI 3.1 file before any human-judgment check",
+        "evidence": "REST review sequenced third; linting not first",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that linting owns the mechanical findings and human reviewers own the semantic ones, and does not invert that split",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the limitation that a linter cannot judge whether an operation makes sense to a consumer",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks for 5-10 real production responses across endpoints rather than reviewing from the spec alone",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that a spec can claim a consistency the production traffic does not actually have",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Inventories the endpoints and tags each as collection, mutating, or both",
+        "evidence": "Inventory by naming/verbs/etc, no tags",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks its clarifying questions in one batch rather than one question per message",
+        "evidence": "'Questions that change this plan' numbered list of 5",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

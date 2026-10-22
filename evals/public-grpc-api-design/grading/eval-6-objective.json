@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects issuing and revoking client certificates for 500 external developers as operationally impractical",
+        "evidence": "\"Reject the plan as the primary mechanism\"; revocation and rotation at 500 unknown parties",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes that mTLS authenticates workloads and scales inside a mesh, while a public edge must authenticate apps and users instead",
+        "evidence": "\"A client certificate identifies a developer's workload... Keep mTLS and SPIFFE inside the mesh\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the mesh does not disappear: mTLS resumes one hop further in, behind the public gateway",
+        "evidence": "\"calls the mesh over normal mTLS with its own SPIFFE identity\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires TLS as non-negotiable and first, because credentials travel as gRPC metadata and would otherwise be plaintext",
+        "evidence": "\"Credentials travel as metadata, so never allow plaintext.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that most gRPC implementations refuse to send credentials over an unencrypted channel at all",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns OAuth2 Client Credentials to the partner backend/machine callers",
+        "evidence": "\"Partner backend job | OAuth2 Client Credentials\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns OAuth2 Authorization Code with PKCE to the browser flow where a human authorizes interactively",
+        "evidence": "\"End user 'connect' | Authorization Code + PKCE\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the token as `authorization: Bearer <token>` metadata validated in a server interceptor",
+        "evidence": "Mentions a server interceptor for scopes, but never specifies Bearer authorization metadata.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies JWT as the token format, strongly signed (RS256), with expiry claims",
+        "evidence": "\"JWTs signed with RS256... Required claims are exp...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies token introspection against the authorization server, cached so it does not tax every call",
+        "evidence": "\"Use introspection (RFC 7662) with a cache\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires scope enforcement at the method level - whether the token is scoped for this specific RPC, not merely whether the caller is authenticated",
+        "evidence": "\"Keep an RPC-to-scope table... Enforce it... on every method\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that API keys complement rather than replace authentication: a key identifies a project or consumer for quota attribution and coarse gating, not an authenticated identity",
+        "evidence": "\"Quota attribution and coarse gating only. It is never an identity.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the public-gateway reference architecture as TLS termination plus token validation plus per-method authorization plus rate limiting, fronting the internal mesh",
+        "evidence": "\"The gateway validates the token, enforces scope, and rate-limits. It then calls the mesh over normal mTLS\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects issuing and revoking client certificates for 500 external developers as operationally impractical",
+        "evidence": "The table shows human enrollment, manual rotation, and revocation needs for external devs, with \"Expect the support load of 500 PKI novices.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes that mTLS authenticates workloads and scales inside a mesh, while a public edge must authenticate apps and users instead",
+        "evidence": "\"mTLS authenticates a machine, not a user's consent.\" The design is OAuth for apps and users with a separate trust domain.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the mesh does not disappear: mTLS resumes one hop further in, behind the public gateway",
+        "evidence": "It says the gateway is the only translator and internal services never see external credentials. It does not state that mTLS resumes behind the gateway.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires TLS as non-negotiable and first, because credentials travel as gRPC metadata and would otherwise be plaintext",
+        "evidence": "This is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that most gRPC implementations refuse to send credentials over an unencrypted channel at all",
+        "evidence": "This is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns OAuth2 Client Credentials to the partner backend/machine callers",
+        "evidence": "\"Partner backend jobs: OAuth 2.0 client credentials at your authorization server.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns OAuth2 Authorization Code with PKCE to the browser flow where a human authorizes interactively",
+        "evidence": "\"Authorization Code + PKCE, with exact-match redirect_uri and state.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the token as `authorization: Bearer <token>` metadata validated in a server interceptor",
+        "evidence": "The Bearer metadata header and interceptor are not specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies JWT as the token format, strongly signed (RS256), with expiry claims",
+        "evidence": "The token format is unspecified. It gives only a 5\u201315 minute lifetime.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies token introspection against the authorization server, cached so it does not tax every call",
+        "evidence": "Introspection is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires scope enforcement at the method level - whether the token is scoped for this specific RPC, not merely whether the caller is authenticated",
+        "evidence": "Scopes are mentioned, but there is no per-RPC scope enforcement requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that API keys complement rather than replace authentication: a key identifies a project or consumer for quota attribution and coarse gating, not an authenticated identity",
+        "evidence": "API keys are not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies the public-gateway reference architecture as TLS termination plus token validation plus per-method authorization plus rate limiting, fronting the internal mesh",
+        "evidence": "The gateway validates tokens and does token exchange, but the full reference architecture with per-method authorization is not specified.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

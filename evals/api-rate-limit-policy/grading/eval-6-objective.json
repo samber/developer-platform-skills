@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects publishing a fixed public Enterprise number: self-serve tiers publish exact numbers, the top tier publishes a process",
+        "evidence": "'Don't publish... The top tier publishes a process, not numbers.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keys overrides to the authenticated principal (API key, org, or app installation), never to a person, rejecting attachment to the admin's user account",
+        "evidence": "'Org ID: Always the organization. Never a user ID or email.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces ad-hoc account-executive discretion with a named, documented override mechanism, since a contact-sales path with no process is the gap",
+        "evidence": "'Written request, named approver, limit register.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the named override shapes (ticket-based with lead time, spend-based auto-promotion, plan-gated, time-boxed self-serve burst) and picks one deliberately",
+        "evidence": "Only the ticket-based flow is given. Spend-based auto-promotion, plan-gated and self-serve burst shapes are not presented or compared.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a lead time for increase requests, citing vendor precedent such as at least 6 weeks for large increases or 24-hour-minimum structured tickets",
+        "evidence": "'\u2265 6 weeks, the Stripe-style planning floor for large increases.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the increase request to carry structured fields such as the key or org, requested rate, and dates or duration",
+        "evidence": "'Organization ID, the API keys... the target limit... start date, and whether... temporary or permanent.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly in the docs whether a higher-priced plan implies higher limits, citing the precedent where an Enterprise plan does not raise limits until they are explicitly activated",
+        "evidence": "'The Enterprise plan does not change API limits by itself'; 'this is the OpenAI-style gap'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at least one limit dimension that no override touches, and says so in the policy",
+        "evidence": "'Per-endpoint-class limits... and the concurrency cap are set separately. A higher request quota does not raise them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reserves in writing the right to lower any granted override for platform stability",
+        "evidence": "'We may lower a grant to protect platform stability.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every granted override to be recorded and keyed somewhere auditable, since an override granted verbally, keyed to nothing, documented nowhere is a named failure mode",
+        "evidence": "'Limit register (source of truth, one row per grant)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes overrides through support, sales, or an account manager rather than a dashboard toggle, noting the time-boxed self-serve burst as the rare exception",
+        "evidence": "'The AE or customer files the request via a support ticket or form'; platform engineering applies the grant.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags persistent override-request volume per quarter as the signal that the published tiers are set too low",
+        "evidence": "'If override requests keep coming each quarter, Pro is set too low.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects publishing a fixed public Enterprise number: self-serve tiers publish exact numbers, the top tier publishes a process",
+        "evidence": "It publishes 'Starting at 500,000'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keys overrides to the authenticated principal (API key, org, or app installation), never to a person, rejecting attachment to the admin's user account",
+        "evidence": "'Attach limits to the account, not the admin's user'; quota record on the org.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces ad-hoc account-executive discretion with a named, documented override mechanism, since a contact-sales path with no process is the gap",
+        "evidence": "Intake, approval tiers and provisioning process.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the named override shapes (ticket-based with lead time, spend-based auto-promotion, plan-gated, time-boxed self-serve burst) and picks one deliberately",
+        "evidence": "No alternative shapes are presented.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a lead time for increase requests, citing vendor precedent such as at least 6 weeks for large increases or 24-hour-minimum structured tickets",
+        "evidence": "It gives internal SLAs of 3 to 5 days, with no vendor precedent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the increase request to carry structured fields such as the key or org, requested rate, and dates or duration",
+        "evidence": "Required fields: organization ID, requested limit and duration, and others.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly in the docs whether a higher-priced plan implies higher limits, citing the precedent where an Enterprise plan does not raise limits until they are explicitly activated",
+        "evidence": "'Plan upgrades do not change limits until the order form is signed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at least one limit dimension that no override touches, and says so in the policy",
+        "evidence": "None is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Reserves in writing the right to lower any granted override for platform stability",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires every granted override to be recorded and keyed somewhere auditable, since an override granted verbally, keyed to nothing, documented nowhere is a named failure mode",
+        "evidence": "'Each change records who requested it, who approved it, the order-form reference, and the timestamp.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes overrides through support, sales, or an account manager rather than a dashboard toggle, noting the time-boxed self-serve burst as the rare exception",
+        "evidence": "'They can't change it'; the request button routes to the AE.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags persistent override-request volume per quarter as the signal that the published tiers are set too low",
+        "evidence": "Only an upsell list is mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

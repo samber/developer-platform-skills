@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to ship the IETF fields as the only limit-state signal, treating IETF-alone as removed from the menu rather than merely ranked last",
+        "evidence": "'The \"IETF fields only\" option is off the menu in this skill. It is not ranked last.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the core reason: emitting only IETF fields breaks the existing clients and SDKs that parse the legacy X-RateLimit-* trio",
+        "evidence": "'Those clients, and every old SDK version already installed, read X-RateLimit-*. Removing it makes them lose the signal with no visible error.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites thin IETF adoption (GitHub and Stripe emit no IETF fields) and that the spec is a pre-RFC Internet-Draft",
+        "evidence": "'GitHub emits only the legacy family. Stripe emits neither.' 'Standards Track but not an RFC.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the draft has already changed field syntax across draft versions, so today's field names can move",
+        "evidence": "'draft-08 moved to the quoted structured-field form.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the legacy X-RateLimit-* trio in whatever gets emitted, either alone or alongside the IETF fields in the both-families option",
+        "evidence": "'Emit both families. Do not drop the legacy X-RateLimit-* trio.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the CDN's cheap structured-field emission as the stated promoter toward the both-families option",
+        "evidence": "'Cheap structured-field emission at the edge is the condition that promotes the both-families rung.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a re-promotion trigger for IETF-fields-alone: the draft reaching RFC status, or a second Tier-1 platform adopting it",
+        "evidence": "'The draft reaches RFC status. A second Tier-1 platform adopts the fields.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites RateLimit-Policy's distinct value: it lets a well-behaved client self-throttle before its first 429, which the legacy trio cannot express",
+        "evidence": "'lets a well-behaved client self-throttle before its first 429, which the legacy trio can't express.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites named Tier-1 production adoption of both header families (Cloudflare) as traction evidence for the both-families option",
+        "evidence": "'Cloudflare (September 2025) is the one Tier-1 adopter I can cite.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting the Reset semantics explicitly (epoch timestamp vs seconds-remaining), since vendors genuinely differ",
+        "evidence": "'X-RateLimit-Reset is a UTC epoch timestamp... RateLimit's t is seconds until reset... Pick that form and document it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that headers are advisory hints, never guarantees: a remaining count does not promise that many successful calls",
+        "evidence": "'\"95 remaining\" doesn't promise 95 successful calls.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Weighs the 60% own-SDK traffic share when ranking: an audience you control at both ends weakens the legacy trio's compatibility argument, since the fleet can move in one SDK release",
+        "evidence": "'Using the 60% SDK share: The SDK share lets you move the fleet first, without a breaking change.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to ship the IETF fields as the only limit-state signal, treating IETF-alone as removed from the menu rather than merely ranked last",
+        "evidence": "'Dual-emit now. Do not drop X-RateLimit-* yet.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the core reason: emitting only IETF fields breaks the existing clients and SDKs that parse the legacy X-RateLimit-* trio",
+        "evidence": "'Removing the headers makes them fall back to blind retries'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites thin IETF adoption (GitHub and Stripe emit no IETF fields) and that the spec is a pre-RFC Internet-Draft",
+        "evidence": "It says the draft may not be final but cites no platform adoption data.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the draft has already changed field syntax across draft versions, so today's field names can move",
+        "evidence": "'has changed wire format between revisions'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the legacy X-RateLimit-* trio in whatever gets emitted, either alone or alongside the IETF fields in the both-families option",
+        "evidence": "'Keep the legacy trio'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the CDN's cheap structured-field emission as the stated promoter toward the both-families option",
+        "evidence": "'Your CDN can format structured fields cheaply'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a re-promotion trigger for IETF-fields-alone: the draft reaching RFC status, or a second Tier-1 platform adopting it",
+        "evidence": "Its gates cover legacy removal only, and the RFC status check is not framed as a trigger.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites RateLimit-Policy's distinct value: it lets a well-behaved client self-throttle before its first 429, which the legacy trio cannot express",
+        "evidence": "It only says 'Describes the quota and window'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites named Tier-1 production adoption of both header families (Cloudflare) as traction evidence for the both-families option",
+        "evidence": "Cloudflare is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting the Reset semantics explicitly (epoch timestamp vs seconds-remaining), since vendors genuinely differ",
+        "evidence": "'Check what your legacy X-RateLimit-Reset uses... Document that explicitly'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that headers are advisory hints, never guarantees: a remaining count does not promise that many successful calls",
+        "evidence": "It does not say so.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Weighs the 60% own-SDK traffic share when ranking: an audience you control at both ends weakens the legacy trio's compatibility argument, since the fleet can move in one SDK release",
+        "evidence": "It argues 'Your 60% SDK share doesn't cover your risk', the opposite of the rubric's reading.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

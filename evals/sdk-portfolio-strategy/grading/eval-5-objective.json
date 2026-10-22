@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags that AWS's own published policies disagree on the maintenance-phase duration",
+        "evidence": "\"AWS's own policies disagree: Powertools defaults to 6 months of maintenance.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names 12 months from the core SDKs-and-Tools maintenance policy and 6 months from the Powertools documentation as the two conflicting figures",
+        "evidence": "\"core SDKs-and-Tools policy sets that default at 12 months\"; Powertools 6 months.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to quote 'AWS's policy' as a single number without naming which document it comes from",
+        "evidence": "\"Cite the AWS core policy by name, and never write 'AWS's policy' as if it were one number.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States AWS's commitment of at least 24 months of general-availability support",
+        "evidence": "No 24-month GA commitment is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States AWS's maintenance announcement lead time of at least 6 months before maintenance mode begins",
+        "evidence": "\"AWS announces maintenance at least 6 months ahead\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes a phased lifecycle (developer preview, GA, maintenance announcement, maintenance, end-of-support) rather than one flat support window",
+        "evidence": "Policy table with General Availability, Maintenance, End of support phases (no developer preview phase).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the maintenance phase means critical bug fixes and security issues only, with no API updates",
+        "evidence": "\"Critical bug fixes and security fixes only. No new features or new API coverage\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the maintenance announcement is timed with the successor major version's GA so users have a migration target from day one of the notice",
+        "evidence": "\"normally alongside the next major's GA\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites a worked AWS timeline as evidence the default flexes, such as JavaScript v2 announced September 2024 with end-of-support September 2025, or the .NET v3 window of only about three months",
+        "evidence": "\"JS v2 got 12 months, and .NET v3 got 3.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers Azure's floor as an alternative anchor: at least 12 months of critical fixes, or 3 years when breaking changes are involved",
+        "evidence": "Azure is not mentioned anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces the answer as a published support policy page rather than a verbal or deal-specific commitment",
+        "evidence": "\"Policy page text (draft for legal)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not invent a single industry-standard support duration presented as universal",
+        "evidence": "\"The 6, 12 and 18 months are not an industry standard.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags that AWS's own published policies disagree on the maintenance-phase duration",
+        "evidence": "Says only 'I haven't checked AWS's current wording... at least 12 months'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names 12 months from the core SDKs-and-Tools maintenance policy and 6 months from the Powertools documentation as the two conflicting figures",
+        "evidence": "Only 12 months is mentioned, with no document names.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to quote 'AWS's policy' as a single number without naming which document it comes from",
+        "evidence": "Quotes AWS as '12 months' from recall without naming a document.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States AWS's commitment of at least 24 months of general-availability support",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States AWS's maintenance announcement lead time of at least 6 months before maintenance mode begins",
+        "evidence": "The 6-month notice appears only in the user's draft policy, not as AWS's commitment.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes a phased lifecycle (developer preview, GA, maintenance announcement, maintenance, end-of-support) rather than one flat support window",
+        "evidence": "Gives Active, Maintenance and End of support only. There is no developer-preview stage or announcement stage.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the maintenance phase means critical bug fixes and security issues only, with no API updates",
+        "evidence": "'Security fixes and fixes for critical defects. No new features. No support for API capabilities introduced after the phase begins.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the maintenance announcement is timed with the successor major version's GA so users have a migration target from day one of the notice",
+        "evidence": "Only the clock start is tied to v3 GA. The announcement timing is not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites a worked AWS timeline as evidence the default flexes, such as JavaScript v2 announced September 2024 with end-of-support September 2025, or the .NET v3 window of only about three months",
+        "evidence": "No AWS examples are given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers Azure's floor as an alternative anchor: at least 12 months of critical fixes, or 3 years when breaking changes are involved",
+        "evidence": "Azure is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces the answer as a published support policy page rather than a verbal or deal-specific commitment",
+        "evidence": "Full drafted 'Client Library Support Policy' page.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not invent a single industry-standard support duration presented as universal",
+        "evidence": "Frames 12 months as the company's recommendation and flags that AWS's wording needs checking.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "public-graphql-api-design",
+  "scenarios": 8,
+  "expectations_total": 99,
+  "expectations_subjective": 2,
+  "expectations_objective": 97,
+  "pass_rate_with_skill_pct": 86.9,
+  "pass_rate_without_skill_pct": 41.4,
+  "delta_pp": 45.5,
+  "uplift_multiplier": 2.1,
+  "trigger_accuracy_pct": 74.5,
+  "trigger_queries": 94,
+  "trigger_positive_fire_rate": 0.723,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Names the ecosystem's auth, rate-limiting, and debugging tooling assuming REST first as a second reason REST wins by default."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names a fixed, enumerable endpoint surface being easier for an unfamiliar third party to reason about than a graph as a third reason."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the CTO's existing commitment does not exempt the decision from the gate, since commitment by momentum is what the gate exists to catch."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that a hash-identified GET can be cached at CDNs the way a REST URL is, recovering part of GraphQL's caching disadvantage."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends designing the endpoint for the third-party consumer while serving first-party traffic through the stricter policies it uniquely enables."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Offers the plain cursor list (`nodes` plus `endCursor`, no edge wrapper) as the legitimate deadline step-down, noting it has named public precedent rather than being an invented shortcut."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the step-down keeps cursor semantics while giving up spec-compatible tooling, and is only available when no per-edge metadata will ever exist."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the schema cannot express the page-size bound, so it must be enforced in the resolver and documented next to the field."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the regex-on-message-text breakage as the symptom of having no stable machine-readable code, not as the integrator's mistake."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Declines to promote result types onto every query as well, and names routine partial data from flaky-upstream-backed fields as the condition that would promote it."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that built-in-errors-only is acceptable solely for a first-party-only surface where the team controls every client's error handling."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites the documented starting ranges: roughly 5-7 levels for a simple API, 7-10 for a complex one, 10-15 for internal tooling."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Changes `addresses: [Address]` to `[Address!]!`, stating an empty list is preferred over a null list with no null items inside."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that REST, not GraphQL, is the default choice for a public API surface."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names the ecosystem's auth, rate-limiting, and debugging tooling assuming REST first as a second reason REST wins by default."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names a fixed, enumerable endpoint surface being easier for an unfamiliar third party to reason about than a graph as a third reason."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats the decision as a binary gate against a trigger list rather than scoring GraphQL against REST on an efficiency, effort, or value ranking."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Does not deliver a full public GraphQL schema or SDL as the primary deliverable for this request."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the CTO's existing commitment does not exempt the decision from the gate, since commitment by momentum is what the gate exists to catch."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends handing the work to REST-surface design rather than proceeding to GraphQL schema conventions and pagination."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects applying a closed operation allowlist to third-party traffic as blanket policy."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the reason third-party allowlisting is impossible: the operations external clients send cannot be known or pre-registered in advance."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns that the mandate as written would reject every legitimate third-party query from day one."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Splits the persisted-query policy by traffic class rather than issuing one endpoint-wide rule."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Offers optional persisted queries to third parties as a bandwidth and CDN-cacheability performance feature, explicitly not as a security control."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that third-party traffic is protected by the depth, breadth, and page-size ceilings instead of by allowlisting."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites a concrete precedent of an attack landing before any per-operation guardrail applies (Apollo Router CVE-2025-32032 exhausting the query planner with recursive fragments) or names allowlist bypass as a recurring vulnerability class."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that a hash-identified GET can be cached at CDNs the way a REST URL is, recovering part of GraphQL's caching disadvantage."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends designing the endpoint for the third-party consumer while serving first-party traffic through the stricter policies it uniquely enables."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that in a federated architecture exactly one component is ever publicly reachable: the router."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the `_entities` resolver is auto-generated and cannot be selectively locked down without breaking composition."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects reading the deployment config as verification and requires probing each subgraph's address from outside the private network."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the expected probe result is a connection failure, not a GraphQL response."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends `@inaccessible` to keep internal-only fields out of the composed public supergraph."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Frames federation as an internal composition architecture rather than a public exposure mechanism."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the upgrade-after-launch plan by stating a bare list field cannot gain pagination later without a breaking change, so the shape must be decided per field now."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names Relay cursor connections (`edges`, `node`, `cursor`, `pageInfo`, with `first`/`after` arguments) as the default rung."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the Relay rung's high effort is collapsed in practice by native support in client libraries and server frameworks."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Offers the plain cursor list (`nodes` plus `endCursor`, no edge wrapper) as the legitimate deadline step-down, noting it has named public precedent rather than being an invented shortcut."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the step-down keeps cursor semantics while giving up spec-compatible tooling, and is only available when no per-edge metadata will ever exist."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires the field's return type to be a wrapper object from day one so a later promotion to a full connection stays additive."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Allows offset only for `workspaces`, tying it to the named niche of arbitrary page jumping over small, mostly static data."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the schema cannot express the page-size bound, so it must be enforced in the resolver and documented next to the field."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that the page-size cap doubles as the multiplier a cost model prices list fields by."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Writes at least one concrete result union naming its success member and its distinct business-failure members."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that a union result makes every possible outcome visible in the schema, so a client cannot silently skip a failure mode the way it can with an untyped error body."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the regex-on-message-text breakage as the symptom of having no stable machine-readable code, not as the integrator's mistake."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Declines to promote result types onto every query as well, and names routine partial data from flaky-upstream-backed fields as the condition that would promote it."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that adding a union to an already-shipped field is a breaking change, so a schema several teams will extend for years should adopt result types early."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that built-in-errors-only is acceptable solely for a first-party-only surface where the team controls every client's error handling."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires mutation payload fields to lean nullable so a partial failure can still return something."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects 25 as a public depth ceiling and lowers it to the low end of the published starting ranges."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites the documented starting ranges: roughly 5-7 levels for a simple API, 7-10 for a complex one, 10-15 for internal tooling."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires a written justification for each raise above the default rather than a blanket increase."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires the depth check to reject at parse time, before any resolver runs."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names Shopify's static pre-execution cost analysis as the precedent for that admission-control posture."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Prices mutations far above reads when a cost model exists, naming Shopify's 10x weighting."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Leaves point formulas, per-window budgets, and cost headers to rate-limit policy rather than specifying the scoring mechanics here."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the MOIST principle (Marc-Andre Giroux) as the counter-argument to reflexive DRY in schema design."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Replaces the foreign-key fields `accountId` and `ownerId` with object references such as `account: Account!` and `owner: User!`, citing Shopify's Rule #8."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects the monolithic `updateCustomer` shape in favor of focused business-action mutations."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires the selection argument (which object changes) to stay separate from the change-data argument, citing Shopify's Rule #22."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Corrects the claim that GraphQL forbids versioning, stating the paradigm does not dictate versioning policy."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names Shopify's quarterly date-based versioning of its GraphQL Admin API as the counter-example."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Records which versioning stance the team takes and hands the ongoing policy - notice periods, deprecation workflow, removal discipline - to versioning-policy work rather than settling it here."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires one shared identifier across the coexisting REST and GraphQL surfaces rather than two separate ID spaces."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names GitHub's `node_id` REST-to-GraphQL interop as the worked precedent for one ID space serving both surfaces."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Handles the planned encoding change with a client-controlled opt-in mechanism rather than a deadline-driven forced migration, naming GitHub's `X-Github-Next-Global-ID` request header as the precedent."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the design goal of that migration: any consumer that never persisted a global ID needs no changes at all."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires additive-friendly return shapes, noting payload objects and result unions can gain members where a bare scalar return type cannot."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that field-level `@deprecated` is a cheap mechanism carrying real integrator cost, paraphrasing Giroux's caution that deprecation requires work from integrators at best and is a breaking change at worst."
+      }
+    ]
+  }
+}

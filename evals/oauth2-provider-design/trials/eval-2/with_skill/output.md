@@ -1,103 +1,88 @@
-Policy below. Two corrections to your plan come first, because both change what you write on Friday.
+# Northwind Signal token policy (draft for Friday's security review)
 
-## Corrections to your plan
+I built this from the `oauth2-provider-design` skill and its protocol-baseline reference. Both your instincts are right, but each needs one change before the security team sees it. The hashing rule collides with the reuse grace window, so the storage layer has to be designed for both. Rotation also needs a different shape for each of your three clients.
 
-1. **Hashing every token is right, and it fits with rotation.** Hashing only changes how you look a token up. You must keep consumed refresh-token hashes, with a `consumed_at` timestamp, until the whole family expires. Without them you cannot detect reuse or honour a grace window. Django OAuth Toolkit documents this tension. Resolve it by keeping the predecessor's hash, not by dropping hashing.
-2. **Reuse should kill the grant family, not the "session".** A family is the chain of refresh tokens descended from one consent. Revoke that family only. Leave the user's other grants alone.
-3. **Rotation without a grace window logs out real users.** The trigger is two tabs or a network retry presenting the same just-consumed token. RFC 9700 §4.14 describes reuse detection as a tripwire. It cannot tell attacker from victim. A 10–30 s grace window keeps false positives down.
+## Assumptions to confirm
 
-## Token policy
+I didn't get to ask these, and each one changes a row below.
 
-| | SPA (public) | Partner server (confidential) | Customer Python worker (confidential) |
+1. The SPA and the partner integrations act on behalf of a signed-in user, using `authorization_code` with PKCE.
+2. The customer's Python worker acts as the app itself (machine-to-machine), not on behalf of a person. If it acts for a user, treat it as the partner row, with the device flow if it is headless.
+3. You issue opaque access tokens, not JWTs. If you issue JWTs, they can't be revoked mid-life, so the TTLs below become a hard ceiling.
+
+## Rules for all clients
+
+- PKCE S256 is mandatory for every client, including the ones with a secret.
+- Redirect URIs are matched exactly. No implicit or password grant.
+- Bearer tokens go in the Authorization header only, never in a query string.
+- Authorization codes are single-use with a maximum 10-minute lifetime.
+- Refresh tokens rotate by default and belong to a family, traceable to the original grant. Retrofitting families later is much harder.
+
+## TTLs and rotation per client kind
+
+| | React SPA (public) | Partner server-side (confidential) | Python worker (confidential, app identity) |
 |---|---|---|---|
-| Grant | `authorization_code` + PKCE S256 | `authorization_code` + PKCE S256, plus `client_credentials` for app-identity calls | `client_credentials` (recommended) |
-| Auth code | single-use, 60 s | single-use, 60 s | none |
-| Access token | 30 min | 1 h | 1 h |
-| Refresh token | rotate every use | rotate every use | none |
-| Refresh idle limit | 8 h | 90 days | n/a |
-| Refresh family absolute cap | 24 h, then full re-auth | 12 months, then re-consent | n/a |
-| Reuse grace window | 30 s | 30 s | n/a |
-| On reuse outside grace | revoke family | revoke family and notify the partner | n/a |
+| Grant | `authorization_code` + PKCE | `authorization_code` + PKCE + client secret | `client_credentials` |
+| Access token | 30 min | 60 min | 60 min |
+| Refresh token | Rotating, family-bound | Rotating, family-bound | None. It re-authenticates with its credentials. |
+| Refresh idle timeout | 8 h | 90 days | n/a |
+| Refresh absolute cap | 24 h, then full re-login | 365 days, then re-consent | n/a |
+| Reuse grace window | 20 s | 30 s | n/a |
+| Reuse outside the window | Revoke the family | Revoke the family | n/a |
+| Live-token cap | 10 per user per client, oldest revoked | 10 per grant | n/a |
+| Credential rotation | n/a | Two active secrets at once, 90-day rotation | Two active secrets at once, 90-day rotation |
 
-**Sourced numbers:**
-- 1 h access tokens are the cross-provider convergence point.
-- The 24 h browser cap and the 90-day idle limit come from Microsoft.
-- The 10–30 s grace window and the 10-minute code maximum come from the skill.
+**Where the numbers come from:**
+- The skill sets the ~1-hour access token as the cross-provider convergence point.
+- The skill backs the 24-hour SPA cap with Microsoft's SPA refresh limit and the 90-day idle timeout with Microsoft's non-SPA limit.
+- The skill backs the 10-token cap with GitHub, and the 10–30 s grace window with the Django OAuth Toolkit and Keycloak defaults.
+- The 30-minute SPA access token, the 365-day partner cap, the 8-hour SPA idle timeout, and the 90-day secret rotation are my judgment, not from the skill. Treat them as defaults the security team can argue with.
 
-**My judgment, which you can push back on:**
-- The 30 min SPA access token. I went shorter than the 1 h baseline because the token lives in a browser.
-- The 8 h SPA idle limit.
-- The 12-month partner cap.
-- The 60 s code lifetime.
+**SPA.** A refresh token in browser storage is the highest-exposure asset you have, so it gets the hardest cap. Because the SPA is embedded in your customers' admin panels, a third-party-iframe context may partition or block storage. Keep tokens out of `localStorage`, ideally behind a backend-for-frontend. The skill doesn't cover this, so verify it with your front-end team.
 
-Rotation is mandatory for the SPA, because OAuth 2.1 requires sender-constrained or rotated refresh tokens for public clients. For confidential clients it is optional under 2.1. I still apply it because it is the default rung, Salesforce now enforces it, and your security team will ask.
+**Partners.** The skill allows non-rotating refresh tokens for confidential clients, because client authentication already constrains who can redeem them. I still recommend rotation, since it is the skill's default and Salesforce now mandates it for all connected apps. Partners with multiple workers will refresh concurrently, and they will trip reuse detection unless they serialize refreshes. Put "refresh single-flight, persist the new token before using it" in the partner docs and the SDK.
 
-### SPA
-- PKCE is mandatory. Use exact redirect URI matching.
-- Keep the refresh token in memory only, or put the SPA behind a backend-for-frontend. Never use `localStorage`.
-- Embedded in a customer's admin panel, you will be hit by third-party cookie and storage partitioning. That is a reason to keep the 24 h cap and silent re-auth.
+**Python worker.** `client_credentials` gives it no refresh token, so there is nothing to rotate. The risk moves to the client credential. Support two active secrets with an overlap window so the customer can rotate without downtime, and consider `private_key_jwt` for this customer. The `private_key_jwt` suggestion is mine, not from the skill.
 
-### Partner servers
-- Exact redirect matching. Use `client_credentials` only for app-identity scopes.
-- Allow two active client secrets per client, so partners can rotate without downtime.
-- A reuse trip fires a webhook and email to the partner. Partners with several workers will trip it first.
-- Cap live grants at 10 per user and client. The oldest is auto-revoked, as GitHub does.
+## Your two beliefs, adjusted
 
-### Customer Python worker
-- Use `client_credentials`. A headless, long-running process is the worst case for rotation. If it crashes between receiving a new refresh token and saving it, the family gets revoked.
-- Register a separate `client_id` per customer deployment. Revoking it then affects only that customer.
-- If the worker must act as a user, use `device_authorization` (RFC 8628) with rotating refresh and a 30 s grace window.
-- A worker on a refresh path must have a single refresher and must persist the new token before using it.
-- Do not add DPoP or mTLS now. The skill defers them to financial or health data and long-lived agent tokens. Revisit if this customer's scopes reach other users' data.
+**"Rotate on every use, kill the session on reuse": yes, with three amendments.**
+
+1. **Grace window.** Without one, a multi-tab SPA or a network retry looks like theft and logs out real users. Reuse inside the window is not an attack. Reuse outside it revokes the whole family.
+2. **Scope of the kill.** Revoke the family, meaning that one grant and its live access tokens. Don't revoke every grant the user has. Revoking the family is safe because the attacker may hold an earlier or later token in the chain than the one that tripped the check.
+3. **What it tells you.** Per RFC 9700 §4.14, the server can't tell which party sent the stale token. It's a tripwire, not an investigation tool. Log every trip with client, family, and age of the replayed token, and track the trip rate. A rising rate means attacks or a window that is too tight.
+
+**"SHA-256 every token": yes, with one design decision.** SHA-256 is correct for high-entropy random tokens (at least 128 bits from a CSPRNG), and it needs no salt or slow hash. The conflict is that the grace window must recognize a token that was just consumed. A hash-only store can recognize that token, but it can't hand back the successor's cleartext, because only the successor's hash is stored.
+
+My proposed resolution (my reasoning, not the skill's, so the security team should review it):
+- Keep the predecessor's hash with a `consumed_at` timestamp.
+- If the predecessor is re-presented inside the window, mint a new successor from the same parent. Don't try to return the original one.
+- Sibling successors stay valid until one is used. After that, the others are consumed and fall under the normal rule.
+
+Django OAuth Toolkit documents this exact tension, and its resolution is to retain the predecessor's hash with a validity timestamp. Don't drop hashing to avoid the problem.
 
 ## What the storage layer must support
 
-1. **Token hashing.**
-   - Store SHA-256 of codes, access tokens, refresh tokens, and client secrets.
-   - Generate tokens with at least 256 bits of randomness. Plain SHA-256 is safe only because the input is high-entropy.
-   - Put a unique index on `token_hash` and look up by hash.
-2. **Opaque access tokens.** The database can then revoke them instantly. If you issue JWTs instead, the short TTL is your only revocation mechanism.
-3. **A `grants` table, one row per consent. Its id is the family id.** Columns:
-   - `client_id`, `user_id`, `org_id`
-   - `scopes_granted`, kept separately from the scopes requested
-   - `absolute_expires_at`, `revoked_at`, `revoke_reason`
-   - `created_at`
-4. **A `refresh_tokens` table.** Columns:
-   - `token_hash`, `grant_id`, `parent_id`
-   - `consumed_at`, `idle_expires_at`, `created_at`
-   - Do not delete consumed rows until the grant's `absolute_expires_at` has passed. Reuse detection needs them.
-5. **An atomic single-use consume.**
-   ```sql
-   UPDATE refresh_tokens SET consumed_at = now()
-   WHERE token_hash = $1 AND consumed_at IS NULL
-   RETURNING grant_id;
-   ```
-   - If a row is returned, issue the successor.
-   - If no row is returned, load the row.
-     - If `consumed_at` is within the grace window, issue a new sibling child from the same parent. You cannot replay the first successor, because only its hash is stored.
-     - Otherwise, set `grants.revoked_at` in the same transaction.
-6. **Access-token revocation by family.** Access tokens carry `grant_id`. Introspection checks `grants.revoked_at`. Make sure resource servers cannot cache this check beyond a few seconds.
-7. **Per-tenant data rules.**
-   - Soft delete only.
-   - `created_at` on every table.
-   - No `ON DELETE CASCADE`. A grant is user-owned data.
-8. **Audit and alerting.**
-   - Log every reuse trip and every revocation, with the client and the reason.
-   - Track the reuse-trip rate. It signals both attacks and a grace window that is too tight.
-9. **A purge job** for expired families, after your retention period.
+1. **Hashed lookup.** One indexed column holds each token's SHA-256 hash. Token cleartext is never stored or logged. Client secrets are hashed the same way.
+2. **Refresh token record.** It needs `family_id`, `parent_hash`, `client_id`, `user_id`, `grant_id`, `scopes`, `created_at`, `consumed_at`, `expires_at`, and `revoked_at`. Use soft revocation, never `ON DELETE CASCADE`, so you keep the evidence after a reuse event.
+3. **Family record.** It tracks `absolute_expires_at`, the revoked state and reason, and the last-used time for the idle timeout.
+4. **Atomic consume.** Use a compare-and-set, such as `UPDATE ... SET consumed_at = now() WHERE hash = $1 AND consumed_at IS NULL`, and check the affected row count. Two concurrent refreshes must not both succeed. This also gives you the race-safe grace-window decision.
+5. **Family revocation that also kills access tokens.** Opaque access tokens are checked against the database, so revoking a family takes effect immediately. Link access tokens to their `family_id`.
+6. **Live-token cap.** Enforce it at issue time and revoke the oldest.
+7. **Revocation and introspection.** Provide `/revoke` (RFC 7009) and `/introspect` (RFC 7662) endpoints, plus admin and user views: revoke by client, by user, or by customer org.
+8. **Two active secrets per confidential client**, each with its own `created_at` and `expires_at`.
+9. **Cleanup job.** Purge expired and revoked rows after a retention period you choose. Keep reuse-event audit rows longer.
+10. **Reuse-event log.** One row per trip, with the dimensions listed above.
 
-## Tests for the review
+## Gates before the review
 
-- Replay a consumed refresh token outside the grace window. The whole family must be revoked.
-- Two concurrent refreshes inside the grace window must not log anyone out.
-- Absent or wrong PKCE must be rejected for every client, including confidential ones.
-- Verify by test, not assertion, that the discovery document advertises no implicit or password grant.
+- **Reuse test.** In staging, replay a consumed refresh token outside the window. The family must be revoked and its access tokens must stop working.
+- **Concurrency test.** Run concurrent refreshes inside the window. They must produce no false-positive logout.
+- **Protocol test.** Confirm that no implicit or password grant is advertised, that a request without PKCE is rejected, and that redirect matching is exact.
+- **Baselines from launch.** Track the reuse-trip rate, refresh failures by client kind, and the number of live families per client.
 
-## Open questions that could change the table
+## Open decisions for the security team
 
-1. Does the Python worker act as the customer's user or as an app? I assumed an app.
-2. Is the SPA embedded in an iframe, or loaded as a script on the customer's origin?
-3. Greenfield, or are there live integrations? A retrofit changes the rotation rollout.
-4. Do any scopes reach other users' data or PII? If so, partner apps need a verification tier before they ship.
-
-Next, in about 20 minutes: paste the TTL table into your policy doc and send answers to open questions 1 and 2. I'll tighten the worker and SPA rows.
+- The 365-day partner cap and 90-day idle timeout. These trade re-consent friction against exposure.
+- Whether the worker customer gets `private_key_jwt` or a rotated secret.
+- Whether to move to DPoP later. The skill says to promote it only for financial or health data or long-lived agent tokens, and it has little client-library support today.

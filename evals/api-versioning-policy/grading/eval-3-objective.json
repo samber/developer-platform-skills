@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the 6-month window as below the floor for a fully public API.",
+        "evidence": "\"6 months is far below the benchmarks for your public audience.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a floor of at least 12 months of deprecation notice for fully public APIs.",
+        "evidence": "\"Published floors for public APIs are at least 12 months (Google Cloud, Shopify).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises the recommendation to at least 24 months specifically because Trackpole's consumers ship mobile apps.",
+        "evidence": "\"The skill's rule for mobile consumers is at least 24 months.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason for the 24-month floor: app-store update cycles and end-user update lag are slow and outside the provider's control.",
+        "evidence": "\"App-store release cycles and users who never update make them the slowest group to migrate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not accept the competitor's 3-month window as a justification or benchmark for the number.",
+        "evidence": "\"The competitor's 3 months isn't a benchmark.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the notice period for the 9 internal services with consumer-driven contract testing and coordinated deploys rather than applying the same window to them.",
+        "evidence": "\"Use coordinated deploys and consumer-driven contract tests instead.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains why internal consumers differ: a notice period compensates for being unable to coordinate with consumers directly, and internal teams can coordinate.",
+        "evidence": "\"The 9 services have owners you can reach.\" The explanation is brief.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects the 'it doesn't really matter' position: the policy must define exactly when the support clock starts (version release, next version's release, or deprecation announcement).",
+        "evidence": "\"The clock matters, and 'it doesn't really matter' is wrong.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the clock-start choice moves real dates by months and that ambiguity there turns into support disputes, citing the pattern where a guarantee's clock starts only when the next version ships.",
+        "evidence": "\"can differ by years. Meta starts its 2-year guarantee when the next version ships.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites external benchmark figures as floors ('at least X months'), never as exact values to copy.",
+        "evidence": "\"at least 12 months\", \"at least 24 months\", and \"'At least 24 months' is a floor.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats published sunset dates as firm commitments and tracks slipped dates with a target of zero.",
+        "evidence": "\"The date is a commitment. It does not move.\" and \"Slipped sunset dates: 0.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that repeatedly slipping sunset dates teaches integrators to ignore all future dates.",
+        "evidence": "The transcript never says that slipped dates teach integrators to ignore future dates.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the 6-month window as below the floor for a fully public API.",
+        "evidence": "It does not call 6 months below a floor. It sets 12 months for third-party apps because of the mobile app-store review lag.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a floor of at least 12 months of deprecation notice for fully public APIs.",
+        "evidence": "\"Third-party apps (public API keys) | 12 months\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises the recommendation to at least 24 months specifically because Trackpole's consumers ship mobile apps.",
+        "evidence": "It sets 12 months. It even suggests 9 months may be enough.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason for the 24-month floor: app-store update cycles and end-user update lag are slow and outside the provider's control.",
+        "evidence": "It cites app-store lag for a 12-month window, not for a 24-month floor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not accept the competitor's 3-month window as a justification or benchmark for the number.",
+        "evidence": "\"The competitor comparison is a weak basis.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the notice period for the 9 internal services with consumer-driven contract testing and coordinated deploys rather than applying the same window to them.",
+        "evidence": "Internal services get a 6-month window plus owner sign-off.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains why internal consumers differ: a notice period compensates for being unable to coordinate with consumers directly, and internal teams can coordinate.",
+        "evidence": "\"Internal services have named owners you can contact and coordinate with, so they don't need the same terms.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects the 'it doesn't really matter' position: the policy must define exactly when the support clock starts (version release, next version's release, or deprecation announcement).",
+        "evidence": "\"The support window is measured from the notice date, never from the version's release date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the clock-start choice moves real dates by months and that ambiguity there turns into support disputes, citing the pattern where a guarantee's clock starts only when the next version ships.",
+        "evidence": "It notes a possible 2 weeks of notice and sales misstatements. It does not cite the next-version clock pattern or support disputes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites external benchmark figures as floors ('at least X months'), never as exact values to copy.",
+        "evidence": "No external benchmark figures are cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats published sunset dates as firm commitments and tracks slipped dates with a target of zero.",
+        "evidence": "The window \"can be lengthened but never shortened\", but there is no zero-slip target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that repeatedly slipping sunset dates teaches integrators to ignore all future dates.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

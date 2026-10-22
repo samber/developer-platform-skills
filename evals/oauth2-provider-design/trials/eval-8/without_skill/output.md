@@ -1,87 +1,129 @@
-# OAuth 2.1 migration: sequencing and audit proof
+# OAuth 2.1 migration plan for Chatterbox Systems
 
-## Do this first (this week, about 2 hours)
-Ask the auditor in writing what "OAuth 2.1 compliant" means. OAuth 2.1 is an IETF draft, and I'm not certain of its current status, so check that. A draft has no certification and no official conformance suite. You need four answers:
-1. Which document and version? Propose a pinned draft version plus RFC 9700 (the OAuth Security BCP, which is a published RFC).
-2. Which scope? Authorization server only, or also your own clients? All tenants, or just theirs?
-3. What counts as evidence?
-4. Would they accept a time-boxed, documented exception for any single item? Don't plan on one, but ask.
+**Next action this week:** email the customer's security team and get "OAuth 2.1 compliant" defined in writing (see Step 0). Everything else depends on it.
 
-## Your instinct: partly right
-Don't ship one big release. Do keep one visible cutover date.
+## Verdict on the big cutover
 
-- **Why not a single release:** it is one rollback unit with 3,100 third-party apps in the blast radius. You also can't update the iOS app on 400 customers' phones.
-- **What to do instead:** ship each change dark, behind per-feature and per-client flags. Enforce by cohort. Then flip the final switches on one announced date that the auditor sees.
+❌ **Don't do one big cutover.** The reasons:
 
-## What "compliant" demands, mapped to your gaps
+- **You don't control the clients.** Roughly 3,100 third-party apps ship on their own schedules. The iOS app depends on App Store review and on customers updating, some through slow MDM rollouts.
+- **It can't be rolled back.** If you remove implicit, ROPC and prefix matching on one day, a failure can't be traced to a cause, and you can't un-break 3,100 integrations.
+- **It hides a dependency.** Existing refresh tokens never expire, so many old-iOS users are never forced to log in. When you start expiring tokens, they all re-login at once through ROPC, which you're removing. The sequence therefore has to be: new app adopted, then expiry enforced, then ROPC off.
+- **It puts the whole risk on the deadline.** If it slips, you have nothing to show the auditor. A staged plan leaves you with partial compliance and a documented exception list.
 
-| Today | 2.1 requires | Work |
+✅ **Do this instead:** one dated enforcement milestone per feature, driven by a per-client `legacy` / `strict` profile flag. Everything moves from legacy to strict. The count of legacy clients is your burn-down metric. At zero, you delete the legacy code. That deletion is also your audit evidence.
+
+## Step 0: define "compliant" (weeks 1–2)
+
+OAuth 2.1 is an IETF draft, not a final standard, and there is no certification for it. Check its current status and pin a draft version. Without a pinned profile the auditor can move the goalposts.
+
+Get the customer to sign off on a short profile that covers:
+
+- The pinned draft version of `draft-ietf-oauth-v2-1`.
+- RFC 9700 (OAuth Security BCP), RFC 7636 (PKCE) and RFC 8252 (native apps).
+- Whether it applies to the whole platform or only to their tenant's apps and users. This changes your effort a lot.
+- Whether the test is a point in time (the deadline date) or continuous.
+- Whether a dated exception list with compensating controls is acceptable, if one or two stragglers remain.
+- Whether they expect granular scopes. OAuth 2.1 doesn't require them, but auditors sometimes ask about least privilege. Your single scope tier is not a 2.1 violation. Keep it off the critical path, and offer additive scopes later if they insist.
+
+**Requirement checklist:**
+
+| Gap | OAuth 2.1 requirement | Your status |
 |---|---|---|
-| Implicit (your dashboard) | Removed | Move dashboard to code + PKCE |
-| ROPC (iOS app) | Removed | New app release, then kill endpoint |
-| Prefix redirect match | Exact string match (loopback port is the only exception) | Registry cleanup + enforcement |
-| No PKCE | PKCE on every code flow, S256 | Add, then require |
-| Refresh tokens never expire or rotate | Public clients: sender-constrained or one-time use | Rotation with reuse detection, plus expiry |
-| One scope tier | Not required | **Defer.** Not on the critical path |
+| Implicit grant | Removed | ❌ live (own dashboard) |
+| ROPC | Removed | ❌ live (old iOS app, ~400 customers) |
+| Redirect matching | Exact string match (loopback port may vary for native apps) | ❌ prefix |
+| PKCE | Required for all authorization-code clients, S256, downgrade rejected | ❓ verify |
+| Refresh tokens (public clients) | Sender-constrained or one-time-use rotation | ❌ |
+| Refresh token lifetime | Not mandated, but the BCP expects limits | ❌ never expire |
+| Bearer token in query string | Forbidden | ❓ verify |
+| Scopes | Not required | n/a |
 
-## Timeline (about 30 weeks, last 4 are buffer)
+## Step 1: measure before you change anything (weeks 1–3)
 
-**Weeks 0–3: scope and measure**
-1. Get the auditor definition above.
-2. Add telemetry per request: grant type, `client_id`, redirect match type (exact vs prefix), PKCE present, client app version, refresh-token age.
-3. Build a client inventory. Likely a big share of the 3,100 apps are dead (no tokens used in 12 months). Plan to disable those with notice.
-4. Start the iOS work now. It is the long pole.
+Add logging per `client_id`. This telemetry decides the rest of the plan.
 
-**Weeks 2–10: additive, non-breaking**
-1. Support PKCE (S256 only) alongside current flows.
-2. Migrate your own dashboard to code + PKCE. You control it, so this is the quick win and your reference implementation.
-3. **Strict mode for new registrations immediately**, so the legacy pile stops growing.
-4. Ship refresh rotation with a grace window and reuse detection (reuse revokes the token family).
-5. Add redirect matching in report-only mode: log what exact matching would reject.
-6. Publish RFC 8414 metadata and deprecation headers on legacy grants.
+- Count requests by grant type, `response_type`, PKCE present or absent, and redirect match type (exact vs prefix-only).
+- Log refresh token age, last-used time and, for public clients, concurrency of refresh calls.
+- Log ROPC logins by app version.
 
-**Weeks 6–18: migration**
-1. Release the new iOS app (system browser session, code + PKCE). Tell the ~400 customers by account. Show app version in telemetry to track adoption.
-2. Auto-register, as exact URIs, the redirect URIs observed in the last 90 days of logs. This grandfathers working apps and removes most breakage.
-3. Email third parties and publish a migration guide. Set cutoff dates at least 90 days out.
+Then triage the 3,100 apps:
 
-**Weeks 14–24: enforcement waves, per cohort**
-1. Run a brownout 2 weeks before each cutoff: a scheduled 1–4 hour disablement that surfaces forgotten clients.
-2. Enforce in this order: exact redirect, then PKCE required, then rotation for everyone, then implicit off, then ROPC off.
-3. Cap every existing never-expiring refresh token with an absolute expiry at the final date.
+- **Dead (no traffic in 90 days):** likely a large share. Disable them after notice. Don't delete them.
+- **Top 50 by traffic:** direct outreach, with a named owner on your side for each.
+- **The long tail:** automated email, dashboard banner and `Sunset`/`Deprecation` headers (RFC 8594).
 
-**Weeks 26–30: freeze and buffer**
-Assemble the evidence pack and hand it to the auditor. Don't schedule enforcement here.
+Confirm in week 1 that the iOS app's source and build pipeline still exist. If they don't, the iOS rebuild is your longest pole and the whole schedule moves.
 
-## Risks to decide on early
-- **Rotation breaks old clients.** The old iOS app and some third-party apps may ignore the new `refresh_token` in the response. A grace window and per-client flags soften this. Test the old app against rotation before enabling it.
-- **Customers who never update the iOS app.** Pick a hard ROPC cutoff date now, with escalating in-app and email notices. If the auditor allows an exception, document it with an expiry and compensating controls (rate limits, MFA). Don't count on it.
-- **Per-tenant enforcement for the enterprise.** This could give you early proof for them. Ask whether the auditor accepts it, since a shared authorization server usually means they'll want global behavior.
+## Step 2: ship additive, non-breaking changes (Nov)
 
-## Proving compliance to the auditor
-Build a pack of six items:
+Nothing here breaks existing clients.
 
-1. **Conformance matrix.** One row per requirement, citing the pinned draft section and RFC 9700. Each row names the control, the test, and the evidence location.
-2. **Automated negative tests.** Run them in CI and nightly against production, and keep the results. Each must pass:
-   - Implicit request returns `unsupported_response_type`.
-   - Password grant returns `unsupported_grant_type`.
-   - Authorization code request without `code_challenge` is rejected.
-   - `plain` PKCE method is rejected.
-   - Redirect URIs with a prefix, subpath, extra query, or different case are rejected.
-   - Access token in a query string is rejected.
-   - Replaying a rotated refresh token revokes the family.
-   - An expired refresh token is rejected.
-3. **Configuration evidence.** Discovery metadata showing `response_types_supported: ["code"]`, the allowed grant types, and `code_challenge_methods_supported: ["S256"]`. This supports the tests but proves nothing alone.
-4. **Data evidence.** Dated queries and dashboards showing:
-   - Zero implicit and ROPC requests after the cutoff.
-   - Zero registered clients with non-exact redirect URIs.
-   - Zero refresh tokens without expiry.
-5. **Independent validation.** An external pen test of the OAuth flows. Also give the auditor a sandbox tenant and the test harness so they can run the negative tests themselves. Check what the OpenID Foundation suite covers before citing it, because it targets OIDC and FAPI rather than 2.1.
-6. **Change record.** ADRs, release notes, customer communications, brownout dates, and an exception register (empty is best).
+1. Support PKCE and publish AS metadata (RFC 8414), listing only S256.
+2. **Migrate your own dashboard from implicit to code + PKCE first.** You control it, and it proves the path works.
+3. **Make `strict` the default for newly registered apps.** This stops the debt growing. Start the clock with a date of about Dec 1.
+4. Add refresh token expiry (idle and absolute) and rotation with reuse detection. Keep a short grace window so a network failure mid-refresh doesn't lock a user out. Gate all of this behind the per-client flag.
+5. Run exact redirect matching in **shadow mode**. Log every request that would be rejected, then pre-register each client's observed redirect URIs as exact values.
+6. Start building the new iOS app on ASWebAuthenticationSession with code + PKCE.
 
-Then keep it true after the audit: keep the negative tests as a permanent CI gate, alert on any legacy grant attempt, and re-attest quarterly.
+Rotation is mandatory for public clients. For confidential clients, client authentication plus expiry is acceptable under 2.1. Rotating those too is simpler to explain to an auditor, but it is optional.
+
+## Step 3: announce and enforce in order (Dec–Mar)
+
+Avoid enforcement dates between about Dec 15 and Jan 5.
+
+| When | Action |
+|---|---|
+| Dec 1 | Deprecation notice to all apps, with dates and migration guide. New apps strict-only. |
+| Mid-Dec | iOS app submitted to the App Store. |
+| Jan | Dashboard fully off implicit. Disable dead apps. First **brownout** (the deprecated feature fails for 1 hour, announced). |
+| Feb | Enforce exact redirect matching and turn off implicit for contacted apps. Brownouts escalate to 24 hours. |
+| Mar | Minimum iOS app version enforced. ROPC off. Refresh expiry enforced everywhere. |
+| Apr 1–15 | Remove legacy code paths. Code freeze Apr 15. |
+| Apr 15 – May 9 | Evidence pack, third-party test, auditor window. About three weeks of buffer. |
+
+Notes on the order:
+
+- **Refresh expiry hits old-iOS users last.** Enforce it per client, only after that app version has a ROPC-free replacement and adoption is high.
+- **Rotation on the old iOS client is also a risk.** The old app may not persist a rotated refresh token. Exempt that client until the version floor, and list it on the exceptions register in the meantime.
+- **iOS customer comms:** have customer success contact the ~400 customers by name. Use an in-app update prompt first, then a hard block at the version floor.
+- **Fallback if iOS adoption lags:** a documented exception for that one `client_id` with compensating controls (rate limiting, per-tenant disable, MFA if possible). Make the enterprise customer's own tenant ROPC-free earlier if they don't use that app.
+
+## Step 4: prove it to the auditor
+
+Build the evidence pack as you go, not at the end.
+
+1. **Signed compliance profile** from Step 0.
+2. **Traceability matrix:** requirement → control → automated test → evidence artifact → owner.
+3. **Dated configuration snapshots:** AS metadata showing `grant_types_supported` as `authorization_code`, `refresh_token` and `client_credentials` only, and `code_challenge_methods_supported: ["S256"]`.
+4. **Negative tests in CI, also run as weekly synthetic probes against production.** Each must be rejected:
+   - `response_type=token`.
+   - `grant_type=password`.
+   - An authorize request without `code_challenge`.
+   - The `plain` PKCE method.
+   - A wrong code verifier.
+   - A redirect URI that differs by prefix, trailing slash, extra path, query string, case, or wildcard.
+   - A non-HTTPS redirect (except loopback).
+   - Authorization code reuse (it should revoke the tokens it issued).
+   - Refresh token reuse (it should revoke the token family).
+   - An expired refresh token.
+   - A bearer token in the query string.
+5. **Production data evidence:** scripted queries, output saved with dates.
+   - Legacy-grant requests: 0 in the trailing 30 days.
+   - Legacy client count: 0, or only the named exceptions.
+   - Every registered redirect URI is exact, with no wildcards.
+   - No active refresh token without an expiry.
+6. **Independent verification:** a third-party pentest scoped to the checklist. Don't claim a 2.1 conformance certification, because none exists. The OpenID Foundation suite covers OIDC and FAPI, not 2.1.
+7. **Exceptions register,** if anything remains: client, reason, compensating control, owner, expiry date.
+8. **Change trail:** deprecation notices sent, release notes, PRs that removed the legacy code, and a CI gate that fails if a legacy grant is reintroduced.
+9. **Mid-point checkpoint** with the customer at about month 3, to show the dashboard burn-down. This is your best churn protection. Consider an interim attestation letter.
 
 ## Decisions I need from you
-1. What did the auditor say "compliant" means, and which version?
-2. Can you tell which of the 3,100 apps are active? If not, telemetry is week 1.
-3. What is the iOS release and force-update situation?
+
+1. Does the iOS app's source and build pipeline still exist and build today?
+2. Does the customer's requirement cover the whole platform or only their tenant?
+3. Do you know the share of the 3,100 apps with traffic in the last 90 days? If not, Step 1 finds it.
+4. Are you willing to disable dead apps after notice, and to set a hard iOS version floor?
+5. Does the customer accept a dated exception list as a pass?
+
+If you answer 1 and 2 first, I can turn this into a dated plan with owners.

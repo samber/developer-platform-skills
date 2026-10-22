@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Names plan (1) as reinventing OAuth: bolting expiry, per-request scopes, and fine-grained revocation onto static keys means adopting the real thing",
+        "evidence": "\"bolting expiry, scopes and fine-grained revocation onto a static key means reinventing OAuth.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes third-party apps acting on customers' behalf to OAuth authorization-server design instead of solving it inside the key system",
+        "evidence": "\"Authorization code flow with PKCE\"; hand off to oauth2-provider-design",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the boundary: a static key answers which app is calling, OAuth answers whether a user granted permission and within what limits",
+        "evidence": "\"A static key says which app is calling. Partner apps need to know that a customer granted permission and within what limits.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Invokes the principle that an API key identifies the calling application, not a user, and is not user authentication",
+        "evidence": "\"A static key says which app is calling.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects plan (2) outright: never ship a long-lived key to a browser or other semi-trusted client",
+        "evidence": "\"Never ship a long-lived key to a browser\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Substitutes server-side minting of short-lived scoped tokens (ephemeral, minutes-long TTL) for the browser SDK",
+        "evidence": "\"token valid for 1-10 minutes, scoped to ingest\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For CI, recommends workload identity federation - the environment attests, so no stored secret exists to leak",
+        "evidence": "\"No stored secret exists to leak.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States workload identity's trade honestly: highest effort (federation infrastructure) bought for nothing-to-leak security",
+        "evidence": "\"It is the highest-effort rung, so promote it once phase 1 is done.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Contains the current admin keys in the interim: scope them down and split per service per environment, with rotation scheduled",
+        "evidence": "Phase 1: restrictive scopes, one key per pipeline per environment, atomic roll",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the choice per surface, not per platform: mature platforms run keys and OAuth simultaneously",
+        "evidence": "Table by surface: OAuth for partners, keys for server-to-server, publishable key for browser, OIDC for CI",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps first-party server-to-server traffic on static keys rather than migrating every surface to OAuth",
+        "evidence": "\"Keep keys for what they're good at: A customer calling Traceloom as themselves, server-to-server.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies CI and agent workloads as the segment actively migrating off static keys",
+        "evidence": "\"The skill flags this as the direction the industry is moving for CI.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Names plan (1) as reinventing OAuth: bolting expiry, per-request scopes, and fine-grained revocation onto static keys means adopting the real thing",
+        "evidence": "\"A renewal path is a refresh token, so you end up rebuilding OAuth.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes third-party apps acting on customers' behalf to OAuth authorization-server design instead of solving it inside the key system",
+        "evidence": "\"Authorization server. OAuth 2.1 authorization code with PKCE.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the boundary: a static key answers which app is calling, OAuth answers whether a user granted permission and within what limits",
+        "evidence": "\"Scopes belong to the grant: what the customer approved\"; \"There is no 'on whose behalf'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Invokes the principle that an API key identifies the calling application, not a user, and is not user authentication",
+        "evidence": "\"An API key identifies only the tenant\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects plan (2) outright: never ship a long-lived key to a browser or other semi-trusted client",
+        "evidence": "\"Never document pasting the existing API key.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Substitutes server-side minting of short-lived scoped tokens (ephemeral, minutes-long TTL) for the browser SDK",
+        "evidence": "Primary substitute is a publishable key; token minting is only an \"Opt-in server relay\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For CI, recommends workload identity federation - the environment attests, so no stored secret exists to leak",
+        "evidence": "\"No stored secret exists on the runner at all.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States workload identity's trade honestly: highest effort (federation infrastructure) bought for nothing-to-leak security",
+        "evidence": "Called \"best end state\" and scheduled Later, but effort cost is not explicitly stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Contains the current admin keys in the interim: scope them down and split per service per environment, with rotation scheduled",
+        "evidence": "\"Add scoped, per-pipeline keys... Add expiry and overlap. Cap lifetime at about 90 days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames the choice per surface, not per platform: mature platforms run keys and OAuth simultaneously",
+        "evidence": "Table mapping each job to its own credential type.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps first-party server-to-server traffic on static keys rather than migrating every surface to OAuth",
+        "evidence": "\"Keep API keys for the customer's own server-to-server use.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies CI and agent workloads as the segment actively migrating off static keys",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

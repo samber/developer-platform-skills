@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Uses corrective, non-blaming phrasing in the rewritten message rather than accusatory phrasing like 'you entered an invalid quantity'",
+        "evidence": "All three rewritten messages state the constraint and then tell the caller what to send, without blaming them. EN: 'quantity must be at least 1; received 0. Send a whole number of 1 or more.' FR: '...re\u00e7u : 0. Indiquez un nombre entier sup\u00e9rieur ou \u00e9gal \u00e0 1.' DE: '...erhalten: 0. Geben Sie eine ganze Zahl ab 1 an.' The transcript also names this choice directly ('in neutral corrective wording'). No message uses 'you entered/invalid' style wording.",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Uses corrective, non-blaming phrasing in the rewritten message rather than accusatory phrasing like 'you entered an invalid quantity'",
+        "evidence": "Every rewritten message names the rule and the received value, never the integrator's mistake. The French field detail reads \"La quantit\u00e9 doit \u00eatre d'au moins 1. Valeur re\u00e7ue : 0.\" and the German one reads \"Die Menge muss mindestens 1 betragen. Empfangener Wert: 0.\" The French summary detail is a neutral next step: \"Corrigez le champ indiqu\u00e9 et renvoyez la requ\u00eate.\" The French and German titles describe the rule outcome (\"Quantit\u00e9 minimale non respect\u00e9e\" / \"Mindestmenge unterschritten\"). The integrator is never cast as the one who caused the error, so there is no accusatory 'you entered\u2026' phra",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -117,14 +117,19 @@ This collection covers the full developer-platform surface.
 ### API lifecycle
 
 - [`api-versioning-policy`](./skills/api-versioning-policy): Defines an API's versioning and deprecation policy: version scheme, breaking-change definition, notice windows, sunset signalling, and enforcement.
+- [`public-roadmap-strategy`](./skills/public-roadmap-strategy): Decides whether and how to publish a product roadmap: posture, commitment vocabulary, exclusion gate, sales guardrails, and the slipped-item playbook.
 
 ### Integration surfaces
 
+- [`agent-skill-offering`](./skills/agent-skill-offering): Ships an Agent Skill inside a library, CLI or SDK repo and keeps it versioned with the code: placement, version wiring, CI gates that fail a stale release, tag-pinned installs, and multi-harness manifests.
 - [`api-integration-surface-strategy`](./skills/api-integration-surface-strategy): Decides which integration surfaces a platform offers external developers and AI agents, and in what build order, sequenced by reversal cost.
 - [`bulk-data-sharing-design`](./skills/bulk-data-sharing-design): Designs bulk file and lake export as a product surface: delivery format, partitioning contract, cadence and freshness posture, credentials, and cost allocation.
 - [`etl-connector-strategy`](./skills/etl-connector-strategy): Plans a vendor's presence as a source connector on customers' ETL platforms: demand gate, build path, certification target, and funded maintenance.
+- [`cli-interface-design`](./skills/cli-interface-design): Designs the public CLI that wraps the platform's API: command layers and grammar, a frozen `--json` and exit-code contract, login flows, and safe non-interactive use by scripts and agents.
+- [`github-action-offering`](./skills/github-action-offering): Ships a vendor's official GitHub Action and its CI ports: offering shape, action type, a frozen `action.yml` contract, immutable releases, OIDC auth, and hardening against injection and tag hijack.
 - [`mcp-server-offering`](./skills/mcp-server-offering): Designs a product's MCP server for AI agents: a curated workflow-level tool set, write-safety patterns, hosting and auth posture, and versioning.
 - [`sql-jdbc-access-design`](./skills/sql-jdbc-access-design): Designs customer-facing live SQL access: the architecture gate on scan economics, tenant isolation, schema-stability contract, BI connectivity, and pricing shape.
+- [`terraform-provider-offering`](./skills/terraform-provider-offering): Decides whether a platform ships its own Terraform/OpenTofu provider, then designs, tests, signs, publishes and versions it on both registries.
 - [`webhook-platform-design`](./skills/webhook-platform-design): Designs a provider-side outbound webhook platform: event taxonomy, signed payload envelope, retry and dead-letter policy, and the consumer debugging surface.
 
 ### Testing and sandbox
@@ -134,10 +139,12 @@ This collection covers the full developer-platform surface.
 ### SDKs and client libraries
 
 - [`sdk-portfolio-strategy`](./skills/sdk-portfolio-strategy): Decides which languages get official SDKs and in what order, with build model, support tiers, versioning, and end-of-life policy.
+- [`sdk-package-publishing`](./skills/sdk-package-publishing): Plans and hardens SDK, library and CLI publishing across npm, PyPI, Maven Central, NuGet, Go, crates.io, pub.dev, RubyGems, Packagist, Hex, SwiftPM, CocoaPods and Docker Hub, plus dependency-confusion-safe private feeds.
 
 ### Developer portal
 
 - [`developer-portal-design`](./skills/developer-portal-design): Designs an external developer portal: information architecture, the signup-to-first-call path, self-service surface placement, search, RBAC, and build-vs-buy.
+- [`sample-app-strategy`](./skills/sample-app-strategy): Decides the sample-code portfolio: which quickstart repos, reference apps, templates and playgrounds exist, per developer job and language, with owners, CI-tested freshness, and archive rules.
 
 ### Status and incident communication
 
@@ -149,6 +156,12 @@ This collection covers the full developer-platform surface.
 - [`integration-listing-optimization`](./skills/integration-listing-optimization): Optimizes a vendor's listing on a third-party app marketplace: funnel instrumentation, indexed keyword placement, media ordering, reviews, and badges.
 - [`integration-partnership-strategy`](./skills/integration-partnership-strategy): Decides which technology partners to integrate with and how deep each goes, using a demand-data scorecard, depth ladder, and pipeline attribution.
 - [`partner-app-onboarding`](./skills/partner-app-onboarding): Designs the partner-developer journey from signup to first submitted app: entry gate, sandbox provisioning, education, support ladder, and funnel checkpoints.
+- [`zapier-integration-playbook`](./skills/zapier-integration-playbook): Builds, publishes and maintains a vendor's Zapier integration: step design, Platform CLI code, review checks and beta, templates and embed, and versioning without breaking live Zaps.
+
+### Publishing-platform playbooks
+
+- [`github-engagement-playbook`](./skills/github-engagement-playbook): Plans a repository's engagement on GitHub after launch: flat-star diagnosis, releases as feed events, Discussions, topics, and the limits on star tactics.
+- [`stackoverflow-playbook`](./skills/stackoverflow-playbook): Runs a vendor's Stack Overflow presence: product-tag ownership, disclosed staff answers, backlog triage by views, and canonical Q&A that ranks in search.
 
 ### Connector marketplace
 

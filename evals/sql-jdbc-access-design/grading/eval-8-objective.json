@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Separates the request into distinct problems rather than designing a single surface that covers all four asks",
+        "evidence": "\"The four asks are four problems\" with a mapping table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the partner-agency request as sharing data with partner organizations, which reuses the sharing mechanics but is not the same problem",
+        "evidence": "\"Sharing with partner organizations, many-to-many entitlement\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the shared-analytics-database contention as isolating compute per tenant inside the product's own analytics, an internal architecture concern, and states the pricing and BI-connectivity work do not apply to it",
+        "evidence": "\"Internal compute isolation, no external handle\"; \"Touches the isolation menu (step 2) and the caps (step 6) only\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the Looker request as giving customers a queryable SQL endpoint to their own data, and identifies it as the one needing the full design",
+        "evidence": "\"Customer SQL endpoint | Full scope: steps 2 to 8\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the answer to which problem this is must be written down explicitly, because a design that answers the wrong one ships the wrong isolation primitive",
+        "evidence": "Has each stakeholder write one sentence, but never gives the wrong-isolation-primitive rationale.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the nightly Parquet drop to bulk file delivery rather than the live SQL surface, drawing the boundary at live queries versus periodic files",
+        "evidence": "\"Bulk file delivery, no live query. Out of scope.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the sibling bulk data sharing skill as the handoff target for the Parquet request",
+        "evidence": "\"samber/developer-platform-skills@bulk-data-sharing-design\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Inventories the concrete consumers with their expected query shape, such as dashboard refresh, ad-hoc exploration, scheduled extract, and agent traffic",
+        "evidence": "Only asks which consumers they want (notebooks, Tableau, agents); no inventory of query shapes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a BI-tool consumer needs a certified driver, stable column names, and predictable types, because they never read the docs, only their tool's connection dialog",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks where the data lives today and asks for scan-frequency evidence with table sizes before recommending any architecture rung",
+        "evidence": "Questions 1 and 2: \"Where does the analytics data live\" and \"How often will the 12 Looker customers query... How large are the tables?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the design targets the most demanding consumer type present rather than the average one",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Separates the request into distinct problems rather than designing a single surface that covers all four asks",
+        "evidence": "'Four requests share a name, not a problem.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the partner-agency request as sharing data with partner organizations, which reuses the sharing mechanics but is not the same problem",
+        "evidence": "It is labelled 'Cross-tenant access and permissions' without the partner-sharing framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the shared-analytics-database contention as isolating compute per tenant inside the product's own analytics, an internal architecture concern, and states the pricing and BI-connectivity work do not apply to it",
+        "evidence": "It is labelled internal platform reliability, but it also says it may be a prerequisite for the Looker item, and it never says pricing and BI work do not apply.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the Looker request as giving customers a queryable SQL endpoint to their own data, and identifies it as the one needing the full design",
+        "evidence": "It is labelled 'Customer-facing BI connectivity' but not identified as needing the full design.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the answer to which problem this is must be written down explicitly, because a design that answers the wrong one ships the wrong isolation primitive",
+        "evidence": "It proposes a one-pager but does not give the wrong-primitive rationale.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the nightly Parquet drop to bulk file delivery rather than the live SQL surface, drawing the boundary at live queries versus periodic files",
+        "evidence": "'It is a scheduled job, tenant-scoped, with no live-query load.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the sibling bulk data sharing skill as the handoff target for the Parquet request",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Inventories the concrete consumers with their expected query shape, such as dashboard refresh, ad-hoc exploration, scheduled extract, and agent traffic",
+        "evidence": "Not done.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a BI-tool consumer needs a certified driver, stable column names, and predictable types, because they never read the docs, only their tool's connection dialog",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks where the data lives today and asks for scan-frequency evidence with table sizes before recommending any architecture rung",
+        "evidence": "It asks for slow-query data but not where the data lives or table sizes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the design targets the most demanding consumer type present rather than the average one",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

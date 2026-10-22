@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Replaces the 403 with HTTP 429 plus a Retry-After header on every REST throttle, no exceptions",
+        "evidence": "'429 Too Many Requests. Retry-After: <delay-seconds>... (all three limits)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies Retry-After as delay-seconds rather than HTTP-date, citing the client bug where an HTTP-date is parseInt-ed into NaN and triggers a retry storm",
+        "evidence": "It says 'Use integer seconds, never an HTTP-date' but never cites the parseInt/NaN client bug.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the 60-second CDN caching of throttle responses: RFC 6585 forbids caching a 429, and caching stretches the apparent throttle beyond its real duration",
+        "evidence": "'RFC 6585 forbids caching a 429'; 'Cache-Control: no-store'; 'The throttle outlasts the real limit'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects inventing a dedicated rate-limit response format: the 429 body is a plain instance of the API's standard error envelope with a machine-readable code, whose shape is owned by the error-design discipline",
+        "evidence": "'drop the dedicated rate-limit JSON format... api-error-design owns the final envelope field names.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a machine-readable signal disambiguating which of the three limits was hit, modeled on Stripe-Rate-Limited-Reason",
+        "evidence": "'Brightmoor-Rate-Limited-Reason... This follows Stripe's Stripe-Rate-Limited-Reason.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the undocumented 200-THROTTLED GraphQL path as a named design failure, because a status-code-only client treats it as success",
+        "evidence": "'A client that checks only the status code treats it as success. This is the skill's named trap.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Where GraphQL keeps a body-level throttle signal, requires it documented as loudly as a status code and kept machine-readable, with the REST 429 case and the GraphQL 200 case documented separately so clients learn both, never mixed silently",
+        "evidence": "'Document it in the same page and with the same prominence as the REST 429'; the docs draft has separate REST and GraphQL detection.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retry guidance instructs clients to honor Retry-After",
+        "evidence": "'Wait at least that long.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retry guidance requires exponential backoff with jitter, with jitter stated explicitly",
+        "evidence": "'back off exponentially with jitter: sleep = max(Retry-After, random(0, ...))'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retry guidance states the consequence for continuing to hammer while throttled, such as banning the integration",
+        "evidence": "The docs draft has a placeholder: '[Brightmoor to confirm: consequence for ignoring limits, e.g. key suspension.] I can't invent that policy.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the precedence rule: Retry-After takes precedence over any reset time computed from limit-state headers",
+        "evidence": "'When both Retry-After and a computed reset are present, Retry-After wins.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the machine-readability gate: 100% of throttle responses must carry a machine-readable signal a documented client can branch on, and the undocumented 200 path currently fails it",
+        "evidence": "'Machine-readability: fails. A 403 with a string is not a documented signal, and the GraphQL path is undocumented.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes retry expectations only, leaving client-side retry mechanics (backoff implementation, retry budgets, idempotency keys) to the idempotency-and-retry discipline",
+        "evidence": "'Client-side mechanics (retry budgets, idempotency) belong to api-idempotency-retry.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Replaces the 403 with HTTP 429 plus a Retry-After header on every REST throttle, no exceptions",
+        "evidence": "The rollout keeps 403 for now: 'Add Retry-After... to the existing 403 body', with 429 behind opt-in.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies Retry-After as delay-seconds rather than HTTP-date, citing the client bug where an HTTP-date is parseInt-ed into NaN and triggers a retry storm",
+        "evidence": "It says 'integer seconds' but never cites the HTTP-date parse bug.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the 60-second CDN caching of throttle responses: RFC 6585 forbids caching a 429, and caching stretches the apparent throttle beyond its real duration",
+        "evidence": "'Cache-Control: no-store' and the finding that 'a 2s throttle becomes a 60s outage'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects inventing a dedicated rate-limit response format: the 429 body is a plain instance of the API's standard error envelope with a machine-readable code, whose shape is owned by the error-design discipline",
+        "evidence": "'Don't invent a dedicated rate-limit JSON format.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a machine-readable signal disambiguating which of the three limits was hit, modeled on Stripe-Rate-Limited-Reason",
+        "evidence": "The `limit` member with key-rate, org-concurrency and search-rate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the undocumented 200-THROTTLED GraphQL path as a named design failure, because a status-code-only client treats it as success",
+        "evidence": "Audit finding 4: 'HTTP-level monitoring, proxies, and retry middleware all see success'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Where GraphQL keeps a body-level throttle signal, requires it documented as loudly as a status code and kept machine-readable, with the REST 429 case and the GraphQL 200 case documented separately so clients learn both, never mixed silently",
+        "evidence": "The docs draft says 'In the one case where a GraphQL query is partly throttled, you get a 200'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retry guidance instructs clients to honor Retry-After",
+        "evidence": "'Wait at least Retry-After'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retry guidance requires exponential backoff with jitter, with jitter stated explicitly",
+        "evidence": "'exponential backoff with full jitter'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retry guidance states the consequence for continuing to hammer while throttled, such as banning the integration",
+        "evidence": "There is no ban or suspension language.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the precedence rule: Retry-After takes precedence over any reset time computed from limit-state headers",
+        "evidence": "No precedence rule is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the machine-readability gate: 100% of throttle responses must carry a machine-readable signal a documented client can branch on, and the undocumented 200 path currently fails it",
+        "evidence": "There is no explicit gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes retry expectations only, leaving client-side retry mechanics (backoff implementation, retry budgets, idempotency keys) to the idempotency-and-retry discipline",
+        "evidence": "It includes a full TypeScript retry implementation and semaphore guidance.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Grades the page row by row against a per-endpoint rubric rather than giving impressionistic feedback",
+        "evidence": "The transcript includes a 15-row table. Each row has a named rubric criterion (Description, Parameters presence/depth, Request example, Response codes, Error codes, Idempotency, Ordering, Auth, Quadrant shape, etc.) and gets an explicit Pass, Fail, Conditional or Not-assessable result, a severity and a specific finding. The verdict tallies these outcomes as 3 pass, 9 fail, 1 conditional and 2 not assessable. Coverage gates follow per dimension.",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Grades the page row by row against a per-endpoint rubric rather than giving impressionistic feedback",
+        "evidence": "The response has a 12-row rubric table. Each row covers one per-endpoint criterion (endpoint/method, parameters, edge cases, auth, Idempotency-Key, success response, errors, prerequisites, troubleshooting, request example, scope, side effects) and gives an explicit status (Pass/Partial/Missing/Unverified) with concrete notes. It also explicitly rejects impressionistic judgment: 'Quality of prose isn't the measure for a reference page.'",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

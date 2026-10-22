@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects offset pagination on `documents` and `auditEvents`, naming duplicated and skipped items under concurrent writes as the mechanism.",
+        "evidence": "\"offset pagination duplicates and skips rows between page fetches\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that deep offsets force a full scan, so the cost degrades with page depth.",
+        "evidence": "\"OFFSET 4,000,000 scans four million rows to return 20.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the upgrade-after-launch plan by stating a bare list field cannot gain pagination later without a breaking change, so the shape must be decided per field now.",
+        "evidence": "\"A bare list or offset arguments can't be fixed later without a break.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Relay cursor connections (`edges`, `node`, `cursor`, `pageInfo`, with `first`/`after` arguments) as the default rung.",
+        "evidence": "\"Default to the Relay connection (edges/node/cursor/pageInfo, first/after)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the Relay rung's high effort is collapsed in practice by native support in client libraries and server frameworks.",
+        "evidence": "\"Most GraphQL server frameworks implement Relay connections natively.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the plain cursor list (`nodes` plus `endCursor`, no edge wrapper) as the legitimate deadline step-down, noting it has named public precedent rather than being an invented shortcut.",
+        "evidence": "Offers DocumentPage { nodes, endCursor, hasNextPage } as stopgap but names no public precedent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the step-down keeps cursor semantics while giving up spec-compatible tooling, and is only available when no per-edge metadata will ever exist.",
+        "evidence": "No discussion of tooling tradeoff or per-edge metadata condition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the field's return type to be a wrapper object from day one so a later promotion to a full connection stays additive.",
+        "evidence": "\"This keeps promotion to a full connection additive. Never return a bare list.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows offset only for `workspaces`, tying it to the named niche of arbitrary page jumping over small, mostly static data.",
+        "evidence": "\"Offset is the one niche where it survives: small, mostly static data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a server-side clamp on the page-size argument with a documented maximum, rejecting the 100,000-item single call.",
+        "evidence": "\"Clamp it, with no exception for your biggest customer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the schema cannot express the page-size bound, so it must be enforced in the resolver and documented next to the field.",
+        "evidence": "Says server clamps and docs state behavior but never says schema cannot express the bound.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the non-null `totalCount`, offering nullable-and-skipped, a documented estimate, or a separately costed count query instead.",
+        "evidence": "\"nullable totalCount: Int. Compute it only when the client selects the field... estimate\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the page-size cap doubles as the multiplier a cost model prices list fields by.",
+        "evidence": "\"Page size is the multiplier a cost budget prices lists by.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects offset pagination on `documents` and `auditEvents`, naming duplicated and skipped items under concurrent writes as the mechanism.",
+        "evidence": "\"a new row shifts every page by one. Clients get duplicates and skipped rows.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that deep offsets force a full scan, so the cost degrades with page depth.",
+        "evidence": "\"`OFFSET n` reads and discards n rows, so deep pages... time out.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the upgrade-after-launch plan by stating a bare list field cannot gain pagination later without a breaking change, so the shape must be decided per field now.",
+        "evidence": "It argues about migrating from offset args to cursors. It says nothing about bare list fields.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names Relay cursor connections (`edges`, `node`, `cursor`, `pageInfo`, with `first`/`after` arguments) as the default rung.",
+        "evidence": "It says \"Cursor connection: first/after, pageInfo\" but never names Relay, edges or node.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the Relay rung's high effort is collapsed in practice by native support in client libraries and server frameworks.",
+        "evidence": "It says only that a shared helper takes a few days.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers the plain cursor list (`nodes` plus `endCursor`, no edge wrapper) as the legitimate deadline step-down, noting it has named public precedent rather than being an invented shortcut.",
+        "evidence": "Not offered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the step-down keeps cursor semantics while giving up spec-compatible tooling, and is only available when no per-edge metadata will ever exist.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the field's return type to be a wrapper object from day one so a later promotion to a full connection stays additive.",
+        "evidence": "It recommends a plain list with no wrapper for workspaces.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Allows offset only for `workspaces`, tying it to the named niche of arbitrary page jumping over small, mostly static data.",
+        "evidence": "workspaces gets \"Plain list, no pagination args\"; offset is allowed only as a capped fallback on documents.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a server-side clamp on the page-size argument with a documented maximum, rejecting the 100,000-item single call.",
+        "evidence": "Max page size column: 1,000 for documents and auditEvents, 100 hard cap for workspaces; unclamped `limit: 100000` is rejected.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the schema cannot express the page-size bound, so it must be enforced in the resolver and documented next to the field.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the non-null `totalCount`, offering nullable-and-skipped, a documented estimate, or a separately costed count query instead.",
+        "evidence": "\"Nullable, computed only when selected, documented as approximate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the page-size cap doubles as the multiplier a cost model prices list fields by.",
+        "evidence": "It mentions cost limits separately and does not link them to the cap.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,82 +1,74 @@
-I couldn't re-check the OAuth 2.1 status live, because the web fetch was denied. The last status I have is from the skill's reference file: `draft-ietf-oauth-v2-1-15`, March 2026, still a draft. Check the IETF datatracker before the doc is signed off. If it has since been published as an RFC, the number goes in the doc in place of the placeholder below.
+**Do first:** in the security doc, do not write "OAuth 2.1 (RFC xxxx)". No RFC number exists for OAuth 2.1. It is still an Internet-Draft (`draft-ietf-oauth-v2-1`, at -15 in March 2026 per the skill's reference). I could not re-check the datatracker from here. Look it up before you file.
 
-## 1. What to write in the security review doc
+Assumptions, since this is greenfield and I didn't ask the skill's clarifying questions. Correct any that are wrong and the answer changes:
+- Third-party apps include server-side and SPA clients.
+- Some apps need their own identity, not just a user's.
+- Org admins can gate installs.
 
-**There is no "OAuth 2.1 RFC number" to give legal.** The consolidated OAuth 2.1 document is still an Internet-Draft, so it has no RFC number and shouldn't be cited as a published standard. Naming it as one would put a false statement in front of legal and auditors.
+## 1. Grant list
 
-Name the specifications that are final:
-
-- **RFC 6749** is the OAuth 2.0 core framework.
-- **RFC 7636** is PKCE.
-- **RFC 8628** is the device authorization grant, used by `tsq`.
-- **RFC 6750** is bearer token usage. It governs the query-string question below.
-- **RFC 9700 (BCP 240)** is the OAuth Security Best Current Practice, published January 2025. It is final and ratified, and it is the strongest normative document you can cite.
-- **RFC 7009** (revocation), **RFC 7662** (introspection) and **RFC 8414** (discovery) cover the supporting endpoints.
-
-Suggested wording:
-
-> Tessaract's authorization server implements OAuth 2.0 (RFC 6749) hardened to the requirements of RFC 9700 (BCP 240, January 2025). It also follows the draft OAuth 2.1 profile (draft-ietf-oauth-v2-1, an IETF Internet-Draft that has not been published as an RFC). PKCE (RFC 7636, S256) is mandatory for every client. Headless clients use the device authorization grant (RFC 8628). The implicit and resource-owner password grants are not supported. Redirect URIs are matched by exact string comparison. Access tokens are accepted only in the `Authorization` header (RFC 6750 §2.1).
-
-The doc should cite **RFC 9700 as the conformance anchor** and treat OAuth 2.1 as "aligned with", not "conforms to". Per the skill's guidance, build each RFC 9700 requirement as its own gate, in the style of Django OAuth Toolkit's `COMPLIANT_BCP_RFC9700_*` booleans. Then the doc can point to exactly which requirements are enforced.
-
-## 2. Grant list
-
-| Grant | Ship? | Used by |
+| Grant | Use | Rule |
 |---|---|---|
-| `authorization_code` + PKCE (S256) | ✅ | "Connect with Tessaract" third-party apps. PKCE is required for every client, confidential ones included. |
-| `device_authorization` (RFC 8628) | ✅ | `tsq` on headless build servers. |
-| `refresh_token` | ✅ | Both of the above. |
-| `client_credentials` | ✅ only if you want app-identity tokens | Machine-to-machine access with the app's own identity, not a user's. Needs an admin-consent tier. |
-| `implicit` | ❌ | Removed in OAuth 2.1. |
-| Password grant | ❌ | Removed in OAuth 2.1. |
+| `authorization_code` + PKCE S256 | Third-party apps, SPAs, anything with a browser | PKCE mandatory for every client, public and confidential. Reject requests without it. Code is single-use, 10 min max. |
+| `device_authorization` (RFC 8628) | `tsq` CLI | One-time human approval from any browser, not on the build server. |
+| `refresh_token` | All of the above | Rotation with token-family reuse detection. Grace window 10-30 s from day one. |
+| `client_credentials` | App-identity or org-wide access, unattended CI | Confidential clients only. Admin-issued. App-identity scopes need admin consent. |
 
-**The `tsq` CLI:**
-- The device grant is the right fit for build servers with no browser. The user approves on any other device.
-- Treat `tsq` as a public client, so rotation with reuse detection applies. Build servers often share a token cache, so set the grace window to around 10-30 seconds to avoid false-positive logouts.
-- A pure CI pipeline with no human present is really a machine identity. Route it to `client_credentials` or to your API-key product, not to a device flow nobody can approve.
+Never implement `implicit` or the password grant.
 
-**Token policy defaults:**
-- Access tokens last about 1 hour.
-- Authorization codes are single-use and live at most 10 minutes.
-- Refresh tokens use rotation with token-family reuse detection, and the family is tracked from the very first grant.
-- DPoP is a later-stage option, not a day-one requirement.
+Token policy:
+- Access token: about 1 hour.
+- SPA refresh token: 24 h cap.
+- Other refresh tokens: 90-day inactivity cap.
+- Store all tokens hashed. Keep the predecessor hash plus a timestamp for the grace window.
 
-**Scopes:** use `resource:action` naming with read-only defaults, for example `dashboards:read`. Bind each scope to a token type (user-delegated or app-identity) from day one. Don't ship a catch-all scope.
+**`tsq` on headless build servers:** the device grant needs a human once. After that, an unattended server has two options:
+1. Hold the rotating refresh token in the CI secret store. Rotation writes a new token on every use, so concurrent jobs race and trip reuse detection.
+2. Use `client_credentials` with a service credential an admin issues.
 
-## 3. Redirect rules
+For CI, I recommend option 2. Keep the device grant for developer laptops and interactive sessions.
 
-1. **Exact string match only.** RFC 9700 says pattern matching has produced "several successful attacks... observed in the wild".
-2. **Register each URI in full.** That includes scheme, host, port and path.
-3. **HTTPS is required**, with one exception: native-app loopback redirects such as `http://127.0.0.1` may vary the port only.
-4. **No wildcards.** This is the answer to the frontend team's request.
-5. **Reject at registration time**, not only at runtime. Also reject at runtime any `redirect_uri` that isn't byte-identical to a registered one.
+## 2. Redirect rules
 
-**On `https://*.preview.acme-partner.dev`: decline it.**
+1. **Exact string match only.** No wildcards, prefixes, or patterns. RFC 9700 says pattern matching caused real attacks in the wild.
+2. **Reject `https://*.preview.acme-partner.dev`.** A wildcard makes any subdomain takeover or dangling preview host a code-theft path. The host would receive authorization codes from your authorization server.
+3. **Register every redirect URI explicitly at app registration.** Registration is manual and reviewed. Offer partners either:
+   - **Option A (recommended):** one stable callback, for example `https://auth.acme-partner.dev/callback`. That page redirects to the right preview deployment using the app's own `state` value, checked against its own allowlist.
+   - **Option B:** an API call in the partner's deploy pipeline that registers each preview URL exactly, and removes it at teardown. Cap the number of live URIs per client.
+4. **HTTPS required.** The only exception is loopback `http://127.0.0.1` or `[::1]` for native apps, where the port may vary (RFC 8252). This is the sole deviation from exact matching.
+5. The device grant has no redirect URI.
+6. **Runtime check:** reject any `/authorize` whose `redirect_uri` is not an exact member of the registered set. Add a test with a near-miss URI such as a trailing slash or an extra subdomain.
 
-- A wildcard lets any subdomain receive authorization codes. A dangling DNS record or a subdomain takeover on that domain then turns into account takeover for every Tessaract customer who uses that partner's app.
-- Preview hosts are the kind of subdomains that get abandoned, which makes this a realistic attack path.
+## 3. Token in the query string
 
-Workarounds that keep their previews working:
-- **Fixed callback host.** The partner registers one stable callback such as `https://auth.acme-partner.dev/callback`. It receives the code and then redirects to the right preview deployment.
-- **Per-preview registration.** Each preview URL is registered through the developer portal. Automate this with a portal API if volume requires it, since manual registration with review is the default posture.
-- **Separate sandbox client.** Give the partner a dev client, with test users and a capped user count, that is allowed to register extra exact URIs. Production keeps strict matching.
+**No.** Never accept `?access_token=` on any endpoint.
+- Query strings land in access logs, browser history, proxies, and Referer headers.
+- RFC 9700 and OAuth 2.1 forbid it.
+- Accept the Authorization header only. The POST-body form (RFC 6750 §2.2) is only for form-encoded POSTs.
 
-Do not use dynamic client registration to get around this. Open DCR is a phishing risk, and no major B2B platform offers it ungated.
+Tell the frontend team the header is a few lines in their fetch wrapper:
 
-## 4. Access token in the query string: no
+```ts
+const apiFetch = (url: string, init: RequestInit = {}) =>
+  fetch(url, { ...init, headers: { ...init.headers, Authorization: `Bearer ${token}` } });
+```
 
-- Bearer tokens must not be put in URI query strings. That is the rule in RFC 9700 and in the OAuth 2.1 draft.
-- Query strings leak into server and proxy logs, browser history and `Referer` headers. For a log-analytics product, those leaks are especially embarrassing.
-- Enforce it as a gate. The resource server should reject `?access_token=` outright. Don't accept it and merely warn.
+Two caveats for an SPA:
+- A browser SPA is a public client. It needs auth code + PKCE and a 24 h refresh cap with rotation.
+- If they still dislike holding tokens in browser storage, offer a backend-for-frontend that keeps tokens server-side.
 
-The frontend problem is a fetch-wrapper annoyance, so fix it there:
-- Set the header once in the wrapper with `headers: { Authorization: \`Bearer ${token}\` }`.
-- Better, don't hold the token in the browser at all. Put a small backend-for-frontend in front of the SPA, keep tokens server-side, and have the SPA use a session cookie.
-- Cap refresh-token lifetime hard for browser clients. Microsoft's 24-hour SPA limit is a reasonable reference.
+## 4. What to write in the doc
 
-## 5. Decisions to confirm before you build
+Copy-ready text:
 
-- Do third-party apps act only for a signed-in user, or also with their own identity? This decides whether `client_credentials` ships.
-- Can any scope reach other users' data or bulk data? If yes, apps need a third-party security assessment before they can request it.
-- Does an org admin need to approve installs? In B2B this is almost certainly yes, so design the admin approval surface now rather than when the first enterprise customer asks.
-- Will you build the authorization server yourselves, or on an identity product that already ships rotation and DPoP as configuration? That changes the effort ranking above.
+> Tessaract's authorization server implements the OAuth 2.0 Authorization Framework (RFC 6749) and Bearer Token Usage (RFC 6750). It requires PKCE (RFC 7636) for all clients and supports the Device Authorization Grant (RFC 8628). It conforms to the security requirements of *OAuth 2.0 Security Best Current Practice*, RFC 9700 (BCP 240, January 2025). It follows the OAuth 2.1 profile (`draft-ietf-oauth-v2-1`, an Internet-Draft that is not yet published as an RFC). Tessaract does not implement the implicit or resource-owner password grants. It matches redirect URIs by exact string comparison. It does not accept access tokens in URI query strings.
+
+For legal:
+- The normative, numbered documents are **RFC 6749, 6750, 7636, 8628 and 9700 (BCP 240)**.
+- OAuth 2.1 has no RFC number. Cite it only as a draft.
+- Add RFC 7009 (revocation) and RFC 8414 (discovery) if you ship those endpoints.
+- Before launch, re-check whether OAuth 2.1 has been published and update the sentence.
+
+## Next step (2 min)
+
+Answer the three assumptions above, mainly whether CI needs `client_credentials` and whether org admins gate installs. Then I can draft the scope taxonomy and consent screen, which is step 2 of the skill.

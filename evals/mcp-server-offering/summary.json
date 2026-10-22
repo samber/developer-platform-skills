@@ -1,0 +1,426 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "mcp-server-offering",
+  "scenarios": 11,
+  "expectations_total": 119,
+  "expectations_subjective": 0,
+  "expectations_objective": 119,
+  "pass_rate_with_skill_pct": 81.5,
+  "pass_rate_without_skill_pct": 38.7,
+  "delta_pp": 42.8,
+  "uplift_multiplier": 2.11,
+  "trigger_accuracy_pct": 52.5,
+  "trigger_queries": 118,
+  "trigger_positive_fire_rate": 0.169,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Treats writing tool descriptions as budgeted engineering work, noting that description-only tuning has measurably cut agent error rates with no code change."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Withholds breadth patterns - a generic execute-any-endpoint escape hatch, dynamic tool loading, client-selectable toolset grouping - unless a breadth requirement is proven, rather than offering them as the fix."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the competitive question has moved from 'supports MCP' to 'supports MCP well'."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Applies the explicit test that an end user must not be able to bypass the control by switching clients."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the rule that when dry-run is not feasible, the destructive tool stays behind an approval gate rather than shipping live-only."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names risk-tiered server-side policy gates as the high-protection, high-effort option and gives the conditions that promote it - unattended background agents, write volume beyond human approval capacity, or a first write incident."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Ranks the safety patterns on more than one axis - protection and effort or efficiency stated separately - instead of one blended ordering."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rules out local stdio entirely for this audience because enterprise agent fleets consume hosted endpoints."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that hosting choice is invisible to the buyer, since the client sees the same OAuth-protected endpoint either way, so the value difference between remote postures is a genuine tie."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Separates three versioning layers explicitly - the MCP protocol revision, Tollgate's own server API under semantic versioning, and the unstandardized tool-surface contract - rather than treating MCP versioning as one decision."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Prescribes instrumenting tool calls as OpenTelemetry spans - session to tool invocation to downstream operation - rather than a bespoke event schema."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Justifies OpenTelemetry by the enterprise customer's own observability stack being an audience for the data, not only Pellham's dashboard."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the metric set: call volume, success and error rate, per-tool usage, active users, and client distribution."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the dual purpose of that metric set - confirming the server is used at all, and whether adoption is broad or concentrated."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Points at the first-party disclosure shape worth matching - call volume, write share, non-technical-user share, enterprise share, retention by cohort, and accuracy plus token-efficiency gains."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the gate from read-only to writes as sustained tool-call volume from real agent clients - explicitly excluding demo or hackathon spikes - plus a tool-error rate under 2%."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the gate for expanding write scope as a clean audit trail, zero unattributed writes, and demonstrated approval-flow reliability in production."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Identifies enterprise agent fleets as the most demanding agent-consumer type present and requires designing for it, noting a surface safe for unattended fleets serves supervised assistants for free but not the reverse."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Flags tool-description text itself as an attack surface for prompt injection and tool poisoning that a lockdown mode does not cover, warranting sanitization."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Routes the route-planning job to the existing web app behind a link, applying the test that the job needs no surrounding conversation context, no tool calls back into the server, and no use of the host's other connected capabilities."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires testing in at least two hosts plus one client without the extension to prove the plain-result fallback, and points at the ext-apps repository's basic-host example for rendering apps locally."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "States that the sandbox protects the host, not the app's own integrity, and requires escaping model- and user-supplied data (receipt merchant names, memo text) in the UI like untrusted input."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Cites the real-world median of 5 tools per server across 1,412 analyzed servers."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Attributes the 'runs out of room' symptom to tool metadata consuming roughly 40-50% of the agent's context window before any work begins."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Renames tools to verb-first, service-prefixed snake_case (for example corvale_list_invoices) instead of unprefixed camelCase."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats writing tool descriptions as budgeted engineering work, noting that description-only tuning has measurably cut agent error rates with no code change."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Applies parameter mistake-proofing (poka-yoke): absolute identifiers over relative ones, enums over free-form strings."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Assigns exactly one risk level per tool and splits any tool that both reads and irreversibly writes into two tools."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Withholds breadth patterns - a generic execute-any-endpoint escape hatch, dynamic tool loading, client-selectable toolset grouping - unless a breadth requirement is proven, rather than offering them as the fix."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Refuses the '78% of enterprises use MCP in production' figure and states it is debunked."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Refuses the '28% of Fortune 500 run production MCP deployments' figure and states it is debunked."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Substitutes the roughly 41% limited-to-broad production figure from the December 2025 survey of 300 senior technical leaders as the citable adoption baseline."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites the strongest first-party dataset available - over 5 million tool calls per working day with roughly a third of them writes."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Cites the 44% more accurate answers using 48% fewer tokens result from that same first-party disclosure."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that only 11-14% of enterprise agentic pilots reach production and ties the stall to identity, audit, and access-control gaps."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Frames MCP for Latchkey as defensive positioning becoming procurement table stakes rather than a new revenue channel, because Latchkey already ships a public REST API."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the competitive question has moved from 'supports MCP' to 'supports MCP well'."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Treats RFP pressure as a qualitative signal and attaches no percentage to it."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Separates demo-grade effort from production-grade effort, citing an order of 150-250 hours for a simple hand-built API-integration server plus a standing maintenance commitment."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Applies the explicit test that an end user must not be able to bypass the control by switching clients."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Assigns each of the three actions exactly one risk tier using the four-tier classification (Read Only, Minimal Impact, Contained Write, Critical)."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Prescribes the default rung: scoped or restricted credentials plus a verified read-only mode, human-in-the-loop approval on contained writes, and irreversible tools disabled by default."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires idempotency keys on every write and a spend or rate cap on the refund tool because it moves money."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends dry-run preflight where feasible while flagging dry-run as an uncommon pattern in the ecosystem rather than a standard one."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the rule that when dry-run is not feasible, the destructive tool stays behind an approval gate rather than shipping live-only."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that undo and rollback are largely absent across the MCP ecosystem, and that attribution plus immutable audit logs are the substitute rather than a solved reversibility answer."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names risk-tiered server-side policy gates as the high-protection, high-effort option and gives the conditions that promote it - unattended background agents, write volume beyond human approval capacity, or a first write incident."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Ranks the safety patterns on more than one axis - protection and effort or efficiency stated separately - instead of one blended ordering."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the sticky-session design and requires stateless, interchangeable server instances behind a plain load balancer."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires issuer validation (RFC 9207)."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names a remote managed platform as the default hosting rung rather than self-hosting, justified by the protocol shipping four backward-incompatible revisions in its first twenty months plus the OAuth machinery a platform absorbs."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the conditions that promote self-hosting anyway - a custom server-side risk-tier policy layer, residency constraints, MCP being the product, or existing multi-tenant edge infrastructure - and tests Kestrel against them instead of approving or rejecting self-hosting flatly."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rules out local stdio entirely for this audience because enterprise agent fleets consume hosted endpoints."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that hosting choice is invisible to the buyer, since the client sees the same OAuth-protected endpoint either way, so the value difference between remote postures is a genuine tie."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Includes the hardening floor: schema-validate every input with bounded sizes and ranges, sanitize paths, and never leak internal errors to the client."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Identifies the description copy edit as the cause, explaining that a tool description is a compiled interface whose wording changes the model's probability of selecting that tool."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites the analysis of 61,097 catalogued tools that measured description wording altering tool-selection probability."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Separates three versioning layers explicitly - the MCP protocol revision, Tollgate's own server API under semantic versioning, and the unstandardized tool-surface contract - rather than treating MCP versioning as one decision."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Classifies renaming or removing a toolset name as a major version bump of the server's public API."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires a published deprecation window of at least 90 days with machine-readable response-header signaling, plus a version marker carried in the response envelope and logged on every call."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that only in-server telemetry answers the adoption question, and that download counts exclude private mirrors and cannot be read as execution counts."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Prescribes instrumenting tool calls as OpenTelemetry spans - session to tool invocation to downstream operation - rather than a bespoke event schema."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Justifies OpenTelemetry by the enterprise customer's own observability stack being an audience for the data, not only Pellham's dashboard."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the metric set: call volume, success and error rate, per-tool usage, active users, and client distribution."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the dual purpose of that metric set - confirming the server is used at all, and whether adoption is broad or concentrated."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Handles the gateway-fronted customers by designing metrics to be correlatable through stable tool names and request IDs, instead of assuming Pellham's telemetry is the only visibility layer."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Points at the first-party disclosure shape worth matching - call volume, write share, non-technical-user share, enterprise share, retention by cohort, and accuracy plus token-efficiency gains."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Identifies Ferrolane's complete lack of a public API as the exception to the defensive-positioning framing, making MCP a genuinely new acquisition channel rather than a defensive duplicate."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites that roughly half the companies shipping MCP servers had no public REST API."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Flags that with no machine-readable interface at all the tool surface cannot be derived from an existing contract, which changes the effort and ROI framing."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Budgets honestly: demo-grade in days versus production-grade in months plus standing maintenance, citing an order of 150-250 hours for a simple hand-built API-integration server."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the park rule: if tool-call volume stays flat and no RFP demand materializes after two full quarters, keep it as low-maintenance table stakes and explicitly defer the production build."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the accelerate override: a hard MCP requirement in actual buyer RFPs justifies skipping past the staged timeline."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks about the effort ceiling and the date the server must land by - engineering hours, maintenance appetite, reversibility - before recommending a hosting posture."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Makes stage one a read-only launch with the curated tool set, OAuth 2.1 from day one, OpenTelemetry from the first call, and registry publication."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the gate from read-only to writes as sustained tool-call volume from real agent clients - explicitly excluding demo or hackathon spikes - plus a tool-error rate under 2%."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the gate for expanding write scope as a clean audit trail, zero unattributed writes, and demonstrated approval-flow reliability in production."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Places the interactive in-assistant UI at the differentiation stage, after writes are proven, rather than in the launch release."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires validating that target customers' security teams will permit iframe-rendered third-party UI inside their AI assistant, and names this an open ecosystem question rather than a settled yes."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends asking two or three design partners about that acceptance before building the UI."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Classifies delete_project as Critical tier and disables it by default rather than shipping it enabled."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Labels the stage-gate numbers as calibration defaults drawn from one vendor's practice, to be re-baselined against Bramwell's own first month, not an industry standard."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that a hard MCP requirement in buyer RFPs would be the one reason to accelerate past stages, and that no such evidence has been presented here."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Identifies enterprise agent fleets as the most demanding agent-consumer type present and requires designing for it, noting a surface safe for unattended fleets serves supervised assistants for free but not the reverse."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires testing that write tools are actually absent under the read-only flag rather than trusting the configuration, citing a documented vendor bug where a read-only flag failed to omit write tools."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires agent and session attribution on every write, with asynchronous audit logging so it adds no request latency."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Keeps the human as the principal - the agent operates under the employee's own permissions plus agent and session context - and rejects creating separate agent accounts."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires server-side enforcement on the grounds that the customer's own platform team controls and can swap the client."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends risk-tiered server-side policy gates given unattended overnight agents, rather than leaving human-in-the-loop approval as the top control."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Prices each app as a second front-end with its own build, tests, accessibility and security review, maintained for as long as the tool exists."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Routes the route-planning job to the existing web app behind a link, applying the test that the job needs no surrounding conversation context, no tool calls back into the server, and no use of the host's other connected capabilities."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Scopes the first app to the single highest-value workflow, as the differentiation stage prescribes, instead of nine apps in one quarter."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires testing in at least two hosts plus one client without the extension to prove the plain-result fallback, and points at the ext-apps repository's basic-host example for rendering apps locally."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Instruments app-rendered versus text-only calls per client plus completion of the interactive job, and commits to retiring any app that is rendered but never used while keeping its tool."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "States that the sandbox protects the host, not the app's own integrity, and requires escaping model- and user-supplied data (receipt merchant names, memo text) in the UI like untrusted input."
+      }
+    ]
+  }
+}

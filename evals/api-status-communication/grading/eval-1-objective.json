@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects listing all 38 microservices as status-page components",
+        "evidence": "\"List all 38 microservices as components | \u274c Change\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends grouping into a handful of consumer-recognizable components chosen by the user's mental model of the product (e.g. API, dashboard, webhooks, docs), not internal architecture",
+        "evidence": "Seven groups such as Shipment Creation & Labels, Tracking and Webhooks, tested by \"would an integrator name it in a support ticket?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the custom Detected/Diagnosing/Patching/Stable lifecycle vocabulary",
+        "evidence": "\"Keep internally, publish the standard four\"; \"A custom set costs comprehension and buys nothing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses exactly the four statuses Investigating, Identified, Monitoring, Resolved",
+        "evidence": "Investigating, Identified, Monitoring, Resolved in the lifecycle table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the standard vocabulary by subscriber comprehension: readers already know the industry-wide set, a custom set costs comprehension and buys nothing",
+        "evidence": "\"Subscribers already read Investigating, Identified, Monitoring and Resolved. A custom set costs comprehension and buys nothing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the six-color scale and caps the page at four visual states (operational / degraded / partial / major)",
+        "evidence": "\"Six-color severity scale | \u274c Change | The page takes four visual states.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines Degraded Performance as working but slow for everyone",
+        "evidence": "\"Works, but slow or elevated errors for everyone in scope\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines Partial Outage as completely broken for a subset of users",
+        "evidence": "\"Completely broken for a subset (a region, a customer segment, an endpoint class)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines Major Outage as unavailable for everyone",
+        "evidence": "\"Unavailable for everyone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that component severity encodes breadth of impact, not felt severity",
+        "evidence": "\"State is breadth of impact.\"; \"defined by breadth of impact, not by how bad it feels\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the top-level page status aggregates from the worst component state",
+        "evidence": "\"Top-level page status is the worst component state.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends writing the aggregation/blend rule down so it is applied consistently rather than re-argued per incident",
+        "evidence": "\"Rules to write down once, so they aren't re-argued per incident\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the Frankfurt case as a Partial Outage scoped to that region, not a blanket page-wide state alarming users elsewhere",
+        "evidence": "\"a Partial Outage, scoped to Frankfurt... It is not Major Outage\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects listing all 38 microservices as status-page components",
+        "evidence": "\"Components: about 10 customer-facing ones, not 38\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends grouping into a handful of consumer-recognizable components chosen by the user's mental model of the product (e.g. API, dashboard, webhooks, docs), not internal architecture",
+        "evidence": "\"a component is something an integrator can name from their own integration code\"; example set of ~11 components",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the custom Detected/Diagnosing/Patching/Stable lifecycle vocabulary",
+        "evidence": "\"use the standard four publicly, keep yours internally\"; \"Your vocabulary describes your response process, not the customer's situation\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses exactly the four statuses Investigating, Identified, Monitoring, Resolved",
+        "evidence": "\"Investigating \u2192 Identified \u2192 Monitoring \u2192 Resolved\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the standard vocabulary by subscriber comprehension: readers already know the industry-wide set, a custom set costs comprehension and buys nothing",
+        "evidence": "The reasons given are gaps in the custom set and that \"Customers' tooling ... expects the standard states\". It never says readers already know the industry-wide set.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the six-color scale and caps the page at four visual states (operational / degraded / partial / major)",
+        "evidence": "\"Severity: four levels plus maintenance\"; \"Six colors would have two problems\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines Degraded Performance as working but slow for everyone",
+        "evidence": "\"Works but slow or flaky: p95 latency above 2\u00d7 baseline, or 5xx errors between 1% and 5%\". Nothing says it affects everyone.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defines Partial Outage as completely broken for a subset of users",
+        "evidence": "\"Part of the component is failing ... or one sub-capability, carrier, or region unavailable\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines Major Outage as unavailable for everyone",
+        "evidence": "\"Unusable for the affected scope: 5xx above 50% or total failure\". This is scope-relative, not for everyone.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States explicitly that component severity encodes breadth of impact, not felt severity",
+        "evidence": "The transcript defines levels by error-rate thresholds and separately by scope. It never says the level encodes breadth of impact.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the top-level page status aggregates from the worst component state",
+        "evidence": "\"The page banner shows the worst status for the viewer's selected region.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends writing the aggregation/blend rule down so it is applied consistently rather than re-argued per incident",
+        "evidence": "No recommendation to document the blend rule so it isn't re-argued per incident.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies the Frankfurt case as a Partial Outage scoped to that region, not a blanket page-wide state alarming users elsewhere",
+        "evidence": "\"every component in `eu-frankfurt` = Major outage, if there was no failover.\" It does scope to the region but labels it Major.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

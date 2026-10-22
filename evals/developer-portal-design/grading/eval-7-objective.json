@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Proposes a two-level hierarchy of organization to project (or workspace).",
+        "evidence": "Objects: 'Organization... \u251c\u2500 Project'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes credentials, usage and environments to the project or workspace level rather than to the account or organization level.",
+        "evidence": "'Keys, logs, usage and environments scope to the project, not the org.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bundles permissions into named roles rather than assigning permissions to users individually.",
+        "evidence": "'Org-level roles are bundles of capabilities. Nobody is assigned a capability individually.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates at minimum who manages credentials, who views billing and usage, and who invites teammates - answering the finance-visibility request without granting key access.",
+        "evidence": "'Billing never sees key values, the key list, or request logs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes test-versus-live environment separation a first-class portal concept rather than a naming convention on keys.",
+        "evidence": "'Test and live are separate and first-class.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the environment marker visible on log and usage surfaces, not only on the credential list.",
+        "evidence": "'Every key, log row and usage chart shows its environment.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds approval-gated signup for the contracted utility partners.",
+        "evidence": "'Partner door... SSO-only, approval-gated.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds SSO and SCIM provisioning for the enterprise partner tenants.",
+        "evidence": "SAML/OIDC per org, 'SCIM is added later', IdP group mapping.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds partner-side controls beyond the public tier, including at least one of: team-owned or team-shared applications, page-level visibility permissions, a viewer-versus-consumer role split.",
+        "evidence": "Viewer role with redacted logs, project-level role overrides, verified domains, audit log.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises the one-portal-versus-two question explicitly for the public and partner audiences, noting separate portals can share one API backend.",
+        "evidence": "Says 'A separate partner portal would double the product surface' and to 'Revisit that only if the partners want their own domain', but never notes separate portals can share one API backend.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames that separate-portal question as an architectural decision rather than a licensing or vendor-packaging one.",
+        "evidence": "Frames it as product surface and model: 'double the product surface for no model benefit', not as licensing or packaging.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Proposes a two-level hierarchy of organization to project (or workspace).",
+        "evidence": "The model is Organization with test/live Environments and no project level.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes credentials, usage and environments to the project or workspace level rather than to the account or organization level.",
+        "evidence": "'API keys belong to an organization and an environment.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Bundles permissions into named roles rather than assigning permissions to users individually.",
+        "evidence": "'Roles are fixed bundles of permissions' (Owner, Admin, Developer, Billing, Viewer).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates at minimum who manages credentials, who views billing and usage, and who invites teammates - answering the finance-visibility request without granting key access.",
+        "evidence": "'Billing... holds billing.read and billing.write and no keys.* permission.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes test-versus-live environment separation a first-class portal concept rather than a naming convention on keys.",
+        "evidence": "The Environment entity with status, and isolation enforced at the gateway.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the environment marker visible on log and usage surfaces, not only on the credential list.",
+        "evidence": "Only key prefixes and spend grouped by environment are mentioned, not logs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds approval-gated signup for the contracted utility partners.",
+        "evidence": "The AccessRequest and pending_approval lifecycle; 'live stays locked until approval'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds SSO and SCIM provisioning for the enterprise partner tenants.",
+        "evidence": "SsoConnection with enforced SSO, JIT and SCIM.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds partner-side controls beyond the public tier, including at least one of: team-owned or team-shared applications, page-level visibility permissions, a viewer-versus-consumer role split.",
+        "evidence": "It has IP allowlists and break-glass, but not team-shared apps, page visibility or a viewer/consumer split for partners.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Raises the one-portal-versus-two question explicitly for the public and partner audiences, noting separate portals can share one API backend.",
+        "evidence": "Not raised.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames that separate-portal question as an architectural decision rather than a licensing or vendor-packaging one.",
+        "evidence": "Not raised.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

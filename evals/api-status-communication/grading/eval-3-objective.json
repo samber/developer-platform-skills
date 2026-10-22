@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends the status page with email and RSS subscription enabled as the default first rung",
+        "evidence": "\"Move the status page off your own infrastructure, with email and RSS subscriptions on.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes hosted status tooling provides email/RSS subscription nearly free",
+        "evidence": "\"hosted tool's built-in subscriptions\"; \"Use hosted tooling for the rungs it provides nearly free\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that subscriptions reduce inbound support tickets during incidents (a support-load lever, not a courtesy)",
+        "evidence": "\"Subscribers who can answer their own question also cut your support tickets during incidents.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes webhook push because the audience is integrating developers who wire status into their own alerting",
+        "evidence": "\"Your integrators are developers and already consume your webhooks\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes webhook push is cheap here specifically because the platform already runs webhook delivery infrastructure",
+        "evidence": "\"already consume your webhooks, so this rung is cheap\"; reuse \"existing webhook signing\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes SMS/phone-grade push from the plan entirely rather than ranking it last or deferring it to later",
+        "evidence": "\"Drop SMS. Don't park it as 'later'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the SMS deletion by the absence of contractual SLAs and enterprise customers, given its per-message cost and deliverability work",
+        "evidence": "\"Credit-card signups only, no enterprise contracts... Per-message cost and deliverability work would serve no one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the SMS re-promotion trigger: the first contract that specifies a notification channel",
+        "evidence": "\"The re-promotion trigger is the first contract that specifies a notification channel.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the shared AWS account / shared DNS hosting as a problem: the page dies with the platform at the only moment it matters",
+        "evidence": "\"A page that dies with the platform is worth nothing during the outage it should report.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes out-of-band redundancy (page hosted off the platform's own infrastructure, or at least one channel surviving a platform DNS/CDN failure) because of the shared hosting",
+        "evidence": "\"Use a separate domain, registrar and DNS provider.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes pull (the page the customer must visit) from push (subscriptions) and states a mature practice needs both",
+        "evidence": "It lists channels but never states the pull-versus-push distinction or that a mature practice needs both.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the channel ranking explicitly rather than leaving it implied by list order",
+        "evidence": "A numbered \"Short answer\" list ranks the channels.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the final ordering to the user's stated answers (no contracts, developer audience, shared infra, two-week ceiling), saying which constraint moved which rung",
+        "evidence": "The \"Your answer | Effect on ranking\" table maps each constraint to a rung.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends the status page with email and RSS subscription enabled as the default first rung",
+        "evidence": "\"build webhooks first, then email\"; RSS ranks third. The status page is only decoupled in Step 0.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes hosted status tooling provides email/RSS subscription nearly free",
+        "evidence": "\"~3 days (or free with a hosted status vendor)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that subscriptions reduce inbound support tickets during incidents (a support-load lever, not a courtesy)",
+        "evidence": "Support load is never mentioned as a reason.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes webhook push because the audience is integrating developers who wire status into their own alerting",
+        "evidence": "\"Your integrators are developers ... the only channel that lets them automate a response\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes webhook push is cheap here specifically because the platform already runs webhook delivery infrastructure",
+        "evidence": "It says to reuse the signing scheme and integrators' handlers, but also \"Send them from the independent path, not the product's webhook dispatcher.\" The existing delivery infrastructure is not credited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes SMS/phone-grade push from the plan entirely rather than ranking it last or deferring it to later",
+        "evidence": "\"Skip | SMS\", \"Skip | Push\" with reasons",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the SMS deletion by the absence of contractual SLAs and enterprise customers, given its per-message cost and deliverability work",
+        "evidence": "\"Nothing contractual pushes you toward it. You have no SLAs with penalties and no enterprise on-call contracts\"; A2P 10DLC and per-message cost",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the SMS re-promotion trigger: the first contract that specifies a notification channel",
+        "evidence": "Only \"If customers ask for pager-style alerts later, offer a PagerDuty or Opsgenie-compatible webhook\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the shared AWS account / shared DNS hosting as a problem: the page dies with the platform at the only moment it matters",
+        "evidence": "\"Your status page shares an AWS account and Route53 zone with the product ... Customers then get silence at the moment they most need an update.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes out-of-band redundancy (page hosted off the platform's own infrastructure, or at least one channel surviving a platform DNS/CDN failure) because of the shared hosting",
+        "evidence": "\"Put the status page on a different provider, or at least a different AWS account, region and DNS zone\"; separate domain; independent sender",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes pull (the page the customer must visit) from push (subscriptions) and states a mature practice needs both",
+        "evidence": "No explicit pull-vs-push framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the channel ranking explicitly rather than leaving it implied by list order",
+        "evidence": "Table with an \"Order\" column, plus \"build webhooks first, then email\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the final ordering to the user's stated answers (no contracts, developer audience, shared infra, two-week ceiling), saying which constraint moved which rung",
+        "evidence": "Webhooks because \"Your integrators are developers\"; SMS skipped because \"credit-card only\" and \"no SLAs\"; Step 0 for shared infra; two-week schedule",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

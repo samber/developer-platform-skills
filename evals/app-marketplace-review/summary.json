@@ -1,0 +1,354 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "app-marketplace-review",
+  "scenarios": 9,
+  "expectations_total": 111,
+  "expectations_subjective": 0,
+  "expectations_objective": 111,
+  "pass_rate_with_skill_pct": 82.9,
+  "pass_rate_without_skill_pct": 47.7,
+  "delta_pp": 35.2,
+  "uplift_multiplier": 1.74,
+  "trigger_accuracy_pct": 59.2,
+  "trigger_queries": 98,
+  "trigger_positive_fire_rate": 0.408,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "States unconditional re-certification of every post-approval change is viable only where a deterministic automated test suite returns a report fast enough to keep it cheap, benchmarked around 24 working hours"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the consequence explicitly: a consumer-adjacent marketplace whose apps hold restricted scopes should out-review a B2B marketplace whose apps only read metadata"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Refuses a no-review registry as an option rather than offering it as the cheapest choice"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Warns that the sensitivity tiering must be settled early, because changing it late forces a rewrite of the re-review, hardening and enforcement sections built on top of it"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States explicitly that this ladder carries no efficiency or effort ranking, because severity and the developer's response pick the rung rather than the operator's effort budget"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the reason: retroactive rule changes without runway burn the partner trust the review program exists to build"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires an incident-reporting channel feeding the ladder"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Lists vulnerability discovery through internal scanning, a disclosure program, and a bug bounty as the program matures"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States secrets-handling rules as prohibitions covering source repositories, URL strings, and logs"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Applies codebase scanning for prohibited patterns as a reviewer verification technique"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Applies configuration and manifest inspection, plus UI/UX verification, as reviewer verification techniques"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Applies OAuth, billing and install flow tracing as a reviewer verification technique"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends a single hard gate as the default rung, given apps reach read-write access on business records"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Emits reviewer effort per submission as its own ordering across the pipeline shapes"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Emits buyer trust signal as its own separate ordering"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Emits efficiency as its own separate ordering"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Explains that the trust and efficiency orderings invert, because a uniform hard bar gives every buyer the same guarantee at full reviewer cost while a fast path or ladder means 'listed' certifies less than 'certified'"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names the staged gate with an objective fast path as the later promotion once update volume makes reviewer cost the binding constraint, not as the launch shape"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Instructs iterating on the document until all four gates pass rather than shipping with known gaps"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Recommends short-lived scoped publish tokens, citing a 7-day default and 90-day maximum lifetime"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Specifies a publish-to-propagation hold of 24-48 hours between a cleared update and auto-propagation to installed tenants"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes an expedite path through the hold for genuine security fixes"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats the propagation hold as mandatory rather than optional, because updates auto-propagate to installed tenants"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names OIDC trusted publishing from CI/CD as the promotion once publisher count outgrows token hygiene"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the controls must be layered rather than relying on any single one, noting that published marketplace controls have demonstrated real-world bypasses"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Trigger list includes a new app type or edition"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the test of an objective trigger is that a developer can self-assess it before submitting"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns that without that scanning the fast path becomes the gap it was meant to close"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States unconditional re-certification of every post-approval change is viable only where a deterministic automated test suite returns a report fast enough to keep it cheap, benchmarked around 24 working hours"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States periodic approval expiry is the only rung that catches drift in apps that never ship an update, and promotes it as an annual floor for the restricted-scope tier rather than as the main policy"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Uses that EU exposure to promote the appeal rung above the default rather than treating it as a footnote"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends the dashboard-integrated appeal, pre-populated with the violation context, as the rung EU exposure promotes"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States fix-and-resubmit alone is acceptable only pre-launch at trivial volume"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the consequence explicitly: a consumer-adjacent marketplace whose apps hold restricted scopes should out-review a B2B marketplace whose apps only read metadata"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Keeps post-publication automated scanning in place despite the lighter admission gate"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires that escalation trigger to be written so a developer can self-assess it before submitting"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Refuses a no-review registry as an option rather than offering it as the cheapest choice"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Warns that the sensitivity tiering must be settled early, because changing it late forces a rewrite of the re-review, hardening and enforcement sections built on top of it"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Routes to human reviewers only judgment calls plus a single genuinely ambiguous signal class, naming secret-scan hits as that class"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Tiers scan cadence by cost - cheap checks daily, expensive per-version checks on release, slow checks monthly"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names automated-scan false-positive rate as a tracked metric, because rising false positives retrain reviewers to ignore the scanner"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names share of updates clearing the fast path as a tracked metric"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "The ladder runs: finding raised, remediation SLA by severity, listing hidden, new installs suspended, tokens revoked or kill switch, then delisting with notification to affected customers"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Every rung names an owner"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Every rung names a developer-notice period"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Every rung names the evidence that fires it"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States explicitly that this ladder carries no efficiency or effort ranking, because severity and the developer's response pick the rung rather than the operator's effort budget"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds graduated publisher-level enforcement for chronic non-responsive or low-quality submitters, distinct from rejecting or removing a single app"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Sets at least six months of notice before a new requirement takes effect on already-listed apps"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the reason: retroactive rule changes without runway burn the partner trust the review program exists to build"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires a named security contact per partner as a standing discovery channel"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires an incident-reporting channel feeding the ladder"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Lists vulnerability discovery through internal scanning, a disclosure program, and a bug bounty as the program matures"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the ledger.write request as escalating the app up one review tier"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires the tier-escalation trigger to be objective enough for a developer to self-assess it before submitting"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States secrets-handling rules as prohibitions covering source repositories, URL strings, and logs"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Applies codebase scanning for prohibited patterns as a reviewer verification technique"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Applies configuration and manifest inspection, plus UI/UX verification, as reviewer verification techniques"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Applies OAuth, billing and install flow tracing as a reviewer verification technique"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Recommends a single hard gate as the default rung, given apps reach read-write access on business records"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the two-rung ladder starves the quality floor because 'listed' clears almost no bar"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the ladder is promoted only when the binding risk is developer-adoption friction, which is rare once the data grant passes metadata-only"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Warns that an uncertified-but-listed tier is an incident waiting to be attributed to the operator"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Emits reviewer effort per submission as its own ordering across the pipeline shapes"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Emits buyer trust signal as its own separate ordering"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Emits efficiency as its own separate ordering"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Explains that the trust and efficiency orderings invert, because a uniform hard bar gives every buyer the same guarantee at full reviewer cost while a fast path or ladder means 'listed' certifies less than 'certified'"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Treats the enterprise trust tier as stackable on top of whichever base gate exists, never as a replacement for one"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Sequences the enterprise trust tier after the base gate is proven rather than at launch"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names the staged gate with an objective fast path as the later promotion once update volume makes reviewer cost the binding constraint, not as the launch shape"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States which input moved which rung, specifically that the read-write grant on business records is what holds the hard gate"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Checks the document against a fixed set of four design-document gates rather than giving general impressionistic feedback"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Fails Section 4 because no enforcement rung names an owner, a notice period, or the evidence that fires it"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires a publish-to-propagation hold specifically because updates auto-install into tenants overnight"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Replaces the long-lived portal password publish path with short-lived scoped publish tokens"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Instructs iterating on the document until all four gates pass rather than shipping with known gaps"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Lists operating metrics for once it is live, including time-to-first-decision against a published SLA and post-approval security findings per quarter with time-to-remediation"
+      }
+    ]
+  }
+}

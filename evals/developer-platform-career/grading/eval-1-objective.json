@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Establishes who the primary consumer of the role's output is - the company's own engineering teams or developers outside the company - before giving a plan",
+        "evidence": "Section 1 table 'Consumer: The company's own engineers vs Developers outside the company' comes before the plan.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that \"platform engineer\" and \"platform engineering\" overwhelmingly mean internal developer platforms elsewhere in the industry: self-service infrastructure, CI/CD, Kubernetes abstractions, golden paths",
+        "evidence": "'\"Platform engineer\" has two meanings'; IDP column lists 'Kubernetes, CI/CD, Backstage, golden paths'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the two target jobs (public REST API, partner webhooks, customer-facing SDKs) as the external/public-API population rather than the internal-developer-platform one",
+        "evidence": "'That is an **external API platform** role.' / 'That is also **external**.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names PlatformCon as the internal-developer-platform community and states it does not cover the external-API track",
+        "evidence": "'PlatformCon serves the IDP audience and covers none of what these two jobs screen on.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Redirects the community and conference choice toward apidays rather than PlatformCon",
+        "evidence": "'Put apidays on your radar instead.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that Kubernetes/CKA-style internal-infrastructure study does not build the signal these external-API roles screen on",
+        "evidence": "'CKA is an internal-IDP credential... Pause the CKA course.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the target role track explicitly as one of API Product Manager, Platform Engineer/Architect, or Partner/Integration Engineer",
+        "evidence": "'Platform Engineer (external API)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the target company archetype explicitly as one of infra/API-first, bolt-on public API on an existing product, or enterprise partner/ISV ecosystem",
+        "evidence": "'Cadenza: Infra/API-first.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that sourcing the wrong population also benchmarks the wrong compensation band (general infra/SRE versus general backend/product engineering with an API-design specialization)",
+        "evidence": "Only says to benchmark against the general SWE band and avoid platform titles; it never says the wrong population gives the wrong band.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends API-design portfolio artifacts - RFCs or design docs, shipped API/schema designs, open-source contributions - over infrastructure certifications",
+        "evidence": "Months 2-4 plan RFCs, sample API, SDK, OSS contributions; pauses CKA.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Establishes who the primary consumer of the role's output is - the company's own engineering teams or developers outside the company - before giving a plan",
+        "evidence": "Finding 1, ahead of the plan, says Cadenza and Vellum are 'API and developer-experience platform roles' while the CKA and PlatformCon lean toward 'infrastructure platform work (internal developer platforms, Kubernetes)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that \"platform engineer\" and \"platform engineering\" overwhelmingly mean internal developer platforms elsewhere in the industry: self-service infrastructure, CI/CD, Kubernetes abstractions, golden paths",
+        "evidence": "It only says the CKA and PlatformCon 'lean toward infrastructure platform work'. It never says the title overwhelmingly means IDPs industry-wide.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the two target jobs (public REST API, partner webhooks, customer-facing SDKs) as the external/public-API population rather than the internal-developer-platform one",
+        "evidence": "'Cadenza (own the REST API and partner webhooks) and Vellum (design customer-facing SDKs) are API and developer-experience platform roles.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names PlatformCon as the internal-developer-platform community and states it does not cover the external-API track",
+        "evidence": "It groups PlatformCon with infrastructure platform work and notes it falls in June 2027. It never says PlatformCon doesn't cover the external-API track.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Redirects the community and conference choice toward apidays rather than PlatformCon",
+        "evidence": "apidays is never mentioned. PlatformCon is only reframed as 'a networking bonus or a talk target'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that Kubernetes/CKA-style internal-infrastructure study does not build the signal these external-API roles screen on",
+        "evidence": "It says 'Keep the CKA, but cap it at about 45 h' and calls it 'a credible signal'. It does not say CKA fails to build the signal these roles screen on.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the target role track explicitly as one of API Product Manager, Platform Engineer/Architect, or Partner/Integration Engineer",
+        "evidence": "No such track list appears. The roles are described only as 'API and developer-experience platform roles'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the target company archetype explicitly as one of infra/API-first, bolt-on public API on an existing product, or enterprise partner/ISV ecosystem",
+        "evidence": "No infra/API-first, bolt-on, or partner/ISV archetype is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that sourcing the wrong population also benchmarks the wrong compensation band (general infra/SRE versus general backend/product engineering with an API-design specialization)",
+        "evidence": "Compensation is not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends API-design portfolio artifacts - RFCs or design docs, shipped API/schema designs, open-source contributions - over infrastructure certifications",
+        "evidence": "'Spend about 70% of your hours on one portfolio project' against the CKA 'capped at about 45 h'. It also lists a design note, a 'design decisions' doc and OpenAPI-first design.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

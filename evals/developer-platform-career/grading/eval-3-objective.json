@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that API design is a distinct, separately named interview format from general system design, not the same round twice",
+        "evidence": "'Treating the two interviews as the same skill twice is the main flaw.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the system design round as testing large-scale distributed-systems architecture",
+        "evidence": "'Distributed-systems architecture at scale'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the API design round as testing the decisions and downstream consequences of shaping an interface that developers consume",
+        "evidence": "'Decisions about an interface that developers consume, and what those decisions cost later'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the API design round is judged on clarity and misuse-resistance rather than raw scale or availability trade-offs",
+        "evidence": "'Clarity, predictability, and resistance to misuse'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the API design round's scope is deliberately smaller than a full system design round, with no full architecture to sketch",
+        "evidence": "'Smaller; no architecture to sketch'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Meta as a company running API design as a separate, named interview type",
+        "evidence": "'the split is documented at Meta and other major companies'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the payments-API worked example, scoped to card-payment processing, where the \"users\" are developers integrating the API into their own product",
+        "evidence": "'Design a payments API for card payments, where the \"users\" are developers integrating it'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the bar includes error messages specific enough that an integrating developer can act on them",
+        "evidence": "'error design (specific, actionable messages)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that the distributed-systems drill list (sharding, consistency, caching, load balancers) does not prepare the API design round",
+        "evidence": "'It covers almost none of the API design round, so grinding it for both leaves that round underprepared.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags a take-home designing an SDK or API surface as plausible by analogy rather than as confirmed practice for this field",
+        "evidence": "'It is plausible by analogy... but that is inference, not confirmed practice.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points the API-design prep at a named framework: Google's AIPs, Microsoft's REST API Guidelines, Zalando's RESTful API Guidelines, or the Richardson Maturity Model",
+        "evidence": "'Google AIPs, Microsoft REST API Guidelines, Zalando... Richardson Maturity Model'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that API design is a distinct, separately named interview format from general system design, not the same round twice",
+        "evidence": "'System design and API design are different skills.' followed by a comparison table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the system design round as testing large-scale distributed-systems architecture",
+        "evidence": "Table: 'How does it scale and survive failure?' Judged on 'Components, trade-offs, capacity, failure modes'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the API design round as testing the decisions and downstream consequences of shaping an interface that developers consume",
+        "evidence": "'What contract do clients depend on for years?'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the API design round is judged on clarity and misuse-resistance rather than raw scale or availability trade-offs",
+        "evidence": "It lists 'Resource model, errors, idempotency, pagination, versioning, compatibility'. Clarity and misuse-resistance are not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the API design round's scope is deliberately smaller than a full system design round, with no full architecture to sketch",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names Meta as a company running API design as a separate, named interview type",
+        "evidence": "Meta is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the payments-API worked example, scoped to card-payment processing, where the \"users\" are developers integrating the API into their own product",
+        "evidence": "It uses a Payments API and refunds exercise, but never frames the users as integrating developers or scopes it to card payments.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the bar includes error messages specific enough that an integrating developer can act on them",
+        "evidence": "It mentions only 'stable machine codes, retryable vs not'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that the distributed-systems drill list (sharding, consistency, caching, load balancers) does not prepare the API design round",
+        "evidence": "'Your list covers none of it. Sharding and load balancers matter less than money-moving correctness.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags a take-home designing an SDK or API surface as plausible by analogy rather than as confirmed practice for this field",
+        "evidence": "It says 'I can't know' about any take-home but never mentions an SDK or API design take-home.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points the API-design prep at a named framework: Google's AIPs, Microsoft's REST API Guidelines, Zalando's RESTful API Guidelines, or the Richardson Maturity Model",
+        "evidence": "Only Stripe's docs are named.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

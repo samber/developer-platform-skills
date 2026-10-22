@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the @deprecated directive is a documentation and tooling signal, not a removal mechanism.",
+        "evidence": "Apollo calls it \"a documentation and tooling signal, not a removal mechanism.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the fixed 90-day calendar deletion: removal is gated on usage telemetry showing zero (or a consciously accepted residue of) real consumers, never on a date passing.",
+        "evidence": "\"A deprecation is never removed on a calendar date alone\"; removal requires zero requests or an approved residue.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the deprecation and removal process field-by-field rather than version-by-version.",
+        "evidence": "The policy covers schema elements one at a time with per-element telemetry and fast-lane rules.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes down a field-rollover strategy as an explicit sequence: deprecation marker, then per-field usage monitoring, then removal only at zero observed consumers.",
+        "evidence": "Section 5 requires the notice period to elapse, telemetry to show zero requests, outreach, and approval before removal.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires each @deprecated reason string to name the replacement field.",
+        "evidence": "\"The reason names the replacement and links the migration guide.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies continuous schema evolution (one continuously live schema, additive changes) as GraphQL's default policy, not a versioned v1/v2 endpoint model.",
+        "evidence": "\"Quillhaven runs one continuously live schema. It has no version numbers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not propose introducing versioned GraphQL endpoints as the fix; if date-versioned GraphQL is mentioned at all it is framed as a documented exception for platforms wanting one unified versioning story, not the default.",
+        "evidence": "Option B (date-versioned): \"Choose B only if you later want one versioning story across several surfaces.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps a written breaking-change definition applied at the field level as part of the policy.",
+        "evidence": "Section 3 lists removing or renaming a type, field, argument or enum value as breaking.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that relying on the directive appearing in client tooling is insufficient and pairs it with at least one channel that reaches humans (changelog, dashboard notice, targeted outreach to apps still querying the deprecated fields).",
+        "evidence": "\"Quillhaven never relies on the directive alone\", followed by changelog, dashboard banner and email.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends measuring traffic on each deprecated field before its removal decision.",
+        "evidence": "\"Telemetry shows zero requests for that element over the last [90] days.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends targeted communication to the specific apps still using the deprecated fields, not only a broadcast announcement.",
+        "evidence": "\"Emails the registered contact of every app that called the element in the last 12 months.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires field removals to pass the same breaking-change approval/governance step as any other breaking change.",
+        "evidence": "\"The governance approval in section 8 is on file.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the @deprecated directive is a documentation and tooling signal, not a removal mechanism.",
+        "evidence": "\"@deprecated reaches developers, not running apps... only shows up when someone opens an IDE, introspects the schema, or runs a linter.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the fixed 90-day calendar deletion: removal is gated on usage telemetry showing zero (or a consciously accepted residue of) real consumers, never on a date passing.",
+        "evidence": "\"Dates can't be the only deletion gate... Delete only if usage is zero or the remaining callers have been individually handled.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the deprecation and removal process field-by-field rather than version-by-version.",
+        "evidence": "\"Log field-level usage per app now\"; \"which apps use which of the 14 fields.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes down a field-rollover strategy as an explicit sequence: deprecation marker, then per-field usage monitoring, then removal only at zero observed consumers.",
+        "evidence": "The timeline runs per-app usage logging, then shipping @deprecated, then \"Delete, only if the usage gate passes or exceptions are recorded.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires each @deprecated reason string to name the replacement field.",
+        "evidence": "\"A `reason` must be set, and it should name the replacement and the removal date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies continuous schema evolution (one continuously live schema, additive changes) as GraphQL's default policy, not a versioned v1/v2 endpoint model.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not propose introducing versioned GraphQL endpoints as the fix; if date-versioned GraphQL is mentioned at all it is framed as a documented exception for platforms wanting one unified versioning story, not the default.",
+        "evidence": "No versioned endpoints are proposed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps a written breaking-change definition applied at the field level as part of the policy.",
+        "evidence": "The policy lists only non-breaking changes in section 9. It has no breaking-change definition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that relying on the directive appearing in client tooling is insufficient and pairs it with at least one channel that reaches humans (changelog, dashboard notice, targeted outreach to apps still querying the deprecated fields).",
+        "evidence": "\"email, dashboard banner, and in-response notices\"; policy items 2-4 add a changelog, emails and a dashboard notice.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends measuring traffic on each deprecated field before its removal decision.",
+        "evidence": "\"Review usage of the element by registered apps\"; per-app field-usage logging.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends targeted communication to the specific apps still using the deprecated fields, not only a broadcast announcement.",
+        "evidence": "\"Contact those app owners directly\"; \"Reminders go to apps still using the element.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires field removals to pass the same breaking-change approval/governance step as any other breaking change.",
+        "evidence": "No governance or approval step is described.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

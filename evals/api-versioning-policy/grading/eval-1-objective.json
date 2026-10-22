@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends against adopting date-based account-pinned versioning for this team rather than drafting the policy around it as asked.",
+        "evidence": "\"Recommendation: URI major versioning (/v1/, /v2/), not Stripe-style date-stamped, account-pinned versioning.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the conditions that would justify account-pinned versioning (breaking changes wanted many times a year plus a long tail of integrators that cannot be forced to migrate) and observes that neither holds for Ledgerbird.",
+        "evidence": "The table lists \"Breaking changes wanted many times a year\" and \"A long tail of integrators you can't force to migrate\", with \"Ledgerbird meets neither.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes account-pinning's ongoing engineering cost as a chain of per-breaking-change compatibility/transformer modules that must be maintained indefinitely.",
+        "evidence": "\"Pinning needs a gate-and-transformer chain, one module per historical breaking change, maintained forever.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends URI path major versioning (/v1-style) as the appropriate scheme for this case.",
+        "evidence": "URI major versioning (`/v1/`, `/v2/`)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a ranking of scheme options in terms of value per unit of effort explicitly in prose, not merely implied by the order options are listed in.",
+        "evidence": "\"The skill's own ranking puts account pinning last on efficiency.\" This is only a partial ranking, but it is stated in prose.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the hard end-of-Q1 deadline for the queued breaking change as an argument favoring the low-machinery scheme.",
+        "evidence": "\"The skill says a hard deadline promotes URI. ... a URI version is an afternoon of routing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that unversioned access must never be allowed as a fallback path once versioning ships.",
+        "evidence": "\"No unversioned access. A request without a version segment returns an error.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that removing an unversioned access path later is itself a breaking change.",
+        "evidence": "\"because removing an unversioned path later is itself a breaking change.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the notice-period commitment for the 40 contracted partners in the contract or SLA rather than only on a public policy page.",
+        "evidence": "The 24-month default sits in the public policy. Contracts are mentioned only as possibly overriding it, and the draft does not place the commitment in the contract or SLA.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps concurrently supported versions at 2-3 active.",
+        "evidence": "\"Concurrent versions: at most 2 active major versions.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents two or more coherent candidate policy bundles with trade-offs and names a recommendation, rather than a single take-it-or-leave-it policy.",
+        "evidence": "\"Alternatives considered: Shopify-shaped ... GitHub or LinkedIn-shaped\" alongside the named recommendation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a standing health metric: breaking-change frequency above roughly two per year signals the scheme or compatibility discipline is wrong.",
+        "evidence": "\"Breaking changes per year. Target: at most 2.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends against adopting date-based account-pinned versioning for this team rather than drafting the policy around it as asked.",
+        "evidence": "The policy adopts it: \"This policy adopts Stripe's date-stamped versions and per-account pinning.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the conditions that would justify account-pinned versioning (breaking changes wanted many times a year plus a long tail of integrators that cannot be forced to migrate) and observes that neither holds for Ledgerbird.",
+        "evidence": "It says \"Our scale does not need it\" (40 integrators, one breaking change a year). It never states the conditions of many breaking changes a year plus an unmovable long tail.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes account-pinning's ongoing engineering cost as a chain of per-breaking-change compatibility/transformer modules that must be maintained indefinitely.",
+        "evidence": "\"Stripe can pin forever because it has a large team maintaining a chain of per-version request and response transformers... every version we keep alive is a permanent tax.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends URI path major versioning (/v1-style) as the appropriate scheme for this case.",
+        "evidence": "The scheme is a date in the Ledgerbird-Version header. URI versioning is never recommended.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a ranking of scheme options in terms of value per unit of effort explicitly in prose, not merely implied by the order options are listed in.",
+        "evidence": "No ranking of schemes appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the hard end-of-Q1 deadline for the queued breaking change as an argument favoring the low-machinery scheme.",
+        "evidence": "Section 8 handles the Q1 deadline within the pinning scheme. It does not use it to favour a simpler scheme.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that unversioned access must never be allowed as a fallback path once versioning ships.",
+        "evidence": "\"Without the header, the request uses the account's pinned version.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that removing an unversioned access path later is itself a breaking change.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places the notice-period commitment for the 40 contracted partners in the contract or SLA rather than only on a public policy page.",
+        "evidence": "It says \"Contracts take precedence\" and asks Legal to audit the 40 contracts. It does not put the notice commitment into the contracts.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps concurrently supported versions at 2-3 active.",
+        "evidence": "\"two live versions at a time, three at most... We will not release a new breaking version while more than 3 versions are live.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents two or more coherent candidate policy bundles with trade-offs and names a recommendation, rather than a single take-it-or-leave-it policy.",
+        "evidence": "It presents a single draft policy.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a standing health metric: breaking-change frequency above roughly two per year signals the scheme or compatibility discipline is wrong.",
+        "evidence": "No such metric.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

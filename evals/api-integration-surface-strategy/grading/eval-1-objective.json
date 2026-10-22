@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends against building the MCP server this quarter, parking it until agent-demand signals (RFPs requiring MCP compatibility, or observed agent traffic) appear",
+        "evidence": "\"Don't ship an MCP server this quarter.\" The Q1 trigger is \"one RFP or security review requiring MCP, or 3+ customers asking in writing, or agent traffic above 1% of calls\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the absence of agent signals (zero agent traffic, no customer asks) as the reason MCP is parked, rather than arguing only from team effort or generic prioritization",
+        "evidence": "\"Agent demand: none. Logs show zero agent traffic and no customer has asked about MCP. This leaves MCP parked.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies fixing the drifting OpenAPI spec as a prerequisite scheduled before any derived surface (SDKs, MCP, generated docs) enters the plan",
+        "evidence": "\"A drifting spec gets fixed before any derived surface is scheduled.\" Derivation gate: nothing derived before the week-6 contract-stable declaration.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that when MCP is eventually built it must be derived or generated from the existing API contract, never hand-built as a separate product",
+        "evidence": "\"Generated from the verified spec\"; \"every platform that shipped MCP generated it over an existing API.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the 60% API coverage as a shallow-API-first failure: partners discover mid-integration that later steps still need manual touches, so depth is probed per capability",
+        "evidence": "\"a 60% API means customers finish integrations and then hit a UI-only step... probe each capability and list which flows can't be completed end to end.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sequences REST completion plus webhooks as the first surfaces, noting webhooks ride the same infrastructure rather than opening a new paradigm",
+        "evidence": "REST coverage and webhooks are scheduled in Q4, but the plan never says webhooks ride the same infrastructure rather than opening a new paradigm.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the per-call agent monetization idea speculative, noting unproven unit economics and that observed per-call volumes are tiny and partly wash-traded",
+        "evidence": "It says \"Label it speculative\" and that x402 volumes \"collapsed after peaking\". It never mentions tiny volumes or wash trading.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps concurrent new-surface builds at the stated two-engineer capacity, sequencing surfaces one at a time",
+        "evidence": "\"Concurrency gate: at most one new surface runs at a time. Webhooks occupy the slot in Q4.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes review triggers that reopen the plan early, among them agent-demand signals moving from none to present",
+        "evidence": "\"An agent-demand signal appears (RFP, written asks, agent traffic).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies delaying higher-abstraction surfaces via the dependency mechanism (Hyrum's Law or equivalent: once enough consumers depend on observable behavior, the contract is near-impossible to change)",
+        "evidence": "It says \"MCP and SDKs presuppose a stable contract\" and \"retrofitting one later is the expensive direction\", but never explains the mechanism of consumers depending on observable behavior.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Establishes the buyer type (developer-chosen vs non-technical buyer) via a question or an explicit audience map before or while ranking surfaces",
+        "evidence": "The audience table has a Buyer type column, and the plan says \"The buyer-type answer is a guess (mixed)\" and asks \"Who is the buyer\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Each scheduled surface carries a named audience and the demand signal justifying it, plus a reversal-cost tier and an owner",
+        "evidence": "The \u00a7 6 handoff table has Audience, Demand signal, Reversal tier, Owner and Design owner columns for every surface.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends against building the MCP server this quarter, parking it until agent-demand signals (RFPs requiring MCP compatibility, or observed agent traffic) appear",
+        "evidence": "Phase 3 'MCP server beta (weeks 8\u201312)' is scheduled in Q4 2026.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the absence of agent signals (zero agent traffic, no customer asks) as the reason MCP is parked, rather than arguing only from team effort or generic prioritization",
+        "evidence": "MCP is not parked. The plan notes zero agent traffic only in the pricing section.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies fixing the drifting OpenAPI spec as a prerequisite scheduled before any derived surface (SDKs, MCP, generated docs) enters the plan",
+        "evidence": "'Phase 1: Make the spec true (weeks 1\u20135)' comes before webhooks, MCP, and the Q1 SDK generation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that when MCP is eventually built it must be derived or generated from the existing API contract, never hand-built as a separate product",
+        "evidence": "Says 'MCP is a thin layer over your API' and 'Design tools around tasks'. It never says to generate MCP from the contract.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the 60% API coverage as a shallow-API-first failure: partners discover mid-integration that later steps still need manual touches, so depth is probed per capability",
+        "evidence": "Treats the gap only as 'close the API gaps' work. No mention of partners finding manual steps mid-integration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sequences REST completion plus webhooks as the first surfaces, noting webhooks ride the same infrastructure rather than opening a new paradigm",
+        "evidence": "Sequences spec then webhooks, but does not say webhooks reuse the same infrastructure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the per-call agent monetization idea speculative, noting unproven unit economics and that observed per-call volumes are tiny and partly wash-traded",
+        "evidence": "Says 'Any number you pick now is a guess' but never mentions wash-traded or tiny observed volumes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps concurrent new-surface builds at the stated two-engineer capacity, sequencing surfaces one at a time",
+        "evidence": "Phases overlap: Phase 1 weeks 1\u20135, Phase 2 weeks 4\u201310, Phase 3 weeks 8\u201312.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes review triggers that reopen the plan early, among them agent-demand signals moving from none to present",
+        "evidence": "Only a fixed 'Decision gate (end of March 2027)'. No early reopen triggers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies delaying higher-abstraction surfaces via the dependency mechanism (Hyrum's Law or equivalent: once enough consumers depend on observable behavior, the contract is near-impossible to change)",
+        "evidence": "No dependency-mechanism argument appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Establishes the buyer type (developer-chosen vs non-technical buyer) via a question or an explicit audience map before or while ranking surfaces",
+        "evidence": "No buyer-type question or audience map.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Each scheduled surface carries a named audience and the demand signal justifying it, plus a reversal-cost tier and an owner",
+        "evidence": "Phases list effort and exit criteria only, with no reversal-cost tier or owner.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

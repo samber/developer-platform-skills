@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends a full public postmortem rather than the one-line resolved note",
+        "evidence": "\"publish a full public postmortem on the engineering blog... Don't publish the one-line 'resolved' note on its own.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the engineering blog as the channel, since the developer audience reads the deep version for trust-building",
+        "evidence": "\"An active engineering blog and practiced writers\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies promotion by the P1/major class of the incident and the visibly shaken trust",
+        "evidence": "\"It was a P1 and a total outage... Both conditions apply.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Counters legal's default with the SRE argument: sharing a postmortem widely multiplies its learning value, and an honest postmortem is a key tool in restoring shaken trust",
+        "evidence": "\"Google SRE calls an honest postmortem 'a key tool in restoring shaken trust'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes Priya's name from the public document, referring to a role instead of a person",
+        "evidence": "\"Priya's name and role | Remove entirely.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the blameless rule concretely: never name an individual human in the published document",
+        "evidence": "\"No individuals.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies an explicit internal-to-external filtering step rather than publishing the internal document as-is",
+        "evidence": "\"Filter these out on the way from the internal postmortem to the public one\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Filters out the internal service-mesh/topology detail beyond what the explanation needs",
+        "evidence": "\"Internal service mesh topology | Remove or abstract.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Filters out the security-sensitive auth-token detail",
+        "evidence": "The skill filters out \"technical detail such as which token, which mechanism\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Structures the external document around: why did this happen; could it have been worse; how do we make sure it won't happen again",
+        "evidence": "\"why it happened, could it have been worse, and how you'll prevent a repeat\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a 'could it have been worse / where we got lucky' section transferred close to as-is from the internal version",
+        "evidence": "\"'Where we got lucky'... don't skip it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a UTC timeline from first alert to resolution and quantified impact figures",
+        "evidence": "The skeleton has \"Timeline (UTC)\" and an \"Impact\" section.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits action items into mitigative and preventative, each with an owner and a status",
+        "evidence": "\"split into mitigative and preventative items\"; the table has Owner and Status columns",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Commits to publicly updating action-item status, noting completion below roughly 50% is the threshold at which postmortems become theater",
+        "evidence": "\"under 50% action-item completion\"; \"We will update this table as items complete.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that publication is irreversible (a correction can be appended, an admission cannot be unpublished) and that the deep write-up triggers legal/comms sign-off on cause language",
+        "evidence": "\"Every publication is irreversible\"; \"Legal should review the draft\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends a full public postmortem rather than the one-line resolved note",
+        "evidence": "\"Don't publish only a one-line 'resolved' note.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the engineering blog as the channel, since the developer audience reads the deep version for trust-building",
+        "evidence": "\"Engineering blog postmortem\"; \"Why the blog, not only the status page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies promotion by the P1/major class of the incident and the visibly shaken trust",
+        "evidence": "\"After a 3-hour total outage, with furious enterprise customers and churn already mentioned\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Counters legal's default with the SRE argument: sharing a postmortem widely multiplies its learning value, and an honest postmortem is a key tool in restoring shaken trust",
+        "evidence": "It counters legal with \"State facts, not fault\" and that honesty signals maturity. It never argues that wide sharing multiplies learning value.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes Priya's name from the public document, referring to a role instead of a person",
+        "evidence": "\"Omit. Write 'a configuration change'\"; \"Naming her is unfair\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the blameless rule concretely: never name an individual human in the published document",
+        "evidence": "\"owners as teams, not people\"; \"blameless\"; omit her name and role",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies an explicit internal-to-external filtering step rather than publishing the internal document as-is",
+        "evidence": "\"The public version is a rewrite with the same facts at a different level of detail\"; the include/omit table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Filters out the internal service-mesh/topology detail beyond what the explanation needs",
+        "evidence": "\"Abstract. ... Don't list services, hops, or names.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Filters out the security-sensitive auth-token detail",
+        "evidence": "The token is handled as a separate decision, kept out of the outage narrative, and may be left out of the public post if exposure was internal only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Structures the external document around: why did this happen; could it have been worse; how do we make sure it won't happen again",
+        "evidence": "The outline has root cause, why it affected everything, and what we're changing, but no 'could it have been worse' section.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a 'could it have been worse / where we got lucky' section transferred close to as-is from the internal version",
+        "evidence": "Absent from the outline.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a UTC timeline from first alert to resolution and quantified impact figures",
+        "evidence": "\"Timeline (UTC): change deployed, first alert, detection ... full confirmation\"; \"number of affected accounts or syncs\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits action items into mitigative and preventative, each with an owner and a status",
+        "evidence": "Actions have target dates and team owners but are not split into mitigative and preventative, and there is no status.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Commits to publicly updating action-item status, noting completion below roughly 50% is the threshold at which postmortems become theater",
+        "evidence": "\"post the corrective-action follow-up when it ships\" is a follow-up commitment, but the 50% threshold is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that publication is irreversible (a correction can be appended, an admission cannot be unpublished) and that the deep write-up triggers legal/comms sign-off on cause language",
+        "evidence": "Legal and security review is advised, but there is no warning about irreversibility.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

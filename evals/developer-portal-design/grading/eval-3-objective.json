@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Builds distinct proto-personas for the business evaluator (logistics ops director) and the integrating engineer or systems integrator, covering what each must accomplish on the portal.",
+        "evidence": "'## Audiences' covers the ops director, in-house developer and outside systems integrator, with needs for each.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents at least two candidate portal architectures with trade-offs rather than a single structure, and names one as the recommendation.",
+        "evidence": "Options A, B and C in the table; A is 'Recommended'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the chosen skeleton will be validated with the user section by section before any final deliverable, rather than treating the structure as settled.",
+        "evidence": "'Next step: validate the tree above section by section (Home, Solutions, Docs, Console) before any build starts.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a structure layered by depth, with visual and marketing richness decreasing as pages get more technical.",
+        "evidence": "'One portal, layered by depth (marketing-rich top, minimal technical bottom)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a distinct solution or use-case layer connecting business problems to APIs, sitting between the marketing-rich pages and the technical reference.",
+        "evidence": "'Solutions [S \u00b7 E, D] \u2190 first-class layer'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that pricing, use cases and competitive/decision-making material must be readable before login.",
+        "evidence": "'Pricing & limits ... pre-login, always'; the ops director 'Leaves if any of this is behind a login'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names gating decision-making information behind a login wall as a sales-enablement failure, not merely a content or UX shortcoming.",
+        "evidence": "The failure modes list 'Pricing, limits, or use cases behind a login' but never calls it a sales-enablement failure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps marketing chrome off the technical reference and console pages.",
+        "evidence": "'Docs [B \u00b7 D I] \u2190 no marketing chrome'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the portal distinct from the top-of-funnel marketing site while linking the two in both directions, rather than folding portal content into the marketing site's IA.",
+        "evidence": "'Host it separately from the marketing site... and link the two both ways.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the structure as a navigation tree naming every top-level item and what sits beneath it.",
+        "evidence": "The full tree runs from Home through Console and the footer.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels each node with the audience and/or the layer it serves.",
+        "evidence": "Labels such as '[T \u00b7 E D I]', '[S \u00b7 E]', '[B \u00b7 D I]'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Builds distinct proto-personas for the business evaluator (logistics ops director) and the integrating engineer or systems integrator, covering what each must accomplish on the portal.",
+        "evidence": "Ops director vs in-house dev/SI, each with what they ask and need.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents at least two candidate portal architectures with trade-offs rather than a single structure, and names one as the recommendation.",
+        "evidence": "Only one hierarchy is presented.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the chosen skeleton will be validated with the user section by section before any final deliverable, rather than treating the structure as settled.",
+        "evidence": "It lists open questions but never proposes validating the skeleton section by section.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a structure layered by depth, with visual and marketing richness decreasing as pages get more technical.",
+        "evidence": "Two layers per page (plain-language top, technical below) is not a depth gradient of marketing richness.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a distinct solution or use-case layer connecting business problems to APIs, sitting between the marketing-rich pages and the technical reference.",
+        "evidence": "'Use cases (by ops outcome)' connects problems to systems and data flows.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that pricing, use cases and competitive/decision-making material must be readable before login.",
+        "evidence": "'Make everything public with no signup wall, apart from sandbox keys' does not name pricing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names gating decision-making information behind a login wall as a sales-enablement failure, not merely a content or UX shortcoming.",
+        "evidence": "It says the PDF model 'gates the evidence the director needs' but does not frame it as a sales-enablement failure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps marketing chrome off the technical reference and console pages.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the portal distinct from the top-of-funnel marketing site while linking the two in both directions, rather than folding portal content into the marketing site's IA.",
+        "evidence": "The portal is a /developers section of kestrelfreight.com, with main-nav links in; it is not a distinct portal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Delivers the structure as a navigation tree naming every top-level item and what sits beneath it.",
+        "evidence": "The full /developers tree with sub-items.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels each node with the audience and/or the layer it serves.",
+        "evidence": "The 'Primary reader' column in the page table.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

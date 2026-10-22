@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires isolating the accounts that use the PHP SDK exclusively, with no other SDK of ours, as the decisive evidence",
+        "evidence": "\"The decisive figure is revenue from accounts that use only the PHP SDK.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Quantifies revenue at risk from that exclusive-usage segment rather than from raw download counts",
+        "evidence": "\"Accounts that use only the PHP SDK, and the revenue attached to them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to treat the low download number alone as sufficient justification for retirement",
+        "evidence": "\"The three numbers don't justify archiving this sprint\"; they are \"download counts, not accounts or revenue\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes the evidence-gated process to Sentry's published SDK deprecation playbook",
+        "evidence": "\"This is the Sentry-style check.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gathers upstream platform health and registry download trends as supporting rather than decisive evidence",
+        "evidence": "The five numbers pulled do not include platform health or registry download trends as supporting evidence.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders execution as final release, then announcement, then archive",
+        "evidence": "\"The playbook order is final release, then announcement, then archive.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the final release must be cut before the deprecation is announced",
+        "evidence": "Sunset step 3 cut final release; step 4 announce.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a pinned deprecation issue naming the reason, the successor, and the remaining timeline",
+        "evidence": "\"pinned deprecation issue stating why, the alternative and the dates\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires naming a specific successor path for affected users rather than issuing a bare end-of-life notice",
+        "evidence": "\"publish the OpenAPI spec and point PHP users at open-source generators\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires registry deprecation markers plus README and docs-site banners",
+        "evidence": "\"README banner, a docs banner and the Packagist abandoned marker\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires notifying support and go-to-market teams as part of execution",
+        "evidence": "\"Tell support and GTM.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schedules post-archival cleanup 6-12 months later, de-indexing the retired docs while keeping them reachable rather than returning 404, with redirects to the successor",
+        "evidence": "\"Six to twelve months later, de-index the old docs (keep the URLs reachable) and redirect them to the successor.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States an announcement-to-archive window within the observed 6-24 month range",
+        "evidence": "\"6 months is the floor\"; \"windows run 6 to 24 months\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects archiving within the current sprint or without an announced notice window",
+        "evidence": "\"Archiving in one sprint skips the announcement entirely.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires isolating the accounts that use the PHP SDK exclusively, with no other SDK of ours, as the decisive evidence",
+        "evidence": "Step 1 lists accounts using the PHP SDK by user-agent. It never isolates accounts with no other SDK.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Quantifies revenue at risk from that exclusive-usage segment rather than from raw download counts",
+        "evidence": "Lists 'revenue or plan tier for the PHP SDK' accounts and 'Show the VP the revenue at risk'. The exclusive segment is not isolated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to treat the low download number alone as sufficient justification for retirement",
+        "evidence": "'Why the three numbers can't decide this'; 'Downloads count requests, not people.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes the evidence-gated process to Sentry's published SDK deprecation playbook",
+        "evidence": "Sentry is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gathers upstream platform health and registry download trends as supporting rather than decisive evidence",
+        "evidence": "Health signals are limited to repo issues, PRs and advisories. There is no upstream platform health or download-trend gathering.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders execution as final release, then announcement, then archive",
+        "evidence": "The stated order is freeze, maintenance mode, banner, then re-read in 90 days. No final-release step.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the final release must be cut before the deprecation is announced",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a pinned deprecation issue naming the reason, the successor, and the remaining timeline",
+        "evidence": "No pinned issue is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires naming a specific successor path for affected users rather than issuing a bare end-of-life notice",
+        "evidence": "'point to the REST docs'; 'The REST API remains available for PHP users.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires registry deprecation markers plus README and docs-site banners",
+        "evidence": "Has an abandoned flag on Packagist and a README banner, but no docs-site banner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires notifying support and go-to-market teams as part of execution",
+        "evidence": "It asks sales and support about commitments. It does not require notifying them of the deprecation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Schedules post-archival cleanup 6-12 months later, de-indexing the retired docs while keeping them reachable rather than returning 404, with redirects to the successor",
+        "evidence": "No cleanup is scheduled.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States an announcement-to-archive window within the observed 6-24 month range",
+        "evidence": "'Give 90 days' notice' is only about three months.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects archiving within the current sprint or without an announced notice window",
+        "evidence": "'Offer this instead... without an archive you can't cleanly undo'; archiving only after 90 days' notice.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

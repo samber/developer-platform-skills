@@ -1,108 +1,112 @@
 # Palisade Grid authorization server: launch pack
 
-**Caveat on benchmarks (read first):** public industry benchmarks exist for only some of these metrics. Where I have none, I mark the threshold **Proposed**. That means it is my engineering judgment, not a published figure. Replace each one with your own p50/p95 from two weeks of beta traffic before launch. I did not invent statistics to fill the column.
+Target launch is about 2026-11-13 (five weeks out). Two parts: the QA go/no-go checklist, then the post-launch dashboard.
 
----
+⚠️ **No public industry benchmark exists for most of these metrics.** I have no source for a standard reuse-detection rate, consent grant rate, or review-queue turnaround for a custom authorization server. I won't invent numbers. Each metric below separates two things:
+- **Reference:** a real public anchor, where one exists.
+- **Starting threshold:** my proposal, not an industry figure.
 
-## Part 1: Go/no-go checklist (QA sign-off)
+Replace the starting thresholds with your own p50 and p95 after 2 weeks of production data.
 
-Rule: any ❌ in sections A–D blocks launch. Sections E–F can ship with a written waiver from the owner.
+## Part 1: Go/no-go checklist for QA
 
-### A. Refresh rotation and reuse detection 🔐
-| # | Check | Pass criteria |
-|---|---|---|
-| A1 | Rotation on every refresh | Each use returns a new refresh token and invalidates the old one. |
-| A2 | Reuse detection | Replaying a rotated token revokes the whole token family (the refresh chain and its access tokens). The test reports the revocation and its audit event. |
-| A3 | Concurrent-retry grace | Two parallel refreshes with the same token (client retry, network drop) behave as designed. The window is documented, and the response to the second request is deterministic. |
-| A4 | Race under load | The same token sent N times in parallel across replicas yields exactly one success. Run with at least 2 server instances. |
-| A5 | Lost-response case | The client misses the new token because the response was dropped. The documented recovery works (grace window or re-auth), not a permanent lockout. |
-| A6 | Expiry and absolute lifetime | Idle timeout and absolute lifetime are enforced. Both are tested at the boundary: 1 second before and 1 second after. |
-| A7 | Revocation propagation | Revoking a family or a user's grant takes effect within the stated bound across all instances and caches. Measure the bound. |
-| A8 | Scope can't widen | A refresh request asking for more scope than originally granted is rejected. |
-| A9 | Client binding | A refresh token presented by a different `client_id` is rejected. Public clients: confirm the rotation-only protection is documented, since RFC 9700 allows rotation or sender-constraint for public clients. |
-| A10 | Storage | Only hashes of refresh tokens are stored. No tokens appear in logs, traces, or error payloads. Grep the log output from the test run. |
+Rule: every item is Pass or Fail with evidence attached. One Fail in sections A to C means **No-go**. Sections D to F can ship with a named owner and a dated fix.
 
-### B. Granular consent
-| # | Check | Pass criteria |
-|---|---|---|
-| B1 | Per-scope grant/deny | The user can approve a subset of scopes. The issued token contains exactly that subset. |
-| B2 | Token reflects consent | The `scope` response parameter is accurate when the grant is narrower than requested. |
-| B3 | Consent persistence | A repeat authorization with the same or fewer scopes skips the prompt. More scopes triggers incremental consent for the delta only. |
-| B4 | Revocation | The user can revoke one app, or one scope, from the UI. Existing access and refresh tokens die within the bound from A7. |
-| B5 | Prompt integrity | The consent screen shows the verified app name, publisher, and scope descriptions. `prompt=consent` is honored. Clickjacking protections (frame-ancestors, CSP) are in place. |
-| B6 | Redirect safety | Exact-match redirect URIs only. Wildcards, open redirects, and `state` tampering tests all fail safely. |
-| B7 | PKCE | Required for all clients. Downgrade attempts (missing verifier, `plain`) are rejected. |
-| B8 | Audit trail | Every grant, denial, and revocation produces an immutable event with actor, client, scopes, and time. |
-| B9 | Accessibility and i18n | The consent screen passes keyboard-only and screen-reader checks. Every supported locale renders without truncated scope text. |
+### A. Refresh rotation and reuse detection (blocker)
 
-### C. App review queue
-| # | Check | Pass criteria |
-|---|---|---|
-| C1 | State machine | Submitted → in review → approved / rejected / changes requested. Every transition is tested, including illegal ones. |
-| C2 | Gating | An unapproved app cannot get production scopes. Test by calling the authorize endpoint directly. |
-| C3 | Scope-level approval | Sensitive scopes need explicit reviewer approval. Approving an app doesn't silently approve later scope additions. |
-| C4 | Re-review triggers | A changed redirect URI, newly requested scope, or ownership change sends the app back to review. |
-| C5 | Reviewer access control | Role separation and audit log. A submitter can't approve their own app. |
-| C6 | Queue visibility | The oldest-item-age metric and alert are live (see Part 2). A named reviewer owns the queue each day. |
-| C7 | Takedown | A reviewer or on-call can suspend an approved app in under 5 minutes. This kills its tokens and is rehearsed once. |
-| C8 | Notifications | Partners get submitted / approved / rejected emails with actionable reasons. |
+- [ ] **A1.** Each refresh issues a new refresh token and invalidates the old one. Test: two sequential refreshes, then replay of the first token.
+- [ ] **A2.** Replaying a rotated token revokes the whole token family and returns `invalid_grant`. The audit log records the event.
+- [ ] **A3.** Concurrent refresh with the same token (two parallel requests) is handled. One request wins. The loser gets a defined result, and a legitimate client retry after a network drop does not kill the family unless you chose that policy on purpose. Document the grace window, if any.
+- [ ] **A4.** Revoking a family also invalidates the access tokens issued from it, within the documented lag. This is checked at the token endpoint and at introspection or revocation endpoints (RFC 7009, RFC 7662).
+- [ ] **A5.** Expiry holds for both idle and absolute lifetime. Test at the boundary: expiry minus 1s, expiry, expiry plus 1s.
+- [ ] **A6.** Rotation stays correct when a request fails after the DB write and before the response. The client can recover, and no family is orphaned.
 
-### D. Security and platform 🔐
-| # | Check | Pass criteria |
-|---|---|---|
-| D1 | External pen test | No open critical or high findings. Mediums have owners and dates. |
-| D2 | Protocol conformance | Authorization code + PKCE flow tested against RFC 6749, RFC 7636, and RFC 9700 (OAuth Security BCP). Use the OpenID conformance suite if you issue OIDC. |
-| D3 | Key management | Signing key rotation rehearsed. JWKS caching behaves correctly through a rotation. Old-key retirement is tested. |
-| D4 | Rate limits and abuse | Per-client and per-IP limits on `/token` and `/authorize`. Credential stuffing and token-guessing tests are throttled. |
-| D5 | Secrets | Client secrets are hashed at rest. No secrets in repos, logs, or images. |
-| D6 | Load test | At least 3x expected launch peak on `/token` for 30 minutes. p99 and error rate stay inside the Part 2 thresholds. |
-| D7 | Failure drills | Primary DB failover, cache loss, and one dependency down. The server fails closed, never open. |
-| D8 | Backup/restore | A restore is tested. Token and consent tables are covered. |
+### B. Granular consent (blocker)
 
-### E. Partner readiness (about 30 partners)
-| # | Check | Pass criteria |
-|---|---|---|
-| E1 | Cohorting | Partners onboard in waves (suggest 5 → 10 → 15), not all at once. |
-| E2 | Integration verification | Every partner has passed a sandbox run of: auth code + PKCE, refresh rotation, handling `invalid_grant`, and consent downscoping. |
-| E3 | Rotation guidance | Docs state how clients must store and replace refresh tokens, and what to do on a revoked family. Most reuse-detection incidents come from partners that retry without persisting the new token. |
-| E4 | Contacts | Named technical contact and escalation path per partner. |
-| E5 | Comms | Launch notice, incident channel, and a status page with subscriptions. |
-| E6 | Per-partner kill switch | You can disable one partner without affecting others. |
+- [ ] **B1.** A token never carries a scope the user did not grant. Test: request scopes A+B, the user grants A only, and the token holds A only.
+- [ ] **B2.** The consent screen lists every requested scope in plain language, with the correct app name and verified publisher status.
+- [ ] **B3.** Revoking one scope takes effect on the next refresh and on resource-server checks. Other scopes keep working.
+- [ ] **B4.** A scope-widening request after the first consent re-prompts the user. It never silently upgrades.
+- [ ] **B5.** The user can see and revoke each app's grants. A revocation leaves an audit record with timestamp and actor.
+- [ ] **B6.** Consent is bound to the exact client and redirect URI. Test with a mismatched `redirect_uri`, a changed `state`, and a missing PKCE verifier. All must fail.
 
-### F. Operations
-| # | Check | Pass criteria |
-|---|---|---|
-| F1 | Dashboards and alerts | Part 2 metrics live in prod. Each alert has been fired once in staging. |
-| F2 | Runbooks | One per alert. On-call has done a dry run. |
-| F3 | Rollback | A tested plan exists. Rolling back must not invalidate valid refresh families unexpectedly. |
-| F4 | On-call | Rota covers launch day plus the first 2 weeks. |
-| F5 | Data protection | Privacy review done. Consent records have a defined retention period. |
-| F6 | Sign-offs | Security, QA, SRE, product, and the review-queue owner each sign in writing. |
+### C. App review queue and partner enablement (blocker)
 
----
+- [ ] **C1.** Unapproved apps cannot get production tokens, and cannot be promoted by direct API call, ID guessing, or an old session.
+- [ ] **C2.** Every state transition (submitted, in review, approved, rejected, suspended) is logged with actor and time. Reviewer permissions are enforced.
+- [ ] **C3.** Suspending an approved app stops new tokens at once and revokes existing ones. Test it with a live refresh token.
+- [ ] **C4.** Changing scopes or redirect URIs on an approved app sends it back to review, or is blocked.
+- [ ] **C5.** All ~30 launch partners are listed with status. Each has a named reviewer and a tested sandbox. No partner is blocked at the review step on launch day.
+
+### D. Security baseline (blocker for the first three, fix-dated for the rest)
+
+- [ ] **D1.** Conformance with RFC 9700 (OAuth 2.0 Security BCP): PKCE required for public clients, exact redirect URI matching, no implicit grant, no password grant.
+- [ ] **D2.** Penetration test or security review done. No open critical or high findings.
+- [ ] **D3.** Signing keys: rotation tested, `kid` handling verified, and the JWKS endpoint serves old and new keys during the overlap.
+- [ ] **D4.** Rate limits on the token, authorize, and introspection endpoints. Brute-force and enumeration probes are throttled.
+- [ ] **D5.** No tokens, secrets, or auth codes in logs. A grep of a full test run confirms it.
+
+### E. Reliability and operations
+
+- [ ] **E1.** Load test at 3x expected launch-week peak. p99 on `/token` stays within the SLO below, with no errors.
+- [ ] **E2.** Failover test: kill the primary DB, cache, and one app node. Token issuance recovers inside the documented time.
+- [ ] **E3.** Rollback plan tested: the previous version redeploys, and issued tokens stay valid.
+- [ ] **E4.** Dashboards and alerts from Part 2 exist and have fired in a test. Runbooks are linked from each alert.
+- [ ] **E5.** On-call rota is set for launch week, with an escalation path and a named incident commander.
+
+### F. Launch readiness
+
+- [ ] **F1.** Partner docs cover endpoints, scopes, rotation behavior (including what a client must do on `invalid_grant`), and consent UX.
+- [ ] **F2.** Partners go live in waves, not all at once. Suggested: 5, then 10, then 15, with a hold point after each wave if any Part 2 metric is red.
+- [ ] **F3.** A kill switch exists to pause new app approvals and new consent grants without taking down token refresh.
+- [ ] **F4.** Privacy and legal sign-off on the consent text and data retention.
+
+### Sign-off
+
+| Role | Name | Decision | Date |
+|---|---|---|---|
+| QA lead | | Go / No-go | |
+| Security | | Go / No-go | |
+| Engineering lead | | Go / No-go | |
+| On-call lead | | Go / No-go | |
 
 ## Part 2: Post-launch dashboard (5 metrics)
 
-| # | Metric | Definition | Industry benchmark | Page / investigate when |
-|---|---|---|---|---|
-| 1 | **Token endpoint availability and latency** | Share of non-5xx responses on `/token` and `/authorize`, plus p95/p99 latency | **Availability:** major identity providers publish SLAs in the 99.9%–99.99% range. **Latency:** no published standard. | Availability under **99.9%** over 5 min, or p99 over **500 ms** for 10 min (**Proposed**; p95 target 200 ms) |
-| 2 | **Refresh success rate** | Successful refresh ÷ refresh attempts, with `invalid_grant` split by cause (expired, revoked, reused, client mismatch) | None published. | Success rate drops more than **2 points** below your 7-day baseline, or one partner exceeds **3x** its own baseline (**Proposed**) |
-| 3 | **Reuse-detection triggers** | Family revocations caused by reuse per 1,000 refreshes, split into inside the grace window and outside it, and by partner | None published. Treat any non-zero rate as signal. | Rate above **3x** baseline, or a burst from a single client (usually a retry bug in a partner). A spike across many partners at once suggests a server-side race or a real attack. (**Proposed**) |
-| 4 | **Consent completion** | Consent screens shown → grant. Track also the share of grants that are partial (downscoped) and revocations per 1,000 active grants | None authoritative. Public acceptance rates vary too much by audience and product. | A move of more than **10 points** from the 2-week beta baseline, or a partner whose partial-grant share jumps. Both usually mean a broken prompt or an over-asking app. (**Proposed**) |
-| 5 | **App review queue age** | Age of the oldest item, p90 time-to-decision, and queue depth | Apple states that about 90% of App Store submissions are reviewed within 24 hours. Google OAuth verification commonly takes days to weeks. These are loose reference points, not standards. | Oldest item beyond your published review SLA (set it, for example 3 business days). Depth alone isn't alarming with about 30 partners. (**Proposed**) |
+**Window.** Review hourly on launch day, daily in week 1, and weekly after that.
 
-**On-call rule of thumb:** compare against your own trailing baseline first, and use the benchmark column only as a sanity check. For metrics 2 to 5, the benchmark is your first two weeks of data. Declare those two weeks "baseline mode" in the runbook, and finalize thresholds at the end of week 2.
+### 1. Token endpoint availability and latency
+- **What:** the success rate of `/token` (non-5xx), and p99 latency.
+- **Reference:** a 99.9% availability SLO is the common default for auth infrastructure. That is a convention, not a standard.
+- **Starting threshold:** page below 99.9% over 30 min, or p99 above 500 ms for 10 min. Set the latency number from your load test (E1), not from me.
+- **Off means:** every partner login and refresh is affected. Check this first.
 
-**Where to look when one is off:**
-- Metric 1 red → check DB, cache, and key/JWKS health first.
-- Metric 2 or 3 red → check whether it is one partner (client bug, contact them) or all (server regression, consider rollback per F3).
-- Metric 4 red → check the last consent UI or scope-text change.
-- Metric 5 red → page the review-queue owner, not engineering.
+### 2. Refresh success rate and reuse-detection rate
+- **What:** (a) the share of refresh calls that succeed, and (b) reuse-detection events per 1,000 refreshes.
+- **Reference:** RFC 9700 mandates rotation or sender-constraining for public clients. It gives **no** expected reuse rate.
+- **Starting threshold:** page on a sudden spike, or on a single partner above 5x its own 7-day baseline. A rate near zero is expected. A rate that steadily climbs usually means a client bug, such as parallel refresh without locking, not an attack.
+- **Off means:** a spike for one `client_id` points to a broken partner integration, so contact them. A spike across all clients points to a server bug, such as the A3 race, or a real token theft. Check the A3 grace window first.
 
----
+### 3. Consent funnel: grant rate and scope-narrowing rate
+- **What:** consent screens shown, then granted in full, granted in part, or denied. Also the share of grants where the user removed at least one scope.
+- **Reference:** none that I can cite. Treat any "typical consent rate" figure from a vendor blog as unverified.
+- **Starting threshold:** alert on a drop of more than 15 points against the 7-day baseline, or on one partner whose denial rate is more than double the median.
+- **Off means:** a high denial rate usually means over-broad scopes or an unclear screen. A very high partial-grant rate means partners request more than users will give. Both are feedback for partners, not outages.
 
-## Open questions for you
+### 4. App review queue: age and throughput
+- **What:** the p50 and p95 time from submission to decision, and the count of items waiting more than the target.
+- **Reference (loose analog only):** Apple states that about 90% of App Store submissions are reviewed within 24 hours. Google OAuth app verification commonly takes days to weeks. Your queue is different (about 30 partners, human reviewers), so use these only as a sanity check.
+- **Starting threshold:** target p95 within 2 business days at launch. Alert if any item is older than 3 business days, or the queue grows for 3 days running. Tune this to your reviewer headcount.
+- **Off means:** partners stall at launch. Add reviewers or pause new intake (F3).
 
-1. Do you issue OIDC ID tokens too? If so, add conformance-suite results to D2.
-2. Are your clients public (native/SPA), confidential, or both? This changes A9.
-3. What review SLA have you promised partners? It sets the metric 5 threshold.
+### 5. Authorization error mix
+- **What:** the share of `/authorize` and `/token` responses by error code (`invalid_grant`, `invalid_client`, `invalid_scope`, `access_denied`, `redirect_uri` mismatch), per client.
+- **Reference:** no standard rate. The useful comparison is each client against its own baseline.
+- **Starting threshold:** alert when total 4xx on `/token` exceeds 5% for 15 min, or one error code jumps 3x. Calibrate the 5% on week 1 data.
+- **Off means:** `invalid_grant` is the key one. Cross-check it with metric 2. `invalid_client` or `redirect_uri` spikes right after a partner deploy usually mean config drift.
+
+## Next action
+
+1. Fill in the **"Starting threshold"** values from your E1 load-test results.
+2. Send the checklist to QA this week. Sections A to C carry the most risk, so start there.
+
+I can write the A1 to A3 and B1 to B6 test cases as executable tests if you give me the repo path.

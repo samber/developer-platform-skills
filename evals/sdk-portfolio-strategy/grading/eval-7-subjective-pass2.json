@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Raises vendor acquisition and continuity risk as a first-order selection criterion, not an afterthought",
+        "evidence": "The headline recommendation depends on continuity: 'run self-hosted' and 'if the vendor disappears, the config investment doesn't transfer.' The answer cites the 2026 acquisitions: Postman bought Fern, and Anthropic bought Stainless and is winding down its hosted generator. It drops Stainless outright on that basis. In the ranked comparison, '2. Exit plan' (self-hosted or air-gapped, and who regenerates the SDKs if the vendor vanishes) and '3. Continuity and ownership' (acquisitions, wind-down and notice terms) both sit in the top three. The answer says items 1 to 3 'can eliminate a vendor out",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Raises vendor acquisition and continuity risk as a first-order selection criterion, not an afterthought",
+        "evidence": "The response covers lock-in risk well. It warns that proprietary config is lock-in, says a portable OpenAPI spec lets the team switch vendors, and lists 'Exit terms' (owning the generated code, keeping it after you stop paying, ejecting to self-maintain). Exit terms are weighted double in the scorecard. It also suggests a 3-month pilot or opt-out clause. These are first-order lock-in mitigations. However, the response never names the risk that the vendor itself gets acquired, pivots, sunsets the product, or goes out of business. It also never suggests checking the vendor's funding, runway, or ",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

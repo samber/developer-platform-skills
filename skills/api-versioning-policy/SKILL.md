@@ -227,3 +227,5 @@ Each of these is a documented, named incident pattern - check the draft policy a
 - `samber/developer-platform-skills@webhook-platform-design` - event schema evolution follows the same breaking-change definition and notice discipline defined here.
 - `samber/developer-platform-skills@public-graphql-api-design` - the schema-side design that makes step 1's continuous-evolution path possible (additive-friendly payloads, result unions, `@deprecated` field rollover); this skill sets the notice discipline that removal then follows.
 - `samber/developer-platform-skills@bulk-data-sharing-design` - bulk file/lake exports evolve their schema under a separate additive-only contract, not this skill's API deprecation machinery.
+- `samber/developer-platform-skills@sdk-package-publishing` - SDK package versions, pre-release channels and registry deprecation, kept decoupled from the API versions set here.
+- `samber/developer-platform-skills@public-roadmap-strategy` - the public roadmap keeps a deprecation off until this policy announces it, then links the notice both ways.

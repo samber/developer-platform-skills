@@ -4,12 +4,14 @@ Route only from the declared scopes below. Every "do not route here" line comes 
 
 Nothing here is ranked, and nothing in it should be. Scope is a match test, not a ratio. Ranking lives in the kickoff's short-list and routine set, where several skills compete for one session (see `samber/developer-platform-skills@developer-platform-kickoff` § 4 and § 7).
 
-Seven skills sit at macro altitude:
+Nine skills sit at macro altitude:
 
 - `api-integration-surface-strategy`
 - `api-versioning-policy`
+- `public-roadmap-strategy`
 - `sdk-portfolio-strategy`
 - `developer-portal-design`
+- `sample-app-strategy`
 - `etl-connector-strategy`
 - `integration-partnership-strategy`
 - `connector-marketplace-strategy`
@@ -89,6 +91,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: picking a version scheme, writing the breaking-change definition, setting notice windows, sunset signalling and enforcement, breaking-change governance. Asks the API paradigm first - REST's version-and-sunset and GraphQL's continuous evolution are different policies.
 - Do not route here: client SDK versioning, which is plain SemVer; auditing whether one surface is well-designed.
 
+### `samber/developer-platform-skills@public-roadmap-strategy`
+
+- Route here: "should we publish a roadmap", "our sales team keeps promising features", a GitHub roadmap repo or roadmap page, now/next/later vs dated quarters, roadmap disclaimers, a feature voting board on the roadmap, announcing a slipped or cancelled roadmap item.
+- Do not route here: internal roadmap planning or prioritization; triaging individual feature requests (`samber/developer-relations-skills@developer-feedback-loop`); deprecation notices (`api-versioning-policy`); joint roadmaps with a partner (`integration-partnership-strategy`).
+
 ### `samber/developer-platform-skills@api-reference-quality`
 
 - Route here: "find our undocumented endpoints", measuring docs completeness against a spec, missing examples or snippet parity, broken try-it, "stop our reference drifting" via CI lint and contract-test gates.
@@ -102,12 +109,37 @@ Both kinds are collected under Boundary pairs below.
 ### `samber/developer-platform-skills@sdk-portfolio-strategy`
 
 - Route here: "which SDK languages first", generated vs handwritten, tiering and promoting community SDKs, sunsetting a low-usage SDK, release cadence, decoupling SDK SemVer from API versioning.
-- Do not route here: single-SDK ergonomics, registry publishing mechanics, whether to offer SDKs as a surface at all.
+- Do not route here: single-SDK ergonomics, registry publishing mechanics (`samber/developer-platform-skills@sdk-package-publishing`), whether to offer SDKs as a surface at all.
+
+### `samber/developer-platform-skills@sdk-package-publishing`
+
+- Route here: npm, PyPI, Maven Central (Java, Kotlin, Scala, Gradle plugins), NuGet, Go module, crates.io, pub.dev (Dart, Flutter), RubyGems, Packagist, Hex, SwiftPM, CocoaPods, React Native library or Docker Hub publishing; shipping CLI and other binaries (GoReleaser, cargo-dist, Homebrew tap, winget, Scoop, deb/rpm, `curl | sh` installers, signing and notarization); tag-triggered CI auto-publishing; Artifactory or another private feed for any ecosystem; moving CI off long-lived registry tokens to trusted publishing; dist-tags and pre-releases; rolling back a bad package version; publishing to a private feed; `.npmrc`, `pip.conf`, `settings.xml`, `nuget.config`, `GOPRIVATE` or `.cargo/config.toml` for private packages; dependency confusion.
+- Do not route here: which SDK languages to build (`sdk-portfolio-strategy`), API version numbering (`api-versioning-policy`), deploying the platform's own service images, app-store or extension-marketplace submission, MCP registry listing (`mcp-server-offering`), CLI command, flag and output design (`cli-interface-design`), the agent skill bundled in the package (`agent-skill-offering`), registry discoverability and README codes (`samber/developer-relations-skills@oss-distribution-strategy`), the vendor's GitHub Action or CI integration that customers run (`github-action-offering`).
 
 ### `samber/developer-platform-skills@mcp-server-offering`
 
 - Route here: "should we ship an MCP server", choosing which tools to expose, securing write-capable tools, versioning the tool surface, judging MCP ROI.
 - Do not route here: code-generation MCP builder skills, which scaffold what this skill specifies; documenting an existing SDK for agent consumption (`samber/developer-relations-skills@coding-agent-docs-optimization`).
+
+### `samber/developer-platform-skills@cli-interface-design`
+
+- Route here: designing or reviewing the CLI that wraps the platform's API, "mirror every endpoint as a command", command naming and grammar, `--json` output and exit codes, CLI login and CI tokens, `--wait` and pagination flags, deprecating CLI flags, CLI telemetry, a CLI that hangs in CI or confuses coding agents.
+- Do not route here: whether to offer a CLI at all (`api-integration-surface-strategy`), API-less tools, argument-parser code, an Agent Skill shipped with the CLI (`agent-skill-offering`), shipping the CLI's binaries or packages - Homebrew tap, deb/rpm, release binaries, registries (`sdk-package-publishing`), the GitHub Action or CI integration wrapping the CLI (`github-action-offering`).
+
+### `samber/developer-platform-skills@agent-skill-offering`
+
+- Route here: shipping a SKILL.md with a library, CLI or SDK; keeping a skill's version in sync with releases; CI that fails a release on a stale skill; tag-pinned skill installs; plugin.json, marketplace.json, Codex, Cursor or Gemini manifests for a skill beside code; every Claude plugin manifest field and Claude plugin directory submission checks for that plugin; OpenClaw `metadata.openclaw` gating and ClawHub publishing of a tool's skill; skill vs MCP vs CLI for a coding-agent audience.
+- Do not route here: designing the MCP server itself (`mcp-server-offering`); the CLI's commands, `--json` or exit codes (`cli-interface-design`); docs written for coding agents (`samber/developer-relations-skills@coding-agent-docs-optimization`); standalone skill collections with no code version.
+
+### `samber/developer-platform-skills@github-action-offering`
+
+- Route here: "customers want to run us in CI", an official or `setup-<tool>` GitHub Action, `action.yml` inputs and outputs, moving the `v1` tag, immutable releases, a node24 major for the vendor's action, GitHub OIDC token exchange into the vendor API, script injection or tag hijack in the vendor's action, adopting a community-written action, Marketplace listing of an action, GitLab CI/CD components, CircleCI orbs, Bitbucket Pipes or Azure DevOps tasks for the product.
+- Do not route here: a team's own workflows or pinning third-party actions; the CLI the action wraps (`cli-interface-design`); publishing the CLI's binaries or packages (`sdk-package-publishing`); API key formats and rotation (`api-auth-key-management`); GitHub Apps and Marketplace app listings.
+
+### `samber/developer-platform-skills@terraform-provider-offering`
+
+- Route here: "customers want to manage us with Terraform", should we build or take over a Terraform/OpenTofu provider, terraform-plugin-framework resource design, a perpetual diff or "inconsistent result after apply" in our provider, import blocks and state upgrades, provider acceptance tests, GPG signing and publishing on the Terraform Registry or OpenTofu Registry, Partner or Partner Premier badge, deprecating or renaming provider resources and attributes.
+- Do not route here: writing Terraform modules or HCL for the platform's own infrastructure; Pulumi, Crossplane or CDK offerings; which surfaces to offer at all (`api-integration-surface-strategy`); SDK and CLI package registries (`sdk-package-publishing`); the API's own versioning policy (`api-versioning-policy`).
 
 ### `samber/developer-platform-skills@sql-jdbc-access-design`
 
@@ -128,6 +160,11 @@ Both kinds are collected under Boundary pairs below.
 
 - Route here: designing or restructuring a portal, console or API dashboard, cutting time to first call, deciding where each self-service surface sits, portal search, RBAC and tenancy, build vs buy.
 - Do not route here: internal service catalogs; designing any individual surface the portal hosts - each has its own sibling.
+
+### `samber/developer-platform-skills@sample-app-strategy`
+
+- Route here: which sample apps, quickstart repos, reference apps, starter or deploy templates and playgrounds to keep; too many or broken sample repos; who owns samples; CI and dependency cadence for sample repos; archiving or redirecting samples; a sample gallery or `samples create` CLI.
+- Do not route here: quality and CI tier of snippets inside docs pages (`samber/developer-relations-skills@docs-code-sample-standards`), which SDK languages exist (`sdk-portfolio-strategy`), writing one quickstart page (`samber/developer-relations-skills@developer-quickstart-guide`), the sandbox itself (`api-test-mode-design`).
 
 ### `samber/developer-platform-skills@api-test-mode-design`
 
@@ -159,6 +196,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: improving your own listing's conversion or search rank on someone else's marketplace, winning installs and compliant reviews, badge pursuit, defending rank against decay.
 - Do not route here: anything the marketplace _operator_ decides - standards, review, monetization, promotion.
 
+### `samber/developer-platform-skills@zapier-integration-playbook`
+
+- Route here: building or auditing your integration on Zapier, writing it with the zapier-platform CLI or Platform UI, converting UI to CLI, an inherited private Zapier integration, polling vs instant triggers, a Zapier trigger that misses or duplicates records, submitting to Zapier's app directory, the 90-day beta, Partner Program tier, publishing Zap templates, the Workflow Element embed, promoting, migrating or deprecating integration versions.
+- Do not route here: building Zaps as an end user; Make, n8n or Power Automate connectors; whether to embed an iPaaS in your own product (`connector-marketplace-strategy`); listing copy and ranking on marketplaces generally (`integration-listing-optimization`); the webhook subscription API a REST hook trigger calls (`webhook-platform-design`).
+
 ### `samber/developer-platform-skills@connector-marketplace-strategy`
 
 - Route here: "should we build an app store", "is our ecosystem ready", setting the take-rate _level_ and curation posture, governing third-party apps at the policy level, seeding a two-sided ecosystem from zero, build vs join vs embedded iPaaS.
@@ -184,6 +226,16 @@ Both kinds are collected under Boundary pairs below.
 - Route here: launching a marketplace, sizing the founding cohort, coordinating the reveal and partner embargoes, featured-app and spotlight rotations, allocating MDF and per-partner co-marketing budget.
 - Do not route here: a vendor optimizing its own listing on someone else's marketplace.
 
+### `samber/developer-platform-skills@github-engagement-playbook`
+
+- Route here: "our GitHub stars are flat", whether and how to run Discussions on an SDK repository, getting releases noticed by watchers, which topics to set, a label scheme for issues, PRs and discussions, keeping the repository visibly active in the feed, archiving traffic and tracking mentions, PR and tracking-issue templates, a board deck that reports stars, a request to buy, trade or reward stars.
+- Do not route here: the launch itself (`samber/developer-relations-skills@oss-launch`), README text and sidebar copy (`samber/developer-relations-skills@readme-optimization`), a profile page (`samber/developer-relations-skills@github-profile-optimization`), the cross-channel distribution mix (`samber/developer-relations-skills@oss-distribution-strategy`), publishing the package behind a release (`sdk-package-publishing`), choosing a license (`samber/developer-relations-skills@oss-license-strategy`).
+
+### `samber/developer-platform-skills@stackoverflow-playbook`
+
+- Route here: "our Stack Overflow tag is full of unanswered questions", staff or engineers answering on Stack Overflow, answers flagged as spam or self-promotion, the tag excerpt and wiki, ChatGPT-drafted answers, whether Stack Overflow is still worth the hours.
+- Do not route here: the error pages on your own docs (`samber/developer-relations-skills@developer-troubleshooting-docs`), getting your own docs cited by AI assistants (`samber/developer-relations-skills@developer-docs-ai-visibility`), measuring several community channels together (`samber/developer-relations-skills@developer-community-health`), an internal Stack Internal (Teams) instance.
+
 ### `samber/developer-platform-skills@developer-platform-career`
 
 - Route here: breaking into an API Product Manager, Platform Engineer/Architect, or Partner/Integration Engineer role, prepping a platform-engineering or API-PM interview, evaluating an offer against this track's own ladder and comp benchmark.
@@ -207,9 +259,20 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **api-integration-surface-strategy vs every per-surface skill** - "Should we add GraphQL?" → strategy. "Design our GraphQL schema" → the surface skill. A surface question arriving with no audience attached is always the strategy question in disguise.
 - **api-versioning-policy vs public-api-design-review** - "What are we allowed to change?" → policy. "Is this surface well-designed?" → review. A review that finds no agreed breaking-change definition escalates up to the policy.
 - **sdk-portfolio-strategy vs api-idempotency-retry** - "Which SDKs first?" → portfolio. "What should the SDK do on a 503?" → idempotency-retry.
+- **cli-interface-design vs mcp-server-offering** - "What commands, flags and `--json` contract does our CLI expose?" → CLI. "Which tools does our MCP server expose?" → MCP. Both may serve agents; which surface to build first is `api-integration-surface-strategy`.
+- **cli-interface-design vs sdk-package-publishing** - "What does the CLI do and promise?" → CLI design. "How do we ship its binaries and packages?" → publishing.
+- **github-action-offering vs cli-interface-design / sdk-package-publishing** - "What does our action take, output and promise, and how do we tag and secure it?" → action. "What do the CLI's commands and exit codes promise?" → CLI. "How do we publish the CLI binary to registries and Homebrew?" → publishing. A new action usually needs all three, in that reverse order: CLI contract, then binaries, then the action.
+- **agent-skill-offering vs mcp-server-offering / cli-interface-design** - "Ship instructions that teach agents to drive our CLI or SDK, versioned with it" → agent skill. "Expose our product as remote tools an agent without a shell can call" → MCP. "Design the CLI's commands and `--json` contract" → CLI design. The skill's step 1 hands the other two over.
+- **terraform-provider-offering vs sdk-package-publishing / api-integration-surface-strategy** - "Should we have an IaC surface at all, next to SDKs and a CLI?" → surface strategy. "Design, sign and publish our Terraform/OpenTofu provider" → provider offering. "Ship our Go SDK or CLI binary to a registry" → publishing; the provider's own GoReleaser and Registry flow stays with the provider skill.
+- **sdk-portfolio-strategy vs sdk-package-publishing** - "Which SDKs should exist and at what tier?" → portfolio. "How do we ship them to npm and PyPI without long-lived tokens?" → publishing.
+- **sdk-package-publishing vs github-engagement-playbook** - "How does the package reach the registry?" → publishing. "How does the GitHub Release reach watchers, and what do we post in Discussions?" → playbook. One release usually needs both, publishing first.
+- **stackoverflow-playbook vs api-error-design** - "What does the error response say?" → error design. "Where does the fix live when a developer pastes that error into a search engine?" → the playbook's canonical Q&A, mirrored by `samber/developer-relations-skills@developer-troubleshooting-docs` on your own docs.
+- **sample-app-strategy vs sdk-portfolio-strategy / api-test-mode-design** - "Which sample repos do we keep, and in which languages?" → samples. "Which SDK languages exist?" → SDK portfolio. "What do the samples run against?" → test mode. SDK tiers feed sample coverage; never the reverse.
 - **developer-portal-design vs api-auth-key-management / api-test-mode-design / integration-error-observability / api-reference-quality** - "Where does the key dashboard live and what else belongs on that page?" → portal. "What does a key look like and how does rotation work?" → key management. The portal decides which self-service surfaces exist and where; each sibling designs one of them.
 - **connector-marketplace-strategy vs the four app-marketplace skills** - "Should we build one?" and "what take-rate?" → strategy. "How do we collect it?" → monetization-model. "What must a listing contain?" → listing-standards. "What gets rejected?" → review. "How do we launch it?" → launch-marketing.
 - **integration-partnership-strategy vs partner-app-onboarding / etl-connector-strategy / integration-listing-optimization** - "Which partners matter?" → strategy. "How does a partner get from signup to first app?" → onboarding. "How do we get listed on their ETL catalog?" → etl-connector-strategy. "Why is our listing not converting?" → listing-optimization.
+
+- **zapier-integration-playbook vs integration-listing-optimization / webhook-platform-design** - one platform's mechanics vs the generic method. "How do we build, review, launch and version our Zapier app?" → the playbook. "Why does our listing not convert across marketplaces?" → listing-optimization. "How does our API let anyone subscribe to events?" → webhook-platform-design, which the playbook's REST hook triggers then call.
 
 **Split by side of the table:**
 
@@ -230,6 +293,11 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 
   Scan frequency and freshness expectations decide between the first two; who the customer already pays decides the third.
 
+- **public-roadmap-strategy vs api-versioning-policy vs api-status-communication** - three horizons of telling consumers about change:
+  - What is coming, and how firmly → public-roadmap-strategy. "Customers keep asking what's next" routes here.
+  - What is going away, on what notice → api-versioning-policy. "We need to retire /v1" routes here.
+  - What is broken right now → api-status-communication.
+
 - **api-rate-limit-policy vs public-graphql-api-design** - GraphQL's depth and complexity ceilings are schema design decisions and live with the schema; the published quota, tier numbers, headers and 429 contract are policy and live with rate-limit-policy. A GraphQL cost model needs both, in that order.
 - **partner-app-onboarding vs app-marketplace-review vs api-test-mode-design** - three stages of the same partner's path:
   - Getting to a first submission → onboarding.
@@ -247,6 +315,7 @@ Propose a chain only when the task genuinely decomposes this way; never fabricat
 - `connector-marketplace-strategy` → `app-marketplace-listing-standards` → `app-marketplace-review` → `app-marketplace-monetization-model` → `app-marketplace-launch-marketing` - settle whether and at what curation level, write what a listing must contain, define what gets rejected, wire up collection, then launch. Launching first means grandfathering every early listing.
 - `developer-portal-design` → `api-test-mode-design` → `api-reference-quality` - the portal decides which self-service surfaces exist and where; the sandbox and the reference each land in a slot it already reserved.
 - `integration-partnership-strategy` → `etl-connector-strategy` or `integration-listing-optimization` - the prioritization decides which platform is worth the connector or listing. Building either first pays a maintenance tax for a platform nobody's customers use.
+- `public-api-design-review` → `api-idempotency-retry` → `terraform-provider-offering` - the provider's readiness gate fails on non-idempotent creates and fields never read back; fix the contract before mapping it to resources, or every gap ships as a perpetual diff.
 - `webhook-platform-design` → `integration-error-observability` - delivery logs and replay are the debugging surface for the deliveries the first link creates.
 
 ## Sibling-repo recommendations
@@ -262,6 +331,15 @@ Recommend the sibling repo, not a skill above, when the task is:
 - Making an existing SDK, API or protocol consumable by a coding agent unattended → `samber/developer-relations-skills@coding-agent-docs-optimization`. Distinct from `mcp-server-offering`, which builds a _new_ agent-facing tool surface rather than documenting an existing one.
 - Whether to evolve from product to platform at all, and how far up the openness ladder → `samber/developer-relations-skills@developer-ecosystem-strategy`. Upstream of `connector-marketplace-strategy`: the ecosystem question is "should we be a platform", the marketplace question is "should we run a catalog".
 - The devtools revenue model, or what to open-source → `samber/developer-relations-skills@devtools-business-model`, `samber/developer-relations-skills@oss-distribution-strategy`.
+- Feature requests scattered across community, support and sales channels, and closing the loop with requesters → `samber/developer-relations-skills@developer-feedback-loop`. Distinct from `public-roadmap-strategy`, which publishes what those decisions add up to.
+- A vulnerability report against an open-source SDK, SECURITY.md, CVE and advisory, the disclosure embargo → `samber/developer-relations-skills@oss-security-disclosure`. `sdk-package-publishing` still ships the patched version.
+- The release contract of an open-source SDK or library - SemVer vs CalVer, when to ship 1.0, supported versions and LTS, backports, cadence, deprecation windows → `samber/developer-relations-skills@oss-release-policy`. `sdk-package-publishing` ships each version under that policy; `api-versioning-policy` versions the hosted API.
+- A maintainer burning out on an open-source SDK, wanting to step back, hand it over or archive it → `samber/developer-relations-skills@oss-maintainer-sustainability`. `sdk-package-publishing` still owns the registry deprecation and ownership mechanics it triggers.
+- A maintainer wanting an open-source SDK or library to pay them - a paid add-on, support, a commercial license on the next major → `samber/developer-relations-skills@oss-monetization`. `sdk-package-publishing` still owns publishing the paid package to a private feed.
+- Whether and how to translate the docs, and keeping translations current → `samber/developer-relations-skills@docs-localization-strategy`.
+- AI assistants answering with deprecated APIs or old-version docs, and measuring AI-answer correctness → `samber/developer-relations-skills@developer-docs-ai-visibility`. The deprecation policy itself stays with `api-versioning-policy`.
+- A repository about to go public, or a launch-day Trending push → `samber/developer-relations-skills@oss-launch`; the README page itself → `samber/developer-relations-skills@readme-optimization`. Distinct from `github-engagement-playbook`, which tends the repository's GitHub surfaces after launch.
+- The troubleshooting pages on your own docs that a Stack Overflow canonical mirrors → `samber/developer-relations-skills@developer-troubleshooting-docs`. `stackoverflow-playbook` runs the product tag itself.
 - Anything else in the DevRel practice - developer content and SEO, community, events, open-source program operations. Start at `samber/developer-relations-skills@developer-relations-kickoff` when the boundary is unclear.
 
 Distinguish from this collection: `developer-platform-skills` owns what the platform _is_ and what integrating with it costs; `developer-relations-skills` owns how developers hear about it, learn it, and stay. "Design our webhook platform" stays here; "write the tutorial that teaches it" goes to the sibling.
@@ -272,4 +350,4 @@ Distinguish from this collection: `developer-platform-skills` owns what the plat
 
 Recommend the sibling repo when the task is running a conference, hackathon, meetup or developer event as an _event_ - venue, sponsorship, CFP, speakers, budget, logistics - rather than as a DevRel program. A marketplace launch keynote is `app-marketplace-launch-marketing` here; producing the conference the keynote happens at is the sibling repo.
 
-Coverage gaps this collection does not fill at all - per-marketplace submission playbooks, package-registry publishing mechanics, API changelog automation, federated-graph offerings, API monetization, connector certification programs, and deployed-integration health monitoring - are listed with their boundaries in `samber/developer-platform-skills@developer-platform-kickoff` § 8. Name the gap from there; never promise a skill exists.
+Coverage gaps this collection does not fill at all - per-marketplace submission playbooks, publishing-platform playbooks beyond GitHub and Stack Overflow, API changelog automation, federated-graph offerings, API monetization, connector certification programs, and deployed-integration health monitoring - are listed with their boundaries in `samber/developer-platform-skills@developer-platform-kickoff` § 8. Name the gap from there; never promise a skill exists.

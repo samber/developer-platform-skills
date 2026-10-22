@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to bump SDK majors merely because the API released a new version",
+        "evidence": "\"never merely because the API released a new version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates the SDK package version (SemVer) from the API version as two distinct written policies",
+        "evidence": "Policy A SDK package version; Policy B API version.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the language-runtime support window as a third policy, separate from both of the others",
+        "evidence": "\"Policy D: Runtime support window\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an SDK major is warranted only when the SDK's own code surface breaks, such as a renamed method or changed constructor",
+        "evidence": "\"only when that SDK's public surface breaks (renamed method, changed constructor, changed return type)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Stripe's stated split: SemVer for SDKs, release-date versioning for the API",
+        "evidence": "Stripe is cited only for a \"1 to 2 year extended window\"; the split is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a published mapping table from SDK major version to the API version(s) it supports",
+        "evidence": "\"Policy C: Mapping table. Publish it on the docs site and in each README.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies that mapping table as an artifact Stripe and/or AWS actually maintain and worth copying",
+        "evidence": "The mapping table is prescribed without attributing it to Stripe or AWS.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ties the runtime support window mechanically to upstream language lifecycles plus a stated grace window",
+        "evidence": "\"supports every host-language version still supported upstream... up to 12 months past upstream end-of-life\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites a concrete runtime-window precedent such as Stripe's four most recent Go versions, Node LTS 18+, or AWS's latest two GA Go versions with a six-month grace",
+        "evidence": "\"the low end of Stripe's documented 1 to 2 year extended window\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves ownership of the API-side versioning scheme to the separate API versioning policy, recording only the boundary here",
+        "evidence": "\"Owned by the API versioning policy (api-versioning-policy)... Record only the boundary\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a cadence choice between a fixed release train and continuous release-on-change",
+        "evidence": "Policy F simply mandates \"Release on change, with no fixed monthly train\" and offers no choice.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries Azure's own warning not to publish releases just to keep to a regular cadence if a fixed train is proposed",
+        "evidence": "\"Don't publish releases just to keep a rhythm\" appears, but it is not attributed to Azure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames release cadence as a predictability promise to integrators rather than a productivity metric",
+        "evidence": "Cadence is never framed as a predictability promise to integrators.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to bump SDK majors merely because the API released a new version",
+        "evidence": "'The API break is real, so a major bump is correct.' The policy says 'We aim to align SDK and API majors.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates the SDK package version (SemVer) from the API version as two distinct written policies",
+        "evidence": "One policy with an 'API targeting' item. It does not give two separate policies.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the language-runtime support window as a third policy, separate from both of the others",
+        "evidence": "Runtime support is item 4 inside the single SDK versioning policy.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that an SDK major is warranted only when the SDK's own code surface breaks, such as a renamed method or changed constructor",
+        "evidence": "'A major is released for any breaking change, including raising a runtime floor.' It never limits majors to SDK surface changes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Stripe's stated split: SemVer for SDKs, release-date versioning for the API",
+        "evidence": "Stripe is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a published mapping table from SDK major version to the API version(s) it supports",
+        "evidence": "'Each SDK major targets exactly one API version, shown in a published compatibility matrix.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies that mapping table as an artifact Stripe and/or AWS actually maintain and worth copying",
+        "evidence": "No precedent is cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ties the runtime support window mechanically to upstream language lifecycles plus a stated grace window",
+        "evidence": "'We support a language runtime while its upstream maintainers support it.' No grace window is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites a concrete runtime-window precedent such as Stripe's four most recent Go versions, Node LTS 18+, or AWS's latest two GA Go versions with a six-month grace",
+        "evidence": "No vendor precedent is cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Leaves ownership of the API-side versioning scheme to the separate API versioning policy, recording only the boundary here",
+        "evidence": "No boundary with an API versioning policy is recorded.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers a cadence choice between a fixed release train and continuous release-on-change",
+        "evidence": "No cadence discussion.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries Azure's own warning not to publish releases just to keep to a regular cadence if a fixed train is proposed",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames release cadence as a predictability promise to integrators rather than a productivity metric",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

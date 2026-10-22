@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a blocking objection carrying no cited written rule or precedent is not a valid block",
+        "evidence": "'The skill allows a Must-change only if it cites a written rule or precedent... Improvements never block.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Downgrades the camelCase demand to an Improvement at most, because the only citable rule is consistency of the choice",
+        "evidence": "'Not a finding (at most an Improvement)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms the teammate's internally consistent snake_case already satisfies that consistency rule",
+        "evidence": "'The design is uniformly snake_case, so it passes dimension 4.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the /refunds nesting demand as a block, noting the existing structure sits within the 2-3 level depth limit",
+        "evidence": "'No rule is violated.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats reopening the pagination decision as re-litigation of a settled prior review and declines it absent a significant, still-consequential mistake",
+        "evidence": "'Re-litigation, not rigor.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the burden of justification falls on the party deviating from a cited rule, not on the designer defending against an uncited objection",
+        "evidence": "'The burden is on the person reopening it' and 'The deviator records a rationale'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the aip.dev/not-precedent rationale convention as the mechanism for recording an accepted deviation",
+        "evidence": "It mentions only a 'Precedent log' and never not-precedent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing the escalation path and a named override authority so disagreements resolve in days",
+        "evidence": "'Named override authority and escalation SLA.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies taste-based blocking comments as a named failure mode that recreates both rubber-stamping and bottlenecking",
+        "evidence": "It says 'a block on taste' but never names the failure mode or ties it to rubber-stamping and bottlenecking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the calibration line: firm on decisions affecting clients or security, forgiving on stylistic preference",
+        "evidence": "It only suggests asking whether there is a 'client-facing or security concern behind this, or is it style'. There is no stated calibration line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes no numeric score, rubric, or severity rating as the means of settling the dispute",
+        "evidence": "None used.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the 8-day stall against the under-a-week turnaround target for a small API",
+        "evidence": "'Target under a week for small APIs. Eight days stuck means escalation had no owner.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a blocking objection carrying no cited written rule or precedent is not a valid block",
+        "evidence": "'A blocking comment must cite one of these... Everything else is a suggestion or nit'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Downgrades the camelCase demand to an Improvement at most, because the only citable rule is consistency of the choice",
+        "evidence": "'this is not a blocker'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms the teammate's internally consistent snake_case already satisfies that consistency rule",
+        "evidence": "'The PR is consistent'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the /refunds nesting demand as a block, noting the existing structure sits within the 2-3 level depth limit",
+        "evidence": "Rejects on trade-off, no depth limit cited",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats reopening the pagination decision as re-litigation of a settled prior review and declines it absent a significant, still-consequential mistake",
+        "evidence": "'A signed-off decision stands until someone brings new evidence'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the burden of justification falls on the party deviating from a cited rule, not on the designer defending against an uncited objection",
+        "evidence": "Not framed as deviating-party burden",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the aip.dev/not-precedent rationale convention as the mechanism for recording an accepted deviation",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing the escalation path and a named override authority so disagreements resolve in days",
+        "evidence": "'Name an API design owner... tiebreaker'; escalation clock",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies taste-based blocking comments as a named failure mode that recreates both rubber-stamping and bottlenecking",
+        "evidence": "Not named as recreating rubber-stamp/bottleneck",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the calibration line: firm on decisions affecting clients or security, forgiving on stylistic preference",
+        "evidence": "Absent",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes no numeric score, rubric, or severity rating as the means of settling the dispute",
+        "evidence": "None proposed",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the 8-day stall against the under-a-week turnaround target for a small API",
+        "evidence": "Uses own SLA, not the target",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

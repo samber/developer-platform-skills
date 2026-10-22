@@ -1,0 +1,194 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-test-mode-design",
+  "scenarios": 8,
+  "expectations_total": 100,
+  "expectations_subjective": 0,
+  "expectations_objective": 100,
+  "pass_rate_with_skill_pct": 96.0,
+  "pass_rate_without_skill_pct": 67.0,
+  "delta_pp": 29.0,
+  "uplift_multiplier": 1.43,
+  "trigger_accuracy_pct": 69.8,
+  "trigger_queries": 96,
+  "trigger_positive_fire_rate": 0.688,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Calls out that testing with real card numbers must stop, treating it as a compliance/terms violation rather than a mere inconvenience."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Treats 'every vendor publishes a distinct sandbox throttle' as false, noting sandbox-specific numeric limits are sparsely documented across vendors and several reuse production limits."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Keeps leaked-key mitigations distinct: server-side-only secrets, scoped/restricted keys, and secret-scanning enrollment."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes test keys are not risk-free - on a toggle model they still read and write real account configuration - so they deserve real secret hygiene."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Requires each magic value to map onto a real published error/decline code from the API's error catalog, never a sandbox-only error shape."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the sandbox's isolation level explicitly in the docs instead of letting the word 'sandbox' imply it."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that graduation to live will be gated by a compliance step (KYC-style activation) and recommends integrators submit it early because review can take days."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the asymmetry that adding new magic values is safe while changing or removing existing ones is a breaking change."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Identifies the unlabeled multi-operation catalog as a documented integrator trap (cross-referencing the wrong operation's meaning)."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends bidirectional mode-boundary enforcement: live credentials reject magic numbers and test credentials reject real ones."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the sandbox's isolation level explicitly in documentation instead of relying on the word 'sandbox'."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Applies the event/time coverage gate: every time-dependent flow must be testable via simulated time, and any flow testable only by waiting real calendar time fails the audit."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Mentions auto-aging fixtures (date fields shifting daily) as a cheaper rung for simple cases, distinct from the full clock primitive."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends reset endpoints that return a developer's test environment to a clean state."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends deriving sandbox configuration from the same infrastructure-as-code as production so any difference is intentional and documented."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Promotes the config-driven fixture builder because integrators' data shapes genuinely vary, naming the data-aggregation domain as the promotion condition."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the shared sandbox's isolation level explicitly in docs - shared and not per-integrator isolated - instead of letting 'sandbox' imply isolation."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Applies the failure-path coverage gate: every documented failure outcome deterministically triggerable, with a single untriggerable path failing the audit."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires the environment boundary to prevent test credentials from referencing or touching real accounts."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cites the quantified precedent that managed CAPTCHA on checkout cut card testing by about 80% with under 0.02% impact on authorization rates."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects the 10 requests/minute sandbox limiter as the default and recommends reusing production rate limits unchanged in the sandbox as the default posture."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Gives the reason for limit parity: identical limits keep integrators' throttling and backoff code honest before they hit production."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Treats 'every vendor publishes a distinct sandbox throttle' as false, noting sandbox-specific numeric limits are sparsely documented across vendors and several reuse production limits."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Keeps leaked-key mitigations distinct: server-side-only secrets, scoped/restricted keys, and secret-scanning enrollment."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes test keys are not risk-free - on a toggle model they still read and write real account configuration - so they deserve real secret hygiene."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires test credentials removed from production configuration, not merely live credentials added."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the cross-environment paste pitfall (live key in a sandbox context or vice versa) and its opaque authentication-failure symptom as a recurring support generator."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes a reactive go-back trigger: webhooks silently stopping after launch usually means a stale or unregistered live-mode endpoint from a silently skipped cutover step."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the drift failure mode: when the API changes, the mock keeps simulating the old behavior while production breaks silently, which vendor-exercised real objects cannot do."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the bugs a stateless mock misses are the state-dependent ones surfacing weeks into an integration, not day-one request-shape errors."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends building a real stateful test mode instead, with the soft toggle named as the default isolation rung."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires the docs to state the isolation level explicitly rather than shipping the bare label 'Sandbox'."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Applies the failure-path coverage gate at 100%, with one untriggerable failure path failing the audit."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Specifies mode-prefixed test credentials with the recognized _test_/_live_ substring shape for the real test mode, rather than reusing live keys against a different host."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Explains why test keys carry risk: on a toggle model they still read and write real account configuration, and the prefix communicates mode, not risk level."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Frames the wrong-environment paste as a named recurring support-ticket generator with a design target of zero cross-environment incidents, achieved structurally rather than by warning developers."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires bidirectional boundary enforcement: live keys reject test data and test keys reject real records."
+      }
+    ]
+  }
+}

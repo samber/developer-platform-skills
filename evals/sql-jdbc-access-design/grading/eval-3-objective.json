@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires ALTER TABLE ... FORCE ROW LEVEL SECURITY, explaining that the table owner otherwise bypasses RLS entirely",
+        "evidence": "\"Without `FORCE ROW LEVEL SECURITY`, the table owner skips every policy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deriving app.tenant_id from the client-supplied X-Org-Id header and requires tenant identity injected server-side from a verified token",
+        "evidence": "\"The `X-Org-Id` header is client-supplied... Derive the tenant from the verified token claims.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires WITH CHECK alongside USING on write-path policies, because USING filters only reads and a USING-only policy lets a tenant write rows attributed to another tenant",
+        "evidence": "WITH CHECK is listed under \"Checked and fine\" as mattering only if policies are split later; it is not required.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that multiple permissive policies on a table combine with OR, so a single USING (true) policy silently defeats every stricter policy, and requires auditing all of a table's policies together",
+        "evidence": "Only says to scope the policy `TO customers` so the API policy \"can never OR-combine\"; no USING (true) warning or audit requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires WITH (security_invoker = true) on the four reporting views, since a view otherwise runs with its creator's privileges and returns every row regardless of caller",
+        "evidence": "\"create each view with `WITH (security_invoker = true)`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns about infinite policy recursion when a helper function called from a policy reads another RLS-protected table, and prescribes SECURITY DEFINER with SET search_path pinned",
+        "evidence": "Recursion note on helper functions that read other RLS tables; function uses `SECURITY DEFINER SET search_path = pg_catalog, pg_temp`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends wrapping a per-row function call in a subquery so the predicate evaluates once per query rather than once per row",
+        "evidence": "\"Wrap any per-row function in `(SELECT \u2026)`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires indexing every column a policy predicate references, tenant_id first",
+        "evidence": "\"Index `tenant_id` as the leading column.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that RLS does not itself grant SELECT/INSERT/UPDATE/DELETE, so matching GRANTs and column grants are still required",
+        "evidence": "Never states that RLS needs matching GRANTs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects schema-per-tenant at roughly 900 tenants, naming connection pooling and DDL migrations as what breaks down",
+        "evidence": "Names 900 DDL runs, catalog size, pg_dump and autovacuum, but not connection pooling.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that an OLTP-only stack with no warehouse deletes the zero-copy sharing rung entirely rather than demoting it",
+        "evidence": "\"With no warehouse in your stack, zero-copy sharing isn't an option.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects exposing the live operational schema to customers and requires a curated mart layer replicated from the system of record",
+        "evidence": "\"Publish a curated, versioned schema (`customer_api`, with `v1` views)\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires ALTER TABLE ... FORCE ROW LEVEL SECURITY, explaining that the table owner otherwise bypasses RLS entirely",
+        "evidence": "'owners bypass RLS unless the table has FORCE ROW LEVEL SECURITY' and 'Add FORCE ROW LEVEL SECURITY'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deriving app.tenant_id from the client-supplied X-Org-Id header and requires tenant identity injected server-side from a verified token",
+        "evidence": "'X-Org-Id is a client-supplied header... Derive the org from the token'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires WITH CHECK alongside USING on write-path policies, because USING filters only reads and a USING-only policy lets a tenant write rows attributed to another tenant",
+        "evidence": "WITH CHECK is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that multiple permissive policies on a table combine with OR, so a single USING (true) policy silently defeats every stricter policy, and requires auditing all of a table's policies together",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires WITH (security_invoker = true) on the four reporting views, since a view otherwise runs with its creator's privileges and returns every row regardless of caller",
+        "evidence": "security_invoker is only 'Fix A'. The recommended Fix B uses explicit WHERE filters in views owned by the view owner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns about infinite policy recursion when a helper function called from a policy reads another RLS-protected table, and prescribes SECURITY DEFINER with SET search_path pinned",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends wrapping a per-row function call in a subquery so the predicate evaluates once per query rather than once per row",
+        "evidence": "It only suggests caching the lookup in a STABLE function.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires indexing every column a policy predicate references, tenant_id first",
+        "evidence": "'Every policy needs a tenant_id-leading index on all ~40 tables'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that RLS does not itself grant SELECT/INSERT/UPDATE/DELETE, so matching GRANTs and column grants are still required",
+        "evidence": "It says 'customers get SELECT on those views only' but never states that RLS does not itself grant privileges.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects schema-per-tenant at roughly 900 tenants, naming connection pooling and DDL migrations as what breaks down",
+        "evidence": "'Every migration runs 900 times. Pooling needs search_path handling.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an OLTP-only stack with no warehouse deletes the zero-copy sharing rung entirely rather than demoting it",
+        "evidence": "It says 'no warehouse anywhere is the root cause' but never frames the sharing rung as deleted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects exposing the live operational schema to customers and requires a curated mart layer replicated from the system of record",
+        "evidence": "'Expose only reporting.*, with a stable contract' and per-customer subscriber databases holding only their rows.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Cites Postman's acquisition of Fern in January 2026",
+        "evidence": "\"Postman acquired Fern on January 8, 2026.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Anthropic's acquisition of Stainless and the wind-down of its hosted SDK generator",
+        "evidence": "\"Anthropic acquired Stainless... winding down the hosted generator\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Stainless customers kept their already-generated SDKs but lost the pipeline that kept those SDKs in sync with API changes",
+        "evidence": "\"Customers kept their generated code but lost the pipeline that kept it in sync.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a proprietary configuration DSL is a second artifact that must stay synchronized with the spec",
+        "evidence": "\"The config is a second artifact that has to stay in sync with the spec.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that investment in a vendor's config DSL does not transfer, deepening the exit cost if the vendor disappears",
+        "evidence": "\"If the vendor disappears, the config investment doesn't transfer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes OpenAPI-native generators from DSL-interposing ones, naming at least one vendor on each side",
+        "evidence": "Names Stainless and Fern as DSL-interposing, but never explicitly labels any vendor as OpenAPI-native; Speakeasy and OpenAPI Generator appear only as self-hostable.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the OpenAPI spec to remain the single source of truth regardless of which vendor is chosen",
+        "evidence": "\"Spec as source of truth... no vendor DSL required.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prefers a generator that can run self-hosted",
+        "evidence": "\"Check whether you can run generation self-hosted or air-gapped.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a written exit plan naming who regenerates the SDKs if the vendor exits, recorded in the decision record before signing",
+        "evidence": "\"Write down who regenerates your SDKs if the vendor vanishes, before you sign.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the vendor landscape is time-sensitive and instructs re-verifying each vendor's current status before committing",
+        "evidence": "\"re-check each vendor's current status before you sign.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to endorse adopting the vendor's configuration DSL as the source of truth in place of the spec",
+        "evidence": "\"Don't pick on config-file niceness.\"; \"A clean config file doesn't replace the OpenAPI document.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the build model as one portfolio-wide decision rather than a per-language vendor choice",
+        "evidence": "Not framed as a portfolio-wide decision versus per-language vendor choice.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Cites Postman's acquisition of Fern in January 2026",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites Anthropic's acquisition of Stainless and the wind-down of its hosted SDK generator",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Stainless customers kept their already-generated SDKs but lost the pipeline that kept those SDKs in sync with API changes",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a proprietary configuration DSL is a second artifact that must stay synchronized with the spec",
+        "evidence": "Says the config 'only adjusts what the spec describes' and is lock-in, but does not warn about keeping a second artifact synchronized.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that investment in a vendor's config DSL does not transfer, deepening the exit cost if the vendor disappears",
+        "evidence": "'Proprietary config is lock-in. A portable OpenAPI spec lets you switch vendors later, while the config file doesn't move.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes OpenAPI-native generators from DSL-interposing ones, naming at least one vendor on each side",
+        "evidence": "No vendors are named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the OpenAPI spec to remain the single source of truth regardless of which vendor is chosen",
+        "evidence": "'You still need an OpenAPI spec'; 'Move your spec to code-generated OpenAPI now, whichever vendor you pick.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prefers a generator that can run self-hosted",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a written exit plan naming who regenerates the SDKs if the vendor exits, recorded in the decision record before signing",
+        "evidence": "Only 'Exit terms' such as ejecting the code and keeping it after stopping payment. There is no written exit plan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the vendor landscape is time-sensitive and instructs re-verifying each vendor's current status before committing",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines to endorse adopting the vendor's configuration DSL as the source of truth in place of the spec",
+        "evidence": "'Don't sign on config-layer polish. It's the wrong tiebreaker'; 'Prefer the vendor where you need less config.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the build model as one portfolio-wide decision rather than a per-language vendor choice",
+        "evidence": "Frames it as a vendor selection across four languages without discussing a portfolio-wide build model.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

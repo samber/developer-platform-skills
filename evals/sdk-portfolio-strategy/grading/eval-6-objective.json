@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Makes transfer of the canonical registry package name an explicit condition of promotion",
+        "evidence": "Gate 4 says \"no rename is needed. Crates.io allows co-owners... we can add an org owner rather than demand a transfer.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes the original maintainer's cooperation and consent a condition, not a unilateral vendor decision",
+        "evidence": "\"Maintainer's right to say no... the policy must not assume yes.\"; \"provided the maintainer agrees\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the Anthropic Ruby SDK case, where the community maintainer donated the canonical gem name, as the documented promotion precedent",
+        "evidence": "\"the Anthropic Ruby SDK took over a community gem's name... turned on the maintainer donating the package name\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes crediting the original maintainer publicly as part of the promotion",
+        "evidence": "\"Credit the maintainer in the README, as the Anthropic Ruby README does.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels any fuller promotion rubric (usage volume, feature completeness, support commitment) as inferred or self-set rather than a published standard",
+        "evidence": "\"The rubric is [inferred] synthesis.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the two-tier official-plus-community shape as the default",
+        "evidence": "\"Two-tier plus Preview, not full numbered tiers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attaches an explicit non-guarantee to the community tier covering accuracy, completeness, or being kept up to date",
+        "evidence": "\"Support, accuracy, completeness, updates.\"; \"we can't speak to their accuracy or completeness\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes community-SDK support requests to the community repository rather than the vendor's own ticket queue",
+        "evidence": "\"Support requests route to the community repo, not our tickets.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs writing the promotion gate down before it is needed rather than deciding case by case",
+        "evidence": "\"Write and approve the gate before anyone promises the crate to the CTO.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines what the official tier buys the user (a support commitment) and what the community tier explicitly does not",
+        "evidence": "Tier table with \"What we commit to\" and \"What we don't\" columns.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Encodes the quality level where users already look, in the version number and package metadata, not only on a docs page",
+        "evidence": "\"GA means version \u22651.0 and a README banner... Google Cloud does this with version \u22651.0 plus a PyPI classifier.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites a concrete metadata precedent such as Google Cloud requiring version 1.0 or higher plus the Production/Stable development-status classifier for GA",
+        "evidence": "\"Google Cloud does this with version \u22651.0 plus a PyPI classifier.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers numbered tiers (MCP's Tier 1/2/3 or Azure's named tier-1 languages) as the alternative once 'official' alone stops discriminating",
+        "evidence": "\"Numbered tiers (MCP-style) only pay off when 'official' stops discriminating.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that MCP's tiers rank implementation completeness rather than feature ambition",
+        "evidence": "Not stated; MCP is mentioned only as \"MCP-style\".",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Makes transfer of the canonical registry package name an explicit condition of promotion",
+        "evidence": "O1: 'we hold registry owner rights'; the Rust crate is stuck at Certified if the author declines to 'transfer or share ownership'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the original maintainer's cooperation and consent a condition, not a unilateral vendor decision",
+        "evidence": "O7 'Author agreement'; 'Official... requires the author's agreement'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the Anthropic Ruby SDK case, where the community maintainer donated the canonical gem name, as the documented promotion precedent",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes crediting the original maintainer publicly as part of the promotion",
+        "evidence": "O7 maintainer agreement covers 'credit, decision rights, compensation'; 'Offer paid sponsorship... credit, and decision rights'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels any fuller promotion rubric (usage volume, feature completeness, support commitment) as inferred or self-set rather than a published standard",
+        "evidence": "'All numeric thresholds are defaults I set.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the two-tier official-plus-community shape as the default",
+        "evidence": "Proposes four tiers (Official, Certified, Community, Preview), with only an optional drop of Preview.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attaches an explicit non-guarantee to the community tier covering accuracy, completeness, or being kept up to date",
+        "evidence": "The Community column says 'None promised' or 'Unspecified', with no explicit non-guarantee of accuracy, completeness or currency.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes community-SDK support requests to the community repository rather than the vendor's own ticket queue",
+        "evidence": "Certified issues go to the author. For Community, support is 'None'. There is no routing to the community repository.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs writing the promotion gate down before it is needed rather than deciding case by case",
+        "evidence": "Section 3 defines pass/fail criteria, and 'Policy drafted around one case' warns about case-by-case rules.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines what the official tier buys the user (a support commitment) and what the community tier explicitly does not",
+        "evidence": "The tier table contrasts the Support, Security and SLA rows for Official against Community.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Encodes the quality level where users already look, in the version number and package metadata, not only on a docs page",
+        "evidence": "Tiers appear in docs, directory and badges only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites a concrete metadata precedent such as Google Cloud requiring version 1.0 or higher plus the Production/Stable development-status classifier for GA",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers numbered tiers (MCP's Tier 1/2/3 or Azure's named tier-1 languages) as the alternative once 'official' alone stops discriminating",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that MCP's tiers rank implementation completeness rather than feature ambition",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

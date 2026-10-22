@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Removes the v1 endpoint retirement from the maintenance announcement, making it a separate communication",
+        "evidence": "\"No. A maintenance notice and a deprecation have different timelines\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the split: a maintenance window and a deprecation are different communications on different timelines (day-to-week notice versus a multi-month runway) and must never be blended into one announcement",
+        "evidence": "\"do something in 12 days\" versus \"plan something over about 14 months\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the notice with exact start and end times",
+        "evidence": "\"from 00:00 to 03:00 UTC\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States an explicit time zone for those times",
+        "evidence": "UTC plus US Eastern, Singapore and Tokyo equivalents",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States precise scope: write/document-generation calls affected, reads and other surfaces unaffected - replacing the blanket 'the API will be down'",
+        "evidence": "Writes fail with 503; \"reads (GET)... dashboard, API authentication and webhook deliveries\" are not affected",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States what consumers should expect and do during the window (e.g. failing write calls, whether to pause batch jobs or retry)",
+        "evidence": "\"pause them or schedule them outside it. Retry on 503 with backoff\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Verifies the schedule satisfies the enterprise contract's 5-business-day notice floor",
+        "evidence": "Send Mon 10-05 \"about 8 business days before the window\"; \"Fri 10-09\" is the last date the floor is met",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Challenges the Saturday-8pm-Eastern choice: schedule against the affected users' low-traffic hours, not the provider's office hours, given the Asia-Pacific overnight batch load",
+        "evidence": "\"the skill says to schedule against the customers' low-traffic hours\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the notice via the status page plus at least one push channel, never the page alone",
+        "evidence": "Channels table: status page, email, webhook, enterprise direct notice",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schedules a reminder notification as the date approaches, in addition to the initial notice",
+        "evidence": "\"Reminder email\" at T-24 h and a reminder at T-1 h",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Posts start and completion confirmations even for the short two-hour window",
+        "evidence": "\"Post 'maintenance started'\" and \"Post 'maintenance completed'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that SLA exclusion is not trust exclusion: a badly communicated window still costs trust even when the arithmetic forgives it",
+        "evidence": "\"Even then, a badly communicated window still costs trust.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Removes the v1 endpoint retirement from the maintenance announcement, making it a separate communication",
+        "evidence": "\"Do not bundle the v1 retirement\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the split: a maintenance window and a deprecation are different communications on different timelines (day-to-week notice versus a multi-month runway) and must never be blended into one announcement",
+        "evidence": "\"The downtime notice needs an action in 2 weeks. A retirement notice needs an action in 14+ months.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the notice with exact start and end times",
+        "evidence": "\"Sunday, October 18, 2026, 00:00 to 03:00 UTC\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States an explicit time zone for those times",
+        "evidence": "UTC and US Eastern stated, with a local-time table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States precise scope: write/document-generation calls affected, reads and other surfaces unaffected - replacing the blanket 'the API will be down'",
+        "evidence": "\"Wrong scope: only writes fail\"; \"Read requests are not affected\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States what consumers should expect and do during the window (e.g. failing write calls, whether to pause batch jobs or retry)",
+        "evidence": "\"Pause or reschedule batch jobs ... retry on 503 responses, using the Retry-After header\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Verifies the schedule satisfies the enterprise contract's 5-business-day notice floor",
+        "evidence": "\"Oct 10 is impossible. Five business days of notice would have had to go out by Oct 2.\"; the contract deadline \"falls around Fri Oct 9\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Challenges the Saturday-8pm-Eastern choice: schedule against the affected users' low-traffic hours, not the provider's office hours, given the Asia-Pacific overnight batch load",
+        "evidence": "\"Pick the 2-hour window with the lowest write volume across all regions, not the one that suits our office hours.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the notice via the status page plus at least one push channel, never the page alone",
+        "evidence": "\"General email, status page scheduled maintenance, docs banner, changelog entry\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schedules a reminder notification as the date approaches, in addition to the initial notice",
+        "evidence": "\"Reminder 1 (T-7 days)\", \"Reminder 2 (T-1 day)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Posts start and completion confirmations even for the short two-hour window",
+        "evidence": "\"Status page 'in progress' at start\"; \"'Complete' on the status page and email\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that SLA exclusion is not trust exclusion: a badly communicated window still costs trust even when the arithmetic forgives it",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

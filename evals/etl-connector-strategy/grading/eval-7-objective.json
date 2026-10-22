@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Does not sign off on the plan as stated, despite the customer segment genuinely matching the open-source-first archetype.",
+        "evidence": "\"Don't sign off as framed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the custom or open-spec tap path carries 100% of the maintenance tax, with no part of it absorbed by a platform.",
+        "evidence": "\"you carry 100% of the maintenance tax\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the volunteer side-project arrangement as the documented decay path and requires a named owner with standing budget for month 13.",
+        "evidence": "\"A side-task on a Friday has no month-13 owner... documented decay path\"; \"Named owner, in writing\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the open-spec ecosystem has no entry gate and therefore no quality floor.",
+        "evidence": "\"The open-spec ecosystem has no gate and no floor.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the ecosystem's decay record: taps of unknowable quality until used, several breaking upstream changes per year, and maintainers disappearing once sponsor attention moved.",
+        "evidence": "\"multiple breaking upstream changes a year and abandoned taps\"; \"Taps lose maintainers\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the open spec solved initial connector coverage but never ongoing maintenance.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Confirms the one condition that does promote the custom path here: a strategic customer segment composing open-source-first stacks that the commercial platforms do not reach.",
+        "evidence": "\"The Singer tap. It stays the pick if your customers compose taps themselves.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires active monitoring and alerting on sync failures and schema-drift errors rather than waiting for customer tickets to surface breakage.",
+        "evidence": "\"Alert on sync failures and schema-drift errors from day one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that upstream APIs will not announce their breaking changes, so changelog-watching is not a viable detection mechanism.",
+        "evidence": "\"87.3% of breaking API versions ship with no deprecation notice\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not present the three-week, zero-budget estimate as the total cost of the path.",
+        "evidence": "\"Cost is per year, not per build.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Does not sign off on the plan as stated, despite the customer segment genuinely matching the open-source-first archetype.",
+        "evidence": "'Do not sign off on \"tap instead of the platform review.\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the custom or open-spec tap path carries 100% of the maintenance tax, with no part of it absorbed by a platform.",
+        "evidence": "Mentions maintenance but not that no platform absorbs any of it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the volunteer side-project arrangement as the documented decay path and requires a named owner with standing budget for month 13.",
+        "evidence": "'Name an owner who isn't Tomas... not a Friday hobby. A listed connector with no owner breaks silently.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the open-spec ecosystem has no entry gate and therefore no quality floor.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the ecosystem's decay record: taps of unknowable quality until used, several breaking upstream changes per year, and maintainers disappearing once sponsor attention moved.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the open spec solved initial connector coverage but never ongoing maintenance.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Confirms the one condition that does promote the custom path here: a strategic customer segment composing open-source-first stacks that the commercial platforms do not reach.",
+        "evidence": "'Your 90 customers run their own open-source ELT. A tap puts you where they already work.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires active monitoring and alerting on sync failures and schema-drift errors rather than waiting for customer tickets to surface breakage.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that upstream APIs will not announce their breaking changes, so changelog-watching is not a viable detection mechanism.",
+        "evidence": "Absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not present the three-week, zero-budget estimate as the total cost of the path.",
+        "evidence": "'\"Zero budget\" is wrong... The cost that follows is keeping the tap working.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

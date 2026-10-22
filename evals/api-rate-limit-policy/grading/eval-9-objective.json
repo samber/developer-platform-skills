@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags the per-region enforcement presented as global: a caller spreading traffic across the four regions gets 4,800 req/min, four times the published number, so the published limit must state its scope",
+        "evidence": "'A key spread across regions gets up to 4,800/min.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the region multiplication as a real exploit vector, not a documentation nit",
+        "evidence": "'The skill calls this a real exploit vector.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags documented-vs-enforced drift as an audit finding in either direction and requires diffing the docs against the enforcing configuration both ways",
+        "evidence": "'Docs match enforcement in both directions.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the undocumented concurrency guard: a secondary limit discoverable only by tripping it is a named failure, and its existence and trigger shape (more than 50 concurrent connections) must appear in the docs",
+        "evidence": "'a secret guard... nobody can learn it exists except by tripping it'; document the 50-connection trigger.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the concurrency guard's metering unit explicitly as in-flight requests rather than requests per window, a fundamentally different unit callers must plan for",
+        "evidence": "'Concurrency is a different metering unit from requests per minute... needs its own line in the docs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the concurrency guard's throttle signal to be machine-readable and documented, since the machine-readability gate covers every limiter's response",
+        "evidence": "'a 429 with a distinct reason code... and Retry-After.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the MSA language: a published limit cited in a contract as an SLA commitment without the policy saying it is one is a named failure mode, and published numbers are operational hints",
+        "evidence": "'The MSA cites the number as an SLA'; 'published limits are operational hints, not an SLA.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Challenges the 12,000/min sandbox tier: the default is reusing production numbers in test mode so integrators' throttling code stays honest",
+        "evidence": "'The skill's default is no separate sandbox tier. Same numbers in test mode.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Where a separate pre-production quota is kept, shapes it as an aggregate volume-and-scope cap against evaluation abuse, not a faster per-minute limiter",
+        "evidence": "'add an aggregate volume cap instead of a faster per-minute limit.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the documentation-enforcement parity gate: zero drift, with every documented number enforced and every enforced limit, secondary guards included, at least acknowledged in the docs",
+        "evidence": "'Every enforced limit appears in the docs, including the concurrency guard. Zero drift.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats any resulting tightening, such as enforcing 1,200 truly globally, as a limit change requiring notice scaled to blast radius or an observe-baseline-refine rollout, not a silent configuration fix",
+        "evidence": "Option B 'needs at least 6 weeks' notice'; the sandbox change rolls out log, enforce high, then tighten.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the doubled support tickets to a measurement plan baselined from Corvana's own first month, covering per-tier 429 rate, the share of 429s retried inside the Retry-After window, limit-related tickets, and override-request volume, since no industry thresholds exist",
+        "evidence": "'Track these from the first month: 429 rate, limit tickets, and override requests per quarter.' The share of 429s retried inside the Retry-After window is missing.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags the per-region enforcement presented as global: a caller spreading traffic across the four regions gets 4,800 req/min, four times the published number, so the published limit must state its scope",
+        "evidence": "'up to 4,800/min if traffic is spread across all four'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the region multiplication as a real exploit vector, not a documentation nit",
+        "evidence": "It calls it 'mostly a wording problem' with an 'probably benign' effect.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags documented-vs-enforced drift as an audit finding in either direction and requires diffing the docs against the enforcing configuration both ways",
+        "evidence": "'Generate the docs limits table from gateway config, or add a CI check that compares them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the undocumented concurrency guard: a secondary limit discoverable only by tripping it is a named failure, and its existence and trigger shape (more than 50 concurrent connections) must appear in the docs",
+        "evidence": "'This one is a customer-facing limit and must be published.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the concurrency guard's metering unit explicitly as in-flight requests rather than requests per window, a fundamentally different unit callers must plan for",
+        "evidence": "'At 3 s latency that is about 60 in-flight requests'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the concurrency guard's throttle signal to be machine-readable and documented, since the machine-readability gate covers every limiter's response",
+        "evidence": "'a separate error code and message' such as concurrency_limit_exceeded.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the MSA language: a published limit cited in a contract as an SLA commitment without the policy saying it is one is a named failure mode, and published numbers are operational hints",
+        "evidence": "It flags the MSA wording but proposes a floor commitment rather than operational-hint framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Challenges the 12,000/min sandbox tier: the default is reusing production numbers in test mode so integrators' throttling code stays honest",
+        "evidence": "'Default it to production limits, including the concurrency rule.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Where a separate pre-production quota is kept, shapes it as an aggregate volume-and-scope cap against evaluation abuse, not a faster per-minute limiter",
+        "evidence": "The opt-in load-test mode 'raises the rate limit to 12,000/min', which is a faster limiter.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the documentation-enforcement parity gate: zero drift, with every documented number enforced and every enforced limit, secondary guards included, at least acknowledged in the docs",
+        "evidence": "The CI check plus 'Require legal and docs review for any change to a limit that an MSA cites'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats any resulting tightening, such as enforcing 1,200 truly globally, as a limit change requiring notice scaled to blast radius or an observe-baseline-refine rollout, not a silent configuration fix",
+        "evidence": "It warns against going global as a breaking change but gives no notice or observe plan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ties the doubled support tickets to a measurement plan baselined from Corvana's own first month, covering per-tier 429 rate, the share of 429s retried inside the Retry-After window, limit-related tickets, and override-request volume, since no industry thresholds exist",
+        "evidence": "It offers ticket triage only, with no per-tier 429 rate or retry metrics.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

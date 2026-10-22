@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Declines to make the course a prerequisite for clicking submit",
+        "evidence": "\"don't gate submission on the 4-hour course.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the 22% first-review fail rate sits below the roughly 30-40% threshold at which mandatory education is even considered",
+        "evidence": "\"22% is under the escalation bar... You are below that bar\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends building a pre-submission validator - an automated check partners run before submitting - ahead of any education mandate",
+        "evidence": "Validator is the biggest build item (weeks 2-8) and listed before any mandate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that mandatory pre-submission certification is not standard practice on any major B2B marketplace",
+        "evidence": "\"No major marketplace does this. Shopify, Atlassian, Slack, HubSpot and Salesforce all keep education non-gating\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping education as an optional parallel track available from day one, required by nothing",
+        "evidence": "Recommends a credentialed loop and \"the rest stays optional\", but never states an optional parallel track available from day one.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Locates quality enforcement at the review gate, with education positioned to help partners pass it faster",
+        "evidence": "\"Their reviews are where quality gets enforced\"; modules target failure causes and the credential earns a review fast lane.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing the review checklist inside the onboarding docs so requirements are not discovered at first rejection",
+        "evidence": "\"Publish the review checklist there too, in the same words the reviewers use.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a credentialed but still non-gating education path with named, displayable certificates as the upgrade when partner credibility is a buyer-facing signal",
+        "evidence": "\"credentialed education loop: named, displayable, non-gating\"; credential shown on the partner profile and listing.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that promoting mandatory certification would additionally require failure analysis tracing failures to partner knowledge gaps rather than documentation gaps",
+        "evidence": "\"the failure analysis traces to partner knowledge gaps, not docs gaps.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that the cited failure causes (OAuth scope misuse, missing data-deletion webhooks) read as documentation or checklist gaps rather than a case for a four-hour course",
+        "evidence": "\"Missing deletion webhooks may simply be buried in the docs\" and \"mechanically checkable\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Declines to make the course a prerequisite for clicking submit",
+        "evidence": "'Don't make the 4-hour course the gate. Make the automated preflight check the gate.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the 22% first-review fail rate sits below the roughly 30-40% threshold at which mandatory education is even considered",
+        "evidence": "No such threshold is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends building a pre-submission validator - an automated check partners run before submitting - ahead of any education mandate",
+        "evidence": "'Preflight checks (highest leverage, build first)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that mandatory pre-submission certification is not standard practice on any major B2B marketplace",
+        "evidence": "No claim about marketplace practice.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping education as an optional parallel track available from day one, required by nothing",
+        "evidence": "Pilot would 'require it only for first-time developers', and fallback is 'required once per developer account before their first submission'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Locates quality enforcement at the review gate, with education positioned to help partners pass it faster",
+        "evidence": "Puts enforcement at the preflight gate: 'Submit stays disabled until preflight passes'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing the review checklist inside the onboarding docs so requirements are not discovered at first rejection",
+        "evidence": "'Review checklist published verbatim. Reviewers and developers use the same list.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a credentialed but still non-gating education path with named, displayable certificates as the upgrade when partner credibility is a buyer-facing signal",
+        "evidence": "No certificate path is offered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that promoting mandatory certification would additionally require failure analysis tracing failures to partner knowledge gaps rather than documentation gaps",
+        "evidence": "Suggests comparing completers vs non-completers but doesn't state this as the condition for mandatory certification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that the cited failure causes (OAuth scope misuse, missing data-deletion webhooks) read as documentation or checklist gaps rather than a case for a four-hour course",
+        "evidence": "Calls them 'mechanical' and tooling-fixable; docs/checklist-gap framing isn't made.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

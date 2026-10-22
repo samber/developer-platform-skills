@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Frames federation as an internal composition architecture rather than a public exposure mechanism.",
+        "evidence": "The transcript treats the router as the only public surface and keeps subgraphs internal. It says the router \"stays the only public component and the subgraphs stay private.\" It cites Apollo: \"subgraph isolation 'is fundamental to Federation's security model.'\" It also says \"The subgraph has to be unreachable from outside,\" and describes `_service` and `_entities` as internal coordination fields for composition. It never states outright that federation is an internal composition layer and not a way to expose services. The framing comes through security arguments instead, so this falls short of",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Frames federation as an internal composition architecture rather than a public exposure mechanism.",
+        "evidence": "The response treats subgraphs as internal parts that sit behind the router. It says \"Subgraphs typically trust the router and its forwarded identity headers\" and \"Your router probably enforces authentication, authorization, tenant scoping and limits before traffic reaches a subgraph.\" It notes that `_service { sdl }` exists \"because composition and the router need it\" and calls `@key` \"a cross-subgraph contract\". It concludes that the safeguards \"fit an internal-only subgraph\" and that direct access makes the subgraph \"an externally exposed edge.\" All its alternatives keep the router as the ex",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

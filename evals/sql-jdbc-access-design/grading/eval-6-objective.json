@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects shipping SQL access as a free feature and requires it be packaged as a paid tier or an add-on",
+        "evidence": "\"package SQL access as a paid tier or add-on, never a free feature (step 8).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a price is itself a governance control on a surface that is expensive to over-serve",
+        "evidence": "Only says \"Without a price, caps are your only governance\"; never says the price is a control.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents three pricing shapes: flat add-on or tier gate, consumption or volume-tiered, and provider-pays-compute passthrough",
+        "evidence": "Tier gate at Business+ as default rung, consumption/volume tiers, and pass-through on warehouse credits all discussed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the flat add-on or tier gate as the default rung because it needs near-zero billing engineering",
+        "evidence": "\"The tier gate at Business+ is the skill's default rung.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the consumption or volume-tiered rung here and names both triggering conditions present: consumption-based cost exposure of its own, and customer data volumes spanning orders of magnitude",
+        "evidence": "Cost \"scales with bytes scanned\" (consumption-based exposure) and \"2,250x size spread\" (4 GB to 9 TB).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects metering on warehouse credits because a non-technical buyer cannot predict them",
+        "evidence": "\"never on credits a non-technical buyer can't predict.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires metering on a business unit the buyer already understands, citing Stripe Sigma tiering on monthly charge volume with queries themselves unmetered",
+        "evidence": "Names connected vehicles and data-volume tier but cites Sigma only for changing its metric, not for tiering on charge volume.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the pricing metric is revisable after launch, citing Sigma having changed its own pricing model after shipping",
+        "evidence": "\"Stripe Sigma changed its own metric after shipping (2025-09-30). It is possible but painful.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the ranking explicitly across efficiency, effort, and value rather than leaving it implied by the order the options are listed in",
+        "evidence": "The re-rank section covers constraints only, with no efficiency/effort/value ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the consumption rung as the starved option, highest value and highest effort so it loses every efficiency round, and states the condition that promotes it anyway",
+        "evidence": "Not framed as the starved option.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the stated compounding-asset mandate and the absence of a ship date to promote the consumption rung, noting that retrofitting a meter under a shipped flat price is a customer-facing repricing",
+        "evidence": "\"'Charge later' is a repricing... Leadership asked for a durable asset... You have no ship date, so you have no excuse to skip the meter.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects shipping SQL access as a free feature and requires it be packaged as a paid tier or an add-on",
+        "evidence": "It recommends 'Business+ includes an allowance, free', with overage, not a paid tier or add-on.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a price is itself a governance control on a surface that is expensive to over-serve",
+        "evidence": "Cost guardrails are discussed, but price is not framed as a governance control.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents three pricing shapes: flat add-on or tier gate, consumption or volume-tiered, and provider-pays-compute passthrough",
+        "evidence": "It presents a hybrid, not the three shapes (flat add-on or tier gate, consumption, provider-pays passthrough).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the flat add-on or tier gate as the default rung because it needs near-zero billing engineering",
+        "evidence": "Not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes the consumption or volume-tiered rung here and names both triggering conditions present: consumption-based cost exposure of its own, and customer data volumes spanning orders of magnitude",
+        "evidence": "It recommends bytes-scanned metering, but the two-condition promotion logic is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects metering on warehouse credits because a non-technical buyer cannot predict them",
+        "evidence": "'Customers can't forecast it. They can't estimate credits before running a query.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires metering on a business unit the buyer already understands, citing Stripe Sigma tiering on monthly charge volume with queries themselves unmetered",
+        "evidence": "No Sigma citation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the pricing metric is revisable after launch, citing Sigma having changed its own pricing model after shipping",
+        "evidence": "It says 'explicitly revisable allowance' but does not cite Sigma.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the ranking explicitly across efficiency, effort, and value rather than leaving it implied by the order the options are listed in",
+        "evidence": "No such ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the consumption rung as the starved option, highest value and highest effort so it loses every efficiency round, and states the condition that promotes it anyway",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the stated compounding-asset mandate and the absence of a ship date to promote the consumption rung, noting that retrofitting a meter under a shipped flat price is a customer-facing repricing",
+        "evidence": "'A durable asset needs a revenue mechanism built in at launch' and a free feature without a limit 'can't be given one without taking something away'; 'no hard ship date, you have room'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

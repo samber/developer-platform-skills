@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Asks batched clarifying questions before publishing numbers, covering at least abuse pressure, region count, gateway/edge capability, and deadline or effort ceiling",
+        "evidence": "Open questions come after the policy, not before. They cover abuse, regions and gateway, but no deadline; Q5 only mentions 'engineering budget is tight'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects a single 300 req/min limit shared across REST and GraphQL: REST is metered by request counting and GraphQL by cost points, as two separately published models",
+        "evidence": "'\"300 requests/min covering both surfaces\" doesn't work.' Requests for REST, cost points for GraphQL.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Expresses the GraphQL limit as a budget of cost points per window with a published cost formula, not a request count",
+        "evidence": "'GraphQL cost formula' with root 1, connection ceil(first\u00f7100), mutation 5; worked example gives 12 points.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States explicitly whether the REST and GraphQL limits share anything (such as a common concurrency cap) instead of leaving the relationship between the two surfaces unstated",
+        "evidence": "'separate budgets... They share only the concurrency cap in section 2.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes burst and sustained as two explicit numbers per tier, never one blended figure",
+        "evidence": "Plan table has separate 'REST sustained' and 'REST burst (bucket depth)' rows, and the same for GraphQL.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends token bucket as the default algorithm, mapping bucket depth to the burst number and refill rate to the sustained quota",
+        "evidence": "'The sustained rate is the refill rate. The burst allowance is the bucket depth.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Frames limits as identity/auth-scope x endpoint-class x account-override, treating the plan-to-limit mapping as a deliberate choice rather than the automatic default",
+        "evidence": "Plan multipliers are accepted as 'fine, with three conditions'. The identity x class x override framing is never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States which identifier each tier is keyed on and changes it up the ladder (IP for anonymous callers, API key or org for paid tiers)",
+        "evidence": "'All limits are per organization' for every tier; no IP-keyed anonymous tier.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carves expensive operations out of the general budget with per-endpoint-class limits instead of one account-wide number",
+        "evidence": "'Bulk/export class: bulk import, bulk export, and report generation each get their own bucket.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the geographic scope of the published limit (global vs per-region enforcement)",
+        "evidence": "'limits are global per organization, not per region.' It also asks to confirm this, in open question 3.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the published numbers operational hints rather than an SLA, reserving in writing the right to lower limits for stability",
+        "evidence": "'A published limit is an operational hint, not an SLA'; 'We may lower any override'; emergency reductions reserved.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Structures the tier ladder so anonymous/free callers learn limits from headers, self-serve paid tiers get a documented exact-numbers table, and any enterprise tier gets a process rather than a public number",
+        "evidence": "No anonymous tier. Free, Growth and Scale are in a table and Enterprise is 'By agreement', but the anonymous/header-learned rung is missing.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Asks batched clarifying questions before publishing numbers, covering at least abuse pressure, region count, gateway/edge capability, and deadline or effort ceiling",
+        "evidence": "The transcript goes straight to a draft policy and has no up-front questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects a single 300 req/min limit shared across REST and GraphQL: REST is metered by request counting and GraphQL by cost points, as two separately published models",
+        "evidence": "It keeps one per-key request counter for both surfaces and only adds per-request GraphQL caps.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Expresses the GraphQL limit as a budget of cost points per window with a published cost formula, not a request count",
+        "evidence": "The complexity limit is '1,000 points per request', a per-request cap rather than a per-window budget.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States explicitly whether the REST and GraphQL limits share anything (such as a common concurrency cap) instead of leaving the relationship between the two surfaces unstated",
+        "evidence": "'Shared allowance: one key's REST and GraphQL calls share a single counter.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes burst and sustained as two explicit numbers per tier, never one blended figure",
+        "evidence": "Only one requests-per-minute figure per tier appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends token bucket as the default algorithm, mapping bucket depth to the burst number and refill rate to the sustained quota",
+        "evidence": "It uses a rolling window and mentions token bucket only as an open decision.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Frames limits as identity/auth-scope x endpoint-class x account-override, treating the plan-to-limit mapping as a deliberate choice rather than the automatic default",
+        "evidence": "The framing is a plan-to-limit table keyed on API key.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States which identifier each tier is keyed on and changes it up the ladder (IP for anonymous callers, API key or org for paid tiers)",
+        "evidence": "Every tier is keyed per API key and there is no anonymous or IP tier.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carves expensive operations out of the general budget with per-endpoint-class limits instead of one account-wide number",
+        "evidence": "There are no endpoint-class limits.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the geographic scope of the published limit (global vs per-region enforcement)",
+        "evidence": "Region or global scope is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the published numbers operational hints rather than an SLA, reserving in writing the right to lower limits for stability",
+        "evidence": "It only says 'Limits may change with at least 30 days' notice'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Structures the tier ladder so anonymous/free callers learn limits from headers, self-serve paid tiers get a documented exact-numbers table, and any enterprise tier gets a process rather than a public number",
+        "evidence": "There is no anonymous tier, and the top tier is only 'contact sales for a custom limit'.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

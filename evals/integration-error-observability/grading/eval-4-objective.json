@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires tagging each request with the integration identity at ingestion, and rejects reconstructing the tag afterwards by joining auth-service logs",
+        "evidence": "Edge tag is the permanent fix, but a full interim join to auth logs is designed and shipped first (\"Tag by app: interim join, then edge tag\").",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that retrofitting the identity tag leaves the preceding history unqueryable per integration, which is exactly the period any investigation needs",
+        "evidence": "\"Retrofitting later leaves history unqueryable by app.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits the error rate into at least three separately counted buckets: 4xx, 5xx, and 429",
+        "evidence": "Schema has n_4xx (excludes 429), n_5xx, n_429 and three separate rate definitions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that 429 is isolated because rate-limit rejection is neither party's defect, and that blending it makes a partner scaling successfully look identical to a partner whose code is broken",
+        "evidence": "\"429s were counted as errors. A partner that scales successfully looked like a broken one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes 4xx to the integrator's side and 5xx to Gridwell's side, and states that a blended number cannot say whose problem the errors are",
+        "evidence": "Attribution is given (\"integrator-side\", \"ours\"), but the transcript only says \"Never publish or alert on a blended number\" without the whose-problem rationale.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the single 5% platform-wide threshold with a comparison of each integration against its own recent baseline",
+        "evidence": "\"Compare each app to its own baseline, with a minimum-volume floor.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that one global percentage is either noise for low-traffic integrations or blindness for high-traffic ones",
+        "evidence": "\"One threshold for every traffic shape\"; a 4.2% blended rate hid a 100% broken app; volume floors stop \"a 3-call app at 100% from paging anyone\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the aggregate row to carry a success count as the denominator alongside the error counts",
+        "evidence": "Schema has n_total and n_2xx_3xx; \"admitted = n_total - n_429\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires explicit window start and end on each aggregate rather than a floating rate",
+        "evidence": "\"window_start, window_end | Explicit, so a rate is interpretable.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the top machine-readable error codes per bucket in the aggregate",
+        "evidence": "\"top_error_codes | Ranked, top 5 per bucket.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Overlays Gridwell's own deploy or release markers on the error-rate view, and requires checking a 5xx spike against that timeline before telling a partner anything",
+        "evidence": "\"deploy_marker\" field; \"Before sending any 5xx alert, check the deploy marker.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies both a short detection window measured in minutes for sudden breaks and a long window of hours to a day for slow degradation, and states that a single window misses half the failure types",
+        "evidence": "\"A1 is a short window for a sudden break. A2 is a long window for slow creep. A design with only one misses half the failures.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends reading how errors are distributed rather than volume alone, distinguishing a clustered pattern (logic bug or bulk operation) from an evenly spread one (infrastructure)",
+        "evidence": "No discussion of clustered versus evenly spread error patterns.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires tagging each request with the integration identity at ingestion, and rejects reconstructing the tag afterwards by joining auth-service logs",
+        "evidence": "Uses a join against api_key_map; edge tagging is only 'longer term'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that retrofitting the identity tag leaves the preceding history unqueryable per integration, which is exactly the period any investigation needs",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Splits the error rate into at least three separately counted buckets: 4xx, 5xx, and 429",
+        "evidence": "Outcomes: throttled, server_fault, client_error, success.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that 429 is isolated because rate-limit rejection is neither party's defect, and that blending it makes a partner scaling successfully look identical to a partner whose code is broken",
+        "evidence": "'Throttling means our limits worked and the partner outgrew its quota. It isn't an outage.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attributes 4xx to the integrator's side and 5xx to Gridwell's side, and states that a blended number cannot say whose problem the errors are",
+        "evidence": "'client_error... app's integration is broken'; 'server_fault... Our fault'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the single 5% platform-wide threshold with a comparison of each integration against its own recent baseline",
+        "evidence": "Uses static thresholds (5%, 25%, 20%).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that one global percentage is either noise for low-traffic integrations or blindness for high-traffic ones",
+        "evidence": "Not stated; only a minimum-volume rule is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the aggregate row to carry a success count as the denominator alongside the error counts",
+        "evidence": "Table has a 'success' outcome; the fault-rate formula uses total minus throttled.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires explicit window start and end on each aggregate rather than a floating rate",
+        "evidence": "Rows carry only a minute bucket; no window bounds.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the top machine-readable error codes per bucket in the aggregate",
+        "evidence": "Only mentioned in a ticket route, not in the aggregate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Overlays Gridwell's own deploy or release markers on the error-rate view, and requires checking a 5xx spike against that timeline before telling a partner anything",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies both a short detection window measured in minutes for sudden breaks and a long window of hours to a day for slow degradation, and states that a single window misses half the failure types",
+        "evidence": "Uses 5m, 1h and 24h windows but never says a single window misses failure types.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends reading how errors are distributed rather than volume alone, distinguishing a clustered pattern (logic bug or bulk operation) from an evenly spread one (infrastructure)",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

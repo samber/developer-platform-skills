@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects bare UUID keys on detectability grounds (indistinguishable from other encoded data, unscannable by secret scanners), not merely on entropy",
+        "evidence": "\"Nothing identifies it as a secret... Secret scanners can't flag it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the prefix + high-entropy random body + checksum structure for v2 keys",
+        "evidence": "nbg_<type>_<env>_<30-char Base62 body><6-char CRC32 checksum>",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prefix encodes key type and environment",
+        "evidence": "Type segment sk/sa/rk; Environment segment live/test",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Encodes test vs live environment in the prefix from day one",
+        "evidence": "\"goes in the prefix from day one\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets an entropy floor of at least 120 bits (32+ random characters)",
+        "evidence": "\"The floor is 120 bits and 32+ random characters.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the GitHub-style benchmark: roughly 30-character Base62 body around 178 bits plus a CRC32 checksum",
+        "evidence": "\"30 Base62 characters is about 178.6 bits, GitHub's benchmark.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the checksum's double duty: a validator rejects malformed keys without a database round-trip, and scanners filter noise before alerting",
+        "evidence": "\"reject malformed keys with no database round-trip. Scanners can also filter noise\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Accepts roughly 10 characters of extra token length as an overhead explicitly worth paying",
+        "evidence": "\"The cost is about 10 characters of key length, which is worth paying.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends registering the v2 pattern with GitHub's Secret Scanning Partner Program, justified by the real leaked-key incident",
+        "evidence": "\"Last month's incident is the justification.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the partner mechanics: an HTTPS endpoint receives reported matches, and any reported match is treated as compromised - revoke and notify the owner",
+        "evidence": "public HTTPS webhook; \"Treat every reported match as public and compromised. Revoke with zero grace, notify the owner\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects customer-hygiene emails as the control: structural detectability replaces user vigilance",
+        "evidence": "\"Emailing customers about hygiene does nothing about the format.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the already-leaked key as confirmed compromise requiring immediate zero-grace revocation",
+        "evidence": "For the actual leaked key it only says \"Revoke the leaked key if you haven't.\" with no zero-grace statement; zero grace is stated only for partner-reported matches.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes partner-pattern alerts run automatically on public repositories, enabling revocation before the customer notices the leak",
+        "evidence": "\"time from leak to revocation drops from weeks to minutes\"; the key sat exploitable three weeks until the auditor caught it",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects bare UUID keys on detectability grounds (indistinguishable from other encoded data, unscannable by secret scanners), not merely on entropy",
+        "evidence": "\"Undetectable. A bare UUID looks like every resource ID... Secret scanners can't flag it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the prefix + high-entropy random body + checksum structure for v2 keys",
+        "evidence": "`nbg_sk_live_<32 base62 chars>_<6 char checksum>`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prefix encodes key type and environment",
+        "evidence": "`sk` / `pk` key kind; `live` / `test` environment.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Encodes test vs live environment in the prefix from day one",
+        "evidence": "Format table lists `live` / `test` in the v2 key format.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets an entropy floor of at least 120 bits (32+ random characters)",
+        "evidence": "Says 32 base62 chars gives about 190 bits but sets no floor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the GitHub-style benchmark: roughly 30-character Base62 body around 178 bits plus a CRC32 checksum",
+        "evidence": "No GitHub benchmark cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains the checksum's double duty: a validator rejects malformed keys without a database round-trip, and scanners filter noise before alerting",
+        "evidence": "\"Lets scanners and your gateway reject non-keys offline, which cuts false positives.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Accepts roughly 10 characters of extra token length as an overhead explicitly worth paying",
+        "evidence": "No discussion of token length overhead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends registering the v2 pattern with GitHub's Secret Scanning Partner Program, justified by the real leaked-key incident",
+        "evidence": "\"Register the `nbg_` pattern with GitHub's secret scanning partner program\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the partner mechanics: an HTTPS endpoint receives reported matches, and any reported match is treated as compromised - revoke and notify the owner",
+        "evidence": "Says GitHub sends the token and you revoke it, but no HTTPS endpoint mechanics.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects customer-hygiene emails as the control: structural detectability replaces user vigilance",
+        "evidence": "\"email hygiene alone doesn't fix this\"; the email is \"a supporting measure\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the already-leaked key as confirmed compromise requiring immediate zero-grace revocation",
+        "evidence": "Incident section says pull logs, notify customer, retro; never says to revoke the leaked key immediately.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes partner-pattern alerts run automatically on public repositories, enabling revocation before the customer notices the leak",
+        "evidence": "Only \"usually within minutes\"; no claim about acting before the customer notices.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

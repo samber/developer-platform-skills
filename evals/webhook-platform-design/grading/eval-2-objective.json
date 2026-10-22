@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies that signing the body alone gives no replay protection, so a captured legitimate delivery can be replayed indefinitely.",
+        "evidence": "'No timestamp, so a captured request validates forever (replay)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends adopting the Standard Webhooks spec rather than keeping a bespoke scheme.",
+        "evidence": "'Adopt the Standard Webhooks spec instead of patching the bespoke scheme.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the three delivery headers webhook-id, webhook-timestamp, and webhook-signature.",
+        "evidence": "Lists webhook-id, webhook-timestamp, webhook-signature.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the signed content as {id}.{timestamp}.{raw_body}, with literal dot separators.",
+        "evidence": "'base64(HMAC-SHA256(secret, \"{webhook-id}.{webhook-timestamp}.{raw_body}\"))'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies base64 encoding of the HMAC-SHA256 output rather than the current hex encoding.",
+        "evidence": "The current scheme is listed as 'hex'; the new signature is specified as base64 sent as 'v1,<sig>'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the receiver to reject deliveries whose timestamp falls outside a tolerance window, and names roughly 5 minutes (300 seconds).",
+        "evidence": "'The spec recommends 300 seconds.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the single-active-secret design as forcing revoke-then-deploy rotation with a window of failed deliveries.",
+        "evidence": "'Rotation forces revoke-then-deploy, so deliveries fail in the gap'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the signature header carries multiple space-delimited signatures so the old and new secrets validate simultaneously during a rotation window.",
+        "evidence": "'space-delimited pairs, such as v1,<new> v1,<old>'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives an ordered rotation flow in which the old secret is revoked only after delivery success under the new secret is confirmed.",
+        "evidence": "Three-step flow: 'Retire the old secret after confirmed delivery success'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends prefixing the symmetric secret with whsec_ so a leaked key is identifiable to secret-scanning tools.",
+        "evidence": "'Prefix symmetric secrets with whsec_, so scanners can identify leaked keys.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers asymmetric ed25519 signing as an additional mode, naming the whsk_/whpk_ key prefixes or the v1a signature identifier, for consumers who should not hold a shared secret.",
+        "evidence": "'ed25519... whsk_/whpk_ prefixes and signature id v1a'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that verifying inside the framework's JSON body handler breaks the HMAC, and requires verification against the raw body before any parser touches it.",
+        "evidence": "'Verify against the raw body before any JSON parser touches it... express.raw'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the docs to instruct consumers to exempt the webhook route from session-auth middleware, since the route authenticates by signature.",
+        "evidence": "'Exempt the webhook route from session-auth middleware.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the docs to require signature verification on every request without exception, including notification-only handlers.",
+        "evidence": "'Verify every request, no exceptions. A handler that \"only posts to chat\" still takes spoofed events.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies that signing the body alone gives no replay protection, so a captured legitimate delivery can be replayed indefinitely.",
+        "evidence": "\"A captured valid request can be replayed forever.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends adopting the Standard Webhooks spec rather than keeping a bespoke scheme.",
+        "evidence": "Proposes its own `Portmint-Signature: t=...,v1=...` scheme; Standard Webhooks is never named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies the three delivery headers webhook-id, webhook-timestamp, and webhook-signature.",
+        "evidence": "Uses a single combined `Portmint-Signature` header.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the signed content as {id}.{timestamp}.{raw_body}, with literal dot separators.",
+        "evidence": "Signs `\"{timestamp}.{raw_body}\"` with no id.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies base64 encoding of the HMAC-SHA256 output rather than the current hex encoding.",
+        "evidence": "Header uses `v1=<hex>`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the receiver to reject deliveries whose timestamp falls outside a tolerance window, and names roughly 5 minutes (300 seconds).",
+        "evidence": "\"reject requests where `|now - t|` is over 5 minutes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the single-active-secret design as forcing revoke-then-deploy rotation with a window of failed deliveries.",
+        "evidence": "\"the old secret dies the instant the merchant clicks 'regenerate'... Every webhook sent in between fails verification\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the signature header carries multiple space-delimited signatures so the old and new secrets validate simultaneously during a rotation window.",
+        "evidence": "Uses comma-separated `t=...,v1=<sig_new>,v1=<sig_old>`, not space-delimited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives an ordered rotation flow in which the old secret is revoked only after delivery success under the new secret is confirmed.",
+        "evidence": "Uses a time-based overlap window (24h default, 7d cap), not confirmation of delivery success.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends prefixing the symmetric secret with whsec_ so a leaked key is identifiable to secret-scanning tools.",
+        "evidence": "\"Use a recognizable prefix such as `whsec_` so secret scanners can catch leaks\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers asymmetric ed25519 signing as an additional mode, naming the whsk_/whpk_ key prefixes or the v1a signature identifier, for consumers who should not hold a shared secret.",
+        "evidence": "Mentions Ed25519 with a JWKS-style endpoint but names none of the whsk_/whpk_/v1a identifiers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that verifying inside the framework's JSON body handler breaks the HMAC, and requires verification against the raw body before any parser touches it.",
+        "evidence": "\"Verify raw bytes, not the parsed JSON... capture the raw body, verify, then parse.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the docs to instruct consumers to exempt the webhook route from session-auth middleware, since the route authenticates by signature.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the docs to require signature verification on every request without exception, including notification-only handlers.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

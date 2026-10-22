@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the built-in `errors` array as the only failure channel for a third-party surface.",
+        "evidence": "\"No, extensions.code alone isn't enough... leaves three of your five failures in the wrong channel.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the hybrid split as the default posture rather than one single mechanism for everything.",
+        "evidence": "Table splits result type vs top-level errors.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns the server fault (Postgres statement timeout), malformed queries, and the authentication failure (expired token) to the built-in top-level `errors`.",
+        "evidence": "\"Expired token and DB timeout do belong in top-level errors.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns the expected business outcomes (card declined, region ineligibility, duplicate refund) to union or interface result types expressed in the schema.",
+        "evidence": "Card declined, region, refund already issued -> result type.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes at least one concrete result union naming its success member and its distinct business-failure members.",
+        "evidence": "\"union SubscriptionCreateResult = | SubscriptionCreateSuccess | PaymentDeclined | PlanNotAvailableInRegion | ValidationError\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a union result makes every possible outcome visible in the schema, so a client cannot silently skip a failure mode the way it can with an untyped error body.",
+        "evidence": "\"nothing in the schema tells an integrator that subscriptionCreate can decline, so they can't discover it from introspection or codegen\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps a shared `ErrorCode` enum under the chosen posture so clients switch on stable codes while message text stays free to change.",
+        "evidence": "\"enum ErrorCode {...}\" and \"message: free text, may change, never a contract\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the regex-on-message-text breakage as the symptom of having no stable machine-readable code, not as the integrator's mistake.",
+        "evidence": "Says codes fix the regex problem and integrator should migrate; does not frame it as not their mistake.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines to promote result types onto every query as well, and names routine partial data from flaky-upstream-backed fields as the condition that would promote it.",
+        "evidence": "Queries are never discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that adding a union to an already-shipped field is a breaking change, so a schema several teams will extend for years should adopt result types early.",
+        "evidence": "\"Changing a shipped field's return type to a union is a schema-breaking change.\"; \"go with result types early\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that built-in-errors-only is acceptable solely for a first-party-only surface where the team controls every client's error handling.",
+        "evidence": "No such statement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires mutation payload fields to lean nullable so a partial failure can still return something.",
+        "evidence": "\"Nullable mutation returns... Shopify's Rule #24\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires raw internal error text (driver messages, SQLSTATE codes, stack traces) to be translated before it reaches a public response.",
+        "evidence": "\"Never leak the database... no SQLSTATE, no query text, no table names.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the built-in `errors` array as the only failure channel for a third-party surface.",
+        "evidence": "\"Expected outcomes still travel on the failure channel... The business outcomes belong in the payload.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the hybrid split as the default posture rather than one single mechanism for everything.",
+        "evidence": "Unexpected failures go in top-level `errors`, business outcomes in the payload.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns the server fault (Postgres statement timeout), malformed queries, and the authentication failure (expired token) to the built-in top-level `errors`.",
+        "evidence": "\"The unexpected failures (expired token, statement timeout) belong in top-level `errors`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns the expected business outcomes (card declined, region ineligibility, duplicate refund) to union or interface result types expressed in the schema.",
+        "evidence": "\"The payload errors can be a union or a nullable `errors` list on the payload.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes at least one concrete result union naming its success member and its distinct business-failure members.",
+        "evidence": "No union is written out. It proposes a nullable `errors` field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a union result makes every possible outcome visible in the schema, so a client cannot silently skip a failure mode the way it can with an untyped error body.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps a shared `ErrorCode` enum under the chosen posture so clients switch on stable codes while message text stays free to change.",
+        "evidence": "\"with a `code` enum\" and the instruction to document the code enum as an additive-only contract.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the regex-on-message-text breakage as the symptom of having no stable machine-readable code, not as the integrator's mistake.",
+        "evidence": "It frames it as a documentation and migration issue (\"contact them directly... publish 'messages are not a contract'\").",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines to promote result types onto every query as well, and names routine partial data from flaky-upstream-backed fields as the condition that would promote it.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that adding a union to an already-shipped field is a breaking change, so a schema several teams will extend for years should adopt result types early.",
+        "evidence": "It notes the breakage but advises an additive route, not early adoption.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that built-in-errors-only is acceptable solely for a first-party-only surface where the team controls every client's error handling.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires mutation payload fields to lean nullable so a partial failure can still return something.",
+        "evidence": "It proposes a nullable errors list, not nullable payload fields.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires raw internal error text (driver messages, SQLSTATE codes, stack traces) to be translated before it reaches a public response.",
+        "evidence": "\"Map Postgres timeouts to a generic `SERVICE_UNAVAILABLE`... Never expose the internal message.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

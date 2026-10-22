@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Asks whether this is a one-off fix after a bad support quarter or a compounding surface Freightwise will run for years, and ties that answer to which rung it recommends",
+        "evidence": "The transcript never asks whether this is a one-off fix or a long-lived surface. The closest point is Q6, which asks about 'the effort ceiling beyond the 6 weeks' and who will answer alerts and tune thresholds. That touches ongoing ownership but does not frame the one-off versus compounding question. The rung choice (the delivery-attempt log) rests on the skill's default and the 6-week window, and it is never conditioned on this answer. Q1 and Q4 change the plan based on who the partners are and how fast failures cost money, not on how long Freightwise will run the surface.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Asks whether this is a one-off fix after a bad support quarter or a compounding surface Freightwise will run for years, and ties that answer to which rung it recommends",
+        "evidence": "The transcript never asks if this is a one-off fix or a long-lived, compounding surface. Its open questions are only about the attempts table (customer ID, event ID, payloads) and about reusing the existing portal or auth. The scope is decided by ticket-tag counts, not by how long the surface will live, and no 'rung' choice is tied to that question.",
+        "score": 0,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends a small official core of roughly 2-5 languages rather than the nine the VP asked for",
+        "evidence": "\"Build Java and .NET (C#) as official SDKs... Do not build nine official SDKs this year.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Front-loads Java and C# ahead of Python and JavaScript for this buyer base",
+        "evidence": "Table orders Java 1, .NET 2; Python and JavaScript are \"Not now\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects TIOBE, the Stack Overflow developer survey, and GitHub Octoverse as decision inputs, stating that no vendor documents choosing languages from a named popularity ranking",
+        "evidence": "\"None of them names TIOBE, Stack Overflow or Octoverse as a decision input.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the integrators' own stack as the primary input to the language order",
+        "evidence": "\"Every documented case maps the buyer's stack first... Build for those 40 before you build for a survey of all developers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Stripe's or Plaid's fintech SDK portfolio by naming its actual languages as the documented precedent",
+        "evidence": "\"Plaid has five official libraries (Ruby, Node, Python, Java, Go).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places every language outside the official core on spec-driven self-service, pointing the long tail at open-source generators driven by the published spec",
+        "evidence": "\"You publish the OpenAPI spec and point everyone else at generators.\"; Python/JS \"Spec-driven self-service\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States an add-a-language threshold such as a sustained double-digit share of API traffic or repeated enterprise-deal requests naming that language",
+        "evidence": "\"a sustained double-digit share of API traffic, or repeated named enterprise-deal requests\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels that threshold as self-set rather than a published industry standard",
+        "evidence": "\"This is self-set. No vendor publishes a numeric threshold.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends instrumenting per-language client telemetry via User-Agent or SDK headers",
+        "evidence": "\"add client User-Agent or SDK headers now\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the telemetry confirms the audience mapping rather than originating the language order",
+        "evidence": "\"so the data confirms this mapping.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names Plaid's cap of five official libraries alongside 40+ languages self-served from its spec",
+        "evidence": "\"Plaid does this: 5 official libraries, 40+ languages via the spec.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the coverage rungs explicitly (official SDK vs community tier vs spec-driven self-service) instead of presenting a flat list of languages",
+        "evidence": "Table with Tier column: Official, Community tier, Not built, Spec-driven self-service, Declined.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends a small official core of roughly 2-5 languages rather than the nine the VP asked for",
+        "evidence": "Recommends 'Ship six supported libraries by year end, not nine.' Six is outside the 2-5 range.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Front-loads Java and C# ahead of Python and JavaScript for this buyer base",
+        "evidence": "Build order: 1 Java, 2 .NET (C#), 3 Python, 4 TypeScript.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects TIOBE, the Stack Overflow developer survey, and GitHub Octoverse as decision inputs, stating that no vendor documents choosing languages from a named popularity ranking",
+        "evidence": "Rejects TIOBE and Stack Overflow ('Those indexes measure how many people write a language'), but never says that no vendor documents choosing languages from such a ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the integrators' own stack as the primary input to the language order",
+        "evidence": "'Your 40 integrated customers are all Java or .NET... That is your real data, and it beats any public survey.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Stripe's or Plaid's fintech SDK portfolio by naming its actual languages as the documented precedent",
+        "evidence": "Neither Stripe nor Plaid is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places every language outside the official core on spec-driven self-service, pointing the long tail at open-source generators driven by the published spec",
+        "evidence": "Extra languages are 'generated from your OpenAPI spec' as 'preview, best-effort support' SDKs the vendor publishes, not self-service for users from the published spec.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States an add-a-language threshold such as a sustained double-digit share of API traffic or repeated enterprise-deal requests naming that language",
+        "evidence": "Go is 'Lower priority until sales asks for it.' There is no explicit traffic-share or repeated-request threshold.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels that threshold as self-set rather than a published industry standard",
+        "evidence": "No threshold is given, so none is labeled.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends instrumenting per-language client telemetry via User-Agent or SDK headers",
+        "evidence": "Suggests asking sales and customer success for open-deal stacks. It does not mention telemetry or User-Agent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the telemetry confirms the audience mapping rather than originating the language order",
+        "evidence": "No telemetry discussion.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names Plaid's cap of five official libraries alongside 40+ languages self-served from its spec",
+        "evidence": "Plaid is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the coverage rungs explicitly (official SDK vs community tier vs spec-driven self-service) instead of presenting a flat list of languages",
+        "evidence": "Only two levels appear, supported and preview, plus a numbered language list. There is no rung ranking including community or self-service.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

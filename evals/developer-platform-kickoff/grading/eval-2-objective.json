@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Asks only the session-goal question and no other interview question",
+        "evidence": "No question asked; goal inferred from the message.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Opens with a state summary of exactly five lines",
+        "evidence": "Five numbered items under '1. State summary'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The state summary covers integration audience, published surfaces under a compatibility promise, in-flight work, the top open decision, and the active constraint",
+        "evidence": "Audience, published surfaces, in-flight work, top open decision, constraints.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Re-uses the horizon and the effort ceiling recorded in the artifact instead of re-asking them",
+        "evidence": "\"Standing work at a few hours a week. Two-engineer ceiling.\" not re-asked.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the immediate task to `samber/developer-platform-skills@integration-error-observability`",
+        "evidence": "\"Route: `samber/developer-platform-skills@integration-error-observability`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes `samber/developer-platform-skills@integration-partnership-strategy` on the stated grounds that the audience is technology partners",
+        "evidence": "\"Re-rank: the partner audience (Q1b) promoted it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes the published-policy-surfaces class because a compliance or audit window is open",
+        "evidence": "api-auth-key-management and api-rate-limit-policy \"moved it up\" by SOC 2 window (Q5c).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps `samber/developer-platform-skills@oauth2-provider-design` live in the short-list or chain on the strength of the open partner-app auth decision rather than treating it as settled",
+        "evidence": "Placed under 'Not now'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Patches only the artifact fields that changed rather than rebuilding the artifact",
+        "evidence": "Update block adds task section, patches constraints, appends log.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Appends a session-log line to `developer-platform-context.md`",
+        "evidence": "File not reachable; \"ready-to-paste update\" only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes between 2 and 4 routines, each shown as a dry run and each with an explicit output channel",
+        "evidence": "Three routines each with an output channel, labelled dry-run.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States out loud which recorded answer moved which class off its default place",
+        "evidence": "Re-rank notes cite Q1b, Q5c, Q5d.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Asks only the session-goal question and no other interview question",
+        "evidence": "Asks for the file path and for log access instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Opens with a state summary of exactly five lines",
+        "evidence": "Opens with 'I couldn't investigate the cause'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The state summary covers integration audience, published surfaces under a compatibility promise, in-flight work, the top open decision, and the active constraint",
+        "evidence": "No state summary.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-uses the horizon and the effort ceiling recorded in the artifact instead of re-asking them",
+        "evidence": "Neither is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the immediate task to `samber/developer-platform-skills@integration-error-observability`",
+        "evidence": "No skill is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes `samber/developer-platform-skills@integration-partnership-strategy` on the stated grounds that the audience is technology partners",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Promotes the published-policy-surfaces class because a compliance or audit window is open",
+        "evidence": "SOC 2 is mentioned only as a note, with no promotion.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps `samber/developer-platform-skills@oauth2-provider-design` live in the short-list or chain on the strength of the open partner-app auth decision rather than treating it as settled",
+        "evidence": "OAuth is mentioned but the skill is not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Patches only the artifact fields that changed rather than rebuilding the artifact",
+        "evidence": "No artifact update.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Appends a session-log line to `developer-platform-context.md`",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes between 2 and 4 routines, each shown as a dry run and each with an explicit output channel",
+        "evidence": "Proposes alerts, not routines.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States out loud which recorded answer moved which class off its default place",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

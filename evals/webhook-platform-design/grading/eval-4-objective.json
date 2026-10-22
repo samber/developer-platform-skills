@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Deletes managed sending infrastructure from the option menu entirely rather than ranking it last.",
+        "evidence": "'Managed deleted, not demoted.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason for deleting rather than demoting: an option parked at the bottom on a compliance ground reappears as scope the next time a deadline bites, without the legal review that ruled it out.",
+        "evidence": "'A managed option parked at the bottom tends to come back as scope the next time the deadline bites, and without the legal review that ruled it out.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the re-promotion trigger that would put the managed option back on the menu: a signed DPA plus a data-residency posture covering the vendor.",
+        "evidence": "'a signed DPA and a residency posture that covers the vendor'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a self-hosted open-source webhook gateway as the choice under this constraint.",
+        "evidence": "'Call: self-host an open-source webhook gateway.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that self-hosted gateway and in-house build tie on control and on compliance cost, because both keep event data on the platform's own infrastructure.",
+        "evidence": "The table shows both keep data on your infrastructure, but it lists 'Custom semantics: Good enough' versus 'Full control'. It never states a tie on control.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks in-house build as the highest-effort option and names what would promote it, such as webhook delivery being the product sold or third-party code also being ruled out.",
+        "evidence": "'Highest'; 'In-house only wins when delivery is the product you sell, or when third-party code is also ruled out.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the order-of-magnitude in-house estimate as engineer-years rather than engineer-weeks, on the order of 3-5 engineers for 6-12 months plus a standing on-call.",
+        "evidence": "'3-5 engineers for 6-12 months plus a standing on-call'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that engineer-years figure as a vendor's own self-interested estimate while accepting its order of magnitude.",
+        "evidence": "'That figure is vendor self-interest, but the order of magnitude holds.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the seven-week hard date explicitly into the ranking, promoting the faster-to-effect option.",
+        "evidence": "Table row 'Fits 7 weeks with 6 engineers: Tight but plausible vs No'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that buying or self-hosting the delivery machinery does not buy the event taxonomy, the delivery contract, or the documentation, all of which still have to be designed.",
+        "evidence": "'gets you the machinery, not the design'; the list of what the engineers still own.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the ranking is a default to be re-ranked against the team's actual situation, not a law.",
+        "evidence": "'Re-rank triggers' section.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Deletes managed sending infrastructure from the option menu entirely rather than ranking it last.",
+        "evidence": "\"Hosted webhook services are out.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the reason for deleting rather than demoting: an option parked at the bottom on a compliance ground reappears as scope the next time a deadline bites, without the legal review that ruled it out.",
+        "evidence": "Gives only Legal's ban; no argument about options reappearing under deadline pressure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the re-promotion trigger that would put the managed option back on the menu: a signed DPA plus a data-residency posture covering the vendor.",
+        "evidence": "No such trigger is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a self-hosted open-source webhook gateway as the choice under this constraint.",
+        "evidence": "\"Build it in-house... Don't buy a hosted service.\" Self-hosting is only a fallback.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that self-hosted gateway and in-house build tie on control and on compliance cost, because both keep event data on the platform's own infrastructure.",
+        "evidence": "Does not say they tie.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks in-house build as the highest-effort option and names what would promote it, such as webhook delivery being the product sold or third-party code also being ruled out.",
+        "evidence": "Recommends in-house as the pick as a narrow 7-week build.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cites the order-of-magnitude in-house estimate as engineer-years rather than engineer-weeks, on the order of 3-5 engineers for 6-12 months plus a standing on-call.",
+        "evidence": "Gives a 2-engineer, 7-week plan instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that engineer-years figure as a vendor's own self-interested estimate while accepting its order of magnitude.",
+        "evidence": "No such flag.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ties the seven-week hard date explicitly into the ranking, promoting the faster-to-effect option.",
+        "evidence": "Argues build fits in seven weeks, but promotes the slower option under the rubric's framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that buying or self-hosting the delivery machinery does not buy the event taxonomy, the delivery contract, or the documentation, all of which still have to be designed.",
+        "evidence": "Says self-hosting still needs outbox, auth mapping and endpoint management, but not the taxonomy, contract or docs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the ranking is a default to be re-ranked against the team's actual situation, not a law.",
+        "evidence": "Has \"Conditions that change the call\" but never frames the ranking as a default.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

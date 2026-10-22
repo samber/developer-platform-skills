@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects standing up a Google-scale governance program (council, charter, full guideline document) at a 12-person startup now - governance is staged and grown into, not adopted at the top on day one.",
+        "evidence": "\"Do not build a Google-style program before shipping. Ship stage 1 now.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the governance floor: an automated breaking-change diff or linter wired into CI plus named-engineer sign-off on anything flagged.",
+        "evidence": "The CI check plus \"One named senior engineer plus one backup approves anything flagged.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a specific breaking-change diff/lint tool class for the CI gate (such as oasdiff, Spectral, or Zally).",
+        "evidence": "\"`oasdiff` or Spectral\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions a review board with a written charter as a later stage, appropriate once the API surface outgrows one reviewer.",
+        "evidence": "\"move to a chartered review board when the API surface outgrows one reviewer\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the invariant that holds at every governance stage: no breaking change ships without the governance layer's approval.",
+        "evidence": "\"no breaking change ships without approval.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the 14% of traffic still on v1 as evidence migration is incomplete: version removal is gated on observed usage, never on the calendar window elapsing.",
+        "evidence": "\"14% of traffic across 31 accounts is not zero\"; \"Don't flip the switch blind.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the announced window elapsing proves nothing about who actually migrated.",
+        "evidence": "\"A date passing proves nothing about who migrated.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends targeted outreach to the 31 accounts still calling v1 (direct email or in-response warnings) during the remaining six weeks.",
+        "evidence": "\"contact all 31 accounts directly\" and \"in-response warning on v1 calls\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends watching deprecated-version traffic share after each outreach wave to see whether the channel worked.",
+        "evidence": "\"T-4w: re-measure v1 share. If it is flat after the outreach, the channel failed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Addresses date integrity rather than casually moving March 1: repeated slippage teaches integrators that dates are not final, so any adjustment must be handled deliberately, with slipped dates counted against a target of zero.",
+        "evidence": "\"Never move the public date. Twilio extended one end-of-life three times, and integrators learned to ignore its dates.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends that enforcement at the sunset date be followed by a grace period returning 410 Gone rather than dropping connections.",
+        "evidence": "\"March 1: hard cutoff. v1 returns 410 Gone\" has no grace period.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the removal criterion as zero or a consciously accepted residue of real traffic - does not endorse flipping the kill switch on March 1 purely because the window was honored.",
+        "evidence": "The rule is zero traffic \"or a residue you have consciously accepted\", plus per-account go/no-go.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects standing up a Google-scale governance program (council, charter, full guideline document) at a 12-person startup now - governance is staged and grown into, not adopted at the top on day one.",
+        "evidence": "\"Don't build a council... suit hundreds of engineers\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the governance floor: an automated breaking-change diff or linter wired into CI plus named-engineer sign-off on anything flagged.",
+        "evidence": "\"A breaking diff fails the build unless a named owner approves it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a specific breaking-change diff/lint tool class for the CI gate (such as oasdiff, Spectral, or Zally).",
+        "evidence": "\"Use `oasdiff` or an equivalent\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions a review board with a written charter as a later stage, appropriate once the API surface outgrows one reviewer.",
+        "evidence": "\"Reconsider a council at roughly 30 or more engineers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the invariant that holds at every governance stage: no breaking change ships without the governance layer's approval.",
+        "evidence": "The CI gate with owner approval is described, but not as a stage-independent invariant.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the 14% of traffic still on v1 as evidence migration is incomplete: version removal is gated on observed usage, never on the calendar window elapsing.",
+        "evidence": "It keeps March 1 as the flip date and accepts that \"Allowlisted accounts stay\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the announced window elapsing proves nothing about who actually migrated.",
+        "evidence": "It says \"You honored the window, and that is your protection.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends targeted outreach to the 31 accounts still calling v1 (direct email or in-response warnings) during the remaining six weeks.",
+        "evidence": "\"personal outreach, not another announcement... A named human contacts every account that carries real traffic.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends watching deprecated-version traffic share after each outreach wave to see whether the channel worked.",
+        "evidence": "It reviews traffic at checkpoints but never ties this to testing outreach channels.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Addresses date integrity rather than casually moving March 1: repeated slippage teaches integrators that dates are not final, so any adjustment must be handled deliberately, with slipped dates counted against a target of zero.",
+        "evidence": "It says \"No global slip\" but gives no rationale about slippage or a zero target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends that enforcement at the sunset date be followed by a grace period returning 410 Gone rather than dropping connections.",
+        "evidence": "\"Return 410 Gone, with a JSON body containing a migration link... Don't drop connections.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the removal criterion as zero or a consciously accepted residue of real traffic - does not endorse flipping the kill switch on March 1 purely because the window was honored.",
+        "evidence": "\"March 1 stays the date, and it will be enforced.\"",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

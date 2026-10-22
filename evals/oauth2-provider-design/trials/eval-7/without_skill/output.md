@@ -1,64 +1,62 @@
-**Verdict: don't sign off.** The idea of a trust signal is right. The design has four problems, and the first is serious.
+# Verdict: don't sign off on this plan
+
+The fairness goal is right, but the mechanism doesn't deliver it, and it creates a security and liability problem on top. I'd fix four things before launch.
 
 ## What's wrong
 
-**1. One badge at one bar cannot be both honest and reachable.**
-- Apps differ in risk. Some read the installing admin's own records. Others read the whole vendor list and every employee's expense reports.
-- A single bar has to sit at one of two levels.
-  - **Set it low**, to be fair to small apps. "Verified" then means almost nothing on the apps that matter most. A customer reads the badge as "Ledgerline vouches for this", and that is a false statement for a broad-scope app.
-  - **Set it high**, to be safe for broad-scope apps. You will turn away small, low-risk apps, or review them far more heavily than they need.
-- Spend-management data is sensitive. It covers vendor pricing, employee reimbursements, bank details and possibly payroll-adjacent information. A breach through a "Verified" app lands on Ledgerline's brand and could create liability, because you advertised vetting.
+**1. A single bar treats unequal risk as equal.**
+- An app that reads the installing admin's own records and an app that reads the whole vendor list and every employee's expense reports carry very different risk.
+- One questionnaire for both is either too heavy for the first, which slows the launch, or too light for the second, which is the dangerous failure.
+- Uniform *criteria* are fair. Uniform *depth* isn't. Favouritism means applying different standards to apps with the same risk. It doesn't mean applying stricter standards to riskier apps.
 
-**2. A questionnaire filled in once is self-attestation, not verification.**
-- The word "Verified" claims that someone checked. A questionnaire the app's own vendor fills in checks nothing.
-- With about 60 apps at launch, you will get optimistic answers and no evidence behind them.
-- Once at submission means the badge never expires. Apps change owners, add scopes, get breached and ship new code. A badge earned in month 1 is still shown in month 18.
-- The user-facing wording makes it worse. The badge reads as a vouch, but your legal position is probably "we asked and they said yes". Resolve that gap before launch.
+**2. A self-filled questionnaire can't carry the word "Verified."**
+- Nobody at Ledgerline has checked the answers.
+- Customers will read "Verified" as "Ledgerline vetted this." After an incident, that gap is a trust problem and likely a legal one.
+- Either do some verification or use a label that matches what you did, such as "Self-attested."
 
-**3. "Same bar for everyone" confuses equal treatment with fairness.**
-- Applying one rule to apps with different risk is not even-handed. It mistreats the two ends:
-  - Low-risk apps pay compliance cost they don't need.
-  - High-risk apps get less scrutiny than they need.
-- Favouritism means applying different standards for reasons unrelated to risk, such as partner deals or friendships.
-- Tiering by data access is a neutral, published rule, and it is easy to defend. A customer or app vendor who asks "why does this app get more scrutiny?" can be given a one-line answer: "because it can read X."
+**3. The badge is a one-time snapshot.**
+- Apps change scopes, subprocessors, owners and code after submission, and a badge earned in month 1 still shows in month 18.
+- A badge that never expires or gets revoked is the one customers will trust most when they shouldn't.
 
-**4. A warning banner on unverified apps pushes people to the wrong place.**
-- If a badge is nearly universal, unverified apps are rare. The banner then reads as an accusation, and small, harmless apps get punished.
-- Meanwhile every verified app, including the high-risk ones, looks equally safe.
-- The banner also fires at install time, when the admin has already decided. The information that matters is what the app can read, and the banner doesn't say that.
+**4. A binary badge on every listing carries no information.**
+- If all 60 launch apps are "Verified," the badge distinguishes nothing, and it hides the one thing an admin needs: *what this app can see.*
 
-## What I would sign off on instead
+**5. The warning banner is the wrong control for the real risk.**
+- Banners on install screens get clicked through.
+- Identity of the vendor isn't the issue. The issue is the *permission*.
+- Today, a single installing admin can apparently grant org-wide access to employees' expense reports (personal data) with one click. The plan has no control for that at all.
 
-1. **Tier by data access, not by app.** Use the OAuth scopes the app requests. Publish the tiers.
-   - **Tier 1, own-records only** (the installing admin's own data). Lightweight review: questionnaire plus automated checks, such as scope validation and a basic security scan.
-   - **Tier 2, org-wide read** (vendor list, all employees' expenses). Needs evidence, not claims: SOC 2 Type II or ISO 27001 report, a pen-test summary, a data-processing agreement and a named security contact. Add a manual review of your own.
-   - **Tier 3, write or payment actions.** Everything in Tier 2, plus a stricter review and contractual incident-notification duties.
-   - Treat the scope list as the source of truth. If an app asks for broader scopes later, it drops back to review. Don't let the app self-select its tier.
+## What I'd do instead
 
-2. **Badge what was actually checked.**
-   - Show the tier and the scopes on each listing: "Reads: your vendor list and all expense reports. Reviewed: SOC 2 report, pen test, 2026-09."
-   - If you only collect a self-attested questionnaire, use "Self-assessed" and say so. Reserve "Verified" for apps where you reviewed evidence.
+1. **Tier by data access, not by app.**
+   - **Tier 1, own records only:** questionnaire plus automated checks (OAuth config, TLS, scope list).
+   - **Tier 2, org-wide, low-sensitivity:** Tier 1, plus evidence such as a SOC 2 or ISO 27001 report, or a recent pen-test summary.
+   - **Tier 3, org-wide vendor list or all employees' expense reports:** Tier 2, plus a Ledgerline review of the actual scopes requested, a named security contact, an incident-notification SLA, and a subprocessor list.
+2. **Publish the criteria and apply them identically**, including to any Ledgerline-built or partner-favoured apps. That is the real answer to "we don't want to look like we play favourites."
+3. **Show what the app accesses on every listing.**
+   - Plain-language scopes and the tier, instead of one badge.
+   - Rename the badge to describe what happened: "Security reviewed, Tier 3, reviewed 2026-10."
+4. **Build consent controls for sensitive scopes.**
+   - Granular OAuth scopes with least privilege.
+   - Org-wide sensitive scopes need a finance-admin or owner role, not any admin.
+   - Customer-level policy to restrict or allowlist installs.
+   - Audit log of installs and API access, and one-click revocation.
+   - A platform kill switch for a compromised app.
+5. **Expire and re-check.**
+   - Re-attest annually, and re-review on any scope increase.
+   - Remove the badge automatically when it lapses.
+6. **Replace the banner with a gate.** Unreviewed apps shouldn't be able to request Tier 3 scopes at all. For lower tiers, an unreviewed app can be installable but visibly labelled as unreviewed.
 
-3. **Make the badge expire.**
-   - Re-verify annually.
-   - Re-verify on any scope change, change of ownership or reported incident.
-   - Define a suspension path, including a way to remove the badge fast, and write it into the listing terms now. That is much cheaper than negotiating it after an incident.
+## Launch implications
 
-4. **Replace the banner with a scope disclosure on the install screen.**
-   - Show plain-language permissions and the tier before the admin consents.
-   - Add a stronger confirmation step for Tier 2 and 3, such as "This app will read every employee's expense reports", with a named approver in the customer's org.
-   - Keep a lighter notice for unreviewed apps. Don't use alarm language for them.
+- **Launch with fewer than 60 apps if needed.** A smaller directory where Tier 3 apps are actually reviewed beats 60 with a meaningless badge.
+- **Check review capacity.** Tiering lets you spend review time where the risk is. If you have no one to do Tier 3 reviews, you shouldn't list Tier 3 apps yet.
+- **Get legal input.** Employee expense reports are personal data. You need to know who is processor and who is subprocessor in the chain Ledgerline → customer → app, and what your DPA and customer contracts promise.
 
-5. **Cap what you promise at launch.**
-   - With about 60 apps, you probably can't manually review all of them by launch.
-   - Launch Tier 1 apps with the light process. Hold broad-scope apps back until their review is done, or label them "Not yet reviewed" and disable org-wide scopes meanwhile.
-   - Staff the review queue before launch. Name an owner, because reviews, re-verification and incident handling are permanent work.
+## What I need to know to firm this up
 
-## Open questions before you finalize
+1. How many of the 60 apps would request org-wide vendor-list or all-employee expense scopes?
+2. Who has Tier 3 review capacity, and how many reviews a week can they do?
+3. Do your OAuth scopes already separate "own records" from "org-wide," or is that new work?
 
-- **Which of the 60 apps need org-wide scopes?** If it's 5, a manual review is cheap. If it's 40, the staffing plan changes.
-- **Who owns reviews, and what happens when an incident hits a verified app?** Without an owner and a suspension path, the badge is a liability.
-- **Does Legal agree on what "Verified" is allowed to claim?** Ask before launch, not after.
-- **Do you have customer commitments** (SOC 2 scope, DPA terms, regulated customers) that say what you must review for third parties with access to their data? Check them.
-
-I can draft the tier definitions, listing copy and install-screen wording next if you want them.
+If the answer to #3 is "new work," that's the launch blocker, not the badge.

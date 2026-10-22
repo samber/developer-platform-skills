@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Checks the document against a fixed set of four design-document gates rather than giving general impressionistic feedback",
+        "evidence": "\"The skill's four design-document gates\" table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fails Section 1 because 'enhanced review at the reviewer's discretion' is not an objective escalation trigger a developer can self-assess",
+        "evidence": "\"'Enhanced review at the reviewer's discretion' fails the first gate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fails Section 2 because 'minor update' is left undefined",
+        "evidence": "\"'Minor publishes without re-review' is undefined.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Supplies the objective minor-update definition: no new scopes, no new external endpoints, no change to data handling",
+        "evidence": "\"new OAuth scopes, new external endpoints, changed data handling, payment-model change, new app type\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fails Section 4 because no enforcement rung names an owner, a notice period, or the evidence that fires it",
+        "evidence": "\"For each rung: an owner, a developer notice period, and the evidence\"; gate table \u274c no rungs",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fails Section 3 because the publish channel carries none of the default controls",
+        "evidence": "Section 3 \"blocker\"; gate table \u274c neither",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a publish-to-propagation hold specifically because updates auto-install into tenants overnight",
+        "evidence": "\"With auto-propagation, a 24-48 hour hold... is mandatory.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the SMS second factor as not phishing-resistant and replaces it with FIDO-based 2FA",
+        "evidence": "\"SMS is not phishing-resistant 2FA.\" and \"FIDO/WebAuthn required\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the long-lived portal password publish path with short-lived scoped publish tokens",
+        "evidence": "\"Short-lived, scoped publish tokens.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the open-versus-curated decision in Section 5 belongs to marketplace strategy, and that this review process enforces that decision rather than re-making it",
+        "evidence": "\"Open versus curated is a strategy decision, and this process enforces that decision.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs iterating on the document until all four gates pass rather than shipping with known gaps",
+        "evidence": "No instruction to iterate until gates pass.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists operating metrics for once it is live, including time-to-first-decision against a published SLA and post-approval security findings per quarter with time-to-remediation",
+        "evidence": "\"time-to-decision against an SLA... post-approval findings with time-to-remediation\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Checks the document against a fixed set of four design-document gates rather than giving general impressionistic feedback",
+        "evidence": "Uses ad hoc blockers and non-blockers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fails Section 1 because 'enhanced review at the reviewer's discretion' is not an objective escalation trigger a developer can self-assess",
+        "evidence": "\"'Enhanced review at the reviewer's discretion' is inconsistent... make the trigger objective.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fails Section 2 because 'minor update' is left undefined",
+        "evidence": "\"'Minor' is undefined.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Supplies the objective minor-update definition: no new scopes, no new external endpoints, no change to data handling",
+        "evidence": "Lists new or widened scope, new data access, new outbound domains as triggers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fails Section 4 because no enforcement rung names an owner, a notice period, or the evidence that fires it",
+        "evidence": "Criticizes undefined actions and missing notice and emergency paths, but not owner or evidence per rung.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fails Section 3 because the publish channel carries none of the default controls",
+        "evidence": "\"Section 3 (Publish) is the biggest hole\": weak login, no staging, signature check or rollback.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a publish-to-propagation hold specifically because updates auto-install into tenants overnight",
+        "evidence": "Only \"Add a publish-to-live delay for apps in enhanced review\"; it is not universal or tied to auto-install.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the SMS second factor as not phishing-resistant and replaces it with FIDO-based 2FA",
+        "evidence": "\"Password plus SMS is phishable\"; \"Require phishing-resistant MFA (WebAuthn/passkeys)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the long-lived portal password publish path with short-lived scoped publish tokens",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the open-versus-curated decision in Section 5 belongs to marketplace strategy, and that this review process enforces that decision rather than re-making it",
+        "evidence": "\"It's a strategy call for leadership. The policy doc should record the outcome.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs iterating on the document until all four gates pass rather than shipping with known gaps",
+        "evidence": "Gives a fastest path with a second review but no iterate-until-pass instruction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists operating metrics for once it is live, including time-to-first-decision against a published SLA and post-approval security findings per quarter with time-to-remediation",
+        "evidence": "No metrics listed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

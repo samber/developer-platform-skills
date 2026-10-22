@@ -1,0 +1,210 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-error-design",
+  "scenarios": 7,
+  "expectations_total": 87,
+  "expectations_subjective": 1,
+  "expectations_objective": 86,
+  "pass_rate_with_skill_pct": 89.7,
+  "pass_rate_without_skill_pct": 63.2,
+  "delta_pp": 26.5,
+  "uplift_multiplier": 1.42,
+  "trigger_accuracy_pct": 63.1,
+  "trigger_queries": 84,
+  "trigger_positive_fire_rate": 0.643,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "States that the correct HTTP status must be picked first because the body explains the status and never replaces it, with intermediaries (proxies, caches, monitors) reading only the status"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Mentions the alternative split of keeping the message stable and developer-facing while carrying translated end-user text in a separate localized-message field"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Evaluates messages against three independent properties - human-readable, actionable, consistent in format across the API - checked separately"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "For errors whose fix takes a paragraph to explain, links a documentation_url to the code's catalog entry instead of cramming the explanation into the message"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Cites the Google-style stability model where the error identity must stay consistent over time and message text is explicitly non-contractual"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Justifies Retry-After as a real HTTP header that generic clients and proxies parse without understanding the body format"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names a bare 500 with no retry signal as the design gap to close"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Splits severity by who acts: 4xx means the caller should stop and change the request, 5xx means retry later or the provider must fix a bug"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Frames the payoff as one API error mapping to multiple form-field indicators in a single round trip"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that HTTP-status-pinned catalog shapes (flat catalog and code/subcode) are removed from the menu entirely on a gRPC-only surface, not merely ranked last or discouraged"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Justifies the removal by the fact that those shapes define each code's identity by pinning it to one HTTP status, which a gRPC-only surface does not have"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Rejects any 'we'll map codes to HTTP statuses later' compromise, or names the re-promotion condition explicitly as a REST surface joining the API family"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that the team's existing gRPC/Google Cloud fluency lowers the usual adoption effort of domain/reason substantially"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the correct HTTP status must be picked first because the body explains the status and never replaces it, with intermediaries (proxies, caches, monitors) reading only the status"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Treats already-shipped codes, fields, and message strings as potentially depended-on by clients (Hyrum's Law) and maps old identities to new ones instead of silently dropping them"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Structures the audit of the current surface as a table with one row per endpoint covering items such as status returned, envelope shape, code presence, retry signal, and documentation"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Mentions the alternative split of keeping the message stable and developer-facing while carrying translated end-user text in a separate localized-message field"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Evaluates messages against three independent properties - human-readable, actionable, consistent in format across the API - checked separately"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Invokes Hyrum's Law: with enough users, someone depends on every observable behavior, including undocumented codes and message text"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Declares stability explicitly in the catalog: the code is stable and safe to branch on, while message/detail text may change without notice"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Cites the Google-style stability model where the error identity must stay consistent over time and message text is explicitly non-contractual"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requests 5-10 real production error responses across different endpoints before designing the migration, since this is a retrofit"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Declines to embed the backoff algorithm (multiplier, jitter formula) in the error body spec, scoping this design to signal fields rather than client retry mechanics"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Marks 409 as non-retryable, on the reasoning that repeating the unchanged request fails identically"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Justifies Retry-After as a real HTTP header that generic clients and proxies parse without understanding the body format"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Justifies the body-level boolean: it is the one field a generic error handler branches on without a status-code lookup table, and not every client library surfaces headers as easily as the parsed body"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names a bare 500 with no retry signal as the design gap to close"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Splits severity by who acts: 4xx means the caller should stop and change the request, 5xx means retry later or the provider must fix a bug"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Enumerates each status an endpoint can return in its OpenAPI responses block"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires a named example per distinct error code under each status, rejecting the single generic 'Error object' schema reference"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Publishes the error catalog as a single public page with a stable anchor per code"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies per-code catalog content covering the HTTP status it rides on, what causes it, whether it is retryable, whether its message is safe to show end users, and the fix path"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires a code to be documented before it ships, never after a support ticket forces it"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Treats the support-ticket signal as a trend to watch, never as a pass/fail gate"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the two actual gates: envelope consistency at 100% of endpoints and statuses (binary), and catalog coverage with zero observable codes missing from the catalog or endpoint examples"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Gives each field error structured members: the field name, a specific code, a message, the value provided, and the violated constraints"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Frames the payoff as one API error mapping to multiple form-field indicators in a single round trip"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects attaching the date rule to renewal_date alone: a cross-field constraint is never forced into the single-field shape"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Shapes the cross-field error with a fields array naming both fields and a values_provided map carrying both submitted values"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that a 200 response mixing success and per-item failures is acceptable only for bulk or long-running operations and rejected everywhere else"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Each message names the field, the value received, and the constraint violated"
+      }
+    ]
+  }
+}

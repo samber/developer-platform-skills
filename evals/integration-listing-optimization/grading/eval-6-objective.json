@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that Atlassian caps listing video at 30 seconds and requires a function demonstration in an anti-marketing tone, so the 2:40 promo cannot be reused there.",
+        "evidence": "'Ceiling is \u226430 s, function demo only, anti-marketing tone.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Shopify allows a two-to-three-minute promotional video but caps screencast footage at 25% of runtime.",
+        "evidence": "'2\u20133 min ceiling and allows promo tone... Screencast must be \u226425% of runtime.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives different screenshot dimensions per marketplace, naming 1600x900 for Shopify and 1840x900 for Atlassian.",
+        "evidence": "'1600\u00d7900' Shopify; 'Atlassian wants 1840\u00d7900'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the 'from $19/mo' closing card as a pricing claim banned from listing imagery.",
+        "evidence": "Treated as a video card; Shopify price card only 'unverified', not stated as banned imagery.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the 5-star badge overlay as a review claim banned from listing imagery.",
+        "evidence": "'Review claims baked into images are a common ban.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the logo-on-gradient image and notes that Shopify hard-rejects logo-only and duplicate images.",
+        "evidence": "'Shopify hard-rejects logo-only images.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the marketing-site homepage as the first image and requires screenshots to be unique, in-product, and captioned.",
+        "evidence": "'Not an in-UI product shot'; images must be in-UI and captioned.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders the first three gallery assets as hero, then key differentiator, then most-used or most-loved feature.",
+        "evidence": "'hero \u2192 key differentiator \u2192 most-loved feature'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the first-three gallery ordering and the evidence that most visitors never scroll past the third image as consumer app-store analogy rather than B2B fact.",
+        "evidence": "'This ordering rule comes from consumer app stores, so treat it as an analogy.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that demo video is platform-gated: worth building where the marketplace surfaces it prominently, skippable where it is buried.",
+        "evidence": "Not stated as a general principle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Atlassian caps the listing at two categories and downgrades category-stale apps to uncategorized.",
+        "evidence": "'Pick up to 2 of the 10 categories... stale categories get downgraded.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that Atlassian caps listing video at 30 seconds and requires a function demonstration in an anti-marketing tone, so the 2:40 promo cannot be reused there.",
+        "evidence": "It says only to check each store's length guidance, 'since 2:40 may run long'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Shopify allows a two-to-three-minute promotional video but caps screencast footage at 25% of runtime.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives different screenshot dimensions per marketplace, naming 1600x900 for Shopify and 1840x900 for Atlassian.",
+        "evidence": "'1600x900 ... Atlassian's gallery size may differ (I recall about 1840x900)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the 'from $19/mo' closing card as a pricing claim banned from listing imagery.",
+        "evidence": "'Each store sets pricing through its own pricing fields ... Cut the card'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the 5-star badge overlay as a review claim banned from listing imagery.",
+        "evidence": "'A self-awarded rating is a misleading claim ... Remove the badge'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the logo-on-gradient image and notes that Shopify hard-rejects logo-only and duplicate images.",
+        "evidence": "It rejects the image because 'A logo is not a screenshot' but never mentions the hard rejection or duplicates.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the marketing-site homepage as the first image and requires screenshots to be unique, in-product, and captioned.",
+        "evidence": "It rejects the homepage image but does not require uniqueness or captions on both stores.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders the first three gallery assets as hero, then key differentiator, then most-used or most-loved feature.",
+        "evidence": "No ordering is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels the first-three gallery ordering and the evidence that most visitors never scroll past the third image as consumer app-store analogy rather than B2B fact.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that demo video is platform-gated: worth building where the marketplace surfaces it prominently, skippable where it is buried.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Atlassian caps the listing at two categories and downgrades category-stale apps to uncategorized.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

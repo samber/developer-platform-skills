@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Establishes unary as the default call shape, with every streaming method a deliberate, recorded decision rather than a free feature",
+        "evidence": "\"Keep unary as the default. Make a streaming method a recorded exception\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the published guidance that replacing unary calls with bidirectional streaming for performance reasons is an advanced technique not appropriate in many situations",
+        "evidence": "\"replacing unary calls with bidirectional streaming for performance reasons is an advanced technique and is not appropriate in many situations\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies server-streaming as the streaming mode to reach for first when a genuine push/tail use case exists, because it maps cleanly onto SSE through a gateway and onto Connect's streaming encoding",
+        "evidence": "\"Use server-streaming first. It maps to SSE through a gateway and works over HTTP/1.1 via Connect.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that browsers cannot do client or bidirectional streaming over HTTP/1.1 at all, and frames this as a protocol wall rather than a tooling gap, with Connect over HTTP/2 as the exception",
+        "evidence": "\"That is a protocol limit, not a tooling gap.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names that a stream failing mid-flight after partial data forces every external consumer into restart/resume bookkeeping a unary retry never requires",
+        "evidence": "\"Every partner SDK then needs restart and resume bookkeeping, which a unary retry never requires.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names that retries stop being transparently managed by the client library once a call is streaming",
+        "evidence": "\"Retries stop being managed transparently by the client library.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an HTTP mapping is required for every RPC except bidirectional streaming, so every bidi method needs a documented non-streaming alternative or it is invisible on the transcoded surface",
+        "evidence": "\"AIP-127 requires a google.api.http mapping for every RPC except bidi... documented non-streaming alternative.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that HTTP/2 multiplexing under an L4 balancer pins all of a client's streams to one backend for the connection's lifetime",
+        "evidence": "\"streams pinned to one backend per connection, you also get uneven load unless balancing is L7\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires L7, HTTP/2-aware load balancing at the public gRPC edge",
+        "evidence": "\"unless balancing is L7 and HTTP/2-aware\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the client keepalive PING interval to be set below whichever load-balancer idle timeout applies on the path",
+        "evidence": "\"client HTTP/2 keepalive PINGs set below that interval\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the AWS Application Load Balancer's 60-second default idle timeout as the binding number for this deployment (and may contrast with AWS NLB 350 s or Google Cloud's 600 s backend keepalive)",
+        "evidence": "\"AWS ALB's default idle timeout is 60 s\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enabling buf's UNARY_RPC lint category if the surface commits to unary-only, so a later PR cannot silently reintroduce a streaming method",
+        "evidence": "\"Enable buf's UNARY_RPC lint category\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Establishes unary as the default call shape, with every streaming method a deliberate, recorded decision rather than a free feature",
+        "evidence": "\"Use unary as the default, and add streaming only where the data is a stream\"; bidi is \"justify case by case\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the published guidance that replacing unary calls with bidirectional streaming for performance reasons is an advanced technique not appropriate in many situations",
+        "evidence": "There is no citation of published guidance. It only says the gain is unproven until benchmarked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies server-streaming as the streaming mode to reach for first when a genuine push/tail use case exists, because it maps cleanly onto SSE through a gateway and onto Connect's streaming encoding",
+        "evidence": "The table maps \"Large exports, live tail, watch\" to server streaming and bidi to a justified exception. The widget gets \"server streaming or SSE\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that browsers cannot do client or bidirectional streaming over HTTP/1.1 at all, and frames this as a protocol wall rather than a tooling gap, with Connect over HTTP/2 as the exception",
+        "evidence": "\"gRPC-Web supports unary and server streaming only... Connect protocol do work over HTTP/1.1, but only for unary and server-streaming calls.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names that a stream failing mid-flight after partial data forces every external consumer into restart/resume bookkeeping a unary retry never requires",
+        "evidence": "It says only \"A fatal error kills the whole stream\" and does not mention resume bookkeeping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names that retries stop being transparently managed by the client library once a call is streaming",
+        "evidence": "\"The gRPC retry policy doesn't help once a stream has started.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an HTTP mapping is required for every RPC except bidirectional streaming, so every bidi method needs a documented non-streaming alternative or it is invisible on the transcoded surface",
+        "evidence": "This is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that HTTP/2 multiplexing under an L4 balancer pins all of a client's streams to one backend for the connection's lifetime",
+        "evidence": "It discusses ALB (L7) per-request balancing pinning long-lived streams, not L4 multiplexing pinning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires L7, HTTP/2-aware load balancing at the public gRPC edge",
+        "evidence": "This is not required. It only lists ALB gRPC target-group requirements.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the client keepalive PING interval to be set below whichever load-balancer idle timeout applies on the path",
+        "evidence": "It only says \"Test whether HTTP/2 keepalive pings reset it. I'm not certain they do.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the AWS Application Load Balancer's 60-second default idle timeout as the binding number for this deployment (and may contrast with AWS NLB 350 s or Google Cloud's 600 s backend keepalive)",
+        "evidence": "\"The idle timeout (default 60s, configurable) applies to streams.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enabling buf's UNARY_RPC lint category if the surface commits to unary-only, so a later PR cannot silently reintroduce a streaming method",
+        "evidence": "This is not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
