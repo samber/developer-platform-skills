@@ -4,7 +4,7 @@ description: Audit an existing or proposed public REST API surface as a checklis
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Public API Design Review
@@ -166,3 +166,4 @@ Company-by-company trigger, authority, and scaling detail - with the staged laun
 - [references/worked-review-excerpt.md](references/worked-review-excerpt.md) - a worked review-report excerpt with cited-rule findings, a recorded deviation, and a negative example.
 - [references/review-program-benchmarks.md](references/review-program-benchmarks.md) - verified trigger/authority/scaling models at Google, Microsoft Azure, Stripe, Zalando, and PayPal; the staged program-launch playbook; program-health metrics.
 - `samber/developer-platform-skills@api-integration-surface-strategy` - the umbrella decision that schedules the REST surface this skill reviews; a surface this skill has never seen scheduled there needs that decision first, not a review.
+- `samber/developer-platform-skills@api-beta-program` - runs the preview this skill's beta-level review gates; no account enrolls while Must-change findings stay open.

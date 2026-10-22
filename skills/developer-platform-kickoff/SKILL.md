@@ -4,7 +4,7 @@ description: Before starting any developer-platform, public-API, or integration 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.7"
+  version: "1.0.8"
 ---
 
 # Developer Platform Kickoff
@@ -78,6 +78,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `samber/developer-platform-skills@api-versioning-policy` | _(macro)_ The versioning and deprecation policy: version scheme, a written breaking-change definition, notice windows by audience, RFC 9745/8594 sunset signalling, enforcement, breaking-change governance                                |
 | `samber/developer-platform-skills@public-roadmap-strategy` | _(macro)_ Whether and how to publish the product roadmap to customers or the public: posture from no page to dated quarters, commitment vocabulary capped by release phase, the exclusion gate, disclaimers and sales citation rules, voting boards, the slipped-item playbook |
+| `samber/developer-platform-skills@api-beta-program` | An early-access, preview, beta or design-partner program for a new API feature: program shape, what each pre-GA label guarantees, the stage on the wire, partner selection, per-account access, feedback cadence, exit to GA or kill, and rescuing betas that never ended |
 | `samber/developer-platform-skills@api-reference-quality` | Audit the published reference at the endpoint level against the spec surface - undocumented operations, parameters, response codes and errors, missing examples, snippet parity - then stop the drift with CI lint and contract-test gates |
 
 ### Integration surfaces
@@ -150,6 +151,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 - `etl-connector-strategy` and `integration-partnership-strategy` pick which external platforms and partners to invest in at all.
 - `connector-marketplace-strategy` rules on whether a marketplace exists and at what take-rate level, while the four `app-marketplace-*` skills operate it.
 - `public-roadmap-strategy` decides what the platform publicly promises next, while `api-versioning-policy` and `api-status-communication` handle what it retires and what is broken now.
+- `api-versioning-policy` governs a surface once it is GA, while the tactical `api-beta-program` runs everything before GA, including retiring one preview version for the next.
 
 Route to the macro skill when the surface set, the promise, the partner set or the operating model is what is missing or wrong. Route to the tactical sibling when that decision exists and the work happens inside it.
 

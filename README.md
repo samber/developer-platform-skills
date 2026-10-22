@@ -118,6 +118,7 @@ This collection covers the full developer-platform surface.
 
 - [`api-versioning-policy`](./skills/api-versioning-policy): Defines an API's versioning and deprecation policy: version scheme, breaking-change definition, notice windows, sunset signalling, and enforcement.
 - [`public-roadmap-strategy`](./skills/public-roadmap-strategy): Decides whether and how to publish a product roadmap: posture, commitment vocabulary, exclusion gate, sales guardrails, and the slipped-item playbook.
+- [`api-beta-program`](./skills/api-beta-program): Runs a preview, beta or design-partner program for a new API feature: stage guarantees, cohort, per-account access, and exit to GA or kill.
 
 ### Integration surfaces
 

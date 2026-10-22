@@ -4,7 +4,7 @@ description: Define the versioning and deprecation policy for an API - version s
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # API Versioning Policy
@@ -20,6 +20,8 @@ You are an API lifecycle strategist. A written versioning and deprecation policy
 The hard half is not choosing a scheme - "choosing a versioning strategy is the easy half. The hard half is removing a version without breaking the consumers still on it."
 
 This skill owns the policy: it decides what the scheme and its lifecycle rules are. Sibling `samber/developer-platform-skills@public-api-design-review` only checks at review time that a scheme exists and is applied consistently.
+
+Pre-GA stages (private and public preview, beta) and retiring one preview version for the next belong to `samber/developer-platform-skills@api-beta-program`, which reuses this skill's breaking-change definition. A beta surface enters this policy at GA.
 
 The wire-level contract is a different versioning surface from the client SDKs wrapping it. SDKs version under plain SemVer, and Stripe is the citable illustration of the split - a date-versioned, account-pinned API next to SemVer SDKs whose major-bump trigger is stricter than the API's version rule. Write the SDK policy separately; this skill covers the contract.
 

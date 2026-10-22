@@ -94,7 +94,12 @@ Both kinds are collected under Boundary pairs below.
 ### `samber/developer-platform-skills@public-roadmap-strategy`
 
 - Route here: "should we publish a roadmap", "our sales team keeps promising features", a GitHub roadmap repo or roadmap page, now/next/later vs dated quarters, roadmap disclaimers, a feature voting board on the roadmap, announcing a slipped or cancelled roadmap item.
-- Do not route here: internal roadmap planning or prioritization; triaging individual feature requests (`samber/developer-relations-skills@developer-feedback-loop`); deprecation notices (`api-versioning-policy`); joint roadmaps with a partner (`integration-partnership-strategy`).
+- Do not route here: internal roadmap planning or prioritization; triaging individual feature requests (`samber/developer-relations-skills@developer-feedback-loop`); deprecation notices (`api-versioning-policy`); joint roadmaps with a partner (`integration-partnership-strategy`); what a preview or beta stage promises (`api-beta-program`).
+
+### `samber/developer-platform-skills@api-beta-program`
+
+- Route here: "let a few customers try the new endpoint before it's final", design partners for an API feature, defining what beta or preview means for our API, a beta allowlist, sales asking for early access to an unreleased API, a beta that never ended, customers running production on our own beta endpoints, deciding when a preview goes GA or gets killed.
+- Do not route here: whole-app or consumer beta testing; evaluating a vendor's beta you consume; percentage or canary rollouts of a GA change; deprecating a GA version (`api-versioning-policy`); routine feature-request triage (`samber/developer-relations-skills@developer-feedback-loop`); the design review itself (`public-api-design-review`).
 
 ### `samber/developer-platform-skills@api-reference-quality`
 
@@ -298,6 +303,8 @@ Where two or more siblings collide on keywords, decide from these declared-scope
   - What is going away, on what notice → api-versioning-policy. "We need to retire /v1" routes here.
   - What is broken right now → api-status-communication.
 
+- **api-beta-program vs api-versioning-policy** - the GA line splits them. Before GA, including retiring one preview version for the next and rescuing a beta that never ended → api-beta-program. After GA, including the deprecation window a graduated beta surface gets → api-versioning-policy. A beta program uses the versioning policy's breaking-change definition rather than writing its own.
+
 - **api-rate-limit-policy vs public-graphql-api-design** - GraphQL's depth and complexity ceilings are schema design decisions and live with the schema; the published quota, tier numbers, headers and 429 contract are policy and live with rate-limit-policy. A GraphQL cost model needs both, in that order.
 - **partner-app-onboarding vs app-marketplace-review vs api-test-mode-design** - three stages of the same partner's path:
   - Getting to a first submission → onboarding.
@@ -317,6 +324,7 @@ Propose a chain only when the task genuinely decomposes this way; never fabricat
 - `integration-partnership-strategy` → `etl-connector-strategy` or `integration-listing-optimization` - the prioritization decides which platform is worth the connector or listing. Building either first pays a maintenance tax for a platform nobody's customers use.
 - `public-api-design-review` → `api-idempotency-retry` → `terraform-provider-offering` - the provider's readiness gate fails on non-idempotent creates and fields never read back; fix the contract before mapping it to resources, or every gap ships as a perpetual diff.
 - `webhook-platform-design` → `integration-error-observability` - delivery logs and replay are the debugging surface for the deliveries the first link creates.
+- `public-api-design-review` → `api-beta-program` → `api-versioning-policy` - review the new surface at beta level, run the preview that freezes its shape, then put the GA surface under the compatibility promise. Enrolling partners before the review freezes an unreviewed shape.
 
 ## Sibling-repo recommendations
 
