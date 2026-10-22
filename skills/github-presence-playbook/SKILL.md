@@ -1,6 +1,6 @@
 ---
 name: github-presence-playbook
-description: "Plans a repository's post-launch presence on GitHub as a social platform - stars and their limits, watchers and release notifications, Discussions, topics, Explore and Trending, the home feed - with ranking claims labelled documented or folklore, and ready-to-paste posts. Use whenever someone says their GitHub stars are flat, asks how to grow engagement on a GitHub repo or SDK, how to set up Discussions Q&A, how to get a GitHub Release seen by watchers, or whether to buy, trade or reward stars, even if they only say nobody notices the repo. Not a launch - use samber/developer-relations-skills@oss-launch. Not README or sidebar copy - use samber/developer-relations-skills@readme-optimization. Not cross-channel release cadence - use samber/developer-relations-skills@oss-distribution-strategy."
+description: "Plans a repository's post-launch presence on GitHub as a social platform - stars, watchers and release notifications, Discussions, topics, labels, Trending and the home feed - with ready-to-paste issue, PR and release templates. Use whenever GitHub stars are flat, someone asks how to grow engagement on a repo or SDK, set up Discussions Q&A or a label scheme, get a Release seen by watchers, or whether to buy or trade stars, even if they only say nobody notices the repo. Not a launch - use samber/developer-relations-skills@oss-launch. Not README copy - use samber/developer-relations-skills@readme-optimization. Not cross-channel cadence - use samber/developer-relations-skills@oss-distribution-strategy. Not license choice - use samber/developer-relations-skills@oss-license-strategy."
 license: MIT
 metadata:
   author: Samuel Berthe
@@ -48,7 +48,7 @@ When two rows fit, run the metric swap first.
 List order is the efficiency order (value per maintainer hour). Cadence in § 4 is sequence, not rank.
 
 1. **Traffic archive and metric swap** - near-zero effort; buys the knowledge of which problem exists. Compounding.
-2. **Releases as feed events** - an hour per release. A GitHub Release with a written body, ticking "Create a discussion for this release" in an Announcement category. Notifies release watchers; shows on stargazers' and watchers' Feed tab [documented]. Compounding.
+2. **Small, frequent releases as feed events** - minutes to an hour per release. Ship each merged fix or feature as its own GitHub Release with a written body, ticking "Create a discussion for this release" in an Announcement category. Notifies release watchers; shows on stargazers' and watchers' Feed tab [documented]. Compounding.
 3. **Topics** - an hour once: 5-10 accurate topics, each feeding `github.com/topics/<name>` [documented]; search weight unpublished. Compounding.
 4. **Discussions Q&A** - a standing job of hours per week; builds an indexed, answered support archive and credits helpers. Compounding.
 
@@ -67,25 +67,27 @@ Re-rank against the interview, and say which answer moved what:
 
 **Do more of:**
 
-- Publish every version as a GitHub Release. Releases appear in the feed only for repositories a user stars or watches [documented].
+- Release small and often. Every version published as a GitHub Release is a feed event for the repository's stargazers and watchers [documented], so ten small releases put the project in front of them ten times where one large release does once. One real change and a one-line body is enough.
+- Keep the repository visibly active. The home feed shows activity from people and repositories a user follows and stars [documented], and its recommendations lean toward repositories with recent activity [folklore]. Releases, merged PRs, answered discussions and new contributors all count; a quiet month drops the project from that stream.
+- Turn on Dependabot version updates. Weekly dependency PRs and merges keep the commit graph and "last updated" date fresh at near-zero effort, so evaluators read the repository as maintained [folklore]; the security patches are real value on their own.
 - Post release and roadmap notes in an Announcement category: a feed event type, opened only by maintain or admin roles [documented].
 - Mark Q&A answers (the author or triage+ can). GitHub highlights the answer [documented] and lists members with the most marked answers as most helpful [documented in launch notes; check the current UI].
 - Earn stars through use. "Many of GitHub's repository rankings depend on the number of stars" and Explore lists popular repositories by stars [documented].
 
 **Do less of:**
 
-- Leaning on the home feed. The default home page is a work dashboard and the social feed sits on a separate tab [documented]; the reach lost is unmeasured.
-- Chasing Trending or Explore. GitHub publishes no Trending formula; "star velocity against the repo's own baseline" is [folklore]. A launch push is `samber/developer-relations-skills@oss-launch`.
-- Empty or dependency-bump releases. They spend watchers' attention and push them to unsubscribe [folklore].
+- Expecting the feed to reach strangers. It reaches followers, stargazers and watchers; the default home page is a work dashboard with the social feed on a separate tab [documented]. Reach beyond them is earned off-platform.
+- Chasing Trending day to day. Trending ranks stars gained inside a window, per language; GitHub publishes no formula, and "star velocity against the repo's own baseline" is [folklore]. Getting onto Trending is a launch-sized burst: plan it with `samber/developer-relations-skills@oss-launch`.
+- Releases with an empty body. A release is a feed event only worth its slot when the body says what changed.
 
 Treat any feed or ranking claim older than a year as stale until re-checked against GitHub's changelog.
 
 ## 4. Cadence
 
 1. **Weeks 1-2, earn first** - archive traffic, answer open usage questions in issues (oldest first, inside the effort ceiling), set topics, back-fill bodies on the last three releases.
-2. **Weeks 2-4** - open Discussions with two categories (Announcements, Q&A). Add a `contact_links` entry in `.github/ISSUE_TEMPLATE/config.yml` pointing questions to Q&A. Convert 5-10 answered usage issues to discussions. Pin a start-here post.
-3. **Every release** - Release body (`samber/developer-relations-skills@changelog-writing`), the auto-created Announcement, then an off-platform post. Never release to fill a calendar.
-4. **Weekly** - answer Q&A inside the stated target, mark answers, convert stray usage issues, export traffic.
+2. **Weeks 2-4** - open Discussions with two categories (Announcements, Q&A). Add a `contact_links` entry in `.github/ISSUE_TEMPLATE/config.yml` pointing questions to Q&A. Convert 5-10 answered usage issues to discussions. Pin a start-here post. Set the label scheme from [references/labels.md](./references/labels.md) and enable Dependabot version updates.
+3. **Every release** - Release body (`samber/developer-relations-skills@changelog-writing`), the auto-created Announcement, then an off-platform post. Cut a release as soon as one user-visible change is merged; never batch fixes to make a release look bigger.
+4. **Weekly** - answer Q&A inside the stated target, mark answers, label new issues, PRs and discussions, merge Dependabot PRs, convert stray usage issues, export traffic.
 5. **Quarterly** - read watchers, dependents, downloads and referrers against the baseline; revise topics.
 
 Ask for a watch only where a reader already wants release news: the start-here post, the docs changelog, a solved thread. Never ask for stars.

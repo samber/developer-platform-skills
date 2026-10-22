@@ -4,7 +4,7 @@ description: Before starting any developer-platform, public-API, or integration 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # Developer Platform Kickoff
@@ -116,7 +116,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 
 | Skill                                                       | Route here when the task is…                                                                                                                                                                         |
 | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `samber/developer-platform-skills@github-presence-playbook` | A repository's engagement on GitHub after launch: diagnosing a flat star curve, releases as feed events and watcher notifications, Discussions Q&A and announcements, topics, the limits on star tactics |
+| `samber/developer-platform-skills@github-presence-playbook` | A repository's engagement on GitHub after launch: diagnosing a flat star curve, releases as feed events and watcher notifications, Discussions Q&A and announcements, topics, labels for issues, PRs and discussions, small frequent releases and Dependabot as activity, the limits on star tactics |
 
 ### Connector marketplace (operator side)
 
