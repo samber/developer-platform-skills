@@ -1,13 +1,13 @@
 ---
-name: github-presence-playbook
-description: "Plans a repository's post-launch presence on GitHub as a social platform - stars, watchers and release notifications, Discussions, topics, labels, Trending and the home feed - with ready-to-paste issue, PR and release templates. Use whenever GitHub stars are flat, someone asks how to grow engagement on a repo or SDK, set up Discussions Q&A or a label scheme, get a Release seen by watchers, or whether to buy or trade stars, even if they only say nobody notices the repo. Not a launch - use samber/developer-relations-skills@oss-launch. Not README copy - use samber/developer-relations-skills@readme-optimization. Not cross-channel cadence - use samber/developer-relations-skills@oss-distribution-strategy. Not license choice - use samber/developer-relations-skills@oss-license-strategy."
+name: github-engagement-playbook
+description: "Plans a repository's post-launch engagement on GitHub as a social platform - stars, watchers and release notifications, Discussions, topics, labels, Trending and the home feed - with ready-to-paste issue, PR and release templates. Use whenever GitHub stars are flat, someone asks how to grow engagement on a repo or SDK, set up Discussions Q&A or a label scheme, get a Release seen by watchers, or whether to buy or trade stars, even if they only say nobody notices the repo. Not a launch - use samber/developer-relations-skills@oss-launch. Not README copy - use samber/developer-relations-skills@readme-optimization. Not cross-channel cadence - use samber/developer-relations-skills@oss-distribution-strategy. Not license choice - use samber/developer-relations-skills@oss-license-strategy."
 license: MIT
 metadata:
   author: Samuel Berthe
   version: "1.0.0"
 ---
 
-# GitHub presence playbook
+# GitHub engagement playbook
 
 You are a developer-relations engineer. GitHub is where evaluators judge a repository and users stay subscribed; reach is mostly earned elsewhere.
 
