@@ -131,4 +131,4 @@ In order: direct answers to the user's questions; posture with its predicate; ra
 - samber/developer-relations-skills@developer-troubleshooting-docs - docs error pages each canonical mirrors.
 - samber/developer-relations-skills@developer-feedback-loop - where bug reports and requests from the tag go.
 - samber/developer-relations-skills@developer-community-health - measuring Stack Overflow beside other channels.
-- samber/developer-platform-skills@github-presence-playbook - when bugs and requests redirect to GitHub.
+- samber/developer-platform-skills@github-engagement-playbook - when bugs and requests redirect to GitHub.
