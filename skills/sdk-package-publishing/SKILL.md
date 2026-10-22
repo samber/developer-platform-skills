@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # SDK Package Publishing
@@ -79,7 +79,7 @@ Answers 7-9 re-rank the menus below. When answer 7 names an incident or a deadli
 3. **Choose the credential model per registry** from the ladder below.
 4. **Claim the namespace** before the first public release: npm org scope, PyPI organization, Maven domain namespace, Gradle plugin ID, NuGet ID prefix, crates.io team owner, pub.dev verified publisher, Packagist vendor, Docker org. Keep at least two owners with phishing-resistant 2FA.
 5. **Preflight the package shape** with the registry's dry-run and lint tools before every release.
-6. **Set the version and channel policy:** SemVer per package, pre-releases on a non-default channel, one immutable version per release, a CI guard that the tag equals the manifest version.
+6. **Set the version and channel policy:** SemVer per package, pre-releases on a non-default channel, one immutable version per release, a CI guard that the tag equals the manifest version. For an open-source package, take the scheme, supported lines and their dist-tags from `samber/developer-relations-skills@oss-release-policy` when that collection is installed.
 7. **Build CI auto-publishing** from [references/release-workflow.md](references/release-workflow.md): build once in an unprivileged job, publish from a separate job that holds the only publish identity, behind a protected CI environment, triggered by a protected tag. Each reference's "CI auto-publishing" section overrides this where it differs: NuGet on GitLab needs a branch ref, and on Go, SwiftPM and Packagist the tag itself is the release.
 8. **Write and rehearse the rollback runbook** (below) for each registry.
 9. **Configure private publishing and consumption** so internal names resolve only from the internal source.
