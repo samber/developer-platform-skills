@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects redefining `full_access` and states scopes are additive-only, never repurposed.",
+        "evidence": "Scopes are additive-only. Changing what `full_access` means...",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that repurposing silently changes what already-granted consents authorize.",
+        "evidence": "silently changes what ~120 existing consents authorize",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that scope-set changes invalidate refresh tokens and force re-consent, so the redefinition does not actually avoid touching the existing registrations.",
+        "evidence": "Re-consent mentioned only under migration, not as argument against redefinition",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deferring the token-type binding and requires every scope bound to a token type (app identity versus user delegation) on day one.",
+        "evidence": "I'd decide it now",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the documented cost of deferring it: changing a scope's token-type binding later requires reauthorization from every user.",
+        "evidence": "requires reauthorization from every user",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends `resource:action` naming as the default granularity rung.",
+        "evidence": "The pattern is `resource:action`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a read/write split with read-only as the default.",
+        "evidence": "Read is the default.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names scopes after the same resource nouns the API already uses (`projects`, `tasks`, `comments`, `timesheets`).",
+        "evidence": "projects, tasks, comments, timesheets",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the single broad catch-all scope as a deleted anti-pattern rather than a coarse tier worth keeping in the menu.",
+        "evidence": "`full_write` is a second catch-all. The skill deletes that pattern.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions fine-grained per-resource permissions as the starved option, promoted only on named conditions such as admin approval policies, a compliance regime, or scopes reaching org-wide data.",
+        "evidence": "Not discussed",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a migration to fine-grained permissions is lossy in edge-case coverage, so the coarser tier stays alive during the transition instead of a hard cutover.",
+        "evidence": "No lossy-migration warning",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Accepts scope proliferation where resource types genuinely differ in sensitivity instead of collapsing them for tidiness.",
+        "evidence": "Not stated explicitly",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects redefining `full_access` and states scopes are additive-only, never repurposed.",
+        "evidence": "'Don't redefine full_access as read-only... freeze full_access as a deprecated alias'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that repurposing silently changes what already-granted consents authorize.",
+        "evidence": "Argues 403 breakage and ambiguity, not changed meaning of existing consents.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that scope-set changes invalidate refresh tokens and force re-consent, so the redefinition does not actually avoid touching the existing registrations.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deferring the token-type binding and requires every scope bound to a token type (app identity versus user delegation) on day one.",
+        "evidence": "'Don't defer the flavour mapping.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the documented cost of deferring it: changing a scope's token-type binding later requires reauthorization from every user.",
+        "evidence": "Says only 'Revoking permissions people already hold is expensive'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends `resource:action` naming as the default granularity rung.",
+        "evidence": "'Format: <resource>:<action>.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a read/write split with read-only as the default.",
+        "evidence": "Split exists, but read-only is not the default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names scopes after the same resource nouns the API already uses (`projects`, `tasks`, `comments`, `timesheets`).",
+        "evidence": "projects, tasks, comments, timesheets.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the single broad catch-all scope as a deleted anti-pattern rather than a coarse tier worth keeping in the menu.",
+        "evidence": "'nothing is named \"full\" while meaning less than everything'; full_access frozen, deprecated, sunset.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Positions fine-grained per-resource permissions as the starved option, promoted only on named conditions such as admin approval policies, a compliance regime, or scopes reaching org-wide data.",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a migration to fine-grained permissions is lossy in edge-case coverage, so the coarser tier stays alive during the transition instead of a hard cutover.",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Accepts scope proliferation where resource types genuinely differ in sensitivity instead of collapsing them for tidiness.",
+        "evidence": "Timesheets get distinct treatment, including a possible 'timesheets:write_any'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

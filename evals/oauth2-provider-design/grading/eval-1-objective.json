@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that RFC 9700 (BCP 240, January 2025) is final and ratified, and is the document the security doc can cite as published.",
+        "evidence": "RFC 9700 (BCP 240) ... published January 2025. It is final and ratified",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the consolidated OAuth 2.1 document (draft-ietf-oauth-v2-1) is still a draft, and never describes OAuth 2.1 itself as a published RFC.",
+        "evidence": "The consolidated OAuth 2.1 document is still an Internet-Draft, so it has no RFC number",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises confirming the OAuth 2.1 draft's current publication status before citing it.",
+        "evidence": "Check the IETF datatracker before the doc is signed off.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the grant list authorization_code, client_credentials, refresh_token, and device_authorization (RFC 8628).",
+        "evidence": "Table lists authorization_code + PKCE, device_authorization, refresh_token, client_credentials (conditional)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the RFC 8628 device authorization grant specifically as the answer for the browserless `tsq` CLI.",
+        "evidence": "RFC 8628 is the device authorization grant, used by `tsq`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires PKCE with S256 for every client, confidential clients included, not only public ones.",
+        "evidence": "PKCE is required for every client, confidential ones included",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Excludes both the implicit grant and the resource-owner password credentials grant from the design.",
+        "evidence": "`implicit` | \u274c ; Password grant | \u274c",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `https://*.preview.acme-partner.dev` wildcard redirect and requires exact string matching of redirect URIs.",
+        "evidence": "Exact string match only ... No wildcards ... decline it",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the port number in native-app localhost redirects as the single standard exception to exact matching.",
+        "evidence": "native-app loopback redirects such as `http://127.0.0.1` may vary the port only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies exact matching by pattern-matching implementations being error-prone with attacks observed in the wild, per RFC 9700.",
+        "evidence": "pattern matching has produced \"several successful attacks... observed in the wild\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses the query-string access token and restricts bearer tokens to the Authorization header or the POST body.",
+        "evidence": "The resource server should reject `?access_token=` outright; tokens accepted only in the Authorization header",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies authorization codes as single-use with a maximum lifetime of 10 minutes.",
+        "evidence": "Authorization codes are single-use and live at most 10 minutes",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that RFC 9700 (BCP 240, January 2025) is final and ratified, and is the document the security doc can cite as published.",
+        "evidence": "Lists 'RFC 9700 (BCP 240), OAuth 2.0 Security Best Current Practice' among 'published RFCs, which are stable and citable'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the consolidated OAuth 2.1 document (draft-ietf-oauth-v2-1) is still a draft, and never describes OAuth 2.1 itself as a published RFC.",
+        "evidence": "'OAuth 2.1 (draft-ietf-oauth-v2-1) is an IETF Internet-Draft, not an RFC.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises confirming the OAuth 2.1 draft's current publication status before citing it.",
+        "evidence": "'confirm at datatracker.ietf.org before signing'; open item 1.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the grant list authorization_code, client_credentials, refresh_token, and device_authorization (RFC 8628).",
+        "evidence": "Grant table has authorization code + PKCE, client credentials, device authorization (RFC 8628) and refresh token.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the RFC 8628 device authorization grant specifically as the answer for the browserless `tsq` CLI.",
+        "evidence": "'tsq on a developer's machine... Device authorization (RFC 8628)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires PKCE with S256 for every client, confidential clients included, not only public ones.",
+        "evidence": "'PKCE is mandatory for every authorization-code request. Accept only S256'; confidential client 'secret... plus PKCE'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Excludes both the implicit grant and the resource-owner password credentials grant from the design.",
+        "evidence": "'Not supported: implicit grant and resource-owner password credentials.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `https://*.preview.acme-partner.dev` wildcard redirect and requires exact string matching of redirect URIs.",
+        "evidence": "'Wildcard https://*.preview.acme-partner.dev: No'; 'Exact string match... No wildcards'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the port number in native-app localhost redirects as the single standard exception to exact matching.",
+        "evidence": "'native-app loopback (http://127.0.0.1:<port>... where any port is allowed per RFC 8252)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies exact matching by pattern-matching implementations being error-prone with attacks observed in the wild, per RFC 9700.",
+        "evidence": "Justification is subdomain takeover and XSS risk; it does not say pattern-matching implementations are error-prone or that attacks were observed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses the query-string access token and restricts bearer tokens to the Authorization header or the POST body.",
+        "evidence": "'reject access_token as a query or form parameter with 400'; 'Access tokens are accepted only in the Authorization header.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies authorization codes as single-use with a maximum lifetime of 10 minutes.",
+        "evidence": "'Authorization codes are single-use and live 60 seconds or less.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

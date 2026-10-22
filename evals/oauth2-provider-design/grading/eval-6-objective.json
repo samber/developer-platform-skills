@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects open, ungated dynamic client registration outright rather than accepting it with mitigations.",
+        "evidence": "Don't ship wide-open RFC 7591 at `/register`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gated DCR instead: RFC 7591 behind an initial access token, rate-limited.",
+        "evidence": "Require an initial access token (RFC 7591)... Keep the rate limit",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires all submitted registration metadata to be treated as untrusted input.",
+        "evidence": "Treat every metadata field as untrusted input",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that self-asserted metadata such as client name and logo can impersonate a legitimate app unless cryptographically attested, making an open endpoint a phishing vector.",
+        "evidence": "open endpoint a phishing kit, unless the metadata is cryptographically attested",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the finding that a study of 119 OAuth-enabled remote MCP servers found DCR flaws in roughly 96-97% of them.",
+        "evidence": "probed 119 OAuth-enabled remote MCP servers and found DCR flaws in 96.6%",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the MCP specification moved DCR from SHOULD to MAY to deprecated across its revisions, correcting the user's belief that the spec points at open DCR.",
+        "evidence": "moved DCR from SHOULD to MAY to deprecated",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms that an MCP/AI-agent ecosystem is the one client population that legitimately justifies DCR at all, since those clients cannot pre-register.",
+        "evidence": "The skill allows it for exactly your case, an MCP/agent ecosystem",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that rate limiting plus metadata validation alone do not make an open registration endpoint acceptable.",
+        "evidence": "Rate limiting doesn't help.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that no major B2B SaaS platform offers ungated public dynamic client registration.",
+        "evidence": "No major B2B SaaS platform ... offers ungated public DCR.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names manual developer-portal registration with a review step as the default posture for every client population outside the agent case.",
+        "evidence": "Manual registration only mentioned for well-known MCP hosts",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects open, ungated dynamic client registration outright rather than accepting it with mitigations.",
+        "evidence": "'Keep DCR' with an 'unverified' tier and mitigations.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends gated DCR instead: RFC 7591 behind an initial access token, rate-limited.",
+        "evidence": "The initial access token appears only as a verified-tier option; open DCR is retained.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires all submitted registration metadata to be treated as untrusted input.",
+        "evidence": "'client_name and logo_uri are attacker-controlled'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that self-asserted metadata such as client name and logo can impersonate a legitimate app unless cryptographically attested, making an open endpoint a phishing vector.",
+        "evidence": "The 'Verity Ops Security Scanner' consent-phishing example.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the finding that a study of 119 OAuth-enabled remote MCP servers found DCR flaws in roughly 96-97% of them.",
+        "evidence": "No study is cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the MCP specification moved DCR from SHOULD to MAY to deprecated across its revisions, correcting the user's belief that the spec points at open DCR.",
+        "evidence": "Says the spec had SHOULD and then added CIMD with DCR as fallback; no MAY or deprecated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Confirms that an MCP/AI-agent ecosystem is the one client population that legitimately justifies DCR at all, since those clients cannot pre-register.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that rate limiting plus metadata validation alone do not make an open registration endpoint acceptable.",
+        "evidence": "'Validating metadata and rate limiting don't stop this'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that no major B2B SaaS platform offers ungated public dynamic client registration.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names manual developer-portal registration with a review step as the default posture for every client population outside the agent case.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

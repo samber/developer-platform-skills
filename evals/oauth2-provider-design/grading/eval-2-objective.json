@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Sets access-token TTL at roughly 1 hour and identifies ~1 hour as the cross-provider convergence point rather than an invented number.",
+        "evidence": "1 h access tokens are the cross-provider convergence point.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes refresh-token rotation with token-family reuse detection the default posture.",
+        "evidence": "Refresh token | rotate every use",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a reused refresh token revokes the entire token family, not only the token presented.",
+        "evidence": "Reuse should kill the grant family",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a reuse grace window from day one, with a starting value in the range of roughly 10 to 30 seconds.",
+        "evidence": "A 10\u201330 s grace window keeps false positives down",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the grace window by legitimate concurrent refreshes (multi-tab SPAs, retries, reconnects) otherwise reading as attacks and logging real users out.",
+        "evidence": "two tabs or a network retry presenting the same just-consumed token",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the tension between hashing refresh tokens at rest and having to recognize a just-consumed token inside the grace window.",
+        "evidence": "Django OAuth Toolkit documents this tension",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Resolves that tension deliberately (for example by retaining the predecessor's hash with a validity timestamp) instead of abandoning hash-at-rest.",
+        "evidence": "Resolve it by keeping the predecessor's hash, not by dropping hashing.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Caps the SPA's refresh-token lifetime far harder than the others, citing something like a 24-hour SPA lifetime against ~90-day inactivity elsewhere.",
+        "evidence": "24 h browser cap and the 90-day idle limit come from Microsoft",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the partner server-side clients as confidential clients whose client authentication already sender-constrains redemption, making non-rotating refresh tokens defensible there.",
+        "evidence": "Says optional under 2.1 for confidential but applies rotation anyway; no client-authentication sender-constraint reasoning",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that OAuth 2.1 mandates sender-constrained or rotated refresh tokens specifically for public clients.",
+        "evidence": "OAuth 2.1 requires sender-constrained or rotated refresh tokens for public clients",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rules out an indefinitely reusable refresh token for the public SPA client entirely, rather than offering it as a weaker option.",
+        "evidence": "Rotation is mandatory for the SPA",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties JWT access-token TTL to the fact that a JWT cannot be revoked mid-lifetime the way an opaque database-backed token can.",
+        "evidence": "If you issue JWTs instead, the short TTL is your only revocation mechanism.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Sets access-token TTL at roughly 1 hour and identifies ~1 hour as the cross-provider convergence point rather than an invented number.",
+        "evidence": "Uses 5, 10 and 15 min TTLs; no 1-hour convergence point.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes refresh-token rotation with token-family reuse detection the default posture.",
+        "evidence": "Says rotation is 'the wrong default for the other two clients'; applied only to the SPA and optional delegated tokens.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a reused refresh token revokes the entire token family, not only the token presented.",
+        "evidence": "'A consumed token presented outside the grace window revokes the whole family.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a reuse grace window from day one, with a starting value in the range of roughly 10 to 30 seconds.",
+        "evidence": "'Grace window | 10 s.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the grace window by legitimate concurrent refreshes (multi-tab SPAs, retries, reconnects) otherwise reading as attacks and logging real users out.",
+        "evidence": "'This covers lost responses and double tabs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the tension between hashing refresh tokens at rest and having to recognize a just-consumed token inside the grace window.",
+        "evidence": "The hash-at-rest and grace-window conflict is never named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Resolves that tension deliberately (for example by retaining the predecessor's hash with a validity timestamp) instead of abandoning hash-at-rest.",
+        "evidence": "No predecessor-hash retention scheme is described as a resolution.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps the SPA's refresh-token lifetime far harder than the others, citing something like a 24-hour SPA lifetime against ~90-day inactivity elsewhere.",
+        "evidence": "SPA 'Absolute lifetime 8 h' with 30 min idle, versus 30 days idle / 90 days absolute for delegated partner tokens.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the partner server-side clients as confidential clients whose client authentication already sender-constrains redemption, making non-rotating refresh tokens defensible there.",
+        "evidence": "Gives partners no refresh token and rotates when one is issued; no non-rotating argument.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that OAuth 2.1 mandates sender-constrained or rotated refresh tokens specifically for public clients.",
+        "evidence": "Cites RFC 9700 only; OAuth 2.1 is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rules out an indefinitely reusable refresh token for the public SPA client entirely, rather than offering it as a weaker option.",
+        "evidence": "Rotation and an absolute lifetime are set, but a reusable token is never explicitly ruled out.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ties JWT access-token TTL to the fact that a JWT cannot be revoked mid-lifetime the way an opaque database-backed token can.",
+        "evidence": "'revoking a family does not kill access tokens already issued. The exposure is at most 5 min...'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

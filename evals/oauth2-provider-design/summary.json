@@ -1,0 +1,310 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "oauth2-provider-design",
+  "scenarios": 10,
+  "expectations_total": 111,
+  "expectations_subjective": 0,
+  "expectations_objective": 111,
+  "pass_rate_with_skill_pct": 88.3,
+  "pass_rate_without_skill_pct": 52.3,
+  "delta_pp": 36.0,
+  "uplift_multiplier": 1.69,
+  "trigger_accuracy_pct": 55.1,
+  "trigger_queries": 98,
+  "trigger_positive_fire_rate": 0.408,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.284 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Treats the partner server-side clients as confidential clients whose client authentication already sender-constrains redemption, making non-rotating refresh tokens defensible there."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Acknowledges DPoP is production-viable at scale (for example Bluesky's mandatory deployment), so the objection is ecosystem readiness rather than feasibility."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that scope-set changes invalidate refresh tokens and force re-consent, so the redefinition does not actually avoid touching the existing registrations."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Positions fine-grained per-resource permissions as the starved option, promoted only on named conditions such as admin approval policies, a compliance regime, or scopes reaching org-wide data."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Warns that a migration to fine-grained permissions is lossy in edge-case coverage, so the coarser tier stays alive during the transition instead of a hard cutover."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Accepts scope proliferation where resource types genuinely differ in sensitivity instead of collapsing them for tidiness."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names manual developer-portal registration with a review step as the default posture for every client population outside the agent case."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes the full manual pentest tier costs roughly an order of magnitude more than the automated scan tier."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gives the build order: protocol core first, then scope taxonomy and consent screen, then registration and verification, then advanced hardening."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that a non-rotating, never-expiring refresh token held by a public client is banned under OAuth 2.1, not merely a weaker option."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that 3,100 live integrations shift the effort ranking, so the rotation rollout is re-ranked against the retrofit scale instead of applying the greenfield default unexamined."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Cites the forced-retrofit precedent: a 2025 OAuth-token campaign against a connected app hit more than 700 organizations and led a major platform to mandate PKCE and refresh-token rotation on all connected apps, with de-listing as the penalty."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States that over-scoping is a conversion risk at the admin gate, which the end user's approval cannot pass on the app's behalf."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Justifies exact matching by pattern-matching implementations being error-prone with attacks observed in the wild, per RFC 9700."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Sets access-token TTL at roughly 1 hour and identifies ~1 hour as the cross-provider convergence point rather than an invented number."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Makes refresh-token rotation with token-family reuse detection the default posture."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the tension between hashing refresh tokens at rest and having to recognize a just-consumed token inside the grace window."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Resolves that tension deliberately (for example by retaining the predecessor's hash with a validity timestamp) instead of abandoning hash-at-rest."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Treats the partner server-side clients as confidential clients whose client authentication already sender-constrains redemption, making non-rotating refresh tokens defensible there."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that OAuth 2.1 mandates sender-constrained or rotated refresh tokens specifically for public clients."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rules out an indefinitely reusable refresh token for the public SPA client entirely, rather than offering it as a weaker option."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Cites the issuer-survey evidence that zero of 18 surveyed mainstream issuers with a working discovery document advertised DPoP support."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that DPoP's runtime cost is small (roughly single-digit milliseconds per request), so performance is not the argument against it."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Acknowledges DPoP is production-viable at scale (for example Bluesky's mandatory deployment), so the objection is ecosystem readiness rather than feasibility."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the ranking is a default that flips if the build substrate ships DPoP as configuration rather than custom work."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that repurposing silently changes what already-granted consents authorize."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that scope-set changes invalidate refresh tokens and force re-consent, so the redefinition does not actually avoid touching the existing registrations."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the documented cost of deferring it: changing a scope's token-type binding later requires reauthorization from every user."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires a read/write split with read-only as the default."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Positions fine-grained per-resource permissions as the starved option, promoted only on named conditions such as admin approval policies, a compliance regime, or scopes reaching org-wide data."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Warns that a migration to fine-grained permissions is lossy in edge-case coverage, so the coarser tier stays alive during the transition instead of a hard cutover."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Replaces the grouped buckets with one plain-language sentence per individual scope."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Forbids showing the raw scope string to the user."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires the server to diff the granted scope set against the requested one on every authorization response."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Warns that the granted set can differ from the requested set even when the user appears to approve everything, and that assuming they match ships a silent capability mismatch into every integrating app."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires the re-consent screen to show only the net-new scope rather than re-displaying everything already granted."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects open, ungated dynamic client registration outright rather than accepting it with mitigations."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends gated DCR instead: RFC 7591 behind an initial access token, rate-limited."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Cites the finding that a study of 119 OAuth-enabled remote MCP servers found DCR flaws in roughly 96-97% of them."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that the MCP specification moved DCR from SHOULD to MAY to deprecated across its revisions, correcting the user's belief that the spec points at open DCR."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Confirms that an MCP/AI-agent ecosystem is the one client population that legitimately justifies DCR at all, since those clients cannot pre-register."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that no major B2B SaaS platform offers ungated public dynamic client registration."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names manual developer-portal registration with a review step as the default posture for every client population outside the agent case."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that publisher identity verification proves continuity of identity, not quality."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends publisher identity verification (verified domain plus verified partner account, no fee) as the default rung for every listed app."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Places self-attestation as the middle rung and states it is explicitly not independently verified by the platform."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the developer, not the platform, pays the third-party assessor fee."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes the full manual pentest tier costs roughly an order of magnitude more than the automated scan tier."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects a warning banner as the entire unverified lane and requires a hard enforced ceiling, such as a lifetime cap on test users plus short-lived test tokens."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires runtime enforcement that any requested scope is a subset of what was declared and approved at registration, because declarations drift."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gives the build order: protocol core first, then scope taxonomy and consent screen, then registration and verification, then advanced hardening."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Justifies the per-requirement gates by auditability: a partial rollout can point at exactly which requirements are and are not enforced yet."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that 3,100 live integrations shift the effort ranking, so the rotation rollout is re-ranked against the retrofit scale instead of applying the greenfield default unexamined."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires designing the refresh-token family relationship into newly issued grants, noting that retrofitting family grouping onto an already-issued ungrouped population is materially harder."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Cites the forced-retrofit precedent: a 2025 OAuth-token campaign against a connected app hit more than 700 organizations and led a major platform to mandate PKCE and refresh-token rotation on all connected apps, with de-listing as the penalty."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that no industry thresholds exist for these metrics and declines to attach benchmark numbers to them."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Names the share of apps requesting scopes their traffic never uses as a trend to baseline."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that reuse-detection trip rate is ambiguous, proxying both real attacks and a grace window set too tight."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires a gate proving by test, not assertion, that the discovery document and a conformance pass show no implicit or password grant, PKCE rejected-if-absent for every client, and exact redirect matching."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires a concurrent-refresh test that passes without a false-positive logout."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires a gate that every scope has per-scope plain-language consent copy and that a partial-grant integration test exercises the server-side diff."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires gates that every scope is classified into a verification tier with a named review requirement, that runtime subset-of-approved enforcement is live, and that the unverified-lane cap is enforced rather than merely documented."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Notes the protocol core, token lifecycle, and consent-copy rules stay identical to the B2C case, so only the approval topology and the app-identity tier change."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States that over-scoping is a conversion risk at the admin gate, which the end user's approval cannot pass on the app's behalf."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Binds each scope to a token type (bot/app identity versus user) rather than reusing one scope name across both undeclared."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Warns that the same scope name means different things on a bot token and on a user token, so the binding must be decided per scope up front."
+      }
+    ]
+  }
+}

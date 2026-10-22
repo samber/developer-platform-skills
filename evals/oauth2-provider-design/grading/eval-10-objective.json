@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that B2B org-owned workspaces have two consent surfaces, the end user's and an org admin's, not one.",
+        "evidence": "the end user's \"yes\" is no longer sufficient",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an admin approval gate (approval queue or admin-approved apps) designed as a first-class part of the scope and consent work rather than bolted on when the first enterprise customer asks.",
+        "evidence": "Build the admin surface as a first-class part of consent and scopes, not a patch.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes org-wide grant review as part of the admin surface.",
+        "evidence": "Org-wide grant review.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Introduces an app-identity permission tier for the workspace bots, distinct from user-delegated permissions.",
+        "evidence": "Bind every scope to a token type ... `bot` (app identity)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that app-identity / application permissions can only ever be consented by an admin, never by an end user.",
+        "evidence": "Bot installs are admin-only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the protocol core, token lifecycle, and consent-copy rules stay identical to the B2C case, so only the approval topology and the app-identity tier change.",
+        "evidence": "The protocol core stays as it is.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that over-scoping is a conversion risk at the admin gate, which the end user's approval cannot pass on the app's behalf.",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Binds each scope to a token type (bot/app identity versus user) rather than reusing one scope name across both undeclared.",
+        "evidence": "Add a token-type field to each scope",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that the same scope name means different things on a bot token and on a user token, so the binding must be decided per scope up front.",
+        "evidence": "Bot scopes can reuse the `resource:action` names ... only with the binding explicit; failure mode: reusing user-scope semantics for bots",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that B2B org-owned workspaces have two consent surfaces, the end user's and an org admin's, not one.",
+        "evidence": "Grant types 'User grant', 'Admin-approved app'; 'Both enterprise IT governance and bots break that assumption'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an admin approval gate (approval queue or admin-approved apps) designed as a first-class part of the scope and consent work rather than bolted on when the first enterprise customer asks.",
+        "evidence": "Policy modes, request-access queue, build order steps 1-3.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes org-wide grant review as part of the admin surface.",
+        "evidence": "'A page lists every installation, its users, its scopes'; bulk approve/revoke review.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Introduces an app-identity permission tier for the workspace bots, distinct from user-delegated permissions.",
+        "evidence": "'Workspace bot... Acts as Itself (bot principal)... Client credentials'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that app-identity / application permissions can only ever be consented by an admin, never by an end user.",
+        "evidence": "'Admin and bot scopes are always admin-only, regardless of policy.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the protocol core, token lifecycle, and consent-copy rules stay identical to the B2C case, so only the approval topology and the app-identity tier change.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that over-scoping is a conversion risk at the admin gate, which the end user's approval cannot pass on the app's behalf.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Binds each scope to a token type (bot/app identity versus user) rather than reusing one scope name across both undeclared.",
+        "evidence": "Scopes are tiered by risk, not bound to bot versus user token type.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that the same scope name means different things on a bot token and on a user token, so the binding must be decided per scope up front.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
