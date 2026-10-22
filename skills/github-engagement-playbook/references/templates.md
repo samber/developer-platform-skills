@@ -71,7 +71,7 @@ Thanks for the question. Converting this to a discussion in Q&A, where answers s
 
 ## 6. Watch ask
 
-Place it only where the reader already wants release news: the start-here post, the docs changelog page, or a solved support thread. Never in cold outreach, never paired with a star request.
+Place it only where the reader already wants release news: the start-here post, the docs changelog page, or a solved support thread. Never in cold outreach. In off-GitHub content, use template 14 instead.
 
 ```markdown
 Want release news without the issue noise? Click **Watch > Custom > Releases** on <repo URL>.
@@ -203,3 +203,11 @@ If you think they are the same after reading #<issue>, say so here and we'll mer
 ```
 
 Write the difference in one sentence. If you cannot, the issues are duplicates: use template 12.
+
+## 14. Star ask for content published elsewhere
+
+Close a blog post, newsletter, talk or video description with one line. Ask once, offer nothing in return.
+
+```markdown
+If <project> saved you time, a ⭐ on GitHub helps it grow and reach more people: <repo URL>
+```

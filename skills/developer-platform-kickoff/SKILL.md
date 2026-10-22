@@ -116,7 +116,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 
 | Skill                                                       | Route here when the task is…                                                                                                                                                                         |
 | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `samber/developer-platform-skills@github-engagement-playbook` | A repository's engagement on GitHub after launch: diagnosing a flat star curve, releases as feed events and watcher notifications, Discussions Q&A and announcements, topics, labels for issues, PRs and discussions, small frequent releases and Dependabot as activity, the limits on star tactics |
+| `samber/developer-platform-skills@github-engagement-playbook` | A repository's engagement on GitHub after launch: diagnosing a flat star curve, releases as feed events and watcher notifications, Discussions Q&A and announcements, topics, labels for issues, PRs and discussions, small frequent releases and Dependabot as activity, traffic and mention tracking, the limits on star tactics |
 
 ### Connector marketplace (operator side)
 

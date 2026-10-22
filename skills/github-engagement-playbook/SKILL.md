@@ -1,6 +1,6 @@
 ---
 name: github-engagement-playbook
-description: "Plans a repository's post-launch engagement on GitHub as a social platform - stars, watchers and release notifications, Discussions, topics, labels, Trending and the home feed - with ready-to-paste issue, PR and release templates. Use whenever GitHub stars are flat, someone asks how to grow engagement on a repo or SDK, set up Discussions Q&A or a label scheme, get a Release seen by watchers, or whether to buy or trade stars, even if they only say nobody notices the repo. Not a launch - use samber/developer-relations-skills@oss-launch. Not README copy - use samber/developer-relations-skills@readme-optimization. Not cross-channel cadence - use samber/developer-relations-skills@oss-distribution-strategy. Not license choice - use samber/developer-relations-skills@oss-license-strategy."
+description: "Plans a repository's post-launch engagement on GitHub as a social platform - stars, watchers and release notifications, Discussions, topics, labels, Trending, the home feed and traffic tracking - with ready-to-paste issue, PR and release templates. Use whenever GitHub stars are flat, someone asks how to grow engagement on a repo or SDK, set up Discussions Q&A or a label scheme, get a Release seen by watchers, or whether to buy or trade stars, even if they only say nobody notices the repo. Not a launch - use samber/developer-relations-skills@oss-launch. Not README copy - use samber/developer-relations-skills@readme-optimization. Not cross-channel cadence - use samber/developer-relations-skills@oss-distribution-strategy. Not license choice - use samber/developer-relations-skills@oss-license-strategy."
 license: MIT
 metadata:
   author: Samuel Berthe
@@ -30,7 +30,7 @@ Read the sidebar, Releases, Discussions and `.github/` first; without access, as
 
 Asked to buy, trade or reward stars: answer with the § 5 risk paragraph and template 7 first, then diagnose.
 
-1. Archive traffic weekly via `/repos/{owner}/{repo}/traffic/views`, `/clones`, `/popular/referrers`, `/popular/paths`: 14 days kept, top 10 only, push access needed [documented].
+1. Archive traffic weekly via `/repos/{owner}/{repo}/traffic/views`, `/clones`, `/popular/referrers`, `/popular/paths`: 14 days kept, top 10 only, push access needed [documented]. Run `scripts/github-kpi-sheet/` (Google Apps Script) to append them to a spreadsheet as weekly time series, add Google Alerts for off-GitHub mentions, and read OSS Insight for star and contributor history; setup in [references/tracking-tools.md](./references/tracking-tools.md).
 2. Read watchers, dependents ("Used by") and registry downloads beside stars, as trends against the same window a quarter earlier. No absolute threshold exists.
 3. Classify the curve. The row sets the headline and first action; § 2-4 still build the standing asset.
 
@@ -72,7 +72,7 @@ Re-rank against the interview, and say which answer moved what:
 - Turn on Dependabot version updates. Weekly dependency PRs and merges keep the commit graph and "last updated" date fresh at near-zero effort, so evaluators read the repository as maintained [folklore]; the security patches are real value on their own.
 - Post release and roadmap notes in an Announcement category: a feed event type, opened only by maintain or admin roles [documented].
 - Mark Q&A answers (the author or triage+ can). GitHub highlights the answer [documented] and lists members with the most marked answers as most helpful [documented in launch notes; check the current UI].
-- Earn stars through use. "Many of GitHub's repository rankings depend on the number of stars" and Explore lists popular repositories by stars [documented].
+- Earn stars through use, and ask for them in content published elsewhere. "Many of GitHub's repository rankings depend on the number of stars" and Explore lists popular repositories by stars [documented]. End a blog post, talk slide, newsletter or video with one line asking readers who found it useful to star the repository to support its progress (template 14).
 
 **Do less of:**
 
@@ -90,7 +90,7 @@ Treat any feed or ranking claim older than a year as stale until re-checked agai
 4. **Weekly** - answer Q&A inside the stated target, mark answers, label new issues, PRs and discussions, merge Dependabot PRs, convert stray usage issues, export traffic.
 5. **Quarterly** - read watchers, dependents, downloads and referrers against the baseline; revise topics.
 
-Ask for a watch only where a reader already wants release news: the start-here post, the docs changelog, a solved thread. Never ask for stars.
+Ask for a watch only where a reader already wants release news: the start-here post, the docs changelog, a solved thread. Ask for a star at the end of content published elsewhere, never with a reward, never in other repositories' issues.
 
 ## 5. Limits
 
@@ -109,7 +109,7 @@ Buying, trading or rewarding stars is never an option, only a risk. StarScout (H
 
 ## 6. Templates
 
-Read [references/templates.md](./references/templates.md): release body, announcement, start-here post, Q&A answer, issue redirect, watch ask, star-for-star decline, leadership metric note, pull request, tracking issue with sub-issue checkboxes, new issue, pointer to an existing issue, pointer to a related but different issue. Leave unknown `<placeholders>` visible; never invent facts. Run each through your preferred humanizer skill.
+Read [references/templates.md](./references/templates.md): release body, announcement, start-here post, Q&A answer, issue redirect, watch ask, star-for-star decline, leadership metric note, pull request, tracking issue with sub-issue checkboxes, new issue, pointer to an existing issue, pointer to a related but different issue, star ask for off-GitHub content. Leave unknown `<placeholders>` visible; never invent facts. Run each through your preferred humanizer skill.
 
 ## 7. Output
 
@@ -121,4 +121,4 @@ Deliver, in this order:
 4. Filled templates 1, 2, 3 and 8.
 5. Metrics: unique visitors, top referrers, watchers, dependents, downloads, Q&A answered share, median time to answer (GraphQL `answer.createdAt` minus `createdAt`). Cloners stay diagnostic (CI inflates them); stars are never a target.
 
-Pass bar: every ranking claim carries a label, no rung needs hours the interview ruled out, and no step solicits stars.
+Pass bar: every ranking claim carries a label, no rung needs hours the interview ruled out, and no star ask offers a reward or trade.

@@ -213,7 +213,7 @@ Both kinds are collected under Boundary pairs below.
 
 ### `samber/developer-platform-skills@github-engagement-playbook`
 
-- Route here: "our GitHub stars are flat", whether and how to run Discussions on an SDK repository, getting releases noticed by watchers, which topics to set, a label scheme for issues, PRs and discussions, keeping the repository visibly active in the feed, PR and tracking-issue templates, a board deck that reports stars, a request to buy, trade or reward stars.
+- Route here: "our GitHub stars are flat", whether and how to run Discussions on an SDK repository, getting releases noticed by watchers, which topics to set, a label scheme for issues, PRs and discussions, keeping the repository visibly active in the feed, archiving traffic and tracking mentions, PR and tracking-issue templates, a board deck that reports stars, a request to buy, trade or reward stars.
 - Do not route here: the launch itself (`samber/developer-relations-skills@oss-launch`), README text and sidebar copy (`samber/developer-relations-skills@readme-optimization`), a profile page (`samber/developer-relations-skills@github-profile-optimization`), the cross-channel distribution mix (`samber/developer-relations-skills@oss-distribution-strategy`), publishing the package behind a release (`sdk-package-publishing`), choosing a license (`samber/developer-relations-skills@oss-license-strategy`).
 
 ### `samber/developer-platform-skills@developer-platform-career`
