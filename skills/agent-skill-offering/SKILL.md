@@ -4,7 +4,7 @@ description: Ships an Agent Skill (SKILL.md) inside the GitHub repo of the libra
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Agent Skill Offering
