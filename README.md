@@ -155,6 +155,10 @@ This collection covers the full developer-platform surface.
 - [`integration-partnership-strategy`](./skills/integration-partnership-strategy): Decides which technology partners to integrate with and how deep each goes, using a demand-data scorecard, depth ladder, and pipeline attribution.
 - [`partner-app-onboarding`](./skills/partner-app-onboarding): Designs the partner-developer journey from signup to first submitted app: entry gate, sandbox provisioning, education, support ladder, and funnel checkpoints.
 
+### Publishing-platform playbooks
+
+- [`github-engagement-playbook`](./skills/github-engagement-playbook): Plans a repository's engagement on GitHub after launch: flat-star diagnosis, releases as feed events, Discussions, topics, and the limits on star tactics.
+
 ### Connector marketplace
 
 - [`app-marketplace-launch-marketing`](./skills/app-marketplace-launch-marketing): Designs a marketplace launch and ongoing app co-marketing program: founding cohort size, reveal coordination, featuring menu, and budget split.
