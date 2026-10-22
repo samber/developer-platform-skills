@@ -4,7 +4,7 @@ description: Decide which integration surfaces a platform offers external develo
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # API Integration Surface Strategy
