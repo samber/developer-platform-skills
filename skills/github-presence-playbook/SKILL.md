@@ -107,7 +107,7 @@ Buying, trading or rewarding stars is never an option, only a risk. StarScout (H
 
 ## 6. Templates
 
-Read [references/templates.md](./references/templates.md): release body, announcement, start-here post, Q&A answer, issue redirect, watch ask, star-for-star decline, leadership metric note. Leave unknown `<placeholders>` visible; never invent facts. Run each through your preferred humanizer skill.
+Read [references/templates.md](./references/templates.md): release body, announcement, start-here post, Q&A answer, issue redirect, watch ask, star-for-star decline, leadership metric note, pull request, tracking issue with sub-issue checkboxes, new issue, pointer to an existing issue, pointer to a related but different issue. Leave unknown `<placeholders>` visible; never invent facts. Run each through your preferred humanizer skill.
 
 ## 7. Output
 
