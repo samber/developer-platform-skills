@@ -4,7 +4,7 @@ description: Audit an existing or proposed public REST API surface as a checklis
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Public API Design Review

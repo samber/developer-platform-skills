@@ -4,7 +4,7 @@ description: Define the versioning and deprecation policy for an API - version s
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # API Versioning Policy
