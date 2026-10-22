@@ -1,5 +1,5 @@
 ---
-name: zapier-playbook
+name: zapier-integration-playbook
 description: >-
   Builds, publishes, grows and maintains a B2B SaaS vendor's own Zapier integration - Platform
   CLI code (triggers, actions, auth, invoke and push), Zapier's review and beta, Partner Program

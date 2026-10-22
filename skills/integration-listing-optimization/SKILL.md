@@ -184,4 +184,4 @@ See also, same collection:
 - `samber/developer-platform-skills@app-marketplace-launch-marketing` - how operators design featuring, spotlight, and paid-placement programs; understanding that design is how a submitter earns featured placement rather than waiting for it.
 - `samber/developer-platform-skills@integration-partnership-strategy` - which ecosystems deserve a listing investment at all; run it first when the marketplace portfolio itself is still open.
 - `samber/developer-platform-skills@etl-connector-strategy` - the same submitter posture specialized to ETL/ELT platforms, where certification and connector maintenance dominate the listing work.
-- `samber/developer-platform-skills@zapier-playbook` - the Zapier-specific playbook: trigger design, review checks, beta, templates, embed and versioning on that one platform.
+- `samber/developer-platform-skills@zapier-integration-playbook` - the Zapier-specific playbook: trigger design, review checks, beta, templates, embed and versioning on that one platform.
