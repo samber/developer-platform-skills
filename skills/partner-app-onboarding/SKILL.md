@@ -4,7 +4,7 @@ description: Design the partner-developer onboarding journey on a B2B SaaS platf
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Partner App Onboarding

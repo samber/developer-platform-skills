@@ -4,7 +4,7 @@ description: Before starting any developer-platform, public-API, or integration 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.10"
+  version: "1.0.11"
 ---
 
 # Developer Platform Kickoff
