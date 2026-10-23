@@ -4,7 +4,7 @@ description: Design a SaaS product's MCP server as a product surface AI agents o
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # MCP Server Offering
@@ -272,4 +272,5 @@ See also, same collection:
 - `samber/developer-platform-skills@api-rate-limit-policy` - the quota and throttle policy agent traffic runs under, including per-tool and per-credential limits.
 - `samber/developer-platform-skills@developer-portal-design` - where the MCP server's docs, connection guide, and credentials live in the developer portal.
 - `samber/developer-platform-skills@cli-interface-design` - the CLI surface agents with a shell often reach first; same curated-over-mirror logic, different contract.
+- `samber/developer-platform-skills@ide-extension-offering` - an editor extension that bundles the server for one-click setup; the extension owns publishing, the server design stays here.
 - `samber/developer-platform-skills@agent-skill-offering` - the Agent Skill shipped beside the server or CLI, versioned with the code; covers the skill vs MCP decision for coding agents with a shell.
