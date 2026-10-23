@@ -29,8 +29,14 @@ def tier(row):
     return "cached"
 
 
+# Both depths repos have sat at under skill-wip/: the original flat one, and the
+# current owner-directory nesting. Sorted and de-duplicated because the two
+# patterns overlap once a repo name appears at both depths.
+paths = sorted(set(glob.glob("skill-wip/*/evals/*/summary.json"))
+               | set(glob.glob("skill-wip/*/*/evals/*/summary.json")))
+
 rows = []
-for f in sorted(glob.glob("skill-wip/*/evals/*/summary.json")):
+for f in paths:
     r = json.load(open(f))
     t = f.rsplit("/", 1)[0] + "/trigger-evals.json"
     try:
@@ -55,6 +61,8 @@ for r in rows:
         flags.append("CONCERN")
     if r.get("run_degraded"):
         flags.append("DEGRADED")
+    if r.get("trigger_run_suspect"):
+        flags.append("TRIGGER-SUSPECT")
     print(f"{r['skill']:<38}{r['repo'].replace('-skills',''):<14}{r['_tier']:<9}"
           f"{r['pass_rate_with_skill_pct']:>6.1f}%{r['pass_rate_without_skill_pct']:>6.1f}%"
           f"{r['delta_pp']:>+7.1f}p{up:>8}{tr:>7}{ac:>7}  {' '.join(flags)}")
@@ -71,3 +79,11 @@ print(f"\nEval set needs harder traps ({len(rewrite)}): "
 print(f"\nSkill instructions need work ({len(weak)}): "
       + ", ".join(f"{r['skill']} ({r['pass_rate_with_skill_pct']:.0f}% with)"
                   for r in weak))
+
+# Reported apart from both of the above: a suspect trigger run says nothing
+# about the eval set or the instructions, only that the number next to it was
+# measured through failing subprocesses and has to be taken again.
+suspect = [r for r in rows if r.get("trigger_run_suspect")]
+print(f"\nTrigger run needs re-measuring ({len(suspect)}): "
+      + ", ".join(f"{r['skill']} ({r.get('trigger_positive_fire_rate', 0):.0%} fired)"
+                  for r in suspect))

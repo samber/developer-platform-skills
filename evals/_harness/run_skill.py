@@ -26,12 +26,54 @@ import types
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-# This file lives at skill-wip/<repo>/evals/_harness/run_skill.py, identically
-# duplicated into every repo's own evals/_harness/ (see skill-wip/CLAUDE.md
-# section Evals, "Running the harness"), so parents[4] reaches the checkout
-# root regardless of which repo's copy is running.
-REPO = Path(__file__).resolve().parents[4]
+# This file lives at <repo>/evals/_harness/run_skill.py, identically duplicated
+# into every repo's own evals/_harness/ (see skill-wip/CLAUDE.md section Evals,
+# "Running the harness"). Repos have sat at two depths under skill-wip/ so far -
+# flat, then nested one level under an owner directory - so the root is found by
+# walking up to the directory that actually holds skill-wip/manifest.json rather
+# than by a fixed parents[N], which silently resolves to skill-wip/ itself once
+# a level is inserted.
+def _checkout_root() -> Path:
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "skill-wip" / "manifest.json").is_file():
+            return parent
+    raise SystemExit("checkout root not found: no ancestor holds skill-wip/manifest.json")
+
+
+REPO = _checkout_root()
 SUBJECTIVE_PASS_THRESHOLD = 4  # 0-5 scale; below this the expectation fails
+
+# Anthropic's skill-creator plugin, whose run_single_query drives the trigger
+# step. Kept an environment variable rather than a literal: the path is
+# per-machine, and every copy of this file ships inside a repo that publishes
+# publicly, where a developer's home directory would be an identity leak. The
+# default is the sandbox location the first runs used.
+SKILL_CREATOR_PATH = os.environ.get(
+    "SKILL_CREATOR_PATH", "/mnt/skills/examples/skill-creator")
+
+
+def resolve_skill(repo: str, skill: str):
+    """Locate a skill's source directory and its repo's eval-output directory.
+
+    Both layouts the manifest has used resolve here, since manifest keys carry
+    no owner segment: current is skill-wip/<owner>/<repo>/skills/<skill>, and
+    the original flat one was skill-wip/<repo>/<skill>. A candidate only counts
+    when it actually holds the eval set, which also rules out the empty
+    leftover directories that the owner-level move left at skill-wip/<repo>.
+    """
+    staging = REPO / "skill-wip"
+    candidates = [
+        *(owned / "skills" / skill for owned in staging.glob(f"*/{repo}")),
+        staging / repo / "skills" / skill,
+        staging / repo / skill,
+    ]
+    for skill_dir in candidates:
+        if (skill_dir / "evals" / "evals.json").is_file():
+            # <repo>/skills/<skill> nests one deeper than the flat <repo>/<skill>.
+            repo_dir = (skill_dir.parents[1] if skill_dir.parent.name == "skills"
+                        else skill_dir.parent)
+            return skill_dir, repo_dir / "evals" / skill
+    raise SystemExit(f"no evals/evals.json found for {repo}/{skill}")
 
 
 # Carried by every subprocess, trials and trigger alike.
@@ -378,7 +420,57 @@ def gwet_ac1(ratings_a, ratings_b):
 
 # --- step 7: trigger eval --------------------------------------------------
 
-def run_trigger(skill_dir, trigger_queries, outdir, model, workers):
+def purge_degraded(evals, outdir):
+    """Drop every artifact derived from a trial that produced no output.
+
+    A trial whose subprocess failed all six attempts writes an empty file, and
+    whatever grading ran next scored the placeholder "(no output produced)" as
+    if it were a transcript. Those verdicts are ordinary rows, marked graded, so
+    the resume check treats the condition as finished and the failure freezes
+    into the result. Deleting the empty trial is not enough on its own: its
+    grading has to go with it, or the rerun produces a fresh transcript that
+    nothing ever grades.
+
+    Returns the scenario ids it reset, so the caller can say so rather than
+    silently repairing a run someone is waiting on.
+    """
+    stale = set()
+    for ev in evals:
+        for cond in ("with_skill", "without_skill"):
+            trial = outdir / "trials" / f"eval-{ev['id']}" / cond / "output.md"
+            if trial.exists() and not trial.read_text().strip():
+                trial.unlink()
+                stale.add(ev["id"])
+    for eval_id in stale:
+        for graded in (outdir / "grading").glob(f"eval-{eval_id}-*.json"):
+            graded.unlink()
+    if stale:
+        (outdir / "summary.json").unlink(missing_ok=True)
+    return sorted(stale)
+
+
+# A healthy trigger run fires on the large majority of its own should-trigger
+# queries - the measured ones sit near 90%. Below this share the run is reported
+# as suspect rather than as a routing score, because run_single_query collapses
+# every subprocess failure into a plain False: one query that failed to run and
+# one that ran and did not trigger are the same value. Per query the two are
+# indistinguishable; across sixty of a skill's own queries they are not.
+TRIGGER_SUSPECT_FIRE_RATE = 0.5
+
+
+def trigger_fire_rate(path):
+    """Share of should-trigger queries that fired at least once, or None."""
+    try:
+        results = json.loads(path.read_text())["results"]
+    except Exception:
+        return None
+    positives = [r for r in results if r.get("should_trigger")]
+    if not positives:
+        return None
+    return sum(1 for r in positives if r.get("trigger_rate", 0) > 0) / len(positives)
+
+
+def run_trigger(skill_dir, trigger_queries, outdir, model, workers, redo=False):
     """Trigger accuracy, using skill-creator's run_single_query per query.
 
     run_single_query advertises the skill by writing a uniquely-named command
@@ -397,9 +489,13 @@ def run_trigger(skill_dir, trigger_queries, outdir, model, workers):
     the second reads the cache the first wrote.
     """
     dest = outdir / "trigger-evals.json"
-    if dest.exists():
+    if dest.exists() and not redo:
         return
-    sys.path.insert(0, "/mnt/skills/examples/skill-creator")
+    if not (Path(SKILL_CREATOR_PATH) / "scripts" / "run_eval.py").is_file():
+        raise SystemExit(
+            f"skill-creator not found at {SKILL_CREATOR_PATH}; "
+            "set SKILL_CREATOR_PATH to the plugin directory")
+    sys.path.insert(0, SKILL_CREATOR_PATH)
     import scripts.run_eval as run_eval_mod
     from scripts.run_eval import run_single_query
     from scripts.utils import parse_skill_md
@@ -527,6 +623,8 @@ def summarize(repo, name, evals, classes, outdir, cfg):
             trig = {}
     trig_acc = (round(100.0 * trig["passed"] / trig["total"], 1)
                 if trig.get("total") else None)
+    fire_rate = trigger_fire_rate(tp) if tp.exists() else None
+    trig_suspect = fire_rate is not None and fire_rate < TRIGGER_SUSPECT_FIRE_RATE
 
     # A trial whose subprocess failed every attempt writes an empty file and
     # would grade as all-fail, which is indistinguishable from a genuine low
@@ -557,6 +655,13 @@ def summarize(repo, name, evals, classes, outdir, cfg):
         "uplift_multiplier": uplift,
         "trigger_accuracy_pct": trig_acc,
         "trigger_queries": trig.get("total"),
+        "trigger_positive_fire_rate": (round(fire_rate, 3)
+                                       if fire_rate is not None else None),
+        "trigger_run_suspect": trig_suspect,
+        "trigger_suspect_reason": (
+            "fewer than half the should-trigger queries fired at all: re-measure "
+            "with --redo-trigger before reading this as a routing score"
+            if trig_suspect else None),
         "subjective_ac2": (round(gwet_ac1(a, b), 3) if a else None),
         "subjective_pass_disagreements": disagreements,
         "concern_flag": bool(without_r >= 70.0 and delta < 10.0),
@@ -584,12 +689,14 @@ def main():
     ap.add_argument("--skill", required=True)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--trigger-workers", type=int, default=8)
+    ap.add_argument("--redo-trigger", action="store_true",
+                    help="re-measure the trigger phase even when it is recorded, "
+                         "for a run whose subprocesses failed rather than missed")
     args = ap.parse_args()
 
-    skill_dir = REPO / "skill-wip" / args.repo / args.skill
+    skill_dir, outdir = resolve_skill(args.repo, args.skill)
     data = json.loads((skill_dir / "evals" / "evals.json").read_text())
     evals = data["evals"]
-    outdir = REPO / "skill-wip" / args.repo / "evals" / args.skill
     outdir.mkdir(parents=True, exist_ok=True)
 
     cfg = {
@@ -617,6 +724,10 @@ def main():
         },
     }
 
+    reset = purge_degraded(evals, outdir)
+    if reset:
+        print(f"reset scenarios with empty trials: {reset}", flush=True)
+
     cpath = outdir / "classification.json"
     if cpath.exists():
         classes = {int(k): v for k, v in json.loads(cpath.read_text()).items()}
@@ -629,7 +740,7 @@ def main():
     run_subjective_grading(evals, classes, outdir, cfg["subjective_model"],
                            900, args.workers)
     run_trigger(skill_dir, data.get("trigger_queries", []), outdir,
-                cfg["trigger_model"], args.trigger_workers)
+                cfg["trigger_model"], args.trigger_workers, args.redo_trigger)
     s = summarize(args.repo, args.skill, evals, classes, outdir, cfg)
 
     mpath = REPO / "skill-wip" / "manifest.json"
