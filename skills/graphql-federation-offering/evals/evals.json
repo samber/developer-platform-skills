@@ -1,0 +1,539 @@
+{
+  "skill_name": "graphql-federation-offering",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Fernhill Commerce here, we run a B2B ordering platform with a public GraphQL API, federated across 6 internal subgraphs on Apollo Router. Our three logistics partners (Quayside Freight is the biggest) keep asking to put their tracking info on our Order type: tracking number, carrier name, and status updates as the parcel moves. Our platform lead's idea is to just let each logistics partner ship their own subgraph into our supergraph since we already have the federation tooling. Can you write up how we'd onboard Quayside's subgraph into the supergraph? We want them live before the January peak.",
+      "expected_output": "Classifies the need as stored data plus events, recommends app-owned extension data (rung 1) and webhooks (rung 0) instead of partner subgraphs, refuses composing partner subgraphs into the first-party production supergraph, and designs the namespaced extension data with visibility and uninstall semantics.",
+      "files": [],
+      "expectations": [
+        "Classifies the partner need into a shape before choosing a mechanism (stored data, events, live data, or the partner's own capabilities)",
+        "Identifies tracking number and carrier name as stored data the platform can hold, not data that must be computed live by the partner at query time",
+        "Identifies parcel status updates as an event-driven need served by webhooks or partner write-back, not a partner resolver",
+        "Recommends platform-stored, app-owned namespaced extension fields or objects as the default mechanism for the tracking data",
+        "Explicitly declines to put Quayside's subgraph into the existing first-party production supergraph",
+        "Does not produce an onboarding procedure for a partner subgraph into the production supergraph as the main deliverable",
+        "Names the condition under which a partner-hosted resolver or partner subgraph would become justified (data that must be live and computed by the partner)",
+        "Ranks the candidate mechanisms with an explicit ordering (e.g. using > or a ranked list), not a flat unranked menu",
+        "Requires a partner namespace or reserved prefix for the partner's extension definitions",
+        "States that partner extension data should be visible only to tenants that installed or authorized that partner",
+        "Defines what happens to the partner's definitions and values when a tenant uninstalls or the partner leaves",
+        "Uses the January peak deadline as a reason favouring the mechanisms that need no partner engineering",
+        "Mentions the rungs/options in terms of effort for the platform versus value delivered, not only feature descriptions"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're Tallowmere Mobility, a fleet-leasing platform with a public GraphQL API (Apollo Router 2.x, federated, 9 internal subgraphs). Four insurance partners are under contract to show live insurance quotes on our Vehicle and Driver types, so fleet managers get a quote in the same query as the vehicle. Leadership already approved letting the four insurers each run their own subgraph; we put them in a separate \"partners\" variant served by its own router, not our main one. I need the router config reviewed before the first insurer, Brackwater Mutual, goes live on Nov 18. Their quote resolver needs the driver's age to price, so their SDL has `Driver @key(fields: \"id\")` with `dateOfBirth: Date @external` and `brackwaterQuote: Quote! @requires(fields: \"dateOfBirth licenseClass\")`. Our p95 SLA for the fleet dashboard query is 800 ms. Current router.yaml for the partners variant:\n\n```yaml\nheaders:\n  all:\n    request:\n      - propagate:\n          matching: \".*\"\n      - propagate:\n          named: Authorization\ntraffic_shaping:\n  all:\n    deduplicate_query: true\nsupergraph:\n  introspection: false\n```\n\nAnything we need to change before Nov 18?",
+      "expected_output": "A review that opens with severity-ordered blockers: catch-all header propagation forwarding Authorization to partners, default timeouts above the 800 ms SLA (and the router request timeout trap), @requires shipping date of birth, missing partner endpoint authentication; it recommends a minted per-partner token, minimization to an age band, per-partner timeout sized from the SLA, circuit breaker or egress-proxy fallback, and dedup/caching review.",
+      "files": [],
+      "expectations": [
+        "Opens with a list of blockers or must-fix items before any general design discussion",
+        "Flags the `propagate: matching: \".*\"` rule as forwarding all client headers, including credentials, to the partner subgraph",
+        "Flags explicit propagation of `Authorization` to the partner as forwarding the end user's credential to a third party",
+        "Recommends a per-partner credential minted per request (short-lived, audience-bound to the insurer, scoped to tenant) instead of the client token",
+        "States that a static header insert in router config cannot carry a per-request tenant-bound token, so a router extension, coprocessor or proxy is needed",
+        "Flags that `@requires(fields: \"dateOfBirth ...\")` ships the driver's date of birth to the insurer on every resolve, whether or not the client selected it",
+        "Recommends replacing date of birth with a coarser derived platform field (e.g. age or age band) for the insurer to require",
+        "Flags that `brackwaterQuote: Quote!` is non-null and should be nullable so an insurer failure does not null out the Driver object",
+        "Sets a per-partner subgraph timeout explicitly below the 800 ms SLA, derived from the SLA minus internal latency before the partner hop",
+        "Notes that the router's default subgraph or request timeouts (around 30 s) far exceed the 800 ms SLA",
+        "Warns that a whole-request router timeout set at or below the partner timeout turns a stalled partner into a failed query instead of partial data",
+        "Requires a circuit breaker per partner, or an egress proxy with outlier detection where the router lacks one",
+        "Requires the insurer endpoint to authenticate router calls (mTLS or signed platform token) and take tenant from the token, not from the entity representation",
+        "Raises `deduplicate_query` or shared caching as a cross-tenant sharing risk for partner responses",
+        "Notes `licenseClass` is also required and must be on the data-clearance list (or declared @external) like dateOfBirth"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Can you sanity check this before I merge? We're Pellucid Retail, public GraphQL for our merchant platform. Orbweave Reviews (a partner under contract) submitted their subgraph for our partners variant. `rover subgraph check` passed against the variant, zero composition errors, so I think we're good to publish. Their SDL:\n\n```graphql\nextend schema @link(url: \"https://specs.apollo.dev/federation/v2.7\", import: [\"@key\", \"@shareable\", \"@override\", \"@requires\", \"@external\", \"@provides\"])\n\ntype Product @key(fields: \"id\") {\n  id: ID!\n  price: Money! @override(from: \"catalog\")\n  orbweaveRating: Float!\n  email: String @external\n  reviewDigest: String @requires(fields: \"email\")\n}\n\ntype Money @shareable {\n  amount: Int!\n  currency: String!\n}\n\ntype Review {\n  id: ID!\n  body: String!\n}\n\ntype Query {\n  reviews(productId: ID!): [Review!]!\n}\n```\n\nI'll publish it tonight unless you see a problem.",
+      "expected_output": "Rejects the publish despite passing composition: @override takes Product.price from the catalog subgraph, Money is unprefixed and co-resolves the platform's shareable type, orbweaveRating is non-null, @requires pulls a field outside any clearance list, Review and Query.reviews are unnamespaced; recommends a blocking policy check and corrected SDL.",
+      "files": [],
+      "expectations": [
+        "States that passing composition does not mean the partner is authorized to claim what the SDL claims",
+        "Flags `price: Money! @override(from: \"catalog\")` as the partner taking resolution of a platform-owned field",
+        "Recommends rejecting or not publishing the subgraph as submitted",
+        "Flags `type Money @shareable` as an unprefixed type that merges with or co-resolves the platform's Money type",
+        "Flags `orbweaveRating: Float!` as non-null and requires it to be nullable",
+        "Flags `reviewDigest @requires(fields: \"email\")` as shipping a platform-owned field (email) to the partner",
+        "Ties the @requires concern to a data-clearance list or consent for each field the partner receives",
+        "Flags `type Review` and `Query.reviews` as missing a partner namespace/prefix",
+        "Recommends a blocking policy check in the platform registry that rejects banned directives on every partner publish, not a manual review comment",
+        "Lists @override, @provides and @shareable on platform fields as directives a partner may not use",
+        "Provides a corrected SDL or a field-by-field fix list with prefixed partner types",
+        "Notes that the partner itself should not hold publish rights; the platform publishes"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I run platform at Quarrytown, an HR and payroll SaaS. We want a marketplace where any app developer can show live data on our Employee type in our public GraphQL API - think a benefits app showing current enrollment, a learning app showing course progress. Expect maybe 40 apps in year one, all self-serve. Plan we sketched: in the developer portal an app registers its GraphQL endpoint URL, we add it as a remote schema to our gateway, its fields appear on Employee, and our gateway response cache (shared, 60s) covers everything so we don't hammer partners. Every tenant sees every app's fields in the schema so discovery is easy. Thoughts on the design before we build the portal flow?",
+      "expected_output": "Keeps live data but replaces per-app remote schemas with a single mediated extension field built once for self-serve scale, and fixes SSRF on registered URLs, shared cache leaking per-user data, all-tenant visibility, credential forwarding and partner endpoint authentication.",
+      "files": [],
+      "expectations": [
+        "Classifies the need as live partner-computed data",
+        "States that many self-serve apps make per-partner mapping or per-partner schema review (remote schemas or subgraphs) not scale",
+        "Recommends a single platform-owned mediated extension field (built once, partners plug in behind a published contract) or equivalent for the self-serve case",
+        "Specifies what the mediated field returns (e.g. a platform-defined envelope plus a validated partner payload, or compares envelope vs JSON scalar vs per-partner union)",
+        "Flags app-registered endpoint URLs as a server-side request forgery risk",
+        "Requires validation of registered URLs: HTTPS public hosts only, blocking private, loopback, link-local and metadata ranges, re-checked on DNS resolution or through an egress allowlist",
+        "Flags the shared 60-second response cache as able to serve one user's or tenant's partner data to another",
+        "Requires partner responses to be excluded from the shared cache or keyed per tenant and credential",
+        "Rejects showing every app's fields to every tenant; partner data visible only to tenants that installed the app",
+        "Recommends enforcing installs at request time with a platform-assigned scope or policy rather than one schema variant per install combination",
+        "States that no end-user credential is forwarded to apps; a per-app scoped token is used instead",
+        "Requires app endpoints to authenticate calls from the platform and derive tenant from the platform token",
+        "Requires per-app timeouts below the client SLA and a circuit breaker so a slow app degrades to null plus error"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Kestrel Ledger, accounting platform. One of our partners, Tidemark Payroll, has a subgraph in our partners graph (separate router from our main one) that adds `tidemark_payrunSummary` to our Company type plus a few Tidemark_ types. Their contract ends Friday and legal says we must stop sending them customer data from Saturday. Simplest plan is I delete their subgraph from the registry Friday evening and recompose. Anything I'm missing? About 30 customer tenants had Tidemark installed.",
+      "expected_output": "Separates stopping data flow on Saturday (cut traffic and credentials immediately) from removing public schema fields (removal-impact check, usage pull, deprecation window); recommends nulling/disabling at runtime first, removing from the partner variant before the base graph, notifying the 30 tenants, and handling retained data.",
+      "files": [],
+      "expectations": [
+        "Distinguishes stopping data flow to the partner from removing the partner's fields from the public schema",
+        "Recommends cutting the partner's traffic or credentials by the deadline without requiring the schema fields to disappear at the same moment (e.g. resolve to null with an error, open the circuit, revoke the token)",
+        "Requires a removal-impact check (composition and client operations) before deleting the subgraph",
+        "Requires pulling usage of the partner's fields by clients before removal",
+        "States that removing the partner's fields is a breaking change for clients that query them",
+        "Hands the field removal to the platform's deprecation/notice window rather than deleting on Friday",
+        "Orders removal: partner variant or contract first, then the base graph",
+        "Recommends notifying the roughly 30 tenants that had the partner installed",
+        "Addresses revoking the per-partner credentials or tokens the router used toward the partner",
+        "Raises what happens to data the partner already received or stored, under the partner's data terms",
+        "Does not recommend simply deleting the subgraph and recomposing Friday as the complete plan",
+        "Removes or stops the partner from receiving `_entities` calls and required fields by the legal deadline, not only from appearing in the schema"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "CTO at Cobaltine Analytics here. We've decided to open our public GraphQL graph to a handful of strategic partners (4 signed, maybe 8 by next year) who need to add live computed metrics across several of our entities (Dashboard, Dataset, Alert) and join them in one query. We're writing the 'Partner Subgraph Guide' this week. Draft outline: (1) build your subgraph against the GraphQL Composite Schemas spec so you're future-proof, (2) we give each partner a GraphOS API key so they can run rover subgraph publish from their CI, (3) your subgraph composes into our main supergraph, (4) use any federation directive you need. Can you turn this into the guide?",
+      "expected_output": "Accepts that a partner subgraph rung can be justified here (few contracted partners, joint planning across entities) but rewrites the guide: isolated partner variant/router, not the main supergraph; no publish keys, check-only scoped credentials; directive allowlist; no promise of the Stage 0 Composite Schemas dialect; license separation.",
+      "files": [],
+      "expectations": [
+        "Acknowledges that a few contracted partners needing live data joined across several platform entities is the condition that can justify partner subgraphs",
+        "Rejects composing partner subgraphs into the main first-party supergraph and requires a separate partner variant or router",
+        "Rejects giving partners keys that can publish; partners get check-only access scoped to their own subgraph or submit through a platform endpoint",
+        "States that only the platform publishes to the partner variant",
+        "Rejects 'use any federation directive you need' and supplies a directive policy",
+        "Bans @override in partner subgraphs",
+        "Restricts @requires to a per-entity data-clearance list",
+        "Requires a partner type-name namespace or prefix",
+        "Requires partner fields on platform entities to be nullable",
+        "States the Composite Schemas specification is not yet at a stable stage (pre-Draft) and should not be promised to partners as a target",
+        "Distinguishes what partners must run (a subgraph library, check access) from the platform's router/composition licensing",
+        "Includes a blocking policy check on every partner publish in the guide or platform process",
+        "Includes an offboarding or removal section in the guide"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "We're Saltreed Care, a clinic-management SaaS with a public GraphQL API used by about 300 clinics in Germany, France and Spain. A pharmacy partner, Verdane Rx, will show live medication pricing on our Prescription type. Their pricing engine needs the patient's date of birth and home address to compute coverage, so in their partner field we plan `@requires(fields: \"patient { dateOfBirth address }\")`. Verdane hosts in us-east-1. Our clinic dashboard lists ~50 prescriptions per page. Can you spec the partner field so we can start building next sprint?",
+      "expected_output": "Applies the regulated-data gate: minimizes DOB to an age band and address to a region, requires recorded consent at install, partner data-processing terms and a residency check (US hosting for EU patient data), notes per-row fan-out of @requires on a 50-row page, nullable field, per-partner token and timeouts.",
+      "files": [],
+      "expectations": [
+        "Lists every field the partner would receive (key fields plus required patient fields) as a data-clearance list",
+        "Identifies date of birth and home address as personal health-context data needing a regulated-data gate before clearance",
+        "Recommends replacing date of birth with a coarser derived field (e.g. age band) for the partner to require",
+        "Recommends replacing home address with a coarser derived field (e.g. region or postal area) for the partner to require",
+        "Requires tenant (clinic) consent recorded at install before personal data flows to the partner",
+        "Requires signed partner data-processing terms",
+        "Flags the partner's US hosting region as a residency or cross-border transfer issue for EU patient data",
+        "Notes that @requires ships the required fields once per entity, so a 50-prescription page sends patient data for every row",
+        "Requires the partner pricing field to be nullable on Prescription",
+        "Requires the partner endpoint to authenticate platform calls and not take tenant from the representation",
+        "Sets a per-partner timeout and circuit breaker so pricing failures do not block the dashboard",
+        "States that no clinic user credential is forwarded to the partner",
+        "Masks partner error messages and does not pass partner response extensions through to clinic clients",
+        "Classifies the pricing need as live partner-computed data before specifying the field"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "Our partners want to add their own fields to our public GraphQL schema, how should we let them?",
+      "should_trigger": true
+    },
+    {
+      "query": "can partner companies ship subgraphs into our supergraph or is that a bad idea",
+      "should_trigger": true
+    },
+    {
+      "query": "Design a partner-extensible GraphQL graph for our SaaS platform",
+      "should_trigger": true
+    },
+    {
+      "query": "We want marketplace apps to store custom data on our Customer type and read it back through our GraphQL API",
+      "should_trigger": true
+    },
+    {
+      "query": "Review this partner subgraph SDL before we compose it into our partners variant",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we stop a partner's subgraph from using @override on our fields",
+      "should_trigger": true
+    },
+    {
+      "query": "What should our router forward to a third-party subgraph? Right now we propagate all headers",
+      "should_trigger": true
+    },
+    {
+      "query": "We're stitching three partner GraphQL APIs into the graph we publish to customers. What do we lock down?",
+      "should_trigger": true
+    },
+    {
+      "query": "Writing the partner developer guide for contributing to our federated graph - what rules should partners follow?",
+      "should_trigger": true
+    },
+    {
+      "query": "partner's @requires pulls customer email into their subgraph, is that ok?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it safe to let an insurance partner run a subgraph that adds quotes to our Vehicle type?",
+      "should_trigger": true
+    },
+    {
+      "query": "How do Shopify and Atlassian let apps extend their GraphQL without letting them ship subgraphs?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our app ecosystem wants live data on our Employee type in our public graph, 40 self-serve apps. Remote schemas per app?",
+      "should_trigger": true
+    },
+    {
+      "query": "We need to offboard a partner whose subgraph adds fields to our public graph, contract ends Friday",
+      "should_trigger": true
+    },
+    {
+      "query": "Set timeouts and circuit breakers for partner subgraphs so a slow partner doesn't take down our API",
+      "should_trigger": true
+    },
+    {
+      "query": "Should we accept customer-hosted resolvers into our public GraphQL API?",
+      "should_trigger": true
+    },
+    {
+      "query": "How do we namespace partner types so they never collide with ours in the supergraph?",
+      "should_trigger": true
+    },
+    {
+      "query": "We let partners register a GraphQL endpoint URL that our gateway calls. Any security issues?",
+      "should_trigger": true
+    },
+    {
+      "query": "Which tenants should see a partner's fields in our GraphQL schema, all of them or only installers?",
+      "should_trigger": true
+    },
+    {
+      "query": "Partner contract for a mediated extension field on Order - what should the field return?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our CTO wants to give partners GraphOS keys to publish their own subgraphs from CI. Good idea?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can a partner subgraph shadow our Money type if both are @shareable?",
+      "should_trigger": true
+    },
+    {
+      "query": "Partner pricing engine needs patient date of birth via @requires, we're an EU health SaaS",
+      "should_trigger": true
+    },
+    {
+      "query": "rung choice: app-owned metafields vs partner subgraph for logistics tracking on our orders",
+      "should_trigger": true
+    },
+    {
+      "query": "We're opening our GraphQL platform to ISVs. How do they extend Product with their own data?",
+      "should_trigger": true
+    },
+    {
+      "query": "partner subgraph passed rover check, can I just publish it",
+      "should_trigger": true
+    },
+    {
+      "query": "How do we run schema checks for partner-contributed subgraphs without giving them publish access?",
+      "should_trigger": true
+    },
+    {
+      "query": "Plugin developers want to add fields to our GraphQL types - what's the safest extension model?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our federated graph is internal today; we want to open it to partner-built extensions next year. Plan it.",
+      "should_trigger": true
+    },
+    {
+      "query": "What data does an untrusted subgraph receive from the router in _entities calls?",
+      "should_trigger": true
+    },
+    {
+      "query": "Should partner fields on our platform types be nullable or non-null?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want third parties to contribute to our GraphQL supergraph but keep the main router safe",
+      "should_trigger": true
+    },
+    {
+      "query": "Partner-hosted resolvers in our public GraphQL API: authentication between our gateway and their endpoint",
+      "should_trigger": true
+    },
+    {
+      "query": "How do we stop a partner subgraph from caching one tenant's data and serving it to another through our gateway?",
+      "should_trigger": true
+    },
+    {
+      "query": "Should our partner subgraph program be built on the Composite Schemas spec or Apollo Federation?",
+      "should_trigger": true
+    },
+    {
+      "query": "apps on our marketplace want to show live computed scores on our Account type in GraphQL, design it",
+      "should_trigger": true
+    },
+    {
+      "query": "How should we handle a platform schema change that breaks a partner's subgraph composition?",
+      "should_trigger": true
+    },
+    {
+      "query": "Do I need a separate router for partner subgraphs?",
+      "should_trigger": true
+    },
+    {
+      "query": "connectors vs partner subgraphs for putting partner REST data in our public graph",
+      "should_trigger": true
+    },
+    {
+      "query": "Partner wants interface-wide fields via @interfaceObject on our Node interface, allow it?",
+      "should_trigger": true
+    },
+    {
+      "query": "We're a CRM platform; how do integration partners attach their data to Contact in our GraphQL API?",
+      "should_trigger": true
+    },
+    {
+      "query": "threat model for accepting third-party subgraphs into our graph",
+      "should_trigger": true
+    },
+    {
+      "query": "How many partners before a partner subgraph program stops making sense vs a single extension field?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our partner's subgraph is slow and our dashboard p95 doubled - how should the partner integration be isolated?",
+      "should_trigger": true
+    },
+    {
+      "query": "Draft the policy check that runs on every partner subgraph publish",
+      "should_trigger": true
+    },
+    {
+      "query": "Design uninstall semantics for app-owned extension data in our GraphQL API",
+      "should_trigger": true
+    },
+    {
+      "query": "Partners want their own root query fields in our public graph - how do we namespace and govern that?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is header propagation of Authorization to partner subgraphs ever acceptable?",
+      "should_trigger": true
+    },
+    {
+      "query": "Design our public GraphQL schema: naming, nullability, Relay pagination and error result types",
+      "should_trigger": false
+    },
+    {
+      "query": "Should our public API be GraphQL or REST? We have web, mobile and partner clients",
+      "should_trigger": false
+    },
+    {
+      "query": "Split our GraphQL schema across our 5 internal teams with Apollo Federation",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we make sure our internal subgraphs are never directly reachable from the internet?",
+      "should_trigger": false
+    },
+    {
+      "query": "Set depth and complexity limits for our public GraphQL API",
+      "should_trigger": false
+    },
+    {
+      "query": "Persisted queries for our first-party mobile app - allowlist or not?",
+      "should_trigger": false
+    },
+    {
+      "query": "Add our internal billing service to Hasura as a remote schema",
+      "should_trigger": false
+    },
+    {
+      "query": "We want to stitch the GitHub and Stripe GraphQL APIs into our frontend BFF so the React app makes one call",
+      "should_trigger": false
+    },
+    {
+      "query": "My Shopify app needs to store a loyalty tier on customers with app-owned metafields - how do I define them?",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a @deprecated policy and notice windows for our GraphQL fields",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the partner developer signup and sandbox provisioning flow",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our outbound webhook platform: signing, retries, event catalog",
+      "should_trigger": false
+    },
+    {
+      "query": "Which technology partners should we integrate with first?",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we build our own app marketplace or list on others?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the review and approval process for third-party apps on our marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the listing content standards for apps on our marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our OAuth2 authorization server for third-party apps",
+      "should_trigger": false
+    },
+    {
+      "query": "Our tenants want to add custom fields to records and see them in our GraphQL API",
+      "should_trigger": false
+    },
+    {
+      "query": "Set the rate-limit policy and quota numbers for our public GraphQL API",
+      "should_trigger": false
+    },
+    {
+      "query": "Configure Apollo Router telemetry and tracing for our internal subgraphs",
+      "should_trigger": false
+    },
+    {
+      "query": "Write Apollo Federation entity resolvers in TypeScript for our products subgraph",
+      "should_trigger": false
+    },
+    {
+      "query": "Fix composition error INVALID_FIELD_SHARING in our internal subgraphs",
+      "should_trigger": false
+    },
+    {
+      "query": "Design our gRPC public API and buf breaking-change gates",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we ship an MCP server for AI agents on top of our API?",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan our SDK portfolio: which languages first",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we design error codes for our REST API?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our GraphQL N+1 queries are slow, how to add DataLoader",
+      "should_trigger": false
+    },
+    {
+      "query": "Design a design-partner beta program for our new GraphQL API",
+      "should_trigger": false
+    },
+    {
+      "query": "Build a Zapier integration for our product",
+      "should_trigger": false
+    },
+    {
+      "query": "How should we decide whether to evolve from product to platform at all?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the certification program for connectors partners build on our platform",
+      "should_trigger": false
+    },
+    {
+      "query": "Audit our REST API surface for consistency",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up GraphQL subscriptions vs webhooks for real-time updates",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I migrate from schema stitching to federation in my own monorepo?",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the migration guide for our GraphQL v2 breaking changes",
+      "should_trigger": false
+    },
+    {
+      "query": "We use Hasura Data Connectors to connect our own Postgres and Mongo - how to configure?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the developer portal information architecture",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I query the Atlassian GraphQL Gateway from my Forge app?",
+      "should_trigger": false
+    },
+    {
+      "query": "Monitor deployed partner integrations for deprecated API usage",
+      "should_trigger": false
+    },
+    {
+      "query": "What should a GraphQL API platform engineer interview loop test?",
+      "should_trigger": false
+    },
+    {
+      "query": "Expose live SQL access to our customers' data warehouse",
+      "should_trigger": false
+    },
+    {
+      "query": "Design a sandbox test mode for integrators with test keys",
+      "should_trigger": false
+    },
+    {
+      "query": "Price our API usage-based tiers",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up Apollo GraphOS contracts to give our mobile team a filtered schema",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we version our public GraphQL API like Shopify's quarterly versions?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our status page for API incidents - component modeling",
+      "should_trigger": false
+    },
+    {
+      "query": "Generate TypeScript types from our GraphQL schema for the frontend",
+      "should_trigger": false
+    },
+    {
+      "query": "Choose between Apollo Router and Cosmo for our internal federated graph",
+      "should_trigger": false
+    }
+  ]
+}

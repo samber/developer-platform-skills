@@ -66,7 +66,12 @@ Both kinds are collected under Boundary pairs below.
 ### `samber/developer-platform-skills@public-graphql-api-design`
 
 - Route here: "should this be GraphQL", designing or reviewing a public schema, Relay cursor connections, error result types, depth and complexity ceilings, the federation trust boundary, persisted queries.
-- Do not route here: published cost/quota policy (`api-rate-limit-policy`), deprecation and versioning policy, push-event architecture.
+- Do not route here: published cost/quota policy (`api-rate-limit-policy`), deprecation and versioning policy, push-event architecture, partners or third-party apps contributing fields or subgraphs (`graphql-federation-offering`).
+
+### `samber/developer-platform-skills@graphql-federation-offering`
+
+- Route here: "can partners ship subgraphs into our supergraph", letting partner apps add fields or data to platform types in the public graph, stitching partner APIs into the graph the platform publishes, reviewing a partner subgraph's SDL or the router config toward partners, offboarding a partner from the graph.
+- Do not route here: single-owner schema design or internal team federation (`public-graphql-api-design`), whether GraphQL is the right surface, consuming third-party APIs in your own client, the partner's signup and sandbox journey (`partner-app-onboarding`).
 
 ### `samber/developer-platform-skills@public-grpc-api-design`
 
@@ -337,6 +342,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 
 - **api-beta-program vs api-versioning-policy** - the GA line splits them. Before GA, including retiring one preview version for the next and rescuing a beta that never ended → api-beta-program. After GA, including the deprecation window a graduated beta surface gets → api-versioning-policy. A beta program uses the versioning policy's breaking-change definition rather than writing its own.
 
+- **public-graphql-api-design vs graphql-federation-offering** - "Design our public schema" or "split it across our teams" → public-graphql-api-design. "Let partners add their own fields or subgraphs" → graphql-federation-offering. The test is who authors the contributed schema: your own teams, or an outside party.
 - **api-rate-limit-policy vs public-graphql-api-design** - GraphQL's depth and complexity ceilings are schema design decisions and live with the schema; the published quota, tier numbers, headers and 429 contract are policy and live with rate-limit-policy. A GraphQL cost model needs both, in that order.
 - **partner-app-onboarding vs app-marketplace-review vs api-test-mode-design** - three stages of the same partner's path:
   - Getting to a first submission → onboarding.

@@ -4,7 +4,7 @@ description: Design a public GraphQL API for third-party developers - the GraphQ
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Public GraphQL API Design
@@ -161,6 +161,8 @@ Beyond the boundary itself, two design defaults apply:
 - Default new types to plain value types, promoting to `@key` entities only when another subgraph truly needs to extend them.
 
 Use `@inaccessible` to keep internal-only fields out of the composed public supergraph. Verify the boundary empirically: probe every subgraph's address from outside the private network and expect connection failure, not a GraphQL response.
+
+Partners or third-party apps contributing fields, data or subgraphs to the graph is a different design, with its own trust contract: see `samber/developer-platform-skills@graphql-federation-offering`.
 
 ## 7. The persisted-query policy
 
