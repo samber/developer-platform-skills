@@ -1,0 +1,565 @@
+{
+  "skill_name": "agent-integration-surfaces",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Head of platform at Pellucid Billing here (invoicing API, self-serve signup with a free tier). Devs in our community Slack say Claude Code and Cursor 'can't sign up' because our signup page has a CAPTCHA. In September security switched on our CDN's 'Block AI bots' preset and added `User-agent: GPTBot`, `User-agent: ClaudeBot` and `User-agent: ChatGPT-User` with `Disallow: /` to robots.txt, and they tell me that keeps every AI agent out of the dashboard. Our CEO wants an MCP server live before our customer summit in 6 weeks. We already ship a CLI (`pb`) with --json on most commands. One engineer says agents should just read the customer's live secret key from an env var. Our API can issue refunds. Give me the plan.",
+      "expected_output": "An agent integration plan that starts with a reachability gate, explains robots.txt is per class and advisory, refuses live-key sharing, gates refunds behind out-of-band approval, and re-ranks for the 6-week date with money-moving precedence.",
+      "files": [],
+      "expectations": [
+        "Runs or specifies a reachability check per agent class and surface before recommending any new surface",
+        "States that disallowing ClaudeBot does not block Claude-User or Claude-SearchBot, because robots.txt tokens are per class",
+        "States that OpenAI's ChatGPT-User may not apply robots.txt rules, so the robots.txt line is not an access-control boundary",
+        "Identifies the CDN 'Block AI bots' preset as an edge rule that must be read and owned, separate from robots.txt",
+        "Routes the security preset to its owner with the cost named rather than silently disabling it",
+        "Rejects giving agents the customer's long-lived live secret key",
+        "Recommends per-agent, scoped, short-lived credentials with per-agent revocation",
+        "Requires refunds or other money-moving actions to need a human approval delivered outside the agent's channel",
+        "Treats the CEO's MCP request as not, by itself, evidence that shell-less agent clients exist",
+        "Places the existing CLI with --json plus an Agent Skill ahead of a new MCP server for coding agents inside the 6-week window",
+        "When date and money conflict, keeps a minimal credential and approval rung inside the window rather than deferring it",
+        "Proposes replacing the CAPTCHA-only signup gate with an allow rule for verified agents and/or an API or claim path",
+        "Recommends instrumenting agent measurement before shipping the first rung, as the baseline",
+        "Output contains an agent class x surface matrix"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We run Tallowfield, a payroll SaaS. A lot of our customers now run payroll through AI browser agents - some hosted, some running inside their own Chrome as an extension. Product wants to 'make the dashboard agent-safe' by adding a confirmation modal before 'Submit payroll' and by whitelisting traffic whose User-Agent contains 'ChatGPT' or 'Claude' at our WAF so it skips our bot challenge. Does that work? What should we do instead?",
+      "expected_output": "Explains that an in-session confirmation modal is clickable by the browser agent, that UA whitelisting is spoofable, distinguishes hosted vs local browser agents, and proposes out-of-band approval plus verified-agent rules and an API path.",
+      "files": [],
+      "expectations": [
+        "States that a confirmation modal inside the session the agent drives can be clicked by the agent itself",
+        "Requires the payroll approval to travel out of the agent's channel (push, email or second device)",
+        "States that a User-Agent string is a claim anyone can send, so a UA-substring allowlist admits spoofers",
+        "Recommends verifying hosted agents by Web Bot Auth signature or vendor-published IP lists",
+        "Distinguishes hosted browser agents from local browser agents running in the user's own browser",
+        "States that local browser agents cannot be targeted by edge policy because they share the user's IP and user-agent",
+        "Proposes an API or delegated-token path as the preferred route for agents performing payroll actions",
+        "Recommends a spend or action cap per agent credential for money-moving operations",
+        "Recommends per-agent credentials or delegated tokens rather than agents riding the human's session where an API path exists",
+        "Mentions a pending-approval state the user confirms elsewhere as a mechanism that works today",
+        "Does not recommend skipping the bot challenge for all requests that merely claim to be an AI agent"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Prepping our board deck at Brightmoor Analytics (product analytics SaaS, self-serve + sales). I grepped last month's nginx logs for 'Claude', 'GPT' and 'Cursor' in the User-Agent and got 3.1% of requests, so I'm planning to say '3% of our traffic is AI agents'. Also, Supabase says 70% of their new databases come from agents, so I want a slide saying we're way behind and should target 50% agent signups by Q4. Can you sanity-check and tell me what we should actually measure?",
+      "expected_output": "Rejects the single UA-grep headline and the external benchmark as a target; proposes a detection-source table, tagging, an agent funnel with claim and paid steps, and reporting with method and floor caveats.",
+      "files": [],
+      "expectations": [
+        "States that a User-Agent substring grep is spoofable and unverified, so 3.1% is not a measured agent share",
+        "Separates crawler or fetcher traffic from agent API calls instead of summing them into one 'agent traffic' figure",
+        "States that env-var detection (AI_AGENT, AGENT, CLAUDECODE) is a self-report that undercounts, so it yields a floor",
+        "Recommends appending the detected agent to the CLI or SDK User-Agent and logging it as its own field",
+        "Recommends logging MCP clientInfo per session if an MCP server exists",
+        "Rejects using Supabase's agent-share figure as a target for a different product",
+        "Notes that the published Neon or Supabase figures are company-reported creations, not paid workloads",
+        "Proposes an agent funnel that includes agent-created signups or resources and their conversion to paid",
+        "Recommends verifying crawler tokens against vendor IP lists or signatures before counting them",
+        "Recommends reporting any agent share with its method and an 'at least' or floor caveat",
+        "Recommends a stored agent-class field on request records with an explicit unknown value",
+        "Does not endorse the slide claim '3% of our traffic is AI agents' as written"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Ferrocore is a managed key-value store with a free tier. We want coding agents to spin up a store without the user creating an account first. Our engineer's design: the agent POSTs to /v1/instant, we create the store and return a magic link `https://app.ferrocore.dev/welcome?session=<session_token>` so the human can open it and be logged in. Stores live forever until someone deletes them. Can you review and tighten this?",
+      "expected_output": "A provision-then-claim spec: no session token in URL, single-use claim link bound to login, expiry and quotas, named error for human-only actions, credential rotation at claim, abuse controls, ToS at claim and no personal data before claim.",
+      "files": [],
+      "expectations": [
+        "Rejects putting a session token in the URL because URLs land in logs, history, referrers and transcripts",
+        "Requires the claim link to be single-use",
+        "Requires the claim link to work only after the human logs in or signs up, and never act as a session",
+        "Requires unclaimed stores to expire rather than live forever",
+        "Requires quotas on unclaimed resources small enough to make abuse unprofitable",
+        "Requires a named machine-readable error for operations that need a human, rather than a generic 403",
+        "Requires pre-claim tokens to be revoked and credentials rotated at claim",
+        "Requires creation caps per IP or per signature as abuse control",
+        "Requires Terms of Service acceptance at claim",
+        "States that unclaimed resources should hold no personal data",
+        "Describes the state flow unclaimed, claiming, claimed or an equivalent",
+        "Response returns connection details, a claim URL and an expiry timestamp from the creation call"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Platform architect at Quarrystone (HR data API). We're designing how customer AI agents act for employees. Plan: (1) implement the on-behalf-of extension from draft-oauth-ai-agents-on-behalf-of-user with `requested_actor`, (2) at our edge, if a request carries a valid Web Bot Auth signature from a known agent operator, treat it as carrying the user's permissions so we skip the OAuth step, (3) agent tokens valid 90 days so fleets don't break. Our signing test client uses the dictionary `Signature-Agent` form from the latest draft. Thoughts?",
+      "expected_output": "Rejects building on the expired draft, separates identity from delegation, proposes RFC 8693 token exchange with act claim, short delegated tokens and workload identity for fleets, sponsor and per-agent revocation, and flags the Signature-Agent header-form interop issue.",
+      "files": [],
+      "expectations": [
+        "States that the on-behalf-of-user draft has expired and should not be built against",
+        "Notes that actor_token itself is an RFC 8693 parameter that remains usable, while requested_actor has no successor",
+        "Recommends RFC 8693 token exchange with the actor chain recorded in the act claim",
+        "States that a Web Bot Auth signature identifies the operator and carries no user authorization",
+        "Rejects skipping the OAuth step for signed requests",
+        "Rejects 90-day delegated tokens and requires delegated tokens not to outlive the user token they derive from",
+        "Proposes client credentials or workload identity federation minting short tokens for unattended fleets",
+        "Requires a named sponsoring human for each agent credential",
+        "Requires per-agent revocation that does not log the human out",
+        "Recommends sender-constrained tokens (for example DPoP or mTLS) where clients support them",
+        "Warns that a major CDN verifier implemented an earlier Signature-Agent form and may reject the dictionary form, so test against both",
+        "Labels Web Bot Auth as an IETF working-group draft, not a final standard"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "We're shipping an Agent Skill for our deploy CLI `drift` (Kitewood Cloud). Current state: `drift --json` prints a one-line 'new version available' notice before the JSON; the SKILL.md copies the full flag reference for all 40 commands so the agent 'has everything'; and in agent mode we print `next: run drift domains add <name>` where <name> comes from the project's display name in our API. We have Claude Code users and also customers using a chat assistant with no shell. How should the skill and CLI split the work?",
+      "expected_output": "Moves the notice to stderr, removes the copied flag reference from the skill in favour of --help --json, makes next-step hints data fields not shell strings, adds CI gates, and assigns MCP to the shell-less clients.",
+      "files": [],
+      "expectations": [
+        "Requires the version notice on stderr so stdout carries only JSON",
+        "Rejects copying the CLI flag reference into the skill because it drifts on the next CLI release",
+        "Points the skill at a machine-readable help (for example --help --json) instead",
+        "States the skill holds the workflow (order, checks, recovery, human-only actions) while the CLI holds commands and output",
+        "Treats agent-mode 'next command' strings built from API data as a command-injection surface",
+        "Recommends emitting next-step hints as data fields or identifiers rather than shell command lines",
+        "Recommends a CI test that parses stdout of every --json command as JSON, including in agent-detected mode",
+        "Recommends that the CLI not prompt when stdin is not a TTY",
+        "Assigns MCP, not skill plus CLI, to the chat assistant without a shell",
+        "Recommends both paths come from one source of truth so they cannot disagree",
+        "Hands the CLI's own command and contract design to samber/developer-platform-skills@cli-interface-design or skill versioning to samber/developer-platform-skills@agent-skill-offering"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I maintain Quiverlane, an open-source job-queue library (GitHub repo, docs in /docs, old v1 docs kept under /docs/v1-reference). Coding agents keep suggesting v1 APIs. I checked Context7 and someone already listed our repo there - we never submitted it. We're not a popular library. My plan: publish an A2A agent card at /.well-known/agent-card.json and an llms.txt so agents find the right version. Good plan?",
+      "expected_output": "Claim the existing Context7 entry with context7.json at repo root, rename or exclude the v1 folder, add refresh on push, explains long-tail staleness, drops the agent card, and routes llms.txt to the docs sibling.",
+      "files": [],
+      "expectations": [
+        "Recommends claiming the existing third-party Context7 listing rather than submitting a new one",
+        "States that the claim uses context7.json with the generated key committed at repo root for a repo-sourced library",
+        "Identifies that a folder named v1-reference is not caught by default exclusions and must be renamed or listed in excludeFolders",
+        "Recommends previousVersions or equivalent version configuration for v1 rather than indexing it as current",
+        "Explains that long-tail libraries refresh less often, so docs can lag for weeks",
+        "Recommends triggering a Context7 refresh on push to the default branch",
+        "States that an A2A agent card only applies when the product exposes an agent endpoint, so it will not fix this",
+        "Routes llms.txt and docs markdown endpoints to samber/developer-relations-skills@coding-agent-docs-optimization",
+        "Does not present the agent card as a discovery fix for a library",
+        "Mentions that Context7 title and description reject instructions or promotional text"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Hollins Grid sells an enterprise observability platform, sales-led only (no self-serve signup), SSO-only login. Our CMO announced 'agent-ready' for a launch in 2 weeks. I have zero engineering time - only our CDN admin console and the docs team's config. We have a public OpenAPI spec. I want everything: MCP server, CLI skill, agent signup, agent card, the lot. Rank it.",
+      "expected_output": "Re-ranks for a 2-week config-only ceiling: deletes C-F outright (and F because sales-led), keeps gate fixes, edge-log classification and Context7 claim, treats api-catalog as background, states which answers moved which rung.",
+      "files": [],
+      "expectations": [
+        "Deletes the provision-then-claim signup rung because there is no self-serve path",
+        "Deletes rather than parks the rungs the config-only ceiling rules out (credentials, skill plus CLI, MCP, claim flow)",
+        "Keeps reachability gate fixes inside the 2-week window",
+        "Shrinks measurement to edge-log classification under the config-only ceiling",
+        "Shrinks the docs rung to the Context7 claim or other config-only work",
+        "Treats api-catalog as a background task alongside the public spec, not an agent-readiness milestone",
+        "Does not recommend an agent card without an agent endpoint",
+        "States which interview answer moved which rung",
+        "Names what the efficiency order starves or the condition that would bring a deleted rung back",
+        "Presents rankings on more than one axis (for example effort, value, efficiency) rather than a single blended list",
+        "Does not promise an MCP server within the 2-week window",
+        "Lists deleted rungs with their reasons in the plan"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "is our SaaS agent-ready? where do we even start",
+      "should_trigger": true
+    },
+    {
+      "query": "Claude Code users say they can't sign up for our product because of the CAPTCHA, what should we do",
+      "should_trigger": true
+    },
+    {
+      "query": "how should AI agents authenticate to our API when acting for a user",
+      "should_trigger": true
+    },
+    {
+      "query": "our security team turned on the CDN block AI bots toggle, what did that break for agents",
+      "should_trigger": true
+    },
+    {
+      "query": "should an agent just use the customer's API key?",
+      "should_trigger": true
+    },
+    {
+      "query": "we want agents to provision a database without an account and let the human claim it later - how to design that",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I verify that a request really comes from ChatGPT agent and not a scraper",
+      "should_trigger": true
+    },
+    {
+      "query": "what's Web Bot Auth and should our platform accept signed agents at signup",
+      "should_trigger": true
+    },
+    {
+      "query": "plan for exposing our billing platform to AI agents: crawlers, browser agents, coding agents",
+      "should_trigger": true
+    },
+    {
+      "query": "how much of our product usage comes from AI coding agents and how would we measure it",
+      "should_trigger": true
+    },
+    {
+      "query": "design a policy for which AI bots can reach our marketing site, docs, signup and app",
+      "should_trigger": true
+    },
+    {
+      "query": "robots.txt blocks ClaudeBot, does that stop Claude from using our dashboard?",
+      "should_trigger": true
+    },
+    {
+      "query": "agent identity vs delegation - our agents send signed requests, is that enough to act for the user?",
+      "should_trigger": true
+    },
+    {
+      "query": "CEO wants us 'AI-agent ready' by the conference, what do we ship first with one engineer",
+      "should_trigger": true
+    },
+    {
+      "query": "should we put a confirm dialog in the UI so AI browser agents can't submit payments alone",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we let customers' agent fleets call our API without long-lived keys",
+      "should_trigger": true
+    },
+    {
+      "query": "we have a CLI already, how do agents, skills, CLI and MCP fit together for our platform",
+      "should_trigger": true
+    },
+    {
+      "query": "should we claim our library on Context7 and how",
+      "should_trigger": true
+    },
+    {
+      "query": "do we need /.well-known/api-catalog or an A2A agent card for our API product",
+      "should_trigger": true
+    },
+    {
+      "query": "agent-originated signups: how do we track agents creating accounts on our platform",
+      "should_trigger": true
+    },
+    {
+      "query": "what tokens should AI agents get on our platform, how long should they live",
+      "should_trigger": true
+    },
+    {
+      "query": "our dashboard is used by computer-use agents, how do we keep money actions safe",
+      "should_trigger": true
+    },
+    {
+      "query": "which agent classes should we allow on our signup page",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we tag our CLI and SDK requests so we know which coding agent made them",
+      "should_trigger": true
+    },
+    {
+      "query": "AI_AGENT vs AGENT env var - which should our CLI read to detect agents",
+      "should_trigger": true
+    },
+    {
+      "query": "Perplexity-User ignores robots, how do we enforce our policy on the app subdomain",
+      "should_trigger": true
+    },
+    {
+      "query": "make our developer platform usable by AI agents end to end, provider side",
+      "should_trigger": true
+    },
+    {
+      "query": "we're a payroll API, agents want to act for HR admins - delegation design please",
+      "should_trigger": true
+    },
+    {
+      "query": "should we use pay per crawl on our marketing site or just block AI training crawlers",
+      "should_trigger": true
+    },
+    {
+      "query": "our free tier gets abused, now agents create accounts too - how to open signup to agents safely",
+      "should_trigger": true
+    },
+    {
+      "query": "agents keep getting a 403 challenge from our CDN when they hit our API host, how do we fix the policy",
+      "should_trigger": true
+    },
+    {
+      "query": "the board asks what share of new accounts are created by agents, how do we answer honestly",
+      "should_trigger": true
+    },
+    {
+      "query": "we want an agent strategy across docs, CLI, MCP, auth and signup - one plan",
+      "should_trigger": true
+    },
+    {
+      "query": "magic link with session token for agent-created accounts, is that ok",
+      "should_trigger": true
+    },
+    {
+      "query": "which on-behalf-of OAuth draft should we implement for AI agents",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I write robots.txt and CDN rules that allow AI search but deny training on our site",
+      "should_trigger": true
+    },
+    {
+      "query": "agents operate our app through the browser extension, can our WAF tell them apart",
+      "should_trigger": true
+    },
+    {
+      "query": "is our product discoverable by coding agents beyond docs, like Context7 or registries",
+      "should_trigger": true
+    },
+    {
+      "query": "design an agent credential model with sponsor, scope, lifetime and revocation",
+      "should_trigger": true
+    },
+    {
+      "query": "Supabase says 70% of databases are made by agents, should that be our target",
+      "should_trigger": true
+    },
+    {
+      "query": "our pricing page should be readable by agents comparing products, how",
+      "should_trigger": true
+    },
+    {
+      "query": "set up the plan for an agent-readiness audit of our SaaS",
+      "should_trigger": true
+    },
+    {
+      "query": "how should our platform handle agents that need a human approval before destructive actions",
+      "should_trigger": true
+    },
+    {
+      "query": "we launched agent mode in our CLI, what security issues should we watch for",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we stop agent traffic being invisible in our analytics",
+      "should_trigger": true
+    },
+    {
+      "query": "agent signup without CAPTCHA but also without bots abusing us",
+      "should_trigger": true
+    },
+    {
+      "query": "what should our platform do about signed agents verified by Cloudflare",
+      "should_trigger": true
+    },
+    {
+      "query": "can coding agents use the device flow to log into our CLI on behalf of the user",
+      "should_trigger": true
+    },
+    {
+      "query": "our API product needs a short plan to be agent friendly before a partner demo next month",
+      "should_trigger": true
+    },
+    {
+      "query": "agents create resources on our platform, how do we measure claim rate and conversion to paid",
+      "should_trigger": true
+    },
+    {
+      "query": "design the MCP tool list for our product, 5-15 tools, with annotations",
+      "should_trigger": false
+    },
+    {
+      "query": "which integration surfaces should we build first: REST, webhooks, SDKs, GraphQL?",
+      "should_trigger": false
+    },
+    {
+      "query": "write an llms.txt for docs.example.com",
+      "should_trigger": false
+    },
+    {
+      "query": "our docs get cited at the wrong version in ChatGPT answers, how to fix",
+      "should_trigger": false
+    },
+    {
+      "query": "design the --json output and exit codes for our CLI",
+      "should_trigger": false
+    },
+    {
+      "query": "ship a SKILL.md inside our SDK repo versioned with releases",
+      "should_trigger": false
+    },
+    {
+      "query": "how should our internal support agent authenticate to Salesforce and Zendesk on behalf of reps",
+      "should_trigger": false
+    },
+    {
+      "query": "build an AI agent with LangGraph that calls our CRM",
+      "should_trigger": false
+    },
+    {
+      "query": "design API key formats, prefixes and rotation for our API",
+      "should_trigger": false
+    },
+    {
+      "query": "design our OAuth2 authorization server consent screen and scopes",
+      "should_trigger": false
+    },
+    {
+      "query": "our rate limit headers: RateLimit vs X-RateLimit and Retry-After",
+      "should_trigger": false
+    },
+    {
+      "query": "design an error envelope for our REST API",
+      "should_trigger": false
+    },
+    {
+      "query": "idempotency keys for our payments API",
+      "should_trigger": false
+    },
+    {
+      "query": "how much of our blog traffic comes from ChatGPT referrals",
+      "should_trigger": false
+    },
+    {
+      "query": "GEO: how to get our marketing site cited in AI Overviews",
+      "should_trigger": false
+    },
+    {
+      "query": "write a robots.txt for our WordPress blog to improve SEO",
+      "should_trigger": false
+    },
+    {
+      "query": "set up Cloudflare WAF rules to block credential stuffing on our login page",
+      "should_trigger": false
+    },
+    {
+      "query": "how do I use Context7 to fetch React docs in Cursor",
+      "should_trigger": false
+    },
+    {
+      "query": "install the Context7 MCP server in Claude Code",
+      "should_trigger": false
+    },
+    {
+      "query": "write a cold-run test to see if an agent can integrate our SDK from docs",
+      "should_trigger": false
+    },
+    {
+      "query": "our quickstart is too long, rewrite it for first API call in 5 minutes",
+      "should_trigger": false
+    },
+    {
+      "query": "design a sandbox / test mode for our API",
+      "should_trigger": false
+    },
+    {
+      "query": "plan a Terraform provider for our platform",
+      "should_trigger": false
+    },
+    {
+      "query": "should we build a VS Code extension for our product",
+      "should_trigger": false
+    },
+    {
+      "query": "design a GitHub Action customers use to deploy with our platform",
+      "should_trigger": false
+    },
+    {
+      "query": "CAPTCHA vs honeypot for our newsletter signup form",
+      "should_trigger": false
+    },
+    {
+      "query": "bot detection for our ecommerce checkout to stop scalpers",
+      "should_trigger": false
+    },
+    {
+      "query": "write a Zapier integration for our app",
+      "should_trigger": false
+    },
+    {
+      "query": "what's the best open source LLM agent framework in 2026",
+      "should_trigger": false
+    },
+    {
+      "query": "implement HTTP message signatures for our webhooks",
+      "should_trigger": false
+    },
+    {
+      "query": "design webhook retries and HMAC signing",
+      "should_trigger": false
+    },
+    {
+      "query": "how to version our MCP server tools without breaking clients",
+      "should_trigger": false
+    },
+    {
+      "query": "write the migration guide for v3 of our SDK",
+      "should_trigger": false
+    },
+    {
+      "query": "our coding agent at work keeps hallucinating library APIs, how do I give it better docs",
+      "should_trigger": false
+    },
+    {
+      "query": "MCP server OAuth 2.1 remote hosting setup",
+      "should_trigger": false
+    },
+    {
+      "query": "set up OpenTelemetry tracing for our microservices",
+      "should_trigger": false
+    },
+    {
+      "query": "measure DevRel ROI and developer signups from conferences",
+      "should_trigger": false
+    },
+    {
+      "query": "design the pricing for our usage-based API",
+      "should_trigger": false
+    },
+    {
+      "query": "choose which SDK languages to support first",
+      "should_trigger": false
+    },
+    {
+      "query": "how to publish our CLI to Homebrew and npm",
+      "should_trigger": false
+    },
+    {
+      "query": "audit our OpenAPI reference for undocumented endpoints",
+      "should_trigger": false
+    },
+    {
+      "query": "write a Stack Overflow answer strategy for our product tag",
+      "should_trigger": false
+    },
+    {
+      "query": "design our developer portal navigation",
+      "should_trigger": false
+    },
+    {
+      "query": "set up SSO with Okta for our employees",
+      "should_trigger": false
+    },
+    {
+      "query": "how do I give Claude Code access to my GitHub token safely on my laptop",
+      "should_trigger": false
+    },
+    {
+      "query": "build a browser automation agent with Playwright for scraping competitors",
+      "should_trigger": false
+    },
+    {
+      "query": "design our status page and incident communication for API outages",
+      "should_trigger": false
+    },
+    {
+      "query": "our partner integrations break silently, set up error observability",
+      "should_trigger": false
+    },
+    {
+      "query": "write Cloudflare Workers code to rewrite headers",
+      "should_trigger": false
+    },
+    {
+      "query": "should our company adopt AI coding agents internally, policy and security",
+      "should_trigger": false
+    }
+  ]
+}

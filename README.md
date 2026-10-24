@@ -122,6 +122,7 @@ This collection covers the full developer-platform surface.
 
 ### Integration surfaces
 
+- [`agent-integration-surfaces`](./skills/agent-integration-surfaces): Plans how a platform opens itself to AI agents, class by class: access policy per surface, agent identity and delegation, provision-then-claim signup, and agent usage measurement.
 - [`agent-skill-offering`](./skills/agent-skill-offering): Ships an Agent Skill inside a library, CLI or SDK repo and keeps it versioned with the code: placement, version wiring, CI gates that fail a stale release, tag-pinned installs, and multi-harness manifests.
 - [`api-integration-surface-strategy`](./skills/api-integration-surface-strategy): Decides which integration surfaces a platform offers external developers and AI agents, and in what build order, sequenced by reversal cost.
 - [`bulk-data-sharing-design`](./skills/bulk-data-sharing-design): Designs bulk file and lake export as a product surface: delivery format, partitioning contract, cadence and freshness posture, credentials, and cost allocation.
