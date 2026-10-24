@@ -1,0 +1,836 @@
+{
+  "skill_name": "api-changelog-automation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Hi - I run the platform team at Quillbridge (B2B invoicing API, ~400 partner integrations). Our OpenAPI spec is generated from our Kotlin controllers with springdoc on every build. We version with a date header (Quillbridge-Version: 2025-11-01, 2026-03-01, next one 2026-07-01). I want oasdiff in GitHub Actions: diff the PR's generated spec against main, fail on breaking, and also use that same main-vs-PR output to auto-publish our public changelog so partners stop complaining that changes surprise them. We already have an oasdiff ignore file with ~60 lines people added over the last year to get builds green. Also, next release we change GET /invoices to return newest-first by default - that doesn't touch the spec so I assume the tool handles nothing there. Can you give me the workflow YAML and the setup?",
+      "expected_output": "A pipeline design that splits the PR gate (merge base) from the published changelog (last released spec, per version), generates and commits one normalized spec per supported version, audits the existing ignore file into acknowledgement records, routes the ordering change through a declared-change fragment shipped behind the next version, and verifies entries with a trace check before publishing.",
+      "files": [],
+      "expectations": [
+        "States that the published changelog must be diffed against the last released spec, not against main or the PR merge base",
+        "Keeps the PR gate diffing against main or the merge base, as a separate job from the changelog generation",
+        "Tells the user to generate one spec per supported Quillbridge-Version (2025-11-01, 2026-03-01, 2026-07-01) rather than a single spec for all versions",
+        "Tells the user to commit or attach the normalized spec of each release so a later release has a baseline to diff against",
+        "Requires making the generated springdoc spec deterministic before diffing (stable operationIds, $ref'd schemas or oneOf branches, or equivalent), not just reformatting it",
+        "Says to pin the springdoc generator version and/or the oasdiff version",
+        "Tells the user to audit the ~60 existing ignore-file lines one by one instead of carrying them into the new gate unchanged",
+        "Says ignore-file lines that still match a change get an acknowledgement record (reason, approver or 'unknown', ticket) and lines that match nothing are deleted",
+        "Says the tool's ignore file should be generated from acknowledgement records rather than edited by hand going forward",
+        "States that oasdiff cannot detect the GET /invoices newest-first ordering change because it does not change the spec",
+        "Requires a declared change fragment (or equivalent PR-declared entry) for the ordering change so it reaches the changelog",
+        "Says the ordering change should ship only behind the next version (2026-07-01) rather than reach callers pinned to existing versions, or else go through an exception/approval path",
+        "Says the oasdiff semver version-bump checks do not apply to date versions (set to none or not used)",
+        "Includes a verification step that every published changelog entry traces to a diff finding or a declared fragment before publishing"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're about to roll out a breaking-change gate across Ternwick's three public REST APIs (OpenAPI 3.1, semver in info.version, currently 4.2.0). My lead wants us to just run `oasdiff breaking --fail-on ERR` with stock settings because 'the defaults encode industry best practice and we don't want to bikeshed'. For reference, our API guidelines doc (section 2) says: response enums are open and may gain values any time; changing auth scopes required by an endpoint is breaking; adding a regex pattern to an existing request parameter is breaking; a breaking change must bump the major version. Can you write the CI config and tell me if stock settings are fine?",
+      "expected_output": "A severity map derived line by line from Ternwick's guidelines, with response-enum handling via x-extensible-enum, auth-scope and version-bump checks raised to err, pinned tool version, and an explanation of why stock defaults are not the policy.",
+      "files": [],
+      "expectations": [
+        "Rejects the claim that stock oasdiff defaults are equivalent to the team's policy",
+        "Produces a severity map (file or table) where each row names a check and the guideline line it enforces",
+        "Maps the 'response enums are open' guideline to declaring x-extensible-enum on the affected fields or an explicit info-level row for enum additions",
+        "Raises api-security-scope-removed (scope removal, INFO by default in oasdiff) to err because the guidelines call any change to required auth scopes breaking",
+        "States that oasdiff already reports an added required scope (api-security-scope-added) as ERR, so that direction needs no override",
+        "Raises api-major-version-not-bumped (and/or the sibling version-bump checks) to err because info.version is semver",
+        "Notes that the version-bump checks default to INFO and do not fail a build unless raised",
+        "Keeps or sets the request-parameter pattern-added check at err per guideline section 2",
+        "Recommends pinning the oasdiff version in CI and reviewing classification changes on upgrade",
+        "Mentions that pinning a check's level disables oasdiff's automatic downgrades for that check, or advises pinning only what the policy contradicts",
+        "Shows the CI invocation passing a severity-levels file (e.g. --severity-levels) together with --fail-on ERR",
+        "Keeps the severity map in the repository next to the spec(s)",
+        "Points out that different diff tools classify the same change (e.g. enum additions) differently, as evidence defaults are not a standard",
+        "Keeps the oasdiff severity-levels file to bare check-id and level lines, with policy citations in a separate human-readable file"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Postmortem time at Hallowmere. Our public Orders API (OpenAPI, oasdiff gate in CI, green on every PR) broke three big partners last month: we dropped the default page size on GET /orders from 100 to 20, started rejecting `note` strings over 500 chars in the handler, and tightened the per-key rate limit from 600 to 300 req/min. Not one of these showed up in our auto-generated changelog. My VP's proposal is to 'turn on more oasdiff checks and set fail-on to WARN'. Is that the fix? What should we automate so this doesn't happen again?",
+      "expected_output": "Explains that the diff only sees declared structure, rejects tightening oasdiff thresholds as the fix, and adds a declared-change channel (PR template question plus fragments) feeding the same changelog, declares defaults and validation in the spec where possible, and adds a drift alarm / contract tests.",
+      "files": [],
+      "expectations": [
+        "States that raising oasdiff to fail on WARN or enabling more checks would not have caught these three changes",
+        "Explains that the changes were invisible because none of them changed the spec",
+        "Adds a declared-change channel: a PR template question about behavior, defaults, validation, rate limits or pagination changes made without a spec change",
+        "Requires a committed change fragment for each declared change, merged into the same changelog as diff-derived entries",
+        "Says declared breaking changes go through the same approval as diff-detected breaking changes",
+        "Recommends declaring the page-size default in the spec (default keyword) so future changes become visible to the diff",
+        "Recommends mirroring the 500-character validation into the spec (maxLength) so the diff can see it",
+        "Treats the rate-limit change as something only the declared channel (or a separate rate-limit page) can carry, not the spec diff",
+        "Recommends a drift alarm comparing the spec against the running service or live traffic, or contract tests, to catch spec/implementation divergence",
+        "Proposes a metric counting breaking changes reported by integrators that had no changelog entry (escaped breaks)",
+        "Classifies each of the three changes as breaking for callers",
+        "Does not claim that a green spec-diff check proves no breaking change shipped",
+        "Says each declared fragment names the affected operation and the action callers must take"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "At Brindlecove we want to stop hand-writing our API release notes. Plan: nightly job runs `oasdiff changelog` between yesterday's and today's spec, pipes the text output to an LLM with the prompt 'write friendly release notes for developers, explain the benefits', and posts the result to our docs site and a Slack channel. Our spec has a shared `Money` schema used in about 180 places. Can you write the prompt and the job?",
+      "expected_output": "Redesigns the job so entries are built from structured diff output, keep the tool's wording, carry classification/action/source, collapse shared-schema findings, constrain the model to rewording only, and verify every entry traces to a finding before posting; ties entries to releases rather than nightly deploys.",
+      "files": [],
+      "expectations": [
+        "Replaces the text output with a structured format (e.g. oasdiff -f json) as the input to entry generation",
+        "Rejects or rewrites the 'explain the benefits' instruction because it invites consequences not present in the diff",
+        "States the model may only shorten or reword and must not add paths, fields, status codes, dates or consequences absent from the source",
+        "Requires each entry to keep a source reference (check id / fingerprint or declared fragment id)",
+        "Keeps the tool's original wording alongside the human or model summary",
+        "Requires each entry to carry a classification such as breaking / potentially-breaking / non-breaking",
+        "Requires breaking entries to state the action required of callers",
+        "Says the 180 Money-schema findings should be collapsed into one entry naming the shared schema and a count, not one entry per property",
+        "Orders entries with breaking changes first",
+        "Adds an automated check (e.g. the trace check script) that fails publishing when an entry has no matching source or a breaking finding has no entry",
+        "Baselines the published changelog on releases (last released spec) rather than a nightly yesterday-vs-today diff, or explains why nightly diffs fragment the record",
+        "Excludes documentation-only edits from the published entries",
+        "Treats WARN-level findings as 'potentially breaking' entries rather than dropping them",
+        "Rejects posting the raw oasdiff text output (or a free-form rewrite of it) directly as the published release notes"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Kestrelyn's public GraphQL API: we marked `Shipment.legacyTrackingCode` @deprecated in March, and we want to delete it in next week's release. graphql-inspector in CI flags the removal as breaking, so I'm planning to add the suppressRemovalOfDeprecatedField rule. We also have Apollo operation checks on, default settings, and they show zero operations using the field in the last week. Some of our customers are logistics companies that run month-end reconciliation scripts and a few ship mobile apps. Good to go? Please give me the CI change.",
+      "expected_output": "Refuses to treat deprecation plus a one-week usage window as proof of safety: pairs suppressRemovalOfDeprecatedField with a usage rule, widens the window to the longest client cycle, checks the policy's sunset date/notice, notes invisible clients, and records the removal as an approved break with a changelog entry.",
+      "files": [],
+      "expectations": [
+        "States that a @deprecated marker alone does not make removal safe",
+        "Says suppressRemovalOfDeprecatedField should not be enabled on its own without a usage-based rule or sunset check",
+        "Says the default one-week operation-check window is too short for clients with month-end jobs",
+        "Recommends setting the usage window to at least the longest known client cycle (e.g. a month or more)",
+        "Notes that clients with no traffic in the window (mobile app versions, rarely-run scripts, SDK users) are invisible to operation checks",
+        "Ties the removal date to the deprecation policy's sunset date or notice period",
+        "Points out that March-to-next-week may fall short of the policy's notice window, or asks what the notice window is",
+        "Recommends graphql-inspector's considerUsage rule (or registry usage checks) for usage-aware classification",
+        "Requires an acknowledgement/approval record for the removal if it ships as an accepted breaking change",
+        "Requires a changelog entry for the removal classified as breaking, with the action required",
+        "Hands off contacting the remaining callers of the deprecated field to an integration-health / outreach process rather than designing it in this pipeline",
+        "Does not simply provide the CI change enabling suppressRemovalOfDeprecatedField as requested",
+        "Recommends setting or checking a sunset date on the deprecated field before allowing its removal"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Need a breaking-change gate on Fenmoor's public API by Friday - a partner got burned by a renamed field last week and the CTO wants it 'blocked in CI, now'. We have an OpenAPI spec that's hand-written and actually used for docs. We do NOT have any written policy about what counts as breaking; everybody just kind of knows. I've got maybe one engineer-day this week. Can you set up oasdiff for us and also the changelog feed, approvals flow, usage analytics - the full thing?",
+      "expected_output": "Ships only the PR gate this week with a severity map explicitly marked provisional pending a written breaking-change policy, routes the policy work to the versioning-policy skill, and defers the feed, approvals and usage-aware rungs with an explicit ranking.",
+      "files": [],
+      "expectations": [
+        "Flags that there is no written breaking-change definition and that tool defaults would silently become the policy",
+        "Routes writing the breaking-change policy to samber/developer-platform-skills@api-versioning-policy",
+        "Marks the severity map or gate configuration as provisional pending policy sign-off",
+        "Recommends shipping only the PR gate (diff vs main or merge base, fail on ERR) within the one engineer-day",
+        "Defers the changelog feed, approval records and usage analytics to later rungs instead of building them this week",
+        "States an explicit ordering of the automation rungs (e.g. PR gate first, then release diff and declared channel, then approval record, then feed)",
+        "Explains that the deadline (Friday) is what promotes the PR gate alone",
+        "Removes or deletes usage-aware classification from the plan when no per-operation usage data exists, or makes it conditional on having that data",
+        "Includes a concrete oasdiff command or CI step with --fail-on ERR",
+        "Notes that a renamed response field is a removal plus an addition and is caught by the diff as breaking",
+        "Says a named approver (e.g. code owners on the spec path) must sign off any accepted breaking finding",
+        "Asks for or recommends pinning the oasdiff version",
+        "Tells the user the full set they asked for (feed, approvals, usage analytics) does not fit in one engineer-day",
+        "Keeps the gate configuration (severity/levels file) in the repository next to the spec"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Our platform at Corrigan Rail exposes gRPC services, plus a REST/JSON facade generated through google.api.http annotations and grpc-gateway. We run `buf breaking --against '.git#branch=main'` with `breaking: use: [WIRE]` because our internal teams said FILE was too noisy. Partners mostly use the JSON facade. We now want an automated API changelog for partners from this setup. What do we need to change?",
+      "expected_output": "Explains that WIRE misses JSON-breaking renames and that buf ignores google.api.http transcoding changes, raises the category to at least WIRE_JSON, adds a diff of the generated OpenAPI for the HTTP facade, and builds the changelog against the last release, not main.",
+      "files": [],
+      "expectations": [
+        "States that the WIRE category misses changes that break JSON clients, such as field renames",
+        "Recommends at least the WIRE_JSON category because partners use the JSON facade",
+        "States that buf breaking does not check google.api.http (custom option) transcoding annotations",
+        "Recommends also diffing the generated OpenAPI of the HTTP/JSON facade with an OpenAPI diff tool",
+        "Says the partner changelog should be generated against the last released schema/tag rather than main",
+        "Keeps the main-branch comparison for the PR gate only",
+        "Suggests excluding internal-only or unstable packages from the partner gate (e.g. ignore_unstable_packages or audience filtering) rather than weakening the whole category",
+        "Requires entries to be generated from structured diff output with a source reference per entry",
+        "Requires a changelog entry classification of breaking / potentially-breaking / non-breaking",
+        "Requires an approval record for any accepted breaking finding",
+        "Points to the gRPC-specific design skill (public-grpc-api-design) for proto package versioning rather than redesigning it here",
+        "Does not recommend keeping WIRE for the partner-facing gate",
+        "Says partner-facing entries should name the HTTP method and path partners call on the JSON facade, not only the proto RPC"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Velmora runs a public payments API with date-based versions. Today our 'changelog' is a marketing-written HTML page updated whenever product remembers. Two asks: (1) partners' monitoring bots and their coding agents want something machine-readable they can poll, and (2) last quarter our beta `/v1/payouts/instant` and a couple of `x-internal` admin endpoints showed up in public release notes because they live in the same openapi.yaml. Design the publishing side for us.",
+      "expected_output": "Designs a per-version JSON feed and Atom/RSS with stable entry ids and action-required in the feed, a human page per version, audience filtering before generation (stability level, internal marker), and treats an operation gaining the internal marker as a removal.",
+      "files": [],
+      "expectations": [
+        "Proposes a machine-readable JSON feed",
+        "Proposes an Atom or RSS feed in addition to (or alongside) the JSON feed",
+        "Requires stable entry ids (e.g. diff fingerprint or fragment id) so pollers can deduplicate",
+        "Groups entries by API version",
+        "Puts the action-required text in the feed entries themselves, not only on the web page",
+        "Defines an entry schema with fields for version, operation, classification, source, and action required",
+        "Filters internal and beta operations out before generating the public feed (e.g. by x-internal / x-stability-level / filter extension)",
+        "Warns that an operation that gains the internal marker in a new spec appears as a removal and must stay breaking",
+        "Recommends marking the beta endpoint with a stability level so it is excluded from the public gate and feed until GA",
+        "Keeps a human-readable page per version with breaking changes listed first",
+        "Publishes separate feeds per audience (e.g. public vs partner) or explains audience separation",
+        "Hands prose polishing of the human page to the changelog-writing skill rather than marketing rewriting entries",
+        "Keeps the feed generated from structured diff output and declared fragments, not from the marketing page"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Small problem at Pellucid Health: our OpenAPI said `appointment.patient_dob` was optional in the create request, but the server has rejected requests without it since at least January. We fixed the spec in PR #2291 and now oasdiff fails the PR ('request property became required'). Our tech lead says it's a docs fix, so just append the line to oasdiff-ignore.txt and merge - no changelog entry since nothing actually changed for clients. Agree?",
+      "expected_output": "Disagrees with the silent ignore: records an acknowledgement with reason spec-correction, the date the server started enforcing, approver and ticket, generates the ignore line from it, and still publishes a changelog entry because callers and generated SDKs were told something false.",
+      "files": [],
+      "expectations": [
+        "Disagrees that the change needs no changelog entry",
+        "Explains that callers (and SDKs or validators generated from the old spec) relied on the documented optional field",
+        "Classifies the case as a spec correction rather than a new behavior change",
+        "Requires an acknowledgement record instead of a bare appended ignore line",
+        "The acknowledgement record includes an approver",
+        "The acknowledgement record includes a ticket or PR reference (e.g. #2291)",
+        "The acknowledgement record includes the date the server started behaving this way (since January)",
+        "Says the ignore-file line should be generated from the acknowledgement record rather than appended by hand",
+        "Proposes a changelog entry stating patient_dob is required on create and what callers must send",
+        "Mentions that the PR-time fingerprint may differ at release time and the approval should be matched by check, operation and path (or re-recorded) when building the release changelog",
+        "Recommends adding a drift alarm or contract test so the spec cannot diverge from the server again",
+        "Says acknowledgement rows whose change no longer appears in the diff should be removed at the next release review",
+        "Does not simply agree to append the line to oasdiff-ignore.txt and merge"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Driftwood Ledger has a GraphQL API (graphql-inspector in CI) and a gRPC API (buf breaking) and we're moving to date-based versions: 2026-01-15, 2026-04-15, next 2026-07-15. We want ONE public change feed (JSON + Atom) covering both. graphql-inspector's and buf's JSON output have no stable ids, so my plan is to key feed entries on the GraphQL field / proto element name and dedupe on that. Separately, a security fix next month must also reach callers pinned to 2026-01-15 and 2026-04-15. How should entries and ids work?",
+      "expected_output": "Gives a recipe for stable fingerprints from tool output (hash of change type, operation, coordinate, text), maps tool levels to breaking/potentially/non-breaking, scopes entry ids by API version so the same change in several versions does not collapse, uses tag-URI Atom ids, publishes the backported fix as entries in each affected version, and routes the pinned-version change through the versioning policy's exception path with an approval record.",
+      "files": [],
+      "expectations": [
+        "Rejects keying entries on the bare field or element name because different changes to the same element would collide",
+        "Proposes a fingerprint computed as a hash over change type, operation, coordinate/path and message text (or equivalent stable combination)",
+        "Maps graphql-inspector breaking / dangerous / non-breaking to breaking / potentially-breaking / non-breaking classifications",
+        "Maps buf breaking findings to the breaking classification",
+        "Scopes entry ids by API version (e.g. <version>/<fingerprint>) so the same change shipped in several versions keeps one entry per version",
+        "Warns that deduplicating on an unscoped id would drop the security fix entry from one of the pinned versions",
+        "Publishes the security fix as an entry in both 2026-01-15 and 2026-04-15 (and the new version if applicable)",
+        "Says changing behavior for callers pinned to existing versions goes through the versioning policy's exception path",
+        "Requires an approval/acknowledgement record for the security fix if it is breaking",
+        "Uses an IRI (e.g. a tag: URI built from the entry id) for Atom <id> rather than a bare hash",
+        "Keeps the action required text inside the feed entries",
+        "Says the fingerprint mapping code should live in the repository so ids stay stable across runs",
+        "Diffs each version's schema against that version's previous release rather than one diff for all versions",
+        "Builds the fingerprint from structured change values rather than the tool's message text, so a reworded message after a tool upgrade does not re-key every entry"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Can you write our GitHub Actions setup for the Oakhollow public API? Monorepo with four OpenAPI files under api/ (billing, ledger, payouts, identity). Junior dev's draft: `actions/checkout` default settings, `go install github.com/oasdiff/oasdiff@latest`, then `oasdiff breaking origin/main:api/billing.yaml api/billing.yaml` for each file, plus our levels file which has a header comment and a third 'why' column so reviewers understand it. They also want the same job to publish changelog.json to our docs bucket on every merge to main. Fix it up and give me the final YAML.",
+      "expected_output": "Rewrites the workflow with full-history checkout, a pinned oasdiff version, a merge-base baseline per spec (or breaking-files), a two-column levels file generated from a separate human map, --fail-on ERR with annotations, and a separate release job that diffs against the last release tag, builds entries, runs the trace check and publishes only on pass.",
+      "files": [],
+      "expectations": [
+        "Sets fetch-depth: 0 (or otherwise fetches full history) because git-revision baselines need history",
+        "Replaces @latest with a pinned oasdiff version",
+        "Says to review classification changes when bumping the pinned oasdiff version",
+        "Uses the merge base with the target branch (or the PR base) as the PR-gate baseline",
+        "Covers all four spec files, either per file or with oasdiff breaking-files",
+        "States that oasdiff's severity-levels file accepts only check-id and level per line, so the comment and third column must go",
+        "Moves the 'why' column into a separate human-readable severity map that the levels file is generated from",
+        "Uses --fail-on ERR in the PR gate",
+        "Emits PR annotations or a comment (e.g. -f githubactions)",
+        "Does not publish the changelog from the merge-to-main diff; moves publishing to a release job diffing against the last release tag",
+        "Runs entry generation and the trace check before publishing, and publishes only when the trace check passes",
+        "Keeps published changelog entries per spec/API (or per version) rather than one undifferentiated stream",
+        "Passes the generated ignore file (from acknowledgement records) rather than a hand-edited one, or mentions acknowledgement records for accepted breaks",
+        "Ensures the ignore file and acknowledgement list exist before the gate runs (e.g. committed empty at setup, regenerated in the PR job)"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "set up oasdiff in github actions so a PR that breaks openapi.yaml fails, and generate the API changelog per release",
+      "should_trigger": true
+    },
+    {
+      "query": "How do I auto-generate an API changelog from our OpenAPI spec diffs?",
+      "should_trigger": true
+    },
+    {
+      "query": "our graphql-inspector check flags every enum value we add as dangerous, how should we configure it against our compatibility rules",
+      "should_trigger": true
+    },
+    {
+      "query": "we want buf breaking in CI and a partner-facing changelog generated from the proto changes, what's the setup",
+      "should_trigger": true
+    },
+    {
+      "query": "Design a pipeline that detects breaking changes between two versions of our OpenAPI document and publishes a JSON feed of changes",
+      "should_trigger": true
+    },
+    {
+      "query": "our oasdiff ignore file has 80 lines nobody can explain, how do we clean this up and keep an audit trail of accepted breaks",
+      "should_trigger": true
+    },
+    {
+      "query": "which baseline should our spec diff use, main or the last release tag? we use it for both CI and the changelog",
+      "should_trigger": true
+    },
+    {
+      "query": "partners keep getting surprised by API changes even though we have a changelog page, can we automate the record from our spec?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is there a way to make CI fail when someone removes a field from our REST API response?",
+      "should_trigger": true
+    },
+    {
+      "query": "we publish date-based API versions, how do I produce a per-version changelog automatically from the spec",
+      "should_trigger": true
+    },
+    {
+      "query": "our springdoc-generated openapi.json changes on every build even with no code change, so the breaking-change check is noisy",
+      "should_trigger": true
+    },
+    {
+      "query": "openapi-diff vs oasdiff for gating PRs on backward compatibility, and how to map our breaking-change rules onto them",
+      "should_trigger": true
+    },
+    {
+      "query": "Can an LLM write our API release notes from the spec diff without making stuff up? How do we verify it",
+      "should_trigger": true
+    },
+    {
+      "query": "Apollo schema checks say zero operations use the field, ok to delete it in CI?",
+      "should_trigger": true
+    },
+    {
+      "query": "we need a machine-readable changelog that our customers' coding agents can poll for API changes",
+      "should_trigger": true
+    },
+    {
+      "query": "How should we record approvals for intentional breaking changes flagged by our API diff tool in CI?",
+      "should_trigger": true
+    },
+    {
+      "query": "set up asyncapi diff for our event payloads and route unclassified changes somewhere sensible",
+      "should_trigger": true
+    },
+    {
+      "query": "our API changelog lists internal and beta endpoints because they share the spec file, how do we filter them out automatically",
+      "should_trigger": true
+    },
+    {
+      "query": "the spec diff passed but we changed default sort order and partners broke, how do we capture changes that don't touch the spec",
+      "should_trigger": true
+    },
+    {
+      "query": "x-sunset and x-stability-level - how do I use them so oasdiff stops flagging planned removals?",
+      "should_trigger": true
+    },
+    {
+      "query": "Need a GitHub Action that comments the API breaking changes on each PR touching api/openapi.yaml",
+      "should_trigger": true
+    },
+    {
+      "query": "we want stripe-style API changelog entries: version, affected area, breaking or not. how do we generate them from our spec?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I stop our oasdiff upgrade from suddenly reclassifying response enum additions as breaking",
+      "should_trigger": true
+    },
+    {
+      "query": "Generate a changelog of API contract changes between v2.3.0 and v2.4.0 tags of our OpenAPI file and flag the breaking ones",
+      "should_trigger": true
+    },
+    {
+      "query": "our team keeps adding lines to the breaking-change ignore list just to get builds green, what process should replace that",
+      "should_trigger": true
+    },
+    {
+      "query": "how to detect breaking changes in a GraphQL schema in CI with usage data so we don't block on unused fields",
+      "should_trigger": true
+    },
+    {
+      "query": "we generate SDKs with Speakeasy from our spec; how do we gate breaking spec changes and produce an API changelog separate from SDK notes",
+      "should_trigger": true
+    },
+    {
+      "query": "Is a green breaking-change check enough to promise partners nothing broke this release?",
+      "should_trigger": true
+    },
+    {
+      "query": "automate API change detection for our protobuf and grpc-gateway REST facade, partners use the JSON side",
+      "should_trigger": true
+    },
+    {
+      "query": "create an RSS feed of breaking API changes from our openapi spec history",
+      "should_trigger": true
+    },
+    {
+      "query": "we fixed our spec to mark a field required that the server always required; oasdiff fails - just ignore it?",
+      "should_trigger": true
+    },
+    {
+      "query": "design CI for contract diffing across our REST and GraphQL APIs with one changelog at the end",
+      "should_trigger": true
+    },
+    {
+      "query": "what should our severity-levels file for oasdiff contain if our policy says auth changes are breaking",
+      "should_trigger": true
+    },
+    {
+      "query": "pls help, need breaking change detection on our public api spec + auto changelog, we're on gitlab",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I make sure every entry in our generated API changelog actually corresponds to a change in the spec",
+      "should_trigger": true
+    },
+    {
+      "query": "Our API versions are header-based and one codebase serves all of them. How do we diff each version's contract separately?",
+      "should_trigger": true
+    },
+    {
+      "query": "we want to fail the build when a breaking change ships without a major bump of info.version",
+      "should_trigger": true
+    },
+    {
+      "query": "build me a release job that turns the spec diff into changelog entries with action-required text for breaking changes",
+      "should_trigger": true
+    },
+    {
+      "query": "Product asks for an API change feed per customer audience (public vs partner) generated automatically from the OpenAPI files",
+      "should_trigger": true
+    },
+    {
+      "query": "why does oasdiff report one finding for a shared schema used in 200 places and how should the changelog show it",
+      "should_trigger": true
+    },
+    {
+      "query": "what would a declared-change fragment look like for API behavior changes the spec can't express",
+      "should_trigger": true
+    },
+    {
+      "query": "We rename operationIds sometimes. Does that break anything and will our spec diff catch it?",
+      "should_trigger": true
+    },
+    {
+      "query": "wire graphql hive / apollo checks into our PR flow and publish the schema changes as an API changelog",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it ok to diff yesterday's spec against today's every night and post the result as our API changelog?",
+      "should_trigger": true
+    },
+    {
+      "query": "we have optic in CI from 2023, should we keep it for breaking-change detection?",
+      "should_trigger": true
+    },
+    {
+      "query": "How do I treat WARN level findings from oasdiff in the published changelog?",
+      "should_trigger": true
+    },
+    {
+      "query": "set up breaking-change detection for our webhook event schemas described in AsyncAPI and include them in the API changelog",
+      "should_trigger": true
+    },
+    {
+      "query": "what metrics tell us our automated API changelog is missing breaking changes",
+      "should_trigger": true
+    },
+    {
+      "query": "our partners want to subscribe to API changes affecting only the endpoints they use, how do we structure the generated entries",
+      "should_trigger": true
+    },
+    {
+      "query": "The CTO wants every breaking API change blocked unless someone signs it off. How do we implement that in CI with the spec diff?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I collapse 300 near-identical diff lines into readable API changelog entries without losing traceability",
+      "should_trigger": true
+    },
+    {
+      "query": "we need the API changelog to show deprecations with sunset dates pulled from the spec",
+      "should_trigger": true
+    },
+    {
+      "query": "compare two openapi files in CI, fail on breaking, annotate the PR, and keep a record of exceptions",
+      "should_trigger": true
+    },
+    {
+      "query": "our grpc team uses WIRE in buf.yaml, is that enough for a public changelog?",
+      "should_trigger": true
+    },
+    {
+      "query": "migrating from a hand-maintained API changelog to one generated from spec diffs - where do we start?",
+      "should_trigger": true
+    },
+    {
+      "query": "can you write the github workflow that runs oasdiff changelog on release tags and publishes entries.json",
+      "should_trigger": true
+    },
+    {
+      "query": "how should a declared behavior change be versioned when we use date-pinned API versions?",
+      "should_trigger": true
+    },
+    {
+      "query": "we keep breaking clients by tightening validation in handlers; how do we get that into the API changelog automatically",
+      "should_trigger": true
+    },
+    {
+      "query": "set up a drift check so our published OpenAPI spec can't silently diverge from what the API serves, for changelog accuracy",
+      "should_trigger": true
+    },
+    {
+      "query": "our graphql-inspector and buf outputs have no ids, how do we build a stable changelog feed from them",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I give each auto-generated API changelog entry an id that survives rebuilds and multiple API versions",
+      "should_trigger": true
+    },
+    {
+      "query": "oasdiff fails with 'invalid line #1' on our severity levels file, how should that file look",
+      "should_trigger": true
+    },
+    {
+      "query": "what's the right github actions setup for oasdiff on a monorepo with several openapi files",
+      "should_trigger": true
+    },
+    {
+      "query": "we backport a fix to two pinned API versions, how should the generated changelog show it",
+      "should_trigger": true
+    },
+    {
+      "query": "publish an Atom feed of API contract changes per version, what should the entry ids be",
+      "should_trigger": true
+    },
+    {
+      "query": "turn buf breaking results into partner-facing changelog entries",
+      "should_trigger": true
+    },
+    {
+      "query": "our release job should diff the spec against the last tag and fail if any breaking change lacks an approval",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I stop an approval for one breaking change in our oasdiff ignore list from silently covering another",
+      "should_trigger": true
+    },
+    {
+      "query": "merge GraphQL and REST contract changes into one change feed for partners",
+      "should_trigger": true
+    },
+    {
+      "query": "should we run oasdiff with @latest in CI?",
+      "should_trigger": true
+    },
+    {
+      "query": "generate the oasdiff ignore file from a list of approved breaking changes instead of hand editing",
+      "should_trigger": true
+    },
+    {
+      "query": "what's a good JSON schema for machine-readable API changelog entries",
+      "should_trigger": true
+    },
+    {
+      "query": "we want our API contract checks in CI to also tell partners what changed in each release",
+      "should_trigger": true
+    },
+    {
+      "query": "graphql-inspector keeps failing when we remove deprecated fields we already sunset, how do we configure that safely",
+      "should_trigger": true
+    },
+    {
+      "query": "Write the release notes for v3.2 of our CLI from these merged PRs",
+      "should_trigger": false
+    },
+    {
+      "query": "turn this list of commits into a CHANGELOG.md entry following Keep a Changelog",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the migration guide for our v2 to v3 API upgrade with before/after code samples",
+      "should_trigger": false
+    },
+    {
+      "query": "define our API versioning and deprecation policy: URI or header versions, notice windows, sunset headers",
+      "should_trigger": false
+    },
+    {
+      "query": "Which integrations are still calling our deprecated /v1/orders endpoint and how do we reach their owners before sunset?",
+      "should_trigger": false
+    },
+    {
+      "query": "review our REST API design for naming, pagination and error consistency",
+      "should_trigger": false
+    },
+    {
+      "query": "audit our API reference docs for undocumented endpoints and missing examples",
+      "should_trigger": false
+    },
+    {
+      "query": "design the error response format and error codes for our public API",
+      "should_trigger": false
+    },
+    {
+      "query": "how should we design our GraphQL schema so it can evolve without versions",
+      "should_trigger": false
+    },
+    {
+      "query": "design our webhook platform: signing, retries, event versioning",
+      "should_trigger": false
+    },
+    {
+      "query": "we're launching a beta for a new API feature, how do we run the design partner program",
+      "should_trigger": false
+    },
+    {
+      "query": "publish our SDKs to npm and PyPI with proper pre-release channels and release notes",
+      "should_trigger": false
+    },
+    {
+      "query": "set up semantic-release to bump versions and generate CHANGELOG.md from conventional commits",
+      "should_trigger": false
+    },
+    {
+      "query": "write a friendly 'what's new' in-app announcement for our product's new dashboard",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we design a public status page and incident communication for our API",
+      "should_trigger": false
+    },
+    {
+      "query": "generate an OpenAPI spec from our Express routes",
+      "should_trigger": false
+    },
+    {
+      "query": "generate TypeScript types from our OpenAPI file",
+      "should_trigger": false
+    },
+    {
+      "query": "write a blog post announcing our API v4 launch",
+      "should_trigger": false
+    },
+    {
+      "query": "our app's App Store release notes need rewriting for the new version",
+      "should_trigger": false
+    },
+    {
+      "query": "design the rate-limit policy and 429 contract for our API",
+      "should_trigger": false
+    },
+    {
+      "query": "Which SDK languages should we build first for our API?",
+      "should_trigger": false
+    },
+    {
+      "query": "upgrade our app from Stripe API version 2024-06-20 to the latest one",
+      "should_trigger": false
+    },
+    {
+      "query": "we use the Shopify API and need to migrate to the new quarterly version, what changed for us",
+      "should_trigger": false
+    },
+    {
+      "query": "help me fix the breaking changes after upgrading React Router to v7",
+      "should_trigger": false
+    },
+    {
+      "query": "lint our OpenAPI spec with Spectral for naming and description rules",
+      "should_trigger": false
+    },
+    {
+      "query": "set up contract testing with Schemathesis against our OpenAPI spec",
+      "should_trigger": false
+    },
+    {
+      "query": "design our developer portal information architecture",
+      "should_trigger": false
+    },
+    {
+      "query": "what's our public roadmap posture, should we publish upcoming API features",
+      "should_trigger": false
+    },
+    {
+      "query": "how do I version our open-source library: semver or calver, and what's our backport policy",
+      "should_trigger": false
+    },
+    {
+      "query": "write the deprecation email to customers about the sunset of our legacy reporting API",
+      "should_trigger": false
+    },
+    {
+      "query": "design idempotency keys and retry guidance for our payments API",
+      "should_trigger": false
+    },
+    {
+      "query": "set up error dashboards per integration so partners can debug failed calls",
+      "should_trigger": false
+    },
+    {
+      "query": "design our gRPC API package versioning and proto style guide",
+      "should_trigger": false
+    },
+    {
+      "query": "plan the OAuth2 scopes and consent screen for third-party apps",
+      "should_trigger": false
+    },
+    {
+      "query": "diff two JSON config files and show what changed",
+      "should_trigger": false
+    },
+    {
+      "query": "compare two database schema migrations and detect destructive changes",
+      "should_trigger": false
+    },
+    {
+      "query": "set up Dependabot and summarize breaking changes in our dependency upgrades",
+      "should_trigger": false
+    },
+    {
+      "query": "write release notes for our mobile app's 5.0 release for end users",
+      "should_trigger": false
+    },
+    {
+      "query": "Create a changelog page design for our marketing site with nice cards",
+      "should_trigger": false
+    },
+    {
+      "query": "design the sandbox / test mode for our API so developers can simulate failures",
+      "should_trigger": false
+    },
+    {
+      "query": "plan our API monetization: usage-based pricing for API calls",
+      "should_trigger": false
+    },
+    {
+      "query": "help me write a CHANGELOG entry for this single bug fix PR",
+      "should_trigger": false
+    },
+    {
+      "query": "our Kubernetes cluster upgrade removed some APIs, which manifests do we need to fix",
+      "should_trigger": false
+    },
+    {
+      "query": "which of our partners' apps need re-review in the marketplace after the API change",
+      "should_trigger": false
+    },
+    {
+      "query": "set up Terraform provider releases and its changelog for the registry",
+      "should_trigger": false
+    },
+    {
+      "query": "draft a security advisory for a vulnerability in our SDK",
+      "should_trigger": false
+    },
+    {
+      "query": "translate our existing API changelog into Japanese and German",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we measure developer relations success and report it to execs?",
+      "should_trigger": false
+    },
+    {
+      "query": "write a tutorial showing how to call our new invoices endpoint",
+      "should_trigger": false
+    },
+    {
+      "query": "set up Renovate to auto-merge minor dependency updates",
+      "should_trigger": false
+    },
+    {
+      "query": "design a JSON schema for our product catalog import files",
+      "should_trigger": false
+    },
+    {
+      "query": "make our docs show the right content per API version with a version switcher",
+      "should_trigger": false
+    },
+    {
+      "query": "what should our API's breaking-change definition include? we have none written",
+      "should_trigger": false
+    },
+    {
+      "query": "how long should our deprecation notice period be for public API consumers",
+      "should_trigger": false
+    },
+    {
+      "query": "write a newsletter issue summarizing this month's product updates for developers",
+      "should_trigger": false
+    },
+    {
+      "query": "generate a Postman collection from our OpenAPI spec",
+      "should_trigger": false
+    },
+    {
+      "query": "design the event schema naming conventions for our webhooks",
+      "should_trigger": false
+    },
+    {
+      "query": "set up a GitHub release workflow that tags and publishes binaries for our CLI",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I compare the performance of two API versions with load tests?",
+      "should_trigger": false
+    },
+    {
+      "query": "write the GitHub Actions workflow that runs our unit tests and lints our TypeScript",
+      "should_trigger": false
+    },
+    {
+      "query": "pin our GitHub Actions to commit SHAs for supply-chain security",
+      "should_trigger": false
+    },
+    {
+      "query": "design an RSS feed for our engineering blog",
+      "should_trigger": false
+    },
+    {
+      "query": "build a JSON schema for our webhook event payloads",
+      "should_trigger": false
+    },
+    {
+      "query": "how should our SDK's CHANGELOG.md group features and fixes",
+      "should_trigger": false
+    },
+    {
+      "query": "set up a monorepo release process with changesets for our npm packages",
+      "should_trigger": false
+    },
+    {
+      "query": "what's the deprecation timeline we should promise partners for /v1",
+      "should_trigger": false
+    },
+    {
+      "query": "migrate our GraphQL clients after the provider removed a field",
+      "should_trigger": false
+    },
+    {
+      "query": "write the security advisory for the fix we're backporting to old versions",
+      "should_trigger": false
+    },
+    {
+      "query": "design GraphQL schema federation for partner subgraphs",
+      "should_trigger": false
+    },
+    {
+      "query": "generate client SDKs from our protobuf files",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we design pagination for our list endpoints",
+      "should_trigger": false
+    },
+    {
+      "query": "diff two Terraform plans and summarize what changes",
+      "should_trigger": false
+    },
+    {
+      "query": "write release notes for our internal admin UI's sprint 42",
+      "should_trigger": false
+    },
+    {
+      "query": "compare two versions of the JSON config schema our library reads and flag removed keys",
+      "should_trigger": false
+    }
+  ]
+}
