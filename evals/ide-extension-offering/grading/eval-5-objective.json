@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Attributes the complaint to events firing with host telemetry off, and states that VS Code's `telemetry.telemetryLevel` wins over the extension's own setting, which can only narrow collection further.",
+        "evidence": "'the host setting wins, and your setting \"can only narrow collection\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the hand-rolled `fetch` with `env.createTelemetryLogger` or `@vscode/extension-telemetry`, which honour the all, error, crash and off levels, and forbids hand-rolling the gate.",
+        "evidence": "Use `env.createTelemetryLogger` or `@vscode/extension-telemetry`; 'never hand-roll the gate'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the workspace folder path and the git user email from events, stating that no source code, file paths, usernames or tokens may be collected.",
+        "evidence": "'Remove path and email' and 'Collect no source code, file paths, usernames or tokens.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires shipping `telemetry.json` and publishing the event list beside the README.",
+        "evidence": "Hotfix step 4.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prefers server-side measurement through a versioned `User-Agent` on every CLI and API call, in the shape product/version (host version; platform), such as `larkspur-vscode/2.4.0 (vscode 1.104; darwin-arm64)`.",
+        "evidence": "`larkspur-vscode/2.4.0 (vscode 1.104; darwin-arm64)`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the `User-Agent` to product, version and platform, documents that it is sent, and forbids user or workspace identifiers in it.",
+        "evidence": "'product, version and platform only. Never include user or workspace identifiers. Document that it is sent.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to present 41,000 installs as 41k active developers, treating marketplace install counts as acquisition only.",
+        "evidence": "'Use \"41,000 installs\"... Installs measure acquisition only.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the exec-team number with weekly active users by version from the server-side `User-Agent`, plus first-run success and the share of users on supported versions.",
+        "evidence": "Metrics to define list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the bank's IT the extension ID and publisher ID for the `extensions.allowed` allowlist, and publishes both on Larkspur's docs.",
+        "evidence": "Enterprise deployment page with publisher/extension IDs and `extensions.allowed`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires honouring `http.proxy` and custom CAs in the extension and in the CLI it spawns, not only in the extension.",
+        "evidence": "'Pass VS Code's proxy settings to the CLI... The CLI must honour them as well.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents offline `.vsix` install and tests the extension against the VS Code private marketplace the bank uses.",
+        "evidence": "Offline install row and 'Test your install and update flow against a VS Code private marketplace.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a test gate that no usage event fires with host telemetry at `error` or `off`.",
+        "evidence": "Hotfix step 3.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Answers the public complaint by routing through the telemetry logger and publishing the event list, rather than only flipping the default of `larkspur.telemetry.enabled`.",
+        "evidence": "Reply text cites telemetry API and published event list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps `SECURITY.md` and a vulnerability contact on the repository and reviews every `extensionDependencies` and `extensionPack` entry, since each installs with the extension.",
+        "evidence": "SECURITY.md appears but extensionDependencies/extensionPack review is absent.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Attributes the complaint to events firing with host telemetry off, and states that VS Code's `telemetry.telemetryLevel` wins over the extension's own setting, which can only narrow collection further.",
+        "evidence": "\"A user who set VS Code telemetry to off still gets your events\"; own setting \"does not replace the global one\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the hand-rolled `fetch` with `env.createTelemetryLogger` or `@vscode/extension-telemetry`, which honour the all, error, crash and off levels, and forbids hand-rolling the gate.",
+        "evidence": "\"Use vscode.env.createTelemetryLogger\"; \"Never call fetch for analytics anywhere else.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the workspace folder path and the git user email from events, stating that no source code, file paths, usernames or tokens may be collected.",
+        "evidence": "\"Remove workspace folder path and git user email\"; allowlist of payload keys",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires shipping `telemetry.json` and publishing the event list beside the README.",
+        "evidence": "telemetry.json is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prefers server-side measurement through a versioned `User-Agent` on every CLI and API call, in the shape product/version (host version; platform), such as `larkspur-vscode/2.4.0 (vscode 1.104; darwin-arm64)`.",
+        "evidence": "User-Agent is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the `User-Agent` to product, version and platform, documents that it is sent, and forbids user or workspace identifiers in it.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to present 41,000 installs as 41k active developers, treating marketplace install counts as acquisition only.",
+        "evidence": "\"'41k active developers' is wrong... Installs are not people.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the exec-team number with weekly active users by version from the server-side `User-Agent`, plus first-run success and the share of users on supported versions.",
+        "evidence": "It proposes opted-in active installations, not server-side WAU by version.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the bank's IT the extension ID and publisher ID for the `extensions.allowed` allowlist, and publishes both on Larkspur's docs.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires honouring `http.proxy` and custom CAs in the extension and in the CLI it spawns, not only in the extension.",
+        "evidence": "It covers the extension's fetch only and does not mention the spawned CLI.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Documents offline `.vsix` install and tests the extension against the VS Code private marketplace the bank uses.",
+        "evidence": "It publishes a signed .vsix but does not test against the bank's private marketplace.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a test gate that no usage event fires with host telemetry at `error` or `off`.",
+        "evidence": "\"With isTelemetryEnabled false, assert zero network calls.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Answers the public complaint by routing through the telemetry logger and publishing the event list, rather than only flipping the default of `larkspur.telemetry.enabled`.",
+        "evidence": "Reply: \"we now honor telemetry.telemetryLevel... we publish the exact fields in the README\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps `SECURITY.md` and a vulnerability contact on the repository and reviews every `extensionDependencies` and `extensionPack` entry, since each installs with the extension.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

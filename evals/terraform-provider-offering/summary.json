@@ -1,0 +1,450 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "terraform-provider-offering",
+  "scenarios": 10,
+  "expectations_total": 143,
+  "expectations_subjective": 3,
+  "expectations_objective": 140,
+  "pass_rate_with_skill_pct": 87.4,
+  "pass_rate_without_skill_pct": 43.4,
+  "delta_pp": 44.0,
+  "uplift_multiplier": 2.01,
+  "trigger_accuracy_pct": 63.3,
+  "trigger_queries": 128,
+  "trigger_positive_fire_rate": 0.5,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 0.676,
+  "subjective_pass_disagreements": [
+    {
+      "eval_id": 6,
+      "condition": "without_skill",
+      "expectation": "Keeps one resource per API service and prefers many small resources over one holding a whole account.",
+      "pass1": true,
+      "pass2": false
+    }
+  ],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Notes the MIT license file is what makes fork-adopt possible at all, since a repo without an OSI license cannot be forked."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Ranks the paths on more than one axis (effort, value, efficiency, durability stated separately) instead of one blended order."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Runs the API readiness gate before announcing the go, stating the gate can turn 'build now' into 'fix the API first'."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Polls a status function to the target state and fails fast on terminal error states instead of retrying until the deadline."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Checks whether fennimore_origin has Optional+Computed attributes that return a different value after apply, which is what produces the inconsistent-result error, instead of blaming replica lag alone."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the upgrade guide `docs/guides/version-4-upgrade.md` with one section per breaking change, before and after HCL, the exact command where state is involved, and the minimum Terraform and OpenTofu versions."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Gates the release tag on a green nightly acceptance run and a clean regenerated `docs/` tree, which rules out shipping tomorrow without them."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States HashiCorp's OpenAPI generator is a tech preview that produces schemas only, not CRUD, and allows generated schema only for simple synchronous objects with CRUD hand-owned for async or eventually consistent ones."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Orders constructs by value per effort (resources with import, then data sources, then write-only arguments, then ephemeral resources, then identity plus list resources, then actions, then functions) and writes why any rung is skipped."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Decides list versus set per collection from whether the API keeps and means an order, noting the choice cannot change later without a major."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Keeps the provider schemas identical in both muxed servers."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Bumps `terraform-plugin-go`, the framework, mux, SDKv2 and testing modules together."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Places identity plus list resources and actions low in the construct order, after resources with import, data sources, write-only arguments and ephemeral resources, and gates actions on a matching imperative day-2 API operation."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Tests actions through `lifecycle.action_trigger` skipped below Terraform 1.14, and list resources with query-mode steps, asserting against the API since neither writes state."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Identifies payroll runs or records as transactional with no desired state and leaves them out, and asks which objects customers configure once and keep."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Routes the API fixes to the design-review and idempotency skills rather than compensating for them in Go."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Compares three weeks for one Go developer against the roughly ten-week first-release plan and says which interview answer (effort ceiling, deadline) moved the recommendation."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Records the decision, gate matrix and assumptions in a context file or memory so later releases check against them instead of re-deciding."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Confirms the ship decision from at least two of the named signals: a community provider with real downloads and issues, and deals or security reviews asking for a Partner-badged provider."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Fills or runs the community-provider audit (OSI license, attribute names following the API, sets for unordered collections, import for every resource, acceptance tests, share of perpetual-diff issues, released schema versions, plugin SDK, maintainer contact) rather than deciding on downloads alone."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names transfer-adopt as the default rung if the maintainer responds and fork-adopt if silent past the time box, and does not default to a from-scratch rewrite."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Identifies the community provider's invented attribute names (check_frequency_secs versus the API's interval_seconds) as the audit item that lowers the case for adopting, and states that renaming them after adoption is a breaking change: deprecate in a minor, remove in a major."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Ranks the paths on more than one axis (effort, value, efficiency, durability stated separately) instead of one blended order."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that any adoption changes the provider address, that users keep their schema and state shape but must edit `source` and run replace-provider, and keeps the schema compatible across that address change so users face one migration at a time."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Lists the Partner badge requirements: the Technology Partner Program, the Plugin Framework, nightly acceptance tests in GitHub Actions, and fixing critical issues within 48 hours and others within 5 business days."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Schedules the mux migration of the core resources from SDKv2 to the Plugin Framework before the Partner badge request, because the adopted provider is on SDKv2."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Runs the API readiness gate before announcing the go, stating the gate can turn 'build now' into 'fix the API first'."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Says which interview answer moved which rung (the deal deadline, the Partner target, the headcount) rather than presenting the path as context-free."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the vendor owes state upgraders from every schema version the community provider has released."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Classifies signing_secret as user-supplied and never returned by the API, prescribing a write-only argument plus a `signing_secret_wo_version` trigger attribute."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Because the minimum Terraform is 1.5 (below 1.11), ships a `Sensitive` attribute beside the write-only one, `ConflictsWith` between them, and steers users with the `PreferWriteOnlyAttribute` validator."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends asking the API team to let callers supply the integration token, which is the only way to make it write-only and remove it from state."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Explicitly refuses write-only for `notes` because it is not a secret and write-only removes drift detection and plan visibility."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that `Sensitive: true` alone only hides a value in plan output and still stores it in plaintext state."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Adds acceptance checks asserting the write-only value reached the API and is absent from state, and that bumping `signing_secret_wo_version` triggers an update."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires two consecutive good reads for origin because the API sits behind replicas."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Diagnoses fennimore_zone as asynchronous completion and flags the 202 with no object ID as a readiness-gate FAIL with no provider-side compensation: the API must return the ID."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains the orphan risk: when polling times out with no ID in state the next apply creates a duplicate, whereas with the ID in state Terraform taints the resource and replaces it."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Prescribes writing the object ID to state before polling once the API returns it in the 202 body."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States an async create cannot be made idempotent provider-side, since look-up-by-unique-name before retrying only works for synchronous creates."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Sizes the zone retry window from the published 2-minute propagation time (about three times it) and operation timeouts at about twice the worst case observed in the sandbox, naming and documenting each constant."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Polls a status function to the target state and fails fast on terminal error states instead of retrying until the deadline."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Matches API errors by type or status code, never by message text."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Checks whether fennimore_origin has Optional+Computed attributes that return a different value after apply, which is what produces the inconsistent-result error, instead of blaming replica lag alone."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Tracks flake rate per resource and feeds the race back to the API team as a bug customers will hit in production."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires a schema `Version` bump and a state upgrader for the list-to-set change, implemented from every prior released schema version straight to the current one because the framework does not chain upgraders."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects 'users just re-import' for the role split; ships `larkspur_role_binding` beside the existing type, deprecates the old shape, and implements a state mover so users write `moved` blocks."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Classifies validation stricter than the API (rejecting spaces the API accepts) as a major, and distinguishes it from a new validation that only rejects values the API already rejects, which is a minor."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Writes the `DeprecationMessage` as the action to take, for example 'Use `color` instead. `colour` will be removed in v4.'"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Turns the API's region sunset into a provider deprecation shipped one minor ahead of the removal, aligned with the API versioning policy."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the '## Changes' bulleted changelog and prescribes the categories in order (BREAKING CHANGES for majors only, NOTES, FEATURES, ENHANCEMENTS, BUG FIXES) with entries shaped `* resource/<type>: <message> [GH-<number>]`."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Caps majors at one per year and stages v4 behind an opt-in beta tag such as `v4.0.0-beta1`."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the upgrade guide `docs/guides/version-4-upgrade.md` with one section per breaking change, before and after HCL, the exact command where state is involved, and the minimum Terraform and OpenTofu versions."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Releases a final 3.x minor that deprecates everything 4.0 removes, and keeps security and critical fixes on 3.x for a stated window."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires upgrade tests that apply with the last released 3.x, plan with the new build and expect no changes, from each schema version that has a state upgrader."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects `release.draft: true`, stating GoReleaser already creates a draft, uploads every asset and then publishes, and the Terraform Registry never ingests a draft release."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires building at minimum linux, darwin, windows and freebsd on amd64 and arm64, stating a missing pair fails `init` on that platform."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Prescribes submitting the provider and the key through the web issue forms on the opentofu/registry repository, stating submissions created by API, CLI or pull request are closed unprocessed and the submitter must be a public member of the GitHub org."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that without a registered OpenTofu key, tofu installs with GPG validation skipped and users who set `OPENTOFU_ENFORCE_GPG_VALIDATION=true` cannot install the provider at all."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Signs the `_SHA256SUMS` checksum file with a detached binary signature (not armored) using the imported key's fingerprint."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Sets an expiry on the signing key with a renewal reminder, keeps an offline backup and a revocation certificate, and notes renewing means re-registering the public key on both registries."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Gates the release tag on a green nightly acceptance run and a clean regenerated `docs/` tree, which rules out shipping tomorrow without them."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds a plural `marrowgate_contacts` data source for the many-match case, which returns empty without error."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Fills a resource map with one row per object carrying construct, ID and import grammar, mutable versus replace-only fields, preserved fields, secrets kind, list or set per collection, consistency class and timeouts."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Orders constructs by value per effort (resources with import, then data sources, then write-only arguments, then ephemeral resources, then identity plus list resources, then actions, then functions) and writes why any rung is skipped."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Decides list versus set per collection from whether the API keeps and means an order, noting the choice cannot change later without a major."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Removes the three `ExpectNonEmptyPlan: true` settings and fixes the tag ordering in the provider (a set for the unordered collection, or normalization), stating a PR that adds `ExpectNonEmptyPlan` must link the API bug it works around."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the harness already re-plans after every apply step and fails on a non-empty plan, and that this default is what catches perpetual diffs."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Adds per resource: a `_disappears` test, an update test per mutable attribute, a replacement test per `RequiresReplace` attribute, and an import step with `ImportStateVerify` at the end of `_basic`."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Adds upgrade tests that apply with the last released version through `ExternalProviders`, then plan with the new build through `ProtoV6ProviderFactories` and expect an empty plan."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Tests against the oldest claimed Terraform version as well as the latest, and adds a `tofu` lane by pointing the harness at the tofu binary with `TF_ACC_TERRAFORM_PATH`."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the Partner badge requires nightly acceptance tests in GitHub Actions, the Plugin Framework, the Technology Partner Program, and fixing critical issues within 48 hours and others within 5 business days."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Lays out the cadence: every PR runs build, lint, unit tests, a docs regeneration check and a no-new-`ExpectNonEmptyPlan` check; a label or maintainer comment runs acceptance tests for touched resources; nightly runs the full suite, sweepers and upgrade tests; releases only from a commit with a green nightly."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Adds import config generation checks: apply, then run an `import` block with `terraform plan -generate-config-out` and validate the generated HCL with `terraform validate`."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Uses typed state checks (`statecheck.ExpectKnownValue` with `knownvalue` matchers) and `plancheck.ExpectResourceAction` on in-place update steps, and asserts sensitive values never appear in state."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Tracks flake rate per resource and fixes flakes with waiters in the provider, never with test-level retries."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Adds data source `_basic` tests proving the singular form errors on zero and on several matches and the plural form returns empty without error."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the precedence, highest first: provider block, environment variables, shared credentials file, platform identity, and resolves secrets as a complete set rather than mixing sources."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Removes the POST /v1/sessions call from provider configure, stating write calls at configure time fail under least-privilege credentials and run on every plan."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Validates credentials eagerly with one cheap identity call at configure time behind a `skip_credentials_validation` flag, skipped when any credential attribute is unknown at plan."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names every credential source tried plus the docs URL in the error when no credentials resolve, and never logs secret values."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Documents a safe `-parallelism` value for large configurations, noting Terraform defaults to 10 concurrent operations."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Retries only the typed 429 with its `Retry-After` window and does not wrap the storm in a broad retry of every error class."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Records 'documented rate limits' as a readiness-gate row and routes the quota design itself to the rate-limit policy skill rather than inventing quotas inside the provider."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Names the migration traps: blocks must stay blocks because nested attributes change HCL syntax, null must be decided explicitly where SDKv2 collapsed unset values into zero values, and every attribute name, type and `id` must be kept."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Keeps the provider schemas identical in both muxed servers."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Bumps `terraform-plugin-go`, the framework, mux, SDKv2 and testing modules together."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects list resources and actions for every resource; Partner Premier requires at least one of identity plus list resources, ephemeral resources, or actions, plus an SBOM."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Places identity plus list resources and actions low in the construct order, after resources with import, data sources, write-only arguments and ephemeral resources, and gates actions on a matching imperative day-2 API operation."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Applies the cut order when the two sprints run out: actions and functions first, then list resources, then the least-used data sources, never import support or upgrade tests."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Adds the SBOM through a GoReleaser `sboms` section (Syft, SPDX or CycloneDX) and confirms the expected per-OS layout with the partner program before relying on it."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Adds resource identity as an addition on Terraform and OpenTofu 1.12+, never as the only import path."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Tests actions through `lifecycle.action_trigger` skipped below Terraform 1.14, and list resources with query-mode steps, asserting against the API since neither writes state."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Re-checks OpenTofu's changelog for construct parity before each major."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Identifies payroll runs or records as transactional with no desired state and leaves them out, and asks which objects customers configure once and keep."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Routes the API fixes to the design-review and idempotency skills rather than compensating for them in Go."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Compares three weeks for one Go developer against the roughly ten-week first-release plan and says which interview answer (effort ceiling, deadline) moved the recommendation."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Asks the interview questions before designing (existing provider, demand evidence, long-lived objects, API shape per object, owner and sandbox, target tier and minimum versions, deadline and effort ceiling) and marks dependent gate rows UNKNOWN where answers are missing."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Records the decision, gate matrix and assumptions in a context file or memory so later releases check against them instead of re-deciding."
+      }
+    ]
+  }
+}

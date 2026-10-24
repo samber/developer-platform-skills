@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States 3.2.0 cannot carry these changes, applying the test 'does an unchanged configuration plus existing state produce a diff, an error or a different object after upgrading' and concluding major.",
+        "evidence": "'The skill's test is whether an unchanged configuration plus existing state gives a diff, an error, or a different object... Any yes means major.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the optional-attribute rename recipe for colour to color: add `color`, deprecate `colour`, `ConflictsWith` between them, read whichever is set, remove `colour` only at the next major.",
+        "evidence": "'add `color` as Optional, with `ConflictsWith`... Deprecate `colour`... Read whichever one is set.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the list-to-set change on `subjects` as an incompatible type change that requires a major.",
+        "evidence": "'List-to-set is an incompatible type change.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a schema `Version` bump and a state upgrader for the list-to-set change, implemented from every prior released schema version straight to the current one because the framework does not chain upgraders.",
+        "evidence": "'write a state upgrader from every released schema version straight to the current one. The framework does not chain them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects dropping `legacy_sync` in a minor even though telemetry shows no users, stating the Registry cannot tell who pins it; deprecate in a minor, remove in the next major.",
+        "evidence": "'the Registry cannot tell you who pins an old config. Never remove in a minor'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'users just re-import' for the role split; ships `larkspur_role_binding` beside the existing type, deprecates the old shape, and implements a state mover so users write `moved` blocks.",
+        "evidence": "'ship the new resource beside the old one... Ship a state mover... Nobody has to re-import.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies validation stricter than the API (rejecting spaces the API accepts) as a major, and distinguishes it from a new validation that only rejects values the API already rejects, which is a minor.",
+        "evidence": "'validation stricter than the API'; 'Once the API rejects them, the provider rule becomes a minor.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the `DeprecationMessage` as the action to take, for example 'Use `color` instead. `colour` will be removed in v4.'",
+        "evidence": "'\"Use `color` instead. `colour` will be removed in v4.\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Turns the API's region sunset into a provider deprecation shipped one minor ahead of the removal, aligned with the API versioning policy.",
+        "evidence": "'Deprecate it one minor ahead of the API sunset.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the '## Changes' bulleted changelog and prescribes the categories in order (BREAKING CHANGES for majors only, NOTES, FEATURES, ENHANCEMENTS, BUG FIXES) with entries shaped `* resource/<type>: <message> [GH-<number>]`.",
+        "evidence": "Prescribes ordered categories, BREAKING in majors only, and `* <subsystem>: <message> [GH-n]`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Caps majors at one per year and stages v4 behind an opt-in beta tag such as `v4.0.0-beta1`.",
+        "evidence": "'one major per year at most'; 'Stage it as `v4.0.0-beta1` behind an opt-in.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the upgrade guide `docs/guides/version-4-upgrade.md` with one section per breaking change, before and after HCL, the exact command where state is involved, and the minimum Terraform and OpenTofu versions.",
+        "evidence": "Names `docs/guides/version-4-upgrade.md` with before/after HCL and commands, but never mentions minimum Terraform and OpenTofu versions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Releases a final 3.x minor that deprecates everything 4.0 removes, and keeps security and critical fixes on 3.x for a stated window.",
+        "evidence": "The 3.2.0 deprecation plan; 'Keep security fixes flowing on 3.x for a stated window.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires upgrade tests that apply with the last released 3.x, plan with the new build and expect no changes, from each schema version that has a state upgrader.",
+        "evidence": "'State upgrade tests: apply with the last 3.x, plan with the 4.0 build, expect no changes.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States 3.2.0 cannot carry these changes, applying the test 'does an unchanged configuration plus existing state produce a diff, an error or a different object after upgrading' and concluding major.",
+        "evidence": "\"Every item except the `region` deprecation breaks existing configs or state\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the optional-attribute rename recipe for colour to color: add `color`, deprecate `colour`, `ConflictsWith` between them, read whichever is set, remove `colour` only at the next major.",
+        "evidence": "\"Add `color` and deprecate `colour`. Keep both, with `ConflictsWith`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the list-to-set change on `subjects` as an incompatible type change that requires a major.",
+        "evidence": "Item 2 listed as breaking; needs 4.0.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a schema `Version` bump and a state upgrader for the list-to-set change, implemented from every prior released schema version straight to the current one because the framework does not chain upgraders.",
+        "evidence": "Mentions a version bump and an upgrader but not every-version requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects dropping `legacy_sync` in a minor even though telemetry shows no users, stating the Registry cannot tell who pins it; deprecate in a minor, remove in the next major.",
+        "evidence": "\"'nobody' is a guess, not a guarantee\"; \"Deprecate `legacy_sync`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'users just re-import' for the role split; ships `larkspur_role_binding` beside the existing type, deprecates the old shape, and implements a state mover so users write `moved` blocks.",
+        "evidence": "\"users must re-import\"; no mover.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies validation stricter than the API (rejecting spaces the API accepts) as a major, and distinguishes it from a new validation that only rejects values the API already rejects, which is a minor.",
+        "evidence": "Treats as breaking but gives no distinction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes the `DeprecationMessage` as the action to take, for example 'Use `color` instead. `colour` will be removed in v4.'",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Turns the API's region sunset into a provider deprecation shipped one minor ahead of the removal, aligned with the API versioning policy.",
+        "evidence": "Deprecates in 4.0.0, removes in 5.0.0.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the '## Changes' bulleted changelog and prescribes the categories in order (BREAKING CHANGES for majors only, NOTES, FEATURES, ENHANCEMENTS, BUG FIXES) with entries shaped `* resource/<type>: <message> [GH-<number>]`.",
+        "evidence": "Only suggests BREAKING: prefix.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps majors at one per year and stages v4 behind an opt-in beta tag such as `v4.0.0-beta1`.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the upgrade guide `docs/guides/version-4-upgrade.md` with one section per breaking change, before and after HCL, the exact command where state is involved, and the minimum Terraform and OpenTofu versions.",
+        "evidence": "Generic guide only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Releases a final 3.x minor that deprecates everything 4.0 removes, and keeps security and critical fixes on 3.x for a stated window.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires upgrade tests that apply with the last released 3.x, plan with the new build and expect no changes, from each schema version that has a state upgrader.",
+        "evidence": "Only \"test the 3.x \u2192 4.0.0 state upgrade against a real state file\".",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

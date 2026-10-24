@@ -1,0 +1,414 @@
+{
+  "skill_name": "stackoverflow-playbook",
+  "description": "Runs a developer-tools vendor's public presence on Stack Overflow - product-tag ownership, staff answering strategy, affiliation disclosure and self-promotion limits, reputation gates, the generative-AI content ban, backlog triage, and canonical self-answered Q&A that ranks in search. Use whenever the user mentions their product tag on Stack Overflow, staff answering there, unanswered questions in their tag, staff answers flagged as spam, or \"is Stack Overflow still worth it for our product\" - even if they only say \"our tag is a mess\". Not Stack Internal, ads or the Developer Survey. Do NOT use for getting your own docs cited by AI - use samber/developer-relations-skills@developer-docs-ai-visibility; for docs error pages use samber/developer-relations-skills@developer-troubleshooting-docs.",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "Our Stack Overflow tag has 300 unanswered questions going back to 2018. How do we clear it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Three engineers at my company want to start answering questions in our product's tag on SO. What do they need to know before they post?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "A support engineer at our company just had four answers deleted on Stack Overflow with a spam flags notice. He always links to our docs. What went wrong?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "is stack overflow still worth our devrel hours in 2026 or should we move the time to docs",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "The tag excerpt for our product on Stack Overflow reads like an ad. What should it say instead?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Can we draft answers to questions about our SDK with an LLM if an engineer reviews every one before posting?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Write the self-answered Q&A for the error our customers hit most so it's the thing people find when they search it.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we get notified the same day when a new question shows up in our product's tag?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Someone keeps answering questions in our tag by recommending a competitor instead of us. What are we allowed to do about it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want people who ask ChatGPT how to use our CLI to get the right answer. Does keeping our Stack Overflow tag in shape help with that?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our stack overflow tag is a mess",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How much reputation does our engineer need to close duplicates in our product tag by herself?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we put bounties on the hardest unanswered questions in our tag?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "The accepted answer on the top thread about our product is five years old and wrong. Can our engineer just edit it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Give me a weekly routine for a solo DevRel who has to keep a vendor tag on Stack Overflow alive.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "What should I report to leadership about our Stack Overflow presence each quarter?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "There are questions about our product on es.stackoverflow.com in Spanish. Do we answer those too, and in which language?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "People keep filing bug reports as Stack Overflow questions in our tag. How should we handle them?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "I just joined as developer advocate, 1 reputation on Stack Overflow, and our company tag has 90 open questions. Where do I start?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Do we have to say we work at the company in every Stack Overflow answer, or is it enough that the profile says so?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we join a Stack Overflow Collective for our database product?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do I query the Stack Exchange Data Explorer for the highest-view unanswered questions in our tag?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We'd like one shared 'AcmeSupport' account on Stack Overflow that the whole support team posts from. How do we set it up?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Questions about our old v2 SDK still get thousands of views on Stack Overflow and every answer is outdated.",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Support tickets repeat the same handshake error every week. Can we deflect them with a canonical answer on Stack Overflow?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our docs error page for 'invalid_grant' gets traffic but nobody resolves the issue from it. How should it be written?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "ChatGPT cites a competitor's docs instead of ours when people ask how to do things with our API. How do we fix that?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Build one community health dashboard that covers Discord, GitHub Discussions and Stack Overflow together.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're rolling out Stack Overflow for Teams internally. How do we get engineers to actually use it?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we buy an advertising package on Stack Overflow to reach backend developers?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Pull the latest Stack Overflow Developer Survey numbers on database popularity for a board slide.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "My recursive Java method throws StackOverflowError on large inputs. How do I fix it?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our GitHub stars are flat and the Discussions tab on our SDK repo is empty. What should we do?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our API errors just say 400 Bad Request with no code. How should we design the error taxonomy?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we engage on r/devops about our tool without getting banned for self-promotion?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write the Show HN post for our SDK launch.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we get our own docs pages to rank on Google for the error strings our users search?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "I want to grow my personal Stack Overflow reputation to 10k to help my job search.",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Should we open GitHub Discussions on our SDK repository for Q&A?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our status page didn't tell customers we were down for 40 minutes. How do we fix incident comms?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write a SECURITY.md and disclosure policy for our open-source SDK.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our listing on Zapier's app directory isn't converting. How do we improve it?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want to post our engineering job openings where developers hang out, including Stack Overflow. Where should we advertise?",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Set up a Slack community for developers using our platform.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Build a nightly job that loads the Stack Exchange data dump into our warehouse for a research project.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How should we triage feature requests that come in from support, Discord and sales?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our docs need a version switcher for v1 and v2.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Rust program panics with 'thread main has overflowed its stack' when parsing a deep JSON tree.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we license Stack Overflow's data through OverflowAPI to train our support bot?",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "A user in our Discord keeps harassing other members. How do we handle the moderation?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 50,
+    "passed": 38,
+    "failed": 12
+  }
+}

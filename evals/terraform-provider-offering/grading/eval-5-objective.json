@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Diagnoses the 'key invalid' rejection as GnuPG's default ECC (ed25519) key, which the Terraform Registry rejects, and prescribes a dedicated RSA 4096 key (RSA or DSA only) instead of retrying the upload.",
+        "evidence": "'`gpg --quick-generate-key` with defaults makes an ECC (ed25519) key. The Registry accepts only RSA or DSA... RSA and RSA, 4096 bits.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `release.draft: true`, stating GoReleaser already creates a draft, uploads every asset and then publishes, and the Terraform Registry never ingests a draft release.",
+        "evidence": "'The Registry never ingests a draft release... GoReleaser already creates a draft, uploads every asset, then publishes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires building at minimum linux, darwin, windows and freebsd on amd64 and arm64, stating a missing pair fails `init` on that platform.",
+        "evidence": "'linux, darwin, windows and freebsd, each on amd64 and arm64'; init failure message.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'OpenTofu mirrors the Terraform Registry' assumption: the OpenTofu registry indexes GitHub releases, but the signing key is not there until the vendor submits it.",
+        "evidence": "'OpenTofu does not mirror the Terraform Registry for keys.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes submitting the provider and the key through the web issue forms on the opentofu/registry repository, stating submissions created by API, CLI or pull request are closed unprocessed and the submitter must be a public member of the GitHub org.",
+        "evidence": "'Submissions made by API, CLI or pull request are closed unprocessed'; 'public member of that org'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that without a registered OpenTofu key, tofu installs with GPG validation skipped and users who set `OPENTOFU_ENFORCE_GPG_VALIDATION=true` cannot install the provider at all.",
+        "evidence": "'tofu installs your provider with GPG validation skipped. Anyone who sets OPENTOFU_ENFORCE_GPG_VALIDATION=true cannot install it'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects re-tagging v1.0.0: never delete, retag or re-upload a released version; ship v1.0.1 instead, because a mutated version breaks lock files and `init`.",
+        "evidence": "'Never retag v1.0.0. If it's broken, ship v1.0.1.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the oakhollow-eng organization as a namespace risk and requires publishing under the organization that will own the provider for its whole life, since Registry namespaces follow the GitHub owner and a later move forces every user through `terraform state replace-provider`.",
+        "evidence": "'Decide first: which GitHub org owns the provider?'... replace-provider consequence.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires `terraform-registry-manifest.json` with protocol `6.0` at the repo root, carried into the release assets renamed `<name>_<version>_manifest.json`.",
+        "evidence": "'`{\"version\":1,\"metadata\":{\"protocol_versions\":[\"6.0\"]}}`'; 'manifest file renamed to `_manifest.json`'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rehearses with a local GoReleaser snapshot build and then a prerelease tag such as `v0.1.0-beta1` before the real tag, noting range constraints never select prereleases.",
+        "evidence": "'`v0.1.0-beta1`... Range constraints never select prereleases'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins every action to a full commit SHA because the workflow holds the signing key, limits the job to `permissions: contents: write`, and stores the key as `GPG_PRIVATE_KEY` and `PASSPHRASE` secrets.",
+        "evidence": "'Pin actions to full commit SHAs'; 'permissions: contents: write'; 'GPG_PRIVATE_KEY... PASSPHRASE'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Signs the `_SHA256SUMS` checksum file with a detached binary signature (not armored) using the imported key's fingerprint.",
+        "evidence": "'`_SHA256SUMS` file with a binary (not armored) detached `.sig`'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets an expiry on the signing key with a renewal reminder, keeps an offline backup and a revocation certificate, and notes renewing means re-registering the public key on both registries.",
+        "evidence": "'Set an expiry and a calendar reminder. Renewing a key means re-registering it on both registries... offline backup and a revocation certificate.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Verifies both `terraform init` and `tofu init` on a clean machine after tagging and checks both registries list the version.",
+        "evidence": "'Verify both registries list the version.'; 'terraform init and tofu init'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gates the release tag on a green nightly acceptance run and a clean regenerated `docs/` tree, which rules out shipping tomorrow without them.",
+        "evidence": "Release checklist asks for 'acceptance suite is green on the release commit' and regenerated docs, but never mentions a green nightly run.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Diagnoses the 'key invalid' rejection as GnuPG's default ECC (ed25519) key, which the Terraform Registry rejects, and prescribes a dedicated RSA 4096 key (RSA or DSA only) instead of retrying the upload.",
+        "evidence": "\"Recent GnuPG defaults to ed25519\"; `rsa4096`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `release.draft: true`, stating GoReleaser already creates a draft, uploads every asset and then publishes, and the Terraform Registry never ingests a draft release.",
+        "evidence": "Says \"Plan around `draft: true`\" and manually publish.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires building at minimum linux, darwin, windows and freebsd on amd64 and arm64, stating a missing pair fails `init` on that platform.",
+        "evidence": "Adds darwin/arm64, linux/arm64, windows/amd64; no freebsd.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'OpenTofu mirrors the Terraform Registry' assumption: the OpenTofu registry indexes GitHub releases, but the signing key is not there until the vendor submits it.",
+        "evidence": "\"OpenTofu doesn't mirror the Terraform Registry... form asks for your signing key.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes submitting the provider and the key through the web issue forms on the opentofu/registry repository, stating submissions created by API, CLI or pull request are closed unprocessed and the submitter must be a public member of the GitHub org.",
+        "evidence": "Mentions the form only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that without a registered OpenTofu key, tofu installs with GPG validation skipped and users who set `OPENTOFU_ENFORCE_GPG_VALIDATION=true` cannot install the provider at all.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects re-tagging v1.0.0: never delete, retag or re-upload a released version; ship v1.0.1 instead, because a mutated version breaks lock files and `init`.",
+        "evidence": "\"Don't re-tag v1.0.0. Roll forward to v1.0.1.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the oakhollow-eng organization as a namespace risk and requires publishing under the organization that will own the provider for its whole life, since Registry namespaces follow the GitHub owner and a later move forces every user through `terraform state replace-provider`.",
+        "evidence": "\"the provider will be `oakhollow-eng/oakhollow`... Renaming later means republishing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires `terraform-registry-manifest.json` with protocol `6.0` at the repo root, carried into the release assets renamed `<name>_<version>_manifest.json`.",
+        "evidence": "`{\"version\":1,\"metadata\":{\"protocol_versions\":[\"6.0\"]}}`, copied to `_manifest.json`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rehearses with a local GoReleaser snapshot build and then a prerelease tag such as `v0.1.0-beta1` before the real tag, noting range constraints never select prereleases.",
+        "evidence": "\"Tag `v1.0.0-rc1` first... `goreleaser release --snapshot --clean`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins every action to a full commit SHA because the workflow holds the signing key, limits the job to `permissions: contents: write`, and stores the key as `GPG_PRIVATE_KEY` and `PASSPHRASE` secrets.",
+        "evidence": "\"Pin each action to a full commit SHA\"; \"`permissions: contents: write`\"; `GPG_PRIVATE_KEY`, `PASSPHRASE`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Signs the `_SHA256SUMS` checksum file with a detached binary signature (not armored) using the imported key's fingerprint.",
+        "evidence": "Says detached but not binary/unarmored.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets an expiry on the signing key with a renewal reminder, keeps an offline backup and a revocation certificate, and notes renewing means re-registering the public key on both registries.",
+        "evidence": "Backup and revocation cert yes; no renewal reminder or re-registration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Verifies both `terraform init` and `tofu init` on a clean machine after tagging and checks both registries list the version.",
+        "evidence": "\"Run `terraform init` and `tofu init` from a scratch directory\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gates the release tag on a green nightly acceptance run and a clean regenerated `docs/` tree, which rules out shipping tomorrow without them.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

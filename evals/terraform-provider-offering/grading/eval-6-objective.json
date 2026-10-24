@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects shipping everything generated from the spec as v1, stating generation solves coverage but not semantics (normalization, sets, write-once fields, propagation delays), and gates each generated resource on its own acceptance tests.",
+        "evidence": "'A generated schema inherits every spec gap as a perpetual diff'; 'Why not generated, full coverage'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States HashiCorp's OpenAPI generator is a tech preview that produces schemas only, not CRUD, and allows generated schema only for simple synchronous objects with CRUD hand-owned for async or eventually consistent ones.",
+        "evidence": "Says 'use it for schema and model scaffolding on simple synchronous objects' but never says it is a tech preview or that it produces no CRUD.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Leaves messages, sends and delivery events out of the resource map as transactional records with no desired state to converge to.",
+        "evidence": "'Transactional records have no desired state to converge to.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes v1 to the five to fifteen objects customers configure once and keep (workspaces, segments, templates, team members, sending domain) rather than all 180 endpoints.",
+        "evidence": "'Ship a hand-owned core of about 6 resources.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects offering both an inline `members` list and a `marrowgate_workspace_member` attachment resource for the same collection without a conflict warning in both docs, because they fight over the list on every apply.",
+        "evidence": "'pick one... they fight over the list on every apply. Ship the attachment resource only.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `marrowgate_template_state` as a separate resource and makes pause/unpause an attribute of `marrowgate_template`.",
+        "evidence": "'Put it on `marrowgate_template` as `paused` or `status`'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the singular contact data source returning the first of several matches, stating that makes plans nondeterministic; zero matches and several matches must both error.",
+        "evidence": "'\"First match\" makes plans nondeterministic'; errors on zero and several.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a plural `marrowgate_contacts` data source for the many-match case, which returns empty without error.",
+        "evidence": "'ship a plural `marrowgate_contacts`... Zero results is valid there.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `display_label` and requires attribute names as the snake_case of the API field names (`title`), because names are public API and renaming one later is a major.",
+        "evidence": "'Attribute names are snake_case of the API's field names... Every rename is a major-version change later.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Models the account-level sending-domain setting as a resource whose Create adopts the setting and whose Delete resets it to the documented default.",
+        "evidence": "'a resource whose Create adopts the setting and whose Delete resets it to the documented default.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fills a resource map with one row per object carrying construct, ID and import grammar, mutable versus replace-only fields, preserved fields, secrets kind, list or set per collection, consistency class and timeouts.",
+        "evidence": "Resource map table with construct, ID/import, mutable, replace-only, preserved, secrets, collections, consistency, timeouts.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders constructs by value per effort (resources with import, then data sources, then write-only arguments, then ephemeral resources, then identity plus list resources, then actions, then functions) and writes why any rung is skipped.",
+        "evidence": "Lists skipped rungs with reasons, but never states the full ordered ladder.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Decides list versus set per collection from whether the API keeps and means an order, noting the choice cannot change later without a major.",
+        "evidence": "Chooses set/list per collection but never states the choice cannot change later without a major.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects shipping everything generated from the spec as v1, stating generation solves coverage but not semantics (normalization, sets, write-once fields, propagation delays), and gates each generated resource on its own acceptance tests.",
+        "evidence": "\"Specs do not say which fields are computed, sensitive, immutable... You must decide each one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States HashiCorp's OpenAPI generator is a tech preview that produces schemas only, not CRUD, and allows generated schema only for simple synchronous objects with CRUD hand-owned for async or eventually consistent ones.",
+        "evidence": "\"still experimental. Use it for schema skeletons... Hand-write the CRUD layer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves messages, sends and delivery events out of the resource map as transactional records with no desired state to converge to.",
+        "evidence": "\"append-only and immutable. They have no desired state\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes v1 to the five to fifteen objects customers configure once and keep (workspaces, segments, templates, team members, sending domain) rather than all 180 endpoints.",
+        "evidence": "\"180 endpoints become about 5 resources and 3-4 data sources.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects offering both an inline `members` list and a `marrowgate_workspace_member` attachment resource for the same collection without a conflict warning in both docs, because they fight over the list on every apply.",
+        "evidence": "\"Ship only `marrowgate_workspace_member`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `marrowgate_template_state` as a separate resource and makes pause/unpause an attribute of `marrowgate_template`.",
+        "evidence": "\"Put `paused` (bool) on `marrowgate_template`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the singular contact data source returning the first of several matches, stating that makes plans nondeterministic; zero matches and several matches must both error.",
+        "evidence": "\"Zero matches: error. More than one: error\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a plural `marrowgate_contacts` data source for the many-match case, which returns empty without error.",
+        "evidence": "Not proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects `display_label` and requires attribute names as the snake_case of the API field names (`title`), because names are public API and renaming one later is a major.",
+        "evidence": "\"Keep `title`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Models the account-level sending-domain setting as a resource whose Create adopts the setting and whose Delete resets it to the documented default.",
+        "evidence": "\"Create adopts and updates the existing setting... Destroy resets to the API default\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fills a resource map with one row per object carrying construct, ID and import grammar, mutable versus replace-only fields, preserved fields, secrets kind, list or set per collection, consistency class and timeouts.",
+        "evidence": "Only a scope list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders constructs by value per effort (resources with import, then data sources, then write-only arguments, then ephemeral resources, then identity plus list resources, then actions, then functions) and writes why any rung is skipped.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Decides list versus set per collection from whether the API keeps and means an order, noting the choice cannot change later without a major.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

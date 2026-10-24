@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Finds only one ship signal (a single passing customer request) against the required two, and does not recommend building now.",
+        "evidence": "'That is at most one signal, and probably zero.' 'No-go on a provider now'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scores the readiness gate per object and marks 'stable server-assigned ID' FAIL with no provider-side compensation, stating the API must be fixed first because import, moved blocks and identity are impossible without it.",
+        "evidence": "'Stable server-assigned ID | FAIL | ...none - fix the API. Without an ID, import, `moved` and identity are impossible.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks 'idempotent create' FAIL for synchronous creates and names the only compensations: no client retry on create, or looking the object up by its unique email-plus-company key before retrying.",
+        "evidence": "'no client retry on create, or look up by the unique key first'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks 'in-place update' FAIL and names `RequiresReplace`, documented in the field docs, as the only compensation.",
+        "evidence": "'The skill's compensation is `RequiresReplace`, but here every edit would destroy and recreate payroll data.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States no resource ships while any gate row reads FAIL or UNKNOWN, so the gate turns 'build now' into 'fix the API first'.",
+        "evidence": "'a resource MUST NOT ship while its gate row reads FAIL or UNKNOWN'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies payroll runs or records as transactional with no desired state and leaves them out, and asks which objects customers configure once and keep.",
+        "evidence": "Treats payroll data as a configurable employee object. Never identifies payroll runs as transactional records to leave out. Asks about Q3 generally.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the API fixes to the design-review and idempotency skills rather than compensating for them in Go.",
+        "evidence": "Cites `api-idempotency-retry` and `api-rate-limit-policy`, but not the design-review skill.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects v1.0.0 as the first tag; picks 0.x while the resource map is still moving and promises compatibility only from 1.0.0.",
+        "evidence": "'Tag `0.x` while the resource map still moves. Promise compatibility only from `1.0.0`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks the interview questions before designing (existing provider, demand evidence, long-lived objects, API shape per object, owner and sandbox, target tier and minimum versions, deadline and effort ceiling) and marks dependent gate rows UNKNOWN where answers are missing.",
+        "evidence": "'Assumptions to confirm' lists Q3-Q6 and marks gate rows UNKNOWN.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not cite an industry percentage to argue for or against the build.",
+        "evidence": "No industry statistic is cited.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records the decision, gate matrix and assumptions in a context file or memory so later releases check against them instead of re-deciding.",
+        "evidence": "No memory or context file record is proposed; the transcript ends by saying nothing was run.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names vendor-owned hand-written on the Plugin Framework as the default rung once the gate passes, since no community provider exists to adopt or support.",
+        "evidence": "'start the build on the vendor-owned hand-written path... on the Plugin Framework.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Finds only one ship signal (a single passing customer request) against the required two, and does not recommend building now.",
+        "evidence": "\"One customer asked in passing... Don't commit to a v1.0.0\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scores the readiness gate per object and marks 'stable server-assigned ID' FAIL with no provider-side compensation, stating the API must be fixed first because import, moved blocks and identity are impossible without it.",
+        "evidence": "\"Add a stable server-generated ID... If your Go developer can't make them, the provider can't be done safely\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks 'idempotent create' FAIL for synchronous creates and names the only compensations: no client retry on create, or looking the object up by its unique email-plus-company key before retrying.",
+        "evidence": "\"have `Create` search for it before retrying... Never retry automatically.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks 'in-place update' FAIL and names `RequiresReplace`, documented in the field docs, as the only compensation.",
+        "evidence": "\"Mark all fields force-replace, and warn in the docs\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States no resource ships while any gate row reads FAIL or UNKNOWN, so the gate turns 'build now' into 'fix the API first'.",
+        "evidence": "The answer is \"not yet\" unless the API is fixed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies payroll runs or records as transactional with no desired state and leaves them out, and asks which objects customers configure once and keep.",
+        "evidence": "Only employees named as wrong fit; payroll runs not.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the API fixes to the design-review and idempotency skills rather than compensating for them in Go.",
+        "evidence": "Not routed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects v1.0.0 as the first tag; picks 0.x while the resource map is still moving and promises compatibility only from 1.0.0.",
+        "evidence": "\"ship a **v0.x** provider\"; \"Treat v1.0.0 as a later milestone\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks the interview questions before designing (existing provider, demand evidence, long-lived objects, API shape per object, owner and sandbox, target tier and minimum versions, deadline and effort ceiling) and marks dependent gate rows UNKNOWN where answers are missing.",
+        "evidence": "Asks three questions; no UNKNOWN gate rows.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not cite an industry percentage to argue for or against the build.",
+        "evidence": "No percentage cited.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records the decision, gate matrix and assumptions in a context file or memory so later releases check against them instead of re-deciding.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names vendor-owned hand-written on the Plugin Framework as the default rung once the gate passes, since no community provider exists to adopt or support.",
+        "evidence": "\"Use `terraform-plugin-framework` (not SDKv2).\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the generic retry wrapper that retries every 4xx and 5xx, stating broad retries turn a misconfiguration into a long hang ending in a vague timeout.",
+        "evidence": "'A typo in a config becomes ten backoffs ending in a vague timeout'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the test-level retry helper, stating flakiness must be fixed with waiters and bounded typed retries inside the provider because users run the same code path.",
+        "evidence": "'Users run the same code path.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses fennimore_origin as the not-yet-visible consistency class (read-replica lag) rather than a generic flake.",
+        "evidence": "'fennimore_origin is \"not yet visible\" (class 1)... replica about 5 s behind'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confines the not-found and stale-value retry to the reads that follow the provider's own create, update or delete, and keeps it out of the plain Read that refresh runs.",
+        "evidence": "'Typed waiters only in the reads that follow your own writes... never in the plain refresh Read'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires two consecutive good reads for origin because the API sits behind replicas.",
+        "evidence": "'Require two consecutive good reads, because the API sits behind replicas.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses fennimore_zone as asynchronous completion and flags the 202 with no object ID as a readiness-gate FAIL with no provider-side compensation: the API must return the ID.",
+        "evidence": "'Pollable async op, ID in 202 body | **FAIL**'; 'Ask the API team for the missing fix: return {id, status}'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the orphan risk: when polling times out with no ID in state the next apply creates a duplicate, whereas with the ID in state Terraform taints the resource and replaces it.",
+        "evidence": "'next apply creates again'; 'Terraform taints the resource, and the next apply replaces it instead of duplicating it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes writing the object ID to state before polling once the API returns it in the 202 body.",
+        "evidence": "'the provider writes it to state before polling'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States an async create cannot be made idempotent provider-side, since look-up-by-unique-name before retrying only works for synchronous creates.",
+        "evidence": "'Async create has no compensation'; lookup applies to synchronous create.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sizes the zone retry window from the published 2-minute propagation time (about three times it) and operation timeouts at about twice the worst case observed in the sandbox, naming and documenting each constant.",
+        "evidence": "'about 3\u00d7 the published propagation time... operation timeouts of about 2\u00d7 the worst case'; 'Named constants with a justifying comment.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Exposes user-configurable `timeouts` for zone create, update and delete through the framework timeouts module.",
+        "evidence": "'Create timeout at least 5 min, user-configurable via `timeouts`'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Polls a status function to the target state and fails fast on terminal error states instead of retrying until the deadline.",
+        "evidence": "Mentions a status endpoint with a 'terminal error state' but never says the provider fails fast on it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Matches API errors by type or status code, never by message text.",
+        "evidence": "'Match by status code or error type, never by message text.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks whether fennimore_origin has Optional+Computed attributes that return a different value after apply, which is what produces the inconsistent-result error, instead of blaming replica lag alone.",
+        "evidence": "Only asks in the checklist whether either PR 'change[s] Optional+Computed handling'. The cause of origin's inconsistent result is attributed to replica lag.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tracks flake rate per resource and feeds the race back to the API team as a bug customers will hit in production.",
+        "evidence": "'Nightly flake tracking per resource'; API asks filed for the zone race.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the generic retry wrapper that retries every 4xx and 5xx, stating broad retries turn a misconfiguration into a long hang ending in a vague timeout.",
+        "evidence": "\"Retrying them delays every real error by up to 10 backoffs. A bad token in CI would now hang for minutes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the test-level retry helper, stating flakiness must be fixed with waiters and bounded typed retries inside the provider because users run the same code path.",
+        "evidence": "\"This hides the bug in the tests that exist to catch it. Users don't get a retry helper\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses fennimore_origin as the not-yet-visible consistency class (read-replica lag) rather than a generic flake.",
+        "evidence": "\"provider's immediate Read hits a replica that lags about 5s\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confines the not-found and stale-value retry to the reads that follow the provider's own create, update or delete, and keeps it out of the plain Read that refresh runs.",
+        "evidence": "\"Do this only inside the create and update flow. On a normal refresh, a 404 still means 'removed'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires two consecutive good reads for origin because the API sits behind replicas.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses fennimore_zone as asynchronous completion and flags the 202 with no object ID as a readiness-gate FAIL with no provider-side compensation: the API must return the ID.",
+        "evidence": "Compensates by polling by name; asks the API for the ID only as an optimization.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains the orphan risk: when polling times out with no ID in state the next apply creates a duplicate, whereas with the ID in state Terraform taints the resource and replaces it.",
+        "evidence": "Only \"zone may appear later with no state entry\"; no duplicate/taint contrast.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes writing the object ID to state before polling once the API returns it in the 202 body.",
+        "evidence": "\"Set the ID only once known.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States an async create cannot be made idempotent provider-side, since look-up-by-unique-name before retrying only works for synchronous creates.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sizes the zone retry window from the published 2-minute propagation time (about three times it) and operation timeouts at about twice the worst case observed in the sandbox, naming and documenting each constant.",
+        "evidence": "Only a 5m default timeout; no 3x or 2x sizing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Exposes user-configurable `timeouts` for zone create, update and delete through the framework timeouts module.",
+        "evidence": "\"Timeout comes from the resource's `timeouts` block.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Polls a status function to the target state and fails fast on terminal error states instead of retrying until the deadline.",
+        "evidence": "No terminal error states.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Matches API errors by type or status code, never by message text.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks whether fennimore_origin has Optional+Computed attributes that return a different value after apply, which is what produces the inconsistent-result error, instead of blaming replica lag alone.",
+        "evidence": "Only generic normalization mention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tracks flake rate per resource and feeds the race back to the API team as a bug customers will hit in production.",
+        "evidence": "Retries counted generally; no per-resource tracking.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

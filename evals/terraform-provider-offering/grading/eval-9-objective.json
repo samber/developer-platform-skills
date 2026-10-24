@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the big-bang rewrite and prescribes muxing both servers in one binary (`tf5to6server` plus `tf6muxserver`), migrating one resource at a time with core resources first.",
+        "evidence": "'tf5to6server plus tf6muxserver'; 'Incremental mux migration in minors'; core resources first via batches.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the migration itself is not a major: a correctly migrated resource produces no diff on unchanged configuration and state, so it ships in 1.x minors rather than v2.0.0.",
+        "evidence": "'a Framework migration with identical schemas produces no diff, so it is a minor.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects the registry manifest: an SDKv2 provider serves protocol `5.0`, and `6.0` is right only once the mux server or the Framework serves the provider.",
+        "evidence": "'SDKv2 serves protocol 5 ([\"5.0\"]). The manifest claims 6.0'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the migration traps: blocks must stay blocks because nested attributes change HCL syntax, null must be decided explicitly where SDKv2 collapsed unset values into zero values, and every attribute name, type and `id` must be kept.",
+        "evidence": "'Keep every attribute name, type and `id`. Keep blocks as blocks... Decide null explicitly.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the provider schemas identical in both muxed servers.",
+        "evidence": "Only 'No schema changes' for the skeleton; no statement that both servers must carry identical schemas.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proves each migrated resource with the old acceptance tests unchanged plus an upgrade test (apply with the last release, plan with the new build, expect no changes).",
+        "evidence": "'The old acceptance tests pass unchanged. An upgrade test'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bumps `terraform-plugin-go`, the framework, mux, SDKv2 and testing modules together.",
+        "evidence": "No mention of bumping plugin-go, framework, mux, SDKv2 and testing modules together.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States list resources and actions are Terraform-only and not implemented in OpenTofu, so with 30% OpenTofu installs every resource must still import by plain ID and work without them.",
+        "evidence": "Compatibility table: list 'not implemented' in OpenTofu; 'every resource still imports by plain ID'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects list resources and actions for every resource; Partner Premier requires at least one of identity plus list resources, ephemeral resources, or actions, plus an SBOM.",
+        "evidence": "'List needs a list endpoint plus identity... Premier needs one of identity plus list, ephemeral resources or actions, and an SBOM.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places identity plus list resources and actions low in the construct order, after resources with import, data sources, write-only arguments and ephemeral resources, and gates actions on a matching imperative day-2 API operation.",
+        "evidence": "\u00a77 ranks 'Identity plus list resources' first, as 'the best candidate', ahead of ephemeral resources.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the cut order when the two sprints run out: actions and functions first, then list resources, then the least-used data sources, never import support or upgrade tests.",
+        "evidence": "'Cut order if time runs out: actions, then functions, then list resources, then the least-used data sources. Never cut import support or upgrade tests.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the SBOM through a GoReleaser `sboms` section (Syft, SPDX or CycloneDX) and confirms the expected per-OS layout with the partner program before relying on it.",
+        "evidence": "'SBOM through a GoReleaser `sboms` section (Syft). Confirm the layout with the program.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds resource identity as an addition on Terraform and OpenTofu 1.12+, never as the only import path.",
+        "evidence": "'Identity | 1.12+ | 1.12+'; 'every resource still imports by plain ID'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tests actions through `lifecycle.action_trigger` skipped below Terraform 1.14, and list resources with query-mode steps, asserting against the API since neither writes state.",
+        "evidence": "Covers actions via `lifecycle.action_trigger` and the skip below 1.14, but says nothing about query-mode steps for list resources.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-checks OpenTofu's changelog for construct parity before each major.",
+        "evidence": "'Re-check OpenTofu's changelog before each major, because parity moves.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the big-bang rewrite and prescribes muxing both servers in one binary (`tf5to6server` plus `tf6muxserver`), migrating one resource at a time with core resources first.",
+        "evidence": "\"`tf5to6server`, then combine with `tf6muxserver`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the migration itself is not a major: a correctly migrated resource produces no diff on unchanged configuration and state, so it ships in 1.x minors rather than v2.0.0.",
+        "evidence": "\"An internal rewrite is not one. Ship it as v1.x minors\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects the registry manifest: an SDKv2 provider serves protocol `5.0`, and `6.0` is right only once the mux server or the Framework serves the provider.",
+        "evidence": "\"Declare 5.0 while you are still on SDKv2, or 6.0 only once the binary really serves 6.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the migration traps: blocks must stay blocks because nested attributes change HCL syntax, null must be decided explicitly where SDKv2 collapsed unset values into zero values, and every attribute name, type and `id` must be kept.",
+        "evidence": "Mentions null/empty and Set/List only; not blocks or names/types.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the provider schemas identical in both muxed servers.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proves each migrated resource with the old acceptance tests unchanged plus an upgrade test (apply with the last release, plan with the new build, expect no changes).",
+        "evidence": "\"Keep the existing tests unchanged\"; upgrade test with empty plan",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bumps `terraform-plugin-go`, the framework, mux, SDKv2 and testing modules together.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States list resources and actions are Terraform-only and not implemented in OpenTofu, so with 30% OpenTofu installs every resource must still import by plain ID and work without them.",
+        "evidence": "\"OpenTofu does not implement list resources... must keep working there\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects list resources and actions for every resource; Partner Premier requires at least one of identity plus list resources, ephemeral resources, or actions, plus an SBOM.",
+        "evidence": "Says it can't confirm criteria; no SBOM.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places identity plus list resources and actions low in the construct order, after resources with import, data sources, write-only arguments and ephemeral resources, and gates actions on a matching imperative day-2 API operation.",
+        "evidence": "Only inventory-driven scope.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the cut order when the two sprints run out: actions and functions first, then list resources, then the least-used data sources, never import support or upgrade tests.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds the SBOM through a GoReleaser `sboms` section (Syft, SPDX or CycloneDX) and confirms the expected per-OS layout with the partner program before relying on it.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds resource identity as an addition on Terraform and OpenTofu 1.12+, never as the only import path.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tests actions through `lifecycle.action_trigger` skipped below Terraform 1.14, and list resources with query-mode steps, asserting against the API since neither writes state.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-checks OpenTofu's changelog for construct parity before each major.",
+        "evidence": "Only \"Watch OpenTofu's roadmap\".",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

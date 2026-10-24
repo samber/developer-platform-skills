@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Picks the Maintain posture, states its predicate (under about 2 hours a week), and drops the daily new-question rotation, duplicate flagging and bounties from the plan",
+        "evidence": "Picks Maintain but keeps \"Flag the rest as duplicates\" and a weekly feed check for new questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend exiting Stack Overflow: states new questions still arrive monthly, so the Exit posture (almost no new questions) does not apply",
+        "evidence": "\"Why not Exit: the top thread alone has 41k views\"; \"10 new questions in Q1 (about 3 a month)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that monthly new questions sit under 1% of the 2014 peak while the archive still ranks in search, is licensed to Google and OpenAI, and is among domains AI assistants cite, as the reason the archive still serves the CTO's goal",
+        "evidence": "No mention of the 2014 peak or licensing deals.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks surfaces by value per hour with the tag excerpt and wiki first, then self-answered canonicals, then a new answer on a high-view outdated thread, and states that the citation goal promotes canonicals",
+        "evidence": "Action table puts the x509 answer first; no self-answered canonical row.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For the 41k-view x509 thread, recommends posting a new answer from the DevRel's own account rather than editing the 2019 accepted answer",
+        "evidence": "\"If the accepted answer is from a Tarnwick staff account, edit it in place.\" Only otherwise a new answer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that accepted answers are no longer pinned above higher-scored ones, as published by Stack Overflow, so a correct new answer can rank above the outdated accepted one",
+        "evidence": "\"Accepted answers are no longer pinned above higher-scored ones.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that rewriting another author's answer gets rolled back and that edits below 2,000 rep that change intent are rejected",
+        "evidence": "\"Never rewrite another author's solution. Edits under 2,000 rep that change intent are rejected.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels 'titles quoting the literal error string rank best' as practitioner reverse-engineering, unconfirmed, not a published ranking rule",
+        "evidence": "No such statement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a monthly AI-citation spot check as a metric and states that targets are self-set because Stack Overflow publishes no vendor-tag benchmark",
+        "evidence": "\"A monthly spot check: ask three assistants\"; \"self-set because Stack Overflow publishes no vendor benchmark\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the rep gates: tag excerpt and wiki at any rep but peer-reviewed, self-answered canonical at 15 rep, new answer at 1 rep",
+        "evidence": "Table gives 1, any peer-reviewed, none; no canonical row or 15-rep gate for it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Delivers the x509 answer as the filled template (one-sentence direct answer, fix with the version tested, 'Why it works', disclosure line naming Tarnwick Labs and Tarnwick, reference link) with the technical body marked for staff to write, giving the generative-AI ban as the reason, rather than a post ready to paste",
+        "evidence": "Template with \"Staff write everything in brackets\", disclosure naming Tarnwick Labs, LLM ban reason given.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps every proposed action inside 90 minutes a week with hours stated per action",
+        "evidence": "Hours 0.75+0.33+0.25+0.2 plus 0.25/wk feed = about 1.8 h, over 1.5 h.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries the figures through: 212 questions, 3/5/2 new questions per month, 41k views, TARNWICK_SKIP_VERIFY removed in v3",
+        "evidence": "212 questions and the 3/5/2 monthly split are absent; only \"about 3 a month\".",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Picks the Maintain posture, states its predicate (under about 2 hours a week), and drops the daily new-question rotation, duplicate flagging and bounties from the plan",
+        "evidence": "It says 'don't invest' with a 90 min/week plan, but names no Maintain posture or predicate. It does not drop the listed activities.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend exiting Stack Overflow: states new questions still arrive monthly, so the Exit posture (almost no new questions) does not apply",
+        "evidence": "Title 'Don't abandon Stack Overflow'. It also says 'answer new questions (about 3 a month)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that monthly new questions sit under 1% of the 2014 peak while the archive still ranks in search, is licensed to Google and OpenAI, and is among domains AI assistants cite, as the reason the archive still serves the CTO's goal",
+        "evidence": "No peak comparison and no licensing or citation-share facts.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks surfaces by value per hour with the tag excerpt and wiki first, then self-answered canonicals, then a new answer on a high-view outdated thread, and states that the citation goal promotes canonicals",
+        "evidence": "No surface ranking. The tag excerpt, wiki and canonicals are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For the 41k-view x509 thread, recommends posting a new answer from the DevRel's own account rather than editing the 2019 accepted answer",
+        "evidence": "'Draft 1: new answer on the top thread' plus a comment on the old one. It also says to skip 'editing old answers yourself in bulk'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that accepted answers are no longer pinned above higher-scored ones, as published by Stack Overflow, so a correct new answer can rank above the outdated accepted one",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that rewriting another author's answer gets rolled back and that edits below 2,000 rep that change intent are rejected",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels 'titles quoting the literal error string rank best' as practitioner reverse-engineering, unconfirmed, not a published ranking rule",
+        "evidence": "It recommends the exact error string as the docs H1 as fact, with no caveat.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a monthly AI-citation spot check as a metric and states that targets are self-set because Stack Overflow publishes no vendor-tag benchmark",
+        "evidence": "The baseline re-run is quarterly. It says nothing about self-set targets.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the rep gates: tag excerpt and wiki at any rep but peer-reviewed, self-answered canonical at 15 rep, new answer at 1 rep",
+        "evidence": "None given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Delivers the x509 answer as the filled template (one-sentence direct answer, fix with the version tested, 'Why it works', disclosure line naming Tarnwick Labs and Tarnwick, reference link) with the technical body marked for staff to write, giving the generative-AI ban as the reason, rather than a post ready to paste",
+        "evidence": "It delivers a complete ready-to-post answer ('Draft 1') with full commands.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps every proposed action inside 90 minutes a week with hours stated per action",
+        "evidence": "Week 1: 20, 35 and 25 min. Week 2: about 60 min. Ongoing: about 15 min/week.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the figures through: 212 questions, 3/5/2 new questions per month, 41k views, TARNWICK_SKIP_VERIFY removed in v3",
+        "evidence": "Mentions 212 old threads, 41k-view answer, TARNWICK_SKIP_VERIFY removed in v3, and ~10 new questions a quarter (about 3 a month).",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

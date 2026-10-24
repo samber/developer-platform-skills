@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the shared QuillbridgeSupport account: one person, one account, no shared or agency accounts; each of the 4 engineers posts from an individual account",
+        "evidence": "\"One person, one account. Shared accounts are banned.\" Replace with \"Four personal accounts, one per engineer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects LLM-drafted answers even with an engineer checking them, citing the ban on content crafted in part or in whole by generative AI and its penalties (deletion with its reputation, warning, suspension on repeat)",
+        "evidence": "Content written \"in part or in whole\" by an LLM is banned; \"deletion with its reputation, a warning, then suspension on repeat.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells engineers to debug with AI privately and write the post themselves",
+        "evidence": "\"Engineers write every post themselves. They may use the LLM privately to understand the docs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 25-person upvote drive: coordinated or serial votes are reversed automatically and can suspend every account involved",
+        "evidence": "\"Serial votes are reversed automatically and can suspend every account involved.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the profile bio does not count as disclosure and that every post naming Quillbridge carries a disclosure line in the post, including the question half of a self-answered pair",
+        "evidence": "\"A profile bio does not count... including the question half of a Q&A pair.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces oldest-first with sorting the backlog by views and ignoring the near-zero-view tail, stating that oldest-first spends the most hours on threads nobody reads",
+        "evidence": "\"spends the most hours on threads nobody reads\"; \"Order by views\"; Week 2 \"ignore the near-zero-view tail\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restates the goal 'clear the backlog' as owning the high-view threads",
+        "evidence": "\"Not realistic, and not the right metric.\" Replace with \"Own the high-view threads\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Picks the Curate posture and states its predicate: new questions still arrive monthly and the goal is deflection",
+        "evidence": "\"Posture: Curate\"; assumes new questions arrive monthly; \"Your goal is fewer tickets, so the rotation matters.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Clusters the backlog by root cause with one self-answered canonical per cluster and the remaining threads flagged as duplicates onto it",
+        "evidence": "\"Cluster by root cause, write one canonical per cluster, and flag the repeats as duplicates.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides or points to the Data Explorer query on data.stackexchange.com listing open questions with no upvoted or accepted answer, highest views first, as the backlog source",
+        "evidence": "Section 7 baseline SQL on data.stackexchange.com with ORDER BY q.ViewCount DESC.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Handles bugs posted as questions with a workaround plus a disclosed link to the public issue, and account or billing threads with a 50+ rep steward commenting the support route and flagging to close",
+        "evidence": "Bugs: \"Workaround, plus a disclosed link to the public issue\"; billing: steward 50+ rep redirect comment, \"flag as not about programming\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the rep gate per action: self-answered canonical and duplicate flag at 15 rep, close vote at 3,000 rep",
+        "evidence": "\"15 to flag. 3,000 to vote.\"; canonical \"15\"; \"Gold tag badge to close alone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the user's figures through unchanged: 1,412 questions, 338 unanswered, 4 engineers, 3 hours a week each, 8 weeks",
+        "evidence": "\"1,412 questions\", \"338\", \"4 engineers \u00d7 3 h \u00d7 8 weeks = 96 h\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Batches edits and updates weekly rather than spreading them daily, because every edit bumps the thread to the Active tab",
+        "evidence": "\"Weekly batch edit\"; \"One batched edit pass, since every edit bumps the thread to the Active tab.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes the daily 15-minute rotating check of the tag feed (/feeds/tag/quillbridge) with one assignee per question, and states the deflection goal promotes the new-question rotation",
+        "evidence": "\"Daily 15-minute rotation on new questions (tag feed in chat)\"; feed `/feeds/tag/quillbridge`; \"rotation matters\" for ticket goal.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the shared QuillbridgeSupport account: one person, one account, no shared or agency accounts; each of the 4 engineers posts from an individual account",
+        "evidence": "'One shared QuillbridgeSupport account' is replaced with 'Each of the 4 engineers answers from their own named account.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects LLM-drafted answers even with an engineer checking them, citing the ban on content crafted in part or in whole by generative AI and its penalties (deletion with its reputation, warning, suspension on repeat)",
+        "evidence": "It cites the generative-AI policy and says 'Moderators and the community remove them.' It never names the penalties (reputation loss, warning, suspension on repeat).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells engineers to debug with AI privately and write the post themselves",
+        "evidence": "'The assistant only finds the right doc section and reproduces the issue. The engineer writes the answer and runs the code.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 25-person upvote drive: coordinated or serial votes are reversed automatically and can suspend every account involved",
+        "evidence": "'Soliciting votes is vote manipulation. The system detects clustered votes from related accounts and reverses them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the profile bio does not count as disclosure and that every post naming Quillbridge carries a disclosure line in the post, including the question half of a self-answered pair",
+        "evidence": "It says disclosure is needed 'in the post, not only in the profile' and adds a line to every answer. It never covers the question post of a self-answered pair.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces oldest-first with sorting the backlog by views and ignoring the near-zero-view tail, stating that oldest-first spends the most hours on threads nobody reads",
+        "evidence": "It triages by traffic and ticket overlap. It keeps low-view 'Bucket B' work and never says to ignore the near-zero-view tail.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Restates the goal 'clear the backlog' as owning the high-view threads",
+        "evidence": "'The goal is fewer tickets, not an empty list.' The target is 'Unanswered with more than 500 views: 0'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Picks the Curate posture and states its predicate: new questions still arrive monthly and the goal is deflection",
+        "evidence": "No posture is named and no predicate (new questions arrive monthly, goal is deflection) is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Clusters the backlog by root cause with one self-answered canonical per cluster and the remaining threads flagged as duplicates onto it",
+        "evidence": "The plan buckets questions A\u2013D and answers them individually. There is no canonical or duplicate-flag strategy.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides or points to the Data Explorer query on data.stackexchange.com listing open questions with no upvoted or accepted answer, highest views first, as the backlog source",
+        "evidence": "It mentions 'Stack Exchange API or the Data Explorer' but gives no query.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles bugs posted as questions with a workaround plus a disclosed link to the public issue, and account or billing threads with a 50+ rep steward commenting the support route and flagging to close",
+        "evidence": "Neither case is addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the rep gate per action: self-answered canonical and duplicate flag at 15 rep, close vote at 3,000 rep",
+        "evidence": "It says only that new accounts 'can't vote to close or comment freely'. No 15 or 3,000 rep gates are given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries the user's figures through unchanged: 1,412 questions, 338 unanswered, 4 engineers, 3 hours a week each, 8 weeks",
+        "evidence": "338, 4 engineers, 3 h and 8 weeks appear. The 1,412 total questions is missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Batches edits and updates weekly rather than spreading them daily, because every edit bumps the thread to the Active tab",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes the daily 15-minute rotating check of the tag feed (/feeds/tag/quillbridge) with one assignee per question, and states the deflection goal promotes the new-question rotation",
+        "evidence": "It proposes an RSS alert plus a 'one engineer per week on rotation, about 2 hours'. There is no daily 15-minute check or per-question assignee.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

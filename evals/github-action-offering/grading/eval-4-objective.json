@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the default audience: the action requests a vendor-specific audience and the backend rejects a blank or default `aud`, because a default audience accepts tokens minted for other services.",
+        "evidence": "'Request a vendor-specific audience... Require aud to equal it exactly.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that issuer plus audience alone is never enough, because the issuer is shared by every GitHub customer, so at least one customer trust binding must match before the exchange succeeds.",
+        "evidence": "'Issuer, signature and audience are only preconditions.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `sub` string matching with per-claim matching on `repository_owner_id` (required) and `repository_id` (recommended), numeric and never reassigned, plus one of `ref`, `environment` or `job_workflow_ref`.",
+        "evidence": "'repository_owner_id is required... One of ref, environment or job_workflow_ref is required.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `repo:their-org/their-repo:*` wildcard, explains the immutable `sub` format with numeric IDs (`repo:octo-org@123456/octo-repo@456789:ref:...`) that is default for repositories created, renamed or transferred after 2026-07-15, and notes organizations can customize the `sub` template so string matching is fragile.",
+        "evidence": "Table covers 'after 2026-07-15', 'Org sub templates' and 'Trailing :*'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the silent fallback to `api-key` and the anonymous read-only mode: an OIDC failure must fail the step with a named error because a silent fallback hides a broken trust setup.",
+        "evidence": "Blocker 3: 'MUST fail the step with a named error'; 'Never fall back.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies an `auth` input with values `auto`, `oidc` and `key` (default `auto`), where an empty key selects OIDC, a missing `ACTIONS_ID_TOKEN_REQUEST_URL` fails naming both causes (api-key empty and the job lacks `id-token: write`) because a missing secret also arrives empty, and the chosen mode is logged.",
+        "evidence": "'api-key is empty and the job lacks \"permissions: id-token: write\"'; 'Log the chosen mode on every run.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States OIDC ships as a v2 minor by making `api-key` optional with `auth` defaulting to `auto`, since old workflows that set the key behave the same, rather than cutting v3.",
+        "evidence": "'Making api-key optional relaxes the contract... Ship it as v2.N.0'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the exchanged Ashgrove token to live minutes, carry only the binding's scopes, be logged with the claims that matched, and be masked before any log line.",
+        "evidence": "'lives minutes, carries only the matched binding's scopes, and has the matched claims logged'; 'Mask first.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks `exp`, `nbf` and `iat` within a small clock skew, and caches JWKS keys with a refetch on an unknown `kid`.",
+        "evidence": "Backend validation checklist.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents the minimum `permissions:` block (`id-token: write`, `contents: read`) in the README snippet.",
+        "evidence": "'permissions: { id-token: write, contents: read }'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Handles GHES 3.15 explicitly: its tokens come from `https://<host>/_services/token`, usually unreachable from a SaaS backend, so support a customer-registered issuer whose JWKS is exposed through an allowlist, or an uploaded JWKS with a rotation procedure, or document GHES as key-only.",
+        "evidence": "Issuer '/_services/token', JWKS unreachable; options for customer-registered issuer or key-only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the binding UI shows the exact claim values a sample token would need and offers a test-with-a-real-run that logs the last rejected token's claims.",
+        "evidence": "'The UI shows the exact claim values a sample token would carry. Add a \"test with a real run\" button'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States fork `pull_request` runs receive no secrets and no `id-token: write`, so the action runs tokenless read-only where the product allows it or exits naming the limitation, and never tells customers to switch to `pull_request_target`.",
+        "evidence": "'Fork pull_request runs get no secrets and no id-token: write'; 'Never tell customers to switch to pull_request_target.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers an optional `event_name` binding so a customer can refuse tokens from `pull_request_target` runs.",
+        "evidence": "'event_name is an allow-list... refuse pull_request_target'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the default audience: the action requests a vendor-specific audience and the backend rejects a blank or default `aud`, because a default audience accepts tokens minted for other services.",
+        "evidence": "'\"`aud` is present\" is not an audience check ... fixed Ashgrove audience ... server requires an exact `aud` match.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that issuer plus audience alone is never enough, because the issuer is shared by every GitHub customer, so at least one customer trust binding must match before the exchange succeeds.",
+        "evidence": "'Authentication has to be the bound identity ... No match means no token.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `sub` string matching with per-claim matching on `repository_owner_id` (required) and `repository_id` (recommended), numeric and never reassigned, plus one of `ref`, `environment` or `job_workflow_ref`.",
+        "evidence": "'Bind on the immutable numeric claims `repository_id` and `repository_owner_id`'; plus `ref`/`environment`/`job_workflow_ref`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `repo:their-org/their-repo:*` wildcard, explains the immutable `sub` format with numeric IDs (`repo:octo-org@123456/octo-repo@456789:ref:...`) that is default for repositories created, renamed or transferred after 2026-07-15, and notes organizations can customize the `sub` template so string matching is fragile.",
+        "evidence": "Rejects `*` and notes custom `sub` templates, but never mentions the immutable numeric sub format.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the silent fallback to `api-key` and the anonymous read-only mode: an OIDC failure must fail the step with a named error because a silent fallback hides a broken trust setup.",
+        "evidence": "'Silent fallback to api-key, then to anonymous' is a serious problem; 'fail with the specific reason'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies an `auth` input with values `auto`, `oidc` and `key` (default `auto`), where an empty key selects OIDC, a missing `ACTIONS_ID_TOKEN_REQUEST_URL` fails naming both causes (api-key empty and the job lacks `id-token: write`) because a missing secret also arrives empty, and the chosen mode is logged.",
+        "evidence": "Proposes `oidc | api-key | auto` and logging, but the missing-token error names only `id-token` permission, not the empty-key cause.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States OIDC ships as a v2 minor by making `api-key` optional with `auth` defaulting to `auto`, since old workflows that set the key behave the same, rather than cutting v3.",
+        "evidence": "'Making `api-key` optional is not breaking by itself. It would be a minor release.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the exchanged Ashgrove token to live minutes, carry only the binding's scopes, be logged with the claims that matched, and be masked before any log line.",
+        "evidence": "'short-lived (10\u201315 min) ... scoped to the project, `::add-mask::`ed'; audit trail of claims.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks `exp`, `nbf` and `iat` within a small clock skew, and caches JWKS keys with a refetch on an unknown `kid`.",
+        "evidence": "'Enforce `exp`, `nbf`, and `iat` with small clock skew'; 'On an unknown `kid`, refetch the JWKS'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents the minimum `permissions:` block (`id-token: write`, `contents: read`) in the README snippet.",
+        "evidence": "Mentions `id-token: write` but no `contents: read` snippet.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles GHES 3.15 explicitly: its tokens come from `https://<host>/_services/token`, usually unreachable from a SaaS backend, so support a customer-registered issuer whose JWKS is exposed through an allowlist, or an uploaded JWKS with a rotation procedure, or document GHES as key-only.",
+        "evidence": "`https://<ghes-host>/_services/token`; firewall; customer exposes or uploads JWKS, or relay.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the binding UI shows the exact claim values a sample token would need and offers a test-with-a-real-run that logs the last rejected token's claims.",
+        "evidence": "'A failed exchange records the claims it saw. An admin sees \"repo X, ref main, env prod\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States fork `pull_request` runs receive no secrets and no `id-token: write`, so the action runs tokenless read-only where the product allows it or exits naming the limitation, and never tells customers to switch to `pull_request_target`.",
+        "evidence": "Only says anonymous mode is legitimate for fork PRs since secrets are unavailable; no id-token statement and no warning against pull_request_target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers an optional `event_name` binding so a customer can refuse tokens from `pull_request_target` runs.",
+        "evidence": "'Match on `event_name` too'; policy conditions include `event_name`.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Withdraws the `pull_request_target` support macro: it runs with base-repository secrets against fork code, and GitHub blocks it by default in public repositories from 2026-12-02.",
+        "evidence": "'Drop the pull_request_target macro today'; blocked by default from 2026-12-02.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that fork `pull_request` runs get a read-only `GITHUB_TOKEN`, no secrets and no OIDC token, and makes the action either run in a tokenless read-only mode or exit with a message naming the limitation.",
+        "evidence": "'GitHub gives pull requests from forks a read-only token and no secrets'; Workflow 1 runs the action with post-comment false. OIDC is not mentioned.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adopts the two-workflow split, with the `pull_request` workflow running the action without credentials and uploading the result as an artifact.",
+        "evidence": "Workflow 1 on pull_request uploads artifact; workflow 2 on workflow_run.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects reading the PR number from the artifact because a PR number inside the artifact is attacker-controlled.",
+        "evidence": "'Do not read the PR number from the artifact. A fork controls it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Resolves the PR from `workflow_run.head_sha` through `GET /repos/{owner}/{repo}/commits/{sha}/pulls` and requires that PR's head SHA to equal it, noting `workflow_run.pull_requests` is empty for fork PRs.",
+        "evidence": "Uses listPullRequestsAssociatedWithCommit with a p.head.sha check, but never notes that workflow_run.pull_requests is empty for fork PRs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Downloads the artifact by run ID and validates it as data (schema, size) before anything reads it.",
+        "evidence": "run-id: workflow_run.id; size cap and schema check in the script.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the `workflow_run` workflow name the first workflow in `workflows:`, run only on `conclusion == 'success'`, and never check out or execute fork code.",
+        "evidence": "workflows: [Coverage]; if conclusion == 'success'; 'never checks out or runs fork code'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes the second workflow to `actions: read` plus `pull-requests: write` and rejects `contents: write`.",
+        "evidence": "Permissions table; 'Do not grant contents: write.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the comment-per-push with an upsert: one comment per action and job, found by a hidden marker such as `<!-- fennwater-action:coverage -->` and filtered to comments authored by the token's own identity, because anyone can post the marker.",
+        "evidence": "c.user.login === 'github-actions[bot]' && c.body.includes(MARKER); 'Anyone can paste the marker'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Truncates the comment body at GitHub's 65,536-character cap and links to the job summary for the full result.",
+        "evidence": "The code caps the list at 20 files and never checks the 65,536-character limit; the job-summary link appears only in the advice, not in the page or code.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the uncovered-file-path list from comments in public repositories: show counts and identifiers and link the details behind vendor login, because the comment is public.",
+        "evidence": "'The uncovered-file list stays'; the page even notes 'In public repositories the comment is public. It shows counts and file paths'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Escapes any text taken from the PR (titles, file names) before it goes into the Markdown body.",
+        "evidence": "SAFE_PATH filter 'rejects backticks, newlines and Markdown syntax'; escape-paths advice.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the basic README example free of zizmor findings and lets the fork-split example carry only a line-scoped, commented ignore for its `workflow_run` trigger.",
+        "evidence": "'# zizmor: ignore[dangerous-triggers] reads the artifact as data and never runs fork code'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Withdraws the `pull_request_target` support macro: it runs with base-repository secrets against fork code, and GitHub blocks it by default in public repositories from 2026-12-02.",
+        "evidence": "Retires the macro ('Retire the `pull_request_target` macro today') but never mentions GitHub blocking it by default from 2026-12-02.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that fork `pull_request` runs get a read-only `GITHUB_TOKEN`, no secrets and no OIDC token, and makes the action either run in a tokenless read-only mode or exit with a message naming the limitation.",
+        "evidence": "'read-only `GITHUB_TOKEN` and no secrets'; action emits a notice and step summary instead of skipping.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adopts the two-workflow split, with the `pull_request` workflow running the action without credentials and uploading the result as an artifact.",
+        "evidence": "`collect` on pull_request uploads artifact; `workflow_run` comments.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects reading the PR number from the artifact because a PR number inside the artifact is attacker-controlled.",
+        "evidence": "'Do not trust the PR number in the artifact.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Resolves the PR from `workflow_run.head_sha` through `GET /repos/{owner}/{repo}/commits/{sha}/pulls` and requires that PR's head SHA to equal it, noting `workflow_run.pull_requests` is empty for fork PRs.",
+        "evidence": "'`workflow_run.pull_requests` is empty for fork PRs ... GET /repos/{owner}/{repo}/commits/{sha}/pulls'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Downloads the artifact by run ID and validates it as data (schema, size) before anything reads it.",
+        "evidence": "Validates schema and size, but never says the artifact is downloaded by run ID.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes the `workflow_run` workflow name the first workflow in `workflows:`, run only on `conclusion == 'success'`, and never check out or execute fork code.",
+        "evidence": "`workflows: [\"Coverage\"]`; `conclusion == 'success'`; 'Do not add a `checkout` step'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes the second workflow to `actions: read` plus `pull-requests: write` and rejects `contents: write`.",
+        "evidence": "Change #1 and the permissions block.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the comment-per-push with an upsert: one comment per action and job, found by a hidden marker such as `<!-- fennwater-action:coverage -->` and filtered to comments authored by the token's own identity, because anyone can post the marker.",
+        "evidence": "Keeps one comment per push and treats the hidden-marker update as a 'small follow-up'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Truncates the comment body at GitHub's 65,536-character cap and links to the job summary for the full result.",
+        "evidence": "Caps the path list at 200 but does not truncate the body or link the job summary.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the uncovered-file-path list from comments in public repositories: show counts and identifiers and link the details behind vendor login, because the comment is public.",
+        "evidence": "Keeps the list in a collapsed `<details>`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Escapes any text taken from the PR (titles, file names) before it goes into the Markdown body.",
+        "evidence": "'Render paths inside a fenced block ... Strip newlines and control characters.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the basic README example free of zizmor findings and lets the fork-split example carry only a line-scoped, commented ignore for its `workflow_run` trigger.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

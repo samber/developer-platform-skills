@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Says which interview answer moved which rung (the deal deadline, the Partner target, the headcount) rather than presenting the path as context-free.",
+        "evidence": "The 'What moved the path' section ties each answer to its effect. Q1 (community provider exists, maintainer silent) selects an adopt rung. Q2 (two deals) confirms 'ship'. Q6 (Partner target on SDKv2) schedules the mux migration before the badge request. Q7 (deadline this quarter) keeps the default rungs and rules out the generated full-coverage path. So the deal deadline and the Partner target are explicitly tied to rungs. Headcount is not: Q5 (owner, on-call) is listed only as an open question, and the plan says to 'size the on-call question (Q5) against that SLA'. It never says how headcount",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Says which interview answer moved which rung (the deal deadline, the Partner target, the headcount) rather than presenting the path as context-free.",
+        "evidence": "The plan does use some of the user's context. It cites 'about 10 weeks until quarter end', says the Partner-tier requirement rules out the personal account, and treats 'Two deals asking' as the evidence. It never says that a particular interview answer moved a particular rung or step of the path. Headcount is not mentioned at all. The deadline and the Partner target show up only as background, not as the reasons a rung changed. Phrases like 'Week 0', 'Weeks 1\u20132' and 'Weeks 3\u20136' read as a generic schedule, with no explicit mapping from answers to decisions.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

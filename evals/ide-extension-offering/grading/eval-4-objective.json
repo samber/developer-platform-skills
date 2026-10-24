@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Promotes the JetBrains plugin to first priority rather than treating it as the starved option, because JetBrains is Pinewick's largest paying group and the customers are Kotlin and Android-heavy.",
+        "evidence": "'Building the JetBrains plugin is the right call. 55% of your users are on JetBrains'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the half-time VS Code dev as the owner, stating that a half-time owner already on VS Code is not the second owner who knows Kotlin or Java that the promotion requires.",
+        "evidence": "Section 2 quotes 'a half-time owner already on VS Code is not that owner'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the IntelliJ Platform LSP API runs only in commercial JetBrains IDEs (plus the free tier of unified PyCharm), not in IntelliJ IDEA Community or Android Studio.",
+        "evidence": "Section 1.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the resulting choice explicitly, exclude Community and Android Studio users or write a native JetBrains language plugin, and writes it into the plan as a decision rather than leaving it implicit.",
+        "evidence": "Options A/B/C, 'Decide this now and write it in the plan'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects changing the plugin ID from `com.pinewick.beta` to `com.pinewick.plugin`, because the `<id>` cannot change after the first public release and a new ID is a new plugin with no upgrade path.",
+        "evidence": "Section 3.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the beta through an `eap` custom channel under the final plugin ID instead of a separate ID.",
+        "evidence": "'Run the beta on the `eap` or `beta` custom channel of the same plugin.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the Gradle defaults because the IntelliJ Platform Gradle Plugin 2.x pins `untilBuild` to the since-build major, and prescribes `untilBuild = provider { null }` with a check of the generated `plugin.xml`.",
+        "evidence": "Section 4.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects relying on the IDE's data-sharing consent, stating it covers JetBrains' own collection and not the plugin's, and requires explicit user consent before any statistics plus sending nothing while the plugin is idle.",
+        "evidence": "Section 5.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects same-day hotfixes because every JetBrains version goes through manual review with no guaranteed time frame; plans fixes on a schedule and asks Marketplace support after 3-4 working days of silence.",
+        "evidence": "Section 6.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores tokens in `PasswordSafe`.",
+        "evidence": "'Use `PasswordSafe` for any stored key.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires running Plugin Verifier across the declared build range including EAP, and budgets one verification pass per platform major, three a year.",
+        "evidence": "'Budget one Plugin Verifier pass per platform major, so three a year' and verifyPlugin including EAP.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the approval requirements: an original plugin name of at most 30 characters, an English description, a Developer EULA in every case, and a privacy policy whenever the plugin collects personal data.",
+        "evidence": "Name \u226430, EULA and privacy policy listed, but no English description requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the first upload is manual through the web UI and later uploads go through the Gradle `publishPlugin` task.",
+        "evidence": "'The first upload is manual through the web UI. Later uploads can use `publishPlugin`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a compatibility-matrix row carrying the JetBrains `since-build` and the minimum language-server version.",
+        "evidence": "No compatibility matrix row in the transcript.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Promotes the JetBrains plugin to first priority rather than treating it as the starved option, because JetBrains is Pinewick's largest paying group and the customers are Kotlin and Android-heavy.",
+        "evidence": "It takes the JetBrains plugin as given and does not argue for promotion; its concern is that 55% of users get half of one developer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the half-time VS Code dev as the owner, stating that a half-time owner already on VS Code is not the second owner who knows Kotlin or Java that the promotion requires.",
+        "evidence": "It calls half-time a bus factor of one and suggests a second part-time person, without saying a Kotlin/Java second owner is required.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the IntelliJ Platform LSP API runs only in commercial JetBrains IDEs (plus the free tier of unified PyCharm), not in IntelliJ IDEA Community or Android Studio.",
+        "evidence": "It says the API \"opened to Community builds around 2025.1\", which contradicts the rubric.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the resulting choice explicitly, exclude Community and Android Studio users or write a native JetBrains language plugin, and writes it into the plan as a decision rather than leaving it implicit.",
+        "evidence": "It proposes LSP4IJ and does not frame the exclude-or-native decision.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects changing the plugin ID from `com.pinewick.beta` to `com.pinewick.plugin`, because the `<id>` cannot change after the first public release and a new ID is a new plugin with no upgrade path.",
+        "evidence": "It opens with \"Change the plugin ID to com.pinewick.plugin now\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the beta through an `eap` custom channel under the final plugin ID instead of a separate ID.",
+        "evidence": "It suggests a release channel \"for example `beta`\", not `eap`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the Gradle defaults because the IntelliJ Platform Gradle Plugin 2.x pins `untilBuild` to the since-build major, and prescribes `untilBuild = provider { null }` with a check of the generated `plugin.xml`.",
+        "evidence": "It claims \"`untilBuild` is open-ended by default\", the opposite of the rubric.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects relying on the IDE's data-sharing consent, stating it covers JetBrains' own collection and not the plugin's, and requires explicit user consent before any statistics plus sending nothing while the plugin is idle.",
+        "evidence": "It requires a plugin-level opt-in but has nothing on sending nothing while idle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects same-day hotfixes because every JetBrains version goes through manual review with no guaranteed time frame; plans fixes on a schedule and asks Marketplace support after 3-4 working days of silence.",
+        "evidence": "It says review takes \"a couple of business days\" and gives a 1-3 day SLA, with no support escalation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Stores tokens in `PasswordSafe`.",
+        "evidence": "PasswordSafe is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires running Plugin Verifier across the declared build range including EAP, and budgets one verification pass per platform major, three a year.",
+        "evidence": "It mentions verifyPlugin on oldest and newest builds but not EAP or the yearly budget.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the approval requirements: an original plugin name of at most 30 characters, an English description, a Developer EULA in every case, and a privacy policy whenever the plugin collects personal data.",
+        "evidence": "Name length, EULA and privacy policy requirements are not listed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the first upload is manual through the web UI and later uploads go through the Gradle `publishPlugin` task.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a compatibility-matrix row carrying the JetBrains `since-build` and the minimum language-server version.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

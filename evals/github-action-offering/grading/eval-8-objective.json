@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Ranks ports by the share of paying customers on each CI, not by platform popularity, rejecting the 'CircleCI and Jenkins are huge' argument.",
+        "evidence": "'Rank by your paying customers' CI share, not by market popularity'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the default: documented, tested CLI snippets for every CI plus a native package only for the one or two CI systems holding most non-GitHub customers (GitLab, possibly Azure DevOps).",
+        "evidence": "Two native ports (GitLab, Azure DevOps), tested snippets for the rest.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Budgets Jenkins last or not at all, stating a Jenkins plugin is a Maven-versioned update-center release justified only by real enterprise revenue on Jenkins.",
+        "evidence": "'The Jenkins plugin (Maven release, minimum core version) is the last candidate'; promote only if the ARR split justifies it.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects per-integration independent logic: every port stays a thin wrapper over the same `mfd` CLI with the same input names, because a port that reimplements logic drifts within a few releases.",
+        "evidence": "'The mfd CLI is the product, and every port is thin packaging over it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps one input schema and generates or checks each manifest (`action.yml`, component `spec:inputs`, orb parameters, `pipe.yml` variables, `task.json` inputs) against it.",
+        "evidence": "'Keep one input schema... check each manifest against it: action.yml, component spec:inputs, task.json, snippet variables.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fixes the GitLab component: omit `inputs:` under `spec:` while there are none because an empty `inputs:` key fails release creation, and lays out the project with `README.md` plus a top-level `templates/` directory.",
+        "evidence": "Fixes the empty inputs: key but never mentions the README.md plus top-level templates/ layout.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes GitLab catalog publishing needs a semantic-version release, that `~latest` skips pre-releases but can include breaking changes, and that turning off the catalog toggle destroys catalog metadata.",
+        "evidence": "Mentions '~latest can include breaking changes' and semantic-version release, but omits pre-release skipping and the toggle-off metadata loss.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects `dev:latest` for customers: `dev:<label>` orb versions are mutable and expire after 90 days, while production versions `<namespace>/<orb>@1.2.3` are immutable and cannot be deleted, so a bad release is fixed only by a newer one.",
+        "evidence": "'dev: versions are mutable and expire after 90 days... Production orb versions are immutable'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses the CircleCI namespace once because renaming needs CircleCI support, and documents that partner orbs need customers to allow uncertified orbs in their organization settings.",
+        "evidence": "'Choose the namespace once... Document the \"allow uncertified orbs\" setting.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects the Azure DevOps handler: no `Node20` key exists; declare both `Node20_1` and `Node24` during the transition, `Node24` needs `minimumAgentVersion` 4.265.1, and test on the oldest supported Windows Server agent.",
+        "evidence": "Node20_1 and Node24; minimumAgentVersion 4.265.1; oldest Windows Server.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects re-pushing the Bitbucket `1.0.0` tag: image tags are mutable on the registry, so publish each version once and never re-push a tag.",
+        "evidence": "'Publish each version once and never re-push a tag.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives each port its own semver bumped by its own contract and publishes one compatibility table mapping each port version to the CLI version range it installs.",
+        "evidence": "'each port gets its own semver'; 'one compatibility table'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes every snippet download a pinned CLI version with checksum verification, set full Git history where the CLI needs it (`fetch-depth: 0` on GitHub, `GIT_DEPTH: 0` on GitLab), and use a glibc base image because `mfd` is not built for musl.",
+        "evidence": "'GIT_DEPTH: 0'; glibc image; pinned CLI verified against committed digest.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sends the same versioned `User-Agent` with the CI name from every port and tests auth claims, output passing and secret masking per port, the three places drift concentrates.",
+        "evidence": "'Send the same versioned User-Agent from every port, with the CI name'; 'Test those three per port.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Ranks ports by the share of paying customers on each CI, not by platform popularity, rejecting the 'CircleCI and Jenkins are huge' argument.",
+        "evidence": "'Market size is the wrong test'; 94% / 97% coverage.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the default: documented, tested CLI snippets for every CI plus a native package only for the one or two CI systems holding most non-GitHub customers (GitLab, possibly Azure DevOps).",
+        "evidence": "'Ship GitLab, then Azure DevOps ... Cover CircleCI, Bitbucket and Jenkins with documented snippets.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Budgets Jenkins last or not at all, stating a Jenkins plugin is a Maven-versioned update-center release justified only by real enterprise revenue on Jenkins.",
+        "evidence": "'A Jenkins plugin is a Java project with its own hosting and release process, and it serves 1%.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects per-integration independent logic: every port stays a thin wrapper over the same `mfd` CLI with the same input names, because a port that reimplements logic drifts within a few releases.",
+        "evidence": "'Make every integration a thin wrapper ... same flags and calls the shared script.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps one input schema and generates or checks each manifest (`action.yml`, component `spec:inputs`, orb parameters, `pipe.yml` variables, `task.json` inputs) against it.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fixes the GitLab component: omit `inputs:` under `spec:` while there are none because an empty `inputs:` key fails release creation, and lays out the project with `README.md` plus a top-level `templates/` directory.",
+        "evidence": "Tells them to ship real inputs; says nothing on omitting `inputs:` or the `templates/` directory.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes GitLab catalog publishing needs a semantic-version release, that `~latest` skips pre-releases but can include breaking changes, and that turning off the catalog toggle destroys catalog metadata.",
+        "evidence": "Only 'tagged semver release'; ~latest and toggle not covered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects `dev:latest` for customers: `dev:<label>` orb versions are mutable and expire after 90 days, while production versions `<namespace>/<orb>@1.2.3` are immutable and cannot be deleted, so a bad release is fixed only by a newer one.",
+        "evidence": "'Dev orbs are mutable and expire after 90 days ... Publish production semver orbs, which are immutable.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses the CircleCI namespace once because renaming needs CircleCI support, and documents that partner orbs need customers to allow uncertified orbs in their organization settings.",
+        "evidence": "Notes the namespace must be registered and the uncertified-orb opt-in, but not that renaming needs support.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Corrects the Azure DevOps handler: no `Node20` key exists; declare both `Node20_1` and `Node24` during the transition, `Node24` needs `minimumAgentVersion` 4.265.1, and test on the oldest supported Windows Server agent.",
+        "evidence": "Hedged ('I believe'); `minimumAgentVersion` 4.265.1 not given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects re-pushing the Bitbucket `1.0.0` tag: image tags are mutable on the registry, so publish each version once and never re-push a tag.",
+        "evidence": "'Re-pushing the `1.0.0` tag is the worst ... Publish immutable tags'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives each port its own semver bumped by its own contract and publishes one compatibility table mapping each port version to the CLI version range it installs.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes every snippet download a pinned CLI version with checksum verification, set full Git history where the CLI needs it (`fetch-depth: 0` on GitHub, `GIT_DEPTH: 0` on GitLab), and use a glibc base image because `mfd` is not built for musl.",
+        "evidence": "Pinned CLI, checksum and glibc covered; full git history (`fetch-depth: 0` / `GIT_DEPTH: 0`) not.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sends the same versioned `User-Agent` with the CI name from every port and tests auth claims, output passing and secret masking per port, the three places drift concentrates.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

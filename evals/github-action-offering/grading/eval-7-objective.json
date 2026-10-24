@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Accepts the transfer path (maintainer agrees, contract close) but publishes the new `uses:` path and asks users to migrate, because the redirect dies if anyone recreates `jmbarros-dev/quillstone-lint-action`.",
+        "evidence": "Accept transfer; ask contractor to keep the account because 'If anyone recreates it, the redirect dies'; migrate the 380 repos.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects transferring into the personal org `kaspar-tools` first: choose the final org and repo name once, because a later transfer keeps the redirect but drops the Marketplace verified badge unless the new owner is verified.",
+        "evidence": "'Into personal org kaspar-tools \u274c No \u2014 It forces a second transfer later.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting the v3 tags: declare pre-transfer tags unsupported without deleting them, because deleting a tag breaks every pinned workflow at once.",
+        "evidence": "'Deleting tags breaks every pinned workflow at once... Leave them in place.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects re-cutting v3 with different input names: never reuse a version number the community action already shipped with a different contract, so Quillstone's contract ships as v4.",
+        "evidence": "'Ship your contract as the next unused major... v4 is likely.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Audits every inherited tag against the maintainer's history before the first release under the new owner.",
+        "evidence": "'Audit every inherited tag against his commit history.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes a migration guide mapping the old v2 and v3 inputs to the new names.",
+        "evidence": "'Publish a migration guide mapping v2 inputs and his v3 inputs to your names.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens the README with a copy-paste workflow: the SHA-pinned `uses:` line with its version comment, the `permissions:` block, the OIDC setup, every input with default, every output, and the minimum runner and GHES versions.",
+        "evidence": "Only a quickstart with the SHA-pinned uses line is mentioned; no permissions block, OIDC setup, inputs/outputs or runner floor in a README.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requests the verified creator badge through GitHub partnerships, noting enterprise allowlists key on it more than on listing rank.",
+        "evidence": "'Verified badge request through GitHub partnerships. Enterprise allowlists key on it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps one `action.yml` at the root of the public repo with a unique `name`, short `description`, `branding` icon and color, and one primary category.",
+        "evidence": "'one root action.yml, unique name, branding, one category'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces 'download the zip and vendor it' with GitHub Connect when the GHES admin enables it, otherwise `actions-sync` into the instance.",
+        "evidence": "'The sanctioned routes are GitHub Connect... or actions-sync'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects reusing the github.com token exchange unchanged for GHES: GHES signs OIDC tokens with its own issuer on a network the backend usually cannot reach, so support a customer-registered issuer or uploaded JWKS, or document GHES as key-only.",
+        "evidence": "Issuer '/_services/token', private network; key-only default or customer-registered issuer/JWKS.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Enables immutable releases on the repository before the first public tag under Quillstone's ownership.",
+        "evidence": "'Enable immutable releases before the first public tag.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Accepts the transfer path (maintainer agrees, contract close) but publishes the new `uses:` path and asks users to migrate, because the redirect dies if anyone recreates `jmbarros-dev/quillstone-lint-action`.",
+        "evidence": "Warns against a new repo at the old name, but never publishes the new path or asks users to migrate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects transferring into the personal org `kaspar-tools` first: choose the final org and repo name once, because a later transfer keeps the redirect but drops the Marketplace verified badge unless the new owner is verified.",
+        "evidence": "'A personal org adds a second transfer ... possible re-listing'; transfer to the company org instead.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting the v3 tags: declare pre-transfer tags unsupported without deleting them, because deleting a tag breaks every pinned workflow at once.",
+        "evidence": "'Deleting tags also breaks resolution'; 'Leave the tags'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects re-cutting v3 with different input names: never reuse a version number the community action already shipped with a different contract, so Quillstone's contract ships as v4.",
+        "evidence": "'Retire v3 and ship a new major. Release `v4` with your contract.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Audits every inherited tag against the maintainer's history before the first release under the new owner.",
+        "evidence": "Audits secrets, keys and webhooks, not tags against history.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes a migration guide mapping the old v2 and v3 inputs to the new names.",
+        "evidence": "'Ship `v4` with a migration guide'; shim accepts old v3 input names.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens the README with a copy-paste workflow: the SHA-pinned `uses:` line with its version comment, the `permissions:` block, the OIDC setup, every input with default, every output, and the minimum runner and GHES versions.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requests the verified creator badge through GitHub partnerships, noting enterprise allowlists key on it more than on listing rank.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps one `action.yml` at the root of the public repo with a unique `name`, short `description`, `branding` icon and color, and one primary category.",
+        "evidence": "Mentions root `action.yml` and branding only; no unique name, description or category.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces 'download the zip and vendor it' with GitHub Connect when the GHES admin enables it, otherwise `actions-sync` into the instance.",
+        "evidence": "'`actions-sync` mirrors the repo with tags ... GitHub Connect resolves public actions'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects reusing the github.com token exchange unchanged for GHES: GHES signs OIDC tokens with its own issuer on a network the backend usually cannot reach, so support a customer-registered issuer or uploaded JWKS, or document GHES as key-only.",
+        "evidence": "Per-instance issuer; customer registers issuer; paste keys; maybe API key.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Enables immutable releases on the repository before the first public tag under Quillstone's ownership.",
+        "evidence": "'Enable immutable releases after this fix, so tags can't be moved again.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

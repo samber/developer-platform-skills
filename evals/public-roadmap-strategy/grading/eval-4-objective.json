@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects launching with an embedded voting board while no named triage owner and no running feedback loop exist",
+        "evidence": "\"A separate board is the most expensive feedback surface. It needs a named triage owner\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends locked roadmap items, each linking to one feedback channel, as the default surface",
+        "evidence": "\"Items are locked. Each links to one discussion channel\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the three-option ranking explicitly: on effort and value, separate board > reactions on items > locked items; on efficiency, locked items > reactions on items > separate board",
+        "evidence": "No ranking of separate board > reactions > locked items on effort/value and its reverse on efficiency.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects auto-promoting the ten most-voted requests into Next",
+        "evidence": "\"Votes aren't an engineering decision.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats vote counts as one weighted signal, never the ranking, weighting by segment and account value, and notes that 900 free-tier votes do not stand for paying customers",
+        "evidence": "\"Weight by segment and account value.\"; \"900 GraphQL votes, nearly all free-tier\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels community requests apart from vendor plans (a Proposed label or equivalent) so a popular request never reads as a plan",
+        "evidence": "\"Proposed is a separate label for community ideas.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Freezes the existing board read-only behind a dated notice pointing to the single feedback channel, instead of closing it",
+        "evidence": "T-14 banner, then launch-day read-only freeze, archive at +90 days",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects shutting the old board down on launch day with no notice; any closure needs a dated notice plus a migration or read-only archive of open requests",
+        "evidence": "\"A board closed with no notice and no archive is the Microsoft Office 365 UserVoice failure.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the 1,400 untriaged requests go to the feedback loop and do not gate the roadmap launch",
+        "evidence": "\"The untriaged backlog doesn't gate launch.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives any board that stays open a not planned state with reasons and a named triage owner",
+        "evidence": "Candidate C eligible when \"a named triage owner exists... and a `not planned` state with reasons exists.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Plans the board's exit before launch, naming a forum closed without notice (UserVoice / Office 365) as the expectation-debt write-off to avoid",
+        "evidence": "Office 365 UserVoice cited as expectation-debt write-off",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the transition as a format-change notice: a dated table of what changes, a 'what's not changing' section, and what happens to open requests",
+        "evidence": "Dated table, \"What's not changing\", \"What happens to open requests\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes per-request triage and dedup to a feedback-loop process rather than designing it inside the roadmap launch plan",
+        "evidence": "Says only \"Triage is a separate effort\"; no feedback-loop process is named.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects launching with an embedded voting board while no named triage owner and no running feedback loop exist",
+        "evidence": "'I'd keep your idea of a public roadmap with an embedded board.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends locked roadmap items, each linking to one feedback channel, as the default surface",
+        "evidence": "The embedded voting board remains the surface.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the three-option ranking explicitly: on effort and value, separate board > reactions on items > locked items; on efficiency, locked items > reactions on items > separate board",
+        "evidence": "No ranking of board, reactions and locked items.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects auto-promoting the ten most-voted requests into Next",
+        "evidence": "'Promote by human decision with an eng owner.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats vote counts as one weighted signal, never the ranking, weighting by segment and account value, and notes that 900 free-tier votes do not stand for paying customers",
+        "evidence": "'Show votes, but sort by triage score: paid voters, payment volume, strategic fit.' 'GraphQL has 900 free-tier votes and may never ship.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels community requests apart from vendor plans (a Proposed label or equivalent) so a popular request never reads as a plan",
+        "evidence": "Uses an 'Under consideration' column. There is no Proposed-style label separating community ideas from plans.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Freezes the existing board read-only behind a dated notice pointing to the single feedback channel, instead of closing it",
+        "evidence": "'Switch the old board to read-only with a banner and redirect to the new roadmap. Keep it live for 60 days, then archive.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects shutting the old board down on launch day with no notice; any closure needs a dated notice plus a migration or read-only archive of open requests",
+        "evidence": "'About 1,400 voters get no notice... Export everything and run the old board read-only for 60 days.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the 1,400 untriaged requests go to the feedback loop and do not gate the roadmap launch",
+        "evidence": "Weeks 1\u20132 triage the board before the week 4 launch, so triage gates the launch.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives any board that stays open a not planned state with reasons and a named triage owner",
+        "evidence": "Columns include `Not planned` with a one-line reason each. The user is the triage owner, with '45 minutes per week' and 'ask for a second owner'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Plans the board's exit before launch, naming a forum closed without notice (UserVoice / Office 365) as the expectation-debt write-off to avoid",
+        "evidence": "No such example or exit-planning reference.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes the transition as a format-change notice: a dated table of what changes, a 'what's not changing' section, and what happens to open requests",
+        "evidence": "No dated change table or 'what's not changing' section.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes per-request triage and dedup to a feedback-loop process rather than designing it inside the roadmap launch plan",
+        "evidence": "Triage is designed inside the launch plan (Week 2 and the weekly routine).",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Credits Now / Next / Later to Janna Bastow (ProdPad), not to the book Product Roadmaps Relaunched",
+        "evidence": "\"Credit **Janna Bastow (ProdPad)**.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects defining Next as 'within about two months'; buckets are defined by engineering state (for example in build with a named owner) so no bucket smuggles in a date",
+        "evidence": "\"Define buckets by engineering state, not time.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes quarter labels from research and in-design cards; dates appear only on items at private preview or later",
+        "evidence": "\"No quarters at launch... only on items in private preview or later\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Caps every date that remains with a phase (for example 'Q1 - private preview')",
+        "evidence": "\"Q1 \u2013 private preview\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Acknowledges that GitHub dates in-design items by quarter column and states the stricter rule is this policy's deliberate choice",
+        "evidence": "\"GitHub does date in-design items, but that is not a rule to copy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites 'Rate limiter v3', 'Auth revamp' and 'Dashboard 2.0' as problem-first titles",
+        "evidence": "\"Know your remaining rate limit before you hit it\" etc.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects removing cards that won't happen; publishes a visible not planned or cancelled state with a reason, kept for at least one review cycle",
+        "evidence": "Mark it `not planned` with a reason. Keep it visible for at least one review cycle.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the 'beta' tag as an informal flag: it maps to private preview only once access rules are written, and until then is a note on the card, not a phase",
+        "evidence": "\"show it as a note on the item, not a phase\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects rewriting ROADMAP.md from scratch each quarter; snapshots the roadmap at each review so promises can be compared with delivery",
+        "evidence": "\"Edit in place and snapshot.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines on the page, for each state, what a customer may rely on",
+        "evidence": "Columns table \"Customer may rely on\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a separate label (Proposed or equivalent) for community ideas so they never read as vendor plans",
+        "evidence": "\"`proposed`: a separate label for community requests.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives every card a stable ID that survives from exploring to GA",
+        "evidence": "`RM-###` stable ID per card",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Closes each shipped card with a changelog link (a shipped label or equivalent)",
+        "evidence": "\"`shipped`: close the item with a link to the changelog entry.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Credits Now / Next / Later to Janna Bastow (ProdPad), not to the book Product Roadmaps Relaunched",
+        "evidence": "'Now / Next / Later comes from Janna Bastow (ProdPad, 2012), not from the book.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects defining Next as 'within about two months'; buckets are defined by engineering state (for example in build with a named owner) so no bucket smuggles in a date",
+        "evidence": "Rejects the two-month length but defines Now as 'We expect to ship it in the current quarter', which smuggles in a date. Columns are defined by confidence.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes quarter labels from research and in-design cards; dates appear only on items at private preview or later",
+        "evidence": "Quarter labels go on 'Now and Next cards'. Next is only 'Scope is settled', not tied to preview stage.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps every date that remains with a phase (for example 'Q1 - private preview')",
+        "evidence": "The label is plain `Q4 2026`, with no phase.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Acknowledges that GitHub dates in-design items by quarter column and states the stricter rule is this policy's deliberate choice",
+        "evidence": "'I could not verify your claim about GitHub's roadmap.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rewrites 'Rate limiter v3', 'Auth revamp' and 'Dashboard 2.0' as problem-first titles",
+        "evidence": "Only gives 'See and raise per-key rate limits'. Auth revamp and Dashboard 2.0 are not rewritten.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects removing cards that won't happen; publishes a visible not planned or cancelled state with a reason, kept for at least one review cycle",
+        "evidence": "Has a 'Not planned' column with a reason, but no retention period.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the 'beta' tag as an informal flag: it maps to private preview only once access rules are written, and until then is a note on the card, not a phase",
+        "evidence": "Defines private beta by criteria and says 'Engineering saying \"it's in beta\" starts the review.' It does not say the beta shows as a note on the card until access rules are written.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects rewriting ROADMAP.md from scratch each quarter; snapshots the roadmap at each review so promises can be compared with delivery",
+        "evidence": "'Edit in place all quarter. At quarter end, move Shipped cards to an archive and keep the file's git history.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines on the page, for each state, what a customer may rely on",
+        "evidence": "Stage tags: private beta 'may break or change', public beta 'No SLA', GA 'covered by the SLA and the deprecation policy'. Column definitions are also given.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a separate label (Proposed or equivalent) for community ideas so they never read as vendor plans",
+        "evidence": "No such label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives every card a stable ID that survives from exploring to GA",
+        "evidence": "No ID scheme.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Closes each shipped card with a changelog link (a shipped label or equivalent)",
+        "evidence": "Only 'Link the archive and `CHANGELOG` from the README', not per card.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

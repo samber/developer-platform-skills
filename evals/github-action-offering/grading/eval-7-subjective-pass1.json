@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Reframes the Marketplace push: the listing is unreviewed and a trust surface, adoption follows Quillstone's own docs and onboarding snippets, so the same snippet goes into the docs quickstart.",
+        "evidence": "Section 3, 'Marketplace push: wrong lever', says: 'The skill rejects \"Marketplace will bring users\". Listing is unreviewed and is a trust surface. Docs and onboarding snippets drive adoption.' The first ranked action is 'Quickstart in Quillstone docs and in-product onboarding, with the SHA-pinned `uses: org/action@<sha> # v4.0.0` line.' The Marketplace listing is pushed down to item 4 and the launch post to item 5. The table also marks this part '\ud83d\udfe0 Reorder \u2014 Marketplace is not the adoption lever.'",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Reframes the Marketplace push: the listing is unreviewed and a trust surface, adoption follows Quillstone's own docs and onboarding snippets, so the same snippet goes into the docs quickstart.",
+        "evidence": "Section 3 reframes the push only in part. It says \"Adoption isn't the problem... the risk is breaking them\" and \"The listing helps discovery. It does nothing for migration.\" It also reorders the steps so the announcement comes last. It never says the Marketplace listing is unreviewed or that it is a trust surface. It never says adoption comes from Quillstone's own docs or onboarding snippets. It never says to put the same snippet in the docs quickstart. The closest point is \"how to pin by SHA\" in the post, which is about the announcement, not the docs.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

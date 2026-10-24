@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Routes `flags.yaml` validation and autocomplete to a JSON schema, not to an extension feature.",
+        "evidence": "Verdict table: surface 'JSON Schema, published on SchemaStore', extension part 'None'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `flags.yaml` is a generic file name that catalog matching will not fire on, and requires a `$schema` key, a YAML modeline, or an extension-contributed schema to bind it.",
+        "evidence": "'`flags.yaml` is too generic a name for catalog matching' ... modeline written by `brindle init`, or `yamlValidation` contribution.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that VS Code users need the Red Hat YAML extension for the schema to apply, and puts that note in the docs step.",
+        "evidence": "Step 2: 'Document Red Hat YAML for VS Code and Cursor.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the agent flag-toggling job to an MCP server rather than the extension, allowing at most a one-click MCP setup from the extension.",
+        "evidence": "Surface 'MCP server over the public API'; extension part 'Optional one-click \"add Brindlewood MCP server\" command'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the three lost-RFP 'IDE integration' asks as Go later, not as demand, until each maps to a named job.",
+        "evidence": "'**Go later.** ... A checklist logo is not demand.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the React dashboard panel as the starved rich-extension option and refuses to promote it, naming the condition: a job that a tree view, quick pick or diagnostic cannot show, plus a staffed owner.",
+        "evidence": "'promoted when a named job can't be shown by a tree view, quick pick or diagnostic, and a staffed owner exists. Today neither is true.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a thin shell over the `brindle` CLI for the flags-per-environment sidebar job, rendered as a tree view rather than a webview.",
+        "evidence": "Tree view (environment \u2192 flag \u2192 state and rollout %) over the `brindle` CLI.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the extension verdict conditional on a named owner (No-go until one exists, or a provisional assumption row), rather than approving the thin shell outright with nobody assigned.",
+        "evidence": "'**Go**, gated on a named owner (A1). With no owner this becomes No-go.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the per-job verdict table with the columns Job, Demand evidence, Surface, Extension part, Verdict.",
+        "evidence": "Header: Job | Demand evidence | Surface | Extension part | Verdict.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the plan status as provisional and lists each open assumption as a numbered row (A1, A2...) in an Assumptions table with the step it drives and who confirms it.",
+        "evidence": "'Status: provisional' and Assumptions table A1\u2013A8 with 'Step it drives' and 'Who confirms'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records in the Ranking section which interview answer moved which rung, naming at least the missing owner and the 70/20 editor split.",
+        "evidence": "'Q5 (no owner) holds the JetBrains plugin... Q3 (70/20 split) confirms the VS Code-API extension'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the extension holds no flag logic of its own and renders the `brindle --json` output.",
+        "evidence": "'the `brindle` CLI, called with `--json` and exit codes. The extension renders and routes commands and holds no flag logic.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks editor families by Brindlewood's own paying-user share rather than a global survey, defaults to one VS Code-API extension published to both the VS Code Marketplace and Open VSX, and names the JetBrains plugin as the starved option with its promotion condition.",
+        "evidence": "'one VS Code-API extension, published to both the VS Code Marketplace and Open VSX'; JetBrains starved with promotion condition.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Routes `flags.yaml` validation and autocomplete to a JSON schema, not to an extension feature.",
+        "evidence": "\"JSON Schema for flags.yaml. Works in VS Code, Cursor and JetBrains through their YAML support. No extension needed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `flags.yaml` is a generic file name that catalog matching will not fire on, and requires a `$schema` key, a YAML modeline, or an extension-contributed schema to bind it.",
+        "evidence": "It mentions the modeline and SchemaStore but never says flags.yaml is a generic name that catalog matching will not fire on.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that VS Code users need the Red Hat YAML extension for the schema to apply, and puts that note in the docs step.",
+        "evidence": "The Red Hat YAML extension is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the agent flag-toggling job to an MCP server rather than the extension, allowing at most a one-click MCP setup from the extension.",
+        "evidence": "\"Agents (Cursor, Claude Code) toggling flags | Build as MCP server\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the three lost-RFP 'IDE integration' asks as Go later, not as demand, until each maps to a named job.",
+        "evidence": "The RFP row says \"Build, but verify\", which treats the RFPs as demand.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the React dashboard panel as the starved rich-extension option and refuses to promote it, naming the condition: a job that a tree view, quick pick or diagnostic cannot show, plus a staffed owner.",
+        "evidence": "It defers the panel and asks for evidence that people open the web dashboard from the IDE. It names no staffed owner and no job a tree view cannot show.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a thin shell over the `brindle` CLI for the flags-per-environment sidebar job, rendered as a tree view rather than a webview.",
+        "evidence": "\"Extension shells out to `brindle ... --json` first\"; \"native tree view and no webview\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the extension verdict conditional on a named owner (No-go until one exists, or a provisional assumption row), rather than approving the thin shell outright with nobody assigned.",
+        "evidence": "\"Decision needed today: name one owner (a DRI)... Without an owner, nothing below ships.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the per-job verdict table with the columns Job, Demand evidence, Surface, Extension part, Verdict.",
+        "evidence": "The table columns are Signal, Verdict, Why.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks the plan status as provisional and lists each open assumption as a numbered row (A1, A2...) in an Assumptions table with the step it drives and who confirms it.",
+        "evidence": "There is no assumptions table and no A1/A2 rows.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records in the Ranking section which interview answer moved which rung, naming at least the missing owner and the 70/20 editor split.",
+        "evidence": "There is no Ranking section and no 70/20 editor split.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the extension holds no flag logic of its own and renders the `brindle --json` output.",
+        "evidence": "It says the extension shells out to the CLI, but never states that it holds no flag logic.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks editor families by Brindlewood's own paying-user share rather than a global survey, defaults to one VS Code-API extension published to both the VS Code Marketplace and Open VSX, and names the JetBrains plugin as the starved option with its promotion condition.",
+        "evidence": "There is no ranking by paying-user share. JetBrains is deferred to a gate without a named promotion condition.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

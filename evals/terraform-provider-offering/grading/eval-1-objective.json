@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the '70% of enterprise buyers require IaC support' figure, stating public data does not quantify how much enterprise buying depends on IaC, and weighs Brightmoor's own two deals instead.",
+        "evidence": "'\u26a0\ufe0f Drop the statistic | Public data doesn't quantify this. Your own evidence is enough: two deals asked for a Partner provider'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms the ship decision from at least two of the named signals: a community provider with real downloads and issues, and deals or security reviews asking for a Partner-badged provider.",
+        "evidence": "'Q1 (a community provider exists, with downloads and a silent maintainer)... Q2 (two deals asking for Partner) confirms real demand'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects publishing under the lead engineer's GitHub account, stating a later namespace move is a breaking change that forces every user to edit `source` and run `terraform state replace-provider`.",
+        "evidence": "'A namespace move is a breaking change for every user. Each one must edit `source` and run `terraform state replace-provider`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the unanswered two-week DM does not satisfy the maintainer time box, and requires a stated, announced, dated time box before fork-adopt is chosen.",
+        "evidence": "'a two-week DM is not a stated time box. Fork-adopt needs an announced, dated reply window first.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fills or runs the community-provider audit (OSI license, attribute names following the API, sets for unordered collections, import for every resource, acceptance tests, share of perpetual-diff issues, released schema versions, plugin SDK, maintainer contact) rather than deciding on downloads alone.",
+        "evidence": "Audit table with OSI licence, attribute names, sets, import, acceptance tests, perpetual-diff issues, schema versions, SDK, maintainer contact.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the MIT license file is what makes fork-adopt possible at all, since a repo without an OSI license cannot be forked.",
+        "evidence": "Only says 'MIT is an OSI licence, so the fork is legitimate'; never says a repo without an OSI licence cannot be forked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names transfer-adopt as the default rung if the maintainer responds and fork-adopt if silent past the time box, and does not default to a from-scratch rewrite.",
+        "evidence": "'Transfer-adopt... is the preferred outcome of the outreach'; 'fork if no reply by 2026-11-07'; rewrite rejected.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the community provider's invented attribute names (check_frequency_secs versus the API's interval_seconds) as the audit item that lowers the case for adopting, and states that renaming them after adoption is a breaking change: deprecate in a minor, remove in a major.",
+        "evidence": "Audit row 2 flags `check_frequency_secs`; 'The removal waits for the next major.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the paths on more than one axis (effort, value, efficiency, durability stated separately) instead of one blended order.",
+        "evidence": "The table gives one verdict per option. No separate effort, value, efficiency and durability ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that any adoption changes the provider address, that users keep their schema and state shape but must edit `source` and run replace-provider, and keeps the schema compatible across that address change so users face one migration at a time.",
+        "evidence": "'Do this in two steps, so users face one migration at a time. First fork release: schema-identical'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the Partner badge requirements: the Technology Partner Program, the Plugin Framework, nightly acceptance tests in GitHub Actions, and fixing critical issues within 48 hours and others within 5 business days.",
+        "evidence": "'Technology Partner Program; the Plugin Framework; nightly acceptance tests in GitHub Actions; critical issues fixed in 48 hours, others in 5 business days.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schedules the mux migration of the core resources from SDKv2 to the Plugin Framework before the Partner badge request, because the adopted provider is on SDKv2.",
+        "evidence": "'Q6... schedules the mux migration of the core resources before the badge request.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs the API readiness gate before announcing the go, stating the gate can turn 'build now' into 'fix the API first'.",
+        "evidence": "The go is announced with every gate row UNKNOWN. Gate failure is handled later: 'Fix the API before the release cut'. It is not framed as turning 'build now' into 'fix the API first'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the vendor owes state upgraders from every schema version the community provider has released.",
+        "evidence": "Audit row 7: 'You will owe upgraders from those versions.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the '70% of enterprise buyers require IaC support' figure, stating public data does not quantify how much enterprise buying depends on IaC, and weighs Brightmoor's own two deals instead.",
+        "evidence": "\"Don't use it. I can't verify the stat... Two deals asking is your evidence.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms the ship decision from at least two of the named signals: a community provider with real downloads and issues, and deals or security reviews asking for a Partner-badged provider.",
+        "evidence": "Only the two deals are framed as evidence; community downloads and issues are not used as a ship signal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects publishing under the lead engineer's GitHub account, stating a later namespace move is a breaking change that forces every user to edit `source` and run `terraform state replace-provider`.",
+        "evidence": "\"changes the address for every user. Each of them then has to run `terraform state replace-provider`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the unanswered two-week DM does not satisfy the maintainer time box, and requires a stated, announced, dated time box before fork-adopt is chosen.",
+        "evidence": "\"Two weeks of silence after one DM is thin outreach\"; \"Set a 10-day deadline.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fills or runs the community-provider audit (OSI license, attribute names following the API, sets for unordered collections, import for every resource, acceptance tests, share of perpetual-diff issues, released schema versions, plugin SDK, maintainer contact) rather than deciding on downloads alone.",
+        "evidence": "No audit of license, sets, import, tests, perpetual-diff share or SDK.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the MIT license file is what makes fork-adopt possible at all, since a repo without an OSI license cannot be forked.",
+        "evidence": "\"MIT license means you may fork it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names transfer-adopt as the default rung if the maintainer responds and fork-adopt if silent past the time box, and does not default to a from-scratch rewrite.",
+        "evidence": "The plan defaults to a from-scratch rewrite: \"Go on the Plugin Framework rewrite\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the community provider's invented attribute names (check_frequency_secs versus the API's interval_seconds) as the audit item that lowers the case for adopting, and states that renaming them after adoption is a breaking change: deprecate in a minor, remove in a major.",
+        "evidence": "Renaming is treated as a reason to rewrite, not an audit finding; no deprecate/remove path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the paths on more than one axis (effort, value, efficiency, durability stated separately) instead of one blended order.",
+        "evidence": "No multi-axis ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that any adoption changes the provider address, that users keep their schema and state shape but must edit `source` and run replace-provider, and keeps the schema compatible across that address change so users face one migration at a time.",
+        "evidence": "The new provider has an incompatible schema; the transcript expects replace-provider to fail on schema mismatch.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the Partner badge requirements: the Technology Partner Program, the Plugin Framework, nightly acceptance tests in GitHub Actions, and fixing critical issues within 48 hours and others within 5 business days.",
+        "evidence": "No nightly acceptance or 48h/5-day SLA requirements listed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Schedules the mux migration of the core resources from SDKv2 to the Plugin Framework before the Partner badge request, because the adopted provider is on SDKv2.",
+        "evidence": "No mux migration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs the API readiness gate before announcing the go, stating the gate can turn 'build now' into 'fix the API first'.",
+        "evidence": "No readiness gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the vendor owes state upgraders from every schema version the community provider has released.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

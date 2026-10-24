@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Treats the maintainer as unreachable after two emails over six weeks and prescribes publishing an official extension under Quarrystone's verified publisher with a clearly distinct name, linked from the docs as the official one.",
+        "evidence": "'Two emails over six weeks is enough to count the maintainer as unreachable'; name distinct, published under verified publisher, linked from docs.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the takedown unless the community listing impersonates Quarrystone, limiting trademark reports through the registry to impersonation.",
+        "evidence": "'Run a takedown only if step 1 shows impersonation.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Because the community extension stores keys in `settings.json`, publishes a docs notice telling its users to rotate their API keys and move to the official extension.",
+        "evidence": "Step 3 docs notice; step 2 'rotate your key'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the official extension through the Quarrystone CLI rather than direct API calls, so API changes like v2 do not break it the way they broke the community copy.",
+        "evidence": "'thin shell... over the CLI or a generated SDK. It holds no hand-written API calls.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Revokes every publish token and audits publisher members on both registries before any other step.",
+        "evidence": "Fire 2 first; Hour 0-1 revoke, Hour 1-3 audit members.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "On the VS Code Marketplace, publishes a clean higher patch at once and reports any bad version to Marketplace support, unpublishing the whole extension only if no clean build exists.",
+        "evidence": "'publish a clean higher patch at once and report the bad version... Unpublish the whole extension only if you have no clean build.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "On Open VSX, deletes any bad version and publishes the clean patch, noting that a flagged version cannot be reactivated and a deleted version number stays reserved.",
+        "evidence": "Deletion and reserved number covered, but the flagged-version-cannot-be-reactivated point is missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves Marketplace publishing to `--azure-credential` or `--oidc` with a trusted-publishing policy, and Open VSX to `ovsx publish --trusted-publishing`, deleting the token path rather than keeping it as a silent backup.",
+        "evidence": "'Delete `OVSX_PAT` and every PAT path from the job.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the single Owner-created shared token with per-registry, namespace-scoped, short-lived credentials on Contributor-role accounts.",
+        "evidence": "'CI must be Contributor only'; federation gives each registry its own short-lived identity.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes a compromised-token runbook per registry, including JetBrains (hide the update in the vendor console, contact Marketplace support), to keep before it is needed again.",
+        "evidence": "No runbook and no JetBrains mention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Open VSX tokens carry the `ovsxp_` prefix so scanners detect them, and calendars rotation before the expiry if any token fallback remains.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Never republishes a version number: the fix ships as a higher patch.",
+        "evidence": "'publish a clean higher patch'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes the publisher ID and official extension ID on Quarrystone's docs so buyers and allowlists can tell the official extension from the community one.",
+        "evidence": "Only 'Link it from docs'; IDs are not said to be published.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Claims the Open VSX namespace and files the ownership claim so Cursor users stop finding the lookalike first.",
+        "evidence": "Only 'Check for... an Open VSX copy'; no namespace claim.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Treats the maintainer as unreachable after two emails over six weeks and prescribes publishing an official extension under Quarrystone's verified publisher with a clearly distinct name, linked from the docs as the official one.",
+        "evidence": "It suggests an official extension but treats two emails as \"a thin record\" and never mentions a verified publisher or distinct name.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the takedown unless the community listing impersonates Quarrystone, limiting trademark reports through the registry to impersonation.",
+        "evidence": "\"A broken, unmaintained community extension is not a Marketplace policy violation... Claim trademark or impersonation, not 'broken'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Because the community extension stores keys in `settings.json`, publishes a docs notice telling its users to rotate their API keys and move to the official extension.",
+        "evidence": "\"Advise moving keys out of settings.json. Rotate the key if Settings Sync or dotfiles exposed it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the official extension through the Quarrystone CLI rather than direct API calls, so API changes like v2 do not break it the way they broke the community copy.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Revokes every publish token and audits publisher members on both registries before any other step.",
+        "evidence": "\"Revoke before investigating\"; audit \"publisher and namespace members and tokens\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "On the VS Code Marketplace, publishes a clean higher patch at once and reports any bad version to Marketplace support, unpublishing the whole extension only if no clean build exists.",
+        "evidence": "It only says to unpublish a malicious publish and report it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "On Open VSX, deletes any bad version and publishes the clean patch, noting that a flagged version cannot be reactivated and a deleted version number stays reserved.",
+        "evidence": "Not covered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves Marketplace publishing to `--azure-credential` or `--oidc` with a trusted-publishing policy, and Open VSX to `ovsx publish --trusted-publishing`, deleting the token path rather than keeping it as a silent backup.",
+        "evidence": "It issues new tokens instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the single Owner-created shared token with per-registry, namespace-scoped, short-lived credentials on Contributor-role accounts.",
+        "evidence": "\"one token per registry... dedicated bot account holding the lowest role that can publish\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes a compromised-token runbook per registry, including JetBrains (hide the update in the vendor console, contact Marketplace support), to keep before it is needed again.",
+        "evidence": "JetBrains is not mentioned and no runbook is written.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Open VSX tokens carry the `ovsxp_` prefix so scanners detect them, and calendars rotation before the expiry if any token fallback remains.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Never republishes a version number: the fix ships as a higher patch.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes the publisher ID and official extension ID on Quarrystone's docs so buyers and allowlists can tell the official extension from the community one.",
+        "evidence": "It says only \"Link the official alternative\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Claims the Open VSX namespace and files the ownership claim so Cursor users stop finding the lookalike first.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

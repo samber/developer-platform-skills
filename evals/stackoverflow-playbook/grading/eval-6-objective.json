@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that Stack Overflow publishes no vendor-tag benchmark and that targets are self-set; supplies no industry benchmark answer rate",
+        "evidence": "\"there is none... Stack Overflow publishes no vendor-tag benchmark\"; self-set target.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes answer rate under 30 days with a self-set starting target of 90% and median time to first answer of one business day",
+        "evidence": "Metrics table: 90%, 1 business day.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not adopt total team reputation or the +5,000 per quarter target as a KPI",
+        "evidence": "\"don't use it as the headline KPI\"; footnote only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'questions edited or cleaned up' as a metric, stating every edit bumps the thread to the Active tab and that edits are batched weekly",
+        "evidence": "\"Every edit bumps the thread to the Active tab... Batch any edits weekly.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds hygiene with pass threshold zero: spam flags, AI deletions, undisclosed-affiliation comments, rejected edits",
+        "evidence": "\"0 spam flags, 0 AI deletions, 0 undisclosed-affiliation comments, 0 rejected edits\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds canonical coverage of the top 20 support-ticket themes, views on canonicals, and a monthly AI-citation spot check",
+        "evidence": "Metrics table rows for each.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides the Data Explorer query for data.stackexchange.com with the exact filters: PostTypeId = 1, ClosedDate IS NULL, AcceptedAnswerId IS NULL, NOT EXISTS an answer with Score > 0, ORDER BY ViewCount DESC, parameterized with ##TagName:string##",
+        "evidence": "Provided queries lack AcceptedAnswerId IS NULL, NOT EXISTS Score>0 and ORDER BY ViewCount; backlog query only referenced.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For the answer-rate metric, adds the 30-day window (CreationDate > DATEADD(day, -30, GETDATE())) and compares against all open questions in the same window with the same ClosedDate IS NULL filter on both sides",
+        "evidence": "Uses ##Start##/##End## windows, no DATEADD(-30, GETDATE()) variant and no comparison against all open questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the Data Explorer database refreshes weekly",
+        "evidence": "\"Stack Overflow database, refreshed weekly\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the two engineers at about 1,800 rep sit below the 2,000-rep unreviewed-edit gate, so their edits are reviewed and intent-changing edits get rejected and count against hygiene",
+        "evidence": "\"both engineers are below the 2,000 threshold... edits that change another author's intent are rejected.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the figures through: two engineers at about 1,800 rep, quarterly cadence",
+        "evidence": "\"two engineers at about 1,800 rep\"; quarterly framing.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens with direct answers to the three asks before the query and metric list",
+        "evidence": "\"Direct answers to the three asks\" (a), (b), (c) precede query.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that Stack Overflow publishes no vendor-tag benchmark and that targets are self-set; supplies no industry benchmark answer rate",
+        "evidence": "'No published \"industry benchmark for vendor tags\" exists \u2026 The defensible benchmark is a peer-tag comparison.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes answer rate under 30 days with a self-set starting target of 90% and median time to first answer of one business day",
+        "evidence": "No 30-day window and no 90% target. The only time target, under 2 working days, appears in another transcript.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not adopt total team reputation or the +5,000 per quarter target as a KPI",
+        "evidence": "'Rep is also a poor headline KPI'; it recommends against the +5,000 target.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'questions edited or cleaned up' as a metric, stating every edit bumps the thread to the Active tab and that edits are batched weekly",
+        "evidence": "It rejects the metric as effort-not-outcome and notes editing old posts bumps them to the front page. It does not recommend batching edits weekly.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds hygiene with pass threshold zero: spam flags, AI deletions, undisclosed-affiliation comments, rejected edits",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds canonical coverage of the top 20 support-ticket themes, views on canonicals, and a monthly AI-citation spot check",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides the Data Explorer query for data.stackexchange.com with the exact filters: PostTypeId = 1, ClosedDate IS NULL, AcceptedAnswerId IS NULL, NOT EXISTS an answer with Score > 0, ORDER BY ViewCount DESC, parameterized with ##TagName:string##",
+        "evidence": "The queries compute tag answer rates, not open questions with no accepted or upvoted answer ordered by ViewCount.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For the answer-rate metric, adds the 30-day window (CreationDate > DATEADD(day, -30, GETDATE())) and compares against all open questions in the same window with the same ClosedDate IS NULL filter on both sides",
+        "evidence": "The queries use a quarter window and have no ClosedDate filter.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the Data Explorer database refreshes weekly",
+        "evidence": "'SEDE data refreshes weekly (Sundays)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the two engineers at about 1,800 rep sit below the 2,000-rep unreviewed-edit gate, so their edits are reviewed and intent-changing edits get rejected and count against hygiene",
+        "evidence": "'Both engineers sit around 1,800 rep, below the 2,000 threshold \u2026 Rejected ones count for nothing'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the figures through: two engineers at about 1,800 rep, quarterly cadence",
+        "evidence": "Two engineers at about 1,800 rep; quarterly (Q3) window.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens with direct answers to the three asks before the query and metric list",
+        "evidence": "It opens with 'I couldn't run any of this' and goes straight to a 'Do this first' list of steps.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects documenting the signing_secret diff as the fix, stating users cannot ignore a diff that appears on every plan.",
+        "evidence": "'Users can't suppress a diff that appears on every plan'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies signing_secret as user-supplied and never returned by the API, prescribing a write-only argument plus a `signing_secret_wo_version` trigger attribute.",
+        "evidence": "'Add a write-only `signing_secret_wo` plus a `signing_secret_wo_version` trigger'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Because the minimum Terraform is 1.5 (below 1.11), ships a `Sensitive` attribute beside the write-only one, `ConflictsWith` between them, and steers users with the `PreferWriteOnlyAttribute` validator.",
+        "evidence": "Keeps `signing_secret` Sensitive; 'Use `ConflictsWith`... `PreferWriteOnlyAttribute` validator'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that write-only arguments require Terraform and OpenTofu 1.11 or later.",
+        "evidence": "'Write-only arguments need Terraform and OpenTofu 1.11+'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects making api_token write-only, because write-only arguments cannot be Computed and the API, not the user, generates the value.",
+        "evidence": "'A write-only argument can't be Computed'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes api_token as a `Sensitive` computed attribute set at create, preserved from prior state on Read, and documented as stored in state.",
+        "evidence": "'Sensitive, Computed-only... from the create response... never overwrite... stored in plaintext in state'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States api_token stays null after import and is recoverable only by replacing the resource, and documents that.",
+        "evidence": "'After import it is null... only way to recover or rotate it is to replace the resource'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends asking the API team to let callers supply the integration token, which is the only way to make it write-only and remove it from state.",
+        "evidence": "'Ask the API team: can callers supply the token? If so, it can become write-only later'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps `notes` a normal attribute preserved from prior state on Read, and documents that drift on it is undetectable.",
+        "evidence": "'Make notes Optional. In Read, keep the prior state value. Document that out-of-band edits... can't be detected.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explicitly refuses write-only for `notes` because it is not a secret and write-only removes drift detection and plan visibility.",
+        "evidence": "'Write-only is for secrets, and it would remove drift detection and plan visibility for plain text.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists only preserved fields and API-generated secrets in `ImportStateVerifyIgnore` for each affected resource, taken from the resource map rather than guesswork.",
+        "evidence": "'Put only these fields in ImportStateVerifyIgnore: signing_secret, api_token, notes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents that a preserved field shows an update on the first plan after import until the user sets it.",
+        "evidence": "'notes is null until the user sets it, so the first plan shows one update.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `Sensitive: true` alone only hides a value in plan output and still stores it in plaintext state.",
+        "evidence": "'`Sensitive` only hides it in plan output.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds acceptance checks asserting the write-only value reached the API and is absent from state, and that bumping `signing_secret_wo_version` triggers an update.",
+        "evidence": "'assert... the value reaches the API but never appears in state, and bumping `signing_secret_wo_version` triggers an update.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects documenting the signing_secret diff as the fix, stating users cannot ignore a diff that appears on every plan.",
+        "evidence": "\"Every `terraform plan` shows a change... Users learn to ignore plan diffs\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies signing_secret as user-supplied and never returned by the API, prescribing a write-only argument plus a `signing_secret_wo_version` trigger attribute.",
+        "evidence": "Only offered as \"Optional later\"; the primary fix is preserving state.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Because the minimum Terraform is 1.5 (below 1.11), ships a `Sensitive` attribute beside the write-only one, `ConflictsWith` between them, and steers users with the `PreferWriteOnlyAttribute` validator.",
+        "evidence": "Not prescribed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that write-only arguments require Terraform and OpenTofu 1.11 or later.",
+        "evidence": "\"write-only attributes need Terraform 1.11 or later. Your floor is 1.5.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects making api_token write-only, because write-only arguments cannot be Computed and the API, not the user, generates the value.",
+        "evidence": "\"write-only attributes can't be `Computed`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes api_token as a `Sensitive` computed attribute set at create, preserved from prior state on Read, and documented as stored in state.",
+        "evidence": "\"`Computed` + `Sensitive`. `Read` never overwrites it\"; \"it has to stay in state\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States api_token stays null after import and is recoverable only by replacing the resource, and documents that.",
+        "evidence": "\"`api_token` stays **null**\"; \"user must replace the resource\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends asking the API team to let callers supply the integration token, which is the only way to make it write-only and remove it from state.",
+        "evidence": "Not suggested.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps `notes` a normal attribute preserved from prior state on Read, and documents that drift on it is undetectable.",
+        "evidence": "\"out-of-band changes to these fields can't be detected. State the limitation\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explicitly refuses write-only for `notes` because it is not a secret and write-only removes drift detection and plan visibility.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists only preserved fields and API-generated secrets in `ImportStateVerifyIgnore` for each affected resource, taken from the resource map rather than guesswork.",
+        "evidence": "`ImportStateVerifyIgnore: []string{\"signing_secret\", \"api_token\", \"notes\"}`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents that a preserved field shows an update on the first plan after import until the user sets it.",
+        "evidence": "\"the first plan after import shows one in-place update\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `Sensitive: true` alone only hides a value in plan output and still stores it in plaintext state.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds acceptance checks asserting the write-only value reached the API and is absent from state, and that bumping `signing_secret_wo_version` triggers an update.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

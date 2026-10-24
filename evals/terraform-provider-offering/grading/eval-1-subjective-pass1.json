@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Says which interview answer moved which rung (the deal deadline, the Partner target, the headcount) rather than presenting the path as context-free.",
+        "evidence": "The 'What moved the path' section links each answer to a rung. Q1 (community provider exists, maintainer silent) selects an adopt rung. Q2 (two deals asking for Partner) confirms the answer is 'ship'. Q6 (Partner target on SDKv2) schedules the mux migration before the badge request. Q7 (deadline this quarter) keeps the default rungs and rules out the generated full-coverage path. So the deadline and the Partner target are explicitly tied to rungs. Headcount (Q5: owner, on-call) is not tied to any rung. It is listed only as an open question, with a note to size it against the SLA before applyin",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Says which interview answer moved which rung (the deal deadline, the Partner target, the headcount) rather than presenting the path as context-free.",
+        "evidence": "Two inputs are partly tied to decisions. The Partner target drives dropping the personal account ('A personal namespace likely can't qualify, so the plan would fail the requirement the deals are asking for'). The deadline sets the timeline ('You have about 10 weeks until quarter end') and the advice to ask for the exact questionnaire wording. Headcount is never mentioned. Nowhere does the answer say outright that a given interview answer moved a given rung, so the path still reads mostly as a generic plan.",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
