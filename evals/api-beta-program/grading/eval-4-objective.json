@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Caps the extension at half the original time box (3 months, not 6), allows exactly one extension, and requires the new date plus the failed criterion written down.",
+        "evidence": "\"one extension, at most half the original time box. That is 3 months\"; \"new date plus the failed criterion written down\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names any later second extension as a deferred decision rather than a program.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects auto-expiring flags that disable access: the expiry must alert the owner on the exit date and never remove access by itself.",
+        "evidence": "\"Make the expiry alert the program owner on the exit date and never disable access.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that 12 signups measure reach, not demand, and reports activation as 3 of 12 against a floor.",
+        "evidence": "\"Signups measure reach... 12 enrolled, 3 activated (25%)\"; \"at least N accounts activated (you set N; today it is 3)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the activation floor should have been set at launch, and sets one now rather than leaving the review without a floor.",
+        "evidence": "Leaves N for the user to set; no statement that it should have been set at launch.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats Ridgeway Fleet's production traffic without a signed production exception as a trigger for a conversation and longer notice, never silence, and states it does not count toward the GA criterion until an exception is signed.",
+        "evidence": "\"Offer a signed production exception\"; GA needs \"one account in production on the final shape under a signed exception\"; \"Call their technical owner this week\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that exit criteria decided at the review are decided by whoever is loudest, and writes GA criteria (all required), kill criteria (any), and the extension rule now, before the review.",
+        "evidence": "\"Without criteria, the loudest voice decides\"; GA all / Kill any / extension drafted",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists kill criteria including activation below the floor at the review date, the problem statement disproved, cost to serve above what GA pricing can carry, and a better route found.",
+        "evidence": "Activation below floor, problem disproved, cost to serve exceeds GA pricing, better route found",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `matches` to `segments` rename the week before the review, because a contract-freeze date must sit at least one partner release cycle before the exit review and no changes ship after it.",
+        "evidence": "\"No freeze, no final-shape evidence... freeze date (review minus one cycle)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If the rename still has to ship before the freeze, requires direct notice to every enrolled technical owner before it ships, notice length scaled to observed production use, and a changelog entry.",
+        "evidence": "\"written notice to all 12 technical owners and a changelog entry\"; \"Notice length scales with production use\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that 6 months plus a 6-month extension reaches the twelve-month mark treated as a perpetual beta, as a reason to keep the extension short.",
+        "evidence": "\"Six more makes 11 months, which is close to the 12-month line the skill calls a perpetual beta.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces an extension notice that names the new date, the criterion that failed, and what changes in the extension.",
+        "evidence": "No extension notice drafted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Measures time in stage against the time box and states that a beta past its date without an extension record is a defect.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Caps the extension at half the original time box (3 months, not 6), allows exactly one extension, and requires the new date plus the failed criterion written down.",
+        "evidence": "\"3 months, with named fixes, beats 6 open-ended\" but no one-extension limit and no written record of the failed criterion.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names any later second extension as a deferred decision rather than a program.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects auto-expiring flags that disable access: the expiry must alert the owner on the exit date and never remove access by itself.",
+        "evidence": "\"Half right.\" It keeps expiry with an explicit action such as downgrade or renewal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that 12 signups measure reach, not demand, and reports activation as 3 of 12 against a floor.",
+        "evidence": "It reports \"25% activation\" but sets no floor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the activation floor should have been set at launch, and sets one now rather than leaving the review without a floor.",
+        "evidence": "No activation floor is set.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats Ridgeway Fleet's production traffic without a signed production exception as a trigger for a conversation and longer notice, never silence, and states it does not count toward the GA criterion until an exception is signed.",
+        "evidence": "It recommends a written note and says demand may be \"1 account\", but never says Ridgeway is excluded from the GA criterion until an exception is signed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that exit criteria decided at the review are decided by whoever is loudest, and writes GA criteria (all required), kill criteria (any), and the extension rule now, before the review.",
+        "evidence": "\"Deciding the criteria at the review lets the data pick the criteria\" with example gates and outcomes: ship, extend, stop.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists kill criteria including activation below the floor at the review date, the problem statement disproved, cost to serve above what GA pricing can carry, and a better route found.",
+        "evidence": "It only says \"Stop or pivot if usage or accuracy gates can't be reached.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `matches` to `segments` rename the week before the review, because a contract-freeze date must sit at least one partner release cycle before the exit review and no changes ship after it.",
+        "evidence": "It rejects the rename but for a different reason (review judges an unused shape). It sets no freeze date.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "If the rename still has to ship before the freeze, requires direct notice to every enrolled technical owner before it ships, notice length scaled to observed production use, and a changelog entry.",
+        "evidence": "Only \"tell Ridgeway first, in writing\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that 6 months plus a 6-month extension reaches the twelve-month mark treated as a perpetual beta, as a reason to keep the extension short.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces an extension notice that names the new date, the criterion that failed, and what changes in the extension.",
+        "evidence": "No extension notice is produced.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Measures time in stage against the time box and states that a beta past its date without an extension record is a defect.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

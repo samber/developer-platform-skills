@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that version equality proves only that someone bumped a string and that lockstep rule 4 also requires the content check.",
+        "evidence": "'Your version check (gate 2) proves only that someone bumped a string.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs the content check on the artifact the release will publish, built with the release version stamping, before any publish step.",
+        "evidence": "'Build nb with release stamping, to an explicit path'; 'must run against the built wheel's nb'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stale direction: extracts every invocation from fenced and inline code in skills/**/*.md and asserts every command, flag and identifier exists via `nb <subcommand path> --help 2>&1`.",
+        "evidence": "md_invocations from fenced and inline code; resolve checks command path and flags against the binary's command tree",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'every command must appear' requirement: never require coverage of the whole surface, because it pushes the skill toward the command dump it should avoid.",
+        "evidence": "It objects but still implements full coverage via a generated commands.md and 'never appears' errors.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "New-surface direction: fails only on public commands added since the last release that the skill never mentions and the allowlist does not exempt.",
+        "evidence": "Requires every leaf command to appear, not just newly added ones.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the deliberate --legacy mention with a small allowlist file next to the check, never by loosening the parser.",
+        "evidence": "'scripts/skill-content-allowlist.json'; 'Do not loosen the parser.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fails on allowlist rot: an allowlisted 'removed' flag that exists again means the skill and the allowlist are both wrong.",
+        "evidence": "'allowlisted ... is valid again; drop the entry'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Skips blocks marked as bad examples (lines under a \u2717 label) during extraction.",
+        "evidence": "'if \"\\u2717\" in line: # a line marked as a bad example'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "When the skill names JSON fields to read, runs the command with --json against a fixture or dry-run and asserts each documented field is present.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fails with the file, line and missing token.",
+        "evidence": "errors formatted '%s:%d: unknown flag `%s`...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asserts the wheel's file list contains skills/.",
+        "evidence": "'unzip -l dist/*.whl | grep -E skills/nb/SKILL.md'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the changed-surface gate on pull requests: a public surface change with no file under skills/ changed fails unless a reviewer applies a skill-unaffected label.",
+        "evidence": "'Optional: add the changed-surface gate (gate 4)... unless a skill-unaffected label is set.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Generates the surface snapshot with the head's script run against both the base and head builds, since the base may predate the script.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes a hidden machine-readable command tree (`commands --json`) instead of parsing usage text that breaks on layout changes.",
+        "evidence": "'nb commands --json: a hidden subcommand that dumps the command tree.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that version equality proves only that someone bumped a string and that lockstep rule 4 also requires the content check.",
+        "evidence": "Says \"the version check never looked at content\" but does not cite lockstep rule 4.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs the content check on the artifact the release will publish, built with the release version stamping, before any publish step.",
+        "evidence": "Imports nb.cli from source; no built artifact.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Stale direction: extracts every invocation from fenced and inline code in skills/**/*.md and asserts every command, flag and identifier exists via `nb <subcommand path> --help 2>&1`.",
+        "evidence": "Rule 2: every `nb \u2026` invocation must resolve (command path and flags exist), extracted from fences and inline code.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'every command must appear' requirement: never require coverage of the whole surface, because it pushes the skill toward the command dump it should avoid.",
+        "evidence": "Rule 1 makes coverage of every non-hidden leaf command required.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "New-surface direction: fails only on public commands added since the last release that the skill never mentions and the allowlist does not exempt.",
+        "evidence": "It requires whole-surface coverage rather than a diff against the last release.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the deliberate --legacy mention with a small allowlist file next to the check, never by loosening the parser.",
+        "evidence": "removed.toml registry; \"Exempting `--legacy` by pattern would also bring back the original bug\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fails on allowlist rot: an allowlisted 'removed' flag that exists again means the skill and the allowlist are both wrong.",
+        "evidence": "Rule 4: \"Each `removed.toml` entry must really be absent from the CLI\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Skips blocks marked as bad examples (lines under a \u2717 label) during extraction.",
+        "evidence": "Uses removed-region markers, not \u2717-labelled blocks.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "When the skill names JSON fields to read, runs the command with --json against a fixture or dry-run and asserts each documented field is present.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fails with the file, line and missing token.",
+        "evidence": "\"SKILL.md:{n}: `{inv}` is invalid: unknown {f}\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asserts the wheel's file list contains skills/.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds the changed-surface gate on pull requests: a public surface change with no file under skills/ changed fails unless a reviewer applies a skill-unaffected label.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Generates the surface snapshot with the head's script run against both the base and head builds, since the base may predate the script.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes a hidden machine-readable command tree (`commands --json`) instead of parsing usage text that breaks on layout changes.",
+        "evidence": "Walks the click tree instead of proposing a commands --json subcommand.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects downloading the binary in `postinstall`, stating npm 12 skips dependency install scripts the consumer has not approved",
+        "evidence": "npm 12 skips install scripts by default",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that `npx` and global installs have no project policy through which a consumer could approve install scripts",
+        "evidence": "npx and npm i -g have no project policy to approve a script",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends one npm package per platform (for example `@oakridge/cli-linux-x64`, `@oakridge/cli-darwin-arm64`) declaring `os`, `cpu` and, on Linux, `libc`",
+        "evidence": "Linux packages omit libc",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Has the main package list every platform package as `optionalDependencies` pinned to the exact same version",
+        "evidence": "optionalDependencies[name] = version; // exact version, never a range",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that each platform package needs its own npm trusted publisher configuration",
+        "evidence": "Add a trusted publisher to each of the 7 packages",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders publishing as platform packages first and the main package last, so the main package never points at missing versions",
+        "evidence": "platform packages first, @oakridge/cli last",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends `homebrew_casks` rather than `brews` in GoReleaser, stating `brews` formulas are deprecated since v2.10",
+        "evidence": "Not a GoReleaser brews or homebrew_casks section; script-rendered formula",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends `nfpms` (deb, rpm, apk) for Linux users because casks target macOS",
+        "evidence": "no nfpms mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the Homebrew tap lives in another repository so the built-in token cannot push to it, and prescribes a token scoped to the tap repository only",
+        "evidence": "Scoped TAP token used but built-in token limitation not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the Go module release as a pushed tag and uses GoReleaser only for the binaries",
+        "evidence": "not addressed",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes `checksum` and `signs` sections with keyless `cosign sign-blob` on the checksum file",
+        "evidence": "signs: cmd cosign sign-blob --bundle on checksum",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that syft and cosign must be installed in a prior step because the GoReleaser action installs neither",
+        "evidence": "sigstore/cosign-installer and download-syft steps; needs syft installed in a prior step",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States GoReleaser OSS builds and publishes in one job, so the `release` environment gate, no restored caches and pinned tool versions stand in for the build/publish split",
+        "evidence": "GoReleaser OSS builds, signs and releases in a single job. The environment gate, no caches and pinned tools stand in",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that npm publishing is a GoReleaser Pro feature absent from the open-source edition, so the platform npm packages publish through the npm workflow",
+        "evidence": "not stated",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects downloading the binary in `postinstall`, stating npm 12 skips dependency install scripts the consumer has not approved",
+        "evidence": "Recommends starting with postinstall plan",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that `npx` and global installs have no project policy through which a consumer could approve install scripts",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends one npm package per platform (for example `@oakridge/cli-linux-x64`, `@oakridge/cli-darwin-arm64`) declaring `os`, `cpu` and, on Linux, `libc`",
+        "evidence": "Mentioned only as later alternative, no libc",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Has the main package list every platform package as `optionalDependencies` pinned to the exact same version",
+        "evidence": "Lists optionalDependencies, no exact pin",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that each platform package needs its own npm trusted publisher configuration",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders publishing as platform packages first and the main package last, so the main package never points at missing versions",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends `homebrew_casks` rather than `brews` in GoReleaser, stating `brews` formulas are deprecated since v2.10",
+        "evidence": "Config uses brews; deprecation only noted",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends `nfpms` (deb, rpm, apk) for Linux users because casks target macOS",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the Homebrew tap lives in another repository so the built-in token cannot push to it, and prescribes a token scoped to the tap repository only",
+        "evidence": "Scoped PAT mentioned but not the built-in token limitation",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the Go module release as a pushed tag and uses GoReleaser only for the binaries",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes `checksum` and `signs` sections with keyless `cosign sign-blob` on the checksum file",
+        "evidence": "checksum only, no signs",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that syft and cosign must be installed in a prior step because the GoReleaser action installs neither",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States GoReleaser OSS builds and publishes in one job, so the `release` environment gate, no restored caches and pinned tool versions stand in for the build/publish split",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that npm publishing is a GoReleaser Pro feature absent from the open-source edition, so the platform npm packages publish through the npm workflow",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

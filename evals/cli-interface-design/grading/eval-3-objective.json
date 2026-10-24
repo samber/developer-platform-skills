@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects adopting BSD sysexits (64-78) as the published scheme, citing that current FreeBSD documentation deprecates them",
+        "evidence": "\"current FreeBSD documentation marks it deprecated.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 255 and any code above 125, because shells reserve 126-127 and read 128+N as signals",
+        "evidence": "\"255 is the wrong code... The range above 125 is shell-reserved\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes one small exit-code table with the columns code, meaning and caller action",
+        "evidence": "\"| Code | Meaning | Caller action |\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reserves 0 for success including an idempotent no-op, and 2 for usage errors",
+        "evidence": "\"0 | Success, including an idempotent replay\"; \"2 | Usage error\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns a distinct exit code to authentication required",
+        "evidence": "\"4 | Authentication required, or token expired\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns a distinct exit code to not found",
+        "evidence": "\"3 | Not found\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines a safe-to-rerun code covering failures where nothing reached the server, and 429 or 503 responses carrying Retry-After",
+        "evidence": "\"5 | Safe to rerun: nothing reached the server, 429, 503 with `Retry-After`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines an outcome-unknown code for any other 5xx or a timeout after sending a non-idempotent call, with the caller action to check with `wait` or `get` and never rerun blind",
+        "evidence": "\"6 | Outcome unknown... do not rerun blind. Check with `pld imports get/list`, or `wait <operation-id>`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the proposed 'retry on any 5xx' guidance because a 5xx after a non-idempotent request was sent has an unknown outcome",
+        "evidence": "\"\\\"Retry on any 5xx\\\" is the bug.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `pld imports create` send one idempotency key per invocation, reuse it on automatic retries, and accept `--idempotency-key`",
+        "evidence": "\"Generate it once per invocation, and reuse it... Accept `--idempotency-key`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a call carrying a caller-controlled idempotency key moves from the outcome-unknown class to the safe-to-rerun class",
+        "evidence": "\"Any retryable failure when the caller passed `--idempotency-key`\" maps to 5.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns a distinct partial-failure code to `bulk-create` when some files fail, with per-item results in a `{\"data\": [...], \"errors\": [...]}` body, replacing exit 0 on any success",
+        "evidence": "\"exit 7... `--json` returns `{\"data\": [...], \"errors\": [...]}`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses 130 for SIGINT and 143 for SIGTERM, with the detach-and-print-resume-command behavior",
+        "evidence": "\"130 / 143 | Interrupted by SIGINT / SIGTERM. The CLI detaches and prints the operation ID\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an automated test per exit code and names at least one known regression class: an auth-status command returning 0 on an expired token, or a login returning 1 on success when an env token is set",
+        "evidence": "One test per code is required, but the auth-status-0-on-expired-token class is not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries a `retry` field in the `--json` error object with the values safe, resume or never, mirroring the exit-code classes",
+        "evidence": "\"`--json` mode carries it in the error object (`\\\"idempotency_key\\\"`, `\\\"retry\\\": \\\"resume\\\"`)\"; per-item retry class safe/resume/never.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects adopting BSD sysexits (64-78) as the published scheme, citing that current FreeBSD documentation deprecates them",
+        "evidence": "\"Adopt sysexits numbers (64\u201378) as the base.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects 255 and any code above 125, because shells reserve 126-127 and read 128+N as signals",
+        "evidence": "\"Reject 255 for internal errors\"; \"Reserved: 2, 126, 127 and 128+n are never emitted\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes one small exit-code table with the columns code, meaning and caller action",
+        "evidence": "The table has 13 rows with columns Code, Name, Meaning and Retry, so it is neither small nor in the required column form.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Reserves 0 for success including an idempotent no-op, and 2 for usage errors",
+        "evidence": "2 is reserved and never emitted. Usage is 64.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns a distinct exit code to authentication required",
+        "evidence": "77 EX_NOPERM covers 401 and 403.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns a distinct exit code to not found",
+        "evidence": "66 covers a 404 for a named resource.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines a safe-to-rerun code covering failures where nothing reached the server, and 429 or 503 responses carrying Retry-After",
+        "evidence": "75: \"Provably not applied: 429... safe, honor Retry-After\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines an outcome-unknown code for any other 5xx or a timeout after sending a non-idempotent call, with the caller action to check with `wait` or `get` and never rerun blind",
+        "evidence": "80's action is to rerun with the same key. No check-via-wait/get guidance is specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the proposed 'retry on any 5xx' guidance because a 5xx after a non-idempotent request was sent has an unknown outcome",
+        "evidence": "\"Reject 'retry any 5xx'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `pld imports create` send one idempotency key per invocation, reuse it on automatic retries, and accept `--idempotency-key`",
+        "evidence": "\"default is a random UUID per invocation... Add `--idempotency-key`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a call carrying a caller-controlled idempotency key moves from the outcome-unknown class to the safe-to-rerun class",
+        "evidence": "Not stated as a class change. 80 stays 'key' class.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns a distinct partial-failure code to `bulk-create` when some files fail, with per-item results in a `{\"data\": [...], \"errors\": [...]}` body, replacing exit 0 on any success",
+        "evidence": "81 is assigned, but the body is NDJSON per file, not {\"data\":[],\"errors\":[]}.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses 130 for SIGINT and 143 for SIGTERM, with the detach-and-print-resume-command behavior",
+        "evidence": "\"SIGINT or SIGTERM mid-request (the exit stays 130 or 143, with the same stderr hint)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an automated test per exit code and names at least one known regression class: an auth-status command returning 0 on an expired token, or a login returning 1 on success when an env token is set",
+        "evidence": "Only a golden test is mentioned. No per-code tests or named regression classes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries a `retry` field in the `--json` error object with the values safe, resume or never, mirroring the exit-code classes",
+        "evidence": "`{\"exit_code\":80,\"retry\":\"key\",...}` with classes safe, key and never.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

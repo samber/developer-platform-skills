@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends `npm dist-tag add @fennel/client@2.9.4 latest` to point `latest` back at the last stable version",
+        "evidence": "npm dist-tag add @fennel/client@2.9.4 latest",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding the beta under its channel tag (`npm dist-tag add @fennel/client@3.0.0-beta.1 beta`) rather than removing it",
+        "evidence": "npm dist-tag add @fennel/client@3.0.0-beta.1 beta",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the beta should be deprecated only if it is broken, and it is not since it mostly works",
+        "evidence": "Deprecate the beta only if it's actually broken... skip by default",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend unpublishing the beta",
+        "evidence": "Don't unpublish. Move latest back.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the hard-coded `--tag latest` as the cause and states never to hard-code `--tag latest` in CI",
+        "evidence": "--tag latest is hard-coded in the publish step",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a rerun of an old release job carrying `--tag latest` would move `latest` backwards",
+        "evidence": "re-running an old release job... would move latest backwards",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Derives the dist-tag in CI from the version string: a pre-release suffix (alpha, beta, rc, next) maps to that channel tag",
+        "evidence": "table: 3.0.0-beta.1 -> beta; guard script",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Handles the 2.x backport case: a version lower than the current `latest` publishes under `latest-<major>` (for example `latest-2`) so `latest` never moves backwards",
+        "evidence": "2.9.5 backport -> latest-2",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Compares against `npm view <name> dist-tags.latest`, defaults to 0.0.0 only on a genuine E404, and fails the release on any other error",
+        "evidence": "grep -q E404 err.log; current=0.0.0 else exit 1",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that npm 11+ refuses a pre-release or lower-than-latest version without an explicit `--tag`",
+        "evidence": "npm 11 refuses to publish a pre-release without a tag",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces direct `npm publish` with `npm stage publish` behind maintainer approval",
+        "evidence": "npm stage publish ... npm stage approve",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves the dist-tag commands for the user to run rather than executing them",
+        "evidence": "Every command that changes npm state is yours to run",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that past 72 hours the beta could not be unpublished anyway",
+        "evidence": "Only says window still open; no statement about past 72 hours",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends `npm dist-tag add @fennel/client@2.9.4 latest` to point `latest` back at the last stable version",
+        "evidence": "'npm dist-tag add @fennel/client@2.9.4 latest'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding the beta under its channel tag (`npm dist-tag add @fennel/client@3.0.0-beta.1 beta`) rather than removing it",
+        "evidence": "Recommends unpublish instead; no beta dist-tag add",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the beta should be deprecated only if it is broken, and it is not since it mostly works",
+        "evidence": "Offers deprecate as fallback, no such condition",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend unpublishing the beta",
+        "evidence": "'2. Unpublish the beta... npm unpublish @fennel/client@3.0.0-beta.1'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the hard-coded `--tag latest` as the cause and states never to hard-code `--tag latest` in CI",
+        "evidence": "Identifies cause but no explicit never-hard-code rule",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that a rerun of an old release job carrying `--tag latest` would move `latest` backwards",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Derives the dist-tag in CI from the version string: a pre-release suffix (alpha, beta, rc, next) maps to that channel tag",
+        "evidence": "Script maps 3.0.0-beta.1 -> beta",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Handles the 2.x backport case: a version lower than the current `latest` publishes under `latest-<major>` (for example `latest-2`) so `latest` never moves backwards",
+        "evidence": "'TAG=\"latest-${VERSION%%.*}\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Compares against `npm view <name> dist-tags.latest`, defaults to 0.0.0 only on a genuine E404, and fails the release on any other error",
+        "evidence": "No 0.0.0 default; fails on any npm view error including first publish",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that npm 11+ refuses a pre-release or lower-than-latest version without an explicit `--tag`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces direct `npm publish` with `npm stage publish` behind maintainer approval",
+        "evidence": "Uses npm publish",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Leaves the dist-tag commands for the user to run rather than executing them",
+        "evidence": "'These commands change the registry, so I haven't run them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that past 72 hours the beta could not be unpublished anyway",
+        "evidence": "Says inside window instead",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

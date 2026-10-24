@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects changing the sort order of the live `new_ticket` in place, explaining that each live Zap's dedupe memory holds the old ids so the next poll fires every unseen ticket as new",
+        "evidence": "\"`new_ticket` sort flip... rejected. Breaking in effect. Each live Zap's dedupe memory holds the old ids.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects switching `new_ticket` from polling to REST hook in place, classifying the trigger-type change as breaking",
+        "evidence": "\"polling to hook in place | rejected | Type switch is breaking.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships the instant trigger as a twin under a new key (for example `new_ticket_v2`) with the same label and description, and hides the old `new_ticket`",
+        "evidence": "`new_ticket_v2` \"New key, same label and description\"; `new_ticket` hide.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the hook twin to implement performSubscribe, performUnsubscribe, perform and performList, noting the perform list is a publishing check",
+        "evidence": "Code has performSubscribe/Unsubscribe/perform/performList; \"`performList` must return the exact webhook payload shape (validation D006)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that hook deliveries are not deduplicated by Zapier, so the API must send each ticket event exactly once",
+        "evidence": "\"Hook deliveries are not deduplicated, so a double-send becomes a duplicate Zap run.\" and \"Send each event once.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that hiding `new_ticket` invalidates the four Zap templates built on it and schedules rebuilding and resubmitting them on the new key",
+        "evidence": "\"hiding the old step invalidates the four templates\"; \"Rebuild the 4 templates on `new_ticket_v2`\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the hook with the per-poll limit: a trigger that routinely exceeds 100 new items per poll belongs on a hook, and Zapier reads only page one",
+        "evidence": "\"A helpdesk bursts past 100 new items per poll\u2020\"; \"Zapier reading only page one\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Clones 1.4.0 into a new version rather than editing it, because a promoted version with live users is frozen",
+        "evidence": "\"branch from 1.4.0\"; target 1.5.0; route \"clone, change, validate and diff, then promote\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that automatic migrations are on by default, so promotion itself moves a first group of users, and requires testing before promoting",
+        "evidence": "\"Promotion itself moves a first group of users under automatic migrations.\" with canary first.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a CLI canary of 5-10% of traffic for 30-60 minutes, stopping if errors rise more than 5%, before promotion",
+        "evidence": "\"`canary:create 1.4.0 1.5.0 -p 10 -d 3600`... Stop if errors rise more than 5%\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the 100% migrate command with a staged migration: 5% first, watch Monitoring for new errors, then the rest",
+        "evidence": "\"`migrate 1.4.0 1.5.0 5`. Watch Monitoring... Your `\u2026 100` right after promote skips the watch step.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs running `zapier-platform pull` before pushing or promoting because the public integration sits in Zapier's Integration Maintenance Program",
+        "evidence": "\"First action tonight: run `zapier-platform pull`\"; assumption on Integration Maintenance Program.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diffs output keys, response structure and perform behavior by hand before promoting, stating that promotion checks do not catch them",
+        "evidence": "\"Diff by hand. Promotion does not catch changed perform behavior or output keys.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Zapier provides no user email list, so the change is announced through the vendor's own channels",
+        "evidence": "\"Zapier gives you no user list, so use your own API logs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (100 items per poll, 5-10% canary, 30-60 minutes) with \u2020 and a footnote",
+        "evidence": "Footnote lists 100 per poll, canary 5 to 10% for 30 to 60 minutes etc.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects changing the sort order of the live `new_ticket` in place, explaining that each live Zap's dedupe memory holds the old ids so the next poll fires every unseen ticket as new",
+        "evidence": "Section 1 calls the sort fix 'correct' and ships it. It only warns of a one-time burst.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects switching `new_ticket` from polling to REST hook in place, classifying the trigger-type change as breaking",
+        "evidence": "'Changing trigger type is a breaking change.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships the instant trigger as a twin under a new key (for example `new_ticket_v2`) with the same label and description, and hides the old `new_ticket`",
+        "evidence": "'new_ticket_instant (\"New Ticket (Instant)\")' has a different label. Hiding the old trigger is only 'later'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the hook twin to implement performSubscribe, performUnsubscribe, perform and performList, noting the perform list is a publishing check",
+        "evidence": "Lists the methods but not the publishing check.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that hook deliveries are not deduplicated by Zapier, so the API must send each ticket event exactly once",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that hiding `new_ticket` invalidates the four Zap templates built on it and schedules rebuilding and resubmitting them on the new key",
+        "evidence": "Only 'confirm the templates still resolve'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Justifies the hook with the per-poll limit: a trigger that routinely exceeds 100 new items per poll belongs on a hook, and Zapier reads only page one",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Clones 1.4.0 into a new version rather than editing it, because a promoted version with live users is frozen",
+        "evidence": "Builds 1.4.1 with no frozen-version explanation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that automatic migrations are on by default, so promotion itself moves a first group of users, and requires testing before promoting",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a CLI canary of 5-10% of traffic for 30-60 minutes, stopping if errors rise more than 5%, before promotion",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the 100% migrate command with a staged migration: 5% first, watch Monitoring for new errors, then the rest",
+        "evidence": "Test account, then 10%, 50%, 100%.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs running `zapier-platform pull` before pushing or promoting because the public integration sits in Zapier's Integration Maintenance Program",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Diffs output keys, response structure and perform behavior by hand before promoting, stating that promotion checks do not catch them",
+        "evidence": "Says output shape must match, but not that promotion checks miss it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Zapier provides no user email list, so the change is announced through the vendor's own channels",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (100 items per poll, 5-10% canary, 30-60 minutes) with \u2020 and a footnote",
+        "evidence": "Uses '(verify)' only.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

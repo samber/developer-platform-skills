@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States sbt-ci-release publishes immediately by default and prescribes `CI_SONATYPE_RELEASE=sonaUpload` to keep the Portal validate-then-publish gate",
+        "evidence": "publishes immediately by default... CI_SONATYPE_RELEASE=sonaUpload",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to ignore the `sbt-sonatype`/`sonatypeRelease` guidance because it targets the shut-down OSSRH",
+        "evidence": "target OSSRH, which shut down",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the missing `_2.13` artifacts as a cross-version staging problem and requires `+publishSigned` to stage every Scala version before a single `sonaUpload`",
+        "evidence": "+publishSigned loops over crossScalaVersions",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets `crossScalaVersions := Seq(\"2.13.<x>\", \"3.3.<x>\")` on each published module",
+        "evidence": "core and http crossScalaVersions := crossVersions",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets `crossScalaVersions := Nil` and `publish / skip := true` on the aggregating root so nothing publishes twice",
+        "evidence": "crossScalaVersions := Nil, publish / skip := true",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends compiling the Scala 3 artifacts against the Scala 3 LTS line rather than 3.5, because consumers on an older minor cannot read code compiled with a newer one",
+        "evidence": "compile against 3.3.x",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that one deployment holding every cross version publishes together, so no release can ship `_3` without `_2.13`",
+        "evidence": "one validated deployment containing every cross version",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores `SONATYPE_USERNAME`/`SONATYPE_PASSWORD` and `PGP_SECRET`/`PGP_PASSPHRASE` in the protected `release` environment, stating Maven Central has no OIDC",
+        "evidence": "Maven Central has no OIDC... release environment",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the sbt-ci-release job behind the environment gate with no restored caches, because it runs build, signing and upload in one job holding every secret",
+        "evidence": "runs build, signing and upload while holding every secret",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the sbt 1.11+ native Portal `publishTo` with `localStaging.value` (snapshots to `central-snapshots`)",
+        "evidence": "else localStaging.value; central-snapshots",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins sbt 1.11.x for releases until every build plugin supports sbt 2.0",
+        "evidence": "sbt is pinned to 1.11.x",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States sbt-dynver derives the version from the tag, so the tag-equals-version guard is built in",
+        "evidence": "sbt-dynver derives the version from the tag",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the signing subkey with an expiry in the publish job only, with tests in the unprivileged build job",
+        "evidence": "build runs sbt +test no key; publish holds PGP",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States sbt-ci-release publishes immediately by default and prescribes `CI_SONATYPE_RELEASE=sonaUpload` to keep the Portal validate-then-publish gate",
+        "evidence": "Says tag push publishes straight to Central",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to ignore the `sbt-sonatype`/`sonatypeRelease` guidance because it targets the shut-down OSSRH",
+        "evidence": "'OSSRH was shut down in June 2025... Delete both'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the missing `_2.13` artifacts as a cross-version staging problem and requires `+publishSigned` to stage every Scala version before a single `sonaUpload`",
+        "evidence": "No staging/upload model",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets `crossScalaVersions := Seq(\"2.13.<x>\", \"3.3.<x>\")` on each published module",
+        "evidence": "Set on ThisBuild only",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets `crossScalaVersions := Nil` and `publish / skip := true` on the aggregating root so nothing publishes twice",
+        "evidence": "'don't override crossScalaVersions here'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends compiling the Scala 3 artifacts against the Scala 3 LTS line rather than 3.5, because consumers on an older minor cannot read code compiled with a newer one",
+        "evidence": "'Libraries should build _3 on 3.3.x LTS'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that one deployment holding every cross version publishes together, so no release can ship `_3` without `_2.13`",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Stores `SONATYPE_USERNAME`/`SONATYPE_PASSWORD` and `PGP_SECRET`/`PGP_PASSPHRASE` in the protected `release` environment, stating Maven Central has no OIDC",
+        "evidence": "Plain repo secrets",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the sbt-ci-release job behind the environment gate with no restored caches, because it runs build, signing and upload in one job holding every secret",
+        "evidence": "None",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the sbt 1.11+ native Portal `publishTo` with `localStaging.value` (snapshots to `central-snapshots`)",
+        "evidence": "Uses sonatypeCredentialHost",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins sbt 1.11.x for releases until every build plugin supports sbt 2.0",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States sbt-dynver derives the version from the tag, so the tag-equals-version guard is built in",
+        "evidence": "Only fetch-depth comment",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the signing subkey with an expiry in the publish job only, with tests in the unprivileged build job",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that classic and automation npm tokens no longer exist (revoked in December 2025), so the early-2024 token cannot still work, rather than accepting the user's claim that it is usable",
+        "evidence": "npm revoked every classic and automation token on 2025-12-09",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends npm trusted publishing (OIDC) bound to a GitHub environment instead of an NPM_TOKEN repository secret",
+        "evidence": "trusted publisher bound to a protected `release` environment",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders the migration as: configure the trusted publisher, validate it with one real release, set the package to 'Require two-factor authentication and disallow tokens', then revoke every remaining write token",
+        "evidence": "Setup steps 4, 5, 6 in that order",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends npm staged publishing (`npm stage publish` plus `npm stage approve` by a maintainer with 2FA), citing the paying enterprise dependents as the reason for the approval gate",
+        "evidence": "adds a human approval step because two paying enterprise customers build against the package; npm stage approve",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the workflow as two jobs: an unprivileged build job that runs `npm pack` and uploads the tarball, and a separate publish job that downloads it",
+        "evidence": "build job runs npm pack and uploads; publish downloads",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the publish job an `environment:` and states its name must match the environment named in the npm trusted-publisher configuration exactly",
+        "evidence": "name must match the npm trusted-publisher config",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets top-level `permissions: {}` (default none) and grants `id-token: write` only on the publish job",
+        "evidence": "permissions: {} ... id-token: write # OIDC, this job only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins every third-party action to a full commit SHA with the version as a comment, using a placeholder or `git ls-remote` instruction rather than inventing a SHA",
+        "evidence": "actions/checkout@<sha> # v6; git ls-remote instruction",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a guard step that fails the release when the git tag does not equal the `package.json` version",
+        "evidence": "[ \"$tag\" = \"$version\" ] || exit 1",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins npm to 11.15.0 or newer in the publish job because `npm stage` needs it",
+        "evidence": "npm install -g npm@<pinned 11.15+ version>",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not set NODE_AUTH_TOKEN or any token secret on the publish step",
+        "evidence": "No NODE_AUTH_TOKEN anywhere",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a trusted-publisher configuration not validated by a publish within 48 hours expires, so it must be registered the day of the first release",
+        "evidence": "npm expires a configuration that no publish has validated within 48 hours",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Disables restored caches in the build and publish jobs (for example `package-manager-cache: false` and no cache action)",
+        "evidence": "package-manager-cache: false in both jobs",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not run `npm publish` or any publish command itself and hands the final commands to the user",
+        "evidence": "I haven't run it or touched npm",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the workflow file as a draft pending the user's approval of the plan",
+        "evidence": "The workflow is a draft.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that classic and automation npm tokens no longer exist (revoked in December 2025), so the early-2024 token cannot still work, rather than accepting the user's claim that it is usable",
+        "evidence": "Hedged: 'It may already be dead... Check the token's status on npmjs.com'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends npm trusted publishing (OIDC) bound to a GitHub environment instead of an NPM_TOKEN repository secret",
+        "evidence": "'environment: npm-publish' with id-token: write and no stored token",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders the migration as: configure the trusted publisher, validate it with one real release, set the package to 'Require two-factor authentication and disallow tokens', then revoke every remaining write token",
+        "evidence": "Setup step 4: 'after the first successful OIDC publish, set ... Require 2FA and disallow tokens, then revoke the 2024 token'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends npm staged publishing (`npm stage publish` plus `npm stage approve` by a maintainer with 2FA), citing the paying enterprise dependents as the reason for the approval gate",
+        "evidence": "Uses plain 'npm publish'; no staging",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes the workflow as two jobs: an unprivileged build job that runs `npm pack` and uploads the tarball, and a separate publish job that downloads it",
+        "evidence": "Publish job re-runs npm ci and build; no pack/upload artifact",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the publish job an `environment:` and states its name must match the environment named in the npm trusted-publisher configuration exactly",
+        "evidence": "Tells user to enter 'npm-publish' but never states exact match requirement",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets top-level `permissions: {}` (default none) and grants `id-token: write` only on the publish job",
+        "evidence": "Top-level 'permissions: contents: read'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins every third-party action to a full commit SHA with the version as a comment, using a placeholder or `git ls-remote` instruction rather than inventing a SHA",
+        "evidence": "Uses actions/checkout@v4; only a comment to pin later",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a guard step that fails the release when the git tag does not equal the `package.json` version",
+        "evidence": "'Tag must match package.json version' step exits 1 on mismatch",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins npm to 11.15.0 or newer in the publish job because `npm stage` needs it",
+        "evidence": "'npm install -g npm@latest' with 11.5.1 comment",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not set NODE_AUTH_TOKEN or any token secret on the publish step",
+        "evidence": "'The workflow doesn't set NODE_AUTH_TOKEN'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a trusted-publisher configuration not validated by a publish within 48 hours expires, so it must be registered the day of the first release",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Disables restored caches in the build and publish jobs (for example `package-manager-cache: false` and no cache action)",
+        "evidence": "'cache: npm' in both jobs",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not run `npm publish` or any publish command itself and hands the final commands to the user",
+        "evidence": "Gives 'Release procedure' commands for the user; nothing run",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the workflow file as a draft pending the user's approval of the plan",
+        "evidence": "Presented as final; no draft/approval-of-plan marking",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

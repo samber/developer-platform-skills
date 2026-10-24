@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the draft as a label with no rows and produces a stage contract with all eleven rows: Access, Availability, Support, Breaking changes, Removal, Production use, Pricing, Data and compliance, Limits, Marking, Discontinuation.",
+        "evidence": "\"A label with no rows gets its guarantees set by the first escalation\"; table has all 11 rows Access through Discontinuation",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Caps the company at two pre-GA stages (private preview and public preview) and refuses the fourth 'Experimental' stage unless the domain changes faster than the preview cadence.",
+        "evidence": "\"Two stages only\"; \"Experimental: not now... justified only for a domain that changes faster than your preview cadence\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retires the 'Labs' badge rather than adopting it as a stage, because no terms were ever written for it, and routes its two endpoints to the existing-beta rescue for a per-surface decision.",
+        "evidence": "\"Labs: retire the badge, don't adopt it as a stage\"; section 5 per-endpoint decision",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps 'Beta' and 'Early Access' onto the two stages explicitly rather than keeping three or four vocabularies live.",
+        "evidence": "\"The Early Access badge becomes Private preview. The Beta badge becomes Public preview.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the 99.9% SLA from the private preview Availability row and states it as no SLA, plus whether the status page covers the stage.",
+        "evidence": "\"No SLA. Not on the status page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not add an SLA to public preview by default; states the condition under which one would be offered (shape frozen and enterprise buyers needing production pilots before GA).",
+        "evidence": "\"That route exists only for a frozen shape where enterprise buyers need production pilots.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the 99.5% internal SLO out of the terms and out of the contract table, labelling it a non-contractual goal if it is shared at all.",
+        "evidence": "\"Keep it internal... a non-contractual target we may miss\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a precedence clause stating the pre-GA terms override the MSA and DPA language promising coverage on 'all services', with counsel signing the wording.",
+        "evidence": "Terms text: \"these terms prevail for Audit Trail\"; \"Legal still has to sign the wording\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies signer name, email and IP as personal data by nature, so the default 'do not send personal data' line would make the beta unusable.",
+        "evidence": "\"personal data by nature. The usual line, 'don't send personal data', would make the beta unusable.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Resolves that by offering test-mode or synthetic data as the default, with live data allowed only under a per-account addendum that legal signs, extending named DPA terms to the preview.",
+        "evidence": "\"Audit Trail Data Addendum... names exactly which DPA terms extend to the preview\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fills the Data and compliance row with which DPA, certification, residency and indemnity terms do not apply, and whether beta data carries into GA.",
+        "evidence": "\"DPA, certifications, data-location commitments and indemnity do not cover the preview... Preview data is deleted at the end of the overlap window.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes one stage-contract table for the whole company, not one per feature, with each feature's charter linking to it.",
+        "evidence": "\"Company-wide stage contract (publish once, link from every beta)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the Removal row (notice before the surface goes away) from the Discontinuation row (what happens to data and integrations if the feature is killed).",
+        "evidence": "Removal: \"30 days' notice\"; Discontinuation: \"Export of preview results for 30 days. Enrolled accounts told privately first.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the draft as a label with no rows and produces a stage contract with all eleven rows: Access, Availability, Support, Breaking changes, Removal, Production use, Pricing, Data and compliance, Limits, Marking, Discontinuation.",
+        "evidence": "The stage table has only four columns (Label, What it means, Changes, Availability). Sections 2 and 3 cover some other topics, but not the eleven named rows.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps the company at two pre-GA stages (private preview and public preview) and refuses the fourth 'Experimental' stage unless the domain changes faster than the preview cadence.",
+        "evidence": "\"I recommend three: Experimental, Beta, Early Access\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Retires the 'Labs' badge rather than adopting it as a stage, because no terms were ever written for it, and routes its two endpoints to the existing-beta rescue for a per-surface decision.",
+        "evidence": "\"retiring 'Labs.'\" and \"check who uses them in production... Alternative: promote them to GA, or sunset them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps 'Beta' and 'Early Access' onto the two stages explicitly rather than keeping three or four vocabularies live.",
+        "evidence": "Keeps three vocabularies.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the 99.9% SLA from the private preview Availability row and states it as no SLA, plus whether the status page covers the stage.",
+        "evidence": "Early Access availability is left pending, with a suggestion of \"the full SLA once the feature is stable\". The status page is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not add an SLA to public preview by default; states the condition under which one would be offered (shape frozen and enterprise buyers needing production pilots before GA).",
+        "evidence": "Beta gets \"None\" with no condition for an SLA.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the 99.5% internal SLO out of the terms and out of the contract table, labelling it a non-contractual goal if it is shared at all.",
+        "evidence": "\"Don't publish the 99.5% SLO... share the number privately under NDA, labeled non-binding. I removed it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a precedence clause stating the pre-GA terms override the MSA and DPA language promising coverage on 'all services', with counsel signing the wording.",
+        "evidence": "\"these terms control for Pre-GA Features only\" and Legal must confirm the MSA conflict.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies signer name, email and IP as personal data by nature, so the default 'do not send personal data' line would make the beta unusable.",
+        "evidence": "It identifies personal data but does not make the default no-personal-data argument.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Resolves that by offering test-mode or synthetic data as the default, with live data allowed only under a per-account addendum that legal signs, extending named DPA terms to the preview.",
+        "evidence": "Not offered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fills the Data and compliance row with which DPA, certification, residency and indemnity terms do not apply, and whether beta data carries into GA.",
+        "evidence": "It says the DPA applies, with no list of what does not apply and nothing on GA carry-over.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes one stage-contract table for the whole company, not one per feature, with each feature's charter linking to it.",
+        "evidence": "One \"Pre-General-Availability Features: Terms\" document with a single stages table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the Removal row (notice before the surface goes away) from the Discontinuation row (what happens to data and integrations if the feature is killed).",
+        "evidence": "Both are folded into the \"Changes\" bullet.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

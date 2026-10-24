@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Gives list commands a bounded default `--limit` and an explicit `--all`",
+        "evidence": "\"--limit N... 20\"; \"--all | Follow next_cursor\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries truncation inside the `--json` envelope with `has_more` and `next_cursor` fields, so a first page never reads as the whole bucket",
+        "evidence": "Envelope with has_more and next_cursor.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Wraps every list in one `{\"data\": [...], \"has_more\": ..., \"next_cursor\": ...}` envelope from v1 and states that moving away from a bare array later is breaking",
+        "evidence": "\"Changing bare array to envelope is breaking.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects making `--all` switch output to newline-delimited JSON; NDJSON lives only behind an explicit `--format ndjson` flag",
+        "evidence": "\"`--all` only paginates. NDJSON is `--format ndjson`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `--format ndjson` mutually exclusive with `--json`",
+        "evidence": "\"Mutually exclusive with `--json`, exit 2.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every NDJSON line to carry a `type` field (event, progress, error)",
+        "evidence": "item/end/error/event/progress/gap lines with `type`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes a fatal stream error the last line as a typed `error` JSON line before the non-zero exit, never plain text in the stream",
+        "evidence": "\"Last stdout line is `{\\\"type\\\":\\\"error\\\"...}`. Exit 5.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps display paging (the pager) and API pagination as separate flags",
+        "evidence": "\"The pager (display) and `--limit`/`--all` (API pagination) stay separate flags.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Never pages by default when stdout is not a terminal",
+        "evidence": "\"Page only when all hold: stdout is a TTY\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defers `--jq` or any in-CLI filter until `--json` itself is stable",
+        "evidence": "\"`--jq` | \u23f3 Defer ... (v2.1)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies bare `--json` as a documented small default field set, `--json all` for full objects, and `--json field,field` for named fields",
+        "evidence": "\"Bare gives the 9 default fields\"; `--json all`; `--json key,size,etag`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies explicit empty results ('0 objects found') and a truncation marker naming the flag that shows more",
+        "evidence": "\"0 objects found\"; footer \"Use --all, or --all --format ndjson...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Formats timestamps as RFC 3339 UTC, IDs as strings, and absent values as `null` rather than keys that appear and disappear",
+        "evidence": "No timestamp, ID type or null-handling rules appear.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps `has_more` and `next_cursor` in `--json` list output even when field selection is used",
+        "evidence": "\"Envelope, in every `--json` list\" and field selection on `--json`.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Gives list commands a bounded default `--limit` and an explicit `--all`",
+        "evidence": "\"One page (default 20)\"; `--all`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries truncation inside the `--json` envelope with `has_more` and `next_cursor` fields, so a first page never reads as the whole bucket",
+        "evidence": "The default shape stays a bare array. Truncation is signalled only on stderr in the minor release.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Wraps every list in one `{\"data\": [...], \"has_more\": ..., \"next_cursor\": ...}` envelope from v1 and states that moving away from a bare array later is breaking",
+        "evidence": "The envelope is deferred to the next major.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects making `--all` switch output to newline-delimited JSON; NDJSON lives only behind an explicit `--format ndjson` flag",
+        "evidence": "\"`--all` means 'fetch every page'. It never changes output shape.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `--format ndjson` mutually exclusive with `--json`",
+        "evidence": "\"`--json` and `--ndjson` are mutually exclusive.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every NDJSON line to carry a `type` field (event, progress, error)",
+        "evidence": "Not specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes a fatal stream error the last line as a typed `error` JSON line before the non-zero exit, never plain text in the stream",
+        "evidence": "Errors go to stderr. A trailer is optional and `_end` is not an error line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps display paging (the pager) and API pagination as separate flags",
+        "evidence": "The pager has `--no-pager`; pagination uses `--all`/`--cursor`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Never pages by default when stdout is not a terminal",
+        "evidence": "\"`stdout` is a TTY\" is required for the pager.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defers `--jq` or any in-CLI filter until `--json` itself is stable",
+        "evidence": "`--jq` ships in the minor release.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies bare `--json` as a documented small default field set, `--json all` for full objects, and `--json field,field` for named fields",
+        "evidence": "Uses a separate `--fields` flag; `--json` is a bare boolean.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies explicit empty results ('0 objects found') and a truncation marker naming the flag that shows more",
+        "evidence": "A footer and notice exist, but no explicit empty-result message.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Formats timestamps as RFC 3339 UTC, IDs as strings, and absent values as `null` rather than keys that appear and disappear",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps `has_more` and `next_cursor` in `--json` list output even when field selection is used",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

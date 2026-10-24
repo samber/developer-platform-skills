@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Confirms the auth-scheme change from basic to OAuth2 requires a new major (2.0.0) because the version is promoted with far more than 5 users",
+        "evidence": "\"Basic to OAuth2 | Breaking (auth scheme) | 2.0.0, new major\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends asking Zapier about assisted connected-account migration between schemes before building, since Zapier can sometimes migrate connections for public integrations",
+        "evidence": "\"Ask Zapier partner support whether it can migrate connected accounts between schemes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `zapier-platform migrate 1.6.0 2.0.0` cannot work because migration stops at the major boundary, so every user updates their Zaps manually",
+        "evidence": "\"Migration works only within one major... Every one of the ~2,400 users must reconnect and rebuild\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Zapier gives no user email list, so the 2,400 users are reached only through Marrowline's own in-app and email channels",
+        "evidence": "\"Zapier gives you no user email list. You reach users only through your own channels.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 10-day notice: a deprecation date must sit 3 weeks to 1 year ahead, and Zapier emails affected users 14 days before",
+        "evidence": "\"3 weeks to 1 year\u2020 out\"; \"Zapier emails affected users 14 days\u2020 before\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows deleting a version only at zero users, including paused Zaps and connections",
+        "evidence": "\"Deletion is allowed only at zero users, counting paused Zaps and connections.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps `new_employee` and `find_employee` output keys unchanged by mapping `/v2` responses back to the old shape in the perform code (`name` rebuilt from given and family names, `hired_on` as ISO 8601 with offset), treating step and output keys as a public contract separate from API versioning",
+        "evidence": "\"map the response back to the old shape in `perform`: name = given_name + family_name... Convert epoch `hired_on` back\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships the `/v2` mapping on the 1.x line as a new 1.x version as well, because 1.x Zaps cannot migrate to 2.0 before the six-week sunset",
+        "evidence": "\"1.7.0, same major\" shipped before 2.0.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Near the sunset date, promotes a version whose old step throws a clear error naming the replacement step, after shipping the replacement first",
+        "evidence": "No such step or error-throwing release is described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the OAuth2 build details: `refreshAccessToken` and `autoRefresh: true`, client id and secret via `zapier-platform env:set`, and the API answering HTTP 401 on expired tokens because Zapier refreshes only on 401",
+        "evidence": "`refreshAccessToken`, `autoRefresh: true`, \"CLIENT_ID and CLIENT_SECRET in per-version env vars\", \"return HTTP 401\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that deprecating 1.x marks its 6 templates Invalid within 24 hours, so templates must be rebuilt and resubmitted on the 2.0 steps",
+        "evidence": "\"marks its templates Invalid within 24 h\u2020\"; rebuild the 6 templates.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the 1.x versions working (Available or legacy) until users have rebuilt, noting drafts migrate only when published",
+        "evidence": "Says 1.7.0 \"keeps serving its Zaps\" and don't delete, but nothing on drafts migrating only when published.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the connection label to name the account (email or workspace), never a secret",
+        "evidence": "\"Make `connectionLabel` the user's email, never a secret.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (14 days, 3 weeks to 1 year, 24 hours) with \u2020 and a footnote",
+        "evidence": "Footnote covers 3 weeks to 1 year, 14-day, 24 h.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Confirms the auth-scheme change from basic to OAuth2 requires a new major (2.0.0) because the version is promoted with far more than 5 users",
+        "evidence": "It says \"Treat 2.0.0 as a breaking release for all 2,400 users\" but never gives the promoted-with-more-than-5-users reason.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends asking Zapier about assisted connected-account migration between schemes before building, since Zapier can sometimes migrate connections for public integrations",
+        "evidence": "It only says to \"Verify with Zapier whether it blocks or restricts `migrate` across auth types\". That is not a request for assisted connection migration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that `zapier-platform migrate 1.6.0 2.0.0` cannot work because migration stops at the major boundary, so every user updates their Zaps manually",
+        "evidence": "It says \"`migrate 100` would flip every Zap onto a version with no valid credentials\", which implies the migrate works. It never mentions a major boundary.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Zapier gives no user email list, so the 2,400 users are reached only through Marrowline's own in-app and email channels",
+        "evidence": "It says \"Email account admins\" and to pull the account list from your own API logs. It never says Zapier provides no email list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 10-day notice: a deprecation date must sit 3 weeks to 1 year ahead, and Zapier emails affected users 14 days before",
+        "evidence": "It calls 10 days too short and cites \"around 90 days. Verify the minimum\". It does not state the 3-weeks-to-1-year window or the 14-day email.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Allows deleting a version only at zero users, including paused Zaps and connections",
+        "evidence": "It says \"Verify that Zapier blocks deleting a version that still has users\" and recommends deprecation. It never states the zero-users rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps `new_employee` and `find_employee` output keys unchanged by mapping `/v2` responses back to the old shape in the perform code (`name` rebuilt from given and family names, `hired_on` as ISO 8601 with offset), treating step and output keys as a public contract separate from API versioning",
+        "evidence": "\"Keep emitting `name`, built as `given_name + \\\" \\\" + family_name`\"; \"Keep that format and timezone for `hired_on`\"; 1.7.0 output \"must stay shape-compatible with 1.6.0\". The ISO 8601 detail is not explicit.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships the `/v2` mapping on the 1.x line as a new 1.x version as well, because 1.x Zaps cannot migrate to 2.0 before the six-week sunset",
+        "evidence": "\"Fix: ship a 1.7.0 now, before 2.0.0. 1.7.0 keeps basic auth and moves both operations to `/v2/employees`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Near the sunset date, promotes a version whose old step throws a clear error naming the replacement step, after shipping the replacement first",
+        "evidence": "No such error-throwing step or replacement-step strategy appears in the transcript.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the OAuth2 build details: `refreshAccessToken` and `autoRefresh: true`, client id and secret via `zapier-platform env:set`, and the API answering HTTP 401 on expired tokens because Zapier refreshes only on 401",
+        "evidence": "It only says \"handle 401 by refreshing the token\" and \"configure OAuth2 refresh\". It omits refreshAccessToken, autoRefresh and env:set.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that deprecating 1.x marks its 6 templates Invalid within 24 hours, so templates must be rebuilt and resubmitted on the 2.0 steps",
+        "evidence": "It only says to test the 6 templates and update them after each promote. It never mentions the Invalid marking or the 24 hours.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the 1.x versions working (Available or legacy) until users have rebuilt, noting drafts migrate only when published",
+        "evidence": "It says \"Keep 1.7.0 undeprecated until 2.0.0 has been stable for at least 30 days\". It says nothing about drafts migrating only when published.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the connection label to name the account (email or workspace), never a secret",
+        "evidence": "The connection label is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (14 days, 3 weeks to 1 year, 24 hours) with \u2020 and a footnote",
+        "evidence": "It uses **verify** markers and no \u2020 or footnote.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects freezing the betas like GA: breaking changes stay allowed in a beta, silent ones do not, and freezing removes the reason the beta exists.",
+        "evidence": "\"A frozen beta removes the reason for a beta.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the beta-only breaking-change rule; requires the company's breaking-change definition from samber/developer-platform-skills@api-versioning-policy and never a beta-specific one.",
+        "evidence": "\"never invent a beta-only definition. Use the company's breaking-change definition from `api-versioning-policy`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For the public preview, batches breaking changes into a new preview version instead of mutating the current one, and publishes the notice rule.",
+        "evidence": "\"Batch breaking changes into a new preview version... Publish a notice rule\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the vendor range for public-preview notice (zero notice through a 90-day availability floor to a recommended 180 days) as the context for setting Tilemark's own rule.",
+        "evidence": "\"zero notice to a 90-day availability floor (Azure) to a recommended 180 days (Google AIP-185)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats Halden Maps' five requests as data points, not orders: ships a change only when it recurs across partners or matches the problem statement.",
+        "evidence": "\"One partner's request is a data point, not an order.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags one partner's asks filling the sprint as the program drifting into custom development.",
+        "evidence": "\"Five asks from one partner can fill the backlog. That is custom development.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a changelog entry for every change in the private preview, a private changelog being acceptable.",
+        "evidence": "\"Every change gets an entry, and a private changelog is fine.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one named owner and a response time for the private channel.",
+        "evidence": "\"Name one owner and a response time, for example one business day.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces 'granted access' with a defined activation event per account (such as first successful production-shaped call) and reports activated over enrolled.",
+        "evidence": "\"Activated means one defined event per account... Report activated over enrolled.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the 2M-requests-per-day live-key partner as detected production use: without a production exception it triggers a conversation and longer notice, never silence.",
+        "evidence": "\"Silence is the one option the skill rules out... Signed production exception... sets a longer notice period\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the cadence per shape: public preview async only in a public forum category or thread; private preview a kickoff call then biweekly office hours and async in one private channel.",
+        "evidence": "Only private preview cadence (kickoff, biweekly office hours) given; no public preview async cadence.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Structures sessions around what partners built since last time, what blocked them, what they worked around, and what they would pay for.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes feedback outside the two features to samber/developer-relations-skills@developer-feedback-loop.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects freezing the betas like GA: breaking changes stay allowed in a beta, silent ones do not, and freezing removes the reason the beta exists.",
+        "evidence": "\"A GA-style freeze defeats the purpose of a beta... Beta may break things, so say so.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the beta-only breaking-change rule; requires the company's breaking-change definition from samber/developer-platform-skills@api-versioning-policy and never a beta-specific one.",
+        "evidence": "It says \"A rename is breaking\" but does not cite the skill or require one company-wide definition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For the public preview, batches breaking changes into a new preview version instead of mutating the current one, and publishes the notice rule.",
+        "evidence": "\"Version the preview (for example preview.3)\" plus a dated changelog.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the vendor range for public-preview notice (zero notice through a 90-day availability floor to a recommended 180 days) as the context for setting Tilemark's own rule.",
+        "evidence": "It only suggests 14 days public and 7 days private.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats Halden Maps' five requests as data points, not orders: ships a change only when it recurs across partners or matches the problem statement.",
+        "evidence": "\"Triage the five against demand from the other six partners.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags one partner's asks filling the sprint as the program drifting into custom development.",
+        "evidence": "It names \"pay-to-steer roadmap\" but not custom development or sprint capture.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a changelog entry for every change in the private preview, a private changelog being acceptable.",
+        "evidence": "\"Keep a short dated changelog and send it to the partners.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one named owner and a response time for the private channel.",
+        "evidence": "\"Name an owner or a weekly rotation. Set a response target (one business day).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces 'granted access' with a defined activation event per account (such as first successful production-shaped call) and reports activated over enrolled.",
+        "evidence": "\"Report three numbers: granted, activated, and active in the last 7 days. Define activated as a real event.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the 2M-requests-per-day live-key partner as detected production use: without a production exception it triggers a conversation and longer notice, never silence.",
+        "evidence": "\"Talk to the partner this week. Either sign a written production-pilot exception... Don't enforce silently.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the cadence per shape: public preview async only in a public forum category or thread; private preview a kickoff call then biweekly office hours and async in one private channel.",
+        "evidence": "Not specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Structures sessions around what partners built since last time, what blocked them, what they worked around, and what they would pay for.",
+        "evidence": "Not specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes feedback outside the two features to samber/developer-relations-skills@developer-feedback-loop.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

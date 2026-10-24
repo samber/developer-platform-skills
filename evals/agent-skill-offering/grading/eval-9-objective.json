@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires bumping the skill and manifests to 2.0.0-rc.1: bump on every release, prereleases included, because version equality is the contract.",
+        "evidence": "'Bump them all to 2.0.0-rc.1... bump on every release, prereleases included.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a set-but-unbumped manifest version makes the plugin installer report 'already latest' so users keep the stale copy.",
+        "evidence": "'Someone on 1.9.4 who updates to the RC sees \"already latest\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cuts prereleases from a next branch (or tags a commit off the default branch) and keeps them off every default install.",
+        "evidence": "'cut the RC from a next branch, or tag a commit off main whose bump never merges back'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the GitHub release as a prerelease so latest-release resolution skips it, rejecting 'tag it as a normal release'.",
+        "evidence": "'Tick \"Set as a pre-release\"... A normal GitHub release is wrong'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the stable branch or recommended marketplace tag only on final releases.",
+        "evidence": "'Create a stable branch at the v1.9.4 tag commit. Move it only on final releases.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a self-hosted marketplace added from the default branch gives users merged-but-unreleased skill text under the last released version, and the cache may never refresh.",
+        "evidence": "'that installs the default branch, so everyone adding the marketplace gets whatever is merged on main'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Changes the docs to add the marketplace at a release tag (`/plugin marketplace add moorhaven/moor#v1.9.4`) or at a stable branch moved only at release.",
+        "evidence": "Drops the unpinned line; tag-pinned placeholder README; stable branch",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the directory submission's 'Branch or tag' to the stable branch, stating that left empty it follows the default branch so every merge becomes a candidate version that goes live once auto-publish is on or someone selects Publish.",
+        "evidence": "'The empty branch field follows the default branch... Set Branch or tag to stable.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes a tracked tag in the directory must be re-pointed each release, which is why the stable branch is preferred.",
+        "evidence": "Only says a tracked branch must be moved at final releases.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the README as blocking: the directory requires at least 40 words in the plugin folder README with code blocks not counted, plus a LICENSE file or license field.",
+        "evidence": "'The directory blocks a README under 40 words. Code blocks don't count'; LICENSE check",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the submission path: claude.ai/directory/manage on a paid plan, Submit new, Plugin bundle, the repository, then Validate.",
+        "evidence": "Mentions claude.ai/directory/manage but not paid plan, Submit new, Plugin bundle, Validate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the default branch releasable, or tells users a default-branch install may document unreleased features.",
+        "evidence": "'main stays at 1.9.4 until 2.0.0 final'; 'skill text there may already document unreleased features'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Gemini's --pre-release flag and that GitHub-Releases installs check the release marked Latest.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs gate 2 against 2.0.0-rc.1 on the release PR before tagging rather than only on the tag.",
+        "evidence": "'Run gates 1, 2, 3 and 6 before the tag exists'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires bumping the skill and manifests to 2.0.0-rc.1: bump on every release, prereleases included, because version equality is the contract.",
+        "evidence": "\"Set `2.0.0-rc.1` consistently in: plugin.json, marketplace.json, the skill frontmatter version, package.json\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a set-but-unbumped manifest version makes the plugin installer report 'already latest' so users keep the stale copy.",
+        "evidence": "\"Content with an unchanged version can be served from cache, so RC adopters may silently stay on old files.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cuts prereleases from a next branch (or tags a commit off the default branch) and keeps them off every default install.",
+        "evidence": "\"Cut the RC from a `next` branch (or `rc`) and tag `v2.0.0-rc.1` there. Main stays on 1.9.4.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the GitHub release as a prerelease so latest-release resolution skips it, rejecting 'tag it as a normal release'.",
+        "evidence": "\"Tick Set as a pre-release and untick Set as the latest release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the stable branch or recommended marketplace tag only on final releases.",
+        "evidence": "\"Merge to main only for 2.0.0 final.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a self-hosted marketplace added from the default branch gives users merged-but-unreleased skill text under the last released version, and the cache may never refresh.",
+        "evidence": "Covers RC reaching default-branch installs, not merged-but-unreleased text under the last released version.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Changes the docs to add the marketplace at a release tag (`/plugin marketplace add moorhaven/moor#v1.9.4`) or at a stable branch moved only at release.",
+        "evidence": "Stable install stays `/plugin marketplace add moorhaven/moor`; only the RC uses a ref.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the directory submission's 'Branch or tag' to the stable branch, stating that left empty it follows the default branch so every merge becomes a candidate version that goes live once auto-publish is on or someone selects Publish.",
+        "evidence": "Says pin to `main`, not a stable branch, and omits the auto-publish consequence.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes a tracked tag in the directory must be re-pointed each release, which is why the stable branch is preferred.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the README as blocking: the directory requires at least 40 words in the plugin folder README with code blocks not counted, plus a LICENSE file or license field.",
+        "evidence": "Treats the README as an RC section to add; no 40-word or LICENSE requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the submission path: claude.ai/directory/manage on a paid plan, Submit new, Plugin bundle, the repository, then Validate.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the default branch releasable, or tells users a default-branch install may document unreleased features.",
+        "evidence": "Keeps main on stable 1.9.4 until final.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Gemini's --pre-release flag and that GitHub-Releases installs check the release marked Latest.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs gate 2 against 2.0.0-rc.1 on the release PR before tagging rather than only on the tag.",
+        "evidence": "Mentions only a cold install check.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

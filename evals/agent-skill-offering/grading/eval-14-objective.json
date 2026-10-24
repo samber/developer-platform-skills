@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Batches the interview questions before designing: agent audience, release mechanism and license, existing skills including the community one, deadline and effort ceiling, and whether the package may gain a console command.",
+        "evidence": "Only four confirmations (arg order, pyproject, tags, license); no audience, community skill, deadline or console command questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the default rungs because of the near deadline, deferring the starved options (bundled install command, golden agent tasks).",
+        "evidence": "'Not this week: an MCP server, a bundled rushmere skills install subcommand'; gate 5 deferred",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Turns the three named failures (swapped arguments, rushmere.legacy import, strict=False) into the skill's first content and its tests.",
+        "evidence": "Skill sections for arg order, strict, rushmere.legacy; dry-run test for legacy",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the skill at skills/rushmere/SKILL.md at the repo root and includes skills/ as package data so the wheel carries it.",
+        "evidence": "Checks sdist; wheel inclusion only 'if you want it there'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes pyproject.toml the version source of truth, bumps metadata.version and the Skill version body line in the release commit, and adds a check that the tag equals the pyproject version.",
+        "evidence": "'Tag equals pyproject version' step; --write bumps both version spots",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs scripts/check-skill-version.py on pull requests against the pyproject version and on the tag as a backstop.",
+        "evidence": "Workflow runs on pull_request and is called from the tag workflow",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the library content check: `python -m py_compile` plus an import smoke test on every extracted code block against the release build.",
+        "evidence": "AST-based import and signature check of python fences against the installed wheel",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens the body with a library guard that reads the installed version (`pip show rushmere`) and prefers bundled docs when major or minor differs.",
+        "evidence": "'python -c \"import importlib.metadata... m.version('rushmere')\"' with two-sided branches",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Handles the community skill by publishing under the project's own namespace and claiming obvious name variants, because agents hallucinate skill names and attackers register them.",
+        "evidence": "Ships under same name and opens an issue, but doesn't claim name variants.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets license to the repo's license and writes the description as what plus when, with the tool's name and the tasks users type.",
+        "evidence": "Draft uses 'license: MIT' as an assumption, though told to replace.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records the version source of truth, tag format, gate list, chosen channels and pinned-install command in memory when the harness has one.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins the spec validator (skills-ref, an alpha requiring Python 3.11+) by version in CI rather than installing it unpinned.",
+        "evidence": "Says add with pinned version but doesn't wire it; no alpha/Python 3.11 note.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Batches the interview questions before designing: agent audience, release mechanism and license, existing skills including the community one, deadline and effort ceiling, and whether the package may gain a console command.",
+        "evidence": "Marks facts [verify] and proceeds; no batched questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the default rungs because of the near deadline, deferring the starved options (bundled install command, golden agent tasks).",
+        "evidence": "Cuts CI for time, but never frames the bundled install command or golden tasks as deferred.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Turns the three named failures (swapped arguments, rushmere.legacy import, strict=False) into the skill's first content and its tests.",
+        "evidence": "Rules 1-3 at top: argument order, legacy import, strict=False; the 6 prompts test them.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the skill at skills/rushmere/SKILL.md at the repo root and includes skills/ as package data so the wheel carries it.",
+        "evidence": "Correct path, but no package-data inclusion.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes pyproject.toml the version source of truth, bumps metadata.version and the Skill version body line in the release commit, and adds a check that the tag equals the pyproject version.",
+        "evidence": "\"Don't tag a release for it.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs scripts/check-skill-version.py on pull requests against the pyproject version and on the tag as a backstop.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds the library content check: `python -m py_compile` plus an import smoke test on every extracted code block against the release build.",
+        "evidence": "\"extracts every python block from SKILL.md and runs it against the installed rushmere.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens the body with a library guard that reads the installed version (`pip show rushmere`) and prefers bundled docs when major or minor differs.",
+        "evidence": "Says `pip show rushmere`, but with no major/minor comparison or bundled-docs preference.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the community skill by publishing under the project's own namespace and claiming obvious name variants, because agents hallucinate skill names and attackers register them.",
+        "evidence": "Says to link from the README and comment on theirs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets license to the repo's license and writes the description as what plus when, with the tool's name and the tasks users type.",
+        "evidence": "Description is good, but no license field is set.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records the version source of truth, tag format, gate list, chosen channels and pinned-install command in memory when the harness has one.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins the spec validator (skills-ref, an alpha requiring Python 3.11+) by version in CI rather than installing it unpinned.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

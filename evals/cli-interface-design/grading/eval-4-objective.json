@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects passing the key as a `--api-key` flag value because it lands in process lists and shell history; accepts it from stdin, an env var or a file instead",
+        "evidence": "\"There is no `--api-key` flag anywhere.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies `tg login` reading the key from stdin or opening the dashboard page that creates one",
+        "evidence": "\"opens the dashboard keys page..., then reads the key from a hidden prompt\"; `--with-key` on stdin.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Designs one flow per context (laptop, SSH box, CI) as a stack rather than ranking one flow as the winner",
+        "evidence": "\"Flows by context\" table: laptop, SSH, CI, agent.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents the CI path as a scoped, expiring key in an env var, never a stored credential file or a browser flow",
+        "evidence": "\"`TG_API_KEY`... nothing written to disk\"; \"A restricted, expiring key is the target.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects putting the key in the project-directory `.tg.json`; any project binding file holds no secret",
+        "evidence": "\"`.tg.json` carrying the key | \u274c Reject\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores interactive credentials in the OS credential store first, falling back to a plaintext file only with a loud stderr warning, owner-only permissions and the file path printed",
+        "evidence": "Plaintext fallback with 0600, warning naming the path, `--insecure-storage` off-TTY.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides `tg auth status` showing identity, which credential source won, expiry and test or live mode",
+        "evidence": "Shows account, mode, source, key prefix, expiry/scope.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides `tg auth logout`",
+        "evidence": "\"`tg logout [--profile <name>]...` Deletes the local credential.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the `tg auth token` print command, or restricts it to a named integration that needs the handoff, citing token-harvesting malware that called such a command",
+        "evidence": "\"Drop for v1... s1ngularity (Aug 2025)... `gh auth token`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defaults the CLI to test mode and shows test or live mode in every prompt and before every severe action",
+        "evidence": "\"Default mode is test.\" and mode shown in every login prompt, auth status, and severe action confirmation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes an explicit key from a flag or env var beat the stored profile, with a stderr notice when it overrides a logged-in account",
+        "evidence": "\"Using TG_API_KEY (live) instead of stored profile 'default'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists scoped, expiring keys as an API-side dependency the API team must deliver",
+        "evidence": "\"D2: scoped... and expiring keys\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Redacts the key from `--verbose`, `--debug` and HTTP-trace output by default, including in CI logs",
+        "evidence": "One redactor on every output stream; verbose redacts Authorization.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Locks the credential store against concurrent writes so parallel invocations cannot corrupt it",
+        "evidence": "\"Writes take a file lock, because agents run commands in parallel.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects passing the key as a `--api-key` flag value because it lands in process lists and shell history; accepts it from stdin, an env var or a file instead",
+        "evidence": "\"No `--api-key` flag exists\"; `--with-api-key` reads stdin; `TG_API_KEY`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies `tg login` reading the key from stdin or opening the dashboard page that creates one",
+        "evidence": "\"`tg login --with-api-key` Reads the key from stdin\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Designs one flow per context (laptop, SSH box, CI) as a stack rather than ranking one flow as the winner",
+        "evidence": "Three contexts are covered: laptop with keychain, SSH box with file fallback, and CI with `TG_API_KEY`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents the CI path as a scoped, expiring key in an env var, never a stored credential file or a browser flow",
+        "evidence": "CI uses `TG_API_KEY`, but scoped and expiring keys appear only as open questions, not as the CI path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects putting the key in the project-directory `.tg.json`; any project binding file holds no secret",
+        "evidence": "\"`.tg.json` carrying the key | \u274c Drop\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores interactive credentials in the OS credential store first, falling back to a plaintext file only with a loud stderr warning, owner-only permissions and the file path printed",
+        "evidence": "\"First fallback write prints once: 'No keychain found. Key stored in `~/.tg/credentials` (mode 600).'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides `tg auth status` showing identity, which credential source won, expiry and test or live mode",
+        "evidence": "It prints profile, mode, masked key, source and account, but no expiry.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides `tg auth logout`",
+        "evidence": "`tg logout [--profile <name>]`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the `tg auth token` print command, or restricts it to a named integration that needs the handoff, citing token-harvesting malware that called such a command",
+        "evidence": "Removed, but the reason is key dispensing, not token-harvesting malware.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defaults the CLI to test mode and shows test or live mode in every prompt and before every severe action",
+        "evidence": "No test-mode default. Only a live-key line is printed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes an explicit key from a flag or env var beat the stored profile, with a stderr notice when it overrides a logged-in account",
+        "evidence": "Env wins, but no stderr override notice. Source is shown only in `tg auth status`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists scoped, expiring keys as an API-side dependency the API team must deliver",
+        "evidence": "Open questions: \"Restricted keys\" and \"Expiry\" for the API team.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Redacts the key from `--verbose`, `--debug` and HTTP-trace output by default, including in CI logs",
+        "evidence": "\"Redaction runs at the HTTP client layer\" for --verbose and --debug.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Locks the credential store against concurrent writes so parallel invocations cannot corrupt it",
+        "evidence": "Atomic rename is specified, but no locking.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

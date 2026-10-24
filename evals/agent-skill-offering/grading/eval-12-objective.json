@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the install count as the headline: install counts measure interest and can be inflated; measure correctness, not reach.",
+        "evidence": "'Installs measure interest, and they can be inflated.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the signals that matter: trigger and pass rate per release, issues tagged 'agent misuse', and how often the drift notice fires.",
+        "evidence": "Names trigger rate, pass rate and agent-misuse issues but not drift-notice firing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes skills.sh ranks by installs reported by the installer's telemetry and that the README install section is the listing's real driver, separating listing from correctness.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects golden agent tasks as the first gate: they are the highest-effort, starved gate; promote them once agents are a main user channel or after the first issue traced to a wrong skill.",
+        "evidence": "'highest effort and the lowest efficiency... Run the cheap ones first'; nightly",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the default rung instead: gates 1-3 and 6 before tagging, gates 1-4 and 6 on pull requests.",
+        "evidence": "Table: every PR gates 1,2,3,4,6; release 1,2,3,6",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the gates on separate axes - effort `golden agent tasks > content check > changed-surface check > version equality == spec validation == security scan`, value `content check > golden agent tasks > version equality > changed-surface check > security scan > spec validation`, efficiency `version equality == spec validation > content check > security scan > changed-surface check > golden agent tasks` - and justifies the version-equality/spec-validation tie as two one-command offline checks catching different failures.",
+        "evidence": "Only a rough effort statement; no three-axis ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sizes the golden suite at 3-10 tasks drawn from real agent failures, each with a binary pass condition (exit code, file produced, test passing), not 20.",
+        "evidence": "'Use 3-10 tasks from real oak failures, each with a binary pass condition.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs each task with and without the skill on a pinned agent and model against the built tool, recording two numbers: trigger rate and pass rate.",
+        "evidence": "'per release, with and without the skill: trigger rate, pass rate'; 'Pin the agent and model.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects blocking on any drop: a drop is a release blocker only once the suite is stable; until then report it, and run the suite optional or nightly on pull requests.",
+        "evidence": "'Don't, for now... report it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the one-third trigger rate as a description problem, or a sign the knowledge belongs in always-loaded bundled docs, not a body-content problem - rejecting the body rewrite.",
+        "evidence": "'Trigger is decided by the description, so a new body can't raise the trigger rate.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets expectations that published benchmarks show skills help least on software-engineering tasks, so gains are small and noisy and judged on the project's own tasks.",
+        "evidence": "'Published benchmarks also show small, noisy skill gains on software-engineering tasks.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the four pass conditions of the setup: a deliberately stale metadata.version fails before its tag exists, a skill naming a removed flag fails CI, every manifest version equals the tag on the last three releases, every release note prints a tag-pinned install command.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds repository topics directory crawlers index (agent-skills, gemini-cli-extension) and links the install command from the official docs.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses the install count as the headline: install counts measure interest and can be inflated; measure correctness, not reach.",
+        "evidence": "\"don't lead with 2,300 installs... Installs show that people tried the skill.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the signals that matter: trigger and pass rate per release, issues tagged 'agent misuse', and how often the drift notice fires.",
+        "evidence": "Names trigger rate, pass rate and lift; no issues tag or drift notice.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes skills.sh ranks by installs reported by the installer's telemetry and that the README install section is the listing's real driver, separating listing from correctness.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects golden agent tasks as the first gate: they are the highest-effort, starved gate; promote them once agents are a main user channel or after the first issue traced to a wrong skill.",
+        "evidence": "\"the agent suite should not be the first gate\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the default rung instead: gates 1-3 and 6 before tagging, gates 1-4 and 6 on pull requests.",
+        "evidence": "Gives generic deterministic gates, with no tag-time gating.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the gates on separate axes - effort `golden agent tasks > content check > changed-surface check > version equality == spec validation == security scan`, value `content check > golden agent tasks > version equality > changed-surface check > security scan > spec validation`, efficiency `version equality == spec validation > content check > security scan > changed-surface check > golden agent tasks` - and justifies the version-equality/spec-validation tie as two one-command offline checks catching different failures.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sizes the golden suite at 3-10 tasks drawn from real agent failures, each with a binary pass condition (exit code, file produced, test passing), not 20.",
+        "evidence": "Keeps 20 tasks and \"at least 3 runs per task\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs each task with and without the skill on a pinned agent and model against the built tool, recording two numbers: trigger rate and pass rate.",
+        "evidence": "Paired comparison against main and a no-skill baseline, but no pinned agent/model.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects blocking on any drop: a drop is a release blocker only once the suite is stable; until then report it, and run the suite optional or nightly on pull requests.",
+        "evidence": "Still blocks on drops beyond a 15-point noise band.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the one-third trigger rate as a description problem, or a sign the knowledge belongs in always-loaded bundled docs, not a body-content problem - rejecting the body rewrite.",
+        "evidence": "\"Whether it loads depends on the frontmatter `name` and `description`... Rewrite the description and test it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets expectations that published benchmarks show skills help least on software-engineering tasks, so gains are small and noisy and judged on the project's own tasks.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the four pass conditions of the setup: a deliberately stale metadata.version fails before its tag exists, a skill naming a removed flag fails CI, every manifest version equals the tag on the last three releases, every release note prints a tag-pinned install command.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds repository topics directory crawlers index (agent-skills, gemini-cli-extension) and links the install command from the official docs.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

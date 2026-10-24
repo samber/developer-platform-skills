@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Runs the existing-beta rescue first instead of a blanket relabel, because a stage is live with no exit date and production callers.",
+        "evidence": "\"The skill calls this case an existing-beta rescue\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds an inventory with one row per surface carrying: first shipped, last shape change, callers over the last 90 days, accounts with production traffic, owner, decision, and date.",
+        "evidence": "Table: first shipped, last shape change, callers (90 days), accounts with production traffic, owner, decision, date",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes a retroactive stage contract and grandfathers every production caller: nothing they call changes until their surface has a decision.",
+        "evidence": "Step 2 freeze and grandfather; Step 4 retroactive stage contract",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names an owner for the rescue before any decision, since the surfaces currently have none.",
+        "evidence": "\"Step 1... Nothing else starts until this is done.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Decides per surface rather than for all six at once, choosing among GA as-is, next version with migration, or kill.",
+        "evidence": "Step 5 per-surface table with GA as-is / next version / kill",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Conditions GA as-is on a long-stable shape, existing production callers, and samber/developer-platform-skills@public-api-design-review passing at GA level with zero Must-change findings.",
+        "evidence": "\"Run `public-api-design-review` at GA level... zero Must-change findings\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes any surface with a Must-change finding to a next version with migration (steps 1-9 for the new version) instead of relabelling it.",
+        "evidence": "\"Next version with migration: run the beta program steps for the new version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting the two zero-call endpoints on Tuesday; applies the kill outcome with notice, verifies usage with server-side production detection rather than belief, and allows no silent 404.",
+        "evidence": "\"extend log window to 12 months\"; \"Serve a clear error pointing to the notice, never a silent 404\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells production callers, including Pacific Crate, privately before any public relabel or notice.",
+        "evidence": "\"Pacific Crate first (a call from the owner, not an email)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders the communication: production accounts privately first, then any waitlist, then the public changelog.",
+        "evidence": "\"Pacific Crate first, then the other ~30 accounts, then the public changelog\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retires the /v1beta label publicly only once every surface has a decision, not on Tuesday.",
+        "evidence": "\"Step 8. Retire the old label publicly once every surface has a decision.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands relabelled GA surfaces to samber/developer-platform-skills@api-versioning-policy, with the overlap on the beta path using the GA deprecation window because production traffic sits on it.",
+        "evidence": "\"use the GA deprecation window from `api-versioning-policy`\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Runs the existing-beta rescue first instead of a blanket relabel, because a stage is live with no exit date and production callers.",
+        "evidence": "It proposes its own sequence with no rescue.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds an inventory with one row per surface carrying: first shipped, last shape change, callers over the last 90 days, accounts with production traffic, owner, decision, and date.",
+        "evidence": "No inventory table.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes a retroactive stage contract and grandfathers every production caller: nothing they call changes until their surface has a decision.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names an owner for the rescue before any decision, since the surfaces currently have none.",
+        "evidence": "\"Name one owner for the API surface. Everything below needs one person.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Decides per surface rather than for all six at once, choosing among GA as-is, next version with migration, or kill.",
+        "evidence": "Treats the four endpoints as one group.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Conditions GA as-is on a long-stable shape, existing production callers, and samber/developer-platform-skills@public-api-design-review passing at GA level with zero Must-change findings.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes any surface with a Must-change finding to a next version with migration (steps 1-9 for the new version) instead of relabelling it.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting the two zero-call endpoints on Tuesday; applies the kill outcome with notice, verifies usage with server-side production detection rather than belief, and allows no silent 404.",
+        "evidence": "\"Re-check the 'zero calls' data\"; a changelog notice plus a brownout, then \"410 Gone\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells production callers, including Pacific Crate, privately before any public relabel or notice.",
+        "evidence": "\"Call Pacific Crate before any public post.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders the communication: production accounts privately first, then any waitlist, then the public changelog.",
+        "evidence": "The waitlist step is absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Retires the /v1beta label publicly only once every surface has a decision, not on Tuesday.",
+        "evidence": "It announces the GA move on Tuesday.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Hands relabelled GA surfaces to samber/developer-platform-skills@api-versioning-policy, with the overlap on the beta path using the GA deprecation window because production traffic sits on it.",
+        "evidence": "The skill is not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

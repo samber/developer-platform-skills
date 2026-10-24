@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that Zapier documents no integration-level error-rate threshold for delisting, and refuses to plan against the 5% figure",
+        "evidence": "\"Zapier documents no integration-level error rate that triggers delisting.\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the documented run-error rule at Zap level: a Zap erroring on 95% of more than 20 runs over 7 days turns off",
+        "evidence": "\"95% errors over more than 20 runs in 7 days\u2020 turns that Zap off.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects the Gold threshold to 350 active users per quarter, not 500",
+        "evidence": "\"Gold is 350 active users\u2020, not 500.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the health score is built from open bug reports, feature requests and responsiveness to them, not from error rates, so the 14 untouched bugs are the tier risk",
+        "evidence": "\"built from open bugs and feature requests... It does not use error rates. Your 14 bugs... likeliest blocker.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Computes that 25 of 180 users (about 14%) are affected by open bugs, over the 10%-of-monthly-actives ceiling, and makes the bug queue the first action",
+        "evidence": "\"25 of 180 is about 14%, which is over\"; growth rank 1 clear the bug queue.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes working the Bugs & Feature Requests queue weekly or syncing it to the tracker with Zapier Issue Manager",
+        "evidence": "Only \"Comment on all 14 bugs\" in week 1; no weekly cadence or Issue Manager.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States tiers are re-evaluated at the start of January, April, July and October, and that a dip at quarter start is normal because the count accumulates",
+        "evidence": "Mentions January evaluation and footnote 'quarterly re-evaluation months' but not the dip being normal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the embed fast-track: with an embed-sourced signup and a healthy score, Gold benefits unlock at 300 active users",
+        "evidence": "\"next-tier benefits at 300 active users\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deprecating 1.2.0 because it will keep working: marks it legacy instead, one version at a time, oldest first",
+        "evidence": "\"Don't deprecate. ... Mark it legacy\"; \"mark Available versions legacy one at a time, oldest first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the deprecation rules for a version that must stop working: date 3 weeks to 1 year ahead, Zapier emails affected users 14 days before, and users already auto-migrated get no email, so a 7-day notice is invalid",
+        "evidence": "Gives 3 weeks-1 year and 14-day email, but not that auto-migrated users get no email.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the 11% activation on 'Updated Task' as a design defect to test in the editor, and proposes a specific state trigger (for example New Completed Task) or a composite `id-updated_at` id",
+        "evidence": "\"design defect\"; hypotheses plain id; `task_completed`, composite id `id-updated_at`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships the Updated Task replacement as an additive step under a new key with the old one hidden, not an in-place change",
+        "evidence": "`updated_task_v2` additive; `updated_task` hide after twin ships.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reports a metric baseline: activation per step, quarterly actives against the next tier, open bugs and median days to first response, templates live, each as a value or 'unknown' plus where to read it",
+        "evidence": "Section 8 table with values/unknown and where to read.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (350, 95%, 14 days) with \u2020 and a footnote",
+        "evidence": "Footnote covers 95%, tiers, 14-day email.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that Zapier documents no integration-level error-rate threshold for delisting, and refuses to plan against the 5% figure",
+        "evidence": "Says 'The 5% rule is unconfirmed' and 'You are not near the 5% line', but frames it as unverified rather than stating Zapier documents no such threshold; still plans an alert at 3%/4% and a 'under 2%' target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the documented run-error rule at Zap level: a Zap erroring on 95% of more than 20 runs over 7 days turns off",
+        "evidence": "No mention of the Zap-level auto-off rule (95% of >20 runs over 7 days).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Corrects the Gold threshold to 350 active users per quarter, not 500",
+        "evidence": "Lists 'Gold tier at 500 active users' as 'Not verified' and plans around 500; never states 350.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the health score is built from open bug reports, feature requests and responsiveness to them, not from error rates, so the 14 untouched bugs are the tier risk",
+        "evidence": "Says 'Check whether error rate, support responsiveness, or other conditions also apply'; does not state the health score composition. Focuses on error rate under 2% as tier eligibility.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Computes that 25 of 180 users (about 14%) are affected by open bugs, over the 10%-of-monthly-actives ceiling, and makes the bug queue the first action",
+        "evidence": "Maps bugs to '~25 affected users' but never computes 14% or cites a 10% ceiling; the first action is exporting error logs, not the bug queue.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes working the Bugs & Feature Requests queue weekly or syncing it to the tracker with Zapier Issue Manager",
+        "evidence": "Proposes 'weekly review of the error rate and a new-bug SLA' but no mention of the Bugs & Feature Requests queue or Zapier Issue Manager.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States tiers are re-evaluated at the start of January, April, July and October, and that a dip at quarter start is normal because the count accumulates",
+        "evidence": "No mention of re-evaluation dates or quarter-start dip.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the embed fast-track: with an embed-sourced signup and a healthy score, Gold benefits unlock at 300 active users",
+        "evidence": "Mentions 'If the forecast shows about 300... set Gold as a Q+1 goal' but no embed fast-track.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deprecating 1.2.0 because it will keep working: marks it legacy instead, one version at a time, oldest first",
+        "evidence": "Plans deprecation after stabilization ('Deprecate only when that number is zero'); never suggests marking legacy instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the deprecation rules for a version that must stop working: date 3 weeks to 1 year ahead, Zapier emails affected users 14 days before, and users already auto-migrated get no email, so a 7-day notice is invalid",
+        "evidence": "Says 'A 7-day notice is almost certainly shorter than Zapier's minimum' and 'Use Zapier's minimum window', but gives no 3 weeks\u20131 year, 14 days, or auto-migrate email rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the 11% activation on 'Updated Task' as a design defect to test in the editor, and proposes a specific state trigger (for example New Completed Task) or a composite `id-updated_at` id",
+        "evidence": "Diagnoses 'a defect or a setup problem' and checks 'dedupe key, and whether updates produce a new ID', but proposes no specific replacement trigger or composite id-updated_at.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships the Updated Task replacement as an additive step under a new key with the old one hidden, not an in-place change",
+        "evidence": "No replacement shipping approach described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Reports a metric baseline: activation per step, quarterly actives against the next tier, open bugs and median days to first response, templates live, each as a value or 'unknown' plus where to read it",
+        "evidence": "Targets table gives Now values (3.2%, 14, 11%, unknown, 180) but lacks median days to first response, templates live, and where to read each.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (350, 95%, 14 days) with \u2020 and a footnote",
+        "evidence": "No \u2020 markers or footnotes anywhere.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

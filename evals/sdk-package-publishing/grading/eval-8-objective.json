@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the two-runner split, stating every target must publish from one macOS runner because two hosts would each publish the root publication and Central rejects duplicates",
+        "evidence": "One macOS runner publishes every target",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `publishAndReleaseToMavenCentral` with `publishToMavenCentral` and keeps automatic release off so a maintainer publishes in the Portal",
+        "evidence": "leave auto-release off",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the plugin id `com.github.ashgrove.robotics`, stating `com.github.*` ids are rejected by the Gradle Plugin Portal",
+        "evidence": "Plugin Portal rejects com.github.* IDs",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers `io.github.<user>.<plugin>` or `com.ashgrove.<plugin>` with DNS TXT domain proof, and states plugin id and group must share the top-level namespace",
+        "evidence": "com.ashgrove.robotics... Gradle group must be com.ashgrove",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Plugin Portal's first release goes through human review taking days, so submission must start now given the five-day launch, and that changing the id or group restarts the review",
+        "evidence": "Changing the ID later restarts the human review",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States SNAPSHOT versions are refused by the Plugin Portal",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `publishPlugins --validate-only` in the build job and `publishPlugins` in the publish job",
+        "evidence": "publishPlugins --validate-only in validate job",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores `GRADLE_PUBLISH_KEY` and `GRADLE_PUBLISH_SECRET` in the `release` environment under a bot account with scheduled rotation, noting the Plugin Portal has no OIDC",
+        "evidence": "Static key, no OIDC exists; release-plugin environment",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States Maven Central has no OIDC and names the `ORG_GRADLE_PROJECT_mavenCentralUsername`/`Password` and `ORG_GRADLE_PROJECT_signingInMemoryKey`/`Password` secrets in the protected environment",
+        "evidence": "ORG_GRADLE_PROJECT_mavenCentralUsername... signingInMemoryKey",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs tests in the unprivileged build job and gives only the publish job the signing subkey, because `signAllPublications()` signs in-build while executing every plugin",
+        "evidence": "test jobs separate; run no tests in publish jobs",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an XCFramework consumed through Swift Package Manager for the non-Kotlin iOS app, released alongside the Central artifacts",
+        "evidence": "binaryTarget XCFramework",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs the publish job with no restored Gradle caches (and `--no-configuration-cache` where the plugin requires it)",
+        "evidence": "Restore no caches; --no-configuration-cache",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that Sonatype ships no official Gradle plugin and does not support the community plugins",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats every published Plugin Portal and Central version as permanent, with rollback being a new version",
+        "evidence": "Every published version is permanent",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the two-runner split, stating every target must publish from one macOS runner because two hosts would each publish the root publication and Central rejects duplicates",
+        "evidence": "'one macOS job publishes all SDK targets in one deployment'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `publishAndReleaseToMavenCentral` with `publishToMavenCentral` and keeps automatic release off so a maintainer publishes in the Portal",
+        "evidence": "Final workflow runs publishAndReleaseToMavenCentral",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the plugin id `com.github.ashgrove.robotics`, stating `com.github.*` ids are rejected by the Gradle Plugin Portal",
+        "evidence": "Only says it 'reads as a GitHub-user namespace'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers `io.github.<user>.<plugin>` or `com.ashgrove.<plugin>` with DNS TXT domain proof, and states plugin id and group must share the top-level namespace",
+        "evidence": "Suggests com.ashgrove.robotics but no DNS proof/namespace rule",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the Plugin Portal's first release goes through human review taking days, so submission must start now given the five-day launch, and that changing the id or group restarts the review",
+        "evidence": "Only 'Verify whether... needs review'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States SNAPSHOT versions are refused by the Plugin Portal",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `publishPlugins --validate-only` in the build job and `publishPlugins` in the publish job",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Stores `GRADLE_PUBLISH_KEY` and `GRADLE_PUBLISH_SECRET` in the `release` environment under a bot account with scheduled rotation, noting the Plugin Portal has no OIDC",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States Maven Central has no OIDC and names the `ORG_GRADLE_PROJECT_mavenCentralUsername`/`Password` and `ORG_GRADLE_PROJECT_signingInMemoryKey`/`Password` secrets in the protected environment",
+        "evidence": "Names secrets but no OIDC statement",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs tests in the unprivileged build job and gives only the publish job the signing subkey, because `signAllPublications()` signs in-build while executing every plugin",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends an XCFramework consumed through Swift Package Manager for the non-Kotlin iOS app, released alongside the Central artifacts",
+        "evidence": "'Ship an XCFramework through Swift Package Manager'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs the publish job with no restored Gradle caches (and `--no-configuration-cache` where the plugin requires it)",
+        "evidence": "Uses gradle/actions/setup-gradle",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that Sonatype ships no official Gradle plugin and does not support the community plugins",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats every published Plugin Portal and Central version as permanent, with rollback being a new version",
+        "evidence": "Only Central and plugin ID mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
