@@ -4,7 +4,7 @@ description: Write the listing-content rulebook for the operator of a B2B SaaS a
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # App Marketplace Listing Standards
@@ -144,7 +144,7 @@ Rank by market reach bought per unit of combined operator-plus-vendor effort:
 
 ## 6. Badge display
 
-- **Eligibility** (what earns certification) belongs to the review process (`samber/developer-platform-skills@app-marketplace-review`).
+- **Eligibility** (what earns certification) belongs to the review process (`samber/developer-platform-skills@app-marketplace-review`) for admission, and to the certification program (`samber/developer-platform-skills@connector-certification-program`) for a certified label above it.
 - **Display** (where an earned badge renders and how its currency is enforced) is what this rulebook owns.
 
 First check question 7: **running no badge program at all is a legitimate architecture, not an oversight** - one of the eight benchmarked operators does exactly that, and its listing UX is still cited as best-in-class, which shows listing quality and certification are independent axes. If badges exist, four display mechanisms, ranked:

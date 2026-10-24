@@ -4,7 +4,7 @@ description: Design the operator-side review and approval process for third-part
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # App Marketplace Review
@@ -80,7 +80,7 @@ The trust and efficiency orders invert because a uniform hard bar gives every bu
 - **Starved option: the two-rung ladder** - a minimal bar to list at all, plus an optional certified tier behind quantitative gates (HubSpot's shape). Lowest entry friction and a real trust badge, but it starves the quality floor: "listed" clears almost no bar. Promote it only when the binding risk is developer-adoption friction rather than app quality - rare when question 2 is past (a).
 - **Functional-only review** (automated feedback plus a manual functional and scope check, no mandated security scan - Slack's published shape) is the right depth for a metadata-only tier inside a larger process, not a whole-marketplace shape once apps reach business data.
 - **Deleted, not demoted: the no-review registry.** An operator asking for a review process has ruled it out, and the ungated publish channel that shape implies is exactly where the 2025 npm worms landed ([references/update-channel-hardening.md](references/update-channel-hardening.md)).
-- **Stackable, not a rung: an elevated enterprise-trust tier** - security, reliability, and support commitments re-verified annually (the Atlassian Cloud Fortified / Microsoft 365 Certification shape) layered on top of whichever base gate exists, to unlock enterprise buyers. Add it once the base gate is proven, never instead of one.
+- **Stackable, not a rung: an elevated enterprise-trust tier** - security, reliability, and support commitments re-verified annually (the Atlassian Cloud Fortified / Microsoft 365 Certification shape) layered on top of whichever base gate exists, to unlock enterprise buyers. Add it once the base gate is proven, never instead of one. Its criteria, test kit, renewal and decertification ladder are designed in `samber/developer-platform-skills@connector-certification-program`.
 
 Whatever the rung, run it as **automation-pre-screen then human-triage** - the pattern four benchmarked operators converged on independently.
 
@@ -234,6 +234,6 @@ See also, same collection:
 - `samber/developer-platform-skills@connector-marketplace-strategy` - chooses the curation rung this process enforces. Run it first when marketplace strictness is still an open question.
 - `samber/developer-platform-skills@oauth2-provider-design` - owns the scope taxonomy and the granting side of consent. This skill's permission audit checks apps against that taxonomy.
 - `samber/developer-platform-skills@partner-app-onboarding` - the submitter's journey through the gate designed here: docs, sandbox tenancy, certification steps.
-- `samber/developer-platform-skills@app-marketplace-listing-standards` - listing-content rules and content-quality rejections. Badge eligibility is decided here, badge display there.
+- `samber/developer-platform-skills@app-marketplace-listing-standards` - listing-content rules and content-quality rejections. Admission is decided here, badge display there.
 - `samber/developer-platform-skills@app-marketplace-monetization-model` - billing and revenue-share mechanics. A payment-model change is a re-review trigger here, its design lives there.
 - `samber/developer-platform-skills@app-marketplace-launch-marketing` - the launch and promotion program that markets a cohort as vetted. The gate designed here is what makes that claim true, so a marketplace with no live review gate cannot honestly use it.

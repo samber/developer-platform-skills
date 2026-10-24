@@ -172,6 +172,7 @@ This collection covers the full developer-platform surface.
 - [`app-marketplace-listing-standards`](./skills/app-marketplace-listing-standards): Writes the listing-content rulebook an operator enforces on submissions: required fields, media geometry, quality bar, taxonomy, badges, and staleness policy.
 - [`app-marketplace-monetization-model`](./skills/app-marketplace-monetization-model): Designs how a marketplace earns on the operator side: merchant-of-record posture, billing rails, fee stack, waiver programs, payouts, and tax split.
 - [`app-marketplace-review`](./skills/app-marketplace-review): Designs the operator-side review and approval process for third-party apps: pipeline shape, permission audits, re-review triggers, and the enforcement ladder.
+- [`connector-certification-program`](./skills/connector-certification-program): Designs the certification label for partner-built connectors: go/no-go, measurable criteria, test kit, support routing, renewal, and decertification.
 - [`connector-marketplace-strategy`](./skills/connector-marketplace-strategy): Decides whether to build a connector marketplace, join others', or buy embedded iPaaS, then designs governance, curation, take rate, and seeding.
 
 ## 👤 Contributors

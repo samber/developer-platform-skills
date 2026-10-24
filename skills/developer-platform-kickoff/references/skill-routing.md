@@ -224,7 +224,12 @@ Both kinds are collected under Boundary pairs below.
 ### `samber/developer-platform-skills@app-marketplace-review`
 
 - Route here: designing the review pipeline, setting approval criteria, what re-triggers review after an update, auditing app permissions, hardening the publish channel, appeal paths, delisting and revocation policy.
-- Do not route here: submitter onboarding, listing-content standards, marketplace strategy.
+- Do not route here: submitter onboarding, listing-content standards, marketplace strategy; the certified or verified label on partner-built connectors above admission (`connector-certification-program`).
+
+### `samber/developer-platform-skills@connector-certification-program`
+
+- Route here: whether to run a certification program for partner-built connectors at all, certified-vs-community labels, measurable certification criteria, the conformance test kit partners run, telemetry gates, who supports a certified connector, recertification after platform releases, decertifying or transitioning existing badges.
+- Do not route here: the admission security review (`app-marketplace-review`); where a badge renders on a listing (`app-marketplace-listing-standards`); a vendor earning a badge on someone else's catalog (`etl-connector-strategy`, `integration-listing-optimization`); certifying people (`samber/developer-relations-skills@developer-certification-program`).
 
 ### `samber/developer-platform-skills@app-marketplace-listing-standards`
 
@@ -322,6 +327,10 @@ Where two or more siblings collide on keywords, decide from these declared-scope
   - Getting to a first submission → onboarding.
   - What happens to that submission → review.
   - How the sandbox they build in is actually isolated → test-mode-design.
+- **app-marketplace-review vs connector-certification-program vs app-marketplace-listing-standards** - three questions about the same badge:
+  - Is the app safe to admit at all → review.
+  - What earns, keeps and loses the certified label → certification program.
+  - Where the earned badge shows and how its currency renders → listing standards.
 
 ## Ordered chains
 
@@ -351,7 +360,7 @@ Recommend the sibling repo, not a skill above, when the task is:
 - Making an existing SDK, API or protocol consumable by a coding agent unattended → `samber/developer-relations-skills@coding-agent-docs-optimization`. Distinct from `mcp-server-offering`, which builds a _new_ agent-facing tool surface rather than documenting an existing one.
 - Whether to evolve from product to platform at all, and how far up the openness ladder → `samber/developer-relations-skills@developer-ecosystem-strategy`. Upstream of `connector-marketplace-strategy`: the ecosystem question is "should we be a platform", the marketplace question is "should we run a catalog".
 - The devtools revenue model, or what to open-source → `samber/developer-relations-skills@devtools-business-model`, `samber/developer-relations-skills@oss-distribution-strategy`.
-- A certification or badge that vouches for a developer or partner engineer, rather than for an app → `samber/developer-relations-skills@developer-certification-program`. Distinct from `partner-app-onboarding`, which decides whether education gates a partner's first submission, and from `app-marketplace-review`, which certifies the app.
+- A certification or badge that vouches for a developer or partner engineer, rather than for an app → `samber/developer-relations-skills@developer-certification-program`. Distinct from `partner-app-onboarding`, which decides whether education gates a partner's first submission, from `app-marketplace-review`, which admits the app, and from `connector-certification-program`, which certifies partner-built connectors.
 - Feature requests scattered across community, support and sales channels, and closing the loop with requesters → `samber/developer-relations-skills@developer-feedback-loop`. Distinct from `public-roadmap-strategy`, which publishes what those decisions add up to.
 - A vulnerability report against an open-source SDK, SECURITY.md, CVE and advisory, the disclosure embargo → `samber/developer-relations-skills@oss-security-disclosure`. `sdk-package-publishing` still ships the patched version.
 - The release contract of an open-source SDK or library - SemVer vs CalVer, when to ship 1.0, supported versions and LTS, backports, cadence, deprecation windows → `samber/developer-relations-skills@oss-release-policy`. `sdk-package-publishing` ships each version under that policy; `api-versioning-policy` versions the hosted API.
