@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends `zapier-platform convert --integrationId <id> --version <x.y.z>` rather than a rebuild from scratch",
+        "evidence": "\"`zapier-platform convert <path> --integrationId <id> --version 1.3.0-beta`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the converted project links to the same integration (`.zapierapprc`) and `push` creates a new version, so users carry over through normal migration",
+        "evidence": "Mentions --integrationId but not .zapierapprc or that push creates a new version linked to the same integration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects registering the conversion as 2.0.0 because migration never crosses a major; keeps it on the 1.x line (for example 1.3.0)",
+        "evidence": "\"Push the result as 1.3.0\"; \"Zapier does not let you move users across a major version.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that CLI to UI has no conversion: Developer Support creates an empty version, the integration is rebuilt by hand, and users cannot be migrated to it",
+        "evidence": "Says \"no conversion path... rebuilding by hand, and users can't be migrated\" but omits Developer Support creating an empty version.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the move is one-way once users run on CLI versions, and that before that point the CLI version can be deleted to continue in the UI",
+        "evidence": "\"Until you promote or migrate, you can still delete the CLI version and continue in the UI.\"; \"Point of no return\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists what the CLI unlocks over the UI: source control, CI unit tests, middleware, custom auth and canary releases",
+        "evidence": "No list of source control, CI tests, middleware, custom auth, canary benefits.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins `zapier-platform-core` to an exact version and runs CI on Node 22",
+        "evidence": "\"Node 22 in CI, pin `zapier-platform-core` exactly\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs running `zapier-platform pull` before any push or promote because a public integration sits in the Integration Maintenance Program",
+        "evidence": "\"Run `zapier-platform pull` before every push\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a canary of 5-10% for 30-60 minutes, then a staged migration starting at 5%, for the converted version",
+        "evidence": "\"`canary:create` at 5-10% for 30-60 minutes\u2020\"; \"`migrate 1.2.0 1.3.0 5`, watch Monitoring\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses `zapier-platform test` with `createAppTester` and mocked HTTP (`nock`) so CI needs no credentials",
+        "evidence": "Only \"unit tests with `nock`\"; no createAppTester or zapier-platform test.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Opens with an Assumptions section, one line per interview answer the prompt lacks (deadline, engineering days, which steps exist)",
+        "evidence": "\"## Assumptions\" listing steps, deadline, ownership.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends `zapier-platform convert --integrationId <id> --version <x.y.z>` rather than a rebuild from scratch",
+        "evidence": "It recommends `zapier convert <app-id> ./oakspire-zapier`, which is not the required command and flags.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the converted project links to the same integration (`.zapierapprc`) and `push` creates a new version, so users carry over through normal migration",
+        "evidence": "It says to push a new version and migrate, but never mentions .zapierapprc or that the project links to the same integration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects registering the conversion as 2.0.0 because migration never crosses a major; keeps it on the 1.x line (for example 1.3.0)",
+        "evidence": "\"Do not ship 2.0.0\"; use 1.2.1 or 1.3.0. The stated reason is broken Zaps rather than migration not crossing majors, but the 1.x outcome is right.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that CLI to UI has no conversion: Developer Support creates an empty version, the integration is rebuilt by hand, and users cannot be migrated to it",
+        "evidence": "It only says a converted app \"cannot return to the Visual Builder\", hedged with \"as far as I know\". It does not mention Developer Support, an empty version, or that users cannot be migrated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the move is one-way once users run on CLI versions, and that before that point the CLI version can be deleted to continue in the UI",
+        "evidence": "It gives a generic one-way claim, with a caveat to verify it. It never says the CLI version can be deleted before users are on it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists what the CLI unlocks over the UI: source control, CI unit tests, middleware, custom auth and canary releases",
+        "evidence": "It mentions git and CI, but not middleware, custom auth or canary releases as CLI benefits.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins `zapier-platform-core` to an exact version and runs CI on Node 22",
+        "evidence": "There is no mention of pinning the core version or of Node 22.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs running `zapier-platform pull` before any push or promote because a public integration sits in the Integration Maintenance Program",
+        "evidence": "There is no mention of pull or the Integration Maintenance Program.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a canary of 5-10% for 30-60 minutes, then a staged migration starting at 5%, for the converted version",
+        "evidence": "It gives a staged migrate of 5\u201310%, then a few days' wait, then 100%. There is no 30\u201360 minute canary.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses `zapier-platform test` with `createAppTester` and mocked HTTP (`nock`) so CI needs no credentials",
+        "evidence": "It says \"`zapier test` unit tests with recorded fixtures\". It does not mention createAppTester or nock.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Opens with an Assumptions section, one line per interview answer the prompt lacks (deadline, engineering days, which steps exist)",
+        "evidence": "It opens with a bold directive and \"Why not the proposal\". Assumptions only appear in a closing \"Caveat\" section.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

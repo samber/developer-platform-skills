@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects bumping in goreleaser before.hooks: goreleaser runs after the tag exists, so a bump there never reaches the tag.",
+        "evidence": "'Goreleaser runs after the tag exists. A bump made then never reaches the tag.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a `make release VERSION=x.y.z` target that runs scripts/check-skill-version.py with --write and every --manifest, then the gates, then commits, tags and pushes in one step.",
+        "evidence": "Makefile release: check-skill-version --write with MANIFESTS, build, content check, commit, tag, push",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps before.hooks for gate 2 only, running the check (not the write) with {{ .Version }}.",
+        "evidence": "The hook runs check-skill-version.py {{ .Version }} with no --write, skipped on snapshot",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists skills/** in goreleaser archives.files and asserts `tar tzf dist/*.tar.gz | grep SKILL.md`.",
+        "evidence": "'skills/**/*' in archives.files; the content check has --archive asserting SKILL.md inside",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts the tag-pinned install block in goreleaser release.footer so the tag is never typed by hand.",
+        "evidence": "'release: footer: ## Agent skill for this release ... {{ .Tag }}'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs gate 2 on pull requests against `git describe --tags --abbrev=0` with fetch-depth 0, and again on the tag as a backstop, noting a tag-time failure means deleting the tag.",
+        "evidence": "make skill-gates uses git describe --tags --abbrev=0; fetch-depth: 0; 'A failure there means deleting the tag.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `go build ./...` for the content check: with several packages it writes no binary and the check silently runs whatever fgate is on PATH; requires an explicit `go build -o ./bin/fgate ./cmd/fgate` with the same -ldflags version stamping.",
+        "evidence": "'go build ./... with several packages writes no binary. You would run whatever fgate is on PATH.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends `goreleaser build --snapshot --clean --single-target` in a skill-gates job that the publishing job depends on.",
+        "evidence": "Uses 'release --snapshot --clean --skip=publish', not goreleaser build --single-target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects asserting exit code 0 on --help, since some parsers exit 2 after printing help; asserts the output is help text rather than an unknown-command error.",
+        "evidence": "'Exit code is the wrong signal. Some parsers exit 2 after printing help.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Captures stderr (2>&1) because Go's standard flag package prints help to stderr, and compares flag names without leading dashes so -yes matches --yes.",
+        "evidence": "help_text returns stdout + stderr; has_flag matches '--?' + name",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks nested subcommands at every level, not only the first two tokens.",
+        "evidence": "check_invocation loops descending the path via help_text(path)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the new-surface direction: diff the public command list against the last release and fail on an added command the skill never mentions and the allowlist does not exempt.",
+        "evidence": "Listed under 'Known limits' as not implemented.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Suggests a hidden `commands --json` subcommand so extraction survives usage-layout changes.",
+        "evidence": "'Add a hidden fgate commands --json'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declares the tag as the version source of truth and records it with the tag format, gate list, channels and pinned-install command in memory when the harness has one.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the binary archive, which needs the explicit archives.files entry, from a Go module zip, which carries skills/ automatically for libraries.",
+        "evidence": "Only asks in Q3 whether skills/ ships in a zip; no distinction explained.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects bumping in goreleaser before.hooks: goreleaser runs after the tag exists, so a bump there never reaches the tag.",
+        "evidence": "\"A `before.hooks` rewrite never reaches users... bump the files in a commit before tagging.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a `make release VERSION=x.y.z` target that runs scripts/check-skill-version.py with --write and every --manifest, then the gates, then commits, tags and pushes in one step.",
+        "evidence": "Uses scripts/release.sh with set-version.sh, not the named script or a make target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps before.hooks for gate 2 only, running the check (not the write) with {{ .Version }}.",
+        "evidence": "\"before: hooks: - ./scripts/check-version.sh {{ .Version }}\" and \"It only reads files.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists skills/** in goreleaser archives.files and asserts `tar tzf dist/*.tar.gz | grep SKILL.md`.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts the tag-pinned install block in goreleaser release.footer so the tag is never typed by hand.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs gate 2 on pull requests against `git describe --tags --abbrev=0` with fetch-depth 0, and again on the tag as a backstop, noting a tag-time failure means deleting the tag.",
+        "evidence": "The PR job runs only the flag check; there is no version comparison against the last tag.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects `go build ./...` for the content check: with several packages it writes no binary and the check silently runs whatever fgate is on PATH; requires an explicit `go build -o ./bin/fgate ./cmd/fgate` with the same -ldflags version stamping.",
+        "evidence": "Rejects `go build ./...` and uses `-o`, but with no ldflags version stamping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends `goreleaser build --snapshot --clean --single-target` in a skill-gates job that the publishing job depends on.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects asserting exit code 0 on --help, since some parsers exit 2 after printing help; asserts the output is help text rather than an unknown-command error.",
+        "evidence": "\"Also assert that `--help` itself exits 0.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Captures stderr (2>&1) because Go's standard flag package prints help to stderr, and compares flag names without leading dashes so -yes matches --yes.",
+        "evidence": "`2>&1 | grep -Eq ... -{1,2}$1`; \"The checker below accepts one or two dashes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks nested subcommands at every level, not only the first two tokens.",
+        "evidence": "Known limit: \"takes only the first token as the subcommand\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds the new-surface direction: diff the public command list against the last release and fail on an added command the skill never mentions and the allowlist does not exempt.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Suggests a hidden `commands --json` subcommand so extraction survives usage-layout changes.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declares the tag as the version source of truth and records it with the tag format, gate list, channels and pinned-install command in memory when the harness has one.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the binary archive, which needs the explicit archives.files entry, from a Go module zip, which carries skills/ automatically for libraries.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

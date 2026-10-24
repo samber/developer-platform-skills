@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Explains Cursor users get unreleased text because Cursor plugins follow git commits rather than the manifest version, and a default-branch install documents unreleased features.",
+        "evidence": "'Cursor follows git commits, not the manifest version... main documents features the last release doesn't have.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the two fixes and picks one: keep the default branch equal to the latest release with development on a dev branch merged at release time, or keep development on main and print the tag-pinned command everywhere users copy install commands.",
+        "evidence": "'stable is cheaper because you keep developing on main' vs dev branch",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects stopping the Cursor manifest bump: bump every plugin manifest from one source on every release and never leave one manifest set but unbumped (the mixed-manifest trap).",
+        "evidence": "'Reject it... A manifest that skips a version fails the equality gate'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains curated marketplaces pin exact commits, expects the curator to bump the sha, and makes each tag's commit the one worth pinning rather than asking for a tracking ref.",
+        "evidence": "'a curated marketplace pins exact commits, so make each tag's commit the one worth pinning'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States Codex installs use --ref defaulting to main, so users re-install at the new ref; gives the tag-pinned form.",
+        "evidence": "Says Codex keys on ref (default main) but gives no tag-pinned command.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives per-channel tag-pinned commands: `gh skill install`, `npx skills add <owner>/ing#v<tag>`, `/plugin marketplace add <owner>/ing#v<tag>`, `gemini extensions install ... --ref=v<tag>`, `openclaw plugins install git:...@v<tag>`.",
+        "evidence": "No commands listed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes `gh skill install` writes repo, ref, pin and tree SHA into the installed SKILL.md frontmatter, and `gh skill update` skips pinned skills.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the skills installer's skills-lock.json records the ref and a content hash, and that a branch ref floats while a tag or SHA holds.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a tag-pinned install matches only at install time and the binary can upgrade silently, so the body guard checks both directions.",
+        "evidence": "Not stated explicitly.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions a stable branch moved only at release as the alternative to a tag for marketplace and directory tracking.",
+        "evidence": "'Add a stable branch, moved only by the release script.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Claude Code plugin version resolves from plugin.json version, else the marketplace entry, else the commit SHA, and keeps it bumped so update does not report 'already latest'.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Generates the release-note install block in the release job so the tag is never typed by hand, ending with 'Already installed? Re-run with the new tag (OpenClaw: add --force)'.",
+        "evidence": "Generates the block but no 'Already installed? Re-run' line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that no installer resolves 'the skill matching the code I installed' by itself.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Explains Cursor users get unreleased text because Cursor plugins follow git commits rather than the manifest version, and a default-branch install documents unreleased features.",
+        "evidence": "\"They are getting `main`, not a release. Your dev branch is acting as a distribution channel.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the two fixes and picks one: keep the default branch equal to the latest release with development on a dev branch merged at release time, or keep development on main and print the tag-pinned command everywhere users copy install commands.",
+        "evidence": "\"Have the release script move a `stable` branch, or tag each release. Document installs from that ref only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects stopping the Cursor manifest bump: bump every plugin manifest from one source on every release and never leave one manifest set but unbumped (the mixed-manifest trap).",
+        "evidence": "\"Keep bumping all five manifests. Do not drop the Cursor one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains curated marketplaces pin exact commits, expects the curator to bump the sha, and makes each tag's commit the one worth pinning rather than asking for a tracking ref.",
+        "evidence": "Notes the sha pin, but asks maintainers to track a tag or stable ref instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States Codex installs use --ref defaulting to main, so users re-install at the new ref; gives the tag-pinned form.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives per-channel tag-pinned commands: `gh skill install`, `npx skills add <owner>/ing#v<tag>`, `/plugin marketplace add <owner>/ing#v<tag>`, `gemini extensions install ... --ref=v<tag>`, `openclaw plugins install git:...@v<tag>`.",
+        "evidence": "Only placeholder '[instructions]'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes `gh skill install` writes repo, ref, pin and tree SHA into the installed SKILL.md frontmatter, and `gh skill update` skips pinned skills.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the skills installer's skills-lock.json records the ref and a content hash, and that a branch ref floats while a tag or SHA holds.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a tag-pinned install matches only at install time and the binary can upgrade silently, so the body guard checks both directions.",
+        "evidence": "Suggests a one-direction rule: 'if `ing --version` is older, don't use it'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions a stable branch moved only at release as the alternative to a tag for marketplace and directory tracking.",
+        "evidence": "\"Have the release script move a `stable` branch\"; marketplace pinned to `stable`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Claude Code plugin version resolves from plugin.json version, else the marketplace entry, else the commit SHA, and keeps it bumped so update does not report 'already latest'.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Generates the release-note install block in the release job so the tag is never typed by hand, ending with 'Already installed? Re-run with the new tag (OpenClaw: add --force)'.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that no installer resolves 'the skill matching the code I installed' by itself.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

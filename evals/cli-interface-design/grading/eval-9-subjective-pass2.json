@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rewrites API errors into what failed, why, and the next command to run",
+        "evidence": "Errors Rule 1 says: 'Every error states what failed, why, and the next command.' The human-mode FLG-4031 rewrite shows all three. What failed: 'this token cannot change flags in \"prod\"'. Why: 'The token has read-only access to this environment.' Next: 'nb auth status' / 'nb auth login'. It also carries the request ID and a docs link. The catalog schema stores `message`, `why` and `next` (list of commands) for each code, and adds a 'never prints an API code alone' rule. A fallback table covers unknown codes, non-JSON bodies and status-only responses. Score held below 5: the FLG-4031 meaning is ",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rewrites API errors into what failed, why, and the next command to run",
+        "evidence": "Section 3 sends each API code through a catalog lookup and renders it in a fixed format: 'Error FLG-4031: <title>', a one-sentence 'what happened, naming the resource', 'Why: <likely cause>' and 'Fix: <command or action to take>'. It adds a docs link and a request ID. The worked example rewrites the raw code as 'Your token cannot change flag \"new-checkout\" in production. Why: the token has the \"viewer\" role... Fix: ask a project admin for the \"editor\" role, or run `nb auth login`'. The example text is openly marked as invented. Each catalog entry has what, why and fix fields. The fallbacks als",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

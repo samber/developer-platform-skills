@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States Docker Hub OIDC from GitHub Actions exists only for organizations on Team, Business or Docker Hardened Images plans or Docker-Sponsored Open Source namespaces, never personal accounts",
+        "evidence": "works only for Team, Business or Hardened Images orgs and DSOS",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the image to an organization namespace, and until then a personal access token with an expiry owned by a dedicated bot account (or an Organization Access Token scoped push-only with a 30- or 90-day expiry, never none)",
+        "evidence": "expiring read-write PAT on a bot account",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects Docker Content Trust, stating `notary.docker.io` shuts down on 2026-12-08 and signing must not be built on `DOCKER_CONTENT_TRUST=1`",
+        "evidence": "notary.docker.io shuts down on 2026-12-08",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes Sigstore cosign keyless signing by digest (`cosign sign <image>@<digest>`) from the CI OIDC identity, or Notation",
+        "evidence": "cosign sign --yes \"$IMAGE@$digest\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs consumers to verify identity and issuer (`--certificate-identity`, `--certificate-oidc-issuer`) and to enforce it in-cluster with an admission policy",
+        "evidence": "--certificate-identity ... Kyverno or policy-controller",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting the bad tag, stating it breaks every consumer still pulling it; rollback is pointing `latest` and the affected floating tags back at the previous good digest, then publishing a fixed version tag",
+        "evidence": "Retag latest to the previous good digest",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes an immutable version tag per release plus deliberately moved floating tags, with Docker Hub immutable tags enabled for the version-tag pattern",
+        "evidence": "Turn on Docker Hub immutable tags",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells customers to pin by digest (`image@sha256:...`) in production manifests instead of `:latest`",
+        "evidence": "Pin by version or digest",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Logs in with `--password-stdin`, never a password argument",
+        "evidence": "crane auth login --password-stdin",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds to an OCI layout in the unprivileged build job and pushes the prebuilt layout from the publish job, then signs by digest",
+        "evidence": "type=oci build job; crane push layout",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes with `--provenance=mode=max --sbom=true` for the SDK image",
+        "evidence": "--provenance=mode=max --sbom=true",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions `ghcr.io` as an option needing only the workflow's built-in token with `packages: write`",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not run any push, retag or delete command itself",
+        "evidence": "I ran nothing",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States Docker Hub OIDC from GitHub Actions exists only for organizations on Team, Business or Docker Hardened Images plans or Docker-Sponsored Open Source namespaces, never personal accounts",
+        "evidence": "'Docker Hub has no OIDC trust'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the image to an organization namespace, and until then a personal access token with an expiry owned by a dedicated bot account (or an Organization Access Token scoped push-only with a 30- or 90-day expiry, never none)",
+        "evidence": "Org suggested; PAT lacks expiry/bot",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects Docker Content Trust, stating `notary.docker.io` shuts down on 2026-12-08 and signing must not be built on `DOCKER_CONTENT_TRUST=1`",
+        "evidence": "Rejects DCT without date",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes Sigstore cosign keyless signing by digest (`cosign sign <image>@<digest>`) from the CI OIDC identity, or Notation",
+        "evidence": "'cosign sign --yes \"${IMAGE}@${DIGEST}\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs consumers to verify identity and issuer (`--certificate-identity`, `--certificate-oidc-issuer`) and to enforce it in-cluster with an admission policy",
+        "evidence": "Kyverno verifyImages with issuer/identity",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting the bad tag, stating it breaks every consumer still pulling it; rollback is pointing `latest` and the affected floating tags back at the previous good digest, then publishing a fixed version tag",
+        "evidence": "promote-latest workflow and runbook",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes an immutable version tag per release plus deliberately moved floating tags, with Docker Hub immutable tags enabled for the version-tag pattern",
+        "evidence": "No Hub immutable tags",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells customers to pin by digest (`image@sha256:...`) in production manifests instead of `:latest`",
+        "evidence": "image: tag@sha256",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Logs in with `--password-stdin`, never a password argument",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds to an OCI layout in the unprivileged build job and pushes the prebuilt layout from the publish job, then signs by digest",
+        "evidence": "Single job builds and pushes",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes with `--provenance=mode=max --sbom=true` for the SDK image",
+        "evidence": "'provenance: mode=max, sbom: true'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions `ghcr.io` as an option needing only the workflow's built-in token with `packages: write`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not run any push, retag or delete command itself",
+        "evidence": "Only plans provided",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

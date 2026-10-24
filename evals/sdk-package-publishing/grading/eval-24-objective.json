@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to run `npm publish` itself and offers the prepared command plus its dry-run form (`npm pack --dry-run` or `npm publish --dry-run`) for the user to run",
+        "evidence": "I did not run npm publish; npm pack --dry-run",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks which registries the company publishes to, public and private, before proposing a plan",
+        "evidence": "What are the other SDKs and their registries",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks what ships: libraries, CLIs or other binaries, container images",
+        "evidence": "assumes library only; does not ask",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which CI provider and runner type (hosted or self-hosted) will publish, stating this decides whether OIDC is available",
+        "evidence": "Is CI GitHub Actions on hosted runners? Self-hosted can't use npm OIDC",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks how CI authenticates today per registry and who owns each package account",
+        "evidence": "asks owner of scope and 2FA, not how CI authenticates",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether any SDK is tied to a commercial product or service, citing Maven Central's charge for commercial-nature artifacts",
+        "evidence": "Maven Central charges for commercial-nature artifacts",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks about the deadline or driver (audit, incident, launch, expiring key), whether this is a one-off or a standing process, and the effort ceiling and release approvers",
+        "evidence": "no effort ceiling or one-off vs standing question",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Confirms inferred answers (npm, a GitHub monorepo under `packages/`) in one message and asks the remaining questions one per message",
+        "evidence": "six questions dumped at once",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not deliver a full plan or pipeline files before the interview answers, or if it proceeds states every assumption at the top of the deliverable",
+        "evidence": "Everything about the package is marked as an assumption",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes recording registries, CI provider, credential state and rollback primitives in a context or memory file such as `developer-platform-context.md`",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the plan will be presented step by step for approval before writing pipeline files",
+        "evidence": "draft, pending your approval; finalize after answers",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that today's laptop publish of 1.3.0 should be the last laptop publish, with CI on a protected tag thereafter",
+        "evidence": "Make this the last laptop publish",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to run `npm publish` itself and offers the prepared command plus its dry-run form (`npm pack --dry-run` or `npm publish --dry-run`) for the user to run",
+        "evidence": "'I didn't publish anything'; 'npm publish --dry-run before the real npm publish'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks which registries the company publishes to, public and private, before proposing a plan",
+        "evidence": "Asks for repo path only",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks what ships: libraries, CLIs or other binaries, container images",
+        "evidence": "Not asked",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which CI provider and runner type (hosted or self-hosted) will publish, stating this decides whether OIDC is available",
+        "evidence": "Not asked",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks how CI authenticates today per registry and who owns each package account",
+        "evidence": "Not asked",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks whether any SDK is tied to a commercial product or service, citing Maven Central's charge for commercial-nature artifacts",
+        "evidence": "Not asked",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks about the deadline or driver (audit, incident, launch, expiring key), whether this is a one-off or a standing process, and the effort ceiling and release approvers",
+        "evidence": "Not asked",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Confirms inferred answers (npm, a GitHub monorepo under `packages/`) in one message and asks the remaining questions one per message",
+        "evidence": "Not done",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not deliver a full plan or pipeline files before the interview answers, or if it proceeds states every assumption at the top of the deliverable",
+        "evidence": "Delivers a proper-publishing plan without assumptions",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes recording registries, CI provider, credential state and rollback primitives in a context or memory file such as `developer-platform-context.md`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the plan will be presented step by step for approval before writing pipeline files",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that today's laptop publish of 1.3.0 should be the last laptop publish, with CI on a protected tag thereafter",
+        "evidence": "'Move publishing off laptops into CI'... 'after today'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

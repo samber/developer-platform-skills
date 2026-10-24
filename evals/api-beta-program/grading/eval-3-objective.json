@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends a dated preview version (a `-preview` or `.preview` suffix on the version header value) as the wire mechanism, because the API already versions by date.",
+        "evidence": "\"`Meterline-Version: 2026-03-01.preview`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the single opt-in header that switches on everything, stating the header is acceptable for one field but becomes a maintenance trap as values accumulate.",
+        "evidence": "\"A request header fits one field. It becomes a maintenance trap as flags accumulate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that graduating an opt-in header later breaks old pinned or self-hosted clients that still send it, citing the GitHub preview-header lesson of keeping the header configurable while any supported release needs it.",
+        "evidence": "States \"Graduating it later breaks pinned clients that still send it\" but no GitHub citation or keep-configurable lesson.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the threshold-alert webhooks opt in per subscription (a preview version or preview event type on the subscription object), not per request.",
+        "evidence": "\"Opt in per webhook endpoint, or use preview event types\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the stage to be marked in every webhook delivery's payload or headers.",
+        "evidence": "\"`Meterline-Stage: private-preview` header and a `stage` field in the payload\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects adding beta operations to the main OpenAPI file; requires a separate spec artifact or tagged operations so GA reference docs and generated clients never include them.",
+        "evidence": "\"Use a separate spec artifact, or tag the operations and exclude them when generating GA clients.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that with no pre-release channel the beta's SDK methods cannot ship safely, and that this blocks enrollment of the 6 SDK-using accounts until a pre-release channel or separate beta module exists.",
+        "evidence": "\"No prerelease channel means SDK enrollment is blocked. Six of your eight accounts use the SDKs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows the 2 raw-HTTP accounts to enroll now, with the SDK channel required before any public preview.",
+        "evidence": "\"Enroll only the partners who integrate over raw HTTP now... it must exist before any public preview.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points to samber/developer-platform-skills@sdk-package-publishing for setting up the pre-release channel.",
+        "evidence": "\"Plan the setup with `sdk-package-publishing`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires in-language markers (experimental annotations or a `beta` sub-package) so GA SDK users cannot call beta methods by accident.",
+        "evidence": "No experimental annotations or beta sub-package marker mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a stage label on each beta operation and field in the reference docs, not only on the overview page.",
+        "evidence": "\"Add a 'Preview' badge on every beta operation, field, event type and webhook page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a separate `/beta` base path is considered, pairs it with server-side production-use detection because it is the easiest surface for callers to leave in production.",
+        "evidence": "/beta path not considered; production-use detection server-side is specified anyway in the Production use row.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends a dated preview version (a `-preview` or `.preview` suffix on the version header value) as the wire mechanism, because the API already versions by date.",
+        "evidence": "It recommends per-feature header tokens such as `forecast-v0`, not a preview suffix on the date version.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the single opt-in header that switches on everything, stating the header is acceptable for one field but becomes a maintenance trap as values accumulate.",
+        "evidence": "\"One header for everything... make each token an opt-in on its own and version it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that graduating an opt-in header later breaks old pinned or self-hosted clients that still send it, citing the GitHub preview-header lesson of keeping the header configurable while any supported release needs it.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies that the threshold-alert webhooks opt in per subscription (a preview version or preview event type on the subscription object), not per request.",
+        "evidence": "\"Pin the payload version on the endpoint\" and \"Deliver only the event types the endpoint subscribed to.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the stage to be marked in every webhook delivery's payload or headers.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects adding beta operations to the main OpenAPI file; requires a separate spec artifact or tagged operations so GA reference docs and generated clients never include them.",
+        "evidence": "\"Keep beta operations out of the main spec. Use a separate beta spec or overlay, or tag operations x-beta.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that with no pre-release channel the beta's SDK methods cannot ship safely, and that this blocks enrollment of the 6 SDK-using accounts until a pre-release channel or separate beta module exists.",
+        "evidence": "It offers a pinned build or raw requests as workarounds. It does not say enrollment is blocked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Allows the 2 raw-HTTP accounts to enroll now, with the SDK channel required before any public preview.",
+        "evidence": "It enrolls the 2 non-SDK accounts first as a smoke test. The public-preview gate is absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points to samber/developer-platform-skills@sdk-package-publishing for setting up the pre-release channel.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires in-language markers (experimental annotations or a `beta` sub-package) so GA SDK users cannot call beta methods by accident.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a stage label on each beta operation and field in the reference docs, not only on the overview page.",
+        "evidence": "\"Put a 'Beta' badge and banner on each affected operation and schema, driven by x-beta\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a separate `/beta` base path is considered, pairs it with server-side production-use detection because it is the easiest surface for callers to leave in production.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

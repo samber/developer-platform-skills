@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States Maven Central offers no trusted publishing (OIDC); the credential is a Portal user token",
+        "evidence": "Maven Central has no trusted publishing (OIDC)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States OSSRH (`oss.sonatype.org`) is shut down and a token issued for it does not authenticate a Portal upload, so a new Portal token must be generated",
+        "evidence": "oss.sonatype.org shut down 2025-06-30... old credentials can't authenticate",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises the paid Publisher Pro tier before any pipeline work, stating a service-dependent SDK counts as a commercial-nature artifact even when open source",
+        "evidence": "commercial-nature artifact... open source or not",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Publisher Pro requirement applies to every release from 2026-10-01, including this 2.0.0 of an existing SDK, and tells the user to raise it with procurement",
+        "evidence": "Start Publisher Pro purchase today",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `nexus-staging-maven-plugin` with `central-publishing-maven-plugin` (`<extensions>true</extensions>`) or routes the old config through the Portal's OSSRH Staging API compatibility service with a Portal token",
+        "evidence": "<extensions>true</extensions>",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps `autoPublish=false` so a maintainer inspects the validated deployment in the Portal, then publishes or drops it",
+        "evidence": "Keep autoPublish=false",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs tests in the unprivileged build job and `mvn deploy` with the signing key and Portal token only in the publish job, with no tests there",
+        "evidence": "mvn verify in build; deploy -DskipTests",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a dedicated signing subkey with an expiry, passphrase read from `MAVEN_GPG_PASSPHRASE`, never `-Dgpg.passphrase` on the command line or stored in `settings.xml`",
+        "evidence": "Never pass -Dgpg.passphrase; MAVEN_GPG_PASSPHRASE",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores the Portal token as `${env.CENTRAL_TOKEN_USER}`/`${env.CENTRAL_TOKEN_PASS}` in the protected `release` environment with an expiry and a calendared rotation, noting a token cannot be viewed again after creation",
+        "evidence": "A token can't be viewed again after creation",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States released components are immutable and rollback means releasing a fixed version, never deleting one",
+        "evidence": "release 2.0.1 immediately",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes rehearsing only the validate-then-drop path, noting drop is allowed only while the deployment is VALIDATED or FAILED",
+        "evidence": "Drop only works while VALIDATED or FAILED",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the mandatory artifacts: PGP `.asc` signatures, `.md5` and `.sha1` checksums, `-sources.jar`, `-javadoc.jar`, and the required POM fields (name, description, url, licenses, developers, scm)",
+        "evidence": "source, javadoc, gpg plugins; POM name, description, url, licenses, developers, scm",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Confirms the `com.tidewater` domain namespace is proven with a DNS TXT record on the exact domain",
+        "evidence": "DNS TXT record on the exact domain",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not promise OIDC for Maven Central",
+        "evidence": "no id-token: Central has no OIDC",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States Maven Central offers no trusted publishing (OIDC); the credential is a Portal user token",
+        "evidence": "'Maven Central has no OIDC trusted publishing... user token'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States OSSRH (`oss.sonatype.org`) is shut down and a token issued for it does not authenticate a Portal upload, so a new Portal token must be generated",
+        "evidence": "'The old OSSRH password does not work'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises the paid Publisher Pro tier before any pipeline work, stating a service-dependent SDK counts as a commercial-nature artifact even when open source",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the Publisher Pro requirement applies to every release from 2026-10-01, including this 2.0.0 of an existing SDK, and tells the user to raise it with procurement",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces `nexus-staging-maven-plugin` with `central-publishing-maven-plugin` (`<extensions>true</extensions>`) or routes the old config through the Portal's OSSRH Staging API compatibility service with a Portal token",
+        "evidence": "Plugin with extensions true",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps `autoPublish=false` so a maintainer inspects the validated deployment in the Portal, then publishes or drops it",
+        "evidence": "'<autoPublish>false</autoPublish>' and inspect in portal",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs tests in the unprivileged build job and `mvn deploy` with the signing key and Portal token only in the publish job, with no tests there",
+        "evidence": "Single publish job",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a dedicated signing subkey with an expiry, passphrase read from `MAVEN_GPG_PASSPHRASE`, never `-Dgpg.passphrase` on the command line or stored in `settings.xml`",
+        "evidence": "Uses GPG_PASSPHRASE; suggests no-expiry key",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Stores the Portal token as `${env.CENTRAL_TOKEN_USER}`/`${env.CENTRAL_TOKEN_PASS}` in the protected `release` environment with an expiry and a calendared rotation, noting a token cannot be viewed again after creation",
+        "evidence": "No rotation/expiry",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States released components are immutable and rollback means releasing a fixed version, never deleting one",
+        "evidence": "Says permanent but no rollback guidance",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes rehearsing only the validate-then-drop path, noting drop is allowed only while the deployment is VALIDATED or FAILED",
+        "evidence": "Drop not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the mandatory artifacts: PGP `.asc` signatures, `.md5` and `.sha1` checksums, `-sources.jar`, `-javadoc.jar`, and the required POM fields (name, description, url, licenses, developers, scm)",
+        "evidence": "No checksums/asc listed",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Confirms the `com.tidewater` domain namespace is proven with a DNS TXT record on the exact domain",
+        "evidence": "'DNS TXT record on tidewater.com'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not promise OIDC for Maven Central",
+        "evidence": "Says none, to verify",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

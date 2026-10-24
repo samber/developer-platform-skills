@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rewrites API errors into what failed, why, and the next command to run",
+        "evidence": "The transcript sets this as Errors rule 1: 'Every error states what failed, why, and the next command.' Its FLG-4031 example has all three parts: what failed ('this token cannot change flags in \"prod\"'), why ('The token has read-only access to this environment'), and the next commands ('nb auth status', 'nb auth login'). The error catalog requires `message`, `why` and `next` (a list of commands) for every API code, and it is backed by a CI coverage check. Fallback rows keep bare codes from ever reaching the user: 401 points to `nb auth login`, and 404 names a `list` command. The `--json` envel",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rewrites API errors into what failed, why, and the next command to run",
+        "evidence": "Section 3 replaces the raw {\"code\":\"FLG-4031\"} output with a catalog-driven pipeline: API response, then catalog lookup, then render. The human format has a line for what happened (naming the resource), a 'Why:' line for the likely cause and a 'Fix:' line with a command or action. A worked example states 'Your token cannot change flag \"new-checkout\" in production', gives the cause as the token's 'viewer' role, and the fix as asking an admin for the 'editor' role or running `nb auth login`. Fallbacks also point to a next command (`nb upgrade`, `nb doctor`, `--debug`). The transcript openly says",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

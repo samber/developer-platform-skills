@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects mirroring 38 endpoints and picks four to eight steps from customer jobs",
+        "evidence": "\"Silverthread should not mirror the 38 endpoints. Ship 8 steps\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders the steps: event triggers on core objects, then creates on core objects, then searches and search-or-create, then updates, then everything else",
+        "evidence": "Table order puts `new_paid_invoice` after `update_customer`; ordering never stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Draws from the accounting category's recommended steps (for example New Invoice, New Payment, Create Customer, Find Invoice, Find or Create Customer)",
+        "evidence": "\"I used the accounting category in Zapier's recommended steps as a stand-in.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits 'Create or Update Customer' into a Find or Create Customer search-or-create plus an Update Customer action",
+        "evidence": "\"Split into Find or Create Customer plus Update Customer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'Charge Card' because publishing rules ban facilitating payments, and distinguishes it from recording a completed payment, which is allowed",
+        "evidence": "\"Recording a payment that already happened is allowed... Anything that starts a charge... needs written confirmation\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Drops 'Delete Invoice' or ships it only with a copy field stating it is irreversible",
+        "evidence": "Rejected; \"add a `copy` field saying it is irreversible\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Renames 'Get Invoice' to 'Find Invoice' with a 'Finds a\u2026' description",
+        "evidence": "\"Finds an invoice by number or customer email.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the polling contract to `sort=-created_at` with a page size large enough to cover the month-end burst, because Zapier reads only page one",
+        "evidence": "Sort set for New Customer/list_customers, but page size for burst only discussed as a problem, not set; invoice trigger is hook.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Forbids using `updated_since` or any server-side already-sent filter in the trigger, because Zapier dedupes by id per Zap",
+        "evidence": "\"Never filter 'already sent' items server-side. Don't use `updated_since` for a generic 'Updated' trigger.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses polling for launch because the API allows only one callback URL per account, which cannot give each Zap its own subscription with several alive at once, and routes the subscription-API change to samber/developer-platform-skills@webhook-platform-design",
+        "evidence": "Chooses REST hook and holds New Invoice; \"Don't ship a lossy polling invoice trigger.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that the month-end burst can exceed 100 new items per poll (past which Zapier holds runs and emails the user), and plans the New Invoice trigger as a REST hook once per-Zap subscriptions exist",
+        "evidence": "\"100 per poll\u2020 is the platform cap\"; New Invoice REST hook after multi-subscription webhooks.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Backs every customer id input with a dynamic dropdown from a hidden trigger plus a search, never a typed id",
+        "evidence": "`list_customers` hidden polling powers dropdowns; \"never a typed UUID\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses OAuth v2 because the product already issues OAuth tokens, and requires the API to answer 401 on expired tokens",
+        "evidence": "\"you already issue OAuth tokens\"; \"Confirm your API returns 401 on expiry\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Converts epoch-second dates to ISO 8601 with offset in the output, and returns id, human name and a link to the record",
+        "evidence": "\"Output ISO 8601 with offset... Every record needs `id`, a human name or number, and a link\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Exposes account custom fields as dynamic fields and keeps them out of the static sample, which holds one realistic item with only keys every account returns",
+        "evidence": "\"Static samples hold one realistic record and only keys every account returns, so no custom fields.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects mirroring 38 endpoints and picks four to eight steps from customer jobs",
+        "evidence": "It rejects mirroring (\"Don't ship 38 mirrored steps\"), but picks \"about 11 workflow-shaped steps\", which is outside four to eight.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders the steps: event triggers on core objects, then creates on core objects, then searches and search-or-create, then updates, then everything else",
+        "evidence": "The table orders triggers, then searches (Find Customer, Find Invoice), then actions (Create Customer, Update Customer, Create Invoice, Update Invoice). Searches come before creates, so the required order is not followed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Draws from the accounting category's recommended steps (for example New Invoice, New Payment, Create Customer, Find Invoice, Find or Create Customer)",
+        "evidence": "Includes New Invoice, Create Customer, Find Invoice and Find Customer, which match the example recommended steps.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits 'Create or Update Customer' into a Find or Create Customer search-or-create plus an Update Customer action",
+        "evidence": "\"Why `Create or Update Customer` becomes Find Customer plus Create Customer\"; the list also keeps an Update Customer action.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'Charge Card' because publishing rules ban facilitating payments, and distinguishes it from recording a completed payment, which is allowed",
+        "evidence": "It cuts Charge Card for idempotency, double-charge risk and consent. It never cites Zapier publishing rules and never discusses recording a completed payment.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Drops 'Delete Invoice' or ships it only with a copy field stating it is irreversible",
+        "evidence": "\"Why `Delete Invoice` is cut\" - destructive and irreversible; ship `Void Invoice` instead.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Renames 'Get Invoice' to 'Find Invoice' with a 'Finds a\u2026' description",
+        "evidence": "It renames Get Invoice to Find Invoice but gives no \"Finds a\u2026\" description.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the polling contract to `sort=-created_at` with a page size large enough to cover the month-end burst, because Zapier reads only page one",
+        "evidence": "\"Every polling trigger sends `?sort=-created_at`\"; enables paginated polling and asks engineering for `limit=100`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Forbids using `updated_since` or any server-side already-sent filter in the trigger, because Zapier dedupes by id per Zap",
+        "evidence": "It uses `updated_since` for the Updated Invoice trigger: \"Query with `updated_since = now \u2212 1h`\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Chooses polling for launch because the API allows only one callback URL per account, which cannot give each Zap its own subscription with several alive at once, and routes the subscription-API change to samber/developer-platform-skills@webhook-platform-design",
+        "evidence": "The polling reasoning is correct, but it never routes to samber/developer-platform-skills@webhook-platform-design. It only lists an engineering ask.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that the month-end burst can exceed 100 new items per poll (past which Zapier holds runs and emails the user), and plans the New Invoice trigger as a REST hook once per-Zap subscriptions exist",
+        "evidence": "It estimates ~225 per poll and plans v2 instant triggers. It never mentions the 100-item threshold or Zapier holding runs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Backs every customer id input with a dynamic dropdown from a hidden trigger plus a search, never a typed id",
+        "evidence": "It says \"Use dynamic dropdowns or searches\" but never mentions a hidden trigger.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Chooses OAuth v2 because the product already issues OAuth tokens, and requires the API to answer 401 on expired tokens",
+        "evidence": "\"Use OAuth 2.0 against your existing authorization server\"; \"401: refresh the token, then retry once\"; expired tokens map to Zapier's expired-auth error.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Converts epoch-second dates to ISO 8601 with offset in the output, and returns id, human name and a link to the record",
+        "evidence": "It adds an `_iso` twin and mentions the timezone for date-only values. It does not specify an offset and does not return a link to the record.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Exposes account custom fields as dynamic fields and keeps them out of the static sample, which holds one realistic item with only keys every account returns",
+        "evidence": "It uses function-based inputFields and outputFields, but never says custom fields stay out of the static sample.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

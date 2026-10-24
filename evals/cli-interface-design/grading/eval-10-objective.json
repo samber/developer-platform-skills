@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Resolves every setting in one documented order: flag, then env var, then project config, then user config, then built-in default",
+        "evidence": "\"flag > environment variable > project file > user config > built-in default\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes an explicit token from a flag or env var beat the stored profile and prints a stderr notice when it overrides a logged-in account",
+        "evidence": "\"using SM_TOKEN, ignoring logged-in profile acme-eu\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives every global setting both a flag and an env var under one prefix (such as `SM_PROFILE`, `SM_API_URL`, `SM_NO_INPUT`)",
+        "evidence": "Env table with SM_ prefix and matching flags; token and config dir exceptions justified.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers named profiles for accounts, orgs, regions and self-hosted base URLs",
+        "evidence": "Profiles for regions, org and self-hosted URL.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows `.smrc` to bind a project directory to a profile only as a file holding no secret; the token leaves the project file",
+        "evidence": "\".sm.toml... Never holds Tokens\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores config in the OS-expected location (XDG base directories, `%APPDATA%`)",
+        "evidence": "XDG and `%APPDATA%\\sm\\config.toml`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Locks the config and credential store against concurrent writes so parallel agents refreshing one token cannot corrupt it",
+        "evidence": "Exclusive advisory lock and atomic write refresh algorithm.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Honors `HTTPS_PROXY`, `NO_PROXY` and a custom CA bundle rather than offering a skip-verification flag",
+        "evidence": "\"There is no `--insecure` flag.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Never requires the token as a flag value; accepts it from env var, file or stdin",
+        "evidence": "\"A flag is not allowed (leaks via `ps`)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `sm fleets create` send one idempotency key per invocation and reuse it on automatic retries",
+        "evidence": "\"generates a random idempotency key... reuses that key on every automatic retry\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Accepts `--idempotency-key` so a script that reruns the command is safe",
+        "evidence": "\"`--idempotency-key` accepts the caller's own key.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retries transient failures automatically with bounded backoff, honoring `Retry-After`",
+        "evidence": "\"1 s, 2 s and 4 s plus jitter. It honors `Retry-After`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins each CLI release to an explicit API version and offers an override flag",
+        "evidence": "\"pinned to one API version... `SM_API_VERSION` / `--api-version`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reflects which configuration source won in `auth status`",
+        "evidence": "\"`sm auth status` shows the source of the selection\"; `sm config explain`.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Resolves every setting in one documented order: flag, then env var, then project config, then user config, then built-in default",
+        "evidence": "Flag, env, `.sm/project.toml`, `config.toml`, compiled defaults.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes an explicit token from a flag or env var beat the stored profile and prints a stderr notice when it overrides a logged-in account",
+        "evidence": "Banner on stderr: \"`token=env (overrides keychain)`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives every global setting both a flag and an env var under one prefix (such as `SM_PROFILE`, `SM_API_URL`, `SM_NO_INPUT`)",
+        "evidence": "`--profile`/`SM_PROFILE`, `--region`/`SM_REGION`, `--base-url`/`SM_BASE_URL`, `--org`/`SM_ORG`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers named profiles for accounts, orgs, regions and self-hosted base URLs",
+        "evidence": "`[profiles.acme-eu]` and `[profiles.globex-onprem]` with region/base_url.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows `.smrc` to bind a project directory to a profile only as a file holding no secret; the token leaves the project file",
+        "evidence": "\"`.sm/project.toml`... Never\" secret; tokens in a project file are refused.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stores config in the OS-expected location (XDG base directories, `%APPDATA%`)",
+        "evidence": "`$XDG_CONFIG_HOME/sm/config.toml`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Locks the config and credential store against concurrent writes so parallel agents refreshing one token cannot corrupt it",
+        "evidence": "Exclusive `flock` on `credentials.lock` with re-read and atomic rename.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Honors `HTTPS_PROXY`, `NO_PROXY` and a custom CA bundle rather than offering a skip-verification flag",
+        "evidence": "\"No `--insecure` flag and no env switch.\" Honors `HTTPS_PROXY`, `NO_PROXY` and `ca_bundle`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Never requires the token as a flag value; accepts it from env var, file or stdin",
+        "evidence": "No `--token` flag is listed, but the spec never states the rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes `sm fleets create` send one idempotency key per invocation and reuse it on automatic retries",
+        "evidence": "\"UUIDv7 generated once per invocation. Internal retries reuse it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Accepts `--idempotency-key` so a script that reruns the command is safe",
+        "evidence": "\"offer `--idempotency-key` / `SM_IDEMPOTENCY_KEY`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retries transient failures automatically with bounded backoff, honoring `Retry-After`",
+        "evidence": "\"at most 3 attempts, exponential backoff with jitter... honor `Retry-After`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins each CLI release to an explicit API version and offers an override flag",
+        "evidence": "\"`--api-version`, then `SM_API_VERSION`, then the profile, then the CLI pin.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reflects which configuration source won in `auth status`",
+        "evidence": "`sm whoami` prints the token source, and the banner shows the profile source.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

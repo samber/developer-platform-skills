@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Removes the fetch-and-follow instruction and script: telling the agent to fetch and follow remote content is the most common audit finding on benign skills and an indirect-injection exposure.",
+        "evidence": "'Delete refresh-docs.sh and the \"read and follow\" line.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces it with the lockstep approach: the skill stays current by shipping in the repo at every tag, not by fetching at run time.",
+        "evidence": "'generated from the release build and committed in the release commit, so each tag carries matching docs'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that when fetching is the tool's purpose, fetched content must be marked as data never instructions, and only then `--ignore-risks third_party_content_exposure` with the reason in a comment.",
+        "evidence": "Says link as human pointer and 'Do not add --ignore-risks'; doesn't give the conditional ignore-risks route.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires SNYK_TOKEN to come from a repository or organization secret, never written inline.",
+        "evidence": "'Store the new one as the repo secret SNYK_TOKEN.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects running the scan with --dangerously-run-mcp-servers on pull_request_target from forks, because that flag starts and contacts every MCP server the scanned configs declare.",
+        "evidence": "'The skill says never to use that flag on pull_request_target from forks.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains fork pull requests get no secrets so the scan fails there; skips the step with `if: github.event.pull_request.head.repo.full_name == github.repository` and relies on the release-job run.",
+        "evidence": "'if: ... head.repo.full_name == github.repository'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps --dangerously-run-mcp-servers because --ci requires it, noting that with only ./skills as target it starts nothing.",
+        "evidence": "Corrected job keeps the flag; 'The ./skills-only target starts no MCP servers.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gates on the exit code, never on parsed output, because the scanner's output and risk names change between releases.",
+        "evidence": "'gate on the exit code, never on parsed output'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins the scanner version (replaces @latest with @<version>) so release gates stay reproducible.",
+        "evidence": "'Use snyk-agent-scan@<version>'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds astral-sh/setup-uv pinned to a commit SHA because ubuntu-latest ships no uv and the action publishes no major-version tag.",
+        "evidence": "'astral-sh/setup-uv, pinned to a commit SHA'; ubuntu-latest has no uv",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that the scan uploads skill content to Snyk, which must be cleared for the private repo.",
+        "evidence": "'The scan uploads skill content to Snyk. Confirm you are cleared'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps scripts/ few, readable, offline and dependency-pinned, calling the tool's own published CLI rather than bundling binaries.",
+        "evidence": "'Skills should ship few, readable, offline scripts.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a clean scan is a floor, never a trust claim, because admission scanners are evadable.",
+        "evidence": "'A clean scan is a floor, not a trust claim.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs the scan on skills/** changes in pull requests and in the release job next to the pinned spec validator, and signs release tags.",
+        "evidence": "Runs on PR paths and tag push, but no tag signing.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Removes the fetch-and-follow instruction and script: telling the agent to fetch and follow remote content is the most common audit finding on benign skills and an indirect-injection exposure.",
+        "evidence": "Flags refresh-docs.sh as remote instruction loading; best option is to \"Ship the docs inside the skill (`references/`)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces it with the lockstep approach: the skill stays current by shipping in the repo at every tag, not by fetching at run time.",
+        "evidence": "Option 1: docs in references/, refreshed by scheduled PR that a human reviews.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that when fetching is the tool's purpose, fetched content must be marked as data never instructions, and only then `--ignore-risks third_party_content_exposure` with the reason in a comment.",
+        "evidence": "Option 3 says to mark fetched content as reference data, but never mentions --ignore-risks.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires SNYK_TOKEN to come from a repository or organization secret, never written inline.",
+        "evidence": "\"store it as a repo secret, and reference `${{ secrets.SNYK_TOKEN }}`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects running the scan with --dangerously-run-mcp-servers on pull_request_target from forks, because that flag starts and contacts every MCP server the scanned configs declare.",
+        "evidence": "Blocker 1 describes the fork-PR attack.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains fork pull requests get no secrets so the scan fails there; skips the step with `if: github.event.pull_request.head.repo.full_name == github.repository` and relies on the release-job run.",
+        "evidence": "`if: github.event.pull_request.head.repo.full_name == github.repository`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps --dangerously-run-mcp-servers because --ci requires it, noting that with only ./skills as target it starts nothing.",
+        "evidence": "\"It drops `--dangerously-run-mcp-servers`.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gates on the exit code, never on parsed output, because the scanner's output and risk names change between releases.",
+        "evidence": "Gate walks the JSON report and a deny-list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins the scanner version (replaces @latest with @<version>) so release gates stay reproducible.",
+        "evidence": "\"uvx snyk-agent-scan@<exact-version>\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds astral-sh/setup-uv pinned to a commit SHA because ubuntu-latest ships no uv and the action publishes no major-version tag.",
+        "evidence": "\"astral-sh/setup-uv@<full-sha>\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that the scan uploads skill content to Snyk, which must be cleared for the private repo.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps scripts/ few, readable, offline and dependency-pinned, calling the tool's own published CLI rather than bundling binaries.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a clean scan is a floor, never a trust claim, because admission scanners are evadable.",
+        "evidence": "Says the green check \"proves nothing about what users run\", but not that a clean scan is a floor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs the scan on skills/** changes in pull requests and in the release job next to the pinned spec validator, and signs release tags.",
+        "evidence": "Only the PR trigger; no release job or tag signing.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

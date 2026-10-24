@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Tells the user to revoke the pasted key immediately and does not print, store or reuse it",
+        "evidence": "Revoke the pasted key now",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to run the revert and states that every released Hex ignores `--dry-run` on `--revert`, so the proposed dry run would delete the release",
+        "evidence": "Hex ignores --dry-run on --revert and deletes the release",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands `mix hex.publish --revert 1.4.3` to the user without any dry-run flag, stating the 1-hour window after publishing (24 hours only for a brand-new package's first release)",
+        "evidence": "works only within 1 hour; mix hex.publish --revert 1.4.3",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that after the window the repository is immutable and `mix hex.retire wrenfield_sdk 1.4.3 <reason> --message` is the primitive, with retired versions still resolving with a warning",
+        "evidence": "mix hex.retire ... Retired versions still resolve, with a warning",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes publishing a fixed version whose checksum file comes from `mix rustler_precompiled.download <Module> --all --print` and is listed in the package `files`",
+        "evidence": "mix rustler_precompiled.download <Module> --all --print; files in mix.exs",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States Hex trusted publishing (workload identity) is in Hex 2.6 development and not yet released, so OIDC cannot be promised now",
+        "evidence": "Workload identity is in Hex 2.6 development only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the personal user key with an organization key (`mix hex.organization key <org> generate --key-name ci-publish --permission api:write`) or a bot-account key with the narrowest permission",
+        "evidence": "mix hex.organization key wrenfield generate --key-name ci-publish --permission api:write",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States Hex 2.6 stops accepting user-owned keys stored with `mix hex.organization auth`, so the current setup carries forced rework",
+        "evidence": "Hex 2.6 stops accepting user-owned keys stored that way",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Passes the key through the environment only, from the protected `release` environment, with `mix hex.publish --yes` in the publish job",
+        "evidence": "HEX_API_KEY in release environment; hex.publish --yes",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps at least two owners with level `full`, giving CI-adjacent humans `maintainer`",
+        "evidence": "two full owners only; no maintainer level",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rehearses on a Hex organization or self-hosted repository, never on the production package",
+        "evidence": "not present",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises re-checking the Hex changelog for the 2.6 release before planning the OIDC migration",
+        "evidence": "read the Hex changelog first",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Tells the user to revoke the pasted key immediately and does not print, store or reuse it",
+        "evidence": "'revoke it after the revert'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to run the revert and states that every released Hex ignores `--dry-run` on `--revert`, so the proposed dry run would delete the release",
+        "evidence": "Only 'I'm not sure the revert path honors it'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Hands `mix hex.publish --revert 1.4.3` to the user without any dry-run flag, stating the 1-hour window after publishing (24 hours only for a brand-new package's first release)",
+        "evidence": "'mix hex.publish --revert 1.4.3'; 'about 60 minutes'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that after the window the repository is immutable and `mix hex.retire wrenfield_sdk 1.4.3 <reason> --message` is the primitive, with retired versions still resolving with a warning",
+        "evidence": "mix hex.retire; 'shows a warning'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes publishing a fixed version whose checksum file comes from `mix rustler_precompiled.download <Module> --all --print` and is listed in the package `files`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States Hex trusted publishing (workload identity) is in Hex 2.6 development and not yet released, so OIDC cannot be promised now",
+        "evidence": "'I can't confirm'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the personal user key with an organization key (`mix hex.organization key <org> generate --key-name ci-publish --permission api:write`) or a bot-account key with the narrowest permission",
+        "evidence": "Dedicated personal CI key",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States Hex 2.6 stops accepting user-owned keys stored with `mix hex.organization auth`, so the current setup carries forced rework",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Passes the key through the environment only, from the protected `release` environment, with `mix hex.publish --yes` in the publish job",
+        "evidence": "No --yes/publish job",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps at least two owners with level `full`, giving CI-adjacent humans `maintainer`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rehearses on a Hex organization or self-hosted repository, never on the production package",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises re-checking the Hex changelog for the 2.6 release before planning the OIDC migration",
+        "evidence": "Says check docs/issues",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

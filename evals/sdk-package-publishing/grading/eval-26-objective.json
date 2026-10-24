@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Replaces the never-expiring admin token with Artifactory's OpenID Connect integration for GitHub Actions, using identity mappings on the `repository`, `ref` and `environment` claims that issue scoped tokens capped at 24 hours",
+        "evidence": "OIDC identity mappings, 24 h max; claims repository, ref, environment",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives build jobs a mapping with read-only access on the virtual repositories, and the publish job a mapping matched on `environment: release` with deploy rights on `*-release-local` only",
+        "evidence": "read mapping; promote mapping environment: release",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States CI must deploy to the local repository, never to the virtual, while clients resolve only from the virtual",
+        "evidence": "Deploy to *-staging-local; libs-release virtual for clients",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces rebuild-on-release with promotion: deploy once to the dev local, test, then `jf rt build-promote` so the released artifact is byte-identical to the tested one",
+        "evidence": "jf rt build-promote ... same bytes",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Blocks overwrites of released versions by granting CI deploy rights without the Delete/Overwrite permission",
+        "evidence": "CI has no Delete/Overwrite on release locals",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the overwritten 3.1.0 as a roll-forward case, since consumers have already cached and locked it: release 3.1.1",
+        "evidence": "Release 3.1.1 from the good tag",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses `jfrog/setup-jfrog-cli` with `oidc-provider-name` and feeds its `oidc-user` and `oidc-token` outputs to the ecosystem client (`npm publish`, `mvn deploy`) so package metadata gets indexed",
+        "evidence": "oidc-user/oidc-token to mvn deploy; npm publish with OIDC token",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records build info (`jf rt build-publish`) so each artifact links to its CI run",
+        "evidence": "jf rt build-publish",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that include and exclude patterns do not apply to admin users, so an admin debugging resolution sees internal and public names merged",
+        "evidence": "Include/exclude patterns do not apply to admins",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires exclude patterns for the internal prefixes (`com/nimbuslane/**` on Maven, `@nimbuslane/**` on npm) on every remote repository",
+        "evidence": "exclude com/nimbuslane/**, @nimbuslane/**",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the 2023 never-expiring token in the credential inventory as one to revoke after OIDC validates, and treats any credential nobody can locate as compromised",
+        "evidence": "Counts as compromised; Revoke the admin token",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits local repositories by maturity (`*-dev-local`, `*-release-local`) because releases are promoted rather than rebuilt",
+        "evidence": "maven-dev-local, staging-local, release-local",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Replaces the never-expiring admin token with Artifactory's OpenID Connect integration for GitHub Actions, using identity mappings on the `repository`, `ref` and `environment` claims that issue scoped tokens capped at 24 hours",
+        "evidence": "Mappings on repository, ref, environment; 5-10 min tokens",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives build jobs a mapping with read-only access on the virtual repositories, and the publish job a mapping matched on `environment: release` with deploy rights on `*-release-local` only",
+        "evidence": "Build mappings have deploy rights to snapshot/staging",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States CI must deploy to the local repository, never to the virtual, while clients resolve only from the virtual",
+        "evidence": "'consumers resolve only from libs-release (virtual)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces rebuild-on-release with promotion: deploy once to the dev local, test, then `jf rt build-promote` so the released artifact is byte-identical to the tested one",
+        "evidence": "jf rt build-promote",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Blocks overwrites of released versions by granting CI deploy rights without the Delete/Overwrite permission",
+        "evidence": "'Leave Delete/Overwrite ... off for everyone'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the overwritten 3.1.0 as a roll-forward case, since consumers have already cached and locked it: release 3.1.1",
+        "evidence": "'Cut 3.1.1'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses `jfrog/setup-jfrog-cli` with `oidc-provider-name` and feeds its `oidc-user` and `oidc-token` outputs to the ecosystem client (`npm publish`, `mvn deploy`) so package metadata gets indexed",
+        "evidence": "Uses jf mvn",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records build info (`jf rt build-publish`) so each artifact links to its CI run",
+        "evidence": "jf rt build-publish",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that include and exclude patterns do not apply to admin users, so an admin debugging resolution sees internal and public names merged",
+        "evidence": "Only permission targets mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires exclude patterns for the internal prefixes (`com/nimbuslane/**` on Maven, `@nimbuslane/**` on npm) on every remote repository",
+        "evidence": "com/nimbuslane/** and @nimbuslane",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the 2023 never-expiring token in the credential inventory as one to revoke after OIDC validates, and treats any credential nobody can locate as compromised",
+        "evidence": "Revokes admin token on day 0 before OIDC",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Splits local repositories by maturity (`*-dev-local`, `*-release-local`) because releases are promoted rather than rebuilt",
+        "evidence": "snapshot, staging, release local repos",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

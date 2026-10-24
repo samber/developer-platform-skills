@@ -1,0 +1,530 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "zapier-integration-playbook",
+  "scenarios": 9,
+  "expectations_total": 129,
+  "expectations_subjective": 1,
+  "expectations_objective": 128,
+  "pass_rate_with_skill_pct": 86.8,
+  "pass_rate_without_skill_pct": 19.4,
+  "delta_pp": 67.4,
+  "uplift_multiplier": 4.47,
+  "trigger_accuracy_pct": 60.4,
+  "trigger_queries": 96,
+  "trigger_positive_fire_rate": 0.604,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 3,
+        "expectation": "States that validation Errors and Publishing Tasks block submission while Warnings do not"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that only `z.errors.*` errors may be thrown, never a plain `Error`"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that Zapier pays partners no revenue share and that Zapier-led co-marketing is Platinum only, so the return is retained, activated users"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that anyone can publish templates for the app and Zapier generates some from usage, so Brightfold's own templates are the ones it controls"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Structures the help article per job as: what this does, before you start, embedded templates, field mapping notes, troubleshooting"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Prescribes working the Bugs & Feature Requests queue weekly or syncing it to the tracker with Zapier Issue Manager"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States tiers are re-evaluated at the start of January, April, July and October, and that a dip at quarter start is normal because the count accumulates"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the deprecation rules for a version that must stop working: date 3 weeks to 1 year ahead, Zapier emails affected users 14 days before, and users already auto-migrated get no email, so a 7-day notice is invalid"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Near the sunset date, promotes a version whose old step throws a clear error naming the replacement step, after shipping the replacement first"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps the 1.x versions working (Available or legacy) until users have rebuilt, noting drafts migrate only when published"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Orders the steps: event triggers on core objects, then creates on core objects, then searches and search-or-create, then updates, then everything else"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Sets the polling contract to `sort=-created_at` with a page size large enough to cover the month-end burst, because Zapier reads only page one"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Chooses polling for launch because the API allows only one callback URL per account, which cannot give each Zap its own subscription with several alive at once, and routes the subscription-API change to samber/developer-platform-skills@webhook-platform-design"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States the converted project links to the same integration (`.zapierapprc`) and `push` creates a new version, so users carry over through normal migration"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Warns that CLI to UI has no conversion: Developer Support creates an empty version, the integration is rebuilt by hand, and users cannot be migrated to it"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Lists what the CLI unlocks over the UI: source control, CI unit tests, middleware, custom auth and canary releases"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Uses `zapier-platform test` with `createAppTester` and mocked HTTP (`nock`) so CI needs no credentials"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Classifies renaming `trigger_1` and `search_2` in place as breaking and instead ships each replacement under a new key with the old step hidden"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Classifies fixing the oldest-first sort order on the live `trigger_1` as breaking in effect, explaining that each live Zap's dedupe memory holds the old ids so the next poll would fire every unseen invoice as new"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that version 1.0.3 is not editable because it has more than 5 users, and plans a clone to the next minor of the same major (1.1.0) rather than editing in place or starting 2.0.0"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Produces a step table with columns key, label, type, change class and reason, using only the classes keep, additive, hide, breaking and rejected"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Replaces the generic 'Updated invoice' trigger with a specific state trigger such as New Paid Invoice, or, if an updated trigger is kept, gives it a composite id (`id-updated_at`) with the original id kept in a separate field"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Introduces the search as 'Find Invoice' with a 'Finds a\u2026' description under a new key, never 'Get Invoice'"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Replaces the typed tax-profile id text field with a dynamic dropdown backed by a hidden trigger plus a search for mapped values"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats a switch from API key to OAuth v2 as an auth-scheme change that needs a new major, and recommends asking Zapier about assisted connection migration before committing to it rather than bundling it into the 1.1.0 clean-up"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Sets the polling contract: newest-first, a page large enough to cover a burst because Zapier reads only page one, and no server-side filtering of already-sent items"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Routes the request through classification of every change first because the version has live users, before any design or publish work"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Marks Zapier platform numbers (such as the 5-user editability limit) with \u2020 and a footnote to verify against live docs"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Opens with an Assumptions section, one line per interview answer the prompt did not give (such as the deadline and engineering days available)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects changing the sort order of the live `new_ticket` in place, explaining that each live Zap's dedupe memory holds the old ids so the next poll fires every unseen ticket as new"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Ships the instant trigger as a twin under a new key (for example `new_ticket_v2`) with the same label and description, and hides the old `new_ticket`"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires the hook twin to implement performSubscribe, performUnsubscribe, perform and performList, noting the perform list is a publishing check"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns that hook deliveries are not deduplicated by Zapier, so the API must send each ticket event exactly once"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that hiding `new_ticket` invalidates the four Zap templates built on it and schedules rebuilding and resubmitting them on the new key"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Justifies the hook with the per-poll limit: a trigger that routinely exceeds 100 new items per poll belongs on a hook, and Zapier reads only page one"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Clones 1.4.0 into a new version rather than editing it, because a promoted version with live users is frozen"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns that automatic migrations are on by default, so promotion itself moves a first group of users, and requires testing before promoting"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Prescribes a CLI canary of 5-10% of traffic for 30-60 minutes, stopping if errors rise more than 5%, before promotion"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Replaces the 100% migrate command with a staged migration: 5% first, watch Monitoring for new errors, then the rest"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Instructs running `zapier-platform pull` before pushing or promoting because the public integration sits in Zapier's Integration Maintenance Program"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Diffs output keys, response structure and perform behavior by hand before promoting, stating that promotion checks do not catch them"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that Zapier provides no user email list, so the change is announced through the vendor's own channels"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Marks Zapier platform numbers (100 items per poll, 5-10% canary, 30-60 minutes) with \u2020 and a footnote"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Produces a publish checklist with columns item, owner role and week"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires one live Zap and one successful run per visible step in the admins' Zap history, and tells the team to hide any step nobody can exercise"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags the invite-only status as blocking: the product must be publicly launched before approval"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags the 14-day trial test account: Zapier needs a non-expiring account with paid features for integration-testing@zapier.com"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags 'Send Payment Link' under the ban on facilitating payments, and requires confirmation with Zapier partner support before shipping it or removes it from the visible steps"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the reviewer replies within about a week and each fix round adds about another week"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that Zap templates can only be submitted after approval and take about two weeks of review, and sequences template submission on approval day"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States four weeks from submission to the date as the happy-path minimum"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains that approval lists the integration as Beta, and that Beta ends after 90 days or the next business day after one signup from Fennwick's own Zapier embed"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that validation Errors and Publishing Tasks block submission while Warnings do not"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Checks the directory description rule: 40-140 characters opening with 'Fennwick is a\u2026', functional, no marketing claims"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Marks Zapier platform numbers (3 users, 90 days, about a week) with \u2020 and a footnote"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Replaces `throw new Error('Contact already exists')` with `z.errors.HaltedError`, explaining a halted error never counts toward the Zap auto-off rule"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that only `z.errors.*` errors may be thrown, never a plain `Error`"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Moves CI to Node 22 because integrations run on Node 22"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Replaces the legacy `zapier` binary with `zapier-platform` in CI"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires user-fixable errors to name the field and the reason in under 250 characters because Zapier truncates the rest"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ranks growth actions with Zap templates first and submits them immediately, on approval day, rather than after the hub ships"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Demotes the custom marketplace on the Workflow API to last, naming its gate (weeks of engineering) and the condition that promotes it: an existing integrations directory with heavy search traffic, which 300 visits a month is not"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Cuts the template count to 5-10 for the top jobs instead of 20"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Removes Paths and Code steps from the templates, listing the step types templates cannot contain (Paths, Code, Webhooks, Looping, Formatter)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects the title 'Automatically sync your Brightfold deals to HubSpot' for using 'automatically', 'sync' and second person, and rewrites it starting with an action verb in sentence case naming both apps"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Writes a template description that opens with the user's goal, is unique to the template, contains no links and no Zapier vocabulary, and ends with an italic setup note"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that Zapier pays partners no revenue share and that Zapier-led co-marketing is Platinum only, so the return is retained, activated users"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Places the template embed in the launch post and a help article per job as a minutes-of-effort action gated only on one public template"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Places the Workflow Element on the /integrations page as an hours-of-effort action gated on a public template and a domain allowlist"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that one signup from any of Brightfold's Zapier embeds exits Beta the next business day"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Includes onboarding, support macros and the empty integration-search fallback as a lever with no gate"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that anyone can publish templates for the app and Zapier generates some from usage, so Brightfold's own templates are the ones it controls"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Structures the help article per job as: what this does, before you start, embedded templates, field mapping notes, troubleshooting"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States template review takes about two weeks"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Marks Zapier platform numbers with \u2020 and a footnote"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that Zapier documents no integration-level error-rate threshold for delisting, and refuses to plan against the 5% figure"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the documented run-error rule at Zap level: a Zap erroring on 95% of more than 20 runs over 7 days turns off"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Corrects the Gold threshold to 350 active users per quarter, not 500"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the health score is built from open bug reports, feature requests and responsiveness to them, not from error rates, so the 14 untouched bugs are the tier risk"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Computes that 25 of 180 users (about 14%) are affected by open bugs, over the 10%-of-monthly-actives ceiling, and makes the bug queue the first action"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Prescribes working the Bugs & Feature Requests queue weekly or syncing it to the tracker with Zapier Issue Manager"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States tiers are re-evaluated at the start of January, April, July and October, and that a dip at quarter start is normal because the count accumulates"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the embed fast-track: with an embed-sourced signup and a healthy score, Gold benefits unlock at 300 active users"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects deprecating 1.2.0 because it will keep working: marks it legacy instead, one version at a time, oldest first"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the deprecation rules for a version that must stop working: date 3 weeks to 1 year ahead, Zapier emails affected users 14 days before, and users already auto-migrated get no email, so a 7-day notice is invalid"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Diagnoses the 11% activation on 'Updated Task' as a design defect to test in the editor, and proposes a specific state trigger (for example New Completed Task) or a composite `id-updated_at` id"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Ships the Updated Task replacement as an additive step under a new key with the old one hidden, not an in-place change"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Reports a metric baseline: activation per step, quarterly actives against the next tier, open bugs and median days to first response, templates live, each as a value or 'unknown' plus where to read it"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Marks Zapier platform numbers (350, 95%, 14 days) with \u2020 and a footnote"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Confirms the auth-scheme change from basic to OAuth2 requires a new major (2.0.0) because the version is promoted with far more than 5 users"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends asking Zapier about assisted connected-account migration between schemes before building, since Zapier can sometimes migrate connections for public integrations"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that `zapier-platform migrate 1.6.0 2.0.0` cannot work because migration stops at the major boundary, so every user updates their Zaps manually"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that Zapier gives no user email list, so the 2,400 users are reached only through Marrowline's own in-app and email channels"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects the 10-day notice: a deprecation date must sit 3 weeks to 1 year ahead, and Zapier emails affected users 14 days before"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Allows deleting a version only at zero users, including paused Zaps and connections"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Near the sunset date, promotes a version whose old step throws a clear error naming the replacement step, after shipping the replacement first"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Sets the OAuth2 build details: `refreshAccessToken` and `autoRefresh: true`, client id and secret via `zapier-platform env:set`, and the API answering HTTP 401 on expired tokens because Zapier refreshes only on 401"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that deprecating 1.x marks its 6 templates Invalid within 24 hours, so templates must be rebuilt and resubmitted on the 2.0 steps"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps the 1.x versions working (Available or legacy) until users have rebuilt, noting drafts migrate only when published"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires the connection label to name the account (email or workspace), never a secret"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Marks Zapier platform numbers (14 days, 3 weeks to 1 year, 24 hours) with \u2020 and a footnote"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects mirroring 38 endpoints and picks four to eight steps from customer jobs"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Orders the steps: event triggers on core objects, then creates on core objects, then searches and search-or-create, then updates, then everything else"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects 'Charge Card' because publishing rules ban facilitating payments, and distinguishes it from recording a completed payment, which is allowed"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Renames 'Get Invoice' to 'Find Invoice' with a 'Finds a\u2026' description"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Forbids using `updated_since` or any server-side already-sent filter in the trigger, because Zapier dedupes by id per Zap"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Chooses polling for launch because the API allows only one callback URL per account, which cannot give each Zap its own subscription with several alive at once, and routes the subscription-API change to samber/developer-platform-skills@webhook-platform-design"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Flags that the month-end burst can exceed 100 new items per poll (past which Zapier holds runs and emails the user), and plans the New Invoice trigger as a REST hook once per-Zap subscriptions exist"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Backs every customer id input with a dynamic dropdown from a hidden trigger plus a search, never a typed id"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Converts epoch-second dates to ISO 8601 with offset in the output, and returns id, human name and a link to the record"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Exposes account custom fields as dynamic fields and keeps them out of the static sample, which holds one realistic item with only keys every account returns"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends `zapier-platform convert --integrationId <id> --version <x.y.z>` rather than a rebuild from scratch"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States the converted project links to the same integration (`.zapierapprc`) and `push` creates a new version, so users carry over through normal migration"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Warns that CLI to UI has no conversion: Developer Support creates an empty version, the integration is rebuilt by hand, and users cannot be migrated to it"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States the move is one-way once users run on CLI versions, and that before that point the CLI version can be deleted to continue in the UI"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Lists what the CLI unlocks over the UI: source control, CI unit tests, middleware, custom auth and canary releases"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Pins `zapier-platform-core` to an exact version and runs CI on Node 22"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Instructs running `zapier-platform pull` before any push or promote because a public integration sits in the Integration Maintenance Program"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Prescribes a canary of 5-10% for 30-60 minutes, then a staged migration starting at 5%, for the converted version"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Uses `zapier-platform test` with `createAppTester` and mocked HTTP (`nock`) so CI needs no credentials"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Opens with an Assumptions section, one line per interview answer the prompt lacks (deadline, engineering days, which steps exist)"
+      }
+    ]
+  }
+}

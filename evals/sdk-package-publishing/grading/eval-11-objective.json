@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that source order in `nuget.config` is ignored during restore, so any listed source can serve any ID",
+        "evidence": "NuGet ignores source order during restore",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a `<packageSourceMapping>` block mapping `Pellucid.*` to the Azure Artifacts source and `*` to nuget.org",
+        "evidence": "Pellucid.Core.* to pellucid, * to nuget.org",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the most specific pattern wins, so `Pellucid.*` beats `*`",
+        "evidence": "Most specific pattern wins",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds `<clear />` under `<packageSources>` to stop machine-level sources leaking in",
+        "evidence": "<clear /> under packageSources",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the credential as `%FEED_TOKEN%`, stating `%VAR%` syntax works on every OS and `$VAR` never resolves, which explains the Linux 401s",
+        "evidence": "NuGet expands only %VAR%... $FEED_TOKEN never resolves",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the credential value an environment variable injected from the secret store, never a literal in the committed file",
+        "evidence": "ClearTextPassword value=%FEED_TOKEN%; secret store",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a package already in the global packages folder skips mapping and prescribes a per-repo `globalPackagesFolder` in CI",
+        "evidence": "NUGET_PACKAGES per-repo globalPackagesFolder",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that metadata commands (`dotnet package add`, `dotnet list package --outdated`) still query every source",
+        "evidence": "dotnet list package --outdated still query every source",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes committing lock files (`RestorePackagesWithLockFile`) and restoring with `--locked-mode` in CI",
+        "evidence": "RestorePackagesWithLockFile; --locked-mode",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends reserving the `Pellucid.` ID prefix on nuget.org as the publisher-side defense against the public 9.0.0",
+        "evidence": "Reserve the prefix Pellucid.Core.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a probe querying the internal endpoint's metadata for the public `Pellucid.Core.Common` name and asserting an exact not-found status, after a positive control on a real internal package, treating 401/403/5xx as inconclusive",
+        "evidence": "Step 3 greps for \"9.0.0\" rather than asserting exact 404",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that `packages.lock.json` records the internal source for every `Pellucid.*` entry",
+        "evidence": "every Pellucid.Core.* entry must point at the Azure Artifacts source",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses a read-only feed credential for CI, separate from any publish identity",
+        "evidence": "read-only PAT, separate from any publish identity",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that source order in `nuget.config` is ignored during restore, so any listed source can serve any ID",
+        "evidence": "'Source order does nothing'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a `<packageSourceMapping>` block mapping `Pellucid.*` to the Azure Artifacts source and `*` to nuget.org",
+        "evidence": "Pellucid.Core.* -> pellucid-artifacts, * -> nuget.org",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the most specific pattern wins, so `Pellucid.*` beats `*`",
+        "evidence": "'The longest matching pattern wins'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds `<clear />` under `<packageSources>` to stop machine-level sources leaking in",
+        "evidence": "<clear /> present with note",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the credential as `%FEED_TOKEN%`, stating `%VAR%` syntax works on every OS and `$VAR` never resolves, which explains the Linux 401s",
+        "evidence": "'NuGet only expands %FEED_TOKEN%... literal $FEED_TOKEN'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the credential value an environment variable injected from the secret store, never a literal in the committed file",
+        "evidence": "Env var from secret",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a package already in the global packages folder skips mapping and prescribes a per-repo `globalPackagesFolder` in CI",
+        "evidence": "Only suggests cache clear",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that metadata commands (`dotnet package add`, `dotnet list package --outdated`) still query every source",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes committing lock files (`RestorePackagesWithLockFile`) and restoring with `--locked-mode` in CI",
+        "evidence": "RestorePackagesWithLockFile and --locked-mode",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends reserving the `Pellucid.` ID prefix on nuget.org as the publisher-side defense against the public 9.0.0",
+        "evidence": "'Reserve the Pellucid.Core. prefix'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a probe querying the internal endpoint's metadata for the public `Pellucid.Core.Common` name and asserting an exact not-found status, after a positive control on a real internal package, treating 401/403/5xx as inconclusive",
+        "evidence": "Restore-failure test only",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that `packages.lock.json` records the internal source for every `Pellucid.*` entry",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses a read-only feed credential for CI, separate from any publish identity",
+        "evidence": "'PAT with Packaging \u2192 Read'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

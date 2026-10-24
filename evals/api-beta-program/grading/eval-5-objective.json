@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Caps the cohort from capacity, not demand: with 9 hours per week in total minus program overhead, derives a cap of a few accounts, takes the lower of that cap and the private preview band, and rejects 18.",
+        "evidence": "\"Cohort is 4 accounts, not 18\"; 9 h/week minus 3 h overhead gives ceiling of 5",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects taking the first 15 names off the waitlist; picks the accounts wanted as customers at GA instead.",
+        "evidence": "\"Not the first 15 by list order\"; screener scoring",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines Brightmoor Mechanical because it fails entry rows 1-3 (no evidence of the problem, no planned integration, no named technical owner), stating the $400k renewal by itself changes nothing.",
+        "evidence": "\"Row 1 fails... Row 3 fails... The $400k renewal is the reason for access.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers Brightmoor the sales substitute: a design review under NDA, a sandbox with synthetic data, the GA and freeze dates, and first place in the next enrollment wave.",
+        "evidence": "\"design review under NDA, sandbox with synthetic data, the GA and freeze dates, first place in the next wave\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags 'the account rep will collect feedback' as a free-rider signal: requests arriving only through a rep mean access was a sales tool.",
+        "evidence": "\"the account rep collects feedback, so there is no named engineer... access as a closing tool\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Admits Coldspring Services on the strength of ticket #4471 and the booked sprint, and requires a named technical owner who attends the cadence.",
+        "evidence": "\"Ticket #4471 is evidence... Name a technical engineer who will attend\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats Routeweave as a platform partner: requires enablement for its downstream shops, a plan for kill notice to reach those 300 shops through Routeweave, and multiplies its support and notice budget.",
+        "evidence": "\"multiplies support and notice budget, and a kill notice must reach those shops through Routeweave\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the concentration risk that Routeweave's 300 downstream shops would push it above about a third of beta traffic in a cohort of four or more accounts.",
+        "evidence": "\"It could also dominate beta traffic.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'everyone doing the same workflow' as a benefit; requires same persona, different workflows, so a pattern seen across partners is real and one partner's quirk shows as a quirk.",
+        "evidence": "\"all-HVAC is a risk, not a plus\"; \"Same persona with different workflows\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scores candidates with the +/0/- rubric and admits only accounts with no minus on rows 1-3.",
+        "evidence": "\"Scoring: `+`, `0` or `-` per row... Rows 1-3 must have no `-`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires all five entry criteria, including signed pre-GA terms and intent to pay at GA if the feature is billable, before enrollment.",
+        "evidence": "Coldspring conditions (engineer, pre-GA terms, data addendum) and screener includes \"Would you pay for it at GA?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the enrollment gate signed before the first account enrolls: program owner with steps 1-4 written, design review at beta level, security review, legal, and support.",
+        "evidence": "Gate checklist: owner, stage contract, design review, security review, legal, support",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides a waitlist reply that names the next wave or public preview date instead of leaving the remaining companies unanswered.",
+        "evidence": "\"We open the next wave or public preview around [date]\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Caps the cohort from capacity, not demand: with 9 hours per week in total minus program overhead, derives a cap of a few accounts, takes the lower of that cap and the private preview band, and rejects 18.",
+        "evidence": "\"12 accounts, staggered, is the ceiling.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects taking the first 15 names off the waitlist; picks the accounts wanted as customers at GA instead.",
+        "evidence": "\"'First 15' selects on signup order, not fit.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines Brightmoor Mechanical because it fails entry rows 1-3 (no evidence of the problem, no planned integration, no named technical owner), stating the $400k renewal by itself changes nothing.",
+        "evidence": "\"Conditional seat\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers Brightmoor the sales substitute: a design review under NDA, a sandbox with synthetic data, the GA and freeze dates, and first place in the next enrollment wave.",
+        "evidence": "No substitute offered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags 'the account rep will collect feedback' as a free-rider signal: requests arriving only through a rep mean access was a sales tool.",
+        "evidence": "\"A rep relaying feedback filters it... they are a demo audience, not a cohort member.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Admits Coldspring Services on the strength of ticket #4471 and the booked sprint, and requires a named technical owner who attends the cadence.",
+        "evidence": "Admits on the ticket and sprint but requires no named technical owner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats Routeweave as a platform partner: requires enablement for its downstream shops, a plan for kill notice to reach those 300 shops through Routeweave, and multiplies its support and notice budget.",
+        "evidence": "It scopes Routeweave to 2-3 shops but has no downstream notice plan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the concentration risk that Routeweave's 300 downstream shops would push it above about a third of beta traffic in a cohort of four or more accounts.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'everyone doing the same workflow' as a benefit; requires same persona, different workflows, so a pattern seen across partners is real and one partner's quirk shows as a quirk.",
+        "evidence": "\"Uniform HVAC cohort is a weakness, not a plus.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scores candidates with the +/0/- rubric and admits only accounts with no minus on rows 1-3.",
+        "evidence": "Not used.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires all five entry criteria, including signed pre-GA terms and intent to pay at GA if the feature is billable, before enrollment.",
+        "evidence": "Not required.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the enrollment gate signed before the first account enrolls: program owner with steps 1-4 written, design review at beta level, security review, legal, and support.",
+        "evidence": "No gate. Waves start in week 1.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides a waitlist reply that names the next wave or public preview date instead of leaving the remaining companies unanswered.",
+        "evidence": "\"Don't promise a date.\"",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

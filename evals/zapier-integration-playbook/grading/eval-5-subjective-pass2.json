@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Writes a template description that opens with the user's goal, is unique to the template, contains no links and no Zapier vocabulary, and ends with an italic setup note",
+        "evidence": "The rewritten description opens with the user's goal: 'Keep sales conversations in one place from the first deal.' It then describes this one flow specifically: when a deal is created in Brightfold, it creates a matching HubSpot deal with the amount, stage and owner. It contains no links and does not use 'Zap', 'trigger' or 'action'. It closes with the italic note '*Note: Map your Brightfold stages to HubSpot pipeline stages during setup.*' The response also explicitly checks these rules: 'unique to this template. It has no links and no Zap, trigger or action vocabulary.'",
+        "score": 5,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Writes a template description that opens with the user's goal, is unique to the template, contains no links and no Zapier vocabulary, and ends with an italic setup note",
+        "evidence": "The transcript never writes a template description. It only suggests a retitle (\"Create HubSpot contacts from new Brightfold deals\") and says to check Zapier's title rules. There is no description body: nothing that opens with the user's goal, no italic setup note, and nothing showing that links or Zapier vocabulary were avoided.",
+        "score": 0,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

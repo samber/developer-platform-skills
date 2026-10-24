@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Removes the `invoice.memo` field from the beta scope and ships it GA under the versioning policy, because an additive field following an existing pattern needs no beta label.",
+        "evidence": "\"leave it out of the beta\"; \"skips the beta and ships GA under `api-versioning-policy`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects opening with a public preview; states that public preview follows a private preview and does not replace it, the only exception being a low-risk change that needs volume.",
+        "evidence": "\"Public preview comes after a private one. It is skipped only when the change is low-risk and needs volume.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the ownerless state ('the platform team as a group') as a condition that rules a shape out, and requires a named owner before any other program decision.",
+        "evidence": "\"'Platform team as a group' is ruled out by the skill... Name one owner and one backup before anything else.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents a recommended shape and exactly one alternative before drafting any charter section.",
+        "evidence": "Hybrid private preview recommended; \"Alternative. Pure design partners, with GA moved to about week 14.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the efficiency ranking explicitly as private preview > design partners > public preview.",
+        "evidence": "No explicit efficiency ranking appears in the transcript.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that design partners lose on efficiency because they are highest on both value and effort, and names the still-open shape as the condition that promotes them anyway.",
+        "evidence": "Only says \"Pure design partners... more efficient for evidence\"; the value/effort reasoning is absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the clock rule: with GA 10 weeks out and a 4-week build there is no room for 8-12 weeks of partner sessions, so the hybrid (private preview with design-partner-style first sessions on the one open question) is promoted over full design partners.",
+        "evidence": "\"Build is 4 weeks, plus 8\u201312 weeks of partner sessions. That totals 12\u201316 weeks against your 10, so the hybrid wins.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says which interview answer moved which rung: the open shape promoting design partners, the GA date promoting the hybrid.",
+        "evidence": "\"Open shape and a new resource family push toward design partners. The clock pushes the other way.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the Orvantis sales deal by itself changes nothing in the shape choice, and that the account enters only if it passes the five entry criteria.",
+        "evidence": "\"Product decides against the entry criteria. Sales does not.\" followed by the five admit conditions",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States compliance cost as a tie between design partners and private preview (both need signed pre-GA terms per account) and lower for public preview (click-through terms).",
+        "evidence": "Only mentions public preview's click-through terms; no tie statement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the cohort size for the recommended shape inside the stated band (3-5 partners for the design-partner sessions, about 5-20 accounts for the private preview) rather than an unbounded number.",
+        "evidence": "\"Size. 3\u20135 accounts. Cap it from your capacity, not demand.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats 'leadership wants a launch moment' as no reason to pick public preview, and places launch marketing outside the program's scope.",
+        "evidence": "\"The launch moment belongs at GA... Launch planning is out of scope for this skill\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires steps 1-5 (shape, stage contract, wire mechanism, exit criteria, cohort and enrollment gate) written and signed off before the first account enrolls.",
+        "evidence": "\"Sign all five before the first account enrolls\" with owner steps 1\u20134 written, reviews, legal, support",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Removes the `invoice.memo` field from the beta scope and ships it GA under the versioning policy, because an additive field following an existing pattern needs no beta label.",
+        "evidence": "\"Ship it separately as an additive optional field in the stable API with its own changelog entry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects opening with a public preview; states that public preview follows a private preview and does not replace it, the only exception being a low-risk change that needs volume.",
+        "evidence": "\"Don't announce a public beta on the blog yet... Run a staged rollout\" with Orvantis private access first. It does not state the low-risk exception.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the ownerless state ('the platform team as a group') as a condition that rules a shape out, and requires a named owner before any other program decision.",
+        "evidence": "Ownership is section 6 and decision #1 in the closing list, after the design decision in weeks 0-1. It is not framed as a precondition for every other program decision.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents a recommended shape and exactly one alternative before drafting any charter section.",
+        "evidence": "Only a staged rollout is presented, with no single alternative shape.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the efficiency ranking explicitly as private preview > design partners > public preview.",
+        "evidence": "No efficiency ranking appears anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that design partners lose on efficiency because they are highest on both value and effort, and names the still-open shape as the condition that promotes them anyway.",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the clock rule: with GA 10 weeks out and a 4-week build there is no room for 8-12 weeks of partner sessions, so the hybrid (private preview with design-partner-style first sessions on the one open question) is promoted over full design partners.",
+        "evidence": "The timeline includes 3-5 design partners, but no clock rule or hybrid reasoning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says which interview answer moved which rung: the open shape promoting design partners, the GA date promoting the hybrid.",
+        "evidence": "No rung logic is described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the Orvantis sales deal by itself changes nothing in the shape choice, and that the account enters only if it passes the five entry criteria.",
+        "evidence": "It says \"The Orvantis deal doesn't need a public beta\" but never mentions entry criteria.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States compliance cost as a tie between design partners and private preview (both need signed pre-GA terms per account) and lower for public preview (click-through terms).",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the cohort size for the recommended shape inside the stated band (3-5 partners for the design-partner sessions, about 5-20 accounts for the private preview) rather than an unbounded number.",
+        "evidence": "\"Private alpha: Orvantis plus 3\u20135 design partners\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats 'leadership wants a launch moment' as no reason to pick public preview, and places launch marketing outside the program's scope.",
+        "evidence": "\"Make the public beta the announcement\" keeps launch marketing inside the plan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires steps 1-5 (shape, stage contract, wire mechanism, exit criteria, cohort and enrollment gate) written and signed off before the first account enrolls.",
+        "evidence": "No such gate. Orvantis early access begins in weeks 3-5, in parallel with the build.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

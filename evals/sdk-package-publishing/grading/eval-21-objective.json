@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Ranks distribution channels as package-manager channels you control (Homebrew tap, Scoop bucket) above community-reviewed indexes (winget, homebrew-core) above `curl | sh`, keeping the script as a fallback never the only path",
+        "evidence": "Put the package managers first, then the script",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the installer to wrap its body in a function called on the last line so a truncated download runs nothing",
+        "evidence": "Whole body sits in main(), called on the last line",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Downloads over HTTPS only with `curl --proto '=https' --tlsv1.2 -fsSL`",
+        "evidence": "curl --proto '=https' --tlsv1.2 -fsSL",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Installs a pinned version overridable by an environment variable, into a user directory, never with `sudo` by default",
+        "evidence": "LUMEN_VERSION; $HOME/.local/bin; never sudo",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Verifies the archive against `checksums.txt` and, when cosign is present, verifies the checksum bundle against the release workflow identity and the CI OIDC issuer, failing closed on mismatch",
+        "evidence": "checksum mismatch die; cosign verify-blob with identity and issuer",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents the download-read-then-run form beside the one-liner and serves the script from the release itself or a controlled host with a pinned path",
+        "evidence": "Download, read, then run; redirect to release install.sh",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves signing out of the matrix build jobs into a separate signing job that holds only the signing credentials in its own protected environment and runs no project code",
+        "evidence": "sign-macos / sign-windows in own environments, no checkout",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes macOS Developer ID signing plus notarization via `notarytool` with an App Store Connect API key, and Windows Authenticode through a cloud signing service or HSM rather than a `.pfx` key file",
+        "evidence": "App Store Connect API key; cloud signer or HSM",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States never to replace an asset on a published release and prescribes a new release version instead, recommending GitHub immutable releases",
+        "evidence": "never edit a published asset; immutable releases",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Creates the release as a draft, uploads archives, `checksums.txt` and the signature bundle, then publishes it",
+        "evidence": "gh release create --draft ... --draft=false",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Signs the checksum file keylessly with `cosign sign-blob --bundle` and attests archives with `actions/attest` using `subject-checksums`",
+        "evidence": "cosign sign-blob --bundle; actions/attest subject-checksums",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells users to verify with `gh attestation verify <archive> --repo <owner>/<repo>` or `cosign verify-blob` against the bundle",
+        "evidence": "only in internal done-when, not user docs",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that dist (cargo-dist) generates shell and PowerShell installers and that the signature check must be added to what they verify",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For winget, states the pull request comes from a fork and needs a dedicated bot account whose public-repository-scope token cannot be narrowed, kept in the `release` environment only",
+        "evidence": "fork not mentioned; token kept in channel-winget not release",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes the Homebrew tap and Scoop bucket push tokens to those repositories only",
+        "evidence": "token scoped to lumenwick/homebrew-tap only; Scoop autoupdate no token",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Ranks distribution channels as package-manager channels you control (Homebrew tap, Scoop bucket) above community-reviewed indexes (winget, homebrew-core) above `curl | sh`, keeping the script as a fallback never the only path",
+        "evidence": "No ranking, alternatives listed",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the installer to wrap its body in a function called on the last line so a truncated download runs nothing",
+        "evidence": "'Wrap everything in a main function'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Downloads over HTTPS only with `curl --proto '=https' --tlsv1.2 -fsSL`",
+        "evidence": "'--proto '=https' --tlsv1.2 -fsSL'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Installs a pinned version overridable by an environment variable, into a user directory, never with `sudo` by default",
+        "evidence": "LUMEN_VERSION, ~/.local/bin, avoid sudo",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Verifies the archive against `checksums.txt` and, when cosign is present, verifies the checksum bundle against the release workflow identity and the CI OIDC issuer, failing closed on mismatch",
+        "evidence": "Generic signature check; no bundle/identity details",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Documents the download-read-then-run form beside the one-liner and serves the script from the release itself or a controlled host with a pinned path",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves signing out of the matrix build jobs into a separate signing job that holds only the signing credentials in its own protected environment and runs no project code",
+        "evidence": "sign job with environment: release",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes macOS Developer ID signing plus notarization via `notarytool` with an App Store Connect API key, and Windows Authenticode through a cloud signing service or HSM rather than a `.pfx` key file",
+        "evidence": "notarytool App Store Connect key; Azure Trusted Signing",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States never to replace an asset on a published release and prescribes a new release version instead, recommending GitHub immutable releases",
+        "evidence": "Section 1",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Creates the release as a draft, uploads archives, `checksums.txt` and the signature bundle, then publishes it",
+        "evidence": "'Publish through a draft'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Signs the checksum file keylessly with `cosign sign-blob --bundle` and attests archives with `actions/attest` using `subject-checksums`",
+        "evidence": "Not specified",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells users to verify with `gh attestation verify <archive> --repo <owner>/<repo>` or `cosign verify-blob` against the bundle",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that dist (cargo-dist) generates shell and PowerShell installers and that the signature check must be added to what they verify",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For winget, states the pull request comes from a fork and needs a dedicated bot account whose public-repository-scope token cannot be narrowed, kept in the `release` environment only",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes the Homebrew tap and Scoop bucket push tokens to those repositories only",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

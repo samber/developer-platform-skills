@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States Packagist no longer rewrites a published stable version when the upstream tag moves, which is why `v3.2.0` still serves the old code",
+        "evidence": "Packagist no longer rewrites a published stable version",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes tagging a new version (v3.2.1) and never moving or deleting a release tag again",
+        "evidence": "also suggests force-pushing v3.2.0 back as optional",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing a security advisory on the repository for a security-relevant rollback, noting `composer audit` reads advisory databases",
+        "evidence": "composer audit reads advisory databases",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the MAIN API token in CI with the SAFE token, stating the MAIN token can create and edit packages and never belongs in CI",
+        "evidence": "SAFE token only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prefers the GitHub app or repository webhook sync over a CI-triggered POST, using the API call only when no hook exists",
+        "evidence": "Preferred: grant the Packagist app access",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes `version` from `composer.json`, stating Packagist derives versions from tags and a hard-coded version drifts from the tag",
+        "evidence": "Delete \"version\": \"3.2.0\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `canonical: false`, stating Composer then compares versions across repositories and a public `thornfield/internal-auth` with a higher version would win",
+        "evidence": "public package with higher version outranks",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the private repository first with `\"only\": [\"thornfield/*\"]` so it serves every version of those names",
+        "evidence": "uses exact name and warns against thornfield/*",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts credentials in `COMPOSER_AUTH` or a gitignored `auth.json`, never in `composer.json`",
+        "evidence": "COMPOSER_AUTH or gitignored auth.json",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a tag ruleset, stating tag control is the publish credential on Packagist",
+        "evidence": "tag is the release, lock it like a token",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `composer install` against a committed `composer.lock`",
+        "evidence": "composer install against committed composer.lock",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends 2FA for every maintainer, noting MFA status is public and a transparency log records tag and ownership changes",
+        "evidence": "2FA only assumed",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the `abandoned` field for retiring a package rather than deletion, noting deletion is a web-UI action only",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States Packagist no longer rewrites a published stable version when the upstream tag moves, which is why `v3.2.0` still serves the old code",
+        "evidence": "'Packagist keeps the first commit it saw for a tag'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes tagging a new version (v3.2.1) and never moving or deleting a release tag again",
+        "evidence": "'Do not move tags again. Ship v3.2.1'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing a security advisory on the repository for a security-relevant rollback, noting `composer audit` reads advisory databases",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the MAIN API token in CI with the SAFE token, stating the MAIN token can create and edit packages and never belongs in CI",
+        "evidence": "Rotate main, create safe token",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prefers the GitHub app or repository webhook sync over a CI-triggered POST, using the API call only when no hook exists",
+        "evidence": "'Better: drop the CI step. Install the Packagist GitHub hook'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes `version` from `composer.json`, stating Packagist derives versions from tags and a hard-coded version drifts from the tag",
+        "evidence": "'Delete the version line'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `canonical: false`, stating Composer then compares versions across repositories and a public `thornfield/internal-auth` with a higher version would win",
+        "evidence": "dependency confusion explained",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the private repository first with `\"only\": [\"thornfield/*\"]` so it serves every version of those names",
+        "evidence": "'only': thornfield/internal-* with Satis first",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts credentials in `COMPOSER_AUTH` or a gitignored `auth.json`, never in `composer.json`",
+        "evidence": "'add credentials to auth.json (http-basic)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a tag ruleset, stating tag control is the publish credential on Packagist",
+        "evidence": "Only a CI guard",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `composer install` against a committed `composer.lock`",
+        "evidence": "Not prescribed",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends 2FA for every maintainer, noting MFA status is public and a transparency log records tag and ownership changes",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the `abandoned` field for retiring a package rather than deletion, noting deletion is a web-UI action only",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

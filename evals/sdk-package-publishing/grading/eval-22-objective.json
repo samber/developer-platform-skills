@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Orders the release as native SDKs first (Maven Central artifact, SwiftPM tag), waiting until they resolve publicly, then the npm package pinning the exact native versions in its podspec, `Package.swift` and `build.gradle`",
+        "evidence": "npm goes last, only after Maven resolves publicly",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects publishing the three registries in parallel",
+        "evidence": "cannot publish everything in parallel",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces Release It's token-based publish step with `npm stage publish` under npm trusted publishing with staged approval",
+        "evidence": "Release It's token step is replaced by npm stage publish",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States release tools that wrap the registry client may not support staged publishing or OIDC, so the tool versions and packs while the registry's own publish command runs per tarball",
+        "evidence": "Release It only bumps, commits and tags",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats a partial release as roll-forward: finish publishing, never unpublish the packages that made it",
+        "evidence": "Re-run failed jobs... Never unpublish",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the job idempotent by skipping any `name@version` the registry already holds, so a rerun after a partial failure completes the release",
+        "evidence": "Both publish jobs skip versions that already exist",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires building the example app on iOS and Android in the build job before publishing, since a JS-only check misses broken autolinking",
+        "evidence": "android-build assembleDebug; ios-verify xcodebuild",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the required `files` entries (`src`, `lib`, `android`, `ios`, the root `*.podspec`, `react-native.config.js` and `app.plugin.js` when used) and excludes `android/build`, `ios/build` and `example`",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a scoped npm name needs a podspec name without a slash for iOS autolinking",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declares `react` and `react-native` as `peerDependencies`, never as dependencies",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships `codegenConfig` for the New Architecture (the only architecture since 0.82) and warns that pre-generated code ties the library to the React Native version that generated it",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Depends on the Android AAR from Maven Central rather than committing binaries to the npm package",
+        "evidence": "wrapper's build.gradle pin on sdk-android, npm waits for Central",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that the pod dependency freezes at its last trunk version after 2026-12-02 and plans the move to SwiftPM or vendored XCFrameworks",
+        "evidence": "wrapper podspec freezes at the last pushed version",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Regenerates `Package.swift` on each React Native release while SwiftPM support is experimental",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Orders the release as native SDKs first (Maven Central artifact, SwiftPM tag), waiting until they resolve publicly, then the npm package pinning the exact native versions in its podspec, `Package.swift` and `build.gradle`",
+        "evidence": "iOS runs parallel with npm; no exact pinning",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects publishing the three registries in parallel",
+        "evidence": "'Parallel publishing is the wrong fix'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces Release It's token-based publish step with `npm stage publish` under npm trusted publishing with staged approval",
+        "evidence": "Uses NPM_TOKEN publish",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States release tools that wrap the registry client may not support staged publishing or OIDC, so the tool versions and packs while the registry's own publish command runs per tarball",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats a partial release as roll-forward: finish publishing, never unpublish the packages that made it",
+        "evidence": "'Roll forward... Don't unpublish'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the job idempotent by skipping any `name@version` the registry already holds, so a rerun after a partial failure completes the release",
+        "evidence": "Existence checks in each publish",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires building the example app on iOS and Android in the build job before publishing, since a JS-only check misses broken autolinking",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the required `files` entries (`src`, `lib`, `android`, `ios`, the root `*.podspec`, `react-native.config.js` and `app.plugin.js` when used) and excludes `android/build`, `ios/build` and `example`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a scoped npm name needs a podspec name without a slash for iOS autolinking",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declares `react` and `react-native` as `peerDependencies`, never as dependencies",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships `codegenConfig` for the New Architecture (the only architecture since 0.82) and warns that pre-generated code ties the library to the React Native version that generated it",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Depends on the Android AAR from Maven Central rather than committing binaries to the npm package",
+        "evidence": "'RN package pulls the native Android SDK from Maven Central'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that the pod dependency freezes at its last trunk version after 2026-12-02 and plans the move to SwiftPM or vendored XCFrameworks",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Regenerates `Package.swift` on each React Native release while SwiftPM support is experimental",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
