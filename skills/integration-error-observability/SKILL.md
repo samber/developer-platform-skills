@@ -4,7 +4,7 @@ description: Design how a platform surfaces integration failures to the external
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Integration Error Observability
@@ -239,3 +239,4 @@ See also, same collection:
 - `samber/developer-platform-skills@webhook-platform-design` - the delivery semantics, retry schedule and dead-lettering underneath the delivery log. This skill is the visibility layer over that machinery.
 - `samber/developer-platform-skills@developer-portal-design` - where these logs and dashboards live in the portal's information architecture and access model.
 - `samber/developer-platform-skills@partner-app-onboarding` - the partner lifecycle that decides who is watching these surfaces in the first place.
+- `samber/developer-platform-skills@integration-health-monitoring` - integrations that work today but break on a known date (version drift, deprecated calls, expiring credentials); this skill covers failures already happening.

@@ -4,7 +4,7 @@ description: Decide a public API's language-SDK portfolio - which languages get 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # SDK Portfolio Strategy
@@ -190,4 +190,5 @@ See also, same owner:
 - `samber/developer-platform-skills@api-versioning-policy` - owns the API-side versioning and deprecation policy that step 5 deliberately decouples SDK versioning from.
 - `samber/developer-platform-skills@api-reference-quality` - audits per-language code-snippet parity in the reference docs, which the SDK portfolio feeds.
 - `samber/developer-platform-skills@public-api-design-review` - reviews the API surface consistency every generated SDK inherits and projects into its language.
+- `samber/developer-platform-skills@integration-health-monitoring` - finds which integrations still run an SDK version you have set an end-of-life date for, and chases their owners before it.
 - `samber/developer-relations-skills@coding-agent-docs-optimization` - structuring SDK source and docstrings so coding agents integrate them unattended; the agent-consumption angle of the SDKs this portfolio ships.

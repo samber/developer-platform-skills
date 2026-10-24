@@ -4,7 +4,7 @@ description: Define the versioning and deprecation policy for an API - version s
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # API Versioning Policy
@@ -156,7 +156,7 @@ Deprecation is a staged process, not an event. Never skip from announce to remov
 1. **Ship the `Deprecation` header first** (RFC 9745, Standards Track, March 2025). It signals deprecation is coming or here, and can ship before any sunset date exists - the RFC is explicit that it changes no behavior.
 2. **Add the `Sunset` header once the date is firm** (RFC 8594 - Informational, not Standards Track; cite it accordingly). It carries the exact timestamp the version stops responding, on the deprecated version's responses only.
 3. **Attach `Link: rel="successor-version"`** (RFC 8288) so tooling finds the replacement without scraping prose, and mark `deprecated: true` in the OpenAPI document so docs and codegen surface it.
-4. **Never rely on headers alone.** Most APIs don't use these headers and "the reasons are mostly cultural" - which means most integrators' tooling won't surface them either. Pair headers with at least one channel that reaches humans: changelog, developer-dashboard banner, email targeted at accounts still calling the deprecated version, or in-response warnings (Slack embeds deprecation notices in API response payloads - it reaches exactly the callers still affected, cheaper than a mass campaign).
+4. **Never rely on headers alone.** Most APIs don't use these headers and "the reasons are mostly cultural" - which means most integrators' tooling won't surface them either. Pair headers with at least one channel that reaches humans: changelog, developer-dashboard banner, email targeted at accounts still calling the deprecated version (`samber/developer-platform-skills@integration-health-monitoring` finds those integrations, their owners, and runs the outreach to cutoff), or in-response warnings (Slack embeds deprecation notices in API response payloads - it reaches exactly the callers still affected, cheaper than a mass campaign).
 5. **Own the migration, not just the announcement.** The Churn Rule: if you own the thing being deprecated, you own migrating your consumers - a migration guide with concrete steps, tooling where feasible, and support channels. Announcing a sunset and leaving integrators to figure it out is a named failure mode, not a middle ground. Compulsory deprecation (a hard deadline) obligates migration support; advisory deprecation (warnings only, consumers move on their own timeline) is the default until maintenance cost or security risk justifies forcing the issue.
 
 Deprecation communication overlaps with sibling `samber/developer-platform-skills@api-status-communication` - the delineation: this skill owns the planned, months-long version-lifecycle communication; that one owns incident and status-page communication when the platform is currently broken.

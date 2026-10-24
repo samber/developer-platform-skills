@@ -1,0 +1,513 @@
+{
+  "skill_name": "integration-health-monitoring",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I run the platform team at Tallowbridge, a payments API. We announced the sunset of POST /v1/charges for January 15 and the replacement /v2/payment_intents has been GA since March. Our Grafana board shows v1 at 0.4% of total API traffic over the last 30 days, down from 31% in April. Our VP wants to pull the date in to December 1 since 'basically nobody is left' and save the on-call cost. A lot of our customers are marketplace platforms that run month-end and quarter-end settlement exports, and we also have about 60 partner apps in our app directory. Are we good to cut on Dec 1, and what should we do between now and then?",
+      "expected_output": "A no-go (or conditional go) for Dec 1 built on a per-integration census rather than the 0.4% call share: lookback covering the quarter-end cycle, integrations counted and named, migrated defined per integration, pulling the date in treated as a policy change, and a line-by-line gate verdict.",
+      "files": [],
+      "expectations": [
+        "Rejects the 0.4% share of calls as evidence of readiness and asks how many distinct integrations or credentials still call /v1/charges.",
+        "States that a 30-day window cannot see integrations that only call at quarter-end (or year-end), and sets the lookback to at least the longest business cycle (a full quarter or longer).",
+        "Proposes grouping /v1/charges calls by credential (API key, OAuth client ID or app ID) to produce one row per integration.",
+        "Defines 'migrated' per integration using calls on /v2/payment_intents plus the absence of later /v1 calls over a full cycle (or written owner confirmation), not a single replacement call or a call count.",
+        "Ranks the remaining integrations by end customers or installs affected (e.g. the partner apps' installs), not by call volume.",
+        "Treats moving the date earlier than the announced January 15 as a change to the published deprecation policy/notice rather than an operational decision justified by traffic share.",
+        "Recommends per-integration exceptions (allowlist keyed on credential with an expiry) instead of a global date change for laggards.",
+        "Requires notices to the remaining integrations to name the endpoint, call count, last-seen time, a sample request ID and the break date.",
+        "Recommends notifying installing customers/merchants' admins (customer-side fallback) for partner apps whose developers do not respond.",
+        "Includes scheduled, pre-announced brownouts before the cutoff, starting short and escalating in length.",
+        "Conditions brownouts or cutoff on the replacement having run the migrated traffic stably with no open incident.",
+        "Presents the decision as a go/no-go against explicit readiness criteria (gate lines), not as a date plus a percentage.",
+        "Recommends keeping the v1 code path re-enableable behind an allowlist after cutoff for emergency exceptions rather than a global rollback."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Kestrel Logistics here - we version our shipping API by date, like 2024-06-01. Each account has a default version set at signup, and our SDKs (Java, Go, Node) and webhook endpoints also let you choose a version. Our PM pulled a report from the accounts table: 92% of active accounts now have default_version >= 2025-03-01. We want to retire 2024-06-01 at the end of next quarter. Can you sanity-check that 92% and tell me what report we actually need before we announce?",
+      "expected_output": "Explains that the account default does not show the version actually served; specifies a census from the resolved version per request plus each webhook endpoint's version and typed SDK pins, keyed per integration with owners and a long enough lookback.",
+      "files": [],
+      "expectations": [
+        "States that the account default version does not reflect the version actually served on requests that set a version per request or via SDK configuration.",
+        "Names per-request version overrides (header or SDK option) as a source of drift the accounts-table report misses.",
+        "Names webhook endpoints configured with their own version as a separate drift source that must be censused per endpoint.",
+        "Notes that typed SDKs such as Java and Go pin the API version to the SDK release, so the SDK release in use determines the version for those integrations.",
+        "Recommends logging the resolved/served version per request at the gateway and building the census from that.",
+        "Recommends one census row per integration (credential/app) rather than per account default.",
+        "Counts integrations (and their end customers) still on 2024-06-01, not just accounts or traffic share.",
+        "Recommends a lookback covering the longest business cycle of the integrations rather than a short fixed window.",
+        "Includes dormant credentials or inactive accounts pinned to 2024-06-01 in the census instead of excluding them as inactive.",
+        "Links each at-risk integration to an owner contact before the notice goes out.",
+        "Mentions that moving a webhook endpoint to a new version may require a new endpoint with overlap during which consumers must handle duplicate deliveries idempotently.",
+        "Does not treat the 92% figure as sufficient to announce or schedule retirement."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm on the partner team at Pollen HR. We have about 400 partner apps in our marketplace and some 3,000 developer accounts. Legacy OAuth scopes (people.read.all etc.) get removed on March 1. We emailed every app's owner address in November and 38% bounced. My manager wants to send a second blast to all 3,000 developer accounts with a stronger subject line. A few of the apps are WordPress-style plugins that HR agencies install for their clients. Can you write the email and the send plan?",
+      "expected_output": "Replaces the blast with targeted notices only to integrations still requesting legacy scopes, with specifics; fixes contact resolution (bounces, roles, customer-admin fallback); named outreach for top apps; plugin installs reached via customer admins; ladder beyond email.",
+      "files": [],
+      "expectations": [
+        "Advises against sending to all 3,000 developer accounts and limits notices to integrations still using the legacy scopes.",
+        "Proposes identifying affected apps from actual token/scope usage per OAuth client before sending.",
+        "Treats the 38% bounced addresses as unverified contacts that need resolution, not as notified.",
+        "Proposes holding more than one contact role per app (e.g. technical and commercial owner).",
+        "Routes apps with no reachable developer to the installing customers' admins.",
+        "Recognises that for plugin-style apps installed by agencies, each end site or client may need to upgrade separately even after the developer ships a fix.",
+        "The email draft names the specific scopes the app still requests or the calls using them.",
+        "The email draft includes usage evidence such as a count, last-seen date or a sample request/token identifier.",
+        "The email draft states the March 1 date and what happens on it.",
+        "The email draft asks the recipient to confirm ownership or name the right owner.",
+        "Recommends named, person-to-person outreach for the apps with the most installs.",
+        "Adds at least one channel that reaches still-calling integrations without email, such as an in-response warning or dashboard flag.",
+        "Does not wait for contact verification before sending the next notice given the March 1 date.",
+        "Does not block new installs of marketplace apps still on the legacy scopes before March 1 (flags them instead), or explains that blocking would break partners inside the notice window."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Here's our list of integrations still on stuff we're retiring at Brightmoor (CRM API). Tell me which order my two partner managers should chase them in:\n1. Acme internal sync - 2.1M calls/day on /v1/contacts (sunset June 30) - 1 account\n2. LeadLoop app - 40 calls/day on /v1/contacts - installed by 2,600 customer accounts\n3. Quarterly Forecaster - 0 calls last 60 days, last call Oct 2 on /v1/deals - 85 accounts\n4. Zapline connector - uses our legacy client cert that expires Nov 30 - 410 installs\n5. FinBridge - 9,000 calls/day on /v1/contacts, enterprise contract with SLA credits - 1 account\n6. Unknown - 12,000 calls/day on /v1/contacts with no API key, from a public endpoint",
+      "expected_output": "Ranks by days to break first, then end customers affected, never by volume: Zapline (cert expiry soon) high, LeadLoop above Acme, FinBridge promoted by contract weight, Quarterly Forecaster treated as seasonal not migrated, unknown traffic handled via in-response warnings/brownouts.",
+      "files": [],
+      "expectations": [
+        "Does not order the list by calls per day.",
+        "Puts Zapline (certificate expiring Nov 30) at or near the top because it breaks soonest.",
+        "Ranks LeadLoop above Acme internal sync because of its 2,600 affected customer accounts.",
+        "Treats Quarterly Forecaster's zero recent calls as a likely seasonal/quarterly job that will resume, not as migrated.",
+        "Promotes FinBridge because of its contract/SLA-credit exposure despite being a single account.",
+        "Separates the unattributed public-endpoint traffic into its own group that cannot be notified directly.",
+        "Recommends in-response warnings and/or brownouts to reach the unattributed traffic.",
+        "Splits the list into rows for named partner-manager outreach versus rows handled by automated notices, sized to the two managers' capacity.",
+        "Recommends notifying the customer admins of LeadLoop's or Zapline's installs if the developer does not respond.",
+        "Treats the cert expiry as a forward risk in the same census as the endpoint sunsets.",
+        "Explains the ranking rule (days to break, then end customers affected) explicitly rather than only listing an order.",
+        "Suggests checking whether Acme internal sync has other jobs or routes before marking anything migrated, or defines migrated per integration."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "We're removing API-key-in-query-string auth on Ferrowell's API (header auth has existed for two years). Plan is: post a changelog entry Monday, then do a 72-hour brownout next week where query-string calls get 410, then remove it for good on the 30th. Header auth had an outage two weeks ago that we're still doing the postmortem on. Can you sanity-check the brownout plan and write the changelog post?",
+      "expected_output": "Reworks the plan: identify and notify the credentials using query-string auth first, multiple short pre-announced brownouts escalating in length, schedule in the error body, final-state status marked temporary with Cache-Control: no-store during brownouts, hold brownouts until header auth is stable, per-credential exceptions.",
+      "files": [],
+      "expectations": [
+        "Recommends identifying which credentials still send keys in the query string before any brownout.",
+        "Recommends targeted notices to those credentials' owners with call counts and last-seen times, beyond the changelog.",
+        "Replaces the single 72-hour brownout with several shorter brownouts that escalate in duration.",
+        "Requires the brownout schedule to be published in advance.",
+        "Requires the brownout error response body to include the schedule or a link to it.",
+        "Adds Cache-Control: no-store (or an equivalent anti-caching measure) to brownout responses so a cached failure does not outlive the window.",
+        "Marks brownout errors as temporary in the response body while keeping them on the same failure path integrations will hit at removal.",
+        "Advises holding brownouts until the header-auth replacement has been stable with no open incident.",
+        "Recommends starting brownout windows during working hours for the affected users.",
+        "Adds an in-response warning on query-string-auth calls before the brownouts.",
+        "Questions whether a removal date on the 30th leaves enough notice, or defers the notice window to the deprecation policy.",
+        "Offers per-credential exceptions with an expiry for owners who cannot meet the date, rather than moving the date for everyone.",
+        "The changelog draft states the brownout dates and the final removal date."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Our partner team at Quillfeather (a scheduling platform) wants an 'integration health' dashboard so they know which partners to call each week. Context: our webhook signing certificate rotates on Feb 14, iOS SDK 3.x reaches end of life in April, and webhook payload v1 stops being rendered June 30. We already have Datadog error-rate monitors per API key. What should the dashboard track and what do we show partners?",
+      "expected_output": "A forward-risk dashboard built on a break-date catalog (cert rotation, SDK EOL, payload v1), per-integration census with owners and days to break, SDK version telemetry for iOS, webhook endpoint versions; errors handed to existing monitors; partners see specifics, not a blended score.",
+      "files": [],
+      "expectations": [
+        "Builds the dashboard around the dated upcoming changes (Feb 14 cert rotation, April iOS SDK 3.x EOL, June 30 payload v1) rather than around error rates.",
+        "Leaves live error-rate monitoring to the existing per-key monitors or an error-observability practice instead of rebuilding it.",
+        "Tracks, per webhook endpoint, which payload version it receives.",
+        "Recommends SDK version telemetry (e.g. a client SDK version header) to find integrations on iOS SDK 3.x.",
+        "Notes that iOS SDK upgrades depend on end users updating their apps, so SDK 3.x usage can persist after the partner ships a fix.",
+        "Identifies which integrations depend on the rotating certificate (e.g. pinned certificates or verification against the old cert) as a forward risk.",
+        "Shows each risk per integration with its break date or days to break.",
+        "Ranks the partner call list by days to break and end customers affected, not by call volume.",
+        "Includes the owner contact and whether it is verified for each row.",
+        "Shows partners their own specific surfaces, counts, last-seen dates and sample request IDs.",
+        "Advises against showing partners a single blended health score instead of the specifics.",
+        "Keeps other partners' data and partner rankings internal.",
+        "Includes a 'dispute this attribution' or similar path for partners who believe calls were misattributed."
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Security at Corvel Analytics found 1,400 API keys unused for 60+ days. We also sunset API v1 on Feb 28, and v1 traffic is now mostly long-tail. Plan: revoke all 1,400 dormant keys this week so the v1 residue shrinks and the sunset dashboard looks clean, and keep letting customers create new keys as today (new keys still default to v1 for backward compat). Thoughts?",
+      "expected_output": "Pushes back: dormant is not migrated, seasonal jobs resume; revocation belongs to key-management with owner confirmation, not inside the sunset program; include dormant keys in census with last-seen; stop new keys defaulting to v1 (close the door); track new integrations on v1.",
+      "files": [],
+      "expectations": [
+        "Rejects revoking the dormant keys as a way to shrink the v1 residue for the sunset.",
+        "States that a key unused for 60 days may belong to a periodic (monthly, quarterly or annual) job that will resume.",
+        "Recommends keeping dormant keys in the v1 census with their last-seen dates rather than removing them.",
+        "Recommends distinguishing abandoned keys from seasonal ones (e.g. by owner confirmation or historical call pattern) before revoking.",
+        "Routes revocation of confirmed-abandoned keys to the key-management/revocation process rather than the sunset program.",
+        "Recommends notifying the owners of dormant keys that last called v1 before Feb 28.",
+        "Recommends that new accounts or new integrations default to the replacement version instead of v1.",
+        "Keeps key rotations and new keys for existing integrations that still use v1 working until Feb 28 or their exception, rather than forcing them onto the replacement early.",
+        "Recommends preventing new integrations from starting on v1 after the sunset notice.",
+        "Recommends tracking the number of new integrations starting on v1 (target zero).",
+        "Warns that a dashboard made to look clean by revocation hides integrations that will break on Feb 28.",
+        "Defines migrated per integration by observed replacement usage over a full cycle or owner confirmation, not by absence of recent calls.",
+        "Recommends checking the dormant keys' historical call pattern (e.g. last year's same period) or asking owners, before classifying them as abandoned."
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "we're sunsetting /v1/orders in 90 days, how do I find out which integrations still call it",
+      "should_trigger": true
+    },
+    {
+      "query": "build me a report of which partner apps are still on API version 2023-01 and who owns them",
+      "should_trigger": true
+    },
+    {
+      "query": "Our deprecation emails keep bouncing. How should we find the right contact for each integration before the cutoff?",
+      "should_trigger": true
+    },
+    {
+      "query": "is it safe to turn off the legacy XML endpoint? traffic is basically zero",
+      "should_trigger": true
+    },
+    {
+      "query": "plan the brownouts before we remove basic auth from our public API",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we track migration progress off our v2 API so we know when we can shut it down",
+      "should_trigger": true
+    },
+    {
+      "query": "0.3% of traffic is still on v1, our CTO wants to kill it early. sanity check?",
+      "should_trigger": true
+    },
+    {
+      "query": "design a deprecated API usage report we can show each partner in their dashboard",
+      "should_trigger": true
+    },
+    {
+      "query": "find every webhook endpoint still receiving payload version 1 before we stop rendering it",
+      "should_trigger": true
+    },
+    {
+      "query": "which customers are still using our iOS SDK 2.x that hits end of life in spring",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I attribute API traffic to integrations so I can notify owners before a breaking change",
+      "should_trigger": true
+    },
+    {
+      "query": "partners keep ignoring our sunset notices - what should the escalation look like from email to cutoff",
+      "should_trigger": true
+    },
+    {
+      "query": "we have 200 marketplace apps on deprecated endpoints, help me prioritise which ones the partner team calls",
+      "should_trigger": true
+    },
+    {
+      "query": "set up a version drift dashboard for our platform's third-party integrations",
+      "should_trigger": true
+    },
+    {
+      "query": "Our signing certificate for webhooks rotates next month; how do we find the integrations that will break",
+      "should_trigger": true
+    },
+    {
+      "query": "a partner asked for an extension past the sunset date, should we move the date for everyone?",
+      "should_trigger": true
+    },
+    {
+      "query": "how long a lookback window do I need before declaring nobody uses the old endpoint anymore",
+      "should_trigger": true
+    },
+    {
+      "query": "write the go/no-go memo for retiring API v3 next week",
+      "should_trigger": true
+    },
+    {
+      "query": "plugin developers got our deprecation notice but site owners will be the ones broken. how do we reach them",
+      "should_trigger": true
+    },
+    {
+      "query": "we keep seeing calls on the removed endpoint after cutoff from integrations we didn't know about - what went wrong in our process",
+      "should_trigger": true
+    },
+    {
+      "query": "Which of our OAuth apps still request the legacy scopes we're removing, and how do we chase them?",
+      "should_trigger": true
+    },
+    {
+      "query": "set up a readiness gate for our API sunset",
+      "should_trigger": true
+    },
+    {
+      "query": "what should an in-response deprecation warning look like for clients still calling the old route",
+      "should_trigger": true
+    },
+    {
+      "query": "we're retiring a GraphQL field, how do we know which client apps still query it",
+      "should_trigger": true
+    },
+    {
+      "query": "track integrations that are dormant but still hold credentials before our v1 shutdown",
+      "should_trigger": true
+    },
+    {
+      "query": "draft the outreach to the partners whose apps still call the deprecated endpoints, with their usage numbers",
+      "should_trigger": true
+    },
+    {
+      "query": "Our gateway shows 5% of calls on the deprecated route with no API key attached. what does that mean for our sunset?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we stop new integrations from starting on the API version we just deprecated",
+      "should_trigger": true
+    },
+    {
+      "query": "Help me run the deprecation of our legacy batch endpoint integration by integration",
+      "should_trigger": true
+    },
+    {
+      "query": "our Shopify-style app marketplace has apps still using old API versions; how do we monitor and nudge them",
+      "should_trigger": true
+    },
+    {
+      "query": "is 'zero calls in the last 30 days' good enough to remove an endpoint",
+      "should_trigger": true
+    },
+    {
+      "query": "plan a per-partner exception process for integrations that can't migrate before the shutdown",
+      "should_trigger": true
+    },
+    {
+      "query": "emergency: we cut v1 yesterday and a big partner's integration broke. roll back for everyone or what?",
+      "should_trigger": true
+    },
+    {
+      "query": "I need a census of every integration and the API version it actually uses, not just the account default",
+      "should_trigger": true
+    },
+    {
+      "query": "monitor partner integrations for upcoming breakage: expiring client secrets, deprecated calls, old SDKs",
+      "should_trigger": true
+    },
+    {
+      "query": "which integrations will break when we drop TLS 1.1 next quarter and how do we tell them",
+      "should_trigger": true
+    },
+    {
+      "query": "we pulled the sunset date in by two months, how do we compress the notices",
+      "should_trigger": true
+    },
+    {
+      "query": "how should we rank integrations still on the old API - by request volume?",
+      "should_trigger": true
+    },
+    {
+      "query": "our VP thinks the old API is dead because the traffic graph is flat. how do I prove who's still on it",
+      "should_trigger": true
+    },
+    {
+      "query": "our partner manager needs a brief for calling the top 10 integrations still on the deprecated API",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I measure whether our deprecation notices are actually working",
+      "should_trigger": true
+    },
+    {
+      "query": "Build the integration-by-integration burn-down for the v2 retirement",
+      "should_trigger": true
+    },
+    {
+      "query": "customers on agencies' custom builds are still calling our legacy endpoints and the agencies don't respond",
+      "should_trigger": true
+    },
+    {
+      "query": "what's a sensible brownout schedule before removing password authentication from our API",
+      "should_trigger": true
+    },
+    {
+      "query": "list the partner integrations whose client certificates expire before year end and who to contact for each",
+      "should_trigger": true
+    },
+    {
+      "query": "design the developer-facing error log so integrators can debug their own failed requests",
+      "should_trigger": false
+    },
+    {
+      "query": "partners don't know their integration is broken right now - set up alerting on error spikes per API key",
+      "should_trigger": false
+    },
+    {
+      "query": "write our API versioning and deprecation policy, including notice windows and Sunset headers",
+      "should_trigger": false
+    },
+    {
+      "query": "Stripe is retiring API version 2023-10-16; which of our microservices still call it and how do we upgrade",
+      "should_trigger": false
+    },
+    {
+      "query": "GitHub is browning out ubuntu-20.04 runners next week, find every workflow in our org that still uses it",
+      "should_trigger": false
+    },
+    {
+      "query": "how should our API keys expire and rotate? design the key lifecycle",
+      "should_trigger": false
+    },
+    {
+      "query": "draft the status page update for today's API outage",
+      "should_trigger": false
+    },
+    {
+      "query": "we're migrating our app from Twilio's old SDK to the new one, what changes",
+      "should_trigger": false
+    },
+    {
+      "query": "is it safe to turn off our old Postgres read replica? traffic is near zero",
+      "should_trigger": false
+    },
+    {
+      "query": "write the migration guide for developers moving from v1 to v2",
+      "should_trigger": false
+    },
+    {
+      "query": "design the onboarding journey for new partner developers up to their first app submission",
+      "should_trigger": false
+    },
+    {
+      "query": "decide which language SDKs we should support and when to end-of-life the Ruby one",
+      "should_trigger": false
+    },
+    {
+      "query": "design our outbound webhook retry and signing scheme",
+      "should_trigger": false
+    },
+    {
+      "query": "set up certification renewal and decertification rules for partner-built connectors",
+      "should_trigger": false
+    },
+    {
+      "query": "write the changelog entry for this week's API release",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we version our GraphQL schema without breaking clients",
+      "should_trigger": false
+    },
+    {
+      "query": "design the rate-limit policy and 429 responses for our public API",
+      "should_trigger": false
+    },
+    {
+      "query": "upgrade our codebase from React 18 to 19",
+      "should_trigger": false
+    },
+    {
+      "query": "plan the internal deprecation of a legacy feature flag in our monolith",
+      "should_trigger": false
+    },
+    {
+      "query": "our Kubernetes cluster runs 1.27 which is going EOL, how do we upgrade",
+      "should_trigger": false
+    },
+    {
+      "query": "design a public roadmap page for our developer platform",
+      "should_trigger": false
+    },
+    {
+      "query": "build an SLA and uptime report for our API customers",
+      "should_trigger": false
+    },
+    {
+      "query": "review our REST API design for naming and pagination consistency",
+      "should_trigger": false
+    },
+    {
+      "query": "what metrics should DevRel report to the exec team each quarter",
+      "should_trigger": false
+    },
+    {
+      "query": "design the review process for third-party apps submitted to our marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we migrate our database schema without downtime",
+      "should_trigger": false
+    },
+    {
+      "query": "audit our API reference docs for missing endpoints",
+      "should_trigger": false
+    },
+    {
+      "query": "we need a sandbox test mode for integrators",
+      "should_trigger": false
+    },
+    {
+      "query": "our npm package has an old major we want to deprecate - how do we publish the deprecation",
+      "should_trigger": false
+    },
+    {
+      "query": "design the OAuth consent screen and scopes for third-party apps",
+      "should_trigger": false
+    },
+    {
+      "query": "help me run a beta program for our new API feature",
+      "should_trigger": false
+    },
+    {
+      "query": "design the provider-side fleet view showing which partner apps are failing right now",
+      "should_trigger": false
+    },
+    {
+      "query": "how do I write a postmortem for the incident that broke partner integrations last week",
+      "should_trigger": false
+    },
+    {
+      "query": "we need correlation IDs that partners can quote in support tickets",
+      "should_trigger": false
+    },
+    {
+      "query": "plan the launch marketing for our new app marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "design an MCP server so AI agents can use our product",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we decide which partners to build integrations with",
+      "should_trigger": false
+    },
+    {
+      "query": "set up dependabot so our own dependencies don't drift",
+      "should_trigger": false
+    },
+    {
+      "query": "what's the right notice period for deprecating a public API version",
+      "should_trigger": false
+    },
+    {
+      "query": "our Salesforce org has connected apps on API version 30, how do we upgrade our org's integrations",
+      "should_trigger": false
+    },
+    {
+      "query": "design key rotation so customers can roll their API keys without downtime",
+      "should_trigger": false
+    },
+    {
+      "query": "build a customer health score for our customer success team",
+      "should_trigger": false
+    },
+    {
+      "query": "monitor our own service's latency and error budget with SLOs",
+      "should_trigger": false
+    },
+    {
+      "query": "write the job description for an API product manager",
+      "should_trigger": false
+    },
+    {
+      "query": "our app uses Meta Graph API v17 which is being deprecated, what do we need to change in our code",
+      "should_trigger": false
+    }
+  ]
+}
