@@ -1,0 +1,410 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "public-roadmap-strategy",
+  "scenarios": 9,
+  "expectations_total": 110,
+  "expectations_subjective": 0,
+  "expectations_objective": 110,
+  "pass_rate_with_skill_pct": 88.2,
+  "pass_rate_without_skill_pct": 29.1,
+  "delta_pp": 59.1,
+  "uplift_multiplier": 3.03,
+  "trigger_accuracy_pct": 61.6,
+  "trigger_queries": 86,
+  "trigger_positive_fire_rate": 0.558,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Makes no return-on-investment claim (no churn, trust or sales-cycle figure) and states that no independent evidence links public roadmaps to those outcomes"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Flags that the original bare 'Q3' column without a phase read as general availability to buyers and reps, and recommends capping every date with a phase going forward"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the public roadmap is never the internal roadmap minus a few rows and runs every candidate through the exclusion gate"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Records who decides edge cases of the gate in the policy"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Marks passing items as public in the internal tool rather than maintaining a separate list"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the three-option ranking explicitly: on effort and value, separate board > reactions on items > locked items; on efficiency, locked items > reactions on items > separate board"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Routes per-request triage and dedup to a feedback-loop process rather than designing it inside the roadmap launch plan"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends no posture, vocabulary, tool or surface in the reply"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Keeps the reply to the question itself, without a preamble walking through the full workflow or listing the postures"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the four posture rankings out loud (effort, value, compliance cost, efficiency) across the six postures, not only a recommendation"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Re-ranks for the enterprise-heavy audience: customer briefings move to second on value and third on efficiency"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that the weekly-triaged Discussions category promotes the interactive-board rung with DevRel as the named triage owner, while locked items linking to that category stay the default"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names a single owner and a backup with the monthly hours, never 'product' collectively, and shows a last-reviewed date on the page"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Attributes the sales-promises problem to the absence of a single externally sayable roadmap and of a rule governing what customer-facing staff may promise, not to a lack of transparency or of a page"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Declines to publish any public posture while the VP Sales refuses to sign the citation rule, removing public postures from the candidate set rather than ranking them lower"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names fixing sales governance first, with no public page, as the first step, and names the signed citation rule as the condition that re-promotes a public posture"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that publishing without the citation rule hands reps a larger catalogue to promise from, so the page amplifies the problem"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires both the sales leader and the CEO to sign the citation rule"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Scopes the citation rule to anyone customer-facing: reps, solutions engineers, customer success, DevRel, and executives on stage"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Reads 'like Stripe' as dated quarters, the most demanding posture, and tests it against the four promotion conditions"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names the failing dated-quarters conditions from the given facts: no release phases exist, 3 of 9 told-to-customers items slipped, and finance has not reviewed revenue-recognition exposure"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Lists the Stripe-shaped dated roadmap as an ineligible candidate with the conditions that would make it eligible"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Makes no return-on-investment claim (no churn, trust or sales-cycle figure) and states that no independent evidence links public roadmaps to those outcomes"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats the Slack 'beta' tag as an informal flag: it becomes private preview only once access rules are written, and until then appears as a note on the item, not a phase"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes the rule that legal and finance approve any roadmap item written into an order form before signature"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Sets a sales-incident baseline before launch (roadmap items in new order forms or side letters, roadmap escalations) to compare each quarter"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Has legal check the private notice against the order-form terms first, because the slip may trigger notice, credit or termination rights"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Any new timing carries a release phase (for example Q1 - private preview), never a bare quarter"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notifies subscribers, reactors on the item, and every account the briefing log shows saw the item"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Flags that the original bare 'Q3' column without a phase read as general availability to buyers and reps, and recommends capping every date with a phase going forward"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the order-form entries bind regardless of the page disclaimer"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Structures the public notice as: update date and new status, what changed, what this means for you, workaround, what would change this, and a questions or thread link"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Excludes PL-301 (auth token replay weakness) from both the public repo and the NDA briefings because publication tells attackers where the gap is"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Excludes PL-287 (v1 sunset) until it is announced through the deprecation process, and links the notice from the item once announced"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Replaces the Tarnbrook Bank name with the capability (sync with the customer's bank) until the partner announces, in the NDA briefing as well as the public repo"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Excludes PL-305 (Harrowgate SAML mapping) as a customer-specific commitment that belongs in that customer's order form under legal review"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Excludes PL-320 (Postgres 17 migration, billing service split) as internal plumbing"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rewrites PL-290 'Key rotation v2' as a problem-first title (for example 'Rotate API keys without downtime')"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the public roadmap is never the internal roadmap minus a few rows and runs every candidate through the exclusion gate"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Applies the same exclusion gate to the NDA briefings, rejecting the plan to show the partner name under NDA"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Records who decides edge cases of the gate in the policy"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Marks passing items as public in the internal tool rather than maintaining a separate list"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives each public item a stable ID that survives from exploring to GA, and one discuss link to a feedback channel instead of comments on the item"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Checks the Growth tier and any other item that would cannibalize a current plan against the Osborne effect before publication"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects launching with an embedded voting board while no named triage owner and no running feedback loop exist"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends locked roadmap items, each linking to one feedback channel, as the default surface"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the three-option ranking explicitly: on effort and value, separate board > reactions on items > locked items; on efficiency, locked items > reactions on items > separate board"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Labels community requests apart from vendor plans (a Proposed label or equivalent) so a popular request never reads as a plan"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the 1,400 untriaged requests go to the feedback loop and do not gate the roadmap launch"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Plans the board's exit before launch, naming a forum closed without notice (UserVoice / Office 365) as the expectation-debt write-off to avoid"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Writes the transition as a format-change notice: a dated table of what changes, a 'what's not changing' section, and what happens to open requests"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Routes per-request triage and dedup to a feedback-loop process rather than designing it inside the roadmap launch plan"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Has counsel decide whether to add the clause to the self-serve terms and to new and renewing contracts, with written sign-off on the residual risk for existing contracts"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that a feature written into an order form binds regardless of the disclaimer and the MSA clause"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Brings finance in before publishing dated quarters, naming ASC 606 (IFRS 15 outside US GAAP) and the risk that a dated, specified upgrade becomes a separate performance obligation deferring revenue"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names finance's revenue-recognition review as a precondition of the dated-quarters posture, not an optional follow-up"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Repeats the disclaimer on the first slide of any NDA briefing deck, not in a footer"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Gates publication on explicit approval by product, sales leadership, counsel and finance"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Asks a question before proposing anything"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Asks exactly one question in the reply"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "The question asked is the trigger question (why now), not budget, tooling or audience"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Offers the trigger as multiple choice including sales promising unbuilt features, customers asking what's coming, a competitor publishing one, transparency as brand, and a slip that hurt trust"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends no posture, vocabulary, tool or surface in the reply"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Keeps the reply to the question itself, without a preamble walking through the full workflow or listing the postures"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the four posture rankings out loud (effort, value, compliance cost, efficiency) across the six postures, not only a recommendation"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Re-ranks for the enterprise-heavy audience: customer briefings move to second on value and third on efficiency"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Promotes NDA customer briefings alongside a public page because regulated procurement asks for roadmap evidence, presenting it as a bundle of two rungs"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Promotes the direction page or a small horizon roadmap because of the three-week deadline and the two-hour monthly budget, and says which interview answer moved which rung"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Withholds dated quarters, naming the missing finance revenue-recognition review as the failing promotion condition even though phases, the low slip rate and budget-planning buyers hold"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Sizes the public item count from the two-hour budget using the planning assumption of about a quarter hour per item per monthly review (roughly eight items), and says to replace it with the first month's actual time"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Flags that publishing only after at least two internal review cycles with decided statuses conflicts with the three-week deadline, and says how to resolve it"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Applies the same sales rules to the NDA briefings as to the page: disclaimer on slide one and a briefing log recording account, date, items and attendees"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Presents two or three candidate bundles with trade-offs and one recommendation, listing the dated-quarters candidate as ineligible with its missing condition"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Argues the decision on stated trade-offs for the competitor trigger, with no claimed ROI"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names a single owner and a backup with the monthly hours, never 'product' collectively, and shows a last-reviewed date on the page"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects defining Next as 'within about two months'; buckets are defined by engineering state (for example in build with a named owner) so no bucket smuggles in a date"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Removes quarter labels from research and in-design cards; dates appear only on items at private preview or later"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Caps every date that remains with a phase (for example 'Q1 - private preview')"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Acknowledges that GitHub dates in-design items by quarter column and states the stricter rule is this policy's deliberate choice"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rewrites 'Rate limiter v3', 'Auth revamp' and 'Dashboard 2.0' as problem-first titles"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects removing cards that won't happen; publishes a visible not planned or cancelled state with a reason, kept for at least one review cycle"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Treats the 'beta' tag as an informal flag: it maps to private preview only once access rules are written, and until then is a note on the card, not a phase"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Adds a separate label (Proposed or equivalent) for community ideas so they never read as vendor plans"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gives every card a stable ID that survives from exploring to GA"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Closes each shipped card with a changelog link (a shipped label or equivalent)"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Applies the slip steps to the pre-page commitment: a status (delayed / descoped / not planned), a one-paragraph reason, a workaround, notification of those who were told, and continued visibility"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that adding a roadmap page before the slip is handled multiplies the next slip"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects showing residency as Next with any date or GA implication while no release phase exists; if shown, it carries an engineering-state status and no timing"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Includes a citation rule covering executives on stage: no dates in keynotes unless the public page shows that date"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Tracks slip rate using the committed-item definition before any promotion to dated quarters"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Promotes NDA customer briefings alongside or instead of the page for the enterprise-heavy audience"
+      }
+    ]
+  }
+}

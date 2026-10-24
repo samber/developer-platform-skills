@@ -1,0 +1,366 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "stackoverflow-playbook",
+  "scenarios": 7,
+  "expectations_total": 91,
+  "expectations_subjective": 0,
+  "expectations_objective": 91,
+  "pass_rate_with_skill_pct": 82.4,
+  "pass_rate_without_skill_pct": 29.7,
+  "delta_pp": 52.7,
+  "uplift_multiplier": 2.77,
+  "trigger_accuracy_pct": 76.0,
+  "trigger_queries": 50,
+  "trigger_positive_fire_rate": 0.88,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Picks the Maintain posture, states its predicate (under about 2 hours a week), and drops the daily new-question rotation, duplicate flagging and bounties from the plan"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that monthly new questions sit under 1% of the 2014 peak while the archive still ranks in search, is licensed to Google and OpenAI, and is among domains AI assistants cite, as the reason the archive still serves the CTO's goal"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Ranks surfaces by value per hour with the tag excerpt and wiki first, then self-answered canonicals, then a new answer on a high-view outdated thread, and states that the citation goal promotes canonicals"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "For the 41k-view x509 thread, recommends posting a new answer from the DevRel's own account rather than editing the 2019 accepted answer"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Labels 'titles quoting the literal error string rank best' as practitioner reverse-engineering, unconfirmed, not a published ranking rule"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives the rep gates: tag excerpt and wiki at any rep but peer-reviewed, self-answered canonical at 15 rep, new answer at 1 rep"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps every proposed action inside 90 minutes a week with hours stated per action"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Carries the figures through: 212 questions, 3/5/2 new questions per month, 41k views, TARNWICK_SKIP_VERIFY removed in v3"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains the deletions by the enforced limit: six spam or abusive flags delete the post and cost 100 rep, and link-only answers are deleted"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Before posting a new Q&A, instructs searching the [larkq] tag for an existing thread on this error and answering there if one exists"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Treats the 30-a-month ticket theme as one of the quarterly 5-10 canonicals for top support-ticket themes and names duplicate flags (15 rep) onto it for existing threads"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Declines to answer the 'which should I pick' question on Stack Overflow because tool recommendations are off-topic there; notes Software Recommendations accepts such a question only when the answer meets every stated requirement"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Sets up the daily 15-minute rotating check from the tag feed (/feeds/tag/vexalith) into chat with one assignee per question, plus a weekly 1-2 hour steward slot"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Provides the Data Explorer query for data.stackexchange.com with the exact filters: PostTypeId = 1, ClosedDate IS NULL, AcceptedAnswerId IS NULL, NOT EXISTS an answer with Score > 0, ORDER BY ViewCount DESC, parameterized with ##TagName:string##"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "For the answer-rate metric, adds the 30-day window (CreationDate > DATEADD(day, -30, GETDATE())) and compares against all open questions in the same window with the same ClosedDate IS NULL filter on both sides"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends badge-building toward the gold tag badge because most of the backlog is repeats"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Rejects LLM-drafted answers even with an engineer checking them, citing the ban on content crafted in part or in whole by generative AI and its penalties (deletion with its reputation, warning, suspension on repeat)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the profile bio does not count as disclosure and that every post naming Quillbridge carries a disclosure line in the post, including the question half of a self-answered pair"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Replaces oldest-first with sorting the backlog by views and ignoring the near-zero-view tail, stating that oldest-first spends the most hours on threads nobody reads"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Picks the Curate posture and states its predicate: new questions still arrive monthly and the goal is deflection"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Clusters the backlog by root cause with one self-answered canonical per cluster and the remaining threads flagged as duplicates onto it"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Provides or points to the Data Explorer query on data.stackexchange.com listing open questions with no upvoted or accepted answer, highest views first, as the backlog source"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Handles bugs posted as questions with a workaround plus a disclosed link to the public issue, and account or billing threads with a 50+ rep steward commenting the support route and flagging to close"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives the rep gate per action: self-answered canonical and duplicate flag at 15 rep, close vote at 3,000 rep"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Carries the user's figures through unchanged: 1,412 questions, 338 unanswered, 4 engineers, 3 hours a week each, 8 weeks"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Batches edits and updates weekly rather than spreading them daily, because every edit bumps the thread to the Active tab"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes the daily 15-minute rotating check of the tag feed (/feeds/tag/quillbridge) with one assignee per question, and states the deflection goal promotes the new-question rotation"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Picks the Maintain posture, states its predicate (under about 2 hours a week), and drops the daily new-question rotation, duplicate flagging and bounties from the plan"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that monthly new questions sit under 1% of the 2014 peak while the archive still ranks in search, is licensed to Google and OpenAI, and is among domains AI assistants cite, as the reason the archive still serves the CTO's goal"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Ranks surfaces by value per hour with the tag excerpt and wiki first, then self-answered canonicals, then a new answer on a high-view outdated thread, and states that the citation goal promotes canonicals"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that accepted answers are no longer pinned above higher-scored ones, as published by Stack Overflow, so a correct new answer can rank above the outdated accepted one"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that rewriting another author's answer gets rolled back and that edits below 2,000 rep that change intent are rejected"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Labels 'titles quoting the literal error string rank best' as practitioner reverse-engineering, unconfirmed, not a published ranking rule"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Adds a monthly AI-citation spot check as a metric and states that targets are self-set because Stack Overflow publishes no vendor-tag benchmark"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives the rep gates: tag excerpt and wiki at any rep but peer-reviewed, self-answered canonical at 15 rep, new answer at 1 rep"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Delivers the x509 answer as the filled template (one-sentence direct answer, fix with the version tested, 'Why it works', disclosure line naming Tarnwick Labs and Tarnwick, reference link) with the technical body marked for staff to write, giving the generative-AI ban as the reason, rather than a post ready to paste"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains the deletions by the enforced limit: six spam or abusive flags delete the post and cost 100 rep, and link-only answers are deleted"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rewrites his answer pattern with the template: one-sentence direct answer, runnable code or steps with the version tested, 'Why it works', disclosure line, docs link only as a reference at the end"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that downvoted, closed or deleted posts trigger automatic answer bans, and sets the hygiene target at zero further spam flags, undisclosed-affiliation comments and rejected edits"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States accepted answers are no longer pinned above higher-scored ones, so the new answer can overtake the deprecated accepted one"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "On the competitor's two answers: does not downvote, flag or retag them; posts a new disclosed answer correcting the async-support claim with a working example"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names the rule 'hands off others' work' (never downvote, flag or retag competitors' posts) as the reason, not just etiquette"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Proposes one migration answer for the 0.9 deprecations as the duplicate target for other threads still using `ferro::migrate::auto()`"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Before posting a new Q&A, instructs searching the [larkq] tag for an existing thread on this error and answering there if one exists"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Uses the canonical title shape '<tool> fails with \"<literal error string>\" when <condition>' with the literal `handshake rejected: protocol version 4 not supported by broker (max 3)` string"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Puts a disclosure line in the question post itself, stating the Larkmoor affiliation and that the Q&A documents a common fix, not only in the answer"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Structures the answer as Cause, Fix, Verify, Applies to versions, carrying the 2.x SDK and broker 1.14+ ranges"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Leaves the technical body (code block, verify command and expected output) for staff to write and states the reason: content crafted in part by generative AI is banned; does not deliver a 'complete' answer body despite the request"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Instructs ticking 'Answer your own question' on the Ask page and confirms the 15-rep gate is met at 230 rep"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rewrites the tag excerpt as neutral usage guidance (one-line definition, use for questions about using larkq, bugs/feature requests/account issues to Larkmoor's own channels), removing 'fastest', 'Get started free' and the marketing link"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Writes the tag wiki with About, Before asking (versions and full error output, links to canonicals) and Where else to ask (bug, feature request, account URLs) sections"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the tag excerpt and wiki edits are peer-reviewed and carry no rep gate"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States posts are CC BY-SA 4.0, so the community TLS answer may be reused on the docs site with attribution"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Points the mirrored docs error page to the developer-troubleshooting-docs sibling skill rather than writing the docs page inline"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Treats the 30-a-month ticket theme as one of the quarterly 5-10 canonicals for top support-ticket themes and names duplicate flags (15 rep) onto it for existing threads"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Carries the figures through: 30 tickets a month, 230 rep, protocol 4 vs max 3, broker 1.14+, SDK 2.x, larkq.WithProtocol(3)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Lists the gates that block the plan as written: comment at 50 rep, flag at 15, close vote at 3,000; the new account cannot close or comment yet"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Assigns the billing threads to Dario (640 rep, above the 50-rep steward gate) to comment the support route and flag to close as not about programming, with the '(I work at Vexalith.)' line"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Declines to answer the 'which should I pick' question on Stack Overflow because tool recommendations are off-topic there; notes Software Recommendations accepts such a question only when the answer meets every stated requirement"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States reputation is per site and that 200 rep on any Stack Exchange site adds 100 on every other"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Delivers the week-1 routing table: how-to and error questions to Stack Overflow; bugs, feature requests, 'why' and 'when' questions to Vexalith's own channels, on the support page and the tag excerpt"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Sets up the daily 15-minute rotating check from the tag feed (/feeds/tag/vexalith) into chat with one assignee per question, plus a weekly 1-2 hour steward slot"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Sorts the 96 open questions by views and ignores the near-zero-view tail before any work, rather than working the whole list to make the tag look clean"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Sets the metric baseline: answer rate under 30 days starting at 90% and median time to first answer of one business day, or supplies the Data Explorer query to compute it"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Keeps the plan inside 4 hours a week with hours per action and the rep gate stated per action"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Proposes answer rate under 30 days with a self-set starting target of 90% and median time to first answer of one business day"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects 'questions edited or cleaned up' as a metric, stating every edit bumps the thread to the Active tab and that edits are batched weekly"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds hygiene with pass threshold zero: spam flags, AI deletions, undisclosed-affiliation comments, rejected edits"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds canonical coverage of the top 20 support-ticket themes, views on canonicals, and a monthly AI-citation spot check"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Provides the Data Explorer query for data.stackexchange.com with the exact filters: PostTypeId = 1, ClosedDate IS NULL, AcceptedAnswerId IS NULL, NOT EXISTS an answer with Score > 0, ORDER BY ViewCount DESC, parameterized with ##TagName:string##"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "For the answer-rate metric, adds the 30-day window (CreationDate > DATEADD(day, -30, GETDATE())) and compares against all open questions in the same window with the same ClosedDate IS NULL filter on both sides"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Opens with direct answers to the three asks before the query and metric list"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that at 3,100 rep Priya's close vote is one of three, and that only a gold tag badge (1,000 tag score and 200 answers in the tag) closes duplicates alone"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends badge-building toward the gold tag badge because most of the backlog is repeats"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Replaces the per-question edits with duplicate flags or votes onto the canonical, stating the site posts the link comment itself; a staff comment is added only to point at the version-specific part"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Warns that every edit bumps the thread to the Active tab, so 80 edits in one weekend is a bulk-edit pattern; batches work weekly"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Ranks bounty last in value per hour as a one-shot surface, below canonicals and duplicate flags"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Does not recommend starting an Oakhollow Collective; states the rule: join a Collective only if your technology already has one"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Gives the rep gates: duplicate flag at 15, duplicate vote at 3,000"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Ensures the new canonical carries a disclosure line in both the question and the answer post"
+      }
+    ]
+  }
+}

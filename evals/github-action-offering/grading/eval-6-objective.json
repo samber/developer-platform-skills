@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Keeps immutable releases on and explains the failure: the `v1` tag carries a GitHub release, so it cannot move; major tags must be plain release-free Git tags and only `vX.Y.Z` tags carry releases.",
+        "evidence": "'Major tags must be plain Git tags with no GitHub release.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects turning immutable releases off as the fix.",
+        "evidence": "'Keep immutable releases on.' 'Don't weaken the setting.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `git push -f --tags` with a push of the single moved tag as `refs/tags/v1`, because `--tags` pushes every local tag.",
+        "evidence": "'git push -f origin refs/tags/v1'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the release from `v1` (recreating it as a plain tag at the released commit) and points Marketplace consumers at the `vX.Y.Z` releases.",
+        "evidence": "'delete the v1 release and leave the tag... cutting a vX.Y.Z release'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the bot PAT with a short-lived GitHub App token used by a release workflow running in a protected environment with required reviewers.",
+        "evidence": "'Replace the bot PAT with a short-lived GitHub App token... protected environment with required reviewers.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Protects `v*` tags with a ruleset that only the release workflow's GitHub App can bypass, requires 2FA, and shortens the write-access list.",
+        "evidence": "Ruleset is covered, but 2FA and shortening the write-access list are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the leaked PAT as a compromised-credential incident and revokes and rotates every credential with write access (maintainer sessions, other PATs, App keys, deploy keys), not only the leaked PAT, because incomplete rotation re-opened the door in the 2026 trivy-action incident.",
+        "evidence": "'Rotate everything with write access... Incomplete rotation is how trivy was hit twice.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Freezes releases and restricts the tag ruleset to nobody while the audit runs.",
+        "evidence": "'Freeze releases' appears only inside the conditional runbook; there is no immediate freeze or ruleset lock while the audit runs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Compares every tag's target against the release record and signed tags, not only `v1` and `v2`, because past incidents repointed every tag at once.",
+        "evidence": "'List every tag and compare each against the release record and signed tags.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes a GitHub security advisory with affected tags, exposure window, known-good SHAs and the instruction to rotate any secret exposed to the action if any tag target changed, and notifies customers through Sorrelby's own channels and the `User-Agent` list of repositories that ran affected versions.",
+        "evidence": "Advisory and customer notification are included, but there is no User-Agent list of affected repositories.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Signs release tags and commits from now on, noting forged tags in past incidents were unsigned with impossible parent dates.",
+        "evidence": "'Sign release tags.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the release to the workflow sequence: build binaries in CI, attest them, create a draft `vX.Y.Z` release, attach assets, publish, then move `vX` from the same job.",
+        "evidence": "No release workflow sequence is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes `GITHUB_TOKEN` per job from `permissions: {}` and keeps the action's own CI off `pull_request_target`, `workflow_run` over fork code and `issue_comment` triggers.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Keeps immutable releases on and explains the failure: the `v1` tag carries a GitHub release, so it cannot move; major tags must be plain release-free Git tags and only `vX.Y.Z` tags carry releases.",
+        "evidence": "'`v1` is a moving tag and also a GitHub Release ... Publish releases only for full versions'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects turning immutable releases off as the fix.",
+        "evidence": "'Don't turn immutable releases off.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `git push -f --tags` with a push of the single moved tag as `refs/tags/v1`, because `--tags` pushes every local tag.",
+        "evidence": "`git push -f origin refs/tags/v1`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the release from `v1` (recreating it as a plain tag at the released commit) and points Marketplace consumers at the `vX.Y.Z` releases.",
+        "evidence": "'delete the **Release** object but keep the tag ... `gh release delete v1`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the bot PAT with a short-lived GitHub App token used by a release workflow running in a protected environment with required reviewers.",
+        "evidence": "Suggests a GitHub App or OIDC but no protected environment with required reviewers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Protects `v*` tags with a ruleset that only the release workflow's GitHub App can bypass, requires 2FA, and shortens the write-access list.",
+        "evidence": "Tag ruleset on `v*` only, with no 2FA or write-list reduction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the leaked PAT as a compromised-credential incident and revokes and rotates every credential with write access (maintainer sessions, other PATs, App keys, deploy keys), not only the leaked PAT, because incomplete rotation re-opened the door in the 2026 trivy-action incident.",
+        "evidence": "Rotates other secrets in the Slack export and checks PAT scope, but does not cover maintainer sessions, App keys, deploy keys, etc.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Freezes releases and restricts the tag ruleset to nobody while the audit runs.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Compares every tag's target against the release record and signed tags, not only `v1` and `v2`, because past incidents repointed every tag at once.",
+        "evidence": "Checks only whether `v1` or `v2` pointed elsewhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes a GitHub security advisory with affected tags, exposure window, known-good SHAs and the instruction to rotate any secret exposed to the action if any tag target changed, and notifies customers through Sorrelby's own channels and the `User-Agent` list of repositories that ran affected versions.",
+        "evidence": "Only 'notify consumers' if a tag moved; no advisory or User-Agent list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Signs release tags and commits from now on, noting forged tags in past incidents were unsigned with impossible parent dates.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves the release to the workflow sequence: build binaries in CI, attest them, create a draft `vX.Y.Z` release, attach assets, publish, then move `vX` from the same job.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes `GITHUB_TOKEN` per job from `permissions: {}` and keeps the action's own CI off `pull_request_target`, `workflow_run` over fork code and `issue_comment` triggers.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

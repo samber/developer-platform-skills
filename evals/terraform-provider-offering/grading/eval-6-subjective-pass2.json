@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Keeps one resource per API service and prefers many small resources over one holding a whole account.",
+        "evidence": "Section 5 maps each API object to its own small resource: workspace, workspace_member, team_member, template, segment and sending_domain. Push-back 1 drops the inline members block on marrowgate_workspace in favour of a separate attachment resource, and push-back 2 refuses a separate state resource because it would fight template over one field. Nothing in the design bundles a whole account into one resource. The transcript never states the rule against an account-wide mega-resource outright, so the preference has to be inferred from the design. The score is held below 5 for that reason.",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Keeps one resource per API service and prefers many small resources over one holding a whole account.",
+        "evidence": "The proposed v1 scope splits the API into small, separate resources: `marrowgate_workspace`, `marrowgate_workspace_member`, `marrowgate_template`, `marrowgate_segment` and `marrowgate_account_sending_domain`. Pushback 2 rejects inline `members` on the workspace in favour of a separate `workspace_member` resource. It also defers an authoritative `workspace_members` resource. Pushback 3 avoids one resource fighting another over the same object. These choices follow the principle in practice. The answer never states it as a rule, though: it does not say to map one resource to each API service, an",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

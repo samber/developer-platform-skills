@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects removing the issue from the board; changes the status on the item itself to delayed (or descoped / not planned)",
+        "evidence": "\"Keep the item. Set its status to `delayed`, add a dated update\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the newsletter as the first channel for the slip",
+        "evidence": "\"Tell the two order-form customers privately first, then update the item, then use the newsletter as a follow-up.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the account owner tell both order-form customers privately, days before any public update",
+        "evidence": "\"the account owner calls each customer... Do this days before the public update.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has legal check the private notice against the order-form terms first, because the slip may trigger notice, credit or termination rights",
+        "evidence": "\"have legal read both order forms and tell you what the slip triggers (notice period, credits, termination...)\"; \"Hold this until legal approves it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects posting the slip on the status page, stating a roadmap slip is not an incident",
+        "evidence": "\"A roadmap slip is not an incident or maintenance.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Public notice gives a one-paragraph plain-language reason (replay starving live delivery, queue redesign)",
+        "evidence": "\"Load testing showed that replay traffic can starve live webhook delivery. We are redesigning the delivery queue\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Public notice offers a workaround or alternative to use meanwhile",
+        "evidence": "Public notice has \"**Workaround:** [e.g. resend individual events from the dashboard...]\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects re-adding the item as 'Coming Q1!' with no reason and a bare date",
+        "evidence": "\"This reads as a silent re-issue with a new date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Any new timing carries a release phase (for example Q1 - private preview), never a bare quarter",
+        "evidence": "\"Publish one only once the item reaches private preview, and print it with that phase.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notifies subscribers, reactors on the item, and every account the briefing log shows saw the item",
+        "evidence": "\"Notify watchers, subscribers, and anyone who saw the item in a briefing or deck.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the item visible on the board rather than deleting it, and if cancelled keeps it visible for at least one review cycle",
+        "evidence": "\"Keep the item visible.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that the original bare 'Q3' column without a phase read as general availability to buyers and reps, and recommends capping every date with a phase going forward",
+        "evidence": "The GA-reading remark is about the proposed bare 'Q1'. It never says the original bare 'Q3' column read as GA or recommends capping every date going forward.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the order-form entries bind regardless of the page disclaimer",
+        "evidence": "\"A feature named in an order form is a binding deliverable, whatever the page disclaimer says.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Structures the public notice as: update date and new status, what changed, what this means for you, workaround, what would change this, and a questions or thread link",
+        "evidence": "Status/date, What changed, What this means for you, Workaround, What would change this, Questions link",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects removing the issue from the board; changes the status on the item itself to delayed (or descoped / not planned)",
+        "evidence": "'Keep the issue, move it, and explain the move in a comment.' Move to 'Later / Planned' or label `target: Q1 earliest`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the newsletter as the first channel for the slip",
+        "evidence": "Revised order puts the newsletter last: '4. Next newsletter: Short, factual note (draft E).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has the account owner tell both order-form customers privately, days before any public update",
+        "evidence": "'Within 48 hours: Direct emails or calls to the two enterprise customers' and 'After those land: Move the board item'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Has legal check the private notice against the order-form terms first, because the slip may trigger notice, credit or termination rights",
+        "evidence": "Only 'loop in the account owner and whoever handles contracts. They may need an amendment, a credit'. It does not say legal checks the notice first.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects posting the slip on the status page, stating a roadmap slip is not an incident",
+        "evidence": "'A status page is for incidents and maintenance. A roadmap slip there looks like an outage notice.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Public notice gives a one-paragraph plain-language reason (replay starving live delivery, queue redesign)",
+        "evidence": "'in load testing, replay traffic competed with live webhook delivery... We're redesigning the delivery queue'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Public notice offers a workaround or alternative to use meanwhile",
+        "evidence": "'What you can do today: [interim workaround...]'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects re-adding the item as 'Coming Q1!' with no reason and a bare date",
+        "evidence": "'A celebratory \"Coming Q1!\" turns a floor into a promise.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Any new timing carries a release phase (for example Q1 - private preview), never a bare quarter",
+        "evidence": "Uses 'Q1 [year] at the earliest' and `target: Q1 earliest`, with no phase.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notifies subscribers, reactors on the item, and every account the briefing log shows saw the item",
+        "evidence": "Only the two enterprise customers, a comment on the issue and a newsletter. No briefing-log accounts.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the item visible on the board rather than deleting it, and if cancelled keeps it visible for at least one review cycle",
+        "evidence": "'Keep the issue, move it'. The roadmap that 'deletes slipped items' is called out as damaging.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that the original bare 'Q3' column without a phase read as general availability to buyers and reps, and recommends capping every date with a phase going forward",
+        "evidence": "There is no discussion of release phases or GA misreading.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the order-form entries bind regardless of the page disclaimer",
+        "evidence": "It says the order form may need an amendment or credit. It never says the entries bind regardless of the page disclaimer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Structures the public notice as: update date and new status, what changed, what this means for you, workaround, what would change this, and a questions or thread link",
+        "evidence": "Draft C has update, why, what you can do, what's next, and a comment request. It has no 'what would change this' and no questions/thread link.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the extension never ships ahead of the CLI it calls and requires releasing in the same train as the CLI whenever a feature spans both.",
+        "evidence": "Release train and 'no extension release before its CLI' rule.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a CLI version check at activation that shows one message with the upgrade command when below the minimum, never a stack trace.",
+        "evidence": "Hotfix step 1.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gates the promote feature on a capability the CLI reports, with a missing `--json` field read as a version mismatch, instead of on the extension's own version.",
+        "evidence": "`cliCapabilities.includes('promote')`; 'Treat a missing JSON field as a version mismatch'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes a compatibility matrix with the columns extension version, minimum CLI version, minimum `engines.vscode`, JetBrains `since-build`, API version and status, with the 3.1.x row filled.",
+        "evidence": "Matrix has no JetBrains since-build column.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the `engines.vscode` floor at or below the Code-OSS base of the oldest fork Marrowfield's users run (Cursor) and feature-detects the new API instead of raising the floor.",
+        "evidence": "Lower `engines.vscode`... feature-detect the new API.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `engines.vscode` may be raised only in a minor release with a changelog line, never silently inside a feature release.",
+        "evidence": "Checklist item 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Fixes Codespaces by setting `extensionKind` so the extension runs on the remote host and detects the CLI there.",
+        "evidence": "'A CLI-spawning extension should be `[\"workspace\"]`' with PATH detection checks.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Expands the test matrix with `@vscode/test-cli` to the minimum `engines.vscode`, current stable, Insiders, the main fork (Cursor, by pointing `@vscode/test-electron` at its executable or a manual smoke test) and one remote target, against a real sandbox account.",
+        "evidence": "Section 2.2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a test that covers the minimum-CLI check.",
+        "evidence": "Fake `mfield` shim unit test.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rolls back on the Marketplace and Open VSX by republishing the last good code as a higher patch, never by republishing 3.1.0 or an older version number.",
+        "evidence": "'Rollback is roll-forward: republish the last good code as a higher patch.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the release gates: same `.vsix` hash on both registries with a clean secret scan, integration tests green across the host matrix, compatibility matrix updated, no usage event at telemetry `error` or `off`, and untrusted-workspace behaviour tested.",
+        "evidence": "Checklist items 4-10.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declares the `engines.vscode` minimum as a real version, never `*`.",
+        "evidence": "No statement forbidding `*`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records the minimum host and CLI versions in the plan or persistent context so later releases check against them instead of re-deciding.",
+        "evidence": "Only a published matrix; no persistent-context record.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tracks the share of users on supported versions and issues and tickets per release as release metrics.",
+        "evidence": "Checklist item 14 and matrix; 'share of users on supported versions'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Follows the hosted API's own deprecation windows for the API version column rather than inventing a separate schedule for the extension.",
+        "evidence": "API version just 'per CLI'; no deprecation windows.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the extension never ships ahead of the CLI it calls and requires releasing in the same train as the CLI whenever a feature spans both.",
+        "evidence": "\"Release order rule: CLI first, then the extension.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a CLI version check at activation that shows one message with the upgrade command when below the minimum, never a stack trace.",
+        "evidence": "\"At activation and before running promote, run mfield --version... Update CLI button\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gates the promote feature on a capability the CLI reports, with a missing `--json` field read as a version mismatch, instead of on the extension's own version.",
+        "evidence": "Capability reporting is only \"Better still\"; the main gate is a semver version check, with no missing-field rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes a compatibility matrix with the columns extension version, minimum CLI version, minimum `engines.vscode`, JetBrains `since-build`, API version and status, with the 3.1.x row filled.",
+        "evidence": "It mentions a compatibility doc but gives no matrix with the required columns.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the `engines.vscode` floor at or below the Code-OSS base of the oldest fork Marrowfield's users run (Cursor) and feature-detects the new API instead of raising the floor.",
+        "evidence": "\"Set engines.vscode to the oldest version the extension truly needs... Guard the new API at runtime\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `engines.vscode` may be raised only in a minor release with a changelog line, never silently inside a feature release.",
+        "evidence": "It says \"engines.vscode only moves on a major release\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Fixes Codespaces by setting `extensionKind` so the extension runs on the remote host and detects the CLI there.",
+        "evidence": "\"set \\\"extensionKind\\\": [\\\"workspace\\\"]\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Expands the test matrix with `@vscode/test-cli` to the minimum `engines.vscode`, current stable, Insiders, the main fork (Cursor, by pointing `@vscode/test-electron` at its executable or a manual smoke test) and one remote target, against a real sandbox account.",
+        "evidence": "Host matrix of min/stable/insiders, a devcontainer remote matrix and a Cursor smoke test.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a test that covers the minimum-CLI check.",
+        "evidence": "\"Unit tests for the capability gate at the pivot values: CLI 2.5.9, 2.6.0...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rolls back on the Marketplace and Open VSX by republishing the last good code as a higher patch, never by republishing 3.1.0 or an older version number.",
+        "evidence": "It says only \"previous version available\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the release gates: same `.vsix` hash on both registries with a clean secret scan, integration tests green across the host matrix, compatibility matrix updated, no usage event at telemetry `error` or `off`, and untrusted-workspace behaviour tested.",
+        "evidence": "The checklist has none of these gates.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declares the `engines.vscode` minimum as a real version, never `*`.",
+        "evidence": "It sets the oldest needed version and pins @types/vscode to it.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records the minimum host and CLI versions in the plan or persistent context so later releases check against them instead of re-deciding.",
+        "evidence": "MIN_CLI_FOR_PROMOTE constant and the compatibility policy doc.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tracks the share of users on supported versions and issues and tickets per release as release metrics.",
+        "evidence": "It tracks error rates by bucket, not the share of users on supported versions or tickets per release.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Follows the hosted API's own deprecation windows for the API version column rather than inventing a separate schedule for the extension.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Makes `api_key` Optional rather than Required, because Required blocks the environment-variable fallback.",
+        "evidence": "'Make it `Optional` and `Sensitive`... Fall back to `THORNFIELD_API_KEY`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks `api_key` Sensitive and sets no default on any credential attribute.",
+        "evidence": "'Optional and Sensitive, with no default.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the precedence, highest first: provider block, environment variables, shared credentials file, platform identity, and resolves secrets as a complete set rather than mixing sources.",
+        "evidence": "'Resolve the credentials as a complete set... provider block, then env vars, then credentials file.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the 'wrong account' report as an unknown-value problem: when `api_key` is wired from another resource or data source and unknown at plan, the provider must guard it instead of falling through to another credential source.",
+        "evidence": "'If Configure doesn't check IsUnknown()... authenticates as a different identity.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the POST /v1/sessions call from provider configure, stating write calls at configure time fail under least-privilege credentials and run on every plan.",
+        "evidence": "Replaces the eager session with a lazy in-memory one inside the HTTP client.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the POST /v1/projects/default call from configure and moves default-project creation into a resource such as `thornfield_project`.",
+        "evidence": "'Ship a `thornfield_project` resource with import'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Validates credentials eagerly with one cheap identity call at configure time behind a `skip_credentials_validation` flag, skipped when any credential attribute is unknown at plan.",
+        "evidence": "'one cheap read-only identity call... behind `skip_credentials_validation`, and skip it when any credential is unknown.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names every credential source tried plus the docs URL in the error when no credentials resolve, and never logs secret values.",
+        "evidence": "'Tried: provider `api_key`, env `THORNFIELD_API_KEY`, credentials file. See <docs URL>.' 'Never log secret values.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets a `User-Agent` carrying the provider name and version so API logs show provider traffic.",
+        "evidence": "'send a `User-Agent` with the provider name and version'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Honours `Retry-After` on 429 responses and throttles client-side to the documented quota.",
+        "evidence": "'honour `Retry-After`... client-side token-bucket limiter'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents a safe `-parallelism` value for large configurations, noting Terraform defaults to 10 concurrent operations.",
+        "evidence": "'Terraform runs 10 operations in parallel by default'; 'document a safe `-parallelism`'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retries only the typed 429 with its `Retry-After` window and does not wrap the storm in a broad retry of every error class.",
+        "evidence": "'retry only 429 and the specific typed temporary errors. Never retry broad classes'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records 'documented rate limits' as a readiness-gate row and routes the quota design itself to the rate-limit policy skill rather than inventing quotas inside the provider.",
+        "evidence": "Gate row 'Documented rate limits'; 'route quota design to `api-rate-limit-policy`'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Makes `api_key` Optional rather than Required, because Required blocks the environment-variable fallback.",
+        "evidence": "\"Make `api_key` Optional and Sensitive, with env var fallback.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks `api_key` Sensitive and sets no default on any credential attribute.",
+        "evidence": "Optional and Sensitive; no default on credentials.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the precedence, highest first: provider block, environment variables, shared credentials file, platform identity, and resolves secrets as a complete set rather than mixing sources.",
+        "evidence": "Only \"attribute, then env var\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the 'wrong account' report as an unknown-value problem: when `api_key` is wired from another resource or data source and unknown at plan, the provider must guard it instead of falling through to another credential source.",
+        "evidence": "\"Never fall through to another credential source after an unknown value.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the POST /v1/sessions call from provider configure, stating write calls at configure time fail under least-privilege credentials and run on every plan.",
+        "evidence": "Makes it lazy rather than removing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the POST /v1/projects/default call from configure and moves default-project creation into a resource such as `thornfield_project`.",
+        "evidence": "\"Remove it from configure... a `thornfield_project` resource\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Validates credentials eagerly with one cheap identity call at configure time behind a `skip_credentials_validation` flag, skipped when any credential attribute is unknown at plan.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names every credential source tried plus the docs URL in the error when no credentials resolve, and never logs secret values.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets a `User-Agent` carrying the provider name and version so API logs show provider traffic.",
+        "evidence": "\"Send a User-Agent with the provider and Terraform versions.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Honours `Retry-After` on 429 responses and throttles client-side to the documented quota.",
+        "evidence": "\"Honor `Retry-After`\"; token-bucket limiter",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents a safe `-parallelism` value for large configurations, noting Terraform defaults to 10 concurrent operations.",
+        "evidence": "Mentions the default only; no recommended value.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Retries only the typed 429 with its `Retry-After` window and does not wrap the storm in a broad retry of every error class.",
+        "evidence": "\"Retry 429 and 5xx with exponential backoff\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records 'documented rate limits' as a readiness-gate row and routes the quota design itself to the rate-limit policy skill rather than inventing quotas inside the provider.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

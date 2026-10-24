@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Explains the deletions by the enforced limit: six spam or abusive flags delete the post and cost 100 rep, and link-only answers are deleted",
+        "evidence": "Says link-only answers are deleted on sight but never states six flags delete the post and cost 100 rep.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the profile line 'Core engineer @ Ferrostack' does not count as disclosure; each post naming Ferrostack needs a disclosure line in the post body",
+        "evidence": "\"His profile line 'Core engineer @ Ferrostack' does not count, because the disclosure has to be in the post.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites his answer pattern with the template: one-sentence direct answer, runnable code or steps with the version tested, 'Why it works', disclosure line, docs link only as a reference at the end",
+        "evidence": "Template: direct answer, runnable code with version, \"Why it works\", Disclosure, Reference link last.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that downvoted, closed or deleted posts trigger automatic answer bans, and sets the hygiene target at zero further spam flags, undisclosed-affiliation comments and rejected edits",
+        "evidence": "\"Another deletion or downvoted post can trigger an automatic answer ban\"; \"The pass threshold for each of these is zero\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells him some but not all answers may be about Ferrostack, so he also answers questions where the product is not the solution",
+        "evidence": "\"breaks the 'some but not all' limit\"; answer general Rust and database questions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "On the 18k-view thread: does not edit the 2021 accepted answer; posts a new answer with the 0.9 API instead, stating edits below 2,000 rep that change intent are rejected and rewrites get rolled back",
+        "evidence": "\"Do not edit it... below 2,000 rep his edit goes to review. Edits that change the intent... are rejected, and rewrites get rolled back.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States accepted answers are no longer pinned above higher-scored ones, so the new answer can overtake the deprecated accepted one",
+        "evidence": "\"Accepted answers are no longer pinned above higher-scored ones\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "On the competitor's two answers: does not downvote, flag or retag them; posts a new disclosed answer correcting the async-support claim with a working example",
+        "evidence": "\"Do not downvote them. Do not flag them as spam.\" Post a correct answer with async example and disclosure.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the rule 'hands off others' work' (never downvote, flag or retag competitors' posts) as the reason, not just etiquette",
+        "evidence": "\"The rule is to never downvote, flag, or retag a competitor's posts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not suggest colleagues vote on, accept or bounty his posts to recover reputation or ranking",
+        "evidence": "\"Do not ask teammates to upvote the rewrites\"; \"Colleagues should not vote on these threads at all.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes one migration answer for the 0.9 deprecations as the duplicate target for other threads still using `ferro::migrate::auto()`",
+        "evidence": "\"flag them as duplicates of one migration canonical\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the figures through: 212 rep, 3 deleted answers, 18k views, deprecated in 0.9, async since 0.7",
+        "evidence": "212 rep, three deleted answers, 18k-view thread, 0.9, async since 0.7.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Explains the deletions by the enforced limit: six spam or abusive flags delete the post and cost 100 rep, and link-only answers are deleted",
+        "evidence": "It says 'Six spam flags in a week is enough to trigger automatic restrictions on his account.' That is not the post-deletion and 100-rep rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the profile line 'Core engineer @ Ferrostack' does not count as disclosure; each post naming Ferrostack needs a disclosure line in the post body",
+        "evidence": "'A profile line saying \"Core engineer @ Ferrostack\" does not count as disclosure. The affiliation has to be stated in each answer.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites his answer pattern with the template: one-sentence direct answer, runnable code or steps with the version tested, 'Why it works', disclosure line, docs link only as a reference at the end",
+        "evidence": "It advises putting the solution in the post with a disclosure and a supporting guide link. There is no direct-answer sentence, version tested or 'Why it works' structure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that downvoted, closed or deleted posts trigger automatic answer bans, and sets the hygiene target at zero further spam flags, undisclosed-affiliation comments and rejected edits",
+        "evidence": "No answer-ban warning and no zero-hygiene target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells him some but not all answers may be about Ferrostack, so he also answers questions where the product is not the solution",
+        "evidence": "'Keep a clear majority of his posts non-promotional.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "On the 18k-view thread: does not edit the 2021 accepted answer; posts a new answer with the 0.9 API instead, stating edits below 2,000 rep that change intent are rejected and rewrites get rolled back",
+        "evidence": "'Don't edit it'; it recommends a new `plan().apply()` answer. It says a suggested edit like that 'gets rejected' and that he is under review-queue rules.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States accepted answers are no longer pinned above higher-scored ones, so the new answer can overtake the deprecated accepted one",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "On the competitor's two answers: does not downvote, flag or retag them; posts a new disclosed answer correcting the async-support claim with a working example",
+        "evidence": "It recommends commenting, downvoting ('Downvote on the merits') and possibly flagging.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the rule 'hands off others' work' (never downvote, flag or retag competitors' posts) as the reason, not just etiquette",
+        "evidence": "Not named. The advice is framed around optics.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not suggest colleagues vote on, accept or bounty his posts to recover reputation or ranking",
+        "evidence": "'Don't ask teammates to upvote his answers or to flag on his behalf.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes one migration answer for the 0.9 deprecations as the duplicate target for other threads still using `ferro::migrate::auto()`",
+        "evidence": "Not proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries the figures through: 212 rep, 3 deleted answers, 18k views, deprecated in 0.9, async since 0.7",
+        "evidence": "Mentions 212 rep, three deleted answers, 18k views, deprecated since 0.9 and async since 0.7.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

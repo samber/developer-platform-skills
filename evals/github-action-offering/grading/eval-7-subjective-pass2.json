@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Reframes the Marketplace push: the listing is unreviewed and a trust surface, adoption follows Quillstone's own docs and onboarding snippets, so the same snippet goes into the docs quickstart.",
+        "evidence": "Section 3 is titled 'Marketplace push: wrong lever'. It says 'Listing is unreviewed and is a trust surface. Docs and onboarding snippets drive adoption.' Its first-ranked effort is 'Quickstart in Quillstone docs and in-product onboarding, with the SHA-pinned `uses: org/action@<sha> # v4.0.0` line', and it ranks the Marketplace listing 4th. The answer covers all three parts of the reframe. It only implies that the onboarding snippet and the docs quickstart use the same line and never says so outright, so it gets 4 rather than 5.",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Reframes the Marketplace push: the listing is unreviewed and a trust surface, adoption follows Quillstone's own docs and onboarding snippets, so the same snippet goes into the docs quickstart.",
+        "evidence": "Section 3 reframes the push only partly: 'Adoption isn't the problem... the risk is breaking them' and 'The listing helps discovery. It does nothing for migration.' It never says the Marketplace listing is unreviewed or a trust surface. It never says adoption comes from Quillstone's own docs or onboarding snippets, and it never says to put the same `uses:` snippet in the docs quickstart. The listing advice is only about listability: root action.yml, branding and no workflow files.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

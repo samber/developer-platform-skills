@@ -1,0 +1,82 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Asks a question before proposing anything",
+        "evidence": "\"Question 1 (I need your answer before I recommend anything)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks exactly one question in the reply",
+        "evidence": "Only the 'Why now?' question is posed; the others are deferred",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The question asked is the trigger question (why now), not budget, tooling or audience",
+        "evidence": "\"Why now? Which of these is closest?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the trigger as multiple choice including sales promising unbuilt features, customers asking what's coming, a competitor publishing one, transparency as brand, and a slip that hurt trust",
+        "evidence": "Options a\u2013e: sales promises, customers ask, competitor, transparency brand, slip hurt trust",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends no posture, vocabulary, tool or surface in the reply",
+        "evidence": "\"My default if nothing else changes... a horizon roadmap\" with buckets, GitHub-repo style and hours.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the reply to the question itself, without a preamble walking through the full workflow or listing the postures",
+        "evidence": "Adds a trigger table, default posture, promotion conditions and a to-do list, and previews the full workflow.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Asks a question before proposing anything",
+        "evidence": "Opens with a six-step plan, including formats and rules. The question comes only in Step 1 and the closing message.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks exactly one question in the reply",
+        "evidence": "Asks the goal question and 'what prompted the ask?'. It also lists four outcomes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The question asked is the trigger question (why now), not budget, tooling or audience",
+        "evidence": "The main question is 'What outcome do you want from this roadmap?', which asks about goals, not the trigger.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers the trigger as multiple choice including sales promising unbuilt features, customers asking what's coming, a competitor publishing one, transparency as brand, and a slip that hurt trust",
+        "evidence": "The options are trust, adoption, sales support and ticket deflection. They are not the required trigger set.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends no posture, vocabulary, tool or surface in the reply",
+        "evidence": "Recommends Now/Next/Later, a docs-site page and no dates.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the reply to the question itself, without a preamble walking through the full workflow or listing the postures",
+        "evidence": "A full multi-step workflow with a time estimate and risks.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Removes the three `ExpectNonEmptyPlan: true` settings and fixes the tag ordering in the provider (a set for the unordered collection, or normalization), stating a PR that adds `ExpectNonEmptyPlan` must link the API bug it works around.",
+        "evidence": "'Delete the three flags'; set vs sorted list; 'A PR that must add one has to link an API bug.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the harness already re-plans after every apply step and fails on a non-empty plan, and that this default is what catches perpetual diffs.",
+        "evidence": "'The harness's empty-plan check is what catches perpetual diffs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the staging org shared with sales demo data and requires a dedicated sandbox account per CI lane with credentials scoped to it.",
+        "evidence": "'New dedicated org per CI lane, with credentials scoped to it'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stops acceptance tests from running on pull requests from forks with sandbox credentials, citing credential exfiltration, and requires a maintainer-approved run triggered by a PR label or comment.",
+        "evidence": "'a malicious PR can exfiltrate them'; 'Run it on a maintainer label or comment'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Registers sweepers (`resource.AddTestSweepers` with dependencies, `TestMain` calling `resource.TestMain`) that delete every object matching the test prefix, run before and after each nightly.",
+        "evidence": "'resource.AddTestSweepers, declare dependencies, and call resource.TestMain... Run sweepers before and after each nightly.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names test objects with a fixed prefix and random suffix (`tf-acc-test-<random>`) so parallel runs never collide and sweepers can find leftovers.",
+        "evidence": "'Name every test object `tf-acc-test-<random>`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds per resource: a `_disappears` test, an update test per mutable attribute, a replacement test per `RequiresReplace` attribute, and an import step with `ImportStateVerify` at the end of `_basic`.",
+        "evidence": "Coverage matrix with `_disappears`, update per attribute, replacement, import with ImportStateVerify.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds upgrade tests that apply with the last released version through `ExternalProviders`, then plan with the new build through `ProtoV6ProviderFactories` and expect an empty plan.",
+        "evidence": "'apply the last released version via `ExternalProviders`, plan with the new build, expect an empty plan'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tests against the oldest claimed Terraform version as well as the latest, and adds a `tofu` lane by pointing the harness at the tofu binary with `TF_ACC_TERRAFORM_PATH`.",
+        "evidence": "'Test the oldest claimed version, the latest, and a `tofu` lane'; `TF_ACC_TERRAFORM_PATH`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Partner badge requires nightly acceptance tests in GitHub Actions, the Plugin Framework, the Technology Partner Program, and fixing critical issues within 48 hours and others within 5 business days.",
+        "evidence": "Technology Partner Program, Plugin Framework, nightly, 48 hours / 5 business days.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lays out the cadence: every PR runs build, lint, unit tests, a docs regeneration check and a no-new-`ExpectNonEmptyPlan` check; a label or maintainer comment runs acceptance tests for touched resources; nightly runs the full suite, sweepers and upgrade tests; releases only from a commit with a green nightly.",
+        "evidence": "Cadence table: every PR, label/comment, nightly, release from green nightly.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds import config generation checks: apply, then run an `import` block with `terraform plan -generate-config-out` and validate the generated HCL with `terraform validate`.",
+        "evidence": "'an `import` block with `-generate-config-out`, then `terraform validate`'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses typed state checks (`statecheck.ExpectKnownValue` with `knownvalue` matchers) and `plancheck.ExpectResourceAction` on in-place update steps, and asserts sensitive values never appear in state.",
+        "evidence": "'Use typed `statecheck` and `knownvalue` checks'; `plancheck.ExpectResourceAction`; secrets absent from state.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tracks flake rate per resource and fixes flakes with waiters in the provider, never with test-level retries.",
+        "evidence": "'Track the flake rate per resource. Fix flakes with bounded typed waiters in the provider, never with test-level retries.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds data source `_basic` tests proving the singular form errors on zero and on several matches and the plural form returns empty without error.",
+        "evidence": "'singular errors on zero and on several matches, plural returns empty without error'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Removes the three `ExpectNonEmptyPlan: true` settings and fixes the tag ordering in the provider (a set for the unordered collection, or normalization), stating a PR that adds `ExpectNonEmptyPlan` must link the API bug it works around.",
+        "evidence": "Fix is right but the rule that a PR adding it must link the API bug is missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the harness already re-plans after every apply step and fails on a non-empty plan, and that this default is what catches perpetual diffs.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the staging org shared with sales demo data and requires a dedicated sandbox account per CI lane with credentials scoped to it.",
+        "evidence": "\"Create a dedicated org that holds no sales demo data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stops acceptance tests from running on pull requests from forks with sandbox credentials, citing credential exfiltration, and requires a maintainer-approved run triggered by a PR label or comment.",
+        "evidence": "\"Trigger on a label such as `ok-to-test`\"; avoid pwn-request",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Registers sweepers (`resource.AddTestSweepers` with dependencies, `TestMain` calling `resource.TestMain`) that delete every object matching the test prefix, run before and after each nightly.",
+        "evidence": "`resource.AddTestSweepers`... `resource.TestMain(m)`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names test objects with a fixed prefix and random suffix (`tf-acc-test-<random>`) so parallel runs never collide and sweepers can find leftovers.",
+        "evidence": "`tf-acc-test-<random>`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds per resource: a `_disappears` test, an update test per mutable attribute, a replacement test per `RequiresReplace` attribute, and an import step with `ImportStateVerify` at the end of `_basic`.",
+        "evidence": "No replacement test per RequiresReplace attribute.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds upgrade tests that apply with the last released version through `ExternalProviders`, then plan with the new build through `ProtoV6ProviderFactories` and expect an empty plan.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tests against the oldest claimed Terraform version as well as the latest, and adds a `tofu` lane by pointing the harness at the tofu binary with `TF_ACC_TERRAFORM_PATH`.",
+        "evidence": "Optional OpenTofu job only; no path variable.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the Partner badge requires nightly acceptance tests in GitHub Actions, the Plugin Framework, the Technology Partner Program, and fixing critical issues within 48 hours and others within 5 business days.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lays out the cadence: every PR runs build, lint, unit tests, a docs regeneration check and a no-new-`ExpectNonEmptyPlan` check; a label or maintainer comment runs acceptance tests for touched resources; nightly runs the full suite, sweepers and upgrade tests; releases only from a commit with a green nightly.",
+        "evidence": "No nightly full-suite or release gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds import config generation checks: apply, then run an `import` block with `terraform plan -generate-config-out` and validate the generated HCL with `terraform validate`.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses typed state checks (`statecheck.ExpectKnownValue` with `knownvalue` matchers) and `plancheck.ExpectResourceAction` on in-place update steps, and asserts sensitive values never appear in state.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tracks flake rate per resource and fixes flakes with waiters in the provider, never with test-level retries.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds data source `_basic` tests proving the singular form errors on zero and on several matches and the plural form returns empty without error.",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

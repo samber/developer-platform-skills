@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Asks the batched interview questions or writes each assumption in a table with the step it drives (what runs in CI, CI share and runner mix, auth model, existing actions, fork-PR needs, deadline and owner), marking the plan provisional on them.",
+        "evidence": "Section 0 table A1\u2013A8 with 'Drives' column; 'The plan is provisional on every row.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes the container action option because customers run Windows and macOS runners and container actions run on Linux only.",
+        "evidence": "'Runs on Linux only. Windows runners cannot run it... macOS runners cannot run it'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes the reusable workflow as the product because callers refuse to hand `runs-on` and permissions to a third party and Marketplace cannot list it.",
+        "evidence": "'Callers will not hand runs-on and permissions to a third party. Marketplace cannot list it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses the default shape: a `setup-tlw` action plus a thin `tlw-action` task action over the same CLI, in two public repos, because Marketplace lists only a root `action.yml`.",
+        "evidence": "Repo 1 setup-tlw, Repo 2 tlw-action; 'Both repos get a root action.yml, which Marketplace requires.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses a composite action with all logic in the `tlw` CLI, and names the conditions that would move it to JavaScript: a `post:` cleanup step, native `getIDToken`, annotations at volume, or Windows logic shell cannot carry.",
+        "evidence": "Composite chosen ('needs no Node'), but no conditions such as post: cleanup, getIDToken or annotations at volume are named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a tested Windows path for every composite step (`shell: pwsh` or Git Bash with its own paths and tools) and `Get-FileHash` for verification on Windows runners.",
+        "evidence": "'Use shell: pwsh with Get-FileHash'; week 3 adds the self-hosted Windows CI job.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `curl | bash` of the installer at runtime; downloads a version-pinned release binary and verifies it against per-version digests committed in the action repo or a signature checked against a pinned signer.",
+        "evidence": "'Download a versioned release asset. Verify it against a digest committed in the action repo.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defaults the CLI version to the newest version the action release ships digests for, so a new CLI version means a new action release, and accepts `latest` only on the signature-verification path resolved from Tallowick's own version endpoint, never the rate-limited GitHub API.",
+        "evidence": "'latest is allowed only once signature verification exists... Resolve it from Tallowick's own endpoint, never the GitHub API.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Caches the binary in the runner tool cache (`RUNNER_TOOL_CACHE`) keyed by version and architecture.",
+        "evidence": "'$RUNNER_TOOL_CACHE/tlw/<version>/<os-arch>'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a mirror base URL input and a pre-installed binary path for the proxied GHES runners and honours `HTTPS_PROXY`.",
+        "evidence": "'Honour HTTPS_PROXY. mirror-url ... tlw-path'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps exit codes to step results: 1 and 3 (runtime and auth errors) always fail; 2 (drift found) fails by default with a `fail-on-drift: false` input that downgrades it to a warning.",
+        "evidence": "Exit-code table: 2 fails, 'With fail-on-drift: false: pass plus ::warning::'; 1 and 3 always fail.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retries the Tallowick API with backoff because matrix fan-out sends dozens of runs at once.",
+        "evidence": "No retry or backoff for API calls appears anywhere in the plan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the rich task action (PR comments, annotations, job summary) as the starved option that drift results read inside the pull request would promote, and under the seven-week deadline ships the thin action first with PR output added in a later minor.",
+        "evidence": "'Not in v1: PR comments, annotations and job summaries (the \"rich\" action). Add them in a minor release after launch.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands the `tlw` flags, `--json` output and exit-code contract to the CLI design sibling as the contract the action is only as stable as.",
+        "evidence": "No handoff to a CLI design skill or sibling; only questions to the CLI owner about assets.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Asks the batched interview questions or writes each assumption in a table with the step it drives (what runs in CI, CI share and runner mix, auth model, existing actions, fork-PR needs, deadline and owner), marking the plan provisional on them.",
+        "evidence": "Gives a list of 'Open questions' but no assumption table naming the step each drives, and does not mark the plan provisional beyond '(draft)'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Deletes the container action option because customers run Windows and macOS runners and container actions run on Linux only.",
+        "evidence": "'Runs on Linux runners only. It excludes the Windows self-hosted cluster and the macOS account.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes the reusable workflow as the product because callers refuse to hand `runs-on` and permissions to a third party and Marketplace cannot list it.",
+        "evidence": "Keeps it: 'Treat the action as the product and the workflow as sugar'; ships it in week 5.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Chooses the default shape: a `setup-tlw` action plus a thin `tlw-action` task action over the same CLI, in two public repos, because Marketplace lists only a root `action.yml`.",
+        "evidence": "Proposes one repo, `tallowick/tlw-action`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Chooses a composite action with all logic in the `tlw` CLI, and names the conditions that would move it to JavaScript: a `post:` cleanup step, native `getIDToken`, annotations at volume, or Windows logic shell cannot carry.",
+        "evidence": "Composite is chosen, but JS is only 'revisit in v2 if the bash action hits proxy limits', with no named conditions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a tested Windows path for every composite step (`shell: pwsh` or Git Bash with its own paths and tools) and `Get-FileHash` for verification on Windows runners.",
+        "evidence": "Relies on Git Bash on Windows; no pwsh path or Get-FileHash.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects `curl | bash` of the installer at runtime; downloads a version-pinned release binary and verifies it against per-version digests committed in the action repo or a signature checked against a pinned signer.",
+        "evidence": "'Each action release pins a `tlw` version and its SHA-256 values.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defaults the CLI version to the newest version the action release ships digests for, so a new CLI version means a new action release, and accepts `latest` only on the signature-verification path resolved from Tallowick's own version endpoint, never the rate-limited GitHub API.",
+        "evidence": "'`version: latest` is there for people who want to opt in', with no signature path or own version endpoint.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caches the binary in the runner tool cache (`RUNNER_TOOL_CACHE`) keyed by version and architecture.",
+        "evidence": "'Cache the binary in the runner tool cache' with no keying stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a mirror base URL input and a pre-installed binary path for the proxied GHES runners and honours `HTTPS_PROXY`.",
+        "evidence": "Inputs `download-url` and `tlw-path`; 'Honor `HTTPS_PROXY` and custom CA'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps exit codes to step results: 1 and 3 (runtime and auth errors) always fail; 2 (drift found) fails by default with a `fail-on-drift: false` input that downgrades it to a warning.",
+        "evidence": "Table: 2 drift fails unless `fail-on-drift: false`; 1 and 3 always fail.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Retries the Tallowick API with backoff because matrix fan-out sends dozens of runs at once.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the rich task action (PR comments, annotations, job summary) as the starved option that drift results read inside the pull request would promote, and under the seven-week deadline ships the thin action first with PR output added in a later minor.",
+        "evidence": "Not discussed; summary and annotation are in v1 scope.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Hands the `tlw` flags, `--json` output and exit-code contract to the CLI design sibling as the contract the action is only as stable as.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

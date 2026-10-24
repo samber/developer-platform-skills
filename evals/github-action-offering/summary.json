@@ -1,0 +1,394 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "github-action-offering",
+  "scenarios": 9,
+  "expectations_total": 120,
+  "expectations_subjective": 1,
+  "expectations_objective": 119,
+  "pass_rate_with_skill_pct": 84.2,
+  "pass_rate_without_skill_pct": 43.3,
+  "delta_pp": 40.9,
+  "uplift_multiplier": 1.94,
+  "trigger_accuracy_pct": 53.0,
+  "trigger_queries": 100,
+  "trigger_positive_fire_rate": 0.22,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Audits the changelog against the contract rules block before discussing any individual item."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Chooses a composite action with all logic in the `tlw` CLI, and names the conditions that would move it to JavaScript: a `post:` cleanup step, native `getIDToken`, annotations at volume, or Windows logic shell cannot carry."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Retries the Tallowick API with backoff because matrix fan-out sends dozens of runs at once."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Hands the `tlw` flags, `--json` output and exit-code contract to the CLI design sibling as the contract the action is only as stable as."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Adds a `description` and an explicit `default` to every optional input and documents booleans as strict `true`/`false` strings."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Checks that no output embeds the token or any other secret."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Resolves the PR from `workflow_run.head_sha` through `GET /repos/{owner}/{repo}/commits/{sha}/pulls` and requires that PR's head SHA to equal it, noting `workflow_run.pull_requests` is empty for fork PRs."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Truncates the comment body at GitHub's 65,536-character cap and links to the job summary for the full result."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Removes the uncovered-file-path list from comments in public repositories: show counts and identifiers and link the details behind vendor login, because the comment is public."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Protects `v*` tags with a ruleset that only the release workflow's GitHub App can bypass, requires 2FA, and shortens the write-access list."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Freezes releases and restricts the tag ruleset to nobody while the audit runs."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Publishes a GitHub security advisory with affected tags, exposure window, known-good SHAs and the instruction to rotate any secret exposed to the action if any tag target changed, and notifies customers through Sorrelby's own channels and the `User-Agent` list of repositories that ran affected versions."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Moves the release to the workflow sequence: build binaries in CI, attest them, create a draft `vX.Y.Z` release, attach assets, publish, then move `vX` from the same job."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Scopes `GITHUB_TOKEN` per job from `permissions: {}` and keeps the action's own CI off `pull_request_target`, `workflow_run` over fork code and `issue_comment` triggers."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Opens the README with a copy-paste workflow: the SHA-pinned `uses:` line with its version comment, the `permissions:` block, the OIDC setup, every input with default, every output, and the minimum runner and GHES versions."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Fixes the GitLab component: omit `inputs:` under `spec:` while there are none because an empty `inputs:` key fails release creation, and lays out the project with `README.md` plus a top-level `templates/` directory."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes GitLab catalog publishing needs a semantic-version release, that `~latest` skips pre-releases but can include breaking changes, and that turning off the catalog toggle destroys catalog metadata."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Reports to the board: weekly active repositories by CI and version, share of runs on supported majors, first-run failure rate by error class, and support tickets per release."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rebuilds and commits `dist/` bundled as ESM and adds check-dist (`git diff --ignore-space-at-eol --text dist/`) to the release gates."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Audits the changelog against the contract rules block before discussing any individual item."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Prescribes the deprecation sequence for the rename: add `api-key`, keep `api_key` working and mapped to the same behaviour, set `deprecationMessage` on `api_key`, state the removal major in release notes and README, delete it only in the next major."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Classifies `runs.using: node24` as a major because it raises the minimum runner and excludes GHES releases and self-hosted runners without Node 24, rejecting the 'runtime detail' framing."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Classifies the bundled CLI bump from 4.x to 5.0 with a removed flag as a major per the breaking-change table, rather than accepting 'we never called it' as grounds for a minor."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Bundles the breaking items into one scheduled v3.0.0 where the forced runtime change is the occasion to delete deprecated inputs, and keeps patching v2 while supported GHES releases cannot run node24."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Rejects 'move the v2 tag as usual' as the delivery mechanism: every fix ships as a new immutable `vX.Y.Z` release because SHA pinners, lockfile users and Dependabot follow new semver tags, never a moved major tag."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires release notes to state the full commit SHA and the `uses: corvane/corvane-action@<sha> # vX.Y.Z` line, the form Dependabot updates."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Adds a CI contract check that diffs `action.yml` inputs and outputs against the last release and fails on removal or rename outside a major branch."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Asks the batched interview questions or writes each assumption in a table with the step it drives (what runs in CI, CI share and runner mix, auth model, existing actions, fork-PR needs, deadline and owner), marking the plan provisional on them."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Deletes the reusable workflow as the product because callers refuse to hand `runs-on` and permissions to a third party and Marketplace cannot list it."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Chooses the default shape: a `setup-tlw` action plus a thin `tlw-action` task action over the same CLI, in two public repos, because Marketplace lists only a root `action.yml`."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Chooses a composite action with all logic in the `tlw` CLI, and names the conditions that would move it to JavaScript: a `post:` cleanup step, native `getIDToken`, annotations at volume, or Windows logic shell cannot carry."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires a tested Windows path for every composite step (`shell: pwsh` or Git Bash with its own paths and tools) and `Get-FileHash` for verification on Windows runners."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Defaults the CLI version to the newest version the action release ships digests for, so a new CLI version means a new action release, and accepts `latest` only on the signature-verification path resolved from Tallowick's own version endpoint, never the rate-limited GitHub API."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Caches the binary in the runner tool cache (`RUNNER_TOOL_CACHE`) keyed by version and architecture."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Retries the Tallowick API with backoff because matrix fan-out sends dozens of runs at once."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the rich task action (PR comments, annotations, job summary) as the starved option that drift results read inside the pull request would promote, and under the seven-week deadline ships the thin action first with PR output added in a later minor."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Hands the `tlw` flags, `--json` output and exit-code contract to the CLI design sibling as the contract the action is only as stable as."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags `${{ secrets.BRIMHAVEN_TOKEN }}` as resolving empty inside a composite action, which has no `secrets` context, and reads the token from the `api-key` input instead, masked with `::add-mask::` before any use."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that `required: true` is not enforced by the runner and adds in-code validation that fails naming the input, the value received and the expected form."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Adds a `description` and an explicit `default` to every optional input and documents booleans as strict `true`/`false` strings."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Checks that no output embeds the token or any other secret."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires zizmor with no finding at medium severity or above and actionlint clean on the action repo and the README example before the v1.0.0 release."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the `repo:their-org/their-repo:*` wildcard, explains the immutable `sub` format with numeric IDs (`repo:octo-org@123456/octo-repo@456789:ref:...`) that is default for repositories created, renamed or transferred after 2026-07-15, and notes organizations can customize the `sub` template so string matching is fragile."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Specifies an `auth` input with values `auto`, `oidc` and `key` (default `auto`), where an empty key selects OIDC, a missing `ACTIONS_ID_TOKEN_REQUEST_URL` fails naming both causes (api-key empty and the job lacks `id-token: write`) because a missing secret also arrives empty, and the chosen mode is logged."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Documents the minimum `permissions:` block (`id-token: write`, `contents: read`) in the README snippet."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States fork `pull_request` runs receive no secrets and no `id-token: write`, so the action runs tokenless read-only where the product allows it or exits naming the limitation, and never tells customers to switch to `pull_request_target`."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Withdraws the `pull_request_target` support macro: it runs with base-repository secrets against fork code, and GitHub blocks it by default in public repositories from 2026-12-02."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Downloads the artifact by run ID and validates it as data (schema, size) before anything reads it."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Replaces the comment-per-push with an upsert: one comment per action and job, found by a hidden marker such as `<!-- fennwater-action:coverage -->` and filtered to comments authored by the token's own identity, because anyone can post the marker."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Truncates the comment body at GitHub's 65,536-character cap and links to the job summary for the full result."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Removes the uncovered-file-path list from comments in public repositories: show counts and identifiers and link the details behind vendor login, because the comment is public."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Keeps the basic README example free of zizmor findings and lets the fork-split example carry only a line-scoped, commented ignore for its `workflow_run` trigger."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Replaces the bot PAT with a short-lived GitHub App token used by a release workflow running in a protected environment with required reviewers."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Protects `v*` tags with a ruleset that only the release workflow's GitHub App can bypass, requires 2FA, and shortens the write-access list."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Treats the leaked PAT as a compromised-credential incident and revokes and rotates every credential with write access (maintainer sessions, other PATs, App keys, deploy keys), not only the leaked PAT, because incomplete rotation re-opened the door in the 2026 trivy-action incident."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Freezes releases and restricts the tag ruleset to nobody while the audit runs."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Compares every tag's target against the release record and signed tags, not only `v1` and `v2`, because past incidents repointed every tag at once."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Publishes a GitHub security advisory with affected tags, exposure window, known-good SHAs and the instruction to rotate any secret exposed to the action if any tag target changed, and notifies customers through Sorrelby's own channels and the `User-Agent` list of repositories that ran affected versions."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Signs release tags and commits from now on, noting forged tags in past incidents were unsigned with impossible parent dates."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Moves the release to the workflow sequence: build binaries in CI, attest them, create a draft `vX.Y.Z` release, attach assets, publish, then move `vX` from the same job."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Scopes `GITHUB_TOKEN` per job from `permissions: {}` and keeps the action's own CI off `pull_request_target`, `workflow_run` over fork code and `issue_comment` triggers."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Accepts the transfer path (maintainer agrees, contract close) but publishes the new `uses:` path and asks users to migrate, because the redirect dies if anyone recreates `jmbarros-dev/quillstone-lint-action`."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Audits every inherited tag against the maintainer's history before the first release under the new owner."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Reframes the Marketplace push: the listing is unreviewed and a trust surface, adoption follows Quillstone's own docs and onboarding snippets, so the same snippet goes into the docs quickstart."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Opens the README with a copy-paste workflow: the SHA-pinned `uses:` line with its version comment, the `permissions:` block, the OIDC setup, every input with default, every output, and the minimum runner and GHES versions."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requests the verified creator badge through GitHub partnerships, noting enterprise allowlists key on it more than on listing rank."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps one `action.yml` at the root of the public repo with a unique `name`, short `description`, `branding` icon and color, and one primary category."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Keeps one input schema and generates or checks each manifest (`action.yml`, component `spec:inputs`, orb parameters, `pipe.yml` variables, `task.json` inputs) against it."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Fixes the GitLab component: omit `inputs:` under `spec:` while there are none because an empty `inputs:` key fails release creation, and lays out the project with `README.md` plus a top-level `templates/` directory."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes GitLab catalog publishing needs a semantic-version release, that `~latest` skips pre-releases but can include breaking changes, and that turning off the catalog toggle destroys catalog metadata."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Chooses the CircleCI namespace once because renaming needs CircleCI support, and documents that partner orbs need customers to allow uncertified orbs in their organization settings."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Corrects the Azure DevOps handler: no `Node20` key exists; declare both `Node20_1` and `Node24` during the transition, `Node24` needs `minimumAgentVersion` 4.265.1, and test on the oldest supported Windows Server agent."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gives each port its own semver bumped by its own contract and publishes one compatibility table mapping each port version to the CLI version range it installs."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Makes every snippet download a pinned CLI version with checksum verification, set full Git history where the CLI needs it (`fetch-depth: 0` on GitHub, `GIT_DEPTH: 0` on GitLab), and use a glibc base image because `mfd` is not built for musl."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Sends the same versioned `User-Agent` with the CI name from every port and tests auth claims, output passing and secret masking per port, the three places drift concentrates."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Classifies `runs.using: node24` as a major (v4.0.0), not a v3.4.0 minor, because it raises the minimum runner and breaks GHES and old self-hosted runners."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Uses the forced runtime major to delete the deprecated `token` input, choosing the removal major from the count of runs still setting it reported by the deprecated-input header flag."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Keeps patching v3 on node20 while supported GHES releases cannot run node24."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects 'move the v3 tag' as the delivery: ships a `vX.Y.Z` release so SHA pinners, lockfile users and Dependabot receive it."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rejects Marketplace installs, the dependents count and code search as usage numbers: they are public signals, not usage."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Counts OIDC-authenticated runs from token exchanges deduplicated by `run_id`, using server-validated `repository_id` and `repository_owner_id` claims."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Measures key-auth runs and version skew through the versioned `User-Agent` (`oxleaf-action/3.3.1 (github-actions; Linux-X64)`) with a header flag whenever a deprecated input is set."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Reports to the board: weekly active repositories by CI and version, share of runs on supported majors, first-run failure rate by error class, and support tickets per release."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Corrects the README support claim because Node 24 does not run on macOS 13.4 and earlier or on ARM32 self-hosted runners, so the minimum runner and OS line changes with the major."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Runs one integration job on a self-hosted runner pinned to the oldest supported runner version before release, because hosted runners hide the runtime-floor break."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Rebuilds and commits `dist/` bundled as ESM and adds check-dist (`git diff --ignore-space-at-eol --text dist/`) to the release gates."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes that actions still declaring node20 after removal run on node24 with a job warning, untested by their authors, so v4 is tested on node24 rather than left to the forced run."
+      }
+    ]
+  }
+}

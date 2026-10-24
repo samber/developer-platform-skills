@@ -1,0 +1,442 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "ide-extension-offering",
+  "scenarios": 8,
+  "expectations_total": 112,
+  "expectations_subjective": 0,
+  "expectations_objective": 112,
+  "pass_rate_with_skill_pct": 79.5,
+  "pass_rate_without_skill_pct": 32.1,
+  "delta_pp": 47.4,
+  "uplift_multiplier": 2.48,
+  "trigger_accuracy_pct": 51.1,
+  "trigger_queries": 92,
+  "trigger_positive_fire_rate": 0.152,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Rejects direct REST calls from the extension and routes every product call through the `hgate` CLI or a language server, naming auth, proxies, retries, pagination and error handling as what forks between two implementations."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Prescribes reusing the CLI login through a CLI command that prints the session or token as JSON, held in memory only, and forbids reading the CLI's credential file directly."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects the `*` activation event, requires activation on specific events (a command, a file type, a view), and asks for activation time to be measured with the CLI check lazy-loaded."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires calling the CLI with `--json` and its exit codes, treating a missing field in the output as a version mismatch."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires bundling the extension with esbuild or webpack, and declares 'desktop only' on the listing because an extension that spawns processes cannot run on vscode.dev."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires inspecting the packed file list and scanning the `.vsix` for secrets before publishing."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires `@vscode/vsce` from devDependencies rather than the deprecated unscoped `vsce` package."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Lists the JetBrains vendor and plugin `<id>` among the names to claim before launch, even with no JetBrains plugin planned yet."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists the approval requirements: an original plugin name of at most 30 characters, an English description, a Developer EULA in every case, and a privacy policy whenever the plugin collects personal data."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Adds a compatibility-matrix row carrying the JetBrains `since-build` and the minimum language-server version."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Keeps `SECURITY.md` and a vulnerability contact on the repository and reviews every `extensionDependencies` and `extensionPack` entry, since each installs with the extension."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Posts the same notice text in the public issue, the changelog and the activation notice of the last release."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Distinguishes the three Marketplace actions: deprecate (reversible, struck-through listing with migrate button), unpublish (reversible, no new installs, stats kept) and remove (irreversible), and picks deprecate."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Records the deprecation schedule and the successor extension ID in the plan or the persistent context so a later release checks against it."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "On Open VSX, deletes any bad version and publishes the clean patch, noting that a flagged version cannot be reactivated and a deleted version number stays reserved."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Writes a compromised-token runbook per registry, including JetBrains (hide the update in the vendor console, contact Marketplace support), to keep before it is needed again."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that Open VSX tokens carry the `ovsxp_` prefix so scanners detect them, and calendars rotation before the expiry if any token fallback remains."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Publishes the publisher ID and official extension ID on Quarrystone's docs so buyers and allowlists can tell the official extension from the community one."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Claims the Open VSX namespace and files the ownership claim so Cursor users stop finding the lookalike first."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Publishes a compatibility matrix with the columns extension version, minimum CLI version, minimum `engines.vscode`, JetBrains `since-build`, API version and status, with the 3.1.x row filled."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Declares the `engines.vscode` minimum as a real version, never `*`."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Records the minimum host and CLI versions in the plan or persistent context so later releases check against them instead of re-deciding."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Follows the hosted API's own deprecation windows for the API version column rather than inventing a separate schedule for the extension."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that `flags.yaml` is a generic file name that catalog matching will not fire on, and requires a `$schema` key, a YAML modeline, or an extension-contributed schema to bind it."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that VS Code users need the Red Hat YAML extension for the schema to apply, and puts that note in the docs step."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Classifies the three lost-RFP 'IDE integration' asks as Go later, not as demand, until each maps to a named job."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats the React dashboard panel as the starved rich-extension option and refuses to promote it, naming the condition: a job that a tree view, quick pick or diagnostic cannot show, plus a staffed owner."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Delivers the per-job verdict table with the columns Job, Demand evidence, Surface, Extension part, Verdict."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Marks the plan status as provisional and lists each open assumption as a numbered row (A1, A2...) in an Assumptions table with the step it drives and who confirms it."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Records in the Ranking section which interview answer moved which rung, naming at least the missing owner and the 70/20 editor split."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the extension holds no flag logic of its own and renders the `brindle --json` output."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Ranks editor families by Brindlewood's own paying-user share rather than a global survey, defaults to one VS Code-API extension published to both the VS Code Marketplace and Open VSX, and names the JetBrains plugin as the starved option with its promotion condition."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects direct REST calls from the extension and routes every product call through the `hgate` CLI or a language server, naming auth, proxies, retries, pagination and error handling as what forks between two implementations."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Prescribes reusing the CLI login through a CLI command that prints the session or token as JSON, held in memory only, and forbids reading the CLI's credential file directly."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects the `*` activation event, requires activation on specific events (a command, a file type, a view), and asks for activation time to be measured with the CLI check lazy-loaded."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires calling the CLI with `--json` and its exit codes, treating a missing field in the output as a version mismatch."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires `capabilities.untrustedWorkspaces` declared as `limited` or `false`, with code paths guarded by `workspace.isTrusted` and re-enabled on `onDidGrantWorkspaceTrust`."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Sets `extensionKind` deliberately so the extension runs on the remote host in dev containers and Codespaces, finds the CLI there, opens URLs with `env.openExternal` and routes OAuth callbacks through `env.asExternalUri`."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names the VS Code `AuthenticationProvider` over product OAuth as the option to promote for Harrowgate, because remote workspaces are common and a remote CLI cannot see the laptop's login."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires bundling the extension with esbuild or webpack, and declares 'desktop only' on the listing because an extension that spawns processes cannot run on vscode.dev."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that the extension is only as stable as the CLI's `--json` contract and defers that contract's design to the CLI rather than redefining it in the extension plan."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires creating the Open VSX namespace before launch and filing the ownership claim through an issue on `EclipseFdn/open-vsx.org`, noting the listing shows an unverified-publisher warning until it is granted."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags the global Azure DevOps PAT as a dated liability because global PATs stop working on 2026-12-01, and the all-accessible-organizations recipe is one."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Replaces the PAT with `vsce publish --azure-credential` or `--oidc`, and for `--oidc` requires a trusted-publishing policy registered on the Marketplace plus `permissions: id-token: write` in the workflow, with no PAT fallback kept."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Publishes that same file to Open VSX with `ovsx publish <file>.vsix --trusted-publishing` from CI, or a namespace-scoped token on a Contributor-role account as fallback, and removes any `OVSX_PAT` from that job."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects the version `1.0.0-beta.1` because the Marketplace accepts `major.minor.patch` only, and prescribes the odd-minor pre-release / even-minor release convention with `--pre-release` at package time."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the verified-publisher badge needs an extension listed for at least 6 months and a 6-month-old domain, so applying on launch day cannot succeed, and publishes the publisher ID and extension ID on Tollbridge's own docs for buyers and allowlists meanwhile."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires inspecting the packed file list and scanning the `.vsix` for secrets before publishing."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires the same `.vsix` hash on both registries as a release gate."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires `@vscode/vsce` from devDependencies rather than the deprecated unscoped `vsce` package."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Lists the JetBrains vendor and plugin `<id>` among the names to claim before launch, even with no JetBrains plugin planned yet."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Promotes the JetBrains plugin to first priority rather than treating it as the starved option, because JetBrains is Pinewick's largest paying group and the customers are Kotlin and Android-heavy."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the half-time VS Code dev as the owner, stating that a half-time owner already on VS Code is not the second owner who knows Kotlin or Java that the promotion requires."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the IntelliJ Platform LSP API runs only in commercial JetBrains IDEs (plus the free tier of unified PyCharm), not in IntelliJ IDEA Community or Android Studio."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the resulting choice explicitly, exclude Community and Android Studio users or write a native JetBrains language plugin, and writes it into the plan as a decision rather than leaving it implicit."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects changing the plugin ID from `com.pinewick.beta` to `com.pinewick.plugin`, because the `<id>` cannot change after the first public release and a new ID is a new plugin with no upgrade path."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Routes the beta through an `eap` custom channel under the final plugin ID instead of a separate ID."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the Gradle defaults because the IntelliJ Platform Gradle Plugin 2.x pins `untilBuild` to the since-build major, and prescribes `untilBuild = provider { null }` with a check of the generated `plugin.xml`."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects relying on the IDE's data-sharing consent, stating it covers JetBrains' own collection and not the plugin's, and requires explicit user consent before any statistics plus sending nothing while the plugin is idle."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects same-day hotfixes because every JetBrains version goes through manual review with no guaranteed time frame; plans fixes on a schedule and asks Marketplace support after 3-4 working days of silence."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Stores tokens in `PasswordSafe`."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires running Plugin Verifier across the declared build range including EAP, and budgets one verification pass per platform major, three a year."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists the approval requirements: an original plugin name of at most 30 characters, an English description, a Developer EULA in every case, and a privacy policy whenever the plugin collects personal data."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that the first upload is manual through the web UI and later uploads go through the Gradle `publishPlugin` task."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Adds a compatibility-matrix row carrying the JetBrains `since-build` and the minimum language-server version."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires shipping `telemetry.json` and publishing the event list beside the README."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Prefers server-side measurement through a versioned `User-Agent` on every CLI and API call, in the shape product/version (host version; platform), such as `larkspur-vscode/2.4.0 (vscode 1.104; darwin-arm64)`."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Keeps the `User-Agent` to product, version and platform, documents that it is sent, and forbids user or workspace identifiers in it."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Replaces the exec-team number with weekly active users by version from the server-side `User-Agent`, plus first-run success and the share of users on supported versions."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Gives the bank's IT the extension ID and publisher ID for the `extensions.allowed` allowlist, and publishes both on Larkspur's docs."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires honouring `http.proxy` and custom CAs in the extension and in the CLI it spawns, not only in the extension."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Documents offline `.vsix` install and tests the extension against the VS Code private marketplace the bank uses."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Keeps `SECURITY.md` and a vulnerability contact on the repository and reviews every `extensionDependencies` and `extensionPack` entry, since each installs with the extension."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects removing the extension, stating that removal deletes the stats, reserves the name forever and breaks allowlists keyed on the extension ID."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Announces with a date, the named replacement and migration steps in a public issue and the changelog, not only in a monthly newsletter."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Marks the extension deprecated on the VS Code Marketplace by commenting on the `microsoft/vscode-discussions` 'Deprecated extensions' thread, naming the replacement."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Deprecates it on Open VSX by pull request to `extension-control/extensions.json` in the `open-vsx/publish-extensions` repository, naming the replacement and keeping it downloadable."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Archives the repository only after the end date and keeps the security contact live."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Writes the notice in the deprecation-notice shape: announce date, end date, replacement, why, numbered what-to-do steps ending with uninstalling the old extension ID, a 'what keeps working' line, and a questions link."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Posts the same notice text in the public issue, the changelog and the activation notice of the last release."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Distinguishes the three Marketplace actions: deprecate (reversible, struck-through listing with migrate button), unpublish (reversible, no new installs, stats kept) and remove (irreversible), and picks deprecate."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Records the deprecation schedule and the successor extension ID in the plan or the persistent context so a later release checks against it."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats the maintainer as unreachable after two emails over six weeks and prescribes publishing an official extension under Quarrystone's verified publisher with a clearly distinct name, linked from the docs as the official one."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes the official extension through the Quarrystone CLI rather than direct API calls, so API changes like v2 do not break it the way they broke the community copy."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "On the VS Code Marketplace, publishes a clean higher patch at once and reports any bad version to Marketplace support, unpublishing the whole extension only if no clean build exists."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "On Open VSX, deletes any bad version and publishes the clean patch, noting that a flagged version cannot be reactivated and a deleted version number stays reserved."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Moves Marketplace publishing to `--azure-credential` or `--oidc` with a trusted-publishing policy, and Open VSX to `ovsx publish --trusted-publishing`, deleting the token path rather than keeping it as a silent backup."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Writes a compromised-token runbook per registry, including JetBrains (hide the update in the vendor console, contact Marketplace support), to keep before it is needed again."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that Open VSX tokens carry the `ovsxp_` prefix so scanners detect them, and calendars rotation before the expiry if any token fallback remains."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Never republishes a version number: the fix ships as a higher patch."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Publishes the publisher ID and official extension ID on Quarrystone's docs so buyers and allowlists can tell the official extension from the community one."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Claims the Open VSX namespace and files the ownership claim so Cursor users stop finding the lookalike first."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Gates the promote feature on a capability the CLI reports, with a missing `--json` field read as a version mismatch, instead of on the extension's own version."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Publishes a compatibility matrix with the columns extension version, minimum CLI version, minimum `engines.vscode`, JetBrains `since-build`, API version and status, with the 3.1.x row filled."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States that `engines.vscode` may be raised only in a minor release with a changelog line, never silently inside a feature release."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rolls back on the Marketplace and Open VSX by republishing the last good code as a higher patch, never by republishing 3.1.0 or an older version number."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Lists the release gates: same `.vsix` hash on both registries with a clean secret scan, integration tests green across the host matrix, compatibility matrix updated, no usage event at telemetry `error` or `off`, and untrusted-workspace behaviour tested."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Tracks the share of users on supported versions and issues and tickets per release as release metrics."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Follows the hosted API's own deprecation windows for the API version column rather than inventing a separate schedule for the extension."
+      }
+    ]
+  }
+}

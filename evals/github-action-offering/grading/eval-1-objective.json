@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Audits the changelog against the contract rules block before discussing any individual item.",
+        "evidence": "Opens with a verdict that cites 'the skill's contract rules' but never lays out or walks the rules block; it goes straight to the item table.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies the `api_key` to `api-key` rename as a major, not a minor, because every v2 workflow still sending `api_key` is silently ignored and runs with no key.",
+        "evidence": "'Every @v2 workflow still sends api_key. The action ignores it and runs with no key.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the deprecation sequence for the rename: add `api-key`, keep `api_key` working and mapped to the same behaviour, set `deprecationMessage` on `api_key`, state the removal major in release notes and README, delete it only in the next major.",
+        "evidence": "Option B: add api-key, keep api_key as alias with deprecationMessage 'Removed in v3.'; release notes list deprecations with removal major; removal only in 3.0.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies changing the `severity-threshold` default from `high` to `medium` as a major because pinned workflows change behaviour without any edit on the customer side.",
+        "evidence": "'Pinned workflows change behaviour with no edit.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies turning the `license-findings` warning into a failure by default as a major because green pipelines go red with no change on the customer side.",
+        "evidence": "'Green pipelines turn red with no change on the customer side.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies `runs.using: node24` as a major because it raises the minimum runner and excludes GHES releases and self-hosted runners without Node 24, rejecting the 'runtime detail' framing.",
+        "evidence": "'It raises the runtime floor. GHES and old self-hosted runners fail.' plus the list of vendors that shipped node24 as a major.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the bundled CLI bump from 4.x to 5.0 with a removed flag as a major per the breaking-change table, rather than accepting 'we never called it' as grounds for a minor.",
+        "evidence": "'The action's contract includes what the CLI does. \"We never call --format table\" only covers flags you pass.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies dropping the `verbose` input as a major because removing an input is a breaking change.",
+        "evidence": "'Removing an input is a major.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Accepts the new `output-file` input with a default as the only item on the list that fits a minor.",
+        "evidence": "Row 7 marked minor: 'adds an optional input and keeps the old behaviour'; all other items are major.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bundles the breaking items into one scheduled v3.0.0 where the forced runtime change is the occasion to delete deprecated inputs, and keeps patching v2 while supported GHES releases cannot run node24.",
+        "evidence": "Option A: 'ship the whole changelog as v3.0.0'; 'Keep patching v2 while customers on GHES or old runners can't run Node 24.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'move the v2 tag as usual' as the delivery mechanism: every fix ships as a new immutable `vX.Y.Z` release because SHA pinners, lockfile users and Dependabot follow new semver tags, never a moved major tag.",
+        "evidence": "'SHA pinners, lockfile users and Dependabot users never see a moved v2'; 'Create an immutable GitHub release vX.Y.Z'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires release notes to state the full commit SHA and the `uses: corvane/corvane-action@<sha> # vX.Y.Z` line, the form Dependabot updates.",
+        "evidence": "'uses: corvane/corvane-action@<sha> # vX.Y.Z'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a CI contract check that diffs `action.yml` inputs and outputs against the last release and fails on removal or rename outside a major branch.",
+        "evidence": "'Add a contract check to CI that fails on any input or output removal or rename outside a major branch.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Audits the changelog against the contract rules block before discussing any individual item.",
+        "evidence": "Goes straight to a verdict and an item table; no rules-block audit.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies the `api_key` to `api-key` rename as a major, not a minor, because every v2 workflow still sending `api_key` is silently ignored and runs with no key.",
+        "evidence": "Row 1: 'Yes' breaks; 'Workflows that set `api_key:` ... empty key, so auth fails'; removal moved to v3.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes the deprecation sequence for the rename: add `api-key`, keep `api_key` working and mapped to the same behaviour, set `deprecationMessage` on `api_key`, state the removal major in release notes and README, delete it only in the next major.",
+        "evidence": "Covers fallback and `deprecationMessage`, with removal in v3. It never says to state the removal major in release notes and README.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies changing the `severity-threshold` default from `high` to `medium` as a major because pinned workflows change behaviour without any edit on the customer side.",
+        "evidence": "'Yes, silently ... Repos that never set it start getting more findings'; flipped only in v3.0.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies turning the `license-findings` warning into a failure by default as a major because green pipelines go red with no change on the customer side.",
+        "evidence": "'Steps that were green go red'; made default only in v3.0.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies `runs.using: node24` as a major because it raises the minimum runner and excludes GHES releases and self-hosted runners without Node 24, rejecting the 'runtime detail' framing.",
+        "evidence": "Rated 'Maybe' and allowed in 2.4.0 if 'you are happy to set a minimum runner version'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies the bundled CLI bump from 4.x to 5.0 with a removed flag as a major per the breaking-change table, rather than accepting 'we never called it' as grounds for a minor.",
+        "evidence": "Rated 'Unverified' and allowed in 2.4.0 'only if a review ... show no output or exit-code change'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies dropping the `verbose` input as a major because removing an input is a breaking change.",
+        "evidence": "'Low risk, still breaking'; removed only in v3.0.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Accepts the new `output-file` input with a default as the only item on the list that fits a minor.",
+        "evidence": "'Additive. Ship it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bundles the breaking items into one scheduled v3.0.0 where the forced runtime change is the occasion to delete deprecated inputs, and keeps patching v2 while supported GHES releases cannot run node24.",
+        "evidence": "v3 bundle is described, but nothing about continuing to patch v2 for GHES.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'move the v2 tag as usual' as the delivery mechanism: every fix ships as a new immutable `vX.Y.Z` release because SHA pinners, lockfile users and Dependabot follow new semver tags, never a moved major tag.",
+        "evidence": "Says 'v2.4.0 (minor, safe to move `v2`)'; objects to moving `v2` only for breaking changes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires release notes to state the full commit SHA and the `uses: corvane/corvane-action@<sha> # vX.Y.Z` line, the form Dependabot updates.",
+        "evidence": "No mention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a CI contract check that diffs `action.yml` inputs and outputs against the last release and fails on removal or rename outside a major branch.",
+        "evidence": "No mention.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

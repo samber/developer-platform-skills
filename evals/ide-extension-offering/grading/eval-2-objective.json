@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects direct REST calls from the extension and routes every product call through the `hgate` CLI or a language server, naming auth, proxies, retries, pagination and error handling as what forks between two implementations.",
+        "evidence": "Names 'proxy, custom CA, SSO, region and retry handling' but not pagination or error handling.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `harrowgate.apiKey` setting and names settings sync, dotfile repos and support screenshots as the paths that publish it.",
+        "evidence": "'Settings sync, dotfile repos and support screenshots all publish it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes reusing the CLI login through a CLI command that prints the session or token as JSON, held in memory only, and forbids reading the CLI's credential file directly.",
+        "evidence": "Says hold token in memory and never write to settings/logs, but never forbids reading the CLI's credential file.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes VS Code `SecretStorage` for any pasted-key fallback, with the key masked in every log and output channel.",
+        "evidence": "'a pasted key written straight to `SecretStorage` and masked in every log.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects auto-reading `.env` and requires an explicit user action before reading any credential from the workspace.",
+        "evidence": "'Never read workspace files for credentials without an explicit user action.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `*` activation event, requires activation on specific events (a command, a file type, a view), and asks for activation time to be measured with the CLI check lazy-loaded.",
+        "evidence": "Specific events and lazy CLI check given, but no activation-time measurement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves scanning out of the extension host thread into the CLI process.",
+        "evidence": "'Heavy work must run outside the extension host thread' ... fix spawning of `hgate`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `curl | sh` and prescribes detecting the CLI on `PATH` plus a configurable path, offering to install a pinned version.",
+        "evidence": "Change 3 row.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires calling the CLI with `--json` and its exit codes, treating a missing field in the output as a version mismatch.",
+        "evidence": "No statement treating a missing field as a version mismatch.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires `capabilities.untrustedWorkspaces` declared as `limited` or `false`, with code paths guarded by `workspace.isTrusted` and re-enabled on `onDidGrantWorkspaceTrust`.",
+        "evidence": "Auth item 4.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets `extensionKind` deliberately so the extension runs on the remote host in dev containers and Codespaces, finds the CLI there, opens URLs with `env.openExternal` and routes OAuth callbacks through `env.asExternalUri`.",
+        "evidence": "Dev containers section covers all four.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the VS Code `AuthenticationProvider` over product OAuth as the option to promote for Harrowgate, because remote workspaces are common and a remote CLI cannot see the laptop's login.",
+        "evidence": "'Login can't come from the laptop... promote a VS Code `AuthenticationProvider` and route callbacks through `env.asExternalUri`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires bundling the extension with esbuild or webpack, and declares 'desktop only' on the listing because an extension that spawns processes cannot run on vscode.dev.",
+        "evidence": "'desktop only' is stated but bundling is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the extension is only as stable as the CLI's `--json` contract and defers that contract's design to the CLI rather than redefining it in the extension plan.",
+        "evidence": "'The extension is only as stable as that contract.' and A1 assigns to CLI owner.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects direct REST calls from the extension and routes every product call through the `hgate` CLI or a language server, naming auth, proxies, retries, pagination and error handling as what forks between two implementations.",
+        "evidence": "It offers either a child process or a shared typed client as options and does not reject REST.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `harrowgate.apiKey` setting and names settings sync, dotfile repos and support screenshots as the paths that publish it.",
+        "evidence": "\"They get synced, pasted into bug reports, and committed in dotfiles\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes reusing the CLI login through a CLI command that prints the session or token as JSON, held in memory only, and forbids reading the CLI's credential file directly.",
+        "evidence": "Resolution order includes \"the CLI's own credential store\", the opposite of forbidding it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes VS Code `SecretStorage` for any pasted-key fallback, with the key masked in every log and output channel.",
+        "evidence": "\"Use context.secrets\"; \"Never put a secret's value in the diagnostic message, hover, Output channel, or telemetry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects auto-reading `.env` and requires an explicit user action before reading any credential from the workspace.",
+        "evidence": "\"Cut it... explicit opt-in command that reads one named variable\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the `*` activation event, requires activation on specific events (a command, a file type, a view), and asks for activation time to be measured with the CLI check lazy-loaded.",
+        "evidence": "It rejects `*` and gives specific events, but never asks for activation time to be measured.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves scanning out of the extension host thread into the CLI process.",
+        "evidence": "\"Don't scan inside the extension host\"; run `hgate scan` as a child process.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `curl | sh` and prescribes detecting the CLI on `PATH` plus a configurable path, offering to install a pinned version.",
+        "evidence": "\"Remove curl | sh\"; \"harrowgate.cliPath override\"; \"download a pinned version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires calling the CLI with `--json` and its exit codes, treating a missing field in the output as a version mismatch.",
+        "evidence": "It mentions a versioned JSON output schema but not exit codes or missing-field-as-mismatch.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires `capabilities.untrustedWorkspaces` declared as `limited` or `false`, with code paths guarded by `workspace.isTrusted` and re-enabled on `onDidGrantWorkspaceTrust`.",
+        "evidence": "It declares capabilities and isTrusted but never mentions onDidGrantWorkspaceTrust.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets `extensionKind` deliberately so the extension runs on the remote host in dev containers and Codespaces, finds the CLI there, opens URLs with `env.openExternal` and routes OAuth callbacks through `env.asExternalUri`.",
+        "evidence": "Only extensionKind is covered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the VS Code `AuthenticationProvider` over product OAuth as the option to promote for Harrowgate, because remote workspaces are common and a remote CLI cannot see the laptop's login.",
+        "evidence": "AuthenticationProvider is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires bundling the extension with esbuild or webpack, and declares 'desktop only' on the listing because an extension that spawns processes cannot run on vscode.dev.",
+        "evidence": "It suggests a browser entry point or stating web is unsupported, and does not mention bundling.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the extension is only as stable as the CLI's `--json` contract and defers that contract's design to the CLI rather than redefining it in the extension plan.",
+        "evidence": "It only asks whether the CLI has stable output and does not state the extension is only as stable as that contract.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

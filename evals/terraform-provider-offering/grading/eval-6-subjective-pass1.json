@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Keeps one resource per API service and prefers many small resources over one holding a whole account.",
+        "evidence": "The resource map gives each API object its own construct and type name: marrowgate_workspace, marrowgate_workspace_member, marrowgate_team_member, marrowgate_template, marrowgate_segment and marrowgate_sending_domain. It keeps membership out of the workspace as one attachment resource ('Keep marrowgate_workspace free of any members block'). It refuses a separate marrowgate_template_state resource because a second resource for one object's field would fight the template resource on every plan. It describes the sending domain as a singleton resource of its own, not part of an account-wide resour",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Keeps one resource per API service and prefers many small resources over one holding a whole account.",
+        "evidence": "The proposed v1 scope splits the API into separate, focused resources: marrowgate_workspace, marrowgate_workspace_member, marrowgate_template, marrowgate_segment and marrowgate_account_sending_domain. It turns down inline members in favor of a standalone workspace_member resource, so each resource owns its data alone. It also turns the sending domain into its own narrow singleton instead of folding it into a broader account resource. The answer never states the principle outright, though, and never warns against one resource holding a whole account. It also doesn't name 'one resource per API s",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

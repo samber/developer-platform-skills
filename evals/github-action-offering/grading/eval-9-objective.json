@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Classifies `runs.using: node24` as a major (v4.0.0), not a v3.4.0 minor, because it raises the minimum runner and breaks GHES and old self-hosted runners.",
+        "evidence": "'A runs.using change is a major... Ship it as v4.0.0'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the forced runtime major to delete the deprecated `token` input, choosing the removal major from the count of runs still setting it reported by the deprecated-input header flag.",
+        "evidence": "'v4.0.0 is already a breaking release, so it's the cheapest place to delete token. Decide from the flag count.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps patching v3 on node20 while supported GHES releases cannot run node24.",
+        "evidence": "'Leave v3 on node20. Keep patching v3 while GHES releases you support can't run node24.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting the v1 tags: retire a major by announcing it, warning from its last patch release, and leaving its tags in place, because deleting a tag breaks every pinned workflow at once.",
+        "evidence": "'Deleting the tags breaks every pinned workflow at once... leave the tags in place'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'move the v3 tag' as the delivery: ships a `vX.Y.Z` release so SHA pinners, lockfile users and Dependabot receive it.",
+        "evidence": "'new immutable v4.0.0 GitHub release... SHA pinners and Dependabot only see new semver tags'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects Marketplace installs, the dependents count and code search as usage numbers: they are public signals, not usage.",
+        "evidence": "'Label all three as public lower bounds and never as \"users\".'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Counts OIDC-authenticated runs from token exchanges deduplicated by `run_id`, using server-validated `repository_id` and `repository_owner_id` claims.",
+        "evidence": "'deduplicated by run_id... server-validated repository_id and repository_owner_id claims'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Measures key-auth runs and version skew through the versioned `User-Agent` (`oxleaf-action/3.3.1 (github-actions; Linux-X64)`) with a header flag whenever a deprecated input is set.",
+        "evidence": "'oxleaf-action/3.3.1 (github-actions; Linux-X64)'; flag counting runs still setting token.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reports to the board: weekly active repositories by CI and version, share of runs on supported majors, first-run failure rate by error class, and support tickets per release.",
+        "evidence": "Gives weekly active repos by version, supported-major share and token-runs, but not first-run failure rate by error class or support tickets per release.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Corrects the README support claim because Node 24 does not run on macOS 13.4 and earlier or on ARM32 self-hosted runners, so the minimum runner and OS line changes with the major.",
+        "evidence": "'macOS 13.4 and earlier can't run node24... ARM32'; rewrite the line.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs one integration job on a self-hosted runner pinned to the oldest supported runner version before release, because hosted runners hide the runtime-floor break.",
+        "evidence": "'Keep one self-hosted job at the oldest supported runner version.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rebuilds and commits `dist/` bundled as ESM and adds check-dist (`git diff --ignore-space-at-eol --text dist/`) to the release gates.",
+        "evidence": "check-dist clean is a gate, but ESM bundling and the git diff command are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that actions still declaring node20 after removal run on node24 with a job warning, untested by their authors, so v4 is tested on node24 rather than left to the forced run.",
+        "evidence": "'Since 2026-09-23, v3 already runs on node24 with a warning, untested by you.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Classifies `runs.using: node24` as a major (v4.0.0), not a v3.4.0 minor, because it raises the minimum runner and breaks GHES and old self-hosted runners.",
+        "evidence": "'Ship 3.4.0 if a canary passes' (v4 only 'if you want the clean contract').",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the forced runtime major to delete the deprecated `token` input, choosing the removal major from the count of runs still setting it reported by the deprecated-input header flag.",
+        "evidence": "Keeps `token` and schedules removal for v4; no header-flag count.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps patching v3 on node20 while supported GHES releases cannot run node24.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting the v1 tags: retire a major by announcing it, warning from its last patch release, and leaving its tags in place, because deleting a tag breaks every pinned workflow at once.",
+        "evidence": "'Don't.' ... 'Leaving the tags costs nothing.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'move the v3 tag' as the delivery: ships a `vX.Y.Z` release so SHA pinners, lockfile users and Dependabot receive it.",
+        "evidence": "Plan ends 'tag `v3.4.0` and move `v3`'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects Marketplace installs, the dependents count and code search as usage numbers: they are public signals, not usage.",
+        "evidence": "Caveats them but still uses code search for decisions and suggests labeled presentation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Counts OIDC-authenticated runs from token exchanges deduplicated by `run_id`, using server-validated `repository_id` and `repository_owner_id` claims.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Measures key-auth runs and version skew through the versioned `User-Agent` (`oxleaf-action/3.3.1 (github-actions; Linux-X64)`) with a header flag whenever a deprecated input is set.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Reports to the board: weekly active repositories by CI and version, share of runs on supported majors, first-run failure rate by error class, and support tickets per release.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Corrects the README support claim because Node 24 does not run on macOS 13.4 and earlier or on ARM32 self-hosted runners, so the minimum runner and OS line changes with the major.",
+        "evidence": "Only rewords the claim and cites runner \u2265 2.327.1; no macOS or ARM32 floor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs one integration job on a self-hosted runner pinned to the oldest supported runner version before release, because hosted runners hide the runtime-floor break.",
+        "evidence": "Canary includes one self-hosted repo, but no oldest-supported-runner job.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rebuilds and commits `dist/` bundled as ESM and adds check-dist (`git diff --ignore-space-at-eol --text dist/`) to the release gates.",
+        "evidence": "Says 'rebuild `dist/`' but no ESM or check-dist gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that actions still declaring node20 after removal run on node24 with a job warning, untested by their authors, so v4 is tested on node24 rather than left to the forced run.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

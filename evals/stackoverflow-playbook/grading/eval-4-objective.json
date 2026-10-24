@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Before posting a new Q&A, instructs searching the [larkq] tag for an existing thread on this error and answering there if one exists",
+        "evidence": "No instruction to search [larkq] for an existing thread before posting.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the canonical title shape '<tool> fails with \"<literal error string>\" when <condition>' with the literal `handshake rejected: protocol version 4 not supported by broker (max 3)` string",
+        "evidence": "Title: larkq-go 2.x fails on startup with \"larkq: handshake rejected: protocol version 4 not supported by broker (max 3)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts a disclosure line in the question post itself, stating the Larkmoor affiliation and that the Q&A documents a common fix, not only in the answer",
+        "evidence": "\"Disclosure: I work at Larkmoor... I'm posting this Q&A to document a common fix.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts a disclosure line in the answer post naming Larkmoor and larkq",
+        "evidence": "\"Disclosure: I work at Larkmoor, which maintains larkq-go.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Structures the answer as Cause, Fix, Verify, Applies to versions, carrying the 2.x SDK and broker 1.14+ ranges",
+        "evidence": "Outline with Cause, Fix, Verify, \"Applies to larkq-go <first 2.x version>... brokers older than 1.14\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves the technical body (code block, verify command and expected output) for staff to write and states the reason: content crafted in part by generative AI is banned; does not deliver a 'complete' answer body despite the request",
+        "evidence": "\"Stack Overflow bans any post 'crafted, in part or in whole' by an LLM... I can't write the technical body\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs ticking 'Answer your own question' on the Ask page and confirms the 15-rep gate is met at 230 rep",
+        "evidence": "\"Tick 'Answer your own question'... needs 15 rep and you have 230.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the tag excerpt as neutral usage guidance (one-line definition, use for questions about using larkq, bugs/feature requests/account issues to Larkmoor's own channels), removing 'fastest', 'Get started free' and the marketing link",
+        "evidence": "Excerpt rewritten; \"Superlatives and 'Get started free' invite a rollback.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the tag wiki with About, Before asking (versions and full error output, links to canonicals) and Where else to ask (bug, feature request, account URLs) sections",
+        "evidence": "About, Before asking, Where else to ask.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the tag excerpt and wiki edits are peer-reviewed and carry no rep gate",
+        "evidence": "\"Edits at 230 rep go to peer review\"; table \"any, peer-reviewed\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States posts are CC BY-SA 4.0, so the community TLS answer may be reused on the docs site with attribution",
+        "evidence": "\"licensed CC BY-SA 4.0, so reuse is allowed... Attribute.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points the mirrored docs error page to the developer-troubleshooting-docs sibling skill rather than writing the docs page inline",
+        "evidence": "\"Mirror the answer on your docs error page, using `developer-troubleshooting-docs`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the 30-a-month ticket theme as one of the quarterly 5-10 canonicals for top support-ticket themes and names duplicate flags (15 rep) onto it for existing threads",
+        "evidence": "Duplicate flags at 15 rep mentioned, but no 5-10 quarterly canonicals framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries the figures through: 30 tickets a month, 230 rep, protocol 4 vs max 3, broker 1.14+, SDK 2.x, larkq.WithProtocol(3)",
+        "evidence": "~30 tickets a month, 230 rep, protocol 4 max 3, 1.14, 2.x, WithProtocol(3).",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Before posting a new Q&A, instructs searching the [larkq] tag for an existing thread on this error and answering there if one exists",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the canonical title shape '<tool> fails with \"<literal error string>\" when <condition>' with the literal `handshake rejected: protocol version 4 not supported by broker (max 3)` string",
+        "evidence": "The title is 'larkq: handshake rejected: ... after upgrading larkq-go to 2.x'. It is not the '<tool> fails with \"<error>\" when <condition>' shape.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts a disclosure line in the question post itself, stating the Larkmoor affiliation and that the Q&A documents a common fix, not only in the answer",
+        "evidence": "The disclosure is only in the answer. The question body has none.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts a disclosure line in the answer post naming Larkmoor and larkq",
+        "evidence": "'Disclosure: I work for Larkmoor, the company behind larkq and larkq-go.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Structures the answer as Cause, Fix, Verify, Applies to versions, carrying the 2.x SDK and broker 1.14+ ranges",
+        "evidence": "It has Cause, Fix, Permanent fix, Verifying and Notes. There is no 'Applies to versions' section.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Leaves the technical body (code block, verify command and expected output) for staff to write and states the reason: content crafted in part by generative AI is banned; does not deliver a 'complete' answer body despite the request",
+        "evidence": "It delivers the complete answer, including the code block.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs ticking 'Answer your own question' on the Ask page and confirms the 15-rep gate is met at 230 rep",
+        "evidence": "It mentions ticking the box but never confirms the 15-rep gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the tag excerpt as neutral usage guidance (one-line definition, use for questions about using larkq, bugs/feature requests/account issues to Larkmoor's own channels), removing 'fastest', 'Get started free' and the marketing link",
+        "evidence": "The excerpt is neutral but has no routing of bugs, features or account issues to Larkmoor's channels.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes the tag wiki with About, Before asking (versions and full error output, links to canonicals) and Where else to ask (bug, feature request, account URLs) sections",
+        "evidence": "The wiki has no 'Where else to ask' section with bug, feature and account URLs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the tag excerpt and wiki edits are peer-reviewed and carry no rep gate",
+        "evidence": "It claims 'direct tag-wiki edits need much more reputation' at 230 rep. This is wrong.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States posts are CC BY-SA 4.0, so the community TLS answer may be reused on the docs site with attribution",
+        "evidence": "It says 'Not by simply copying' and that the version could be 2.5, 3.0 or 4.0.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points the mirrored docs error page to the developer-troubleshooting-docs sibling skill rather than writing the docs page inline",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the 30-a-month ticket theme as one of the quarterly 5-10 canonicals for top support-ticket themes and names duplicate flags (15 rep) onto it for existing threads",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries the figures through: 30 tickets a month, 230 rep, protocol 4 vs max 3, broker 1.14+, SDK 2.x, larkq.WithProtocol(3)",
+        "evidence": "The 30 tickets a month is missing. 230 rep, protocol 4 vs max 3, 1.14, 2.x and WithProtocol(3) are present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

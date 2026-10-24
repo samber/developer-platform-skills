@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that answering needs no reputation and starts the advocate answering in the [vexalith] tag from the 1-rep account in week 1",
+        "evidence": "Action 2 \"Answers on high-view threads... 1\" rep; week 1 \"Answer 3 to 5 of the highest-view threads.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the gates that block the plan as written: comment at 50 rep, flag at 15, close vote at 3,000; the new account cannot close or comment yet",
+        "evidence": "\"Close votes need 3,000 rep. Flags need 15. You have 1\"; comment at 50.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not close the bug reports; answers each with a workaround plus a disclosed link to the public issue, using the bug-report redirect wording",
+        "evidence": "\"Bug posts get a workaround\"; bug redirect template with public issue URL.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns the billing threads to Dario (640 rep, above the 50-rep steward gate) to comment the support route and flag to close as not about programming, with the '(I work at Vexalith.)' line",
+        "evidence": "\"Dario comments the support route and flags as not about programming\"; template ends \"(I work at Vexalith.)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines to answer the 'which should I pick' question on Stack Overflow because tool recommendations are off-topic there; notes Software Recommendations accepts such a question only when the answer meets every stated requirement",
+        "evidence": "Declines as off-topic but never mentions Software Recommendations.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Answers the three Portuguese threads in Portuguese on pt.stackoverflow.com (a separate tag), never in English; hands them to a Portuguese speaker if needed",
+        "evidence": "\"answers there go in Portuguese\"; hand to a Portuguese-speaking colleague.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States reputation is per site and that 200 rep on any Stack Exchange site adds 100 on every other",
+        "evidence": "\"Reputation doesn't carry over. Once you pass 200 rep... +100 on the other sites.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the week-1 routing table: how-to and error questions to Stack Overflow; bugs, feature requests, 'why' and 'when' questions to Vexalith's own channels, on the support page and the tag excerpt",
+        "evidence": "Routing table with how-to to Stack Overflow, bugs, features, why/when to own channels.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets up the daily 15-minute rotating check from the tag feed (/feeds/tag/vexalith) into chat with one assignee per question, plus a weekly 1-2 hour steward slot",
+        "evidence": "Rotation alternating days with feed is present, but no weekly 1-2 hour steward slot.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sorts the 96 open questions by views and ignores the near-zero-view tail before any work, rather than working the whole list to make the tag look clean",
+        "evidence": "\"Sort by views, ignore the near-zero tail\"; \"Own the high-view threads instead.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the metric baseline: answer rate under 30 days starting at 90% and median time to first answer of one business day, or supplies the Data Explorer query to compute it",
+        "evidence": "\"Answer rate under 30 days: start at 90%.\" \"Median time to first answer: one business day.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the plan inside 4 hours a week with hours per action and the rep gate stated per action",
+        "evidence": "Week 1 items sum to 4 h; table has Hours and Rep gate columns.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that answering needs no reputation and starts the advocate answering in the [vexalith] tag from the 1-rep account in week 1",
+        "evidence": "Week 1 step 5: 'Answer the 3 to 5 most-viewed unanswered how-to or bug posts \u2026 First real rep'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the gates that block the plan as written: comment at 50 rep, flag at 15, close vote at 3,000; the new account cannot close or comment yet",
+        "evidence": "It gives close ~3000 and flag 15 but never the 50-rep comment gate. It even implies commenting is blocked only by the new account.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not close the bug reports; answers each with a workaround plus a disclosed link to the public issue, using the bug-report redirect wording",
+        "evidence": "'Genuine bugs \u2026 answer with a workaround, then open or link a GitHub issue.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns the billing threads to Dario (640 rep, above the 50-rep steward gate) to comment the support route and flag to close as not about programming, with the '(I work at Vexalith.)' line",
+        "evidence": "It says 'Leave them for community' and only hands them to support. It does not assign Dario to flag them closed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines to answer the 'which should I pick' question on Stack Overflow because tool recommendations are off-topic there; notes Software Recommendations accepts such a question only when the answer meets every stated requirement",
+        "evidence": "It declines, but as opinion-based and self-promotion. It does not mention Software Recommendations.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Answers the three Portuguese threads in Portuguese on pt.stackoverflow.com (a separate tag), never in English; hands them to a Portuguese speaker if needed",
+        "evidence": "'pt.stackoverflow.com requires Portuguese \u2026 Have the speaker translate or review it before posting.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States reputation is per site and that 200 rep on any Stack Exchange site adds 100 on every other",
+        "evidence": "It says only that the pt account is 'separate \u2026 with its own 1 rep'. The association bonus is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Delivers the week-1 routing table: how-to and error questions to Stack Overflow; bugs, feature requests, 'why' and 'when' questions to Vexalith's own channels, on the support page and the tag excerpt",
+        "evidence": "The week-1 table is a time plan, not a routing table.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets up the daily 15-minute rotating check from the tag feed (/feeds/tag/vexalith) into chat with one assignee per question, plus a weekly 1-2 hour steward slot",
+        "evidence": "It proposes 'Two 30-minute triage slots per week' and has no per-question assignee.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sorts the 96 open questions by views and ignores the near-zero-view tail before any work, rather than working the whole list to make the tag look clean",
+        "evidence": "It sorts by views but works the full list ('oldest high-view first'). It does not ignore the tail.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets the metric baseline: answer rate under 30 days starting at 90% and median time to first answer of one business day, or supplies the Data Explorer query to compute it",
+        "evidence": "The metrics are named, but no baseline or target is given and there is no query.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the plan inside 4 hours a week with hours per action and the rep gate stated per action",
+        "evidence": "Week 1 totals 'about 4 h 20 min'. Rep gates are not stated per action.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

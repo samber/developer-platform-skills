@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects removing the extension, stating that removal deletes the stats, reserves the name forever and breaks allowlists keyed on the extension ID.",
+        "evidence": "'Removal deletes the stats and reserves the name forever... allowlists key on'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the listing installable on every registry through an announced end date, with no forced removal.",
+        "evidence": "'never remove'; stop updates 2027-01-29; stays installable.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Announces with a date, the named replacement and migration steps in a public issue and the changelog, not only in a monthly newsletter.",
+        "evidence": "'The announcement is a public issue, the changelog, and a notice in the extension.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships a last release that shows the deprecation notice once at activation, with a link.",
+        "evidence": "'one notice at activation, with a link.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the extension deprecated on the VS Code Marketplace by commenting on the `microsoft/vscode-discussions` 'Deprecated extensions' thread, naming the replacement.",
+        "evidence": "'Comment on the `microsoft/vscode-discussions` \"Deprecated extensions\" thread'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deprecates it on Open VSX by pull request to `extension-control/extensions.json` in the `open-vsx/publish-extensions` repository, naming the replacement and keeping it downloadable.",
+        "evidence": "Fri 10-30 row.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the deprecation on the JetBrains listing as well.",
+        "evidence": "'Add the deprecation note to the JetBrains listing.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Archives the repository only after the end date and keeps the security contact live.",
+        "evidence": "'Archive the repository and keep the security contact live.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the notice in the deprecation-notice shape: announce date, end date, replacement, why, numbered what-to-do steps ending with uninstalling the old extension ID, a 'what keeps working' line, and a questions link.",
+        "evidence": "Notice has dates, replacement, why, numbered steps ending uninstall, what keeps working, questions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Posts the same notice text in the public issue, the changelog and the activation notice of the last release.",
+        "evidence": "Notice is 'publish verbatim' but the activation notice is described separately as 'one notice at activation, with a link'; same text not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the old extension ID working as a pointer to the successor (deprecated with a migrate pointer, or turned into an extension pack) rather than letting it go dead when `fernhollow-tools` ships.",
+        "evidence": "Marked deprecated on both registries naming `fernhollow-tools`; stays installable.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the three Marketplace actions: deprecate (reversible, struck-through listing with migrate button), unpublish (reversible, no new installs, stats kept) and remove (irreversible), and picks deprecate.",
+        "evidence": "Unpublish is never discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records the deprecation schedule and the successor extension ID in the plan or the persistent context so a later release checks against it.",
+        "evidence": "No instruction to record this in persistent context.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects removing the extension, stating that removal deletes the stats, reserves the name forever and breaks allowlists keyed on the extension ID.",
+        "evidence": "It says deprecate, don't unpublish, because installed copies stay dead. It gives none of the rubric's reasons (stats, reserved name, allowlists).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the listing installable on every registry through an announced end date, with no forced removal.",
+        "evidence": "\"Mark it deprecated with the new extension as replacement. Keep the listing up.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Announces with a date, the named replacement and migration steps in a public issue and the changelog, not only in a monthly newsletter.",
+        "evidence": "It announces via newsletter, migration page and README, with no public issue or changelog.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships a last release that shows the deprecation notice once at activation, with a link.",
+        "evidence": "\"One-time notification on activation... Add a 'don't show again' action.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the extension deprecated on the VS Code Marketplace by commenting on the `microsoft/vscode-discussions` 'Deprecated extensions' thread, naming the replacement.",
+        "evidence": "It says \"deprecate option in the publisher portal\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Deprecates it on Open VSX by pull request to `extension-control/extensions.json` in the `open-vsx/publish-extensions` repository, naming the replacement and keeping it downloadable.",
+        "evidence": "It says only \"deprecated and replacement fields\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the deprecation on the JetBrains listing as well.",
+        "evidence": "\"JetBrains: your plan skips it. It is the third channel, so it needs the same treatment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Archives the repository only after the end date and keeps the security contact live.",
+        "evidence": "It archives the repo at T0+90 but does not keep a security contact live after that.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes the notice in the deprecation-notice shape: announce date, end date, replacement, why, numbered what-to-do steps ending with uninstalling the old extension ID, a 'what keeps working' line, and a questions link.",
+        "evidence": "There is no notice template.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Posts the same notice text in the public issue, the changelog and the activation notice of the last release.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the old extension ID working as a pointer to the successor (deprecated with a migrate pointer, or turned into an extension pack) rather than letting it go dead when `fernhollow-tools` ships.",
+        "evidence": "\"Mark it deprecated with the new extension as replacement\"; listing stays up.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the three Marketplace actions: deprecate (reversible, struck-through listing with migrate button), unpublish (reversible, no new installs, stats kept) and remove (irreversible), and picks deprecate.",
+        "evidence": "Only unpublish versus deprecate is discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records the deprecation schedule and the successor extension ID in the plan or the persistent context so a later release checks against it.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

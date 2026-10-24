@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires publishing the same packed `.vsix` to Open VSX as well as the VS Code Marketplace, citing the Marketplace terms that restrict use to Microsoft products.",
+        "evidence": "'Marketplace terms limit use to Microsoft products... Publish the **same `.vsix`** to Open VSX.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects sideloading as the answer for Cursor and VSCodium users, because they search Open VSX and install whatever matches the name.",
+        "evidence": "Cursor and VSCodium users 'install whatever matches your name'; sideload kept only for offline path.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires creating the Open VSX namespace before launch and filing the ownership claim through an issue on `EclipseFdn/open-vsx.org`, noting the listing shows an unverified-publisher warning until it is granted.",
+        "evidence": "`ovsx create-namespace`, claim on `EclipseFdn/open-vsx.org`, 'unverified warning'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the global Azure DevOps PAT as a dated liability because global PATs stop working on 2026-12-01, and the all-accessible-organizations recipe is one.",
+        "evidence": "'stop working on **2026-12-01**' and all-organizations scope too broad.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the PAT with `vsce publish --azure-credential` or `--oidc`, and for `--oidc` requires a trusted-publishing policy registered on the Marketplace plus `permissions: id-token: write` in the workflow, with no PAT fallback kept.",
+        "evidence": "Trusted-publishing policy, 'permissions: id-token: write', 'never falls back to a PAT'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `vsce publish minor` from source with `vsce package` once, then `vsce publish --packagePath <file>.vsix`, noting that the `patch|minor|major` form also commits and tags.",
+        "evidence": "Row 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes that same file to Open VSX with `ovsx publish <file>.vsix --trusted-publishing` from CI, or a namespace-scoped token on a Contributor-role account as fallback, and removes any `OVSX_PAT` from that job.",
+        "evidence": "'with no `OVSX_PAT` in that job' and Contributor-account fallback.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the version `1.0.0-beta.1` because the Marketplace accepts `major.minor.patch` only, and prescribes the odd-minor pre-release / even-minor release convention with `--pre-release` at package time.",
+        "evidence": "Row 5.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the publisher ID `tollbridge-dev` and the extension name are permanent and cannot be renamed later, so the final name must be claimed now.",
+        "evidence": "Row 1.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the SVG icon and requires a PNG of at least 128 px.",
+        "evidence": "Row 6.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the verified-publisher badge needs an extension listed for at least 6 months and a 6-month-old domain, so applying on launch day cannot succeed, and publishes the publisher ID and extension ID on Tollbridge's own docs for buyers and allowlists meanwhile.",
+        "evidence": "Row 7.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires inspecting the packed file list and scanning the `.vsix` for secrets before publishing.",
+        "evidence": "Secret scan is required but inspecting the packed file list is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the same `.vsix` hash on both registries as a release gate.",
+        "evidence": "'The same `.vsix` hash on both registries'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires `@vscode/vsce` from devDependencies rather than the deprecated unscoped `vsce` package.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the JetBrains vendor and plugin `<id>` among the names to claim before launch, even with no JetBrains plugin planned yet.",
+        "evidence": "Identity table: JetBrains 'n/a'.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires publishing the same packed `.vsix` to Open VSX as well as the VS Code Marketplace, citing the Marketplace terms that restrict use to Microsoft products.",
+        "evidence": "\"Microsoft's terms bar its Marketplace from non-Microsoft products\"; \"Publish the same .vsix everywhere\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects sideloading as the answer for Cursor and VSCodium users, because they search Open VSX and install whatever matches the name.",
+        "evidence": "\"Cursor and VSCodium users should not sideload.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires creating the Open VSX namespace before launch and filing the ownership claim through an issue on `EclipseFdn/open-vsx.org`, noting the listing shows an unverified-publisher warning until it is granted.",
+        "evidence": "It says to claim the namespace but names no issue on EclipseFdn/open-vsx.org and no unverified warning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the global Azure DevOps PAT as a dated liability because global PATs stop working on 2026-12-01, and the all-accessible-organizations recipe is one.",
+        "evidence": "The PAT is criticised as a single point of failure, with no 2026-12-01 date.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the PAT with `vsce publish --azure-credential` or `--oidc`, and for `--oidc` requires a trusted-publishing policy registered on the Marketplace plus `permissions: id-token: write` in the workflow, with no PAT fallback kept.",
+        "evidence": "It suggests azure-credential and OIDC but keeps a PAT option, and does not mention the trusted-publishing policy or id-token permission.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces `vsce publish minor` from source with `vsce package` once, then `vsce publish --packagePath <file>.vsix`, noting that the `patch|minor|major` form also commits and tags.",
+        "evidence": "\"It bumps package.json, then makes a commit and a tag\"; \"vsce publish --packagePath tollbridge.vsix\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes that same file to Open VSX with `ovsx publish <file>.vsix --trusted-publishing` from CI, or a namespace-scoped token on a Contributor-role account as fallback, and removes any `OVSX_PAT` from that job.",
+        "evidence": "It only says \"ovsx publish tollbridge.vsix\" and treats the Open VSX token like the PAT.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the version `1.0.0-beta.1` because the Marketplace accepts `major.minor.patch` only, and prescribes the odd-minor pre-release / even-minor release convention with `--pre-release` at package time.",
+        "evidence": "It rejects beta.1 and says to use a different minor, but gives no odd/even convention and applies --pre-release at publish.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the publisher ID `tollbridge-dev` and the extension name are permanent and cannot be renamed later, so the final name must be claimed now.",
+        "evidence": "\"Publisher ID is permanent... You can't rename it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the SVG icon and requires a PNG of at least 128 px.",
+        "evidence": "\"The Marketplace needs a PNG for icon, at least 128x128.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the verified-publisher badge needs an extension listed for at least 6 months and a 6-month-old domain, so applying on launch day cannot succeed, and publishes the publisher ID and extension ID on Tollbridge's own docs for buyers and allowlists meanwhile.",
+        "evidence": "It states the 6-month rule but never says to publish the IDs on Tollbridge's docs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires inspecting the packed file list and scanning the `.vsix` for secrets before publishing.",
+        "evidence": "It only mentions a .vscodeignore.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the same `.vsix` hash on both registries as a release gate.",
+        "evidence": "No hash gate is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires `@vscode/vsce` from devDependencies rather than the deprecated unscoped `vsce` package.",
+        "evidence": "The scoped package is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the JetBrains vendor and plugin `<id>` among the names to claim before launch, even with no JetBrains plugin planned yet.",
+        "evidence": "JetBrains is not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

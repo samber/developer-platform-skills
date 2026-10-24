@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Excludes PL-301 (auth token replay weakness) from both the public repo and the NDA briefings because publication tells attackers where the gap is",
+        "evidence": "\"Security work. Publishing it tells attackers where the gap is.\"; NDA: \"Never show unannounced deprecations, security work...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Excludes PL-287 (v1 sunset) until it is announced through the deprecation process, and links the notice from the item once announced",
+        "evidence": "\"Announce it through your versioning process first, then link the notice from a roadmap item.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Excludes PL-312 (price increase and new tier) as pricing and packaging",
+        "evidence": "\"Pricing and packaging.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the Tarnbrook Bank name with the capability (sync with the customer's bank) until the partner announces, in the NDA briefing as well as the public repo",
+        "evidence": "\"Name the capability, not the vendor\"; NDA: \"Never show... partner names, even under NDA.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Excludes PL-305 (Harrowgate SAML mapping) as a customer-specific commitment that belongs in that customer's order form under legal review",
+        "evidence": "\"belongs in their order form\"; \"only after counsel and finance have reviewed Harrowgate's order form\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Excludes PL-320 (Postgres 17 migration, billing service split) as internal plumbing",
+        "evidence": "\"Internal plumbing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites PL-290 'Key rotation v2' as a problem-first title (for example 'Rotate API keys without downtime')",
+        "evidence": "\"Rotate API keys without downtime\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the public roadmap is never the internal roadmap minus a few rows and runs every candidate through the exclusion gate",
+        "evidence": "The principle is not stated. The gate is only applied to the Jira rows.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the same exclusion gate to the NDA briefings, rejecting the plan to show the partner name under NDA",
+        "evidence": "\"The skill's gate applies to NDA decks too\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records who decides edge cases of the gate in the policy",
+        "evidence": "The transcript never names an edge-case decider.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks passing items as public in the internal tool rather than maintaining a separate list",
+        "evidence": "The transcript never mentions a public flag in the internal tool. It proposes a fresh repo instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives each public item a stable ID that survives from exploring to GA, and one discuss link to a feedback channel instead of comments on the item",
+        "evidence": "\"Use new public IDs (`RM-###`)\"; \"Discuss: <link to one feedback thread>\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks the Growth tier and any other item that would cannibalize a current plan against the Osborne effect before publication",
+        "evidence": "\"A new tier can also stall Starter purchases (Osborne effect).\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Excludes PL-301 (auth token replay weakness) from both the public repo and the NDA briefings because publication tells attackers where the gap is",
+        "evidence": "Excluded from the public repo only: 'Never as a roadmap line.' The NDA briefings are not addressed for this item.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Excludes PL-287 (v1 sunset) until it is announced through the deprecation process, and links the notice from the item once announced",
+        "evidence": "Held until 'After customer notification. Then publish with a dated deprecation timeline'. No link to the notice from the item.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Excludes PL-312 (price increase and new tier) as pricing and packaging",
+        "evidence": "'Unannounced pricing leaks... At the pricing announcement, on your pricing page.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the Tarnbrook Bank name with the capability (sync with the customer's bank) until the partner announces, in the NDA briefing as well as the public repo",
+        "evidence": "The item is held back entirely until the joint announcement. There is no capability substitution and no NDA treatment.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Excludes PL-305 (Harrowgate SAML mapping) as a customer-specific commitment that belongs in that customer's order form under legal review",
+        "evidence": "'I kept the generic feature in the list above' (Configurable SAML attribute mapping is published).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Excludes PL-320 (Postgres 17 migration, billing service split) as internal plumbing",
+        "evidence": "It keeps a 'Platform infrastructure upgrades' line in the public roadmap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rewrites PL-290 'Key rotation v2' as a problem-first title (for example 'Rotate API keys without downtime')",
+        "evidence": "Public item is still titled 'Key rotation v2'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the public roadmap is never the internal roadmap minus a few rows and runs every candidate through the exclusion gate",
+        "evidence": "It splits 'publish now' and 'hold back' rows. It states no gate principle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the same exclusion gate to the NDA briefings, rejecting the plan to show the partner name under NDA",
+        "evidence": "'Keep NDA content separate' with 'the full list with partner names'. It doesn't apply the gate to NDA decks.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Records who decides edge cases of the gate in the policy",
+        "evidence": "No decision owner is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks passing items as public in the internal tool rather than maintaining a separate list",
+        "evidence": "It creates a separate ROADMAP.md and keeps the Jira export out of the repo.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives each public item a stable ID that survives from exploring to GA, and one discuss link to a feedback channel instead of comments on the item",
+        "evidence": "Uses per-item issue labels such as 'Open an issue with the `key-rotation` label'. No stable ID.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks the Growth tier and any other item that would cannibalize a current plan against the Osborne effect before publication",
+        "evidence": "It holds the Growth tier back as pricing. There is no Osborne-effect check.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

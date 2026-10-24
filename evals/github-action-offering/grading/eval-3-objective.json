@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the sign-off premise: a customer's SHA pin on the action pins nothing the action downloads or references at runtime, so nested `uses:` and the fetched binary are uncovered.",
+        "evidence": "'Pinning by commit SHA freezes action.yml and nothing else. The action still fetches ... on every run'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `--message \"${{ inputs.message }}\"` inside `run:` as script injection because the caller decides what flows into `inputs.message`, often `${{ github.event.pull_request.title }}`, and moves the value into `env:` referenced as a quoted `\"$MESSAGE\"`.",
+        "evidence": "Finding 2: 'pass both through env: and quote them as \"$VAR\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `${{ inputs.cli-version }}` interpolated into the `run:` block as the same injection class and moves it to `env:`.",
+        "evidence": "'A cli-version of x; \u2026 executes the same way.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `${{ secrets.BRIMHAVEN_TOKEN }}` as resolving empty inside a composite action, which has no `secrets` context, and reads the token from the `api-key` input instead, masked with `::add-mask::` before any use.",
+        "evidence": "Finding 3: secrets.BRIMHAVEN_TOKEN 'always empty inside a composite action'; read inputs.api-key and '::add-mask::'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the checksum fetched from the same origin as the binary as proving nothing, and replaces it with per-version digests committed in the action repo (a checksums table keyed by version and platform) or a signature verified against a pinned signer identity, refusing any version with no committed digest.",
+        "evidence": "Finding 1: commit checksums.txt, 'Refuse any version not in it'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes `latest` as the `cli-version` default and defaults to the newest version the action release ships digests for.",
+        "evidence": "Finding 6 and the cli-version default of the newest listed version.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins `actions/setup-node@v4` by full commit SHA with a version comment, or removes it since the action wraps a native binary, noting that nested `uses:` entries surface as lockfile diffs in customer PRs and should stay few.",
+        "evidence": "Finding 5: 'Remove it. If you do need it, pin it by full SHA with a # v4.x.y comment.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `echo \"summary=$(cat out.txt)\" >> $GITHUB_OUTPUT` with a random-delimiter heredoc (`summary<<EOF_$(openssl rand -hex 8)`) because a newline in the value injects extra outputs.",
+        "evidence": "Fix uses delim=\"EOF_$(openssl rand -hex 8)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the `$GITHUB_ENV` write entirely because untrusted text there can set variables such as `NODE_OPTIONS` or `LD_PRELOAD` for every later step.",
+        "evidence": "'Fix: delete the $GITHUB_ENV line'; NODE_OPTIONS/LD_PRELOAD cited.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `required: true` is not enforced by the runner and adds in-code validation that fails naming the input, the value received and the expected form.",
+        "evidence": "'required: true isn't enforced by the runner'; named error 'api-key is empty. Pass a Brimhaven API key'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a `description` and an explicit `default` to every optional input and documents booleans as strict `true`/`false` strings.",
+        "evidence": "Flags missing descriptions and a missing default for message, but never documents booleans as strict true/false strings.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that no output embeds the token or any other secret.",
+        "evidence": "No check that outputs exclude the token or other secrets.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires zizmor with no finding at medium severity or above and actionlint clean on the action repo and the README example before the v1.0.0 release.",
+        "evidence": "'Run zizmor ... no finding at medium or above, plus actionlint.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the sign-off premise: a customer's SHA pin on the action pins nothing the action downloads or references at runtime, so nested `uses:` and the fetched binary are uncovered.",
+        "evidence": "'A commit SHA pins ... `action.yml` and nothing else'; binary and setup-node@v4 not pinned.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `--message \"${{ inputs.message }}\"` inside `run:` as script injection because the caller decides what flows into `inputs.message`, often `${{ github.event.pull_request.title }}`, and moves the value into `env:` referenced as a quoted `\"$MESSAGE\"`.",
+        "evidence": "'pass both through `env:` and quote them'; corrected step uses `BHV_MESSAGE`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `${{ inputs.cli-version }}` interpolated into the `run:` block as the same injection class and moves it to `env:`.",
+        "evidence": "Same class listed; 'Validate `cli-version` against ...'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `${{ secrets.BRIMHAVEN_TOKEN }}` as resolving empty inside a composite action, which has no `secrets` context, and reads the token from the `api-key` input instead, masked with `::add-mask::` before any use.",
+        "evidence": "Fix `BHV_TOKEN: ${{ inputs.api-key }}` is given, but `::add-mask::` is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the checksum fetched from the same origin as the binary as proving nothing, and replaces it with per-version digests committed in the action repo (a checksums table keyed by version and platform) or a signature verified against a pinned signer identity, refusing any version with no committed digest.",
+        "evidence": "'attacker serves a matching pair'; 'Put the expected SHA-256 for each supported version inside `action.yml`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes `latest` as the `cli-version` default and defaults to the newest version the action release ships digests for.",
+        "evidence": "'Default `cli-version` to a concrete version, not `latest`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins `actions/setup-node@v4` by full commit SHA with a version comment, or removes it since the action wraps a native binary, noting that nested `uses:` entries surface as lockfile diffs in customer PRs and should stay few.",
+        "evidence": "'Remove `actions/setup-node@v4` unless `bhv` needs Node. If you keep it, pin it to a full commit SHA.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `echo \"summary=$(cat out.txt)\" >> $GITHUB_OUTPUT` with a random-delimiter heredoc (`summary<<EOF_$(openssl rand -hex 8)`) because a newline in the value injects extra outputs.",
+        "evidence": "`delim=\"EOF_$(openssl rand -hex 16)\"` heredoc.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the `$GITHUB_ENV` write entirely because untrusted text there can set variables such as `NODE_OPTIONS` or `LD_PRELOAD` for every later step.",
+        "evidence": "'Fix: drop the `GITHUB_ENV` write.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `required: true` is not enforced by the runner and adds in-code validation that fails naming the input, the value received and the expected form.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a `description` and an explicit `default` to every optional input and documents booleans as strict `true`/`false` strings.",
+        "evidence": "Only notes `message` has no default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that no output embeds the token or any other secret.",
+        "evidence": "Not checked; only says to treat the summary output as untrusted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires zizmor with no finding at medium severity or above and actionlint clean on the action repo and the README example before the v1.0.0 release.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
