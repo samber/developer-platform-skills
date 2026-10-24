@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the afterResponse middleware that rewrites 4xx and 5xx responses to status 200, stating an integration must never return 200 on a failure",
+        "evidence": "\"Delete the `afterResponse` that turns errors into 200s... Never return 200 on a failure.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the middleware must never swallow 401 or 429, because 401 drives Zapier's token refresh and 429 drives its retry",
+        "evidence": "\"It breaks the 429 path\"; \"Zapier refreshes on 401 only\"; code comment \"never rewrite other statuses: 429 and 5xx must surface\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `throw new Error('Contact already exists')` with `z.errors.HaltedError`, explaining a halted error never counts toward the Zap auto-off rule",
+        "evidence": "\"Make 409 a `HaltedError`... must not count toward auto-off.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that only `z.errors.*` errors may be thrown, never a plain `Error`",
+        "evidence": "Only says \"not a plain `Error`\" for the 409 case; no general rule stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the API's 200-with-`token_expired` body by throwing `z.errors.RefreshAuthError` (or by making the API answer 401), because Zapier refreshes OAuth tokens only on HTTP 401",
+        "evidence": "\"throw `RefreshAuthError` in `afterResponse` on that body\"; or make API return 401.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds `refreshAccessToken` and `autoRefresh: true` to the oauth2Config",
+        "evidence": "Code adds `refreshAccessToken` and `autoRefresh: true`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the hardcoded client id and secret into per-version environment variables set with `zapier-platform env:set` and read through `process.env`",
+        "evidence": "\"`zapier-platform env:set 1.0.0 CLIENT_ID=... CLIENT_SECRET=...`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the connectionLabel because it exposes the access token; uses an email or workspace name instead",
+        "evidence": "\"prints the bearer token in the Zapier UI. Use the account's email\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the auth test call with a cheap who-am-I request instead of listing 500 contacts",
+        "evidence": "\"`test` hits `contacts?limit=500`. It should be a cheap identity call.\" code uses /v2/me.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lets the 429 with Retry-After surface so Zapier retries it, instead of converting it to a 200 body",
+        "evidence": "CI test \"a 429 with `Retry-After` is not rewritten to 200\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes `z.stashFile` from the polling trigger's perform and moves file handling into a hydrator registered under `hydrators`, with `z.dehydrateFile` returning the pointer",
+        "evidence": "\"Return `z.dehydrateFile(hydrator, { url })` and put the download in a registered hydrator.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins `zapier-platform-core` to an exact version instead of the caret range",
+        "evidence": "\"Pin an exact version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves CI to Node 22 because integrations run on Node 22",
+        "evidence": "\"CI is on Node 18, but integrations run on Node 22\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the legacy `zapier` binary with `zapier-platform` in CI",
+        "evidence": "\"The CLI binary is `zapier-platform`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires user-fixable errors to name the field and the reason in under 250 characters because Zapier truncates the rest",
+        "evidence": "\"Keep the message under 250\u2020 characters and name the field.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the afterResponse middleware that rewrites 4xx and 5xx responses to status 200, stating an integration must never return 200 on a failure",
+        "evidence": "\"The `afterResponse` that forces `status: 200` must go. It hides every failure from the platform\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the middleware must never swallow 401 or 429, because 401 drives Zapier's token refresh and 429 drives its retry",
+        "evidence": "\"401 never triggers a token refresh. 429 never triggers Zapier's throttling or retry, because the platform no longer sees a 429.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces `throw new Error('Contact already exists')` with `z.errors.HaltedError`, explaining a halted error never counts toward the Zap auto-off rule",
+        "evidence": "The 409 case uses `new z.errors.Error('Contact already exists', 'contact_exists', 409)`. HaltedError is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that only `z.errors.*` errors may be thrown, never a plain `Error`",
+        "evidence": "No such rule is stated. The code happens to use z.errors.* but the rule is never given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the API's 200-with-`token_expired` body by throwing `z.errors.RefreshAuthError` (or by making the API answer 401), because Zapier refreshes OAuth tokens only on HTTP 401",
+        "evidence": "\"if (response.status === 401 || response.data?.error === 'token_expired') { throw new z.errors.RefreshAuthError(); }\" with the comment \"Expired token arrives as HTTP 200\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds `refreshAccessToken` and `autoRefresh: true` to the oauth2Config",
+        "evidence": "The oauth2Config contains a `refreshAccessToken` block and `autoRefresh: true`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the hardcoded client id and secret into per-version environment variables set with `zapier-platform env:set` and read through `process.env`",
+        "evidence": "\"set them with `zapier env:set 1.0.0 CLIENT_SECRET=...`\" and `'{{process.env.CLIENT_SECRET}}'`. It uses the legacy `zapier` binary rather than `zapier-platform`, but the per-version mechanism is correct.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the connectionLabel because it exposes the access token; uses an email or workspace name instead",
+        "evidence": "\"shows the access token in the Zapier UI. Use something human-readable, such as `{{email}}` from a `/me` response.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the auth test call with a cheap who-am-I request instead of listing 500 contacts",
+        "evidence": "\"Use that same endpoint for `test` instead of `contacts?limit=500`\" and `test: { url: `${BASE}/me` }`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lets the 429 with Retry-After surface so Zapier retries it, instead of converting it to a 200 body",
+        "evidence": "The 429 branch throws `z.errors.ThrottledError` with the Retry-After value, and the transcript says the 200-forcing hook prevented the platform from seeing the 429.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes `z.stashFile` from the polling trigger's perform and moves file handling into a hydrator registered under `hydrators`, with `z.dehydrateFile` returning the pointer",
+        "evidence": "perform returns `z.dehydrateFile(downloadFile, ...)`, `hydrators: { downloadFile }`, and `downloadFile` calls `z.stashFile`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins `zapier-platform-core` to an exact version instead of the caret range",
+        "evidence": "\"Pin `zapier-platform-core` to an exact version (for example `16.1.0`). The caret range lets core drift\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves CI to Node 22 because integrations run on Node 22",
+        "evidence": "It says only \"Node 18 is end-of-life... move CI to the newest one it supports\" and never names Node 22.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the legacy `zapier` binary with `zapier-platform` in CI",
+        "evidence": "It uses `zapier validate`, `zapier test` and `zapier env:set` throughout and never mentions `zapier-platform`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires user-fixable errors to name the field and the reason in under 250 characters because Zapier truncates the rest",
+        "evidence": "No mention of a 250-character limit or of naming the field in error messages.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

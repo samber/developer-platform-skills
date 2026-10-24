@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects `--extra-index-url`, stating pip compares versions across all indexes with no priority so a higher public version of an internal name wins",
+        "evidence": "pip merges candidates... take the highest version",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects registering empty placeholder projects on public PyPI, stating PEP 541 treats them as squatting",
+        "evidence": "PEP 541 treats placeholder projects as name squatting",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends one index URL pointing at the Artifactory virtual (merged) PyPI repository rather than the local-only repository",
+        "evidence": "index-url = .../api/pypi/pypi/simple (virtual)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the local-only repository cannot serve public dependencies, which is what pushed the team to `--extra-index-url`",
+        "evidence": "not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires an exclude pattern for the `larkspur-*` prefix on the PyPI remote repository so public upstreams can never serve internal names",
+        "evidence": "Excluded Patterns larkspur-*,larkspur_*,larkspur.*",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the uv config with `[[tool.uv.index]]` set to `explicit = true` and `[tool.uv.sources]` pinning each internal package to that index",
+        "evidence": "uses default = true, not explicit = true",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins the transitive internal dependencies (`larkspur-auth`, `larkspur-core`) to the internal index, not only `larkspur-sdk`",
+        "evidence": "larkspur-auth and -core pinned",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs verifying after `uv lock` that every `larkspur-*` entry in `uv.lock` resolves from the internal index",
+        "evidence": "check each larkspur-* entry has source registry",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Forbids switching uv to `unsafe-best-match` or `unsafe-first-match` to fix a resolution error",
+        "evidence": "Never set index-strategy = unsafe-best-match",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Supplies credentials through `UV_INDEX_<NAME>_USERNAME`/`UV_INDEX_<NAME>_PASSWORD` (or keyring) rather than embedding them in the index URL, noting tools echo `PIP_INDEX_URL` into logs",
+        "evidence": "UV_INDEX_INTERNAL_USERNAME... tools echo that URL into logs",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends locking with hashes (`uv lock` or `pip-compile --generate-hashes`) so a swapped artifact fails install",
+        "evidence": "uv.lock records hashes; --require-hashes",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives CI a read-only feed credential separate from any publish identity, injected as an environment variable into committed config that holds no secret",
+        "evidence": "Read-only identity vs deploy-only separate",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a release-age cooldown such as `uv exclude-newer = \"7 days\"` where the team tolerates lag",
+        "evidence": "exclude-newer = \"7 days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the proof as querying the internal endpoint's metadata for a public package carrying the `larkspur-` prefix and asserting an exact 404, not removing the internal source and watching installs fail",
+        "evidence": "positive control 200 then = 404 on public larkspur-* package",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects `--extra-index-url`, stating pip compares versions across all indexes with no priority so a higher public version of an internal name wins",
+        "evidence": "'merges both indexes and takes the highest version'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects registering empty placeholder projects on public PyPI, stating PEP 541 treats them as squatting",
+        "evidence": "Recommends placeholders as step 4",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends one index URL pointing at the Artifactory virtual (merged) PyPI repository rather than the local-only repository",
+        "evidence": "Single virtual 'pypi' index URL",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the local-only repository cannot serve public dependencies, which is what pushed the team to `--extra-index-url`",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires an exclude pattern for the `larkspur-*` prefix on the PyPI remote repository so public upstreams can never serve internal names",
+        "evidence": "'Excluded Patterns to larkspur*'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the uv config with `[[tool.uv.index]]` set to `explicit = true` and `[tool.uv.sources]` pinning each internal package to that index",
+        "evidence": "Option B writes explicit = true and sources",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins the transitive internal dependencies (`larkspur-auth`, `larkspur-core`) to the internal index, not only `larkspur-sdk`",
+        "evidence": "larkspur-auth and larkspur-core pinned",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs verifying after `uv lock` that every `larkspur-*` entry in `uv.lock` resolves from the internal index",
+        "evidence": "'check the source lines in uv.lock'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Forbids switching uv to `unsafe-best-match` or `unsafe-first-match` to fix a resolution error",
+        "evidence": "'Never set --index-strategy unsafe-best-match'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Supplies credentials through `UV_INDEX_<NAME>_USERNAME`/`UV_INDEX_<NAME>_PASSWORD` (or keyring) rather than embedding them in the index URL, noting tools echo `PIP_INDEX_URL` into logs",
+        "evidence": "UV_INDEX_LARKSPUR_USERNAME/PASSWORD",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends locking with hashes (`uv lock` or `pip-compile --generate-hashes`) so a swapped artifact fails install",
+        "evidence": "'Commit uv.lock. It records the source and hashes'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives CI a read-only feed credential separate from any publish identity, injected as an environment variable into committed config that holds no secret",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a release-age cooldown such as `uv exclude-newer = \"7 days\"` where the team tolerates lag",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the proof as querying the internal endpoint's metadata for a public package carrying the `larkspur-` prefix and asserting an exact 404, not removing the internal source and watching installs fail",
+        "evidence": "Uses 200 control and file list inspection, no 404 assertion",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

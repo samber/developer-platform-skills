@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Closes new enrollment for fleet-snapshots at once, not at the end date.",
+        "evidence": "\"Close new enrollment today.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the kill notice in months, not weeks, because production callers exist, citing the roughly six-month beta-kill precedent and twelve months as the ceiling rather than the floor.",
+        "evidence": "Cites \"Honeycode... about 6 months\" and months-not-weeks, but 12 months as ceiling not stated; suggests 90 days minimum is defensible.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders the communication: enrolled accounts privately first, then the waitlist, then the public changelog, rejecting changelog-first.",
+        "evidence": "\"Private notice to all 8 enrolled accounts first. Then the waitlist. Then the public changelog.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stops billing Ospreyline Sensors from the announcement date, and credits Marrowbot Robotics from the announcement under its signed order form rather than billing through shutdown.",
+        "evidence": "\"Marrowbot: credit the $200/month from the announcement date. Ospreyline: nothing to bill.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes in the kill notice a plain-language reason paragraph, the stop date, a data export path, and the named alternative (the telemetry-export endpoint).",
+        "evidence": "Emails contain \"Why:\", 2027-04-30, \"Export your snapshot data\", telemetry-export",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a per-account list of the operations each account calls and a banner on every entry point.",
+        "evidence": "\"<list of Fleet-snapshots operations Marrowbot called>\"; \"banner on every Fleet-snapshots entry point\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a follow-up date on which Beaconhive contacts each account to check its migration.",
+        "evidence": "\"2027-01-29 and 2027-03-31: we will contact you to check your migration.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the no-overlap cutover for device-groups: keeps the beta surface working through an overlap window of at least one partner release cycle.",
+        "evidence": "\"Keep `/v1beta/device-groups` working for a full overlap window.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Because 4 accounts run production on the beta surface, applies the GA deprecation window from samber/developer-platform-skills@api-versioning-policy to the overlap.",
+        "evidence": "\"use the GA deprecation window from `api-versioning-policy` when production traffic sits on the beta surface\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes a migration guide covering both the path change and the `group_label` to `name` rename, and tells enrolled accounts before the public changelog.",
+        "evidence": "\"Migration guide: <link>\" covering path and group_label to name; private notices before public changelog",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the GA notice with: the GA date, the operations the account calls, what changes, the overlap end date, pricing including any partner discount and its term, the migration guide link, and the support channel with who answers.",
+        "evidence": "2a includes GA date, operations, changes, overlap end, pricing incl. discount/term, guide link, channel and team",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tracks migration completion at GA with a 100% target by the end of the overlap window, then hands the surface to the versioning policy.",
+        "evidence": "No migration-completion tracking or 100% target stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Closes new enrollment for fleet-snapshots at once, not at the end date.",
+        "evidence": "\"Close enrollment the day of the notice\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the kill notice in months, not weeks, because production callers exist, citing the roughly six-month beta-kill precedent and twelve months as the ceiling rather than the floor.",
+        "evidence": "Notice is 3 weeks (Oct 26 to Nov 16).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders the communication: enrolled accounts privately first, then the waitlist, then the public changelog, rejecting changelog-first.",
+        "evidence": "\"Direct email to every enrolled account first, changelog an hour or two later\". The waitlist is not mentioned.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stops billing Ospreyline Sensors from the announcement date, and credits Marrowbot Robotics from the announcement under its signed order form rather than billing through shutdown.",
+        "evidence": "\"Bill prorated to the shutdown date.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes in the kill notice a plain-language reason paragraph, the stop date, a data export path, and the named alternative (the telemetry-export endpoint).",
+        "evidence": "The 1A email has a Why paragraph, November 16, a bracketed data-export placeholder, and `GET /v1/telemetry/export`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a per-account list of the operations each account calls and a banner on every entry point.",
+        "evidence": "Not included.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a follow-up date on which Beaconhive contacts each account to check its migration.",
+        "evidence": "The emails only offer a call.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the no-overlap cutover for device-groups: keeps the beta surface working through an overlap window of at least one partner release cycle.",
+        "evidence": "\"keep /v1beta/device-groups working with both field names for 90 days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Because 4 accounts run production on the beta surface, applies the GA deprecation window from samber/developer-platform-skills@api-versioning-policy to the overlap.",
+        "evidence": "The skill is not cited. The 90 days is the author's own choice.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes a migration guide covering both the path change and the `group_label` to `name` rename, and tells enrolled accounts before the public changelog.",
+        "evidence": "The 2A email has a path and field table and a docs link, and goes to accounts ~2 weeks before the 2B GA-day changelog.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the GA notice with: the GA date, the operations the account calls, what changes, the overlap end date, pricing including any partner discount and its term, the migration guide link, and the support channel with who answers.",
+        "evidence": "No pricing, discount, per-account operations or support owner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tracks migration completion at GA with a 100% target by the end of the overlap window, then hands the surface to the versioning policy.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

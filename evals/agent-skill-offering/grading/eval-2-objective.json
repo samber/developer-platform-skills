@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Moves version out of the top level into metadata.version as a quoted string, stating the Agent Skills spec has no top-level version field.",
+        "evidence": "'The spec has no such field. It is also unquoted... Use metadata.version: \"2.3.0\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes allowed-tools because it pre-approves tools without a prompt.",
+        "evidence": "'allowed-tools: Bash pre-approves the tool with no prompt. Remove it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites compatibility to declare the binary without a version number (for example 'Requires qn on PATH') so no second version string goes stale.",
+        "evidence": "'Use \"Requires qn on PATH.\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets license to the repository's own license, Apache-2.0, rather than defaulting to MIT.",
+        "evidence": "'license: Apache-2.0' in the replacement head",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the description as what plus when, naming the tool and the tasks users type, instead of 'Helps with qn.'",
+        "evidence": "Rewritten 'Drives the qn CLI to deploy, roll back and inspect... Use whenever the user mentions qn...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the one-sided 'if older, upgrade' guard with a two-sided guard, because a silently upgraded binary passes a one-sided check.",
+        "evidence": "'Replace it with the two-sided guard'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens the body with a `Skill version: 2.3.0` line outside any code fence, because some harnesses never show the frontmatter to the model.",
+        "evidence": "'Skill version: 2.3.0' directly after the heading",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the guard branches: same major.minor continue; only the patch differs mention the matching tag once; major or minor differs in either direction trust `qn --help` over the skill's command names and tell the user to install the skill from their version's tag.",
+        "evidence": "Same major.minor continue; patch mention tag; major/minor trust qn --help",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that a development build reporting `dev` continues.",
+        "evidence": "'A development build reporting `dev`: continue.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names no other version anywhere in the prose beyond that one body line.",
+        "evidence": "Only metadata and the Skill version line carry 2.3.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the pasted flag lists and the references/flags.md flag table, stating the tool owns WHAT (flags, arguments, defaults) and the skill points at `qn <command> --help` instead.",
+        "evidence": "'The tool owns the flags and the skill owns when and why. Delete references/flags.md.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the skill owns WHEN and WHY: which command for which job, ordering, safe defaults, and the real agent failures.",
+        "evidence": "'this skill covers which command to use and when'; safe defaults and real failures",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restructures the body by job (for example 'Roll back a bad deploy') rather than by command group.",
+        "evidence": "'## Roll back a bad deploy'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps references/ for long-tail per-domain detail loaded only when needed, not for a flag dump.",
+        "evidence": "Only deletes references/flags.md; no mention of keeping references/ for long-tail detail.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the bump script rewrites the Skill version body line and gate 2 checks it against metadata.version.",
+        "evidence": "'check-skill-version.py checks this line'; '--write' makes both equal the code version",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Moves version out of the top level into metadata.version as a quoted string, stating the Agent Skills spec has no top-level version field.",
+        "evidence": "Gives `metadata: {version: \"1.0.0\"}` but never states the spec has no top-level version field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes allowed-tools because it pre-approves tools without a prompt.",
+        "evidence": "Keeps it: `allowed-tools: Bash(qn:*)`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rewrites compatibility to declare the binary without a version number (for example 'Requires qn on PATH') so no second version string goes stale.",
+        "evidence": "\"compatibility: Requires qn >= 2.3.0 on PATH\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets license to the repository's own license, Apache-2.0, rather than defaulting to MIT.",
+        "evidence": "\"license: Apache-2.0\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites the description as what plus when, naming the tool and the tasks users type, instead of 'Helps with qn.'",
+        "evidence": "\"Runs the qn CLI to deploy services... Use when the user asks to deploy, ship, roll back...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the one-sided 'if older, upgrade' guard with a two-sided guard, because a silently upgraded binary passes a one-sided check.",
+        "evidence": "\"If it reports older than 2.3.0, stop\" is one-sided.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Opens the body with a `Skill version: 2.3.0` line outside any code fence, because some harnesses never show the frontmatter to the model.",
+        "evidence": "No Skill version line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies the guard branches: same major.minor continue; only the patch differs mention the matching tag once; major or minor differs in either direction trust `qn --help` over the skill's command names and tell the user to install the skill from their version's tag.",
+        "evidence": "No branch logic by major/minor/patch.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies that a development build reporting `dev` continues.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names no other version anywhere in the prose beyond that one body line.",
+        "evidence": "The prose names 2.3.0 in several places.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the pasted flag lists and the references/flags.md flag table, stating the tool owns WHAT (flags, arguments, defaults) and the skill points at `qn <command> --help` instead.",
+        "evidence": "Suggested head keeps flag lists and references/flags.md.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the skill owns WHEN and WHY: which command for which job, ordering, safe defaults, and the real agent failures.",
+        "evidence": "Not framed this way; it adds flag detail instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Restructures the body by job (for example 'Roll back a bad deploy') rather than by command group.",
+        "evidence": "Body is organised under '## Commands'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps references/ for long-tail per-domain detail loaded only when needed, not for a flag dump.",
+        "evidence": "It keeps references/flags.md as a flag table.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the bump script rewrites the Skill version body line and gate 2 checks it against metadata.version.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

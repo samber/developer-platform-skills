@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to remove `--out`, `--proj` and `--env` in 3.5; removal of a frozen flag name happens only in a major release",
+        "evidence": "\"Old flags stay as aliases and warn on stderr.\" Removal in 4.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the old flag names as working aliases through the deprecation window",
+        "evidence": "Alias table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Emits a stderr deprecation warning naming the replacement whenever an old flag or env var name is used",
+        "evidence": "\"warning: --proj is deprecated, use --project.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets a deprecation window with a stated default of 12 months or 2 releases, whichever is longer",
+        "evidence": "\"12 months or 2 releases, whichever is longer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the `FNM_PROJ` env var rename as a frozen-surface change handled with the same alias-and-warn path",
+        "evidence": "\"`FNM_PROJ` is still read and warns on stderr.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats renaming the `--json` field `createdAt` to `created_at` as breaking; adds `created_at` alongside `createdAt` within 3.x and removes the old name only at 4.0",
+        "evidence": "\"Both fields are emitted\"; drop in 4.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats changing `datasets list --json` from a bare array to an object as breaking and schedules it for the major",
+        "evidence": "Opt-in in 3.5, default in 4.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to delete `fnm sync-legacy` in 3.5; it gets a deprecation warning and survives until the major",
+        "evidence": "\"Command still works... Delete it in 4.0 only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that deprecation warnings go to stderr and never stdout, because scripts parse stdout",
+        "evidence": "\"The warning goes to stderr, never stdout.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Permits the human-table restyling freely because tables, colors and column order are declared unstable",
+        "evidence": "\"Tables are the unstable surface, so you may restyle them in a minor release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes the frozen list (command names, flag names, env var names, config keys, `--json` shapes, exit codes, stream rules) and the unstable list",
+        "evidence": "Only a one-sentence mention; no enumerated frozen list incl. exit codes and stream rules is published.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a JSON Schema per `--json` command and golden-output contract tests in CI",
+        "evidence": "\"Golden-output contract tests for v1\"; \"JSON Schema for the v1 and v2 shapes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects same-day docs updates as a substitute for the deprecation window",
+        "evidence": "\"Update the docs the same day, as you planned.\" accepted, not rejected.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Versions the CLI with SemVer separately from the API and pins each CLI release to an explicit API version",
+        "evidence": "No API version pinning or separate versioning discussed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Refuses to remove `--out`, `--proj` and `--env` in 3.5; removal of a frozen flag name happens only in a major release",
+        "evidence": "\"Keep `--out` as a hidden alias that warns.\" Removal is in 4.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the old flag names as working aliases through the deprecation window",
+        "evidence": "Aliases are kept in 3.5 until 4.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Emits a stderr deprecation warning naming the replacement whenever an old flag or env var name is used",
+        "evidence": "\"Deprecation warnings go to stderr only\"; aliases and env fallbacks warn.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets a deprecation window with a stated default of 12 months or 2 releases, whichever is longer",
+        "evidence": "\"4.0 (at least 3 months later)\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the `FNM_PROJ` env var rename as a frozen-surface change handled with the same alias-and-warn path",
+        "evidence": "\"Read both. The new one wins. Warn if only the old one is set.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats renaming the `--json` field `createdAt` to `created_at` as breaking; adds `created_at` alongside `createdAt` within 3.x and removes the old name only at 4.0",
+        "evidence": "\"Emit both keys on every object.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats changing `datasets list --json` from a bare array to an object as breaking and schedules it for the major",
+        "evidence": "\"Default stays a bare array... The envelope becomes the default\" in 4.0.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to delete `fnm sync-legacy` in 3.5; it gets a deprecation warning and survives until the major",
+        "evidence": "\"Keep it working. Print a deprecation warning\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that deprecation warnings go to stderr and never stdout, because scripts parse stdout",
+        "evidence": "\"never inside the JSON on stdout\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Permits the human-table restyling freely because tables, colors and column order are declared unstable",
+        "evidence": "Column order is held to opt-in until 4.0, treated as breaking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes the frozen list (command names, flag names, env var names, config keys, `--json` shapes, exit codes, stream rules) and the unstable list",
+        "evidence": "No such lists.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a JSON Schema per `--json` command and golden-output contract tests in CI",
+        "evidence": "Golden files are mentioned, but no JSON Schema per command.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects same-day docs updates as a substitute for the deprecation window",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Versions the CLI with SemVer separately from the API and pins each CLI release to an explicit API version",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

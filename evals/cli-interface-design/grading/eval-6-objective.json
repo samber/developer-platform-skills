@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Builds one severity table keyed by command and by method plus path, read by both the curated commands and the `api` escape hatch",
+        "evidence": "\"Severity table (shared by curated commands and `hgm api`)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Grades sending-domain deletion as severe because it is irreversible and reaches third parties by email",
+        "evidence": "\"severe: removes the domain and emails 40 senders\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Severe operations require typing the resource name on a terminal or `--confirm=<name>` non-interactively",
+        "evidence": "\"type the domain name\" / `--confirm=<domain name or id>`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bulk severe operations require `--confirm-count=<n>`",
+        "evidence": "\"Any bulk or filtered mutation | severe | type the count | `--confirm-count=<n>`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that `--yes` never skips a severe confirmation and rejects the requested global `--yes` as the fix",
+        "evidence": "\"`--yes` skips only moderate prompts and never a severe one.\" \"We won't add a global `--yes`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `hgm api delete /v1/domains/{id}` ask the same confirmation as `hgm domains delete`",
+        "evidence": "\"`hgm api delete /v1/domains/dom_7f21` must be guarded.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a self-description command that prints the command tree, flags and `--json` schemas as JSON",
+        "evidence": "\"`hgm describe --json` prints the command tree, flags, severity grades and output schemas.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Validates identifiers, paths and payloads as untrusted input so `../../.ssh/id_rsa` hits a validation error",
+        "evidence": "Path resolved and rejected with `path_outside_root`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a confirmation stops mistakes, not an agent set on proceeding, and that the token the agent holds is the real boundary",
+        "evidence": "\"The real boundary is the credential.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends defaulting agents to test mode and documenting which read-only or narrowly scoped token to hand an agent",
+        "evidence": "\"test-mode, scoped, expiring key... test-mode by default\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to put '4-32x more tokens' in the post as settled, labeling it vendor-published and not independently measured",
+        "evidence": "\"Vendor-published and not independently measured.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Corrects the 55k-token figure as measured for five MCP servers together, not one",
+        "evidence": "\"Anthropic's figure for five MCP servers together, not one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies explicit empty results such as '0 domains found' and truncation markers naming the flag that shows more",
+        "evidence": "\"explicit empty results (\\\"0 domains found\\\"), and a truncation marker naming `--all`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers `--dry-run` on mutating commands where the API can validate without committing",
+        "evidence": "\"`--dry-run` on every mutating command\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes a SKILL.md shipped with the CLI to agent-skill-offering and an MCP server to mcp-server-offering rather than designing them here",
+        "evidence": "No mention of agent-skill-offering or mcp-server-offering.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Builds one severity table keyed by command and by method plus path, read by both the curated commands and the `api` escape hatch",
+        "evidence": "Server OpenAPI annotations are read by `hgm api`, but there is no single table covering curated commands too.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Grades sending-domain deletion as severe because it is irreversible and reaches third parties by email",
+        "evidence": "\"reversible\": false, side effect email to 40 recipients.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Severe operations require typing the resource name on a terminal or `--confirm=<name>` non-interactively",
+        "evidence": "Non-interactive confirm uses `--confirm cfm_\u2026` token, not the resource name.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Bulk severe operations require `--confirm-count=<n>`",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that `--yes` never skips a severe confirmation and rejects the requested global `--yes` as the fix",
+        "evidence": "\"Reject the global `--yes`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `hgm api delete /v1/domains/{id}` ask the same confirmation as `hgm domains delete`",
+        "evidence": "\"`hgm api`... surfaces a `428` as exit code `10` with the identical JSON.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a self-description command that prints the command tree, flags and `--json` schemas as JSON",
+        "evidence": "\"`hgm api --list` and `hgm schema <command>`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Validates identifiers, paths and payloads as untrusted input so `../../.ssh/id_rsa` hits a validation error",
+        "evidence": "Confined file reads and `hgm api` path regex and rejection rules.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a confirmation stops mistakes, not an agent set on proceeding, and that the token the agent holds is the real boundary",
+        "evidence": "Scoped keys are called the real answer, but the point that confirmation doesn't stop a determined agent isn't made.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends defaulting agents to test mode and documenting which read-only or narrowly scoped token to hand an agent",
+        "evidence": "Only non-destructive scopes via `--for-agent`. No test-mode default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to put '4-32x more tokens' in the post as settled, labeling it vendor-published and not independently measured",
+        "evidence": "Says \"can't verify\" and asks marketing for the source. Does not label it vendor-published.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Corrects the 55k-token figure as measured for five MCP servers together, not one",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies explicit empty results such as '0 domains found' and truncation markers naming the flag that shows more",
+        "evidence": "Not covered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers `--dry-run` on mutating commands where the API can validate without committing",
+        "evidence": "\"`--dry-run` on every mutation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes a SKILL.md shipped with the CLI to agent-skill-offering and an MCP server to mcp-server-offering rather than designing them here",
+        "evidence": "Designs an AGENTS.md snippet itself and does not route.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

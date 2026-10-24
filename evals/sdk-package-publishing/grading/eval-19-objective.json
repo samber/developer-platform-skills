@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the re-uploaded asset breaks every consumer of 2.4.0 because the checksum changed, and that a binary-target URL and its asset must never be replaced",
+        "evidence": "Replacing the zip changed its checksum",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes releasing 2.4.1 with a new zip rather than fixing 2.4.0 in place",
+        "evidence": "Release 2.4.1 from a rebuild",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reorders the pipeline: build, sign and compute the checksum, create a draft release with the zip attached, then commit `Package.swift` with that checksum and final asset URL, then tag that commit",
+        "evidence": "draft release, commit Package.swift, tag that commit",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the tag job must download the draft's asset, verify its checksum against `Package.swift`, then publish the draft, and never rebuild, because XCFramework zips are not byte-reproducible",
+        "evidence": "download the draft's asset and verify its checksum... Never rebuild",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds the plain SemVer `[0-9]*` tag pattern to the workflow trigger, the tag ruleset and the environment rule",
+        "evidence": "trigger, ruleset and environment rule all list [0-9]* patterns",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States CocoaPods trunk stops accepting new pods and versions on 2026-12-02, with a read-only test run from 2026-11-01 to 2026-11-07",
+        "evidence": "2026-11-01 to 11-07; 2026-12-02",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes publishing the last trunk version and running `pod trunk deprecate BirchwaterKit` before 2026-11-01, noting `--in-favor-of` accepts only another pod name",
+        "evidence": "--in-favor-of only accepts another pod name",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes deleting trunk push steps from CI after the cutoff and keeping the podspec only for private spec repos or React Native and Flutter consumers",
+        "evidence": "Remove the job after 2026-12-02; private spec repo or RN/Flutter",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends code-signing the XCFramework with the Apple Distribution identity and attesting the zip with `actions/attest`",
+        "evidence": "signing mentioned, no actions/attest",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Computes the checksum with `swift package compute-checksum`",
+        "evidence": "swift package compute-checksum",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States never to move or delete a SwiftPM release tag because `Package.resolved` pins the commit for each version",
+        "evidence": "Package.resolved pins its commit",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enabling GitHub immutable releases so a published release's tag and assets can no longer change",
+        "evidence": "Turn on GitHub immutable releases",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends listing on the Swift Package Index with a `.spi.yml`",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises re-checking the CocoaPods announcement because the 2026-11-01 date sits within a month",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the re-uploaded asset breaks every consumer of 2.4.0 because the checksum changed, and that a binary-target URL and its asset must never be replaced",
+        "evidence": "Says case B installs work",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes releasing 2.4.1 with a new zip rather than fixing 2.4.0 in place",
+        "evidence": "'The clean fix is also 2.4.1'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reorders the pipeline: build, sign and compute the checksum, create a draft release with the zip attached, then commit `Package.swift` with that checksum and final asset URL, then tag that commit",
+        "evidence": "Reorder lacks draft release step",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the tag job must download the draft's asset, verify its checksum against `Package.swift`, then publish the draft, and never rebuild, because XCFramework zips are not byte-reproducible",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds the plain SemVer `[0-9]*` tag pattern to the workflow trigger, the tag ruleset and the environment rule",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States CocoaPods trunk stops accepting new pods and versions on 2026-12-02, with a read-only test run from 2026-11-01 to 2026-11-07",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes publishing the last trunk version and running `pod trunk deprecate BirchwaterKit` before 2026-11-01, noting `--in-favor-of` accepts only another pod name",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes deleting trunk push steps from CI after the cutoff and keeping the podspec only for private spec repos or React Native and Flutter consumers",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends code-signing the XCFramework with the Apple Distribution identity and attesting the zip with `actions/attest`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Computes the checksum with `swift package compute-checksum`",
+        "evidence": "Uses shasum",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States never to move or delete a SwiftPM release tag because `Package.resolved` pins the commit for each version",
+        "evidence": "Only 'safer than moving the tag'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends enabling GitHub immutable releases so a published release's tag and assets can no longer change",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends listing on the Swift Package Index with a `.spi.yml`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises re-checking the CocoaPods announcement because the 2026-11-01 date sits within a month",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

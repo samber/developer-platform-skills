@@ -1,0 +1,342 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "cli-interface-design",
+  "scenarios": 10,
+  "expectations_total": 144,
+  "expectations_subjective": 1,
+  "expectations_objective": 143,
+  "pass_rate_with_skill_pct": 93.8,
+  "pass_rate_without_skill_pct": 54.9,
+  "delta_pp": 38.9,
+  "uplift_multiplier": 1.71,
+  "trigger_accuracy_pct": 50.0,
+  "trigger_queries": 100,
+  "trigger_positive_fire_rate": 0.02,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States the layer ranking explicitly, with curated + raw ranked above the generated-only mirror on efficiency"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps the `--json` shape identical whether the command waited or not, with the waited result nested inside the operation object"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires an automated test per exit code and names at least one known regression class: an auth-status command returning 0 on an expired token, or a login returning 1 on success when an env token is set"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Publishes the frozen list (command names, flag names, env var names, config keys, `--json` shapes, exit codes, stream rules) and the unstable list"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects same-day docs updates as a substitute for the deprecation window"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Versions the CLI with SemVer separately from the API and pins each CLI release to an explicit API version"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Routes a SKILL.md shipped with the CLI to agent-skill-offering and an MCP server to mcp-server-offering rather than designing them here"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the telemetry rankings explicitly: trust opt-in above opt-out, signal value opt-out above opt-in, compliance cost opt-out above opt-in"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Formats timestamps as RFC 3339 UTC, IDs as strings, and absent values as `null` rather than keys that appear and disappear"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Chooses curated workflow commands plus a raw `api <method> <path>` escape hatch as the day-one rung"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the escape hatch ships from day one and inherits auth, pagination, output flags and the severe-action guard"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Keeps the generated resource layer as a later option beneath the curated layer rather than deleting it from the design"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Writes the promotion trigger for the generated layer: the OpenAPI spec becomes checked in CI and escape-hatch usage shows sustained demand for per-endpoint commands"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the hand-maintained OpenAPI spec blocks promoting the generated layer on its own, because generating from it would freeze its drift into the contract"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes an 'Answer to the requester' section stating what is reachable on day one, through which layer, and what promotes the generated layer later"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the layer ranking explicitly, with curated + raw ranked above the generated-only mirror on efficiency"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Re-ranks against the 8-week deadline and two-engineer team, and says that constraint keeps the default rung"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Lists jobs with their audiences (human / CI / agent) in a table rather than listing endpoints"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Writes an Assumptions table with one row per unanswered clarifying question, each stating what the assumption changes"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes a Release cut line table separating v1 commands from later ones, with a reason per row"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "The error object carries a stable code, a message, a request ID and, for async work, the operation ID"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "In human mode, routes progress, warnings and errors to stderr and only the result to stdout"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Makes `orn deploy` wait by default with a finite default `--wait-timeout` value and a one-line reason for the value"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "On Ctrl-C or SIGTERM during the wait, detaches rather than cancels: prints the operation ID and the resume command"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps the `--json` shape identical whether the command waited or not, with the waited result nested inside the operation object"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps update checks and first-run notices silent when stdout is not a terminal"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects adopting BSD sysexits (64-78) as the published scheme, citing that current FreeBSD documentation deprecates them"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Publishes one small exit-code table with the columns code, meaning and caller action"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Reserves 0 for success including an idempotent no-op, and 2 for usage errors"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Defines an outcome-unknown code for any other 5xx or a timeout after sending a non-idempotent call, with the caller action to check with `wait` or `get` and never rerun blind"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a call carrying a caller-controlled idempotency key moves from the outcome-unknown class to the safe-to-rerun class"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Assigns a distinct partial-failure code to `bulk-create` when some files fail, with per-item results in a `{\"data\": [...], \"errors\": [...]}` body, replacing exit 0 on any success"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires an automated test per exit code and names at least one known regression class: an auth-status command returning 0 on an expired token, or a login returning 1 on success when an env token is set"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Documents the CI path as a scoped, expiring key in an env var, never a stored credential file or a browser flow"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Provides `tg auth status` showing identity, which credential source won, expiry and test or live mode"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Removes the `tg auth token` print command, or restricts it to a named integration that needs the handoff, citing token-harvesting malware that called such a command"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Defaults the CLI to test mode and shows test or live mode in every prompt and before every severe action"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Makes an explicit key from a flag or env var beat the stored profile, with a stderr notice when it overrides a logged-in account"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Locks the credential store against concurrent writes so parallel invocations cannot corrupt it"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Sets a deprecation window with a stated default of 12 months or 2 releases, whichever is longer"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Permits the human-table restyling freely because tables, colors and column order are declared unstable"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Publishes the frozen list (command names, flag names, env var names, config keys, `--json` shapes, exit codes, stream rules) and the unstable list"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends a JSON Schema per `--json` command and golden-output contract tests in CI"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects same-day docs updates as a substitute for the deprecation window"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Versions the CLI with SemVer separately from the API and pins each CLI release to an explicit API version"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Builds one severity table keyed by command and by method plus path, read by both the curated commands and the `api` escape hatch"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Severe operations require typing the resource name on a terminal or `--confirm=<name>` non-interactively"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Bulk severe operations require `--confirm-count=<n>`"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that a confirmation stops mistakes, not an agent set on proceeding, and that the token the agent holds is the real boundary"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends defaulting agents to test mode and documenting which read-only or narrowly scoped token to hand an agent"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Refuses to put '4-32x more tokens' in the post as settled, labeling it vendor-published and not independently measured"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Corrects the 55k-token figure as measured for five MCP servers together, not one"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies explicit empty results such as '0 domains found' and truncation markers naming the flag that shows more"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Routes a SKILL.md shipped with the CLI to agent-skill-offering and an MCP server to mcp-server-offering rather than designing them here"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Ships any default-on telemetry change in a major version, announced ahead of the release that enables it"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the telemetry rankings explicitly: trust opt-in above opt-out, signal value opt-out above opt-in, compliance cost opt-out above opt-in"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Cites the GitHub CLI default-on telemetry in a minor release (v2.91.0) as the precedent to avoid"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps update hints and telemetry banners on stderr and silent when stdout is not a terminal"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Pins each CLI release to an explicit API version with an override flag, versioned separately from the API"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Carries truncation inside the `--json` envelope with `has_more` and `next_cursor` fields, so a first page never reads as the whole bucket"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Wraps every list in one `{\"data\": [...], \"has_more\": ..., \"next_cursor\": ...}` envelope from v1 and states that moving away from a bare array later is breaking"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Requires every NDJSON line to carry a `type` field (event, progress, error)"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Makes a fatal stream error the last line as a typed `error` JSON line before the non-zero exit, never plain text in the stream"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Defers `--jq` or any in-CLI filter until `--json` itself is stable"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Specifies bare `--json` as a documented small default field set, `--json all` for full objects, and `--json field,field` for named fields"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Specifies explicit empty results ('0 objects found') and a truncation marker naming the flag that shows more"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Formats timestamps as RFC 3339 UTC, IDs as strings, and absent values as `null` rather than keys that appear and disappear"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Keeps `has_more` and `next_cursor` in `--json` list output even when field selection is used"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Leads each command's help with two or three examples, then flags with defaults, then a docs link"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Makes `nb`, `nb help <cmd>`, `nb <cmd> --help` and `-h` all work"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Documents output formats, exit codes and environment variables once as cross-cutting help topics"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Ships shell completion from the first release"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Justifies both rejections by the collision they create with every future command"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Never requires the token as a flag value; accepts it from env var, file or stdin"
+      }
+    ]
+  }
+}

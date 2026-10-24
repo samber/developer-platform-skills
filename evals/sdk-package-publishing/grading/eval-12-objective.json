@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Diagnoses the checksum error as the moved tag: `sum.golang.org` recorded the first content, so every consumer now gets a security error",
+        "evidence": "proxy caches... sum.golang.org records content permanently",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States never to move or re-push a tag, and that versions can never be deleted from the proxy or the checksum database",
+        "evidence": "The proxy and sumdb never forget... Do not touch the tag again",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a new tag (v1.6.1) and a `retract` directive for v1.6.0 with a rationale comment in `go.mod`, published in that newer tag",
+        "evidence": "retract v1.6.0 // Tag re-pushed after publication",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States there is no upload step and no publish job for a Go module: the pushed semver tag is the release",
+        "evidence": "No upload step exists... the tag is the release",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the publish-job idea with warming the proxy via `GOPROXY=proxy.golang.org go list -m go.kestrel.dev/sdk@<version>`",
+        "evidence": "go list -m go.kestrel.dev/sdk@v1.6.1",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a tag ruleset restricting who may create, move or delete release tags, stating tag control is the publish credential for Go",
+        "evidence": "Tag control is the Go publish credential",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a check that the tagged commit is already on the protected branch (`git merge-base --is-ancestor`)",
+        "evidence": "git merge-base --is-ancestor \"$GITHUB_SHA\" origin/$b",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States v2.0.0 requires the `/v2` suffix on the module path in `go.mod` and in every internal import, or `go get` rejects the tag",
+        "evidence": "change go.mod to module go.kestrel.dev/sdk/v2",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a `// Deprecated: use go.kestrel.dev/sdk/v2` comment above the `module` line in a new v1 tag",
+        "evidence": "// Deprecated: use go.kestrel.dev/sdk/v2",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Configures GoReleaser with `homebrew_casks` rather than the deprecated `brews`, and `nfpms` for Linux",
+        "evidence": "homebrew_casks; nfpms deb rpm apk",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs GoReleaser in the `release` environment with no restored caches and pinned tool versions, with `contents: write`, `id-token: write` and `attestations: write`",
+        "evidence": "contents write, id-token write, attestations write; cache: false",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Attests archives with `actions/attest` using `subject-checksums: dist/checksums.txt`, not `subject-path` on the checksum file",
+        "evidence": "subject-checksums: dist/checksums.txt",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Configures the GitHub release as a draft and publishes it in a final step before any distribution channel updates",
+        "evidence": "draft: true; gh release edit --draft=false before tap",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not create, move or push any tag, and does not run any retract or release command itself",
+        "evidence": "I ran nothing",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Diagnoses the checksum error as the moved tag: `sum.golang.org` recorded the first content, so every consumer now gets a security error",
+        "evidence": "'sum.golang.org permanently recorded that zip's hash'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States never to move or re-push a tag, and that versions can never be deleted from the proxy or the checksum database",
+        "evidence": "'Never move or delete a pushed tag'; 'can't purge'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a new tag (v1.6.1) and a `retract` directive for v1.6.0 with a rationale comment in `go.mod`, published in that newer tag",
+        "evidence": "Says retract not needed; v1.6.1 optional",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States there is no upload step and no publish job for a Go module: the pushed semver tag is the release",
+        "evidence": "'pushing the tag is the publish'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the publish-job idea with warming the proxy via `GOPROXY=proxy.golang.org go list -m go.kestrel.dev/sdk@<version>`",
+        "evidence": "Warms proxy via .info fetch and go get",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes a tag ruleset restricting who may create, move or delete release tags, stating tag control is the publish credential for Go",
+        "evidence": "immutable-release-tags ruleset",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a check that the tagged commit is already on the protected branch (`git merge-base --is-ancestor`)",
+        "evidence": "Checks origin/main or release/v* contains SHA",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States v2.0.0 requires the `/v2` suffix on the module path in `go.mod` and in every internal import, or `go get` rejects the tag",
+        "evidence": "Module path change steps",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a `// Deprecated: use go.kestrel.dev/sdk/v2` comment above the `module` line in a new v1 tag",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Configures GoReleaser with `homebrew_casks` rather than the deprecated `brews`, and `nfpms` for Linux",
+        "evidence": "Uses brews; no nfpms",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs GoReleaser in the `release` environment with no restored caches and pinned tool versions, with `contents: write`, `id-token: write` and `attestations: write`",
+        "evidence": "No environment; no attestations perms",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Attests archives with `actions/attest` using `subject-checksums: dist/checksums.txt`, not `subject-path` on the checksum file",
+        "evidence": "Not present",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Configures the GitHub release as a draft and publishes it in a final step before any distribution channel updates",
+        "evidence": "'draft: false'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not create, move or push any tag, and does not run any retract or release command itself",
+        "evidence": "'did not run any of this'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

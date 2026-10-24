@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the .gitattributes export-ignore as a cause of 'Couldn't validate that repository': no export-ignore or export-subst in any .gitattributes, and no content filter (Git LFS included) at, above or inside the plugin folder.",
+        "evidence": "'tests/ export-ignore'; scan includes export-subst, filter= and git lfs ls-files",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the README symlink as blocking: no symlinks, submodules or LFS pointers for loaded files.",
+        "evidence": "'README.md is a symlink. Symlinks are blocked'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks file names valid on Windows and macOS (no colon, trailing dot or space, device names, case-only twins) and plugin-path folders limited to letters, digits, dot, hyphen and underscore, as the other causes that report only that message.",
+        "evidence": "'Colons, trailing dots or spaces, con/prn-style names, and case-only twins'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins the npx prettier launcher to an exact version and checks there is no .npmrc, bunfig.toml or uv.toml setting a registry beside one.",
+        "evidence": "'npx prettier@<exact>'; 'no .npmrc, bunfig.toml or uv.toml sets a registry'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the reviewer holds the repo will hit: more than 512 files, the 600 KB PDF as a non-image file over 256 KiB, binary files, and the root package.json with a lockfile.",
+        "evidence": "'more than 512 files; the PDF...; PNG and PDF; root package.json with a lockfile'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the root lockfile makes Claude Code install the tool's npm dependencies into the plugin cache on every install and update.",
+        "evidence": "'install thorn's npm dependencies into the plugin cache on every install and update'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the plugin to a subfolder that holds skills/ itself, then repoints every manifest's skills path and gate 2's --skills-dir, noting a component path outside the plugin folder blocks.",
+        "evidence": "'Put .claude-plugin/, skills/ and a real README in plugin/. Repoint every manifest's skills path and gate 2's --skills-dir.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks the 3 MB PNG against the 5 MiB per-file limit and the repo against 50 MiB archived, 256 MiB unpacked and 10,000 entries.",
+        "evidence": "Mentions 5 MiB per-file and 10,000 entries only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a README of at least 40 words in the plugin folder, code blocks not counted, and a LICENSE file or license field.",
+        "evidence": "40 words stated, but no code-block exclusion or LICENSE requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the rename in a 2.4.1 patch: a skill rename is a breaking change of the tool and ships in a major release.",
+        "evidence": "Recommends adding thornquist-cli in 2.4.1 with a stub; major only for stub removal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps a stub skill under the old name thorn for one major that points at thornquist-cli.",
+        "evidence": "'keep thorn as a one-line stub... Remove the stub in 3.0.0.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds an entry to the marketplace renames map as a supplement, never as the only signal.",
+        "evidence": "Mentioned only for a plugin rename, not the skill.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes spec validation fails when the skill name does not match its directory, so the directory renames with it.",
+        "evidence": "'Set name: thornquist-cli ... so it matches the directory (gate 1 fails otherwise).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks for .DS_Store, Thumbs.db, desktop.ini or __MACOSX entries in the plugin folder.",
+        "evidence": "Scan for '.DS_Store|Thumbs.db|desktop.ini|__MACOSX'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the .gitattributes export-ignore as a cause of 'Couldn't validate that repository': no export-ignore or export-subst in any .gitattributes, and no content filter (Git LFS included) at, above or inside the plugin folder.",
+        "evidence": "Item 4: \"`tests/ export-ignore`... if the validator fetches a `git archive`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the README symlink as blocking: no symlinks, submodules or LFS pointers for loaded files.",
+        "evidence": "Item 3: replace the symlink with a real file.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks file names valid on Windows and macOS (no colon, trailing dot or space, device names, case-only twins) and plugin-path folders limited to letters, digits, dot, hyphen and underscore, as the other causes that report only that message.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins the npx prettier launcher to an exact version and checks there is no .npmrc, bunfig.toml or uv.toml setting a registry beside one.",
+        "evidence": "Pins via devDependencies but does not check .npmrc/bunfig/uv.toml.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the reviewer holds the repo will hit: more than 512 files, the 600 KB PDF as a non-image file over 256 KiB, binary files, and the root package.json with a lockfile.",
+        "evidence": "Says the PDF and PNG are \"unlikely to cause the failure\"; no limits.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains the root lockfile makes Claude Code install the tool's npm dependencies into the plugin cache on every install and update.",
+        "evidence": "Says package.json and lockfile \"are fine\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves the plugin to a subfolder that holds skills/ itself, then repoints every manifest's skills path and gate 2's --skills-dir, noting a component path outside the plugin folder blocks.",
+        "evidence": "Keeps the plugin at repo root.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks the 3 MB PNG against the 5 MiB per-file limit and the repo against 50 MiB archived, 256 MiB unpacked and 10,000 entries.",
+        "evidence": "Says \"I don't know the validator's size limits.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a README of at least 40 words in the plugin folder, code blocks not counted, and a LICENSE file or license field.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the rename in a 2.4.1 patch: a skill rename is a breaking change of the tool and ships in a major release.",
+        "evidence": "\"Shipping it as 2.4.1 is your call.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps a stub skill under the old name thorn for one major that points at thornquist-cli.",
+        "evidence": "\"ship a stub `skills/thorn/SKILL.md` for one release\" pointing at thornquist-cli.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds an entry to the marketplace renames map as a supplement, never as the only signal.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes spec validation fails when the skill name does not match its directory, so the directory renames with it.",
+        "evidence": "\"`name:` in `SKILL.md` frontmatter... must equal the directory name.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks for .DS_Store, Thumbs.db, desktop.ini or __MACOSX entries in the plugin folder.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

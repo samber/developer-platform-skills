@@ -1,0 +1,386 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-beta-program",
+  "scenarios": 8,
+  "expectations_total": 101,
+  "expectations_subjective": 0,
+  "expectations_objective": 101,
+  "pass_rate_with_skill_pct": 86.1,
+  "pass_rate_without_skill_pct": 29.7,
+  "delta_pp": 56.4,
+  "uplift_multiplier": 2.9,
+  "trigger_accuracy_pct": 50.0,
+  "trigger_queries": 88,
+  "trigger_positive_fire_rate": 0.0,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States the efficiency ranking explicitly as private preview > design partners > public preview."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that design partners lose on efficiency because they are highest on both value and effort, and names the still-open shape as the condition that promotes them anyway."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States compliance cost as a tie between design partners and private preview (both need signed pre-GA terms per account) and lower for public preview (click-through terms)."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that graduating an opt-in header later breaks old pinned or self-hosted clients that still send it, citing the GitHub preview-header lesson of keeping the header configurable while any supported release needs it."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires in-language markers (experimental annotations or a `beta` sub-package) so GA SDK users cannot call beta methods by accident."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names any later second extension as a deferred decision rather than a program."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that the activation floor should have been set at launch, and sets one now rather than leaving the review without a floor."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Produces an extension notice that names the new date, the criterion that failed, and what changes in the extension."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Measures time in stage against the time box and states that a beta past its date without an extension record is a defect."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Specifies the cadence per shape: public preview async only in a public forum category or thread; private preview a kickoff call then biweekly office hours and async in one private channel."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Structures sessions around what partners built since last time, what blocked them, what they worked around, and what they would pay for."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes feedback outside the two features to samber/developer-relations-skills@developer-feedback-loop."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Sets the kill notice in months, not weeks, because production callers exist, citing the roughly six-month beta-kill precedent and twelve months as the ceiling rather than the floor."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Tracks migration completion at GA with a 100% target by the end of the overlap window, then hands the surface to the versioning policy."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Names the ownerless state ('the platform team as a group') as a condition that rules a shape out, and requires a named owner before any other program decision."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Presents a recommended shape and exactly one alternative before drafting any charter section."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States the efficiency ranking explicitly as private preview > design partners > public preview."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that design partners lose on efficiency because they are highest on both value and effort, and names the still-open shape as the condition that promotes them anyway."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Applies the clock rule: with GA 10 weeks out and a 4-week build there is no room for 8-12 weeks of partner sessions, so the hybrid (private preview with design-partner-style first sessions on the one open question) is promoted over full design partners."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Says which interview answer moved which rung: the open shape promoting design partners, the GA date promoting the hybrid."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the Orvantis sales deal by itself changes nothing in the shape choice, and that the account enters only if it passes the five entry criteria."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States compliance cost as a tie between design partners and private preview (both need signed pre-GA terms per account) and lower for public preview (click-through terms)."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats 'leadership wants a launch moment' as no reason to pick public preview, and places launch marketing outside the program's scope."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires steps 1-5 (shape, stage contract, wire mechanism, exit criteria, cohort and enrollment gate) written and signed off before the first account enrolls."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects the draft as a label with no rows and produces a stage contract with all eleven rows: Access, Availability, Support, Breaking changes, Removal, Production use, Pricing, Data and compliance, Limits, Marking, Discontinuation."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Caps the company at two pre-GA stages (private preview and public preview) and refuses the fourth 'Experimental' stage unless the domain changes faster than the preview cadence."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Maps 'Beta' and 'Early Access' onto the two stages explicitly rather than keeping three or four vocabularies live."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Removes the 99.9% SLA from the private preview Availability row and states it as no SLA, plus whether the status page covers the stage."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Does not add an SLA to public preview by default; states the condition under which one would be offered (shape frozen and enterprise buyers needing production pilots before GA)."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Identifies signer name, email and IP as personal data by nature, so the default 'do not send personal data' line would make the beta unusable."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Resolves that by offering test-mode or synthetic data as the default, with live data allowed only under a per-account addendum that legal signs, extending named DPA terms to the preview."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Fills the Data and compliance row with which DPA, certification, residency and indemnity terms do not apply, and whether beta data carries into GA."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Distinguishes the Removal row (notice before the surface goes away) from the Discontinuation row (what happens to data and integrations if the feature is killed)."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a dated preview version (a `-preview` or `.preview` suffix on the version header value) as the wire mechanism, because the API already versions by date."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that graduating an opt-in header later breaks old pinned or self-hosted clients that still send it, citing the GitHub preview-header lesson of keeping the header configurable while any supported release needs it."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires the stage to be marked in every webhook delivery's payload or headers."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that with no pre-release channel the beta's SDK methods cannot ship safely, and that this blocks enrollment of the 6 SDK-using accounts until a pre-release channel or separate beta module exists."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Allows the 2 raw-HTTP accounts to enroll now, with the SDK channel required before any public preview."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Points to samber/developer-platform-skills@sdk-package-publishing for setting up the pre-release channel."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires in-language markers (experimental annotations or a `beta` sub-package) so GA SDK users cannot call beta methods by accident."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "If a separate `/beta` base path is considered, pairs it with server-side production-use detection because it is the easiest surface for callers to leave in production."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Caps the extension at half the original time box (3 months, not 6), allows exactly one extension, and requires the new date plus the failed criterion written down."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names any later second extension as a deferred decision rather than a program."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects auto-expiring flags that disable access: the expiry must alert the owner on the exit date and never remove access by itself."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that 12 signups measure reach, not demand, and reports activation as 3 of 12 against a floor."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that the activation floor should have been set at launch, and sets one now rather than leaving the review without a floor."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Treats Ridgeway Fleet's production traffic without a signed production exception as a trigger for a conversation and longer notice, never silence, and states it does not count toward the GA criterion until an exception is signed."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists kill criteria including activation below the floor at the review date, the problem statement disproved, cost to serve above what GA pricing can carry, and a better route found."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the `matches` to `segments` rename the week before the review, because a contract-freeze date must sit at least one partner release cycle before the exit review and no changes ship after it."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "If the rename still has to ship before the freeze, requires direct notice to every enrolled technical owner before it ships, notice length scaled to observed production use, and a changelog entry."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Flags that 6 months plus a 6-month extension reaches the twelve-month mark treated as a perpetual beta, as a reason to keep the extension short."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Produces an extension notice that names the new date, the criterion that failed, and what changes in the extension."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Measures time in stage against the time box and states that a beta past its date without an extension record is a defect."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Caps the cohort from capacity, not demand: with 9 hours per week in total minus program overhead, derives a cap of a few accounts, takes the lower of that cap and the private preview band, and rejects 18."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Declines Brightmoor Mechanical because it fails entry rows 1-3 (no evidence of the problem, no planned integration, no named technical owner), stating the $400k renewal by itself changes nothing."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Offers Brightmoor the sales substitute: a design review under NDA, a sandbox with synthetic data, the GA and freeze dates, and first place in the next enrollment wave."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Admits Coldspring Services on the strength of ticket #4471 and the booked sprint, and requires a named technical owner who attends the cadence."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Treats Routeweave as a platform partner: requires enablement for its downstream shops, a plan for kill notice to reach those 300 shops through Routeweave, and multiplies its support and notice budget."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Flags the concentration risk that Routeweave's 300 downstream shops would push it above about a third of beta traffic in a cohort of four or more accounts."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Scores candidates with the +/0/- rubric and admits only accounts with no minus on rows 1-3."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires all five entry criteria, including signed pre-GA terms and intent to pay at GA if the feature is billable, before enrollment."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires the enrollment gate signed before the first account enrolls: program owner with steps 1-4 written, design review at beta level, security review, legal, and support."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Provides a waitlist reply that names the next wave or public preview date instead of leaving the remaining companies unanswered."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Runs the existing-beta rescue first instead of a blanket relabel, because a stage is live with no exit date and production callers."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Builds an inventory with one row per surface carrying: first shipped, last shape change, callers over the last 90 days, accounts with production traffic, owner, decision, and date."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Publishes a retroactive stage contract and grandfathers every production caller: nothing they call changes until their surface has a decision."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Decides per surface rather than for all six at once, choosing among GA as-is, next version with migration, or kill."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Conditions GA as-is on a long-stable shape, existing production callers, and samber/developer-platform-skills@public-api-design-review passing at GA level with zero Must-change findings."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Routes any surface with a Must-change finding to a next version with migration (steps 1-9 for the new version) instead of relabelling it."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Orders the communication: production accounts privately first, then any waitlist, then the public changelog."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Retires the /v1beta label publicly only once every surface has a decision, not on Tuesday."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Hands relabelled GA surfaces to samber/developer-platform-skills@api-versioning-policy, with the overlap on the beta path using the GA deprecation window because production traffic sits on it."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects the beta-only breaking-change rule; requires the company's breaking-change definition from samber/developer-platform-skills@api-versioning-policy and never a beta-specific one."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names the vendor range for public-preview notice (zero notice through a 90-day availability floor to a recommended 180 days) as the context for setting Tilemark's own rule."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Flags one partner's asks filling the sprint as the program drifting into custom development."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Specifies the cadence per shape: public preview async only in a public forum category or thread; private preview a kickoff call then biweekly office hours and async in one private channel."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Structures sessions around what partners built since last time, what blocked them, what they worked around, and what they would pay for."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes feedback outside the two features to samber/developer-relations-skills@developer-feedback-loop."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Sets the kill notice in months, not weeks, because production callers exist, citing the roughly six-month beta-kill precedent and twelve months as the ceiling rather than the floor."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Stops billing Ospreyline Sensors from the announcement date, and credits Marrowbot Robotics from the announcement under its signed order form rather than billing through shutdown."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Includes a per-account list of the operations each account calls and a banner on every entry point."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Includes a follow-up date on which Beaconhive contacts each account to check its migration."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Because 4 accounts run production on the beta surface, applies the GA deprecation window from samber/developer-platform-skills@api-versioning-policy to the overlap."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Writes the GA notice with: the GA date, the operations the account calls, what changes, the overlap end date, pricing including any partner discount and its term, the migration guide link, and the support channel with who answers."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Tracks migration completion at GA with a 100% target by the end of the overlap window, then hands the surface to the versioning policy."
+      }
+    ]
+  }
+}

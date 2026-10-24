@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Produces a publish checklist with columns item, owner role and week",
+        "evidence": "Weekly tables with \"Item | Owner | Day\" under Week 1-6 headings.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Counts backwards from the date: recruiting at least 3 users with live Zaps is scheduled before submission",
+        "evidence": "Week 1 \"Pick 3 or more design partners\"; Week 2 partners build Zaps before submit.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one live Zap and one successful run per visible step in the admins' Zap history, and tells the team to hide any step nobody can exercise",
+        "evidence": "\"Check the Zap history of the admin account for 6 successful runs\"; Send Payment Link hidden.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the invite-only status as blocking: the product must be publicly launched before approval",
+        "evidence": "\"Publishing requires a publicly launched product\u2020. This is the biggest risk.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the 14-day trial test account: Zapier needs a non-expiring account with paid features for integration-testing@zapier.com",
+        "evidence": "\"A 14-day trial expires. Zapier needs a non-expiring account with paid features\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the personal gmail admin: at least one admin must have an email on the company's own domain",
+        "evidence": "\"The admin needs a company-domain email\u2020. A personal Gmail fails.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags 'Send Payment Link' under the ban on facilitating payments, and requires confirmation with Zapier partner support before shipping it or removes it from the visible steps",
+        "evidence": "\"Payment processing and asset transfer are banned\u2020... confirm with partner support\"; hidden.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the name 'Fennwick for Zapier': the name must equal the brand with no 'Zapier', 'app' or 'integration'",
+        "evidence": "\"'Fennwick for Zapier' is not allowed... Name it **Fennwick**.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reviewer replies within about a week and each fix round adds about another week",
+        "evidence": "\"A reviewer replies in about a week\u2020. Each fix round adds about another week\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Zap templates can only be submitted after approval and take about two weeks of review, and sequences template submission on approval day",
+        "evidence": "\"Submit templates the same day as approval\"; \"Template review takes about two weeks\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States four weeks from submission to the date as the happy-path minimum",
+        "evidence": "\"Four weeks between submission and the date is the happy-path minimum\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that approval lists the integration as Beta, and that Beta ends after 90 days or the next business day after one signup from Fennwick's own Zapier embed",
+        "evidence": "\"Approval lists you as Beta. Beta ends after 90 days or one embed signup\u2020\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that validation Errors and Publishing Tasks block submission while Warnings do not",
+        "evidence": "Only \"Clear every Error and Publishing Task\"; never says Warnings don't block.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks the directory description rule: 40-140 characters opening with 'Fennwick is a\u2026', functional, no marketing claims",
+        "evidence": "\"Write a 40-140 character\u2020 description opening 'Fennwick is a\u2026'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (3 users, 90 days, about a week) with \u2020 and a footnote",
+        "evidence": "\"\u2020 Zapier platform numbers and rules... Check each against Zapier's live docs\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Produces a publish checklist with columns item, owner role and week",
+        "evidence": "The plan has a week-by-week list and a fallback-wording table, but no checklist table with item, owner role and week columns.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Counts backwards from the date: recruiting at least 3 users with live Zaps is scheduled before submission",
+        "evidence": "Week 2: \"Get at least 3 live Zaps running\" and \"Submit for review by Fri Nov 6.\" Exit check: \"submitted, with at least 3 live Zaps from outside the team.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires one live Zap and one successful run per visible step in the admins' Zap history, and tells the team to hide any step nobody can exercise",
+        "evidence": "The plan only says \"Run all 7 steps end to end\" in a real Zap. It has no per-step run requirement in Zap history and no instruction to hide unexercised steps.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the invite-only status as blocking: the product must be publicly launched before approval",
+        "evidence": "It says \"Zapier may object\" and lists a \"(verify)\" on a public signup path. It never says the product must be publicly launched before approval.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the 14-day trial test account: Zapier needs a non-expiring account with paid features for integration-testing@zapier.com",
+        "evidence": "It says \"Reviewers need a permanent, working account.\" It does not mention paid features or integration-testing@zapier.com.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the personal gmail admin: at least one admin must have an email on the company's own domain",
+        "evidence": "\"your only Zapier admin is on a personal Gmail\" and \"Add 2 company-domain admins to the Zapier developer account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags 'Send Payment Link' under the ban on facilitating payments, and requires confirmation with Zapier partner support before shipping it or removes it from the visible steps",
+        "evidence": "It treats the action as an email-spam and idempotency risk and calls it \"the highest review risk.\" It never cites a payment-facilitation ban or partner-support confirmation, and it keeps the step visible with hardening.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the name 'Fennwick for Zapier': the name must equal the brand with no 'Zapier', 'app' or 'integration'",
+        "evidence": "\"'Fennwick for Zapier' will likely be rejected (verify)... Register it as Fennwick.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reviewer replies within about a week and each fix round adds about another week",
+        "evidence": "It says only that review has \"no guaranteed turnaround\" and that rounds \"each take days.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Zap templates can only be submitted after approval and take about two weeks of review, and sequences template submission on approval day",
+        "evidence": "It says template publishing \"may require the integration to be public first (verify)\" and schedules template submission in Week 4. It gives no two-week review time and no approval-day sequencing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States four weeks from submission to the date as the happy-path minimum",
+        "evidence": "There is no such statement. It only sets a Nov 6 submission and a Dec 4 announcement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that approval lists the integration as Beta, and that Beta ends after 90 days or the next business day after one signup from Fennwick's own Zapier embed",
+        "evidence": "Beta status is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that validation Errors and Publishing Tasks block submission while Warnings do not",
+        "evidence": "Validation errors, publishing tasks and warnings are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks the directory description rule: 40-140 characters opening with 'Fennwick is a\u2026', functional, no marketing claims",
+        "evidence": "It only says \"Draft the listing assets: description, logo, categories...\" with no length or wording rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (3 users, 90 days, about a week) with \u2020 and a footnote",
+        "evidence": "It uses \"(verify)\" tags, not \u2020 marks or a footnote.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

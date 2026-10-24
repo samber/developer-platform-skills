@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Delivers the expected output shape: repo layout, version-wiring change, CI gate list with commands, install commands per channel and manifests, each checked against the lockstep rule.",
+        "evidence": "Most parts are present. The repo layout is given only as scattered paths: `skills/rushmere/SKILL.md`, `scripts/check-skill-*.py`, `.claude-plugin/plugin.json` and `marketplace.json`, and `.github/workflows/skill-gates.yml`. There is no layout tree. The version wiring is concrete: `make release` runs `check-skill-version.py --write` across the skill and manifests before tagging. The CI gates come as a full workflow with commands: tag equals pyproject, skill version matches code version, sdist carries the skill, content check against the built wheel, and Snyk. Lockstep shows up in several places",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Delivers the expected output shape: repo layout, version-wiring change, CI gate list with commands, install commands per channel and manifests, each checked against the lockstep rule.",
+        "evidence": "The answer covers only a few pieces, and only partly. Repo layout: it gives one path, `skills/rushmere/SKILL.md`, with no fuller tree. Version wiring: none. It says \"Don't tag a release for it\" and merge to main, which treats skill and package versions as separate instead of wiring them together. CI gates: it mentions one CI step for `tests/test_skill_examples.py` but gives no command. Prettier, the install check and the release-checklist line are not given as CI gates with commands. Install channels: it gives one install command (`npx skills add <you>/rushmere`) and only vaguely mentions skil",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

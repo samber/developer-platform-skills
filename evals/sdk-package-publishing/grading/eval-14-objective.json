@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the first release of a crate must be published manually with an API token, and the trusted publisher is added afterwards",
+        "evidence": "crates.io only lets you add a trusted publisher to an existing crate",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes that first-release token to `publish-new`/`publish-update` and a crate-name pattern with the default 90-day expiry, and revokes it after the trusted publisher is added",
+        "evidence": "expiry 1 day, not default 90-day",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Enables the crate's 'Trusted Publishing only' setting after migration so tokens can no longer publish it",
+        "evidence": "Enable \"Trusted Publishing only\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects empty placeholder crates, stating name-only placeholders are banned on crates.io and names are never reassigned on request",
+        "evidence": "Name-only placeholders are banned; team does not reassign",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that crates on crates.io cannot depend on crates from other registries, so the public SDK cannot pull the internal `cindervale-auth`",
+        "evidence": "crates.io rejects dependencies on other registries",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `publish = [\"<registry>\"]` in each internal crate's `Cargo.toml` so a private crate can never reach crates.io",
+        "evidence": "publish = [\"corp\"]",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes `.cargo/config.toml` with a `[registries.<name>]` sparse index and `credential-provider`, and `registry = \"<name>\"` on each internal dependency, stating Cargo never falls back from a named registry to crates.io",
+        "evidence": "Cargo never falls back from a named registry to crates.io",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells users to pass `--locked` to `cargo install`, or Cargo ignores the published `Cargo.lock`",
+        "evidence": "cargo install --locked cindervale-cli",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends dist (cargo-dist) for prebuilt binaries with `github-attestations = true` (off by default) and `[package.metadata.binstall]` so `cargo binstall` fetches the archive instead of compiling",
+        "evidence": "github-attestations = true; binstall metadata",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes with `cargo publish --no-verify` from the same commit after the auth action, with `cargo publish --dry-run` and `cargo package --list` in the build job",
+        "evidence": "cargo publish --no-verify; cargo package --list; --dry-run",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a team owner (`cargo owner --add github:cindervale:<team>`) so access survives people leaving",
+        "evidence": "cargo owner --add github:cindervale:<team>",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States `cargo yank --version` (reversible with `--undo`) is the rollback primitive, and whole-crate deletion exists only within 72 hours or under the low-usage rule",
+        "evidence": "cargo yank ... --undo; deletion within 72 hours",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a credential provider (`cargo:macos-keychain`, `cargo:wincred`, `cargo:libsecret`) on laptops because `cargo login` stores tokens in plain text",
+        "evidence": "cargo:macos-keychain, not plain-text cargo login",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `pull_request_target` and `workflow_run` triggers for the publish workflow",
+        "evidence": "crates.io rejects the first two for trusted publishing",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the first release of a crate must be published manually with an API token, and the trusted publisher is added afterwards",
+        "evidence": "'first publish ... needs a normal API token'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes that first-release token to `publish-new`/`publish-update` and a crate-name pattern with the default 90-day expiry, and revokes it after the trusted publisher is added",
+        "evidence": "24h expiry, publish-new only",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Enables the crate's 'Trusted Publishing only' setting after migration so tokens can no longer publish it",
+        "evidence": "Step 4",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects empty placeholder crates, stating name-only placeholders are banned on crates.io and names are never reassigned on request",
+        "evidence": "'treats name reservation with empty crates as squatting'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that crates on crates.io cannot depend on crates from other registries, so the public SDK cannot pull the internal `cindervale-auth`",
+        "evidence": "'crates.io rejects ... another registry'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `publish = [\"<registry>\"]` in each internal crate's `Cargo.toml` so a private crate can never reach crates.io",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes `.cargo/config.toml` with a `[registries.<name>]` sparse index and `credential-provider`, and `registry = \"<name>\"` on each internal dependency, stating Cargo never falls back from a named registry to crates.io",
+        "evidence": "Not written",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells users to pass `--locked` to `cargo install`, or Cargo ignores the published `Cargo.lock`",
+        "evidence": "'cargo install cindervale-cli --locked'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends dist (cargo-dist) for prebuilt binaries with `github-attestations = true` (off by default) and `[package.metadata.binstall]` so `cargo binstall` fetches the archive instead of compiling",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes with `cargo publish --no-verify` from the same commit after the auth action, with `cargo publish --dry-run` and `cargo package --list` in the build job",
+        "evidence": "Only dry-run",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a team owner (`cargo owner --add github:cindervale:<team>`) so access survives people leaving",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States `cargo yank --version` (reversible with `--undo`) is the rollback primitive, and whole-crate deletion exists only within 72 hours or under the low-usage rule",
+        "evidence": "Only 'can only be yanked, not deleted'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a credential provider (`cargo:macos-keychain`, `cargo:wincred`, `cargo:libsecret`) on laptops because `cargo login` stores tokens in plain text",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects `pull_request_target` and `workflow_run` triggers for the publish workflow",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

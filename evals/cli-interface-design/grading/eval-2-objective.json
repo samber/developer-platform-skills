@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Adds `--json` to `orn deploy`, naming the long-running mutating command as the gap, not only list and get commands",
+        "evidence": "\"put `--json` on `deploy`... the one agents parse most, and it has none.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Under `--json`, stdout carries exactly one JSON document per run",
+        "evidence": "\"`--json` | exactly one JSON document, success or `{\"error\": \u2026}`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Under `--json`, a failure is emitted on stdout as a `{\"error\": {...}}` document rather than as text on stderr",
+        "evidence": "\"Error object (under `--json`, on stdout)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The error object carries a stable code, a message, a request ID and, for async work, the operation ID",
+        "evidence": "code, message, request_id, operation_id in the example.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "In human mode, routes progress, warnings and errors to stderr and only the result to stdout",
+        "evidence": "\"Errors move from stdout to stderr in human mode.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that when stdin is not a terminal the CLI never prompts and fails immediately naming the flag that supplies the missing value",
+        "evidence": "\"Fail at once with exit 2 and name the missing flag.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a `--no-input` flag that forces the non-interactive behavior on a terminal",
+        "evidence": "\"`--no-input` and `ORN_NO_INPUT=1` force the same behaviour on a terminal.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that output is never paged when stdout is not a terminal, so CI needs no `PAGER=cat` workaround",
+        "evidence": "\"It never runs for `deploy`, with `--json`, or off a TTY.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `orn deploy` wait by default with a finite default `--wait-timeout` value and a one-line reason for the value",
+        "evidence": "\"`--wait-timeout` defaults to `15m`. Deploys take 2\u201310 minutes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds `--no-wait` returning the operation ID and a `wait <operation-id>` command that resumes",
+        "evidence": "\"`--no-wait` returns the deployment ID immediately.\" and `orn deployments wait <id>`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "On Ctrl-C or SIGTERM during the wait, detaches rather than cancels: prints the operation ID and the resume command",
+        "evidence": "\"detaches. It does not cancel. The CLI prints the deployment ID and `orn deployments wait dep_3`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the `--json` shape identical whether the command waited or not, with the waited result nested inside the operation object",
+        "evidence": "The shape is flat (deployment_id, state, waited...) with no nested result object, and state/finished_at differ on --no-wait.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declares the human table unstable and `--json` frozen, and states this in the docs so scripts never parse the table",
+        "evidence": "\"Declare tables unstable and freeze `--json`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps update checks and first-run notices silent when stdout is not a terminal",
+        "evidence": "\"Update checks, notices and telemetry banners stay silent off a TTY.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the exit code the primary failure signal with distinct codes per caller action, replacing exit 1 for everything",
+        "evidence": "The exit-code table 0\u20137, 130/143 with caller action. Rollout is staged to a major.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Adds `--json` to `orn deploy`, naming the long-running mutating command as the gap, not only list and get commands",
+        "evidence": "\"`--json` goes on every command, starting with `deploy` and `deployments *`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Under `--json`, stdout carries exactly one JSON document per run",
+        "evidence": "\"stdout contains exactly one JSON document\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Under `--json`, a failure is emitted on stdout as a `{\"error\": {...}}` document rather than as text on stderr",
+        "evidence": "\"Error envelope (non-zero exit, on stdout under `--json`)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The error object carries a stable code, a message, a request ID and, for async work, the operation ID",
+        "evidence": "The envelope has code, message, hint, retryable and docs, but no request_id or operation id.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "In human mode, routes progress, warnings and errors to stderr and only the result to stdout",
+        "evidence": "Only progress is stated for stderr (\"Progress is plain lines on stderr\"). Errors and warnings in human mode are not specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies that when stdin is not a terminal the CLI never prompts and fails immediately naming the flag that supplies the missing value",
+        "evidence": "\"exit 6 immediately\"; \"Re-run with --yes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a `--no-input` flag that forces the non-interactive behavior on a terminal",
+        "evidence": "\"`--no-pager` or `--no-input` | Force the above even on a TTY.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that output is never paged when stdout is not a terminal, so CI needs no `PAGER=cat` workaround",
+        "evidence": "\"stdout is not a TTY | Never page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `orn deploy` wait by default with a finite default `--wait-timeout` value and a one-line reason for the value",
+        "evidence": "The usage shows `--timeout 15m`, but no reason is given for the value.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds `--no-wait` returning the operation ID and a `wait <operation-id>` command that resumes",
+        "evidence": "\"`--no-wait` returns the deployment object immediately\"; \"orn deployments wait <id>\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "On Ctrl-C or SIGTERM during the wait, detaches rather than cancels: prints the operation ID and the resume command",
+        "evidence": "Only the timeout case is covered. Signals are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the `--json` shape identical whether the command waited or not, with the waited result nested inside the operation object",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declares the human table unstable and `--json` frozen, and states this in the docs so scripts never parse the table",
+        "evidence": "\"Tables are for humans and carry no compatibility promise.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps update checks and first-run notices silent when stdout is not a terminal",
+        "evidence": "Update checks and first-run notices are not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes the exit code the primary failure signal with distinct codes per caller action, replacing exit 1 for everything",
+        "evidence": "The exit-code table runs 0-9 with distinct meanings.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

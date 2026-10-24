@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the generated-only 1:1 endpoint mirror as the whole CLI surface",
+        "evidence": "\"A pure mirror also cannot do the three jobs support named.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses curated workflow commands plus a raw `api <method> <path>` escape hatch as the day-one rung",
+        "evidence": "\"Chosen rung: curated workflow commands plus the raw `api` escape hatch.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the escape hatch ships from day one and inherits auth, pagination, output flags and the severe-action guard",
+        "evidence": "\"Inherits: auth, `--profile`, `--json`, `--limit`/`--all`, retries... and the severity table\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names deploy-and-wait, log tailing and localhost webhook forwarding as jobs the API alone cannot do, and keeps them as curated commands",
+        "evidence": "\"Log tailing, webhook forwarding to localhost and deploy-and-wait each need more than one call, or a local process\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the generated resource layer as a later option beneath the curated layer rather than deleting it from the design",
+        "evidence": "\"Starved option: a generated `kestrel <resource> <verb>` layer under the curated one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the promotion trigger for the generated layer: the OpenAPI spec becomes checked in CI and escape-hatch usage shows sustained demand for per-endpoint commands",
+        "evidence": "Three conditions: backend gates OpenAPI in CI, `api` usage shows sustained demand, 1.x stable.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the hand-maintained OpenAPI spec blocks promoting the generated layer on its own, because generating from it would freeze its drift into the contract",
+        "evidence": "\"it would freeze every drift into a public contract\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an 'Answer to the requester' section stating what is reachable on day one, through which layer, and what promotes the generated layer later",
+        "evidence": "\"## Answer to the requester\" states day-one reach via `kestrel api` and promotion conditions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the layer ranking explicitly, with curated + raw ranked above the generated-only mirror on efficiency",
+        "evidence": "No ranking of rungs on efficiency appears; only the chosen rung is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-ranks against the 8-week deadline and two-engineer team, and says that constraint keeps the default rung",
+        "evidence": "\"What moved it: ... the 8-week, two-engineer limit\"; \"Keeps the default layer rung and a hard cut line.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists jobs with their audiences (human / CI / agent) in a table rather than listing endpoints",
+        "evidence": "\"| Job | Audiences | API calls involved | Local-only part |\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses noun verb grammar with plural nouns and one small verb set reused across nouns",
+        "evidence": "\"`noun verb`, plural nouns... Verb set: list, get, create, update, delete.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reserves top-level command names for the planned plugin mechanism",
+        "evidence": "\"Reserved for plugins: the `plugin` and `plugins` top-level names\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes an Assumptions table with one row per unanswered clarifying question, each stating what the assumption changes",
+        "evidence": "Eight rows with a \"What it changes\" column.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a Release cut line table separating v1 commands from later ones, with a reason per row",
+        "evidence": "\"| Command or capability | v1 (week 8) | Later | Reason |\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the generated-only 1:1 endpoint mirror as the whole CLI surface",
+        "evidence": "\"Ship a hybrid CLI, not 160 flat commands\"; \"Generation stays the right foundation. It just can't be the whole product.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses curated workflow commands plus a raw `api <method> <path>` escape hatch as the day-one rung",
+        "evidence": "The v1 design also ships the full generated layer for all 28 resources in week 2, so the day-one rung is not curated plus raw alone.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the escape hatch ships from day one and inherits auth, pagination, output flags and the severe-action guard",
+        "evidence": "\u00a73.3 lists auth, base URL, pagination and output formatting. It never mentions a severe-action guard.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names deploy-and-wait, log tailing and localhost webhook forwarding as jobs the API alone cannot do, and keeps them as curated commands",
+        "evidence": "\"Log tailing and webhook forwarding are streaming and local-listener behaviors. They are not CRUD\"; deploy needs polling.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the generated resource layer as a later option beneath the curated layer rather than deleting it from the design",
+        "evidence": "The generated layer is a v1 deliverable (\u00a73.1, week 2), not a later option.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes the promotion trigger for the generated layer: the OpenAPI spec becomes checked in CI and escape-hatch usage shows sustained demand for per-endpoint commands",
+        "evidence": "No promotion trigger is written.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the hand-maintained OpenAPI spec blocks promoting the generated layer on its own, because generating from it would freeze its drift into the contract",
+        "evidence": "\u00a73.2 discusses spec drift, but not as a blocker to promoting the generated layer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes an 'Answer to the requester' section stating what is reachable on day one, through which layer, and what promotes the generated layer later",
+        "evidence": "There is no such section. \u00a712 is 'Assumptions I made'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the layer ranking explicitly, with curated + raw ranked above the generated-only mirror on efficiency",
+        "evidence": "No layer ranking is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-ranks against the 8-week deadline and two-engineer team, and says that constraint keeps the default rung",
+        "evidence": "\u00a79 gives an eight-week plan, but there is no re-ranking of layers against the constraint.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists jobs with their audiences (human / CI / agent) in a table rather than listing endpoints",
+        "evidence": "\u00a72 is a table of audiences and needs, not of jobs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses noun verb grammar with plural nouns and one small verb set reused across nouns",
+        "evidence": "\"`kestrel <resource> <verb>`... plural noun... list|get|create|update|delete\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reserves top-level command names for the planned plugin mechanism",
+        "evidence": "\"Reserved names. All built-in and generated command names are reserved and cannot be shadowed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes an Assumptions table with one row per unanswered clarifying question, each stating what the assumption changes",
+        "evidence": "\u00a712 is a bulleted list, not a table, and does not map to clarifying questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a Release cut line table separating v1 commands from later ones, with a reason per row",
+        "evidence": "There is a 'Cut order if time slips' list and an 'Out of scope' list, but no table with a reason per row.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

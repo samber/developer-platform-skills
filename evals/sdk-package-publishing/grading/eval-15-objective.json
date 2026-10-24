@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States pub.dev refuses automated publishes from `workflow_dispatch` or branch pushes; only a tag-push trigger works",
+        "evidence": "pub.dev refuses automated publishes from workflow_dispatch",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the first version of each package must be published manually with `flutter pub publish` from a maintainer session before automation applies",
+        "evidence": "first version of each package must be published by hand",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Configures the package Admin tab with the repository and a tag pattern containing `{{version}}` (for example `<package>-v{{version}}` in a monorepo), mirrored in the workflow tag filter and the tag ruleset",
+        "evidence": "Tag pattern v{{version}} mirrored in ruleset and trigger",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a GitHub environment with required reviewers on the pub.dev side, matching the job's environment name",
+        "evidence": "Required environment release; name must match",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the reusable `dart-lang/setup-dart/.github/workflows/publish.yml@<sha>` workflow with `id-token: write`, adding `subosito/flutter-action` for the Flutter packages",
+        "evidence": "uses setup-dart step plus flutter pub publish --force",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders publishing as platform interface, then implementations, then the app-facing package, rejecting publishing all four at once",
+        "evidence": "platform interface, _ios, _android, app-facing",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Endorses implementations with `default_package` under `flutter.plugin.platforms.<os>` plus a normal dependency on each",
+        "evidence": "default_package: ravelstone_pay_ios",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires platform-interface changes to be additive with default implementations, since a breaking change breaks every implementation at once",
+        "evidence": "Keep platform-interface changes additive",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a podspec dependency on the trunk pod `RavelstonePay` freezes at its last trunk version after 2026-12-02, and prescribes vendoring the XCFramework or serving the pod from a private spec repo, plus a SwiftPM dependency in `Package.swift`",
+        "evidence": "vendor an XCFramework or ship SwiftPM",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships `Package.swift` under `ios/<name>/` and keeps the podspec, noting the plugin's podspec is consumed from the pub package and never pushed to trunk",
+        "evidence": "Ship ios/ravelstone_pay_ios/Package.swift and keep the podspec",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States pub.dev rejects packages that depend on git or custom-hosted packages",
+        "evidence": "no git or custom-hosted dependencies",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Creates a verified publisher for the company domain before the first release, noting a transfer is irreversible and every member gets upload rights",
+        "evidence": "transfer is irreversible, every member gets upload rights",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a version can be retracted within 7 days and after that only a fix release works, with a dead package marked discontinued",
+        "evidence": "within 7 days... marked discontinued",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Preflights with `flutter pub publish --dry-run` and a pana score check, and repeats `.gitignore` secret patterns in any `.pubignore`",
+        "evidence": "no pana check or .pubignore advice",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States pub.dev refuses automated publishes from `workflow_dispatch` or branch pushes; only a tag-push trigger works",
+        "evidence": "Uses workflow_dispatch and says it works with environment",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the first version of each package must be published manually with `flutter pub publish` from a maintainer session before automation applies",
+        "evidence": "'an engineer has to publish 0.1.0 of all four packages by hand'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Configures the package Admin tab with the repository and a tag pattern containing `{{version}}` (for example `<package>-v{{version}}` in a monorepo), mirrored in the workflow tag filter and the tag ruleset",
+        "evidence": "'Leave the tag-pattern option off'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a GitHub environment with required reviewers on the pub.dev side, matching the job's environment name",
+        "evidence": "'Add no required reviewers'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the reusable `dart-lang/setup-dart/.github/workflows/publish.yml@<sha>` workflow with `id-token: write`, adding `subosito/flutter-action` for the Flutter packages",
+        "evidence": "Custom inline publish",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders publishing as platform interface, then implementations, then the app-facing package, rejecting publishing all four at once",
+        "evidence": "PACKAGES order and sequential publish",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Endorses implementations with `default_package` under `flutter.plugin.platforms.<os>` plus a normal dependency on each",
+        "evidence": "Only 'endorses' in assumptions",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires platform-interface changes to be additive with default implementations, since a breaking change breaks every implementation at once",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a podspec dependency on the trunk pod `RavelstonePay` freezes at its last trunk version after 2026-12-02, and prescribes vendoring the XCFramework or serving the pod from a private spec repo, plus a SwiftPM dependency in `Package.swift`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships `Package.swift` under `ios/<name>/` and keeps the podspec, noting the plugin's podspec is consumed from the pub package and never pushed to trunk",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States pub.dev rejects packages that depend on git or custom-hosted packages",
+        "evidence": "Only path deps",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Creates a verified publisher for the company domain before the first release, noting a transfer is irreversible and every member gets upload rights",
+        "evidence": "Transfer step but no irreversibility/upload rights",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a version can be retracted within 7 days and after that only a fix release works, with a dead package marked discontinued",
+        "evidence": "Retract only; no discontinued",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Preflights with `flutter pub publish --dry-run` and a pana score check, and repeats `.gitignore` secret patterns in any `.pubignore`",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

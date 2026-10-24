@@ -1,0 +1,930 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "agent-skill-offering",
+  "scenarios": 15,
+  "expectations_total": 209,
+  "expectations_subjective": 1,
+  "expectations_objective": 208,
+  "pass_rate_with_skill_pct": 70.8,
+  "pass_rate_without_skill_pct": 23.4,
+  "delta_pp": 47.4,
+  "uplift_multiplier": 3.03,
+  "trigger_accuracy_pct": 50.0,
+  "trigger_queries": 188,
+  "trigger_positive_fire_rate": 0.011,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Wires the changesets version step to write the new package version into the skill and every manifest before the version PR merges."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Asks the batched interview questions - release mechanism and version location, agent audience, three real agent failures, existing or community skills, deadline and effort ceiling - before finalizing."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps references/ for long-tail per-domain detail loaded only when needed, not for a flag dump."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Adds `git diff --exit-code` in CI after a fresh bump to catch a file the bump configuration forgot."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Includes skills/ in the package files list and asserts `npm pack --dry-run 2>&1 | grep skills/` in CI."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names all five manifest files at the repo root, each pointing at ./skills/: .claude-plugin/plugin.json, .claude-plugin/marketplace.json, .codex-plugin/plugin.json, .cursor-plugin/plugin.json, gemini-extension.json."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Copies author, homepage, repository and license into the manifests from the existing package.json metadata rather than placeholder owners."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that metadata.version is provenance for humans and guards; no installer reads it, installers resolve a git tag, a commit or a manifest version."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends `goreleaser build --snapshot --clean --single-target` in a skill-gates job that the publishing job depends on."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Adds the new-surface direction: diff the public command list against the last release and fail on an added command the skill never mentions and the allowlist does not exempt."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Declares the tag as the version source of truth and records it with the tag format, gate list, channels and pinned-install command in memory when the harness has one."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Distinguishes the binary archive, which needs the explicit archives.files entry, from a Go module zip, which carries skills/ automatically for libraries."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects the 'every command must appear' requirement: never require coverage of the whole surface, because it pushes the skill toward the command dump it should avoid."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "New-surface direction: fails only on public commands added since the last release that the skill never mentions and the allowlist does not exempt."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "When the skill names JSON fields to read, runs the command with --json against a fixture or dry-run and asserts each documented field is present."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Generates the surface snapshot with the head's script run against both the base and head builds, since the base may predate the script."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the idle-context cost: a skill description costs about 100 tokens until it loads, while an MCP server's tool definitions typically cost one to two orders of magnitude more."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes skills/ in the package files list so the skill ships inside the npm package, and notes the skills installer can link skills from installed dependencies so they update with the package."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds a runtime drift notice where the tool can know its version, printing one agent-parseable line on mismatch."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the skill after the tool and splits by job (verdant-orm, verdant-orm-migrations) only once SKILL.md passes about 250 lines, keeping the set small because large skill libraries shadow each other."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Uses the six-week budget as a standing-practice signal that promotes the starved bundled-docs rung, not the MCP server."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Moves the skill out of .claude/skills/ into skills/<name>/SKILL.md at the repo root, stating .claude/skills/ and .agents/skills/ serve agents working on the repo itself."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Shares cross-cutting rules (auth, output parsing) in one skill the others tell the agent to read first instead of copying them."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps every skill harness-neutral: no harness-only frontmatter, no harness paths, capabilities described rather than tool names."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks which agents use each tool and what they get wrong today before writing content."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Generates the exact tag-pinned command per channel into every release note, naming at least `gh skill install larkspur/lark lark@v1.8.0`, `npx skills add larkspur/lark#v1.8.0`, `/plugin marketplace add larkspur/lark#v1.8.0` and `gemini extensions install ... --ref=v1.8.0`."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Ranks the channels on separate axes - effort `bundled with the code > plugin marketplace pinned to a tag > tag-pinned git install > default-branch install`, with value and efficiency stated separately - and names bundled as the starved high-value option."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes `openclaw skills install git:` needs SKILL.md at the repo root so it does not fit skills/<name>/, and uses the bundle form `openclaw plugins install git:github.com/larkspur/lark@v1.8.0` instead."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Treats the README install section as the real driver of directory listings and adds the agent-skills repository topic."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes a tracked tag in the directory must be re-pointed each release, which is why the stable branch is preferred."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Names the submission path: claude.ai/directory/manage on a paid plan, Submit new, Plugin bundle, the repository, then Validate."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Mentions Gemini's --pre-release flag and that GitHub-Releases installs check the release marked Latest."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Names the detection order .codex-plugin/, .cursor-plugin/, .claude-plugin/ and therefore points every manifest's skills at ./skills/."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Keeps OpenClaw's top-level extras (homepage, user-invocable, disable-model-invocation, command-* keys) out of the frontmatter, with metadata.openclaw.homepage covering the link."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Points at `openclaw skills check` to debug a skill that installed but never appears, and notes a legacy metadata.clawdbot block is ignored."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "States that when fetching is the tool's purpose, fetched content must be marked as data never instructions, and only then `--ignore-risks third_party_content_exposure` with the reason in a comment."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Runs the scan on skills/** changes in pull requests and in the release job next to the pinned spec validator, and signs release tags."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Names the signals that matter: trigger and pass rate per release, issues tagged 'agent misuse', and how often the drift notice fires."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Notes skills.sh ranks by installs reported by the installer's telemetry and that the README install section is the listing's real driver, separating listing from correctness."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Ranks the gates on separate axes - effort `golden agent tasks > content check > changed-surface check > version equality == spec validation == security scan`, value `content check > golden agent tasks > version equality > changed-surface check > security scan > spec validation`, efficiency `version equality == spec validation > content check > security scan > changed-surface check > golden agent tasks` - and justifies the version-equality/spec-validation tie as two one-command offline checks catching different failures."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "States the four pass conditions of the setup: a deliberately stale metadata.version fails before its tag exists, a skill naming a removed flag fails CI, every manifest version equals the tag on the last three releases, every release note prints a tag-pinned install command."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Adds repository topics directory crawlers index (agent-skills, gemini-cli-extension) and links the install command from the official docs."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Checks the 3 MB PNG against the 5 MiB per-file limit and the repo against 50 MiB archived, 256 MiB unpacked and 10,000 entries."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Requires a README of at least 40 words in the plugin folder, code blocks not counted, and a LICENSE file or license field."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Rejects the rename in a 2.4.1 patch: a skill rename is a breaking change of the tool and ships in a major release."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Adds an entry to the marketplace renames map as a supplement, never as the only signal."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Batches the interview questions before designing: agent audience, release mechanism and license, existing skills including the community one, deadline and effort ceiling, and whether the package may gain a console command."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Places the skill at skills/rushmere/SKILL.md at the repo root and includes skills/ as package data so the wheel carries it."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Handles the community skill by publishing under the project's own namespace and claiming obvious name variants, because agents hallucinate skill names and attackers register them."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Sets license to the repo's license and writes the description as what plus when, with the tool's name and the tasks users type."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Delivers the expected output shape: repo layout, version-wiring change, CI gate list with commands, install commands per channel and manifests, each checked against the lockstep rule."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Records the version source of truth, tag format, gate list, chosen channels and pinned-install command in memory when the harness has one."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Pins the spec validator (skills-ref, an alpha requiring Python 3.11+) by version in CI rather than installing it unpinned."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States Codex installs use --ref defaulting to main, so users re-install at the new ref; gives the tag-pinned form."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Gives per-channel tag-pinned commands: `gh skill install`, `npx skills add <owner>/ing#v<tag>`, `/plugin marketplace add <owner>/ing#v<tag>`, `gemini extensions install ... --ref=v<tag>`, `openclaw plugins install git:...@v<tag>`."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Notes `gh skill install` writes repo, ref, pin and tree SHA into the installed SKILL.md frontmatter, and `gh skill update` skips pinned skills."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Notes the skills installer's skills-lock.json records the ref and a content hash, and that a branch ref floats while a tag or SHA holds."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States a tag-pinned install matches only at install time and the binary can upgrade silently, so the body guard checks both directions."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States the Claude Code plugin version resolves from plugin.json version, else the marketplace entry, else the commit SHA, and keeps it bumped so update does not report 'already latest'."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Generates the release-note install block in the release job so the tag is never typed by hand, ending with 'Already installed? Re-run with the new tag (OpenClaw: add --force)'."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States that no installer resolves 'the skill matching the code I installed' by itself."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Requires moving the meshline-sdk skill into the meshline-sdk repository itself, rejecting the shared bramwyn/agent-skills repo because a separate skills repo releases on its own clock and drifts by construction."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires metadata.version to equal the SDK version and to be bumped in the same commit or release job that bumps the package version."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Rejects skipping the bump on patch releases, stating the version is the lookup key and that 3.2.0 on a 3.4.1 tag reads as stale to every check; the bump happens by script and the content may stay identical."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires every release tag to carry a skill matching that tag's code."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Identifies `npx skills add bramwyn/agent-skills` with no ref as a default-branch install and replaces it with a tag-pinned form such as `npx skills add <owner>/meshline-sdk#v3.4.1`."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that a release must fail before its tag exists when the skill is stale, rather than warn in a release log read after users installed the wrong skill."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes skills/ in the npm package files list so registry installs carry the skill, and checks the packed artifact contains it with `npm pack --dry-run`."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Wires the changesets version step to write the new package version into the skill and every manifest before the version PR merges."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Prints a tag-pinned install command in every release note, generated by the release job rather than typed by hand."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Audits the plan against the lockstep rule before anything else, instead of starting from the CI check the user asked for."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Asks the batched interview questions - release mechanism and version location, agent audience, three real agent failures, existing or community skills, deadline and effort ceiling - before finalizing."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats the skill name as public API: a later rename or removal is a breaking change of the SDK."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Moves version out of the top level into metadata.version as a quoted string, stating the Agent Skills spec has no top-level version field."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Removes allowed-tools because it pre-approves tools without a prompt."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rewrites compatibility to declare the binary without a version number (for example 'Requires qn on PATH') so no second version string goes stale."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Replaces the one-sided 'if older, upgrade' guard with a two-sided guard, because a silently upgraded binary passes a one-sided check."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Opens the body with a `Skill version: 2.3.0` line outside any code fence, because some harnesses never show the frontmatter to the model."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies the guard branches: same major.minor continue; only the patch differs mention the matching tag once; major or minor differs in either direction trust `qn --help` over the skill's command names and tell the user to install the skill from their version's tag."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies that a development build reporting `dev` continues."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names no other version anywhere in the prose beyond that one body line."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Removes the pasted flag lists and the references/flags.md flag table, stating the tool owns WHAT (flags, arguments, defaults) and the skill points at `qn <command> --help` instead."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the skill owns WHEN and WHY: which command for which job, ordering, safe defaults, and the real agent failures."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Restructures the body by job (for example 'Roll back a bad deploy') rather than by command group."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps references/ for long-tail per-domain detail loaded only when needed, not for a flag dump."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes the bump script rewrites the Skill version body line and gate 2 checks it against metadata.version."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Annotates both version lines for the generic updater: `version: \"x.y.z\" # x-release-please-version` in the frontmatter and `Skill version: x.y.z <!-- x-release-please-version -->` in the body."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Adds `git diff --exit-code` in CI after a fresh bump to catch a file the bump configuration forgot."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Runs scripts/check-skill-version.py with every --manifest on every pull request against the package.json version, and once more on the tag as a backstop."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Includes skills/ in the package files list and asserts `npm pack --dry-run 2>&1 | grep skills/` in CI."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Bumps on every release including prereleases, and runs the same bump and gates on maintenance branches."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names all five manifest files at the repo root, each pointing at ./skills/: .claude-plugin/plugin.json, .claude-plugin/marketplace.json, .codex-plugin/plugin.json, .cursor-plugin/plugin.json, gemini-extension.json."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Copies author, homepage, repository and license into the manifests from the existing package.json metadata rather than placeholder owners."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that metadata.version is provenance for humans and guards; no installer reads it, installers resolve a git tag, a commit or a manifest version."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Prescribes a `make release VERSION=x.y.z` target that runs scripts/check-skill-version.py with --write and every --manifest, then the gates, then commits, tags and pushes in one step."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists skills/** in goreleaser archives.files and asserts `tar tzf dist/*.tar.gz | grep SKILL.md`."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Puts the tag-pinned install block in goreleaser release.footer so the tag is never typed by hand."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Runs gate 2 on pull requests against `git describe --tags --abbrev=0` with fetch-depth 0, and again on the tag as a backstop, noting a tag-time failure means deleting the tag."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects `go build ./...` for the content check: with several packages it writes no binary and the check silently runs whatever fgate is on PATH; requires an explicit `go build -o ./bin/fgate ./cmd/fgate` with the same -ldflags version stamping."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends `goreleaser build --snapshot --clean --single-target` in a skill-gates job that the publishing job depends on."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects asserting exit code 0 on --help, since some parsers exit 2 after printing help; asserts the output is help text rather than an unknown-command error."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Checks nested subcommands at every level, not only the first two tokens."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Adds the new-surface direction: diff the public command list against the last release and fail on an added command the skill never mentions and the allowlist does not exempt."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Suggests a hidden `commands --json` subcommand so extraction survives usage-layout changes."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Declares the tag as the version source of truth and records it with the tag format, gate list, channels and pinned-install command in memory when the harness has one."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Distinguishes the binary archive, which needs the explicit archives.files entry, from a Go module zip, which carries skills/ automatically for libraries."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that version equality proves only that someone bumped a string and that lockstep rule 4 also requires the content check."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Runs the content check on the artifact the release will publish, built with the release version stamping, before any publish step."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects the 'every command must appear' requirement: never require coverage of the whole surface, because it pushes the skill toward the command dump it should avoid."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "New-surface direction: fails only on public commands added since the last release that the skill never mentions and the allowlist does not exempt."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Skips blocks marked as bad examples (lines under a \u2717 label) during extraction."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "When the skill names JSON fields to read, runs the command with --json against a fixture or dry-run and asserts each documented field is present."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Asserts the wheel's file list contains skills/."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Adds the changed-surface gate on pull requests: a public surface change with no file under skills/ changed fails unless a reviewer applies a skill-unaffected label."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Generates the surface snapshot with the head's script run against both the base and head builds, since the base may predate the script."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Proposes a hidden machine-readable command tree (`commands --json`) instead of parsing usage text that breaks on layout changes."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Diagnoses the stale calls as the on-demand skill failing to trigger, citing the published eval where the skill was never invoked in 56% of runs while an always-loaded docs index scored 100%."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Keeps the skill for multi-step workflows (setup, migrations, major upgrades) with references/, pointed at the bundled docs."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the idle-context cost: a skill description costs about 100 tokens until it loads, while an MCP server's tool definitions typically cost one to two orders of magnitude more."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Ranks the add-beside options on separate axes - effort `MCP server > bundled docs + pointer > JSON output on the CLI > nothing`, value `JSON output on the CLI > bundled docs + pointer > MCP server > nothing`, efficiency `JSON output on the CLI > bundled docs + pointer > nothing > MCP server` - instead of one blended ordering."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the conditions that would promote MCP anyway (chat assistants or hosted fleets with no shell, hosted auth, remote state) and routes that design to the MCP sibling skill."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Opens the skill body with a library guard that reads the installed version from the project (node_modules/verdant-orm/package.json) rather than from memory, preferring bundled docs and type definitions when major or minor differs."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds a library content check: extract fenced TypeScript blocks from the skill and type-check them with `tsc --noEmit` against the release build, marking pseudo-code with a text fence the extractor skips."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes skills/ in the package files list so the skill ships inside the npm package, and notes the skills installer can link skills from installed dependencies so they update with the package."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds a runtime drift notice where the tool can know its version, printing one agent-parseable line on mismatch."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Asks for the three real agent failures as the skill's first content and tests, counting the findOne and Model.sync cases among them."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names the skill after the tool and splits by job (verdant-orm, verdant-orm-migrations) only once SKILL.md passes about 250 lines, keeping the set small because large skill libraries shadow each other."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Uses the six-week budget as a standing-practice signal that promotes the starved bundled-docs rung, not the MCP server."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Moves the skill out of .claude/skills/ into skills/<name>/SKILL.md at the repo root, stating .claude/skills/ and .agents/skills/ serve agents working on the repo itself."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the root AGENTS.md is contributor-facing and must not be mistaken for the user-facing skill: different audience, different file."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Splits into one skill per tool (tw-cli, tw-sdk-js), each checked against its own version and tag prefix, rejecting one skill carrying 4.2.0 for both."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Runs gate 2 with --tag-prefix tw-cli- and --tag-prefix tw-sdk-js- respectively, and triggers the tag workflow on *-v* tag patterns."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Wires each skill into release-please's per-component extra-files with the x-release-please-version annotation on both version lines."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Includes each skill in its own tool's release artifact: skills/ in the npm files list for tw-sdk-js, archives.files or embedded assets for the Go binary."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Explains the 'works great' report comes from teammates working inside the repo, the audience .claude/skills/ serves, not from users who install the tools."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Rejects 'the skill can just point at AGENTS.md': the user-facing skill carries its own WHEN and WHY and defers WHAT to `tw-cli --help` and the SDK's bundled types."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Shares cross-cutting rules (auth, output parsing) in one skill the others tell the agent to read first instead of copying them."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps every skill harness-neutral: no harness-only frontmatter, no harness paths, capabilities described rather than tool names."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Points every plugin manifest's skills path at ./skills/ and keeps version out of the marketplace entry."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Treats each skill name as public API, so a later merge or rename ships in a major with a stub under the old name."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks which agents use each tool and what they get wrong today before writing content."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Identifies the README commands as unpinned installs and switches the default rung to tag-pinned git installs."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Prints README commands with a v<your-installed-version> placeholder plus `lark --version` so the README never goes stale."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Generates the exact tag-pinned command per channel into every release note, naming at least `gh skill install larkspur/lark lark@v1.8.0`, `npx skills add larkspur/lark#v1.8.0`, `/plugin marketplace add larkspur/lark#v1.8.0` and `gemini extensions install ... --ref=v1.8.0`."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Explains the three issues: a tag-pinned install matches only at install time, and Homebrew upgraded the binary silently while the pinned skill stayed put, which is why the guard checks both directions."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Prints the matching tag-pinned install command in `lark --help` or first-run output as the short-term fix."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Records the synced skill version in a small state file so the binary can detect drift."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Adds a runtime drift notice as one agent-parseable line (for example `skill lark 1.7.0 differs from lark 1.8.0; run: lark skills update`), skipped in CI and dev builds, with an environment variable to silence it."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Ranks the channels on separate axes - effort `bundled with the code > plugin marketplace pinned to a tag > tag-pinned git install > default-branch install`, with value and efficiency stated separately - and names bundled as the starved high-value option."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States unpinned `gh skill install` resolves the latest tagged release then default-branch HEAD, and that `gh skill update` skips pinned skills."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes `openclaw skills install git:` needs SKILL.md at the repo root so it does not fit skills/<name>/, and uses the bundle form `openclaw plugins install git:github.com/larkspur/lark@v1.8.0` instead."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Treats the README install section as the real driver of directory listings and adds the agent-skills repository topic."
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Ends the release-note block with 'Already installed? Re-run with the new tag' or `lark skills update` once bundled."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Explains that a self-hosted marketplace added from the default branch gives users merged-but-unreleased skill text under the last released version, and the cache may never refresh."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Changes the docs to add the marketplace at a release tag (`/plugin marketplace add moorhaven/moor#v1.9.4`) or at a stable branch moved only at release."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Sets the directory submission's 'Branch or tag' to the stable branch, stating that left empty it follows the default branch so every merge becomes a candidate version that goes live once auto-publish is on or someone selects Publish."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Notes a tracked tag in the directory must be re-pointed each release, which is why the stable branch is preferred."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Flags the README as blocking: the directory requires at least 40 words in the plugin folder README with code blocks not counted, plus a LICENSE file or license field."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Names the submission path: claude.ai/directory/manage on a paid plan, Submit new, Plugin bundle, the repository, then Validate."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Mentions Gemini's --pre-release flag and that GitHub-Releases installs check the release marked Latest."
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Runs gate 2 against 2.0.0-rc.1 on the release PR before tagging rather than only on the tag."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Rewrites metadata.openclaw in block style: OpenClaw reads it only as an object, a JSON string value is ignored, and strict YAML loaders including the spec's reference validator reject flow form."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Runs gate 2 with --allow-nested openclaw, admitting nesting only for that key because it is a spec deviation."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Sets requires.bins to sdg so OpenClaw offers the skill only where the binary is on PATH, and notes a sandboxed agent also needs the binary inside the container."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States no OpenClaw key gates on the tool's version, so the body's Skill version guard stays the only version check."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Names the detection order .codex-plugin/, .cursor-plugin/, .claude-plugin/ and therefore points every manifest's skills at ./skills/."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Rejects the reusable skill-publish.yml workflow because it has no version input; calls `clawhub skill publish ./skills/sdg --version 3.1.0 --owner <org>` directly in the release job."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Explains that without --version ClawHub starts at 1.0.0 and picks the next patch on each changed publish, which breaks lockstep rule 2."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Sets --categories (up to 3) and --topics (up to 5, with openclaw, clawhub, community and official reserved) once, since passing them publishes a new version even for unchanged files."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Notes a ClawHub release stays out of search and install until its security scan passes."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Moves icon and documentationUrl back to plugin.json only, because in a marketplace entry the validator reports the five listing fields as unknown."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Keeps OpenClaw's top-level extras (homepage, user-invocable, disable-model-invocation, command-* keys) out of the frontmatter, with metadata.openclaw.homepage covering the link."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Gives the tag-pinned OpenClaw install `openclaw plugins install git:github.com/<owner>/sdg@v3.1.0` and the ClawHub form with --version."
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Points at `openclaw skills check` to debug a skill that installed but never appears, and notes a legacy metadata.clawdbot block is ignored."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "States that when fetching is the tool's purpose, fetched content must be marked as data never instructions, and only then `--ignore-risks third_party_content_exposure` with the reason in a comment."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Keeps --dangerously-run-mcp-servers because --ci requires it, noting that with only ./skills as target it starts nothing."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Gates on the exit code, never on parsed output, because the scanner's output and risk names change between releases."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Flags that the scan uploads skill content to Snyk, which must be cleared for the private repo."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Keeps scripts/ few, readable, offline and dependency-pinned, calling the tool's own published CLI rather than bundling binaries."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "States a clean scan is a floor, never a trust claim, because admission scanners are evadable."
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Runs the scan on skills/** changes in pull requests and in the release job next to the pinned spec validator, and signs release tags."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Names the signals that matter: trigger and pass rate per release, issues tagged 'agent misuse', and how often the drift notice fires."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Notes skills.sh ranks by installs reported by the installer's telemetry and that the README install section is the listing's real driver, separating listing from correctness."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Prescribes the default rung instead: gates 1-3 and 6 before tagging, gates 1-4 and 6 on pull requests."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Ranks the gates on separate axes - effort `golden agent tasks > content check > changed-surface check > version equality == spec validation == security scan`, value `content check > golden agent tasks > version equality > changed-surface check > security scan > spec validation`, efficiency `version equality == spec validation > content check > security scan > changed-surface check > golden agent tasks` - and justifies the version-equality/spec-validation tie as two one-command offline checks catching different failures."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Sizes the golden suite at 3-10 tasks drawn from real agent failures, each with a binary pass condition (exit code, file produced, test passing), not 20."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Runs each task with and without the skill on a pinned agent and model against the built tool, recording two numbers: trigger rate and pass rate."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Rejects blocking on any drop: a drop is a release blocker only once the suite is stable; until then report it, and run the suite optional or nightly on pull requests."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Sets expectations that published benchmarks show skills help least on software-engineering tasks, so gains are small and noisy and judged on the project's own tasks."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "States the four pass conditions of the setup: a deliberately stale metadata.version fails before its tag exists, a skill naming a removed flag fails CI, every manifest version equals the tag on the last three releases, every release note prints a tag-pinned install command."
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Adds repository topics directory crawlers index (agent-skills, gemini-cli-extension) and links the install command from the official docs."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Checks file names valid on Windows and macOS (no colon, trailing dot or space, device names, case-only twins) and plugin-path folders limited to letters, digits, dot, hyphen and underscore, as the other causes that report only that message."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Pins the npx prettier launcher to an exact version and checks there is no .npmrc, bunfig.toml or uv.toml setting a registry beside one."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Lists the reviewer holds the repo will hit: more than 512 files, the 600 KB PDF as a non-image file over 256 KiB, binary files, and the root package.json with a lockfile."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Explains the root lockfile makes Claude Code install the tool's npm dependencies into the plugin cache on every install and update."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Moves the plugin to a subfolder that holds skills/ itself, then repoints every manifest's skills path and gate 2's --skills-dir, noting a component path outside the plugin folder blocks."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Checks the 3 MB PNG against the 5 MiB per-file limit and the repo against 50 MiB archived, 256 MiB unpacked and 10,000 entries."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Requires a README of at least 40 words in the plugin folder, code blocks not counted, and a LICENSE file or license field."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Rejects the rename in a 2.4.1 patch: a skill rename is a breaking change of the tool and ships in a major release."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Adds an entry to the marketplace renames map as a supplement, never as the only signal."
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Checks for .DS_Store, Thumbs.db, desktop.ini or __MACOSX entries in the plugin folder."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Batches the interview questions before designing: agent audience, release mechanism and license, existing skills including the community one, deadline and effort ceiling, and whether the package may gain a console command."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Keeps the default rungs because of the near deadline, deferring the starved options (bundled install command, golden agent tasks)."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Places the skill at skills/rushmere/SKILL.md at the repo root and includes skills/ as package data so the wheel carries it."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Makes pyproject.toml the version source of truth, bumps metadata.version and the Skill version body line in the release commit, and adds a check that the tag equals the pyproject version."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Runs scripts/check-skill-version.py on pull requests against the pyproject version and on the tag as a backstop."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Opens the body with a library guard that reads the installed version (`pip show rushmere`) and prefers bundled docs when major or minor differs."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Handles the community skill by publishing under the project's own namespace and claiming obvious name variants, because agents hallucinate skill names and attackers register them."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Sets license to the repo's license and writes the description as what plus when, with the tool's name and the tasks users type."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Delivers the expected output shape: repo layout, version-wiring change, CI gate list with commands, install commands per channel and manifests, each checked against the lockstep rule."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Records the version source of truth, tag format, gate list, chosen channels and pinned-install command in memory when the harness has one."
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Pins the spec validator (skills-ref, an alpha requiring Python 3.11+) by version in CI rather than installing it unpinned."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Explains curated marketplaces pin exact commits, expects the curator to bump the sha, and makes each tag's commit the one worth pinning rather than asking for a tracking ref."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States Codex installs use --ref defaulting to main, so users re-install at the new ref; gives the tag-pinned form."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Gives per-channel tag-pinned commands: `gh skill install`, `npx skills add <owner>/ing#v<tag>`, `/plugin marketplace add <owner>/ing#v<tag>`, `gemini extensions install ... --ref=v<tag>`, `openclaw plugins install git:...@v<tag>`."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Notes `gh skill install` writes repo, ref, pin and tree SHA into the installed SKILL.md frontmatter, and `gh skill update` skips pinned skills."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Notes the skills installer's skills-lock.json records the ref and a content hash, and that a branch ref floats while a tag or SHA holds."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States a tag-pinned install matches only at install time and the binary can upgrade silently, so the body guard checks both directions."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States the Claude Code plugin version resolves from plugin.json version, else the marketplace entry, else the commit SHA, and keeps it bumped so update does not report 'already latest'."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Generates the release-note install block in the release job so the tag is never typed by hand, ending with 'Already installed? Re-run with the new tag (OpenClaw: add --force)'."
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States that no installer resolves 'the skill matching the code I installed' by itself."
+      }
+    ]
+  }
+}

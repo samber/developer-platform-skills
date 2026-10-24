@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects `GOSUMDB=off`, stating it drops checksum verification for public modules too",
+        "evidence": "every module, including public ones",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `GOPRIVATE=git.marrowline.io` (prefix match), noting it also sets `GONOPROXY` and `GONOSUMDB`",
+        "evidence": "also sets GONOPROXY and GONOSUMDB for this prefix only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes `GONOSUMDB` to the private prefix rather than disabling the checksum database broadly",
+        "evidence": "prefix only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes `GOINSECURE` from CI",
+        "evidence": "Remove. Install the CA",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the pipe separator in `GOPROXY`, stating a pipe falls back on any error and can leak private paths during an outage, and prescribes the comma form that falls back only on 404 or 410",
+        "evidence": "comma falls back only on 404 or 410",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `GOAUTH` with a `.netrc` rendered from the secret store at job start (mode 600, removed by an always-run cleanup step on self-hosted runners) or an SSH `insteadOf` rewrite",
+        "evidence": "~/.netrc mode 600, always-run cleanup step",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States GitHub Packages has no Go registry",
+        "evidence": "GitHub Packages has no Go registry",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names registries that do support Go (Google Artifact Registry Go format, Artifactory, Nexus, a self-hosted GOPROXY) and notes GitLab's Go proxy is experimental",
+        "evidence": "GitLab Go proxy not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that without `GOPRIVATE`, every private module path is sent to the public proxy and checksum database",
+        "evidence": "Every private module path is sent to Google's proxy",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains Go has no flat namespace to squat, so dependency confusion means a leaked path or a lapsed vanity domain, and recommends keeping vanity domains renewed",
+        "evidence": "leaked path or letting the domain lapse",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If a private proxy serves everything, sets `GOPROXY` to it and `GONOSUMDB` to the private prefix",
+        "evidence": "Point GOPROXY at it alone... GONOSUMDB=git.marrowline.io",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects `GOSUMDB=off`, stating it drops checksum verification for public modules too",
+        "evidence": "'public ones included'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `GOPRIVATE=git.marrowline.io` (prefix match), noting it also sets `GONOPROXY` and `GONOSUMDB`",
+        "evidence": "'It sets GONOPROXY and GONOSUMDB too'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes `GONOSUMDB` to the private prefix rather than disabling the checksum database broadly",
+        "evidence": "GOPRIVATE exempts only private path",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes `GOINSECURE` from CI",
+        "evidence": "'Remove it'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the pipe separator in `GOPROXY`, stating a pipe falls back on any error and can leak private paths during an outage, and prescribes the comma form that falls back only on 404 or 410",
+        "evidence": "'pipe falls through to direct on any error. The comma ... 404/410'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes `GOAUTH` with a `.netrc` rendered from the secret store at job start (mode 600, removed by an always-run cleanup step on self-hosted runners) or an SSH `insteadOf` rewrite",
+        "evidence": "HTTPS insteadOf token / .netrc, no GOAUTH or cleanup",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States GitHub Packages has no Go registry",
+        "evidence": "'GitHub Packages idea won't work for Go'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names registries that do support Go (Google Artifact Registry Go format, Artifactory, Nexus, a self-hosted GOPROXY) and notes GitLab's Go proxy is experimental",
+        "evidence": "No GitLab note, no Nexus",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that without `GOPRIVATE`, every private module path is sent to the public proxy and checksum database",
+        "evidence": "'Public proxy tried first'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains Go has no flat namespace to squat, so dependency confusion means a leaked path or a lapsed vanity domain, and recommends keeping vanity domains renewed",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "If a private proxy serves everything, sets `GOPROXY` to it and `GONOSUMDB` to the private prefix",
+        "evidence": "Not specified",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

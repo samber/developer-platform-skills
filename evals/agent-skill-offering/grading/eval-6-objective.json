@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the MCP server for this audience: coding agents with a shell and the package installed locally get the skill plus bundled docs; MCP is promoted only for an audience without a shell.",
+        "evidence": "'No. Don't build the MCP server first... Your users run Claude Code, Cursor or Codex in a terminal'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the stale calls as the on-demand skill failing to trigger, citing the published eval where the skill was never invoked in 56% of runs while an always-loaded docs index scored 100%.",
+        "evidence": "'never invoked in 56% of runs, while an always-loaded docs index scored 100%'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies current API names and removed functions as knowledge every call needs, which belongs in docs bundled in the package plus a short pointer the tool writes into the user's project agent-instructions file.",
+        "evidence": "Bundle docs/ and 'init-agents' writes pointer into AGENTS.md with removed-to-replacement table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the skill for multi-step workflows (setup, migrations, major upgrades) with references/, pointed at the bundled docs.",
+        "evidence": "'Keep the skill for workflows only: v3-to-v5 migration, setup, schema changes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the idle-context cost: a skill description costs about 100 tokens until it loads, while an MCP server's tool definitions typically cost one to two orders of magnitude more.",
+        "evidence": "Only says tool definitions 'cost idle context'; no ~100 tokens vs orders-of-magnitude comparison.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the add-beside options on separate axes - effort `MCP server > bundled docs + pointer > JSON output on the CLI > nothing`, value `JSON output on the CLI > bundled docs + pointer > MCP server > nothing`, efficiency `JSON output on the CLI > bundled docs + pointer > nothing > MCP server` - instead of one blended ordering.",
+        "evidence": "Table with effort, correct agent calls and efficiency columns, each ordered MCP / docs / JSON appropriately",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the conditions that would promote MCP anyway (chat assistants or hosted fleets with no shell, hosted auth, remote state) and routes that design to the MCP sibling skill.",
+        "evidence": "'Revisit it if you gain users without a shell... hosted agent fleets... live database schema.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens the skill body with a library guard that reads the installed version from the project (node_modules/verdant-orm/package.json) rather than from memory, preferring bundled docs and type definitions when major or minor differs.",
+        "evidence": "'reads the installed version from node_modules/verdant-orm/package.json, not from memory'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a library content check: extract fenced TypeScript blocks from the skill and type-check them with `tsc --noEmit` against the release build, marking pseudo-code with a text fence the extractor skips.",
+        "evidence": "'runs tsc --noEmit over every TypeScript block... against the built release package'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes skills/ in the package files list so the skill ships inside the npm package, and notes the skills installer can link skills from installed dependencies so they update with the package.",
+        "evidence": "Mentions the npm files array, but not the installer linking skills from dependencies.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a runtime drift notice where the tool can know its version, printing one agent-parseable line on mismatch.",
+        "evidence": "Only 'add --json output and a drift notice' in a question; no agent-parseable line specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks for the three real agent failures as the skill's first content and tests, counting the findOne and Model.sync cases among them.",
+        "evidence": "'What were the three real failures beyond findOne and Model.sync?'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the skill after the tool and splits by job (verdant-orm, verdant-orm-migrations) only once SKILL.md passes about 250 lines, keeping the set small because large skill libraries shadow each other.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the six-week budget as a standing-practice signal that promotes the starved bundled-docs rung, not the MCP server.",
+        "evidence": "Asks Q6 about the ceiling, but doesn't frame the budget as a signal.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the MCP server for this audience: coding agents with a shell and the package installed locally get the skill plus bundled docs; MCP is promoted only for an audience without a shell.",
+        "evidence": "\"No. Don't build the MCP server first.\"; bundled docs and local files already available.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the stale calls as the on-demand skill failing to trigger, citing the published eval where the skill was never invoked in 56% of runs while an always-loaded docs index scored 100%.",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies current API names and removed functions as knowledge every call needs, which belongs in docs bundled in the package plus a short pointer the tool writes into the user's project agent-instructions file.",
+        "evidence": "Item 2 ships docs in the package; item 3 `init-agent` writes an always-on rule into AGENTS.md/CLAUDE.md.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the skill for multi-step workflows (setup, migrations, major upgrades) with references/, pointed at the bundled docs.",
+        "evidence": "Only the description is rewritten; no multi-step workflow role.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the idle-context cost: a skill description costs about 100 tokens until it loads, while an MCP server's tool definitions typically cost one to two orders of magnitude more.",
+        "evidence": "Mentions only 'schema tokens on every session'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the add-beside options on separate axes - effort `MCP server > bundled docs + pointer > JSON output on the CLI > nothing`, value `JSON output on the CLI > bundled docs + pointer > MCP server > nothing`, efficiency `JSON output on the CLI > bundled docs + pointer > nothing > MCP server` - instead of one blended ordering.",
+        "evidence": "Single ordering by 'value per hour'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the conditions that would promote MCP anyway (chat assistants or hosted fleets with no shell, hosted auth, remote state) and routes that design to the MCP sibling skill.",
+        "evidence": "Conditions are schema introspection, not no-shell/hosted audiences; no sibling skill.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Opens the skill body with a library guard that reads the installed version from the project (node_modules/verdant-orm/package.json) rather than from memory, preferring bundled docs and type definitions when major or minor differs.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a library content check: extract fenced TypeScript blocks from the skill and type-check them with `tsc --noEmit` against the release build, marking pseudo-code with a text fence the extractor skips.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes skills/ in the package files list so the skill ships inside the npm package, and notes the skills installer can link skills from installed dependencies so they update with the package.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a runtime drift notice where the tool can know its version, printing one agent-parseable line on mismatch.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks for the three real agent failures as the skill's first content and tests, counting the findOne and Model.sync cases among them.",
+        "evidence": "Asks about transcripts, not three failures as skill content.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the skill after the tool and splits by job (verdant-orm, verdant-orm-migrations) only once SKILL.md passes about 250 lines, keeping the set small because large skill libraries shadow each other.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the six-week budget as a standing-practice signal that promotes the starved bundled-docs rung, not the MCP server.",
+        "evidence": "The plan prioritises stubs and diagnosis; no standing-practice framing.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

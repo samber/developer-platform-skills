@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects enabling telemetry in the 4.3 minor release with only release notes as notice",
+        "evidence": "\"Not in a minor release... Release notes are not notice\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships any default-on telemetry change in a major version, announced ahead of the release that enables it",
+        "evidence": "\"5.0... a 4.3/4.4 announcement at least one release before it takes effect.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a first-run notice on the terminal before collection starts",
+        "evidence": "\"One prompt on a terminal at first run after the upgrade.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Honors `DO_NOT_TRACK` and a CLI-specific off switch as an env var alongside the config command",
+        "evidence": "\"`DO_NOT_TRACK=1` or `LQ_TELEMETRY=off`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes the telemetry payload schema",
+        "evidence": "\"The payload schema is published in the docs and in the repo\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Turns collection off against self-hosted or enterprise targets",
+        "evidence": "\"any profile with a custom `base_url`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes opt-in over opt-out for this audience, citing the EU-heavy share, enterprise buyers and open-source community as the promotion condition",
+        "evidence": "\"60% EU, regulated enterprise buyers and an open-source community all point the same way.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the telemetry rankings explicitly: trust opt-in above opt-out, signal value opt-out above opt-in, compliance cost opt-out above opt-in",
+        "evidence": "No explicit three-axis ranking; only a note on lower coverage.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a pseudonymous device ID collected by default as a consent question under EU rules",
+        "evidence": "\"A random device ID collected by default is a consent question under EU rules.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the GitHub CLI default-on telemetry in a minor release (v2.91.0) as the precedent to avoid",
+        "evidence": "\"GitHub CLI did default-on telemetry in a minor release (v2.91.0, April 2026)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects automatic self-update without consent",
+        "evidence": "\"Auto-download and install... Not by default.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Limits the update check to at most daily, only on a terminal, never in CI, with an env var to disable it",
+        "evidence": "Update-checks table; `LQ_NO_UPDATE_CHECK=1`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps update hints and telemetry banners on stderr and silent when stdout is not a terminal",
+        "evidence": "\"One stderr line\"; only when terminals.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins each CLI release to an explicit API version with an override flag, versioned separately from the API",
+        "evidence": "\"Pinned API version... Override with `--api-version <v>` or `LQ_API_VERSION`.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects enabling telemetry in the 4.3 minor release with only release notes as notice",
+        "evidence": "\"A line in the release notes is not consent\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships any default-on telemetry change in a major version, announced ahead of the release that enables it",
+        "evidence": "Opt-in consent only. No major-version default-on path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a first-run notice on the terminal before collection starts",
+        "evidence": "\u00a74.2 consent prompt, \"nothing is sent\" until answered.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Honors `DO_NOT_TRACK` and a CLI-specific off switch as an env var alongside the config command",
+        "evidence": "\"`LQ_TELEMETRY=off` and `DO_NOT_TRACK=1` override everything\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes the telemetry payload schema",
+        "evidence": "\"The schema is public and enforced in code.\" \u00a74.3 table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Turns collection off against self-hosted or enterprise targets",
+        "evidence": "\"The enterprise edition ships with `telemetry=off` locked.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes opt-in over opt-out for this audience, citing the EU-heavy share, enterprise buyers and open-source community as the promotion condition",
+        "evidence": "Intro cites 60% EU, enterprise third and open source as reasons for consent-based telemetry.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the telemetry rankings explicitly: trust opt-in above opt-out, signal value opt-out above opt-in, compliance cost opt-out above opt-in",
+        "evidence": "No explicit trust, signal and compliance-cost rankings.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a pseudonymous device ID collected by default as a consent question under EU rules",
+        "evidence": "\"A random device ID is pseudonymous personal data under GDPR.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the GitHub CLI default-on telemetry in a minor release (v2.91.0) as the precedent to avoid",
+        "evidence": "Not cited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects automatic self-update without consent",
+        "evidence": "Notify-only default; auto-update is opt-in.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Limits the update check to at most daily, only on a terminal, never in CI, with an env var to disable it",
+        "evidence": "\"at most once per 24 h\"; suppressed when stderr is not a TTY or `CI` is set; `LQ_NO_UPDATE_CHECK=1`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps update hints and telemetry banners on stderr and silent when stdout is not a terminal",
+        "evidence": "Suppression keys on stderr TTY and --json, not stdout not being a terminal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins each CLI release to an explicit API version with an override flag, versioned separately from the API",
+        "evidence": "Only a skew window is specified. No pin or override flag.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

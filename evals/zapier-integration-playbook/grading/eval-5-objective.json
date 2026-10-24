@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Ranks growth actions with Zap templates first and submits them immediately, on approval day, rather than after the hub ships",
+        "evidence": "\"Submit 5-10 Zap templates this week. Approval day is the right time.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Demotes the custom marketplace on the Workflow API to last, naming its gate (weeks of engineering) and the condition that promotes it: an existing integrations directory with heavy search traffic, which 300 visits a month is not",
+        "evidence": "Hub #6; \"~4-week engineering build\"; \"heavy search traffic... At ~300 visits a month you have a page, not a directory.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cuts the template count to 5-10 for the top jobs instead of 20",
+        "evidence": "\"Start with 5-10\u2020, not 20.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes Paths and Code steps from the templates, listing the step types templates cannot contain (Paths, Code, Webhooks, Looping, Formatter)",
+        "evidence": "\"Paths and a Code step... Formatter, Webhooks and Looping are also banned\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the title 'Automatically sync your Brightfold deals to HubSpot' for using 'automatically', 'sync' and second person, and rewrites it starting with an action verb in sentence case naming both apps",
+        "evidence": "Lists sync/automatic/your/no verb; rewrite \"Create HubSpot deals from new deals in Brightfold\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Zapier pays partners no revenue share and that Zapier-led co-marketing is Platinum only, so the return is retained, activated users",
+        "evidence": "States \"Zapier pays partners no revenue share\" but never mentions co-marketing being Platinum only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places the template embed in the launch post and a help article per job as a minutes-of-effort action gated only on one public template",
+        "evidence": "\"Embed the first public template in the launch post and one help article per job. Takes minutes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the Workflow Element on the /integrations page as an hours-of-effort action gated on a public template and a domain allowlist",
+        "evidence": "\"Hours of work\u2020, needs a public template and a domain allowlist.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that one signup from any of Brightfold's Zapier embeds exits Beta the next business day",
+        "evidence": "\"One signup ends Beta the next business day\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes onboarding, support macros and the empty integration-search fallback as a lever with no gate",
+        "evidence": "\"Free surfaces, no gate: mention Zapier in onboarding, support macros and the empty integration-search fallback.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that anyone can publish templates for the app and Zapier generates some from usage, so Brightfold's own templates are the ones it controls",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Structures the help article per job as: what this does, before you start, embedded templates, field mapping notes, troubleshooting",
+        "evidence": "Only \"1 help article per template job\"; no structure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States template review takes about two weeks",
+        "evidence": "\"~2-week review\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers with \u2020 and a footnote",
+        "evidence": "Closing \"\u2020 Zapier platform numbers... Verify against Zapier's live docs\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Ranks growth actions with Zap templates first and submits them immediately, on approval day, rather than after the hub ships",
+        "evidence": "Step 1 is getting out of Beta. Templates are step 2, scheduled for 'week 1\u20132'. Nothing says to submit on approval day.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Demotes the custom marketplace on the Workflow API to last, naming its gate (weeks of engineering) and the condition that promotes it: an existing integrations directory with heavy search traffic, which 300 visits a month is not",
+        "evidence": "The Automation Hub is step 5 of 6, and revenue share is step 6. It names 'Four weeks of engineering'. The promotion condition is 'demand' shown by step 4 measurement, not an integrations directory with heavy search traffic.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cuts the template count to 5-10 for the top jobs instead of 20",
+        "evidence": "'Publish 3\u20135 templates, not 20'. That is below the 5-10 range.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes Paths and Code steps from the templates, listing the step types templates cannot contain (Paths, Code, Webhooks, Looping, Formatter)",
+        "evidence": "It drops 'the Paths and Code step templates' but does not list Webhooks, Looping or Formatter. It also hedges with 'I believe' and 'Verify'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the title 'Automatically sync your Brightfold deals to HubSpot' for using 'automatically', 'sync' and second person, and rewrites it starting with an action verb in sentence case naming both apps",
+        "evidence": "It flags 'Automatically' and 'sync' and rewrites to 'Create HubSpot contacts from new Brightfold deals'. It never objects to the second person ('Your').",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Zapier pays partners no revenue share and that Zapier-led co-marketing is Platinum only, so the return is retained, activated users",
+        "evidence": "'I know of no standard rev-share... ask your partner contact'. It suggests co-marketing once out of Beta, with no mention of a Platinum-only restriction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places the template embed in the launch post and a help article per job as a minutes-of-effort action gated only on one public template",
+        "evidence": "The embed is only an optional 'Zapier's template widget', taking '2\u20133 days'. There is no launch post or help article.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places the Workflow Element on the /integrations page as an hours-of-effort action gated on a public template and a domain allowlist",
+        "evidence": "It only says to 'Add a Zapier section and listing link to /integrations'. There is no Workflow Element and no allowlist.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that one signup from any of Brightfold's Zapier embeds exits Beta the next business day",
+        "evidence": "It says 'Check Zapier's exit criteria. I recall an active-user threshold, but verify the exact number.' This is not the stated rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes onboarding, support macros and the empty integration-search fallback as a lever with no gate",
+        "evidence": "Not mentioned anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that anyone can publish templates for the app and Zapier generates some from usage, so Brightfold's own templates are the ones it controls",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Structures the help article per job as: what this does, before you start, embedded templates, field mapping notes, troubleshooting",
+        "evidence": "No help article structure is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States template review takes about two weeks",
+        "evidence": "No review duration is stated. 'If the templates fail, you learn it in 2 weeks' refers to a learning period, not review time.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers with \u2020 and a footnote",
+        "evidence": "No \u2020 marks or footnote. It uses a prose caveat: 'I didn't verify Zapier's current Beta, template, or Workflow API rules'.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

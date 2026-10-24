@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the yank, stating a RubyGems yank deletes the file from the CDN and breaks every `Gemfile.lock` pinning 2.3.1",
+        "evidence": "gem yank deletes the file from the CDN",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the version number 2.3.1 can never be published again once published, so re-pushing a fixed 2.3.1 is impossible",
+        "evidence": "2.3.1 can't be published again",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes publishing the fix as a new version (2.3.2) and announcing it, reserving yank for malware, leaked secrets or a release nobody can have installed yet",
+        "evidence": "The skill reserves yank for malware, leaked secrets",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the OTP prompts: `rubygems_mfa_required` makes API-key pushes need an OTP per push, so unattended CI needs trusted publishing",
+        "evidence": "rubygems_mfa_required... no unattended key",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Configures RubyGems trusted publishing from GitHub Actions (the only supported CI) with repository owner, repository, workflow file name and environment `release`",
+        "evidence": "owner, repository, release.yml, environment release",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses the hardened shape (`gem build` in the unprivileged job, then `rubygems/configure-rubygems-credentials` and `gem push` in the publish job) over `release-gem`, because `release-gem` builds inside the privileged job and needs `contents: write`",
+        "evidence": "No rake release. release-gem builds inside the privileged job",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pushes every gem of a version (source plus each platform gem) from one job, stating a missing platform gem silently makes those users compile from source",
+        "evidence": "every platform gem from one job; compile from source",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds platform gems with rake-compiler-dock covering the missing platforms (such as `aarch64-linux-gnu`, `x86_64-darwin`, `x86_64-linux-musl`) and sets `required_ruby_version` to the ABIs covered",
+        "evidence": "only x86_64-linux-gnu and arm64-darwin; no missing platforms added",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets human accounts to MFA level 'UI and API' and keeps at least two owners, noting RubyGems organizations are in private beta",
+        "evidence": "only at least two owners",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes checking the gem page for the attestation after release (sigstore-ruby `--attestation` on RubyGems 4.0; 4.1 pushes unattested when sigstore-cli fails)",
+        "evidence": "Check the gem page for the attestation after release",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands the final push command (and any yank) to the user and never runs them",
+        "evidence": "I haven't run any publish or yank command",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends rehearsing on a private gem server, not the production gem",
+        "evidence": "not present",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend re-pushing 2.3.1",
+        "evidence": "Skip push 2.3.1 again",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the yank, stating a RubyGems yank deletes the file from the CDN and breaks every `Gemfile.lock` pinning 2.3.1",
+        "evidence": "'Bundler then fails on every Gemfile.lock that pins 2.3.1'; 'Yanking is optional'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the version number 2.3.1 can never be published again once published, so re-pushing a fixed 2.3.1 is impossible",
+        "evidence": "'A yanked version can't be pushed again'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes publishing the fix as a new version (2.3.2) and announcing it, reserving yank for malware, leaked secrets or a release nobody can have installed yet",
+        "evidence": "Yank if source gem crashes too",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Diagnoses the OTP prompts: `rubygems_mfa_required` makes API-key pushes need an OTP per push, so unattended CI needs trusted publishing",
+        "evidence": "'demand an OTP on every push'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Configures RubyGems trusted publishing from GitHub Actions (the only supported CI) with repository owner, repository, workflow file name and environment `release`",
+        "evidence": "Org, repo, workflow, environment release",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Chooses the hardened shape (`gem build` in the unprivileged job, then `rubygems/configure-rubygems-credentials` and `gem push` in the publish job) over `release-gem`, because `release-gem` builds inside the privileged job and needs `contents: write`",
+        "evidence": "gem build runs in publish job",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pushes every gem of a version (source plus each platform gem) from one job, stating a missing platform gem silently makes those users compile from source",
+        "evidence": "Loop push but no missing-platform warning",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds platform gems with rake-compiler-dock covering the missing platforms (such as `aarch64-linux-gnu`, `x86_64-darwin`, `x86_64-linux-musl`) and sets `required_ruby_version` to the ABIs covered",
+        "evidence": "Only 'if you build with'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets human accounts to MFA level 'UI and API' and keeps at least two owners, noting RubyGems organizations are in private beta",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes checking the gem page for the attestation after release (sigstore-ruby `--attestation` on RubyGems 4.0; 4.1 pushes unattested when sigstore-cli fails)",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Hands the final push command (and any yank) to the user and never runs them",
+        "evidence": "'Run these from your own terminal'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends rehearsing on a private gem server, not the production gem",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend re-pushing 2.3.1",
+        "evidence": "'Don't plan to re-push 2.3.1'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

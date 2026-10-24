@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the removed-source test, stating that removing the internal source makes every install fail and proves nothing",
+        "evidence": "He removed the virtual from the client, so the Artifactory configuration was never in the path",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the admin-token identity, stating Artifactory include and exclude patterns do not apply to admin users",
+        "evidence": "patterns don't apply to admins",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the probe to run with the read-only credential CI uses, and to confirm that identity is non-admin before trusting its 404",
+        "evidence": "Confirm in Artifactory that this identity isn't an admin",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing a harmless canary in the company's own public npm scope (`@hollowpine/confusion-canary`), never internally",
+        "evidence": "Publish @hollowpine/confusion-canary to public npm only",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asserts the probe as `npm view @hollowpine/confusion-canary --registry <virtual URL>` failing with E404, not E401 or E403",
+        "evidence": "must fail with E404, not E401 or E403",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a positive control: a known internal package must resolve through the same endpoint and identity before the 404 counts",
+        "evidence": "Feed control: known internal package returns 200",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a 401, 403, 5xx or DNS error is inconclusive, never a pass",
+        "evidence": "A 401, 403, 5xx or DNS error is inconclusive",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Forbids installing or downloading the probe target; the probe queries metadata only",
+        "evidence": "Never install or download the canary",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an exclude pattern on `npm-remote` covering `@hollowpine/**`, stating that virtual ordering alone does not stop latest-version lookups from merging every upstream",
+        "evidence": "exclude @hollowpine/** ... ordering alone doesn't stop it",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks that every `@hollowpine/*` entry's `resolved` URL in `package-lock.json` points at the internal host",
+        "evidence": "grep resolved registry.npmjs.org/@hollowpine must be 0",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends re-running the probe after any feed reconfiguration, including after deleting an internal package from `npm-local`",
+        "evidence": "after every feed reconfiguration or internal package deletion",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends claiming the `@hollowpine` scope on public npm as a defense the registry allows (unlike PyPI or crates.io placeholders)",
+        "evidence": "the scope is yours to claim",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the audit evidence as the exact probe commands plus the blocking-rule and lockfile checks, and does not accept the engineer's install test",
+        "evidence": "Don't cite it as evidence",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the removed-source test, stating that removing the internal source makes every install fail and proves nothing",
+        "evidence": "'It removed the control, then tested the gap'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the admin-token identity, stating Artifactory include and exclude patterns do not apply to admin users",
+        "evidence": "'Admin rights bypass the permissions, include/exclude patterns'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the probe to run with the read-only credential CI uses, and to confirm that identity is non-admin before trusting its 404",
+        "evidence": "'normal CI-role token' but no confirmation of non-admin",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing a harmless canary in the company's own public npm scope (`@hollowpine/confusion-canary`), never internally",
+        "evidence": "Publishes 1.0.0 to npm-local",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asserts the probe as `npm view @hollowpine/confusion-canary --registry <virtual URL>` failing with E404, not E401 or E403",
+        "evidence": "Uses install and 1.0.0 pass criterion",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a positive control: a known internal package must resolve through the same endpoint and identity before the 404 counts",
+        "evidence": "'positive control (a real internal package installs fine)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a 401, 403, 5xx or DNS error is inconclusive, never a pass",
+        "evidence": "Not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Forbids installing or downloading the probe target; the probe queries metadata only",
+        "evidence": "Installs through the virtual",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires an exclude pattern on `npm-remote` covering `@hollowpine/**`, stating that virtual ordering alone does not stop latest-version lookups from merging every upstream",
+        "evidence": "Recommends exclude but suggests checking ordering/priority; no insufficiency statement",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Checks that every `@hollowpine/*` entry's `resolved` URL in `package-lock.json` points at the internal host",
+        "evidence": "'lockfiles carry ... resolved URLs that point at Artifactory'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends re-running the probe after any feed reconfiguration, including after deleting an internal package from `npm-local`",
+        "evidence": "Only scheduled rerun",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends claiming the `@hollowpine` scope on public npm as a defense the registry allows (unlike PyPI or crates.io placeholders)",
+        "evidence": "'If not, register it'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers the audit evidence as the exact probe commands plus the blocking-rule and lockfile checks, and does not accept the engineer's install test",
+        "evidence": "No exact probe command; install-based canary",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

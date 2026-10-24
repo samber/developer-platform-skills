@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rewrites metadata.openclaw in block style: OpenClaw reads it only as an object, a JSON string value is ignored, and strict YAML loaders including the spec's reference validator reject flow form.",
+        "evidence": "'Flow style is rejected by strict YAML validators... Use block style'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs gate 2 with --allow-nested openclaw, admitting nesting only for that key because it is a spec deviation.",
+        "evidence": "'Run the version-equality gate with --allow-nested openclaw.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets requires.bins to sdg so OpenClaw offers the skill only where the binary is on PATH, and notes a sandboxed agent also needs the binary inside the container.",
+        "evidence": "'An agent in a sandbox also needs sdg inside the container.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States no OpenClaw key gates on the tool's version, so the body's Skill version guard stays the only version check.",
+        "evidence": "'No OpenClaw key gates on the tool's version.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the root openclaw.plugin.json: it makes the repo a native plugin, and OpenClaw needs no extra manifest because it loads the repo as a bundle at a git tag from the existing manifests.",
+        "evidence": "'turns the repo into a native OpenClaw plugin instead of a bundle'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the detection order .codex-plugin/, .cursor-plugin/, .claude-plugin/ and therefore points every manifest's skills at ./skills/.",
+        "evidence": "Mentions ./skills/ but not the detection order.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the reusable skill-publish.yml workflow because it has no version input; calls `clawhub skill publish ./skills/sdg --version 3.1.0 --owner <org>` directly in the release job.",
+        "evidence": "'It has no version input... clawhub skill publish ./skills/sdg --version 3.1.0 --owner'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that without --version ClawHub starts at 1.0.0 and picks the next patch on each changed publish, which breaks lockstep rule 2.",
+        "evidence": "'ClawHub then picks its own next patch (1.0.0 first)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets --categories (up to 3) and --topics (up to 5, with openclaw, clawhub, community and official reserved) once, since passing them publishes a new version even for unchanged files.",
+        "evidence": "'--categories (up to 3) and --topics (up to 5)... reserved topics'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that every ClawHub-published skill is released under MIT-0 whatever its license field says, so 'keeping Apache-2.0 on ClawHub' is not possible.",
+        "evidence": "'ClawHub releases every published skill under MIT-0, whatever the license field says.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes a ClawHub release stays out of search and install until its security scan passes.",
+        "evidence": "'ClawHub keeps a release out of search and install until its security scan passes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves icon and documentationUrl back to plugin.json only, because in a marketplace entry the validator reports the five listing fields as unknown.",
+        "evidence": "'In a marketplace entry the validator reports them as unknown.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps OpenClaw's top-level extras (homepage, user-invocable, disable-model-invocation, command-* keys) out of the frontmatter, with metadata.openclaw.homepage covering the link.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the tag-pinned OpenClaw install `openclaw plugins install git:github.com/<owner>/sdg@v3.1.0` and the ClawHub form with --version.",
+        "evidence": "'openclaw plugins install git:github.com/<owner>/sdg@v3.1.0' and clawhub with --version",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points at `openclaw skills check` to debug a skill that installed but never appears, and notes a legacy metadata.clawdbot block is ignored.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rewrites metadata.openclaw in block style: OpenClaw reads it only as an object, a JSON string value is ignored, and strict YAML loaders including the spec's reference validator reject flow form.",
+        "evidence": "Recommends one-line JSON: `metadata: {\"openclaw\": ...}`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs gate 2 with --allow-nested openclaw, admitting nesting only for that key because it is a spec deviation.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets requires.bins to sdg so OpenClaw offers the skill only where the binary is on PATH, and notes a sandboxed agent also needs the binary inside the container.",
+        "evidence": "Endorses requires.bins but omits the sandbox container point.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States no OpenClaw key gates on the tool's version, so the body's Skill version guard stays the only version check.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the root openclaw.plugin.json: it makes the repo a native plugin, and OpenClaw needs no extra manifest because it loads the repo as a bundle at a git tag from the existing manifests.",
+        "evidence": "\"`openclaw.plugin.json`: drop it... describes OpenClaw plugins\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the detection order .codex-plugin/, .cursor-plugin/, .claude-plugin/ and therefore points every manifest's skills at ./skills/.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the reusable skill-publish.yml workflow because it has no version input; calls `clawhub skill publish ./skills/sdg --version 3.1.0 --owner <org>` directly in the release job.",
+        "evidence": "Treats the workflow as unverified and suggests clawhub publish only as a fallback.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that without --version ClawHub starts at 1.0.0 and picks the next patch on each changed publish, which breaks lockstep rule 2.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets --categories (up to 3) and --topics (up to 5, with openclaw, clawhub, community and official reserved) once, since passing them publishes a new version even for unchanged files.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that every ClawHub-published skill is released under MIT-0 whatever its license field says, so 'keeping Apache-2.0 on ClawHub' is not possible.",
+        "evidence": "\"ClawHub... publishes every skill under MIT-0... the ClawHub copy is MIT-0 whatever your repo says.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes a ClawHub release stays out of search and install until its security scan passes.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves icon and documentationUrl back to plugin.json only, because in a marketplace entry the validator reports the five listing fields as unknown.",
+        "evidence": "Says they are likely off-schema and to pick one source; does not move them to plugin.json.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps OpenClaw's top-level extras (homepage, user-invocable, disable-model-invocation, command-* keys) out of the frontmatter, with metadata.openclaw.homepage covering the link.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the tag-pinned OpenClaw install `openclaw plugins install git:github.com/<owner>/sdg@v3.1.0` and the ClawHub form with --version.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points at `openclaw skills check` to debug a skill that installed but never appears, and notes a legacy metadata.clawdbot block is ignored.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

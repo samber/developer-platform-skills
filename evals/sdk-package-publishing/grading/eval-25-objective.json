@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States npm trusted publishing does not support self-hosted runners, so npm must use a granular write token (90-day maximum) as a temporary path",
+        "evidence": "does not support self-hosted runners; granular token \u226490 days",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Scopes that npm token to the packages with the shortest workable expiry, owned by a bot account, stored in the protected environment and rotated automatically",
+        "evidence": "I am not promising automation; calendar reminder",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Still uses `npm stage publish` with maintainer approval so the token path cannot reach `latest` directly, keeping direct publish and dist-tag permissions off",
+        "evidence": "npm stage publish with 2FA approval",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a PyPI organization can register a custom OIDC issuer for self-hosted CI before falling back to a project-scoped token",
+        "evidence": "Org custom OIDC issuer if PyPI accepts it",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States reusable workflows are not supported for PyPI trusted publishing, so the upload job must live in the top-level workflow file the publisher names",
+        "evidence": "must live here: PyPI trusted publishing rejects reusable workflows",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins `pypa/gh-action-pypi-publish` to a full commit SHA, noting `release/v1` is a mutable branch",
+        "evidence": "no mutable branch note",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds platform wheels with a `cibuildwheel` runner matrix, uploading each job's wheels as artifacts, with a single publish job downloading them all and uploading once",
+        "evidence": "wheels matrix; check-python merges; one pypi job",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends `abi3` wheels where the extension allows, so one wheel covers every CPython version and the matrix shrinks",
+        "evidence": "Use abi3 wheels if the C extension allows",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs `twine check --strict` on the merged dist set and lists the sdist contents (`tar tzf`) before release to catch tests, fixtures and stray `.env` files",
+        "evidence": "twine check --strict; tar tzf",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States every wheel must upload within 14 days of the release, or a new version is needed",
+        "evidence": "PyPI rejects files on releases older than 14 days",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Binds the PyPI publisher to a CI environment restricted to protected tags with required reviewers, stating that without it any job of the named workflow on any branch can mint an upload token",
+        "evidence": "environment used but any-job-any-branch risk not stated",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes environment protection on private repositories needs a plan that supports it",
+        "evidence": "GitHub plan supports environment protection on private repos",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States PEP 740 attestations are accepted only from trusted-publisher identities, so a token fallback publishes without them",
+        "evidence": "PEP 740 attestations only attach under a trusted-publisher identity",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes every remaining PyPI token after the trusted publisher validates with a real release",
+        "evidence": "revoke every old VM token on both registries",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States npm trusted publishing does not support self-hosted runners, so npm must use a granular write token (90-day maximum) as a temporary path",
+        "evidence": "Recommends exception; token option unspecific",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes that npm token to the packages with the shortest workable expiry, owned by a bot account, stored in the protected environment and rotated automatically",
+        "evidence": "Not specified",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Still uses `npm stage publish` with maintainer approval so the token path cannot reach `latest` directly, keeping direct publish and dist-tag permissions off",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a PyPI organization can register a custom OIDC issuer for self-hosted CI before falling back to a project-scoped token",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States reusable workflows are not supported for PyPI trusted publishing, so the upload job must live in the top-level workflow file the publisher names",
+        "evidence": "Uses reusable workflow with publish job inside",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins `pypa/gh-action-pypi-publish` to a full commit SHA, noting `release/v1` is a mutable branch",
+        "evidence": "Placeholders only",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds platform wheels with a `cibuildwheel` runner matrix, uploading each job's wheels as artifacts, with a single publish job downloading them all and uploading once",
+        "evidence": "build-wheels matrix; publish-pypi downloads all",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends `abi3` wheels where the extension allows, so one wheel covers every CPython version and the matrix shrinks",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs `twine check --strict` on the merged dist set and lists the sdist contents (`tar tzf`) before release to catch tests, fixtures and stray `.env` files",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States every wheel must upload within 14 days of the release, or a new version is needed",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Binds the PyPI publisher to a CI environment restricted to protected tags with required reviewers, stating that without it any job of the named workflow on any branch can mint an upload token",
+        "evidence": "Environment with reviewers but no risk explanation",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes environment protection on private repositories needs a plan that supports it",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States PEP 740 attestations are accepted only from trusted-publisher identities, so a token fallback publishes without them",
+        "evidence": "Attributes absence to private repo",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Deletes every remaining PyPI token after the trusted publisher validates with a real release",
+        "evidence": "'revoke the npm and PyPI tokens on the release VM'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

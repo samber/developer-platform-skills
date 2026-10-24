@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Moves the skill out of .claude/skills/ into skills/<name>/SKILL.md at the repo root, stating .claude/skills/ and .agents/skills/ serve agents working on the repo itself.",
+        "evidence": "Places skills under tw-cli/skills/ and tw-sdk-js/skills/, and argues a root skills/ 'cannot reach either artifact'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the root AGENTS.md is contributor-facing and must not be mistaken for the user-facing skill: different audience, different file.",
+        "evidence": "'AGENTS.md is contributor-facing and unversioned.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits into one skill per tool (tw-cli, tw-sdk-js), each checked against its own version and tag prefix, rejecting one skill carrying 4.2.0 for both.",
+        "evidence": "'Split into two... each tool gets its own skill, checked against its own version and tag prefix'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs gate 2 with --tag-prefix tw-cli- and --tag-prefix tw-sdk-js- respectively, and triggers the tag workflow on *-v* tag patterns.",
+        "evidence": "'--tag-prefix tw-cli-'; tags 'tw-cli-v*', 'tw-sdk-js-v*'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Wires each skill into release-please's per-component extra-files with the x-release-please-version annotation on both version lines.",
+        "evidence": "Per-package extra-files plus x-release-please-version on both lines",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes each skill in its own tool's release artifact: skills/ in the npm files list for tw-sdk-js, archives.files or embedded assets for the Go binary.",
+        "evidence": "'files: [..., \"skills\"]'; Go module zip carries it; archives.files skills/**",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the 'works great' report comes from teammates working inside the repo, the audience .claude/skills/ serves, not from users who install the tools.",
+        "evidence": "'Teammates run HEAD code with AGENTS.md loaded. That tests neither version-matching nor an outside user.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'the skill can just point at AGENTS.md': the user-facing skill carries its own WHEN and WHY and defers WHAT to `tw-cli --help` and the SDK's bundled types.",
+        "evidence": "'Skill just points at root AGENTS.md | Don't'; skills own WHEN and WHY, flags stay with tw --help",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shares cross-cutting rules (auth, output parsing) in one skill the others tell the agent to read first instead of copying them.",
+        "evidence": "Says 'Self-contained skills. Don't make tw-sdk-js depend on tw-cli text.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps every skill harness-neutral: no harness-only frontmatter, no harness paths, capabilities described rather than tool names.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points every plugin manifest's skills path at ./skills/ and keeps version out of the marketplace entry.",
+        "evidence": "'\"skills\": \"./skills/\"'; 'No version in either entry.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats each skill name as public API, so a later merge or rename ships in a major with a stub under the old name.",
+        "evidence": "'Rename rule... keep a stub for one major'; rule 5 row 'rename or removal is a breaking change'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks which agents use each tool and what they get wrong today before writing content.",
+        "evidence": "Asks for three agent failures per tool, but not which agents use each tool.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Moves the skill out of .claude/skills/ into skills/<name>/SKILL.md at the repo root, stating .claude/skills/ and .agents/skills/ serve agents working on the repo itself.",
+        "evidence": "Keeps \".claude/skills/tarnwood-cli\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the root AGENTS.md is contributor-facing and must not be mistaken for the user-facing skill: different audience, different file.",
+        "evidence": "Treats AGENTS.md as source material to copy into the skill.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Splits into one skill per tool (tw-cli, tw-sdk-js), each checked against its own version and tag prefix, rejecting one skill carrying 4.2.0 for both.",
+        "evidence": "Splits per tool, but versions them independently (\"Both new skills start at `1.0.0`\"), not checked against tool tags.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs gate 2 with --tag-prefix tw-cli- and --tag-prefix tw-sdk-js- respectively, and triggers the tag workflow on *-v* tag patterns.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Wires each skill into release-please's per-component extra-files with the x-release-please-version annotation on both version lines.",
+        "evidence": "Annotates only the frontmatter version line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes each skill in its own tool's release artifact: skills/ in the npm files list for tw-sdk-js, archives.files or embedded assets for the Go binary.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains the 'works great' report comes from teammates working inside the repo, the audience .claude/skills/ serves, not from users who install the tools.",
+        "evidence": "Says it's weak evidence since AGENTS.md loads, but does not tie it to the .claude/skills audience.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'the skill can just point at AGENTS.md': the user-facing skill carries its own WHEN and WHY and defers WHAT to `tw-cli --help` and the SDK's bundled types.",
+        "evidence": "Says \"Put the commands, flags, and gotchas in `SKILL.md`.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Shares cross-cutting rules (auth, output parsing) in one skill the others tell the agent to read first instead of copying them.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps every skill harness-neutral: no harness-only frontmatter, no harness paths, capabilities described rather than tool names.",
+        "evidence": "Uses .claude/skills paths.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points every plugin manifest's skills path at ./skills/ and keeps version out of the marketplace entry.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats each skill name as public API, so a later merge or rename ships in a major with a stub under the old name.",
+        "evidence": "Renames without a stub or major-bump framing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which agents use each tool and what they get wrong today before writing content.",
+        "evidence": "No such questions.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

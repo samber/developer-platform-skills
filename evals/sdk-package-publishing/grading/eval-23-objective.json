@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Tells the user to revoke the pasted token immediately and does not print, store or reuse it",
+        "evidence": "Revoke the token now",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs the rollback runbook first because an incident is in progress, deferring the rest of the publishing plan",
+        "evidence": "Before the call steps; ship fix first",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders isolating the build runners before revoking and rotating credentials, stating some worms wipe hosts when they lose access",
+        "evidence": "Isolate the build hosts before touching anything else... worms wipe hosts",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Revokes and rotates every credential the release job could reach, and deletes every project and account API token once trusted publishing is in place",
+        "evidence": "Revoke every other credential; Remove every other token",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Prescribes publishing a clean fixed version (2.8.2) from a known-good host immediately, not waiting on the removal",
+        "evidence": "Ship the fix first: publish 2.8.2",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats 2.8.1 as malware and justifies hard deletion (permanent, filename never reusable) or escalation to PyPI's security team, rather than a yank alone",
+        "evidence": "email security@pypi.org; delete once evidence saved",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves the delete or yank action on the PyPI project management page to the user and does not perform it",
+        "evidence": "you or the release manager run it",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes announcing in the changelog and the security advisory channel",
+        "evidence": "changelog entry and a security advisory",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States GitLab self-managed trusted publishing is in beta and that a PyPI organization can register a custom OIDC issuer before falling back to tokens",
+        "evidence": "self-managed support is beta... custom OIDC issuer",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that on GitLab any job in the top-level pipeline can mint a token, so publishing must run in its own protected pipeline",
+        "evidence": "on GitLab any job in the pipeline can mint an OIDC token",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires 2FA on every account and registering the project under a PyPI organization",
+        "evidence": "2FA on every owner; under a PyPI organization",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds the credential inventory (every credential with scope, expiry and owner) and treats any credential nobody can locate as compromised",
+        "evidence": "no inventory with scope/expiry/owner",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a valid attestation or provenance on 2.8.1 would not prove it safe, since provenance proves which workflow built it, not safety",
+        "evidence": "not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Delivers the rollback as a numbered runbook with exact actions left for the user to run",
+        "evidence": "numbered steps 1-11",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Tells the user to revoke the pasted token immediately and does not print, store or reuse it",
+        "evidence": "'Revoke the token' step 1; 'treat it as burned'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs the rollback runbook first because an incident is in progress, deferring the rest of the publishing plan",
+        "evidence": "Do now section",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders isolating the build runners before revoking and rotating credentials, stating some worms wipe hosts when they lose access",
+        "evidence": "Revoke first, isolate later",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Revokes and rotates every credential the release job could reach, and deletes every project and account API token once trusted publishing is in place",
+        "evidence": "No deletion of all tokens",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Prescribes publishing a clean fixed version (2.8.2) from a known-good host immediately, not waiting on the removal",
+        "evidence": "'once the runners are rebuilt'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats 2.8.1 as malware and justifies hard deletion (permanent, filename never reusable) or escalation to PyPI's security team, rather than a yank alone",
+        "evidence": "Delete release; report as malware",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves the delete or yank action on the PyPI project management page to the user and does not perform it",
+        "evidence": "Web-UI steps for user",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes announcing in the changelog and the security advisory channel",
+        "evidence": "'Prepare a security advisory'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States GitLab self-managed trusted publishing is in beta and that a PyPI organization can register a custom OIDC issuer before falling back to tokens",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that on GitLab any job in the top-level pipeline can mint a token, so publishing must run in its own protected pipeline",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires 2FA on every account and registering the project under a PyPI organization",
+        "evidence": "2FA only",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds the credential inventory (every credential with scope, expiry and owner) and treats any credential nobody can locate as compromised",
+        "evidence": "Not built",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a valid attestation or provenance on 2.8.1 would not prove it safe, since provenance proves which workflow built it, not safety",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Delivers the rollback as a numbered runbook with exact actions left for the user to run",
+        "evidence": "Numbered Do now steps",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

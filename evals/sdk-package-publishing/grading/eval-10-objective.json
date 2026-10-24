@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that an API key created in March 2026 (before 2026-08-17) expires on 2026-11-01, contradicting the user's December timeline",
+        "evidence": "created in March 2026... expires 2026-11-01, so December is wrong",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the 2026-11-01 expiry as a deadline under two weeks and promotes the NuGet credential migration ahead of everything else, batching the remaining approvals",
+        "evidence": "Do this today",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States Azure Pipelines is not supported for nuget.org trusted publishing",
+        "evidence": "Azure Pipelines is not supported",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For Azure Pipelines, prescribes a new API key capped at 30 days, scoped to 'push new versions' plus the `Pellucid.*` package glob, never account-wide",
+        "evidence": "push new versions plus glob Pellucid.Fhir.Sdk*, 30-day expiry",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Passes the key through the `NUGET_API_KEY` environment variable rather than the command line on shared or self-hosted agents, and automates rotation before expiry",
+        "evidence": "NUGET_API_KEY environment variable; scheduled rotation job",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Configures GitLab trusted publishing with `id_tokens` audience `https://www.nuget.org` and states the token's `ref` must name a branch, so publishing runs from a protected release-branch pipeline, not a tag pipeline",
+        "evidence": "aud https://www.nuget.org; branch ref not tag",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets Policy Scopes on the trusted-publishing policy to a package glob and 'publish new versions', enabling 'publish new packages' only on the policy that creates a new ID and then removing it",
+        "evidence": "publish new packages only on a temporary policy",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes an org-owned policy goes inactive if its creator leaves the org and must be recreated under an active owner",
+        "evidence": "goes inactive if its creator leaves the org",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends applying for `Pellucid.` ID prefix reservation by emailing nuget.org support before the next public package",
+        "evidence": "Email nuget.org support to reserve Pellucid.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States owners cannot delete from nuget.org; rollback is unlist plus deprecation naming the fixed version, plus publishing a fix",
+        "evidence": "owners cannot delete; unlist, deprecate, publish fix",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends rehearsing the publish and unlist steps on the NuGet test gallery",
+        "evidence": "Rehearse on the NuGet test gallery",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the Azure Pipelines key path explicitly temporary and recommends moving that publish job to a supported CI if OIDC everywhere is the goal",
+        "evidence": "Option B move Azure half to a GitLab or GitHub publish job",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts the remaining key under a dedicated bot account, stored in the protected environment",
+        "evidence": "owned by a bot account; protected environment",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes nuget.org emails a warning 10 days before key expiry",
+        "evidence": "nuget.org emails a warning 10 days ahead",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that an API key created in March 2026 (before 2026-08-17) expires on 2026-11-01, contradicting the user's December timeline",
+        "evidence": "'dies around March 2027'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the 2026-11-01 expiry as a deadline under two weeks and promotes the NuGet credential migration ahead of everything else, batching the remaining approvals",
+        "evidence": "Timeline runs to December",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States Azure Pipelines is not supported for nuget.org trusted publishing",
+        "evidence": "'doc lists GitHub Actions and GitLab only'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For Azure Pipelines, prescribes a new API key capped at 30 days, scoped to 'push new versions' plus the `Pellucid.*` package glob, never account-wide",
+        "evidence": "'90 days or less'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Passes the key through the `NUGET_API_KEY` environment variable rather than the command line on shared or self-hosted agents, and automates rotation before expiry",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Configures GitLab trusted publishing with `id_tokens` audience `https://www.nuget.org` and states the token's `ref` must name a branch, so publishing runs from a protected release-branch pipeline, not a tag pipeline",
+        "evidence": "'aud: https://www.nuget.org'... 'ref must be a branch name, so tags do not work'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets Policy Scopes on the trusted-publishing policy to a package glob and 'publish new versions', enabling 'publish new packages' only on the policy that creates a new ID and then removing it",
+        "evidence": "Only 'new versions only' example",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes an org-owned policy goes inactive if its creator leaves the org and must be recreated under an active owner",
+        "evidence": "'If a policy creator leaves the org, the policy goes inactive'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends applying for `Pellucid.` ID prefix reservation by emailing nuget.org support before the next public package",
+        "evidence": "Phase 1 prefix reservation",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States owners cannot delete from nuget.org; rollback is unlist plus deprecation naming the fixed version, plus publishing a fix",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends rehearsing the publish and unlist steps on the NuGet test gallery",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the Azure Pipelines key path explicitly temporary and recommends moving that publish job to a supported CI if OIDC everywhere is the goal",
+        "evidence": "Option C 'an exception' and recommends B",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts the remaining key under a dedicated bot account, stored in the protected environment",
+        "evidence": "Key Vault/variable group only",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes nuget.org emails a warning 10 days before key expiry",
+        "evidence": "Not mentioned",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

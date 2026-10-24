@@ -1,0 +1,1134 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "sdk-package-publishing",
+  "scenarios": 26,
+  "expectations_total": 349,
+  "expectations_subjective": 0,
+  "expectations_objective": 349,
+  "pass_rate_with_skill_pct": 85.7,
+  "pass_rate_without_skill_pct": 36.4,
+  "delta_pp": 49.3,
+  "uplift_multiplier": 2.35,
+  "trigger_accuracy_pct": 50.0,
+  "trigger_queries": 288,
+  "trigger_positive_fire_rate": 0.0,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Checks whether `latest` currently points at 4.2.0 and moves the dist-tag only if it does, after the fixed version exists"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Explains that consumers have already cached 4.2.0, so removal would not fix installed copies"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends rehearsing the roll-forward and deprecate steps on a scratch scoped package, never on the production package"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Notes that past 72 hours the beta could not be unpublished anyway"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends one npm package per platform (for example `@oakridge/cli-linux-x64`, `@oakridge/cli-darwin-arm64`) declaring `os`, `cpu` and, on Linux, `libc`"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends `homebrew_casks` rather than `brews` in GoReleaser, stating `brews` formulas are deprecated since v2.10"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends `nfpms` (deb, rpm, apk) for Linux users because casks target macOS"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the Homebrew tap lives in another repository so the built-in token cannot push to it, and prescribes a token scoped to the tap repository only"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Keeps the Go module release as a pushed tag and uses GoReleaser only for the binaries"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that npm publishing is a GoReleaser Pro feature absent from the open-source edition, so the platform npm packages publish through the npm workflow"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the local-only repository cannot serve public dependencies, which is what pushed the team to `--extra-index-url`"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Writes the uv config with `[[tool.uv.index]]` set to `explicit = true` and `[tool.uv.sources]` pinning each internal package to that index"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States SNAPSHOT versions are refused by the Plugin Portal"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that Sonatype ships no official Gradle plugin and does not support the community plugins"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Prescribes a probe querying the internal endpoint's metadata for the public `Pellucid.Core.Common` name and asserting an exact not-found status, after a positive control on a real internal package, treating 401/403/5xx as inconclusive"
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Names registries that do support Go (Google Artifact Registry Go format, Artifactory, Nexus, a self-hosted GOPROXY) and notes GitLab's Go proxy is experimental"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Scopes that first-release token to `publish-new`/`publish-update` and a crate-name pattern with the default 90-day expiry, and revokes it after the trusted publisher is added"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Uses the reusable `dart-lang/setup-dart/.github/workflows/publish.yml@<sha>` workflow with `id-token: write`, adding `subosito/flutter-action` for the Flutter packages"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Preflights with `flutter pub publish --dry-run` and a pana score check, and repeats `.gitignore` secret patterns in any `.pubignore`"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Builds platform gems with rake-compiler-dock covering the missing platforms (such as `aarch64-linux-gnu`, `x86_64-darwin`, `x86_64-linux-musl`) and sets `required_ruby_version` to the ABIs covered"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Sets human accounts to MFA level 'UI and API' and keeps at least two owners, noting RubyGems organizations are in private beta"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Recommends rehearsing on a private gem server, not the production gem"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Prescribes tagging a new version (v3.2.1) and never moving or deleting a release tag again"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Lists the private repository first with `\"only\": [\"thornfield/*\"]` so it serves every version of those names"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Recommends 2FA for every maintainer, noting MFA status is public and a transparency log records tag and ownership changes"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Uses the `abandoned` field for retiring a package rather than deletion, noting deletion is a web-UI action only"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Keeps at least two owners with level `full`, giving CI-adjacent humans `maintainer`"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Rehearses on a Hex organization or self-hosted repository, never on the production package"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Recommends code-signing the XCFramework with the Apple Distribution identity and attesting the zip with `actions/attest`"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Recommends listing on the Swift Package Index with a `.spi.yml`"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Advises re-checking the CocoaPods announcement because the 2026-11-01 date sits within a month"
+      },
+      {
+        "eval_id": 20,
+        "expectation": "Mentions `ghcr.io` as an option needing only the workflow's built-in token with `packages: write`"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Tells users to verify with `gh attestation verify <archive> --repo <owner>/<repo>` or `cosign verify-blob` against the bundle"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Notes that dist (cargo-dist) generates shell and PowerShell installers and that the signature check must be added to what they verify"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "For winget, states the pull request comes from a fork and needs a dedicated bot account whose public-repository-scope token cannot be narrowed, kept in the `release` environment only"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Lists the required `files` entries (`src`, `lib`, `android`, `ios`, the root `*.podspec`, `react-native.config.js` and `app.plugin.js` when used) and excludes `android/build`, `ios/build` and `example`"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "States a scoped npm name needs a podspec name without a slash for iOS autolinking"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Declares `react` and `react-native` as `peerDependencies`, never as dependencies"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Ships `codegenConfig` for the New Architecture (the only architecture since 0.82) and warns that pre-generated code ties the library to the React Native version that generated it"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Regenerates `Package.swift` on each React Native release while SwiftPM support is experimental"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "Builds the credential inventory (every credential with scope, expiry and owner) and treats any credential nobody can locate as compromised"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "Notes that a valid attestation or provenance on 2.8.1 would not prove it safe, since provenance proves which workflow built it, not safety"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks what ships: libraries, CLIs or other binaries, container images"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks how CI authenticates today per registry and who owns each package account"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks about the deadline or driver (audit, incident, launch, expiring key), whether this is a one-off or a standing process, and the effort ceiling and release approvers"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Confirms inferred answers (npm, a GitHub monorepo under `packages/`) in one message and asks the remaining questions one per message"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Proposes recording registries, CI provider, credential state and rollback primitives in a context or memory file such as `developer-platform-context.md`"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Scopes that npm token to the packages with the shortest workable expiry, owned by a bot account, stored in the protected environment and rotated automatically"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Pins `pypa/gh-action-pypi-publish` to a full commit SHA, noting `release/v1` is a mutable branch"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Binds the PyPI publisher to a CI environment restricted to protected tags with required reviewers, stating that without it any job of the named workflow on any branch can mint an upload token"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that classic and automation npm tokens no longer exist (revoked in December 2025), so the early-2024 token cannot still work, rather than accepting the user's claim that it is usable"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends npm staged publishing (`npm stage publish` plus `npm stage approve` by a maintainer with 2FA), citing the paying enterprise dependents as the reason for the approval gate"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Writes the workflow as two jobs: an unprivileged build job that runs `npm pack` and uploads the tarball, and a separate publish job that downloads it"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives the publish job an `environment:` and states its name must match the environment named in the npm trusted-publisher configuration exactly"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Sets top-level `permissions: {}` (default none) and grants `id-token: write` only on the publish job"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Pins every third-party action to a full commit SHA with the version as a comment, using a placeholder or `git ls-remote` instruction rather than inventing a SHA"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Pins npm to 11.15.0 or newer in the publish job because `npm stage` needs it"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that a trusted-publisher configuration not validated by a publish within 48 hours expires, so it must be registered the day of the first release"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Disables restored caches in the build and publish jobs (for example `package-manager-cache: false` and no cache action)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Marks the workflow file as a draft pending the user's approval of the plan"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends publishing the fix as a new version (4.2.1) immediately, before any removal step"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Checks whether `latest` currently points at 4.2.0 and moves the dist-tag only if it does, after the fixed version exists"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Explains that consumers have already cached 4.2.0, so removal would not fix installed copies"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Includes announcing the fix in the changelog and the security advisory channel as a runbook step"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the npm unpublish window rule (within 72 hours when no public package depends on it) rather than treating unpublish as always available"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends rehearsing the roll-forward and deprecate steps on a scratch scoped package, never on the production package"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Delivers the steps as an ordered rollback runbook: fixed version first, then soft removal, then announcement"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends adding the beta under its channel tag (`npm dist-tag add @fennel/client@3.0.0-beta.1 beta`) rather than removing it"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the beta should be deprecated only if it is broken, and it is not since it mostly works"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Does not recommend unpublishing the beta"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Identifies the hard-coded `--tag latest` as the cause and states never to hard-code `--tag latest` in CI"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains that a rerun of an old release job carrying `--tag latest` would move `latest` backwards"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Compares against `npm view <name> dist-tags.latest`, defaults to 0.0.0 only on a genuine E404, and fails the release on any other error"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that npm 11+ refuses a pre-release or lower-than-latest version without an explicit `--tag`"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Replaces direct `npm publish` with `npm stage publish` behind maintainer approval"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Notes that past 72 hours the beta could not be unpublished anyway"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects downloading the binary in `postinstall`, stating npm 12 skips dependency install scripts the consumer has not approved"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that `npx` and global installs have no project policy through which a consumer could approve install scripts"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends one npm package per platform (for example `@oakridge/cli-linux-x64`, `@oakridge/cli-darwin-arm64`) declaring `os`, `cpu` and, on Linux, `libc`"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Has the main package list every platform package as `optionalDependencies` pinned to the exact same version"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that each platform package needs its own npm trusted publisher configuration"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Orders publishing as platform packages first and the main package last, so the main package never points at missing versions"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends `homebrew_casks` rather than `brews` in GoReleaser, stating `brews` formulas are deprecated since v2.10"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends `nfpms` (deb, rpm, apk) for Linux users because casks target macOS"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the Homebrew tap lives in another repository so the built-in token cannot push to it, and prescribes a token scoped to the tap repository only"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Keeps the Go module release as a pushed tag and uses GoReleaser only for the binaries"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Includes `checksum` and `signs` sections with keyless `cosign sign-blob` on the checksum file"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that syft and cosign must be installed in a prior step because the GoReleaser action installs neither"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States GoReleaser OSS builds and publishes in one job, so the `release` environment gate, no restored caches and pinned tool versions stand in for the build/publish split"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that npm publishing is a GoReleaser Pro feature absent from the open-source edition, so the platform npm packages publish through the npm workflow"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects registering empty placeholder projects on public PyPI, stating PEP 541 treats them as squatting"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the local-only repository cannot serve public dependencies, which is what pushed the team to `--extra-index-url`"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Gives CI a read-only feed credential separate from any publish identity, injected as an environment variable into committed config that holds no secret"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends a release-age cooldown such as `uv exclude-newer = \"7 days\"` where the team tolerates lag"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Describes the proof as querying the internal endpoint's metadata for a public package carrying the `larkspur-` prefix and asserting an exact 404, not removing the internal source and watching installs fail"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires the probe to run with the read-only credential CI uses, and to confirm that identity is non-admin before trusting its 404"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends publishing a harmless canary in the company's own public npm scope (`@hollowpine/confusion-canary`), never internally"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Asserts the probe as `npm view @hollowpine/confusion-canary --registry <virtual URL>` failing with E404, not E401 or E403"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that a 401, 403, 5xx or DNS error is inconclusive, never a pass"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Forbids installing or downloading the probe target; the probe queries metadata only"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires an exclude pattern on `npm-remote` covering `@hollowpine/**`, stating that virtual ordering alone does not stop latest-version lookups from merging every upstream"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends re-running the probe after any feed reconfiguration, including after deleting an internal package from `npm-local`"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Delivers the audit evidence as the exact probe commands plus the blocking-rule and lockfile checks, and does not accept the engineer's install test"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Raises the paid Publisher Pro tier before any pipeline work, stating a service-dependent SDK counts as a commercial-nature artifact even when open source"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the Publisher Pro requirement applies to every release from 2026-10-01, including this 2.0.0 of an existing SDK, and tells the user to raise it with procurement"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Runs tests in the unprivileged build job and `mvn deploy` with the signing key and Portal token only in the publish job, with no tests there"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Prescribes a dedicated signing subkey with an expiry, passphrase read from `MAVEN_GPG_PASSPHRASE`, never `-Dgpg.passphrase` on the command line or stored in `settings.xml`"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Stores the Portal token as `${env.CENTRAL_TOKEN_USER}`/`${env.CENTRAL_TOKEN_PASS}` in the protected `release` environment with an expiry and a calendared rotation, noting a token cannot be viewed again after creation"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States released components are immutable and rollback means releasing a fixed version, never deleting one"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Prescribes rehearsing only the validate-then-drop path, noting drop is allowed only while the deployment is VALIDATED or FAILED"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Lists the mandatory artifacts: PGP `.asc` signatures, `.md5` and `.sha1` checksums, `-sources.jar`, `-javadoc.jar`, and the required POM fields (name, description, url, licenses, developers, scm)"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Replaces `publishAndReleaseToMavenCentral` with `publishToMavenCentral` and keeps automatic release off so a maintainer publishes in the Portal"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Rejects the plugin id `com.github.ashgrove.robotics`, stating `com.github.*` ids are rejected by the Gradle Plugin Portal"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Offers `io.github.<user>.<plugin>` or `com.ashgrove.<plugin>` with DNS TXT domain proof, and states plugin id and group must share the top-level namespace"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States the Plugin Portal's first release goes through human review taking days, so submission must start now given the five-day launch, and that changing the id or group restarts the review"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States SNAPSHOT versions are refused by the Plugin Portal"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Prescribes `publishPlugins --validate-only` in the build job and `publishPlugins` in the publish job"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Stores `GRADLE_PUBLISH_KEY` and `GRADLE_PUBLISH_SECRET` in the `release` environment under a bot account with scheduled rotation, noting the Plugin Portal has no OIDC"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "States Maven Central has no OIDC and names the `ORG_GRADLE_PROJECT_mavenCentralUsername`/`Password` and `ORG_GRADLE_PROJECT_signingInMemoryKey`/`Password` secrets in the protected environment"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Runs tests in the unprivileged build job and gives only the publish job the signing subkey, because `signAllPublications()` signs in-build while executing every plugin"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Runs the publish job with no restored Gradle caches (and `--no-configuration-cache` where the plugin requires it)"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Notes that Sonatype ships no official Gradle plugin and does not support the community plugins"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Treats every published Plugin Portal and Central version as permanent, with rollback being a new version"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States sbt-ci-release publishes immediately by default and prescribes `CI_SONATYPE_RELEASE=sonaUpload` to keep the Portal validate-then-publish gate"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Diagnoses the missing `_2.13` artifacts as a cross-version staging problem and requires `+publishSigned` to stage every Scala version before a single `sonaUpload`"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Sets `crossScalaVersions := Seq(\"2.13.<x>\", \"3.3.<x>\")` on each published module"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Sets `crossScalaVersions := Nil` and `publish / skip := true` on the aggregating root so nothing publishes twice"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States that one deployment holding every cross version publishes together, so no release can ship `_3` without `_2.13`"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Stores `SONATYPE_USERNAME`/`SONATYPE_PASSWORD` and `PGP_SECRET`/`PGP_PASSPHRASE` in the protected `release` environment, stating Maven Central has no OIDC"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Keeps the sbt-ci-release job behind the environment gate with no restored caches, because it runs build, signing and upload in one job holding every secret"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Uses the sbt 1.11+ native Portal `publishTo` with `localStaging.value` (snapshots to `central-snapshots`)"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Pins sbt 1.11.x for releases until every build plugin supports sbt 2.0"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "States sbt-dynver derives the version from the tag, so the tag-equals-version guard is built in"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Prescribes the signing subkey with an expiry in the publish job only, with tests in the unprivileged build job"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States that an API key created in March 2026 (before 2026-08-17) expires on 2026-11-01, contradicting the user's December timeline"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Treats the 2026-11-01 expiry as a deadline under two weeks and promotes the NuGet credential migration ahead of everything else, batching the remaining approvals"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "For Azure Pipelines, prescribes a new API key capped at 30 days, scoped to 'push new versions' plus the `Pellucid.*` package glob, never account-wide"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Passes the key through the `NUGET_API_KEY` environment variable rather than the command line on shared or self-hosted agents, and automates rotation before expiry"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Sets Policy Scopes on the trusted-publishing policy to a package glob and 'publish new versions', enabling 'publish new packages' only on the policy that creates a new ID and then removing it"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "States owners cannot delete from nuget.org; rollback is unlist plus deprecation naming the fixed version, plus publishing a fix"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Recommends rehearsing the publish and unlist steps on the NuGet test gallery"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Puts the remaining key under a dedicated bot account, stored in the protected environment"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Notes nuget.org emails a warning 10 days before key expiry"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Warns that a package already in the global packages folder skips mapping and prescribes a per-repo `globalPackagesFolder` in CI"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Warns that metadata commands (`dotnet package add`, `dotnet list package --outdated`) still query every source"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Prescribes a probe querying the internal endpoint's metadata for the public `Pellucid.Core.Common` name and asserting an exact not-found status, after a positive control on a real internal package, treating 401/403/5xx as inconclusive"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Checks that `packages.lock.json` records the internal source for every `Pellucid.*` entry"
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Prescribes a new tag (v1.6.1) and a `retract` directive for v1.6.0 with a rationale comment in `go.mod`, published in that newer tag"
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Recommends a `// Deprecated: use go.kestrel.dev/sdk/v2` comment above the `module` line in a new v1 tag"
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Configures GoReleaser with `homebrew_casks` rather than the deprecated `brews`, and `nfpms` for Linux"
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Runs GoReleaser in the `release` environment with no restored caches and pinned tool versions, with `contents: write`, `id-token: write` and `attestations: write`"
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Attests archives with `actions/attest` using `subject-checksums: dist/checksums.txt`, not `subject-path` on the checksum file"
+      },
+      {
+        "eval_id": 12,
+        "expectation": "Configures the GitHub release as a draft and publishes it in a final step before any distribution channel updates"
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Prescribes `GOAUTH` with a `.netrc` rendered from the secret store at job start (mode 600, removed by an always-run cleanup step on self-hosted runners) or an SSH `insteadOf` rewrite"
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Names registries that do support Go (Google Artifact Registry Go format, Artifactory, Nexus, a self-hosted GOPROXY) and notes GitLab's Go proxy is experimental"
+      },
+      {
+        "eval_id": 13,
+        "expectation": "Explains Go has no flat namespace to squat, so dependency confusion means a leaked path or a lapsed vanity domain, and recommends keeping vanity domains renewed"
+      },
+      {
+        "eval_id": 13,
+        "expectation": "If a private proxy serves everything, sets `GOPROXY` to it and `GONOSUMDB` to the private prefix"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Scopes that first-release token to `publish-new`/`publish-update` and a crate-name pattern with the default 90-day expiry, and revokes it after the trusted publisher is added"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Prescribes `publish = [\"<registry>\"]` in each internal crate's `Cargo.toml` so a private crate can never reach crates.io"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Writes `.cargo/config.toml` with a `[registries.<name>]` sparse index and `credential-provider`, and `registry = \"<name>\"` on each internal dependency, stating Cargo never falls back from a named registry to crates.io"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Recommends dist (cargo-dist) for prebuilt binaries with `github-attestations = true` (off by default) and `[package.metadata.binstall]` so `cargo binstall` fetches the archive instead of compiling"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Publishes with `cargo publish --no-verify` from the same commit after the auth action, with `cargo publish --dry-run` and `cargo package --list` in the build job"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Adds a team owner (`cargo owner --add github:cindervale:<team>`) so access survives people leaving"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "States `cargo yank --version` (reversible with `--undo`) is the rollback primitive, and whole-crate deletion exists only within 72 hours or under the low-usage rule"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Recommends a credential provider (`cargo:macos-keychain`, `cargo:wincred`, `cargo:libsecret`) on laptops because `cargo login` stores tokens in plain text"
+      },
+      {
+        "eval_id": 14,
+        "expectation": "Rejects `pull_request_target` and `workflow_run` triggers for the publish workflow"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States pub.dev refuses automated publishes from `workflow_dispatch` or branch pushes; only a tag-push trigger works"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Configures the package Admin tab with the repository and a tag pattern containing `{{version}}` (for example `<package>-v{{version}}` in a monorepo), mirrored in the workflow tag filter and the tag ruleset"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Requires a GitHub environment with required reviewers on the pub.dev side, matching the job's environment name"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Uses the reusable `dart-lang/setup-dart/.github/workflows/publish.yml@<sha>` workflow with `id-token: write`, adding `subosito/flutter-action` for the Flutter packages"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Endorses implementations with `default_package` under `flutter.plugin.platforms.<os>` plus a normal dependency on each"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Requires platform-interface changes to be additive with default implementations, since a breaking change breaks every implementation at once"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Warns that a podspec dependency on the trunk pod `RavelstonePay` freezes at its last trunk version after 2026-12-02, and prescribes vendoring the XCFramework or serving the pod from a private spec repo, plus a SwiftPM dependency in `Package.swift`"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Ships `Package.swift` under `ios/<name>/` and keeps the podspec, noting the plugin's podspec is consumed from the pub package and never pushed to trunk"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States pub.dev rejects packages that depend on git or custom-hosted packages"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Creates a verified publisher for the company domain before the first release, noting a transfer is irreversible and every member gets upload rights"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "States a version can be retracted within 7 days and after that only a fix release works, with a dead package marked discontinued"
+      },
+      {
+        "eval_id": 15,
+        "expectation": "Preflights with `flutter pub publish --dry-run` and a pana score check, and repeats `.gitignore` secret patterns in any `.pubignore`"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Prescribes publishing the fix as a new version (2.3.2) and announcing it, reserving yank for malware, leaked secrets or a release nobody can have installed yet"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Chooses the hardened shape (`gem build` in the unprivileged job, then `rubygems/configure-rubygems-credentials` and `gem push` in the publish job) over `release-gem`, because `release-gem` builds inside the privileged job and needs `contents: write`"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Pushes every gem of a version (source plus each platform gem) from one job, stating a missing platform gem silently makes those users compile from source"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Builds platform gems with rake-compiler-dock covering the missing platforms (such as `aarch64-linux-gnu`, `x86_64-darwin`, `x86_64-linux-musl`) and sets `required_ruby_version` to the ABIs covered"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Sets human accounts to MFA level 'UI and API' and keeps at least two owners, noting RubyGems organizations are in private beta"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Includes checking the gem page for the attestation after release (sigstore-ruby `--attestation` on RubyGems 4.0; 4.1 pushes unattested when sigstore-cli fails)"
+      },
+      {
+        "eval_id": 16,
+        "expectation": "Recommends rehearsing on a private gem server, not the production gem"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Recommends publishing a security advisory on the repository for a security-relevant rollback, noting `composer audit` reads advisory databases"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Prescribes a tag ruleset, stating tag control is the publish credential on Packagist"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Prescribes `composer install` against a committed `composer.lock`"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Recommends 2FA for every maintainer, noting MFA status is public and a transparency log records tag and ownership changes"
+      },
+      {
+        "eval_id": 17,
+        "expectation": "Uses the `abandoned` field for retiring a package rather than deletion, noting deletion is a web-UI action only"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Tells the user to revoke the pasted key immediately and does not print, store or reuse it"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Refuses to run the revert and states that every released Hex ignores `--dry-run` on `--revert`, so the proposed dry run would delete the release"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Prescribes publishing a fixed version whose checksum file comes from `mix rustler_precompiled.download <Module> --all --print` and is listed in the package `files`"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "States Hex trusted publishing (workload identity) is in Hex 2.6 development and not yet released, so OIDC cannot be promised now"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Replaces the personal user key with an organization key (`mix hex.organization key <org> generate --key-name ci-publish --permission api:write`) or a bot-account key with the narrowest permission"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "States Hex 2.6 stops accepting user-owned keys stored with `mix hex.organization auth`, so the current setup carries forced rework"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Passes the key through the environment only, from the protected `release` environment, with `mix hex.publish --yes` in the publish job"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Keeps at least two owners with level `full`, giving CI-adjacent humans `maintainer`"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Rehearses on a Hex organization or self-hosted repository, never on the production package"
+      },
+      {
+        "eval_id": 18,
+        "expectation": "Advises re-checking the Hex changelog for the 2.6 release before planning the OIDC migration"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "States the re-uploaded asset breaks every consumer of 2.4.0 because the checksum changed, and that a binary-target URL and its asset must never be replaced"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Reorders the pipeline: build, sign and compute the checksum, create a draft release with the zip attached, then commit `Package.swift` with that checksum and final asset URL, then tag that commit"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "States the tag job must download the draft's asset, verify its checksum against `Package.swift`, then publish the draft, and never rebuild, because XCFramework zips are not byte-reproducible"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Adds the plain SemVer `[0-9]*` tag pattern to the workflow trigger, the tag ruleset and the environment rule"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "States CocoaPods trunk stops accepting new pods and versions on 2026-12-02, with a read-only test run from 2026-11-01 to 2026-11-07"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Prescribes publishing the last trunk version and running `pod trunk deprecate BirchwaterKit` before 2026-11-01, noting `--in-favor-of` accepts only another pod name"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Prescribes deleting trunk push steps from CI after the cutoff and keeping the podspec only for private spec repos or React Native and Flutter consumers"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Recommends code-signing the XCFramework with the Apple Distribution identity and attesting the zip with `actions/attest`"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Computes the checksum with `swift package compute-checksum`"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "States never to move or delete a SwiftPM release tag because `Package.resolved` pins the commit for each version"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Recommends enabling GitHub immutable releases so a published release's tag and assets can no longer change"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Recommends listing on the Swift Package Index with a `.spi.yml`"
+      },
+      {
+        "eval_id": 19,
+        "expectation": "Advises re-checking the CocoaPods announcement because the 2026-11-01 date sits within a month"
+      },
+      {
+        "eval_id": 20,
+        "expectation": "States Docker Hub OIDC from GitHub Actions exists only for organizations on Team, Business or Docker Hardened Images plans or Docker-Sponsored Open Source namespaces, never personal accounts"
+      },
+      {
+        "eval_id": 20,
+        "expectation": "Recommends moving the image to an organization namespace, and until then a personal access token with an expiry owned by a dedicated bot account (or an Organization Access Token scoped push-only with a 30- or 90-day expiry, never none)"
+      },
+      {
+        "eval_id": 20,
+        "expectation": "Rejects Docker Content Trust, stating `notary.docker.io` shuts down on 2026-12-08 and signing must not be built on `DOCKER_CONTENT_TRUST=1`"
+      },
+      {
+        "eval_id": 20,
+        "expectation": "Prescribes an immutable version tag per release plus deliberately moved floating tags, with Docker Hub immutable tags enabled for the version-tag pattern"
+      },
+      {
+        "eval_id": 20,
+        "expectation": "Logs in with `--password-stdin`, never a password argument"
+      },
+      {
+        "eval_id": 20,
+        "expectation": "Builds to an OCI layout in the unprivileged build job and pushes the prebuilt layout from the publish job, then signs by digest"
+      },
+      {
+        "eval_id": 20,
+        "expectation": "Mentions `ghcr.io` as an option needing only the workflow's built-in token with `packages: write`"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Ranks distribution channels as package-manager channels you control (Homebrew tap, Scoop bucket) above community-reviewed indexes (winget, homebrew-core) above `curl | sh`, keeping the script as a fallback never the only path"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Verifies the archive against `checksums.txt` and, when cosign is present, verifies the checksum bundle against the release workflow identity and the CI OIDC issuer, failing closed on mismatch"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Documents the download-read-then-run form beside the one-liner and serves the script from the release itself or a controlled host with a pinned path"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Signs the checksum file keylessly with `cosign sign-blob --bundle` and attests archives with `actions/attest` using `subject-checksums`"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Tells users to verify with `gh attestation verify <archive> --repo <owner>/<repo>` or `cosign verify-blob` against the bundle"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Notes that dist (cargo-dist) generates shell and PowerShell installers and that the signature check must be added to what they verify"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "For winget, states the pull request comes from a fork and needs a dedicated bot account whose public-repository-scope token cannot be narrowed, kept in the `release` environment only"
+      },
+      {
+        "eval_id": 21,
+        "expectation": "Scopes the Homebrew tap and Scoop bucket push tokens to those repositories only"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Orders the release as native SDKs first (Maven Central artifact, SwiftPM tag), waiting until they resolve publicly, then the npm package pinning the exact native versions in its podspec, `Package.swift` and `build.gradle`"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Replaces Release It's token-based publish step with `npm stage publish` under npm trusted publishing with staged approval"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "States release tools that wrap the registry client may not support staged publishing or OIDC, so the tool versions and packs while the registry's own publish command runs per tarball"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Requires building the example app on iOS and Android in the build job before publishing, since a JS-only check misses broken autolinking"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Lists the required `files` entries (`src`, `lib`, `android`, `ios`, the root `*.podspec`, `react-native.config.js` and `app.plugin.js` when used) and excludes `android/build`, `ios/build` and `example`"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "States a scoped npm name needs a podspec name without a slash for iOS autolinking"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Declares `react` and `react-native` as `peerDependencies`, never as dependencies"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Ships `codegenConfig` for the New Architecture (the only architecture since 0.82) and warns that pre-generated code ties the library to the React Native version that generated it"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Warns that the pod dependency freezes at its last trunk version after 2026-12-02 and plans the move to SwiftPM or vendored XCFrameworks"
+      },
+      {
+        "eval_id": 22,
+        "expectation": "Regenerates `Package.swift` on each React Native release while SwiftPM support is experimental"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "Orders isolating the build runners before revoking and rotating credentials, stating some worms wipe hosts when they lose access"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "Revokes and rotates every credential the release job could reach, and deletes every project and account API token once trusted publishing is in place"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "Prescribes publishing a clean fixed version (2.8.2) from a known-good host immediately, not waiting on the removal"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "States GitLab self-managed trusted publishing is in beta and that a PyPI organization can register a custom OIDC issuer before falling back to tokens"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "States that on GitLab any job in the top-level pipeline can mint a token, so publishing must run in its own protected pipeline"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "Requires 2FA on every account and registering the project under a PyPI organization"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "Builds the credential inventory (every credential with scope, expiry and owner) and treats any credential nobody can locate as compromised"
+      },
+      {
+        "eval_id": 23,
+        "expectation": "Notes that a valid attestation or provenance on 2.8.1 would not prove it safe, since provenance proves which workflow built it, not safety"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks which registries the company publishes to, public and private, before proposing a plan"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks what ships: libraries, CLIs or other binaries, container images"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks which CI provider and runner type (hosted or self-hosted) will publish, stating this decides whether OIDC is available"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks how CI authenticates today per registry and who owns each package account"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks whether any SDK is tied to a commercial product or service, citing Maven Central's charge for commercial-nature artifacts"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Asks about the deadline or driver (audit, incident, launch, expiring key), whether this is a one-off or a standing process, and the effort ceiling and release approvers"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Confirms inferred answers (npm, a GitHub monorepo under `packages/`) in one message and asks the remaining questions one per message"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Does not deliver a full plan or pipeline files before the interview answers, or if it proceeds states every assumption at the top of the deliverable"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "Proposes recording registries, CI provider, credential state and rollback primitives in a context or memory file such as `developer-platform-context.md`"
+      },
+      {
+        "eval_id": 24,
+        "expectation": "States the plan will be presented step by step for approval before writing pipeline files"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "States npm trusted publishing does not support self-hosted runners, so npm must use a granular write token (90-day maximum) as a temporary path"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Scopes that npm token to the packages with the shortest workable expiry, owned by a bot account, stored in the protected environment and rotated automatically"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Still uses `npm stage publish` with maintainer approval so the token path cannot reach `latest` directly, keeping direct publish and dist-tag permissions off"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "States a PyPI organization can register a custom OIDC issuer for self-hosted CI before falling back to a project-scoped token"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "States reusable workflows are not supported for PyPI trusted publishing, so the upload job must live in the top-level workflow file the publisher names"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Pins `pypa/gh-action-pypi-publish` to a full commit SHA, noting `release/v1` is a mutable branch"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Recommends `abi3` wheels where the extension allows, so one wheel covers every CPython version and the matrix shrinks"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Runs `twine check --strict` on the merged dist set and lists the sdist contents (`tar tzf`) before release to catch tests, fixtures and stray `.env` files"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "States every wheel must upload within 14 days of the release, or a new version is needed"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Binds the PyPI publisher to a CI environment restricted to protected tags with required reviewers, stating that without it any job of the named workflow on any branch can mint an upload token"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "Notes environment protection on private repositories needs a plan that supports it"
+      },
+      {
+        "eval_id": 25,
+        "expectation": "States PEP 740 attestations are accepted only from trusted-publisher identities, so a token fallback publishes without them"
+      },
+      {
+        "eval_id": 26,
+        "expectation": "Gives build jobs a mapping with read-only access on the virtual repositories, and the publish job a mapping matched on `environment: release` with deploy rights on `*-release-local` only"
+      },
+      {
+        "eval_id": 26,
+        "expectation": "Uses `jfrog/setup-jfrog-cli` with `oidc-provider-name` and feeds its `oidc-user` and `oidc-token` outputs to the ecosystem client (`npm publish`, `mvn deploy`) so package metadata gets indexed"
+      },
+      {
+        "eval_id": 26,
+        "expectation": "Warns that include and exclude patterns do not apply to admin users, so an admin debugging resolution sees internal and public names merged"
+      },
+      {
+        "eval_id": 26,
+        "expectation": "Lists the 2023 never-expiring token in the credential inventory as one to revoke after OIDC validates, and treats any credential nobody can locate as compromised"
+      }
+    ]
+  }
+}

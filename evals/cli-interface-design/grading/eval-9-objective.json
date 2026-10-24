@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects auto-running the closest command on a typo; the CLI suggests and never executes the suggestion",
+        "evidence": "\"Print the full corrected command, exit 2, run nothing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the rejection: the suggestion may change state, and auto-running commits the CLI to supporting the typo forever",
+        "evidence": "\"Mutations... Frozen typos.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects unknown flags by name before any API call and lists the valid flags",
+        "evidence": "\"Valid flags: --environment, --region, ...\"; \"No request was sent.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the silently ignored `--regoin` as producing plausible but wrongly scoped results",
+        "evidence": "\"what a silently wrong scope does\"; scope echo.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the API error code (such as FLG-4031) and the request ID in every error",
+        "evidence": "\"Every error carries the API code and request ID.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leads each command's help with two or three examples, then flags with defaults, then a docs link",
+        "evidence": "Leaf help: Examples, Flags, Docs.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes `nb`, `nb help <cmd>`, `nb <cmd> --help` and `-h` all work",
+        "evidence": "\"`nb`, `nb help <cmd>`, `nb <cmd> --help`, and `-h` all work.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Documents output formats, exit codes and environment variables once as cross-cutting help topics",
+        "evidence": "\"Help topics: global, output, exit-codes, environment-variables\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers `--debug` with a redacted HTTP trace",
+        "evidence": "\"`--debug` prints a redacted HTTP trace to stderr.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships shell completion from the first release",
+        "evidence": "\"Shell completion from the first release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects `nb env` as a prefix abbreviation of `nb environments`",
+        "evidence": "\"No prefix matching\"; env only as declared alias; `nb envir` fails.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects a catch-all default subcommand for bare `nb`",
+        "evidence": "\"Do not default to `flags list`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies both rejections by the collision they create with every future command",
+        "evidence": "\"makes every future command that shares a prefix ambiguous\"; \"A catch-all default blocks future top-level commands.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects auto-running the closest command on a typo; the CLI suggests and never executes the suggestion",
+        "evidence": "\"the CLI never executes something the user did not type.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies the rejection: the suggestion may change state, and auto-running commits the CLI to supporting the typo forever",
+        "evidence": "Covers mutating commands, scripts breaking silently, and users never learning the real syntax.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects unknown flags by name before any API call and lists the valid flags",
+        "evidence": "Exit 2 before the first network call; the output includes a `Usage:` line with the valid flags.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the silently ignored `--regoin` as producing plausible but wrongly scoped results",
+        "evidence": "\"that is how (b) shipped the wrong config\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the API error code (such as FLG-4031) and the request ID in every error",
+        "evidence": "\"Error FLG-4031 ... Request ID: req_8f2c\u2026\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leads each command's help with two or three examples, then flags with defaults, then a docs link",
+        "evidence": "Mockup puts examples at the end, after commands and flags.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes `nb`, `nb help <cmd>`, `nb <cmd> --help` and `-h` all work",
+        "evidence": "-h and `nb help <cmd>` are not specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Documents output formats, exit codes and environment variables once as cross-cutting help topics",
+        "evidence": "Topics are targeting, output, auth and errors. No exit codes or env vars topic.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers `--debug` with a redacted HTTP trace",
+        "evidence": "\"`--debug` prints the raw response body and headers, with tokens redacted.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships shell completion from the first release",
+        "evidence": "Completion appears only as a side note for the alias.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects `nb env` as a prefix abbreviation of `nb environments`",
+        "evidence": "\"Do not enable generic prefix matching.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects a catch-all default subcommand for bare `nb`",
+        "evidence": "Recommends a home screen instead of running `nb flags list`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Justifies both rejections by the collision they create with every future command",
+        "evidence": "Only the prefix case cites future collisions. The bare `nb` reasons are different.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

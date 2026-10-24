@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Classifies renaming `trigger_1` and `search_2` in place as breaking and instead ships each replacement under a new key with the old step hidden",
+        "evidence": "\"Renaming a key breaks every Zap that uses it\"; table hides `trigger_1` and `search_2`, adds `new_invoice` and `find_invoice`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies fixing the oldest-first sort order on the live `trigger_1` as breaking in effect, explaining that each live Zap's dedupe memory holds the old ids so the next poll would fire every unseen invoice as new",
+        "evidence": "\"Fixing the sort order in place floods every live Zap with old invoices... Each Zap's dedupe memory holds the old ids.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that version 1.0.3 is not editable because it has more than 5 users, and plans a clone to the next minor of the same major (1.1.0) rather than editing in place or starting 2.0.0",
+        "evidence": "\"1.0.3 is not editable... Clone it to **1.1.0** (same major).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces a step table with columns key, label, type, change class and reason, using only the classes keep, additive, hide, breaking and rejected",
+        "evidence": "Table columns Key/Label/Type/Class/Reason using hide, additive, keep, rejected.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the generic 'Updated invoice' trigger with a specific state trigger such as New Paid Invoice, or, if an updated trigger is kept, gives it a composite id (`id-updated_at`) with the original id kept in a separate field",
+        "evidence": "`new_paid_invoice`; `updated_invoice` \"composite id `uuid-updated_at` and keep the original id in another field\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Introduces the search as 'Find Invoice' with a 'Finds a\u2026' description under a new key, never 'Get Invoice'",
+        "evidence": "`find_invoice` \"Finds an invoice by number or customer email.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the typed tax-profile id text field with a dynamic dropdown backed by a hidden trigger plus a search for mapped values",
+        "evidence": "\"dynamic dropdown on the tax-profile field, backed by `list_tax_profiles`, plus a search so users can map values.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps 'Delete Invoice' only with a copy field stating the action is irreversible, or rejects it",
+        "evidence": "\"Add an optional `copy` field: 'Permanently deletes the invoice. This cannot be undone.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that customers obtaining API keys by emailing support blocks publication, and requires a self-serve key in the product before submission",
+        "evidence": "\"Users who must email support for a key block publication. Add a 'Create API key' page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats a switch from API key to OAuth v2 as an auth-scheme change that needs a new major, and recommends asking Zapier about assisted connection migration before committing to it rather than bundling it into the 1.1.0 clean-up",
+        "evidence": "\"needs a new major, 2.0.0\"; \"ask Zapier support whether it can do an assisted connection migration\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the trigger on polling because the API has no webhook subscription endpoint, naming that missing capability as the reason",
+        "evidence": "\"Instant triggers need a webhook subscription endpoint... Your API has none.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the polling contract: newest-first, a page large enough to cover a burst because Zapier reads only page one, and no server-side filtering of already-sent items",
+        "evidence": "\"Sort `-created_at`. Page size 100\u2020 (not 20)... Never filter 'already sent' server-side.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the request through classification of every change first because the version has live users, before any design or publish work",
+        "evidence": "\"Route: classify every change first, then Design \u2192 Build \u2192 Publish.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (such as the 5-user editability limit) with \u2020 and a footnote to verify against live docs",
+        "evidence": "\"\u2020 These are Zapier platform numbers... Verify them against Zapier's live docs\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Opens with an Assumptions section, one line per interview answer the prompt did not give (such as the deadline and engineering days available)",
+        "evidence": "\"## 1. Assumptions\" with lines on keys, deadline, ~10 engineering days.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Classifies renaming `trigger_1` and `search_2` in place as breaking and instead ships each replacement under a new key with the old step hidden",
+        "evidence": "'Do not rename keys... Fix the labels and keep the keys.' New keys appear only as an option in Decisions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies fixing the oldest-first sort order on the live `trigger_1` as breaking in effect, explaining that each live Zap's dedupe memory holds the old ids so the next poll would fire every unseen invoice as new",
+        "evidence": "Sort fix is shipped in 'Version 1.1.0, non-breaking'. Only the id change is flagged as a refire.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that version 1.0.3 is not editable because it has more than 5 users, and plans a clone to the next minor of the same major (1.1.0) rather than editing in place or starting 2.0.0",
+        "evidence": "Plans 'Version 1.1.0' via zapier migrate but never says 1.0.3 is frozen.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces a step table with columns key, label, type, change class and reason, using only the classes keep, additive, hide, breaking and rejected",
+        "evidence": "No table.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the generic 'Updated invoice' trigger with a specific state trigger such as New Paid Invoice, or, if an updated trigger is kept, gives it a composite id (`id-updated_at`) with the original id kept in a separate field",
+        "evidence": "'${uuid}-${updated_at}' but no separate original-id field, and the trigger is not replaced.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Introduces the search as 'Find Invoice' with a 'Finds a\u2026' description under a new key, never 'Get Invoice'",
+        "evidence": "Only the label 'Find Invoice'. Descriptions use 'Triggers when...' and there is no new key.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the typed tax-profile id text field with a dynamic dropdown backed by a hidden trigger plus a search for mapped values",
+        "evidence": "Hidden trigger tax_profile_list is given, but no search for mapped values.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps 'Delete Invoice' only with a copy field stating the action is irreversible, or rejects it",
+        "evidence": "'Permanently deletes an invoice. This cannot be undone.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that customers obtaining API keys by emailing support blocks publication, and requires a self-serve key in the product before submission",
+        "evidence": "'API key by email blocks a directory submission'; interim self-serve API-key page.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats a switch from API key to OAuth v2 as an auth-scheme change that needs a new major, and recommends asking Zapier about assisted connection migration before committing to it rather than bundling it into the 1.1.0 clean-up",
+        "evidence": "2.0.0 for OAuth, but only 'verify in the docs'. No assisted migration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the trigger on polling because the API has no webhook subscription endpoint, naming that missing capability as the reason",
+        "evidence": "'Webhooks are not an option because you have no subscription endpoint'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets the polling contract: newest-first, a page large enough to cover a burst because Zapier reads only page one, and no server-side filtering of already-sent items",
+        "evidence": "Newest-first and 100 items, but nothing on not filtering already-sent items.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the request through classification of every change first because the version has live users, before any design or publish work",
+        "evidence": "Starts with an audit of Zap counts, not a classification step.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Zapier platform numbers (such as the 5-user editability limit) with \u2020 and a footnote to verify against live docs",
+        "evidence": "No daggers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Opens with an Assumptions section, one line per interview answer the prompt did not give (such as the deadline and engineering days available)",
+        "evidence": "Opens with 'Next action'.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

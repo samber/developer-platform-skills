@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the post-tag follow-up commit as the defect: a bump made after tagging never reaches the tag, so every tag carries the previous version.",
+        "evidence": "'Your script's bump lands in a later commit, so the tag never contains it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes package.json, the file release-please already bumps, the single source of truth and generates every other version field from it.",
+        "evidence": "'package.json stays the single source of truth.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds each SKILL.md to release-please's extra-files as a generic updater entry (type generic, path skills/<name>/SKILL.md).",
+        "evidence": "'{ \"type\": \"generic\", \"path\": \"skills/hollowmere-ledger/SKILL.md\" }'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Annotates both version lines for the generic updater: `version: \"x.y.z\" # x-release-please-version` in the frontmatter and `Skill version: x.y.z <!-- x-release-please-version -->` in the body.",
+        "evidence": "Frontmatter '# x-release-please-version' and body '<!-- x-release-please-version -->'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists each JSON manifest as a json extra-file with jsonpath $.version so the bump lands in the release PR the tag then points at.",
+        "evidence": "'\"jsonpath\": \"$.version\"' for plugin.json files and gemini-extension.json",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes version from the marketplace.json plugins entry, stating plugin.json silently wins when both are set and the validator warns.",
+        "evidence": "'plugin.json wins over the marketplace entry... validate --strict warns'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains 'already latest' as the installer keying its cache on the manifest version: a set but unbumped version reports already latest and users keep the stale copy.",
+        "evidence": "'update only fetches once that string changes... reports \"already latest\".'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds `git diff --exit-code` in CI after a fresh bump to catch a file the bump configuration forgot.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs scripts/check-skill-version.py with every --manifest on every pull request against the package.json version, and once more on the tag as a backstop.",
+        "evidence": "'Make the check a required status... Re-run it on tag push (v*) as a backstop.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes skills/ in the package files list and asserts `npm pack --dry-run 2>&1 | grep skills/` in CI.",
+        "evidence": "Adds the pack grep, but 'Does the npm package ship skills/ in files?' is left as an open question.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Bumps on every release including prereleases, and runs the same bump and gates on maintenance branches.",
+        "evidence": "'patch releases and prereleases included'; 'Are there maintenance branches? Run the same bump and gates'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names all five manifest files at the repo root, each pointing at ./skills/: .claude-plugin/plugin.json, .claude-plugin/marketplace.json, .codex-plugin/plugin.json, .cursor-plugin/plugin.json, gemini-extension.json.",
+        "evidence": "The five files appear in the check command, but no skills path is set in them.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Copies author, homepage, repository and license into the manifests from the existing package.json metadata rather than placeholder owners.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that metadata.version is provenance for humans and guards; no installer reads it, installers resolve a git tag, a commit or a manifest version.",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the post-tag follow-up commit as the defect: a bump made after tagging never reaches the tag, so every tag carries the previous version.",
+        "evidence": "\"Your script then bumps those files in a follow-up commit, which sits after the tag.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes package.json, the file release-please already bumps, the single source of truth and generates every other version field from it.",
+        "evidence": "Bump via release-please extra-files; CI asserts everything equals package.json's version.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds each SKILL.md to release-please's extra-files as a generic updater entry (type generic, path skills/<name>/SKILL.md).",
+        "evidence": "\"`SKILL.md`: type `generic`, with an `x-release-please-version` marker\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Annotates both version lines for the generic updater: `version: \"x.y.z\" # x-release-please-version` in the frontmatter and `Skill version: x.y.z <!-- x-release-please-version -->` in the body.",
+        "evidence": "Only a frontmatter `version:` line and an optional HTML comment; no 'Skill version:' body line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists each JSON manifest as a json extra-file with jsonpath $.version so the bump lands in the release PR the tag then points at.",
+        "evidence": "`{\"type\":\"json\",\"path\":\".claude-plugin/plugin.json\",\"jsonpath\":\"$.version\"}`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes version from the marketplace.json plugins entry, stating plugin.json silently wins when both are set and the validator warns.",
+        "evidence": "\"set `version` in `plugin.json` only, and drop it from the `marketplace.json` entry\"; \"`plugin.json` wins silently\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains 'already latest' as the installer keying its cache on the manifest version: a set but unbumped version reports already latest and users keep the stale copy.",
+        "evidence": "\"If a version string is set, a new commit with the same string is not an update.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds `git diff --exit-code` in CI after a fresh bump to catch a file the bump configuration forgot.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs scripts/check-skill-version.py with every --manifest on every pull request against the package.json version, and once more on the tag as a backstop.",
+        "evidence": "Only a generic CI check; the script is not named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes skills/ in the package files list and asserts `npm pack --dry-run 2>&1 | grep skills/` in CI.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Bumps on every release including prereleases, and runs the same bump and gates on maintenance branches.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names all five manifest files at the repo root, each pointing at ./skills/: .claude-plugin/plugin.json, .claude-plugin/marketplace.json, .codex-plugin/plugin.json, .cursor-plugin/plugin.json, gemini-extension.json.",
+        "evidence": "Names Claude Code, 'Codex, Cursor and Gemini' manifests generically, without file paths.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Copies author, homepage, repository and license into the manifests from the existing package.json metadata rather than placeholder owners.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that metadata.version is provenance for humans and guards; no installer reads it, installers resolve a git tag, a commit or a manifest version.",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
