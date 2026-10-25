@@ -4,7 +4,7 @@ description: Decide whether and when a SaaS should build its own app/connector m
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Connector Marketplace Strategy
@@ -122,7 +122,7 @@ Curation buys buyer trust at the cost of supply, and almost no real marketplace 
 - trust value (descending): `partnership-gated listing == single hard review gate > hybrid (open + certified tier) > open admission`
 - efficiency: `hybrid (open + certified tier) > open admission > single hard review gate > partnership-gated listing`
 
-- **Default rung: hybrid** - open admission with a minimal automated bar, plus a separate certified tier for the subset that clears quantitative gates (the archetype pairs a security questionnaire, an API success-rate floor, and maintenance evidence, on a scheduled re-review cycle). Losing certification drops the badge, not the listing - "allowed to exist" and "endorsed" stay decoupled, so the marketplace keeps supply while still selling trust.
+- **Default rung: hybrid** - open admission with a minimal automated bar, plus a separate certified tier for the subset that clears quantitative gates (the archetype pairs a security questionnaire, an API success-rate floor, and maintenance evidence, on a scheduled re-review cycle). Losing certification drops the badge, not the listing - "allowed to exist" and "endorsed" stay decoupled, so the marketplace keeps supply while still selling trust. The certified tier's criteria, kit and ladder: `samber/developer-platform-skills@connector-certification-program`.
 - **Step down to open admission** when apps touch little sensitive data and supply is the binding constraint - the openness argument is real: heavy gatekeeping inflates prices, hampers innovation, and costs choice.
 - **Starved option: the single hard review gate** (staged security review of every listing before it exists - completeness, compliance, security testing, scope minimization, then post-approval monitoring). Highest trust per listing, and its review cost scales with every submission, so it loses every efficiency round. Question 6 answering "high" promotes it anyway: when every app can read regulated or sensitive customer data, an uncertified-but-listed tier is an incident waiting to be attributed to you.
 - **Starved option: partnership-gated listing** (a formal partner agreement before any listing, on top of technical review). Maximum control, maximum friction; promoted only when the marketplace expects resellers or enterprise co-selling, not just direct app builders.

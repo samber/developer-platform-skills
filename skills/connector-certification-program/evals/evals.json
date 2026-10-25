@@ -1,0 +1,503 @@
+{
+  "skill_name": "connector-certification-program",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I run the partner ecosystem at Ferrowell, an iPaaS. We have 85 partner-built connectors, roughly half of all installs. Our 'Ferrowell Verified' badge is granted after a one-time review call with our solutions team, and Gold partners (top tier by partner-sourced revenue) get Verified automatically on every connector. Two Verified connectors broke for customers right after we shipped API v5 last month, and customers opened tickets with us because they assumed Verified meant we support them. My VP wants two fixes: require 1,000 monthly active users before any connector can go GA, and make Verified mandatory for every connector in the catalog. Write me the new certification design.",
+      "expected_output": "A certification charter that rejects both VP proposals with reasons (usage minimum moved to a tier above production use; listing kept separate from certification), deletes the commercial-status auto-grant, pins badges to kit and platform versions with the kit shipped to partners before the next API release goes GA, adds a support sentence per label, and includes a transition plan for existing badges.",
+      "files": [],
+      "expectations": [
+        "Rejects or changes the proposal to require 1,000 monthly active users before GA, stating that a usage minimum on the tier that unlocks production use is circular (partners cannot gather users on a connector buyers are told not to deploy)",
+        "Places any usage threshold on a tier above the production-use tier, or offers a time-based exception path instead",
+        "Rejects making certification mandatory for listing, keeping a separate listing bar and certification label",
+        "Removes the automatic Verified grant for Gold partners, stating that commercial or partner-revenue status certifies the relationship rather than the connector",
+        "Does not keep a grandfather clause that lets Gold partners retain Verified without the new evidence",
+        "Pins each badge to the test-kit version and the platform/API version it was earned on",
+        "Requires re-running the conformance kit when a platform release changes the contract connectors depend on",
+        "Says the kit version for the next contract-changing API release must reach partners before that release goes generally available (for example at the API beta)",
+        "Writes an explicit support sentence for every label, shown on the listing, stating who supports the connector",
+        "Flags that a label carrying the operator's brand ('Ferrowell Verified') reads as an operator support promise, and either drops the brand from the label or pairs it with the support sentence",
+        "Includes a transition section mapping existing Verified badges to new labels with a re-earn deadline",
+        "Includes an explicit verdict on each of the VP's two proposals (adopted, changed or rejected) with the rule it breaks",
+        "Replaces the one-time review call as the primary certification evidence with a test kit and/or operator-measured telemetry"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Hey - we're Pellucid Data, a mid-size ELT vendor. We build and maintain 38 connectors in-house and those cover about 92% of what customers install. There are 11 community-contributed connectors, mostly for niche tools, with maybe a few dozen installs between them. Nobody - customers, procurement, sales - has asked about certification, but our CEO saw a competitor launch a 'Certified Partner Connector' badge and wants a three-level certification program (Bronze, Silver, Gold) live by end of next quarter. Can you design it?",
+      "expected_output": "A go/no-go assessment that finds the gate fails (no outside reader of the badge, small partner share), recommends ownership labels only (operator-maintained vs community, each with a support statement) with a re-check date and conditions that would reopen the decision, and declines the three-level metal ladder.",
+      "files": [],
+      "expectations": [
+        "Runs an explicit go/no-go check before designing any tiers",
+        "States that no outside reader currently consumes the label (no buyer, procurement or support-routing demand)",
+        "States that partner-built or community connectors carry too small a share of installs for certification to matter, given 92% of installs are operator-built",
+        "Recommends ownership labels only (who maintains each connector) instead of a certification program",
+        "Gives each ownership label a support statement saying who supports the connector",
+        "Sets a re-check date or names the conditions under which a certification program should be reconsidered",
+        "Presents the ownership-labels outcome as a complete decision, not a placeholder or deferral",
+        "Does not design a Bronze/Silver/Gold three-level ladder",
+        "Explains that the competitor's badge is not by itself a reason to run a program",
+        "Suggests the operator-owned connectors that buyers use are better served by first-party ownership than by certifying partners"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Draft criteria review please. We're Tidewick, an analytics platform with ~200 partner-built source integrations, and our product team wrote these for our new 'Tidewick Certified' tier: (1) high-quality, well-structured code, (2) responsive partner support, (3) well documented, (4) 99% uptime, (5) partner must be at Premier level in our partner program, (6) at least 3 joint enterprise customers, (7) passes our review. We have per-integration call telemetry with error codes. Can you tighten these up so we can launch?",
+      "expected_output": "A rewritten criteria table where every kept criterion carries metric, threshold, window, minimum volume and measurer; subjective items rewritten or cut; commercial criteria (Premier level, joint customers) deleted; uptime rewritten as an operator-measured success rate with fault split; thresholds tied to Tidewick's own baseline; and a rule that low volume reads insufficient data rather than fail.",
+      "files": [],
+      "expectations": [
+        "Rewrites every kept criterion with all five parts: metric, threshold, window, minimum volume, and who measures it",
+        "Rewrites or cuts 'high-quality, well-structured code' because it is not measurable as written",
+        "Rewrites 'responsive partner support' as a measurable response-time criterion with a window and minimum ticket volume",
+        "Deletes the Premier partner-level criterion as a commercial-status criterion that does not describe the integration",
+        "Deletes the 3-joint-enterprise-customers criterion as commercial rather than technical",
+        "Replaces '99% uptime' with an operator-measured production success-rate criterion from Tidewick's telemetry",
+        "Requires excluding errors caused by Tidewick's own platform outages from an integration's success rate (fault split)",
+        "Says that below the minimum volume a telemetry criterion reads 'insufficient data' rather than pass or fail",
+        "Says an integration with only insufficient-data telemetry can still hold the label on test-kit evidence",
+        "Tells Tidewick to set thresholds from its own baseline (what its best existing integrations achieve) and labels any borrowed number a starting value",
+        "Replaces 'passes our review' with a named evidence source such as an operator-run conformance kit with required tests",
+        "Does not keep any criterion phrased only with an adjective such as 'high quality' or 'well documented'"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Urgent-ish. Our Certified connector for a legacy ERP, built by a partner called Brackenfield Systems, has a known credential-leak vulnerability that was reported 5 weeks ago. Brackenfield has gone quiet, no release in 11 months, no ticket responses. 340 of our customers have it installed and some run payroll syncs through it. My boss wants it deleted from the catalog and disabled everywhere today. We're Orrisdale, a workflow automation platform. What's the right call and what policy should we have so this doesn't become a scramble next time?",
+      "expected_output": "Uses a security fast path to block new installs within days and suspend the badge, but does not disable the 340 existing installs today; requires customer notification and a migration path before any disable date; then writes a standing four-rung decertification ladder with trigger, owner, notice period and customer action per rung, numeric definitions of abandonment, and publication before the next case.",
+      "files": [],
+      "expectations": [
+        "Blocks new installs of the vulnerable connector within days through a security fast path",
+        "Removes or suspends the Certified label immediately while the listing and existing installs are handled separately",
+        "Does not recommend disabling the connector for all 340 existing customers immediately",
+        "Requires notifying affected customers before existing installs are disabled",
+        "Requires a published migration path or workaround before any disable date for existing installs",
+        "Writes the standing policy as separate rungs: warning, badge suspended, new installs blocked, existing installs disabled",
+        "Gives every rung a trigger, an owner, a notice period and a customer action",
+        "Defines abandonment with a number (for example months without a release and without a support response) rather than leaving it undefined",
+        "States that the decertification ladder must be published before the next decertification, not written during one",
+        "Treats removing the badge, blocking new installs and disabling existing installs as distinct consequences rather than one switch",
+        "Gives the security fast path a concrete duration in days"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "We're Kestrelgate (identity platform). Partners build provisioning and SSO integrations for our network - about 260 of them. Our current 'certification' is two senior engineers manually reading the code of every integration on every release, plus a 40-question security self-assessment form partners fill in. The queue is now 9 weeks and partners are threatening to stop updating. Leadership's idea is to drop the code reading and certify on the self-assessment form alone so we can clear the backlog. Thoughts? I need a plan for how we should actually verify integrations.",
+      "expected_output": "Rejects certifying on self-attestation alone; recommends an operator-run, versioned, connector-agnostic conformance kit open to partners for self-testing and blocking submission until required tests pass, with required vs optional test lists and reviewed exemptions; keeps manual code inspection only for integrations holding restricted data scopes, routed to the admission security review; adds telemetry criteria once attribution exists.",
+      "files": [],
+      "expectations": [
+        "Rejects certifying on the self-assessment form alone",
+        "States that self-attestation counts only when paired with published kit results (and optionally a binding declaration), never on its own",
+        "Recommends an operator-run conformance test kit as the default evidence source",
+        "Makes the kit available to partners to run before submitting",
+        "Blocks submission until all required tests in the kit pass",
+        "Splits the kit into required tests and optional tests rather than relying on one overall pass percentage",
+        "Requires reviewer sign-off and published counts for any test exemptions partners claim",
+        "Keeps manual code reading only for a narrow subset, such as integrations holding restricted or high-risk data scopes, rather than every release",
+        "Points the security-depth review of high-risk integrations to the marketplace admission/app review process rather than redesigning it inside certification",
+        "Versions the kit and records which kit version each certification was earned on",
+        "Generates contract tests from the platform's contract or the integration's declared manifest, not from tests partners wrote themselves"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Support problem disguised as a certification question. At Glimmerdeck (data catalog SaaS) we certify partner-built metadata connectors. Our support team is drowning: about 30% of tickets on certified connectors are bugs in partner code, but customers file them with us. Our head of partnerships wants to announce that certified connectors are 'fully supported by Glimmerdeck' to make the badge more valuable. Certified connectors are free; customers don't pay us extra for them. What should our support model per tier be?",
+      "expected_output": "Recommends operator triage-then-route for the certified tier (operator takes first call, isolates platform vs connector fault, routes to the partner, who fixes under a stated response time), partner-owned support with published routing for non-certified tiers, a written support sentence per tier on the listing, and rejects a joint or full operator SLA because certified connectors are not sold in a paid plan.",
+      "files": [],
+      "expectations": [
+        "Recommends operator triage-then-route for the certified tier: the operator takes the first call and isolates platform versus connector fault",
+        "Assigns fixes for connector-side bugs to the partner under a stated response-time commitment",
+        "Recommends partner-owned support with published routing for non-certified tiers",
+        "Rejects announcing that certified connectors are 'fully supported by Glimmerdeck'",
+        "Ties any joint SLA or full operator support to certified connectors being sold inside a paid plan, and notes they are not here",
+        "Requires a written support sentence for every tier, shown on the listing",
+        "Explains that buyers read 'certified' as 'the platform stands behind it' unless the listing says otherwise",
+        "Adds a KPI for tickets misrouted to the operator on partner-owned connectors",
+        "Includes a partner response-time criterion (with window and minimum ticket count) as part of what keeps the certified label"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Product marketing at Quillbarrow (we run an integrations marketplace for our HR platform, ~150 partner apps) proposed this badge structure and I need to sanity check it before it goes to exec review: Platinum (top 10 by installs, featured on homepage, co-marketing webinar every quarter, +40% search boost), Gold (passes security review + 500 installs, +20% search boost), Silver (passes security review), Bronze (listed), plus a separate 'Quillbarrow Approved' seal for anything we've checked manually. We don't currently measure per-app error rates. Is this a good design?",
+      "expected_output": "Collapses the five labels into ownership labels plus one quality label buyers can tell apart, removes install-count and commercial tiers from the certification label, moves co-marketing slots to the partner program, refuses search-rank weighting without telemetry criteria behind it, and notes that a telemetry-gated top tier is starved until per-app error measurement exists.",
+      "files": [],
+      "expectations": [
+        "Recommends replacing the five-label structure with ownership labels plus a single earned quality label",
+        "Explains that buyers cannot tell five overlapping labels apart",
+        "Removes install count as a criterion for the certification label itself",
+        "Moves co-marketing webinars and homepage features out of the certification badge and into the partner program",
+        "Refuses search-rank boosts tied to the badge while no telemetry criteria (per-app error or success measurement) back it",
+        "Identifies that per-app production telemetry must exist before any telemetry-gated top tier is promoted",
+        "Removes or merges the separate manually-checked 'Approved' seal so only one quality label remains",
+        "Keeps the base listing bar (Bronze/listed) separate from the certification label",
+        "States the ranking or ordering explicitly (for example which tier shape is more efficient) rather than presenting the options as a flat list",
+        "Names admission security review as belonging to the marketplace review process rather than defining a certification tier by itself"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Renewal policy question. At Vantorra (data warehouse) we have 47 certified partner drivers and adapters. Certification today never expires. We ship a contract-changing platform release twice a year, published on a roadmap 4 months ahead with a beta 8 weeks before GA. Our compliance lead wants everything recertified once a year on the anniversary date, full manual re-review. Partners say that's too heavy. What renewal model should we use, and how much notice do partners get when we add a new requirement?",
+      "expected_output": "Recommends event-triggered renewal (contract-changing platform release, kit major version, connector release, new scopes) plus continuous telemetry evaluated on a fixed cadence, with each badge pinned to kit and platform versions; ships the kit for each release to partners at the 8-week beta; keeps a calendar floor only for evidence that expires on its own (security attestations, support contacts); deletes no-expiry; distinguishes renewal against a new platform version from a new criterion, which gets a long notice runway.",
+      "files": [],
+      "expectations": [
+        "Deletes the never-expires policy",
+        "Recommends event-triggered renewal as the default rather than a yearly anniversary re-review of everything",
+        "Lists a contract-changing platform release as a renewal trigger",
+        "Lists a connector or driver release as a renewal trigger",
+        "Lists a new kit major version or new data scopes/endpoints as renewal triggers",
+        "Pins each certification to the kit version and platform version it was earned on",
+        "Ships the kit for each contract-changing release to partners at the 8-week beta, before GA",
+        "Limits a calendar renewal floor to evidence that expires on its own, such as security attestations or support contacts",
+        "Re-evaluates telemetry criteria on a fixed, published cadence",
+        "Distinguishes re-testing against a new platform version (renewal) from adding a new criterion",
+        "Gives partners a notice runway of months before a new criterion applies to already-certified connectors",
+        "Rejects full manual re-review of every certified driver every year as the default"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "design a certification program for the connectors partners build on our ELT platform",
+      "should_trigger": true
+    },
+    {
+      "query": "our 'Verified' badge on partner integrations never expires and two broke after our API v4 - how do we fix renewal?",
+      "should_trigger": true
+    },
+    {
+      "query": "what criteria should a partner-built connector meet to be certified on our iPaaS",
+      "should_trigger": true
+    },
+    {
+      "query": "should we run a certified tier for third-party integrations or just label who maintains each one",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we decertify a partner connector that's been abandoned but still has 300 customers using it",
+      "should_trigger": true
+    },
+    {
+      "query": "build a conformance test kit partners must pass before their integration gets our certified badge",
+      "should_trigger": true
+    },
+    {
+      "query": "certified vs community connectors - what should each label promise our buyers",
+      "should_trigger": true
+    },
+    {
+      "query": "we have 120 partner adapters for our database, how do we decide which ones get a 'Trusted' label",
+      "should_trigger": true
+    },
+    {
+      "query": "customers keep opening tickets with us for bugs in partner-built connectors marked certified, how should support work per tier",
+      "should_trigger": true
+    },
+    {
+      "query": "is it a good idea to require 1000 active users before a partner connector can leave preview",
+      "should_trigger": true
+    },
+    {
+      "query": "partner integration test suite: what goes in it, who runs it, how do we version it against our releases",
+      "should_trigger": true
+    },
+    {
+      "query": "our marketplace wants a Gold/Silver/Bronze badge for partner integrations based on installs, sanity check please",
+      "should_trigger": true
+    },
+    {
+      "query": "how often should partner-built connectors be recertified when we ship breaking platform changes twice a year",
+      "should_trigger": true
+    },
+    {
+      "query": "write a certification charter for third-party SCIM provisioning integrations on our identity network",
+      "should_trigger": true
+    },
+    {
+      "query": "we give a verified badge to integrations after a one-off review call, is that enough",
+      "should_trigger": true
+    },
+    {
+      "query": "telemetry-based criteria for keeping a connector certified - success rate, window, min volume?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do Airbyte, Power Platform and Tableau handle certifying partner connectors, and what should we copy",
+      "should_trigger": true
+    },
+    {
+      "query": "should certification be mandatory to get listed in our integration catalog",
+      "should_trigger": true
+    },
+    {
+      "query": "our partner program wants every Premier partner to get automatic certification on their connectors - good or bad?",
+      "should_trigger": true
+    },
+    {
+      "query": "what happens to installed customers when we pull the certified badge from a partner integration",
+      "should_trigger": true
+    },
+    {
+      "query": "set up a quality badge for community-contributed plugins on our data pipeline tool",
+      "should_trigger": true
+    },
+    {
+      "query": "partners complain our connector certification takes 9 weeks of manual code review, how do we automate it",
+      "should_trigger": true
+    },
+    {
+      "query": "can partners self-certify their integrations with a questionnaire instead of us testing them",
+      "should_trigger": true
+    },
+    {
+      "query": "define what 'abandoned' means for a certified partner connector and what we do about it",
+      "should_trigger": true
+    },
+    {
+      "query": "we're launching an integrations network for our observability product, need a verified-integration program for partner exporters",
+      "should_trigger": true
+    },
+    {
+      "query": "minimum test coverage and pass rate for a partner connector to earn our certified label",
+      "should_trigger": true
+    },
+    {
+      "query": "how much notice do certified partners get when we add new certification requirements",
+      "should_trigger": true
+    },
+    {
+      "query": "ship our connector certification test harness to partners before the platform GA so certified connectors don't break on release day",
+      "should_trigger": true
+    },
+    {
+      "query": "badge inflation - every partner connector on our catalog is 'certified' now and buyers ignore it, how do we fix the program",
+      "should_trigger": true
+    },
+    {
+      "query": "our 'Approved Integration' seal for partner-built apps: what should earn it and what should take it away",
+      "should_trigger": true
+    },
+    {
+      "query": "design tiers for driver and adapter certification on our database platform, partners build the drivers",
+      "should_trigger": true
+    },
+    {
+      "query": "do we let search ranking in our connector catalog depend on certification status",
+      "should_trigger": true
+    },
+    {
+      "query": "security vulnerability in a certified partner connector, what's our policy for blocking installs",
+      "should_trigger": true
+    },
+    {
+      "query": "connector certification program for our reverse ETL destinations built by partners",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we transition our old partner badges to a new certification scheme without breaking existing listings",
+      "should_trigger": true
+    },
+    {
+      "query": "need measurable criteria for 'well maintained' partner connectors before we certify them",
+      "should_trigger": true
+    },
+    {
+      "query": "operator side: who should own customer support for certified partner integrations on our platform",
+      "should_trigger": true
+    },
+    {
+      "query": "is a certification program worth it if we build 90% of our connectors ourselves",
+      "should_trigger": true
+    },
+    {
+      "query": "design the security review process third-party apps go through before they get into our marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "write the listing content rules for our app marketplace: screenshots, description, categories",
+      "should_trigger": false
+    },
+    {
+      "query": "design the onboarding journey for partner developers from signup to first submitted app",
+      "should_trigger": false
+    },
+    {
+      "query": "should our SaaS build its own app marketplace or join others' marketplaces",
+      "should_trigger": false
+    },
+    {
+      "query": "we want our product listed as a certified source connector on Fivetran and Airbyte, what's the plan",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we get the Built for Shopify badge for our app and does it help ranking",
+      "should_trigger": false
+    },
+    {
+      "query": "design a developer certification exam for engineers who build on our API",
+      "should_trigger": false
+    },
+    {
+      "query": "which technology partners should we integrate with first and how deep should each partnership go",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we move from Silver to Gold in the Zapier partner program",
+      "should_trigger": false
+    },
+    {
+      "query": "get our Terraform provider verified on the registry",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we renew our SSL certificates automatically before they expire",
+      "should_trigger": false
+    },
+    {
+      "query": "prepare our company for SOC 2 Type II certification",
+      "should_trigger": false
+    },
+    {
+      "query": "design how integration failures surface to the partners who built on our API",
+      "should_trigger": false
+    },
+    {
+      "query": "set a versioning and deprecation policy for our public REST API",
+      "should_trigger": false
+    },
+    {
+      "query": "design sandbox test mode with test keys and simulated events for our API",
+      "should_trigger": false
+    },
+    {
+      "query": "set up consumer-driven contract tests with Pact between our own microservices",
+      "should_trigger": false
+    },
+    {
+      "query": "design the OAuth scopes and consent screen third-party apps request on our platform",
+      "should_trigger": false
+    },
+    {
+      "query": "what revenue share should our marketplace take from paid partner apps",
+      "should_trigger": false
+    },
+    {
+      "query": "optimize our listing on the HubSpot app marketplace to get more installs",
+      "should_trigger": false
+    },
+    {
+      "query": "write acceptance tests for the Salesforce connector inside our own codebase",
+      "should_trigger": false
+    },
+    {
+      "query": "build a Jira connector for our product following our existing integration pattern",
+      "should_trigger": false
+    },
+    {
+      "query": "publish our SDK to npm and PyPI with provenance and signing",
+      "should_trigger": false
+    },
+    {
+      "query": "monitor error rates and deprecated-API usage across integrations customers have deployed",
+      "should_trigger": false
+    },
+    {
+      "query": "plan the launch marketing for our new app marketplace's first partner cohort",
+      "should_trigger": false
+    },
+    {
+      "query": "get ISO 27001 certified as a 40-person startup",
+      "should_trigger": false
+    },
+    {
+      "query": "our MCP server: which tools should we expose to AI agents",
+      "should_trigger": false
+    },
+    {
+      "query": "design a partner tier program with benefits by sourced revenue for our resellers",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we pass the Salesforce AppExchange security review on the first try",
+      "should_trigger": false
+    },
+    {
+      "query": "create a CE marking compliance checklist for our IoT hardware",
+      "should_trigger": false
+    },
+    {
+      "query": "design webhooks for our platform: signatures, retries, replay",
+      "should_trigger": false
+    },
+    {
+      "query": "run a beta program for our new API endpoints with design partners",
+      "should_trigger": false
+    },
+    {
+      "query": "write a migration guide for customers moving from our v1 to v2 SDK",
+      "should_trigger": false
+    },
+    {
+      "query": "our status page: how do we communicate API incidents to integrators",
+      "should_trigger": false
+    },
+    {
+      "query": "AWS certification path for a junior cloud engineer",
+      "should_trigger": false
+    },
+    {
+      "query": "design rate limits and quotas for our public API",
+      "should_trigger": false
+    },
+    {
+      "query": "code signing certificate for our Windows desktop app installer",
+      "should_trigger": false
+    },
+    {
+      "query": "should we offer GraphQL, gRPC or REST to external developers",
+      "should_trigger": false
+    },
+    {
+      "query": "decide which language SDKs we officially support and which stay community-maintained",
+      "should_trigger": false
+    },
+    {
+      "query": "we built 30 connectors ourselves and have 60 partner ones in our catalog - partners want a 'certified' label that means something, where do we start",
+      "should_trigger": true
+    },
+    {
+      "query": "set the rules for when a partner's certified integration loses its badge on our platform",
+      "should_trigger": true
+    },
+    {
+      "query": "our certified partner integrations keep breaking every time we ship a platform release, what should the certification process require",
+      "should_trigger": true
+    },
+    {
+      "query": "operator question: how do we certify MCP servers that partners publish into our agent tool directory",
+      "should_trigger": true
+    },
+    {
+      "query": "we're a CRM vendor - how do we get our connector certified on Microsoft Power Platform",
+      "should_trigger": false
+    },
+    {
+      "query": "design Silver, Gold and Platinum levels for our partner program with certified-partner requirements for resellers",
+      "should_trigger": false
+    },
+    {
+      "query": "write an integration test suite for our Kafka connector before we submit it to Confluent",
+      "should_trigger": false
+    },
+    {
+      "query": "how do we get the verified creator badge for our GitHub Action on the Marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "two of our verified partner drivers broke after the platform upgrade and customers blamed us - redesign how verification works",
+      "should_trigger": true
+    },
+    {
+      "query": "pick which connector frameworks to support for our internal data team's pipelines",
+      "should_trigger": false
+    }
+  ]
+}
