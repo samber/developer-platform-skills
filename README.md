@@ -103,6 +103,7 @@ This collection covers the full developer-platform surface.
 - [`api-rate-limit-policy`](./skills/api-rate-limit-policy): Defines the rate-limit policy a public API publishes: quota and burst numbers, response headers, the 429 contract, and override paths.
 - [`public-api-design-review`](./skills/public-api-design-review): Audits a REST API surface against cited rules, buckets every finding as Must-change or Improvement, and designs the standing review program.
 - [`public-graphql-api-design`](./skills/public-graphql-api-design): Designs a public GraphQL surface: the GraphQL-or-not gate, schema conventions, cursor pagination, complexity ceilings, and the federation trust boundary.
+- [`graphql-federation-offering`](./skills/graphql-federation-offering): Decides how partners extend a public GraphQL graph, from app-owned fields to isolated partner subgraphs, with the trust contract each rung needs.
 - [`public-grpc-api-design`](./skills/public-grpc-api-design): Decides whether to expose gRPC publicly, then designs the proto conventions, breaking-change gates, error model, and transcoding path.
 
 ### API authentication
