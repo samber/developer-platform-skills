@@ -174,7 +174,7 @@ Two real styles exist, and the choice matters more than RFC compliance:
 
 Governance maturity, not scheme sophistication, is what separates platforms that retire versions cleanly from those that generate incident postmortems. Three stages - grow into them, don't adopt the last one on day one:
 
-1. **Floor: automated diff/linter in CI plus named-engineer sign-off.** Wire an OpenAPI diff or linter (Spectral, Zally, oasdiff) to flag breaking changes mechanically; a staff engineer approves anything flagged. This is the minimum, not a mature end-state.
+1. **Floor: automated diff/linter in CI plus named-engineer sign-off.** Wire an OpenAPI diff or linter (Spectral, Zally, oasdiff) to flag breaking changes mechanically; a staff engineer approves anything flagged. This is the minimum, not a mature end-state. Encoding the definition from step 2 into that diff's severity map, approval records and the published change feed is `samber/developer-platform-skills@api-changelog-automation`.
 2. **Review board with a written charter** once the surface outgrows one reviewer: Azure's Breaking Change Review Board blocks spec merges on approval and - the detail worth copying - its typical output is "alternative designs that preserve behavior for current customers," not an approve/reject verdict. The Fuchsia API Council charter is a public template to adapt rather than drafting from scratch.
 3. **Full guideline program** at platform scale: Google's AIPs (AIP-180/181 govern compatibility and stability), an enforcing linter, human readability certification, and design review. Google's own "API Governance at Scale" paper records why the layers exist: manual review alone "did not scale well."
 

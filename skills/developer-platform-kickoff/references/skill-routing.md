@@ -101,6 +101,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: "let a few customers try the new endpoint before it's final", design partners for an API feature, defining what beta or preview means for our API, a beta allowlist, sales asking for early access to an unreleased API, a beta that never ended, customers running production on our own beta endpoints, deciding when a preview goes GA or gets killed.
 - Do not route here: whole-app or consumer beta testing; evaluating a vendor's beta you consume; percentage or canary rollouts of a GA change; deprecating a GA version (`api-versioning-policy`); routine feature-request triage (`samber/developer-relations-skills@developer-feedback-loop`); the design review itself (`public-api-design-review`).
 
+### `samber/developer-platform-skills@api-changelog-automation`
+
+- Route here: oasdiff, openapi-diff, graphql-inspector, buf breaking or AsyncAPI diff in CI; "fail the PR on breaking changes"; generating the API changelog or a change feed from spec diffs; cleaning up a breaking-change ignore file; approval records for accepted breaks; capturing behavior changes the spec cannot express.
+- Do not route here: writing the breaking-change definition or notice windows (`api-versioning-policy`); release-note prose and CHANGELOG.md wording (`samber/developer-relations-skills@changelog-writing`); upgrade guides (`samber/developer-relations-skills@version-migration-guide`); finding who still calls a deprecated endpoint (`integration-health-monitoring`); consumer-side upgrades to another vendor's API.
+
 ### `samber/developer-platform-skills@api-reference-quality`
 
 - Route here: "find our undocumented endpoints", measuring docs completeness against a spec, missing examples or snippet parity, broken try-it, "stop our reference drifting" via CI lint and contract-test gates.
@@ -327,6 +332,9 @@ Where two or more siblings collide on keywords, decide from these declared-scope
   - What is going away, on what notice → api-versioning-policy. "We need to retire /v1" routes here.
   - What is broken right now → api-status-communication.
 
+- **api-versioning-policy vs api-changelog-automation** - "What counts as breaking, and how much notice?" → policy. "Make CI enforce that definition and write the change record" → automation. An automation request with no written definition escalates to the policy first; the gate may ship meanwhile with a severity map marked provisional.
+- **api-reference-quality vs api-changelog-automation** - both put a spec in CI. Is the published reference complete against the spec → reference quality. What changed between two versions of the spec, and did it break callers → automation.
+
 - **api-beta-program vs api-versioning-policy** - the GA line splits them. Before GA, including retiring one preview version for the next and rescuing a beta that never ended → api-beta-program. After GA, including the deprecation window a graduated beta surface gets → api-versioning-policy. A beta program uses the versioning policy's breaking-change definition rather than writing its own.
 
 - **api-rate-limit-policy vs public-graphql-api-design** - GraphQL's depth and complexity ceilings are schema design decisions and live with the schema; the published quota, tier numbers, headers and 429 contract are policy and live with rate-limit-policy. A GraphQL cost model needs both, in that order.
@@ -344,6 +352,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 Propose a chain only when the task genuinely decomposes this way; never fabricate a sequence. Each chain is listed in dependency order, not efficiency order - a later link consumes what the earlier one produces, so there is no ratio to rank.
 
 - `api-integration-surface-strategy` → the chosen surface skill → `api-versioning-policy` - decide which surface, design it, then commit to what you will and won't break in it. Publish before the promise exists and every later change is negotiated case by case.
+- `api-versioning-policy` → `api-changelog-automation` - write the breaking-change definition, then encode it as the severity map the gate enforces. Automating first makes the diff tool's defaults the policy nobody chose.
 - `public-api-design-review` → `api-error-design` → `api-idempotency-retry` → `api-reference-quality` - audit, fix the error contract the audit exposed, make failing calls safe to retry, then document. Documenting first just freezes the flaws in prose.
 - `api-auth-key-management` → `api-rate-limit-policy` → `integration-error-observability` - you cannot meter or attribute what you cannot identify; the identity issued first is what limits key on and what error rates split by.
 - `oauth2-provider-design` → `partner-app-onboarding` → `app-marketplace-review` - apps need delegated auth before a partner journey means anything, and a journey before there are submissions to review.
@@ -389,4 +398,4 @@ Distinguish from this collection: `developer-platform-skills` owns what the plat
 
 Recommend the sibling repo when the task is running a conference, hackathon, meetup or developer event as an _event_ - venue, sponsorship, CFP, speakers, budget, logistics - rather than as a DevRel program. A marketplace launch keynote is `app-marketplace-launch-marketing` here; producing the conference the keynote happens at is the sibling repo.
 
-Coverage gaps this collection does not fill at all - per-marketplace submission playbooks, publishing-platform playbooks beyond GitHub and Stack Overflow, API changelog automation, federated-graph offerings, API monetization, connector certification programs, and deployed-integration health monitoring - are listed with their boundaries in `samber/developer-platform-skills@developer-platform-kickoff` § 8. Name the gap from there; never promise a skill exists.
+Coverage gaps this collection does not fill at all - per-marketplace submission playbooks, publishing-platform playbooks beyond GitHub and Stack Overflow, federated-graph offerings, API monetization, connector certification programs, and deployed-integration health monitoring - are listed with their boundaries in `samber/developer-platform-skills@developer-platform-kickoff` § 8. Name the gap from there; never promise a skill exists.

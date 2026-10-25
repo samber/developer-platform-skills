@@ -13,7 +13,7 @@ description: >-
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Beta Program
@@ -220,7 +220,7 @@ Breaking changes stay allowed in a beta; silent ones do not. Freezing the beta l
 
 - **Private preview:** breaking changes allowed with direct notice to every enrolled technical owner before they ship. Notice length scales with observed production use.
 - **Public preview:** publish your own notice rule and batch breaks into a new preview version rather than mutating the current one. Vendor practice runs from zero notice (Google Cloud pre-GA terms, AWS, Microsoft Graph) through a 90-day availability floor after a newer preview ships (Azure) to a recommended 180-day deprecation (Google AIP-185 beta channel); details in [references/vendor-stage-precedents.md](references/vendor-stage-precedents.md) § 4.
-- **Every change gets a changelog entry,** including in private preview (a private changelog is fine).
+- **Every change gets a changelog entry,** including in private preview (a private changelog is fine). Generating those entries from spec diffs, with beta operations kept out of the public feed by stability level, is `samber/developer-platform-skills@api-changelog-automation`.
 - **No changes after the freeze date** from step 4.
 
 ## 9. Decide and communicate the outcome

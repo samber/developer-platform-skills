@@ -4,7 +4,7 @@ description: Design a public gRPC surface for external developers - the when-gRP
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Public gRPC API Design
@@ -97,7 +97,7 @@ See [references/proto-governance-reference.md](references/proto-governance-refer
 
 Protobuf's encoding only guarantees wire compatibility, not client-code compatibility (AIP-180's distinction) - so the gate must be tooling, not reviewer vigilance:
 
-1. Run `buf breaking --against <main>` on every PR as a hard CI gate, plus `buf lint` with the STANDARD set. Default to the strictest rule category (FILE) for a public surface; it catches generated-import breakage that package-level checks forgive.
+1. Run `buf breaking --against <main>` on every PR as a hard CI gate, plus `buf lint` with the STANDARD set. Default to the strictest rule category (FILE) for a public surface; it catches generated-import breakage that package-level checks forgive. Turning the gate's findings into a partner-facing changelog, with release baselines and approval records, is `samber/developer-platform-skills@api-changelog-automation`.
 2. Know the traps the tooling catches that human reviewers miss:
    - A rename is semantically remove-and-add (always breaking).
    - Moving a field into or out of a `oneof` breaks generated Go stubs.
