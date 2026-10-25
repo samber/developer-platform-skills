@@ -4,7 +4,7 @@ description: Before starting any developer-platform, public-API, or integration 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.14"
+  version: "1.0.15"
 ---
 
 # Developer Platform Kickoff
@@ -167,7 +167,7 @@ Name the gap explicitly when the task needs something no skill covers (§ 8). Sa
 
 Before naming a gap, check whether the task belongs to a sibling `samber` collection instead of this one:
 
-- **DevRel practice** - site-wide docs information architecture, the quickstart page, tutorials, developer content and SEO, community and events, open-source strategy, agent-facing documentation, docs cited at the right version by AI assistants, docs translation, how the docs track several versions (switcher, archives, backports), routing developer feedback to product and back, coordinated vulnerability disclosure for an open-source SDK, the release and versioning policy of an open-source SDK or library (SemVer vs CalVer, 1.0, supported versions, backports), a maintainer burning out on or stepping down from an open-source SDK, a maintainer wanting to earn money from an open-source SDK or library, the product-to-platform decision upstream of a marketplace, a developer certification or badge program for people (not apps), or the devtools revenue model → recommend installing `samber/developer-relations-skills`.
+- **DevRel practice** - site-wide docs information architecture, the quickstart page, tutorials, developer content and SEO, community and events, open-source strategy, agent-facing documentation, docs cited at the right version by AI assistants, docs translation, how the docs track several versions (switcher, archives, backports), routing developer feedback to product and back, coordinated vulnerability disclosure for an open-source SDK, the release and versioning policy of an open-source SDK or library (SemVer vs CalVer, 1.0, supported versions, backports), a maintainer burning out on or stepping down from an open-source SDK, a maintainer wanting to earn money from an open-source SDK or library, the product-to-platform decision upstream of a marketplace, a developer certification or badge program for people (not apps), a Show HN or the company's conduct on Hacker News, a vendor's or maintainer's dev.to presence (cross-posting, tags, AI disclosure), a launch or relaunch on Product Hunt, or the devtools revenue model → recommend installing `samber/developer-relations-skills`.
 - **Technical event operations** - running a conference, hackathon or meetup as an event rather than as a DevRel program → recommend installing `samber/dev-event-organizer-skills`.
 
 Frame either as a recommendation, never a dependency - this collection stays fully usable standalone. See `references/skill-routing.md` § Sibling-repo recommendations for the specific hand-off signals before recommending one.
@@ -363,7 +363,7 @@ If the harness has no scheduled routines, fall back to one recurring calendar re
 No skill in the collection covers these. Name the gap; never promise or invent a skill:
 
 - **Per-marketplace submission playbooks beyond Zapier.** Salesforce AppExchange and Slack App Directory are planned for v1.1 and not shipped; Shopify, Atlassian, HubSpot, AWS, GitHub, Google Workspace, Microsoft AppSource, WordPress and Chrome Web Store sit further out. `zapier-integration-playbook` covers Zapier only, not Make, n8n or Power Automate; `integration-listing-optimization` covers marketplace-agnostic optimization, not one platform's submission mechanics or review criteria; `github-action-offering` covers listing a GitHub Action, not GitHub Apps.
-- **Publishing-platform playbooks beyond GitHub and Stack Overflow.** Hacker News, dev.to, YouTube and Product Hunt are planned for v1.1 and not shipped; `github-engagement-playbook` and `stackoverflow-playbook` each cover one platform only.
+- **YouTube publishing playbook.** YouTube is planned for v1.1 and not shipped; `github-engagement-playbook` and `stackoverflow-playbook` each cover one platform only. Hacker News, dev.to and Product Hunt are _not_ gaps: recommend `samber/developer-relations-skills@hackernews-playbook`, `samber/developer-relations-skills@devto-playbook` or `samber/developer-relations-skills@producthunt-playbook`.
 - **API monetization**: usage-based pricing and packaging.
 - **Infrastructure-as-code surfaces beyond Terraform and OpenTofu**: Pulumi native providers, Crossplane providers, CDK construct libraries, Ansible collections. `terraform-provider-offering` covers the Terraform/OpenTofu provider only; Pulumi's bridged providers inherit its schema but not its release mechanics.
 - **Editor integrations beyond VS Code-API editors and JetBrains**: Visual Studio (not Code) extensions, Eclipse plugins, Xcode source editor extensions, native Neovim or Zed plugins. `ide-extension-offering` reaches those editors only through a language server and JSON schema.
