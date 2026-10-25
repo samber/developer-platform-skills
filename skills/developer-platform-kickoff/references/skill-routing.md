@@ -231,6 +231,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: building or auditing your integration on Zapier, writing it with the zapier-platform CLI or Platform UI, converting UI to CLI, an inherited private Zapier integration, polling vs instant triggers, a Zapier trigger that misses or duplicates records, submitting to Zapier's app directory, the 90-day beta, Partner Program tier, publishing Zap templates, the Workflow Element embed, promoting, migrating or deprecating integration versions.
 - Do not route here: building Zaps as an end user; Make, n8n or Power Automate connectors; whether to embed an iPaaS in your own product (`connector-marketplace-strategy`); listing copy and ranking on marketplaces generally (`integration-listing-optimization`); the webhook subscription API a REST hook trigger calls (`webhook-platform-design`).
 
+### `samber/developer-platform-skills@salesforce-appexchange-playbook`
+
+- Route here: getting a SaaS product listed and selling on Salesforce AppExchange or AgentExchange as an ISV, API listing vs managed 2GP package, namespace and global Apex decisions, passing or resubmitting the security review, PADA and PNR, Checkout vs GTM app private offers vs Channel Order App, LMA licenses and trials, periodic re-reviews, push upgrades, the Connected App/ECA OAuth mandates.
+- Do not route here: listing copy, search rank and reviews (`integration-listing-optimization`); Salesforce consulting listings; packages for your own Salesforce org; writing Apex or LWC; designing the review process for your own marketplace (`app-marketplace-review`); whether Salesforce deserves the investment at all (`integration-partnership-strategy`).
+
 ### `samber/developer-platform-skills@connector-marketplace-strategy`
 
 - Route here: "should we build an app store", "is our ecosystem ready", setting the take-rate _level_ and curation posture, governing third-party apps at the policy level, seeding a two-sided ecosystem from zero, build vs join vs embedded iPaaS.
@@ -310,6 +315,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **integration-partnership-strategy vs partner-app-onboarding / etl-connector-strategy / integration-listing-optimization** - "Which partners matter?" → strategy. "How does a partner get from signup to first app?" → onboarding. "How do we get listed on their ETL catalog?" → etl-connector-strategy. "Why is our listing not converting?" → listing-optimization.
 
 - **zapier-integration-playbook vs integration-listing-optimization / webhook-platform-design** - one platform's mechanics vs the generic method. "How do we build, review, launch and version our Zapier app?" → the playbook. "Why does our listing not convert across marketplaces?" → listing-optimization. "How does our API let anyone subscribe to events?" → webhook-platform-design, which the playbook's REST hook triggers then call.
+- **salesforce-appexchange-playbook vs integration-listing-optimization / app-marketplace-review** - one marketplace's admission and money path vs the generic listing method vs the operator's chair. "How do we pass Salesforce's security review, package and get paid?" → the playbook. "Why does our AppExchange listing not convert or rank?" → listing-optimization. "How should our own marketplace review third-party apps?" → app-marketplace-review.
 
 **Split by side of the table:**
 

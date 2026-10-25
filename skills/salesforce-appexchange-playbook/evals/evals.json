@@ -1,0 +1,257 @@
+{
+  "skill_name": "salesforce-appexchange-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm the tech lead at Corvana, a contract-analytics SaaS. We joined the Salesforce partner program in June and we're building a 2GP managed package (custom objects for contracts and clauses, an Apex service layer, three LWCs). Our namespace is `cvnbeta` because we were in a hurry; the plan is to switch it to `corvana` when we go GA. Three pilot customers start next month: the idea is to install the latest beta package version straight into their production orgs so they get real data, then upgrade them to GA. Also, our engineers made every service class `global` so that SIs and our own future add-on packages can call them. Can you sanity-check the plan before the pilots start?",
+      "expected_output": "A review that flags every irreversible choice: beta versions cannot go to production and never upgrade, so pilots need a promoted released version behind an installation key; the namespace is permanent so the final one is chosen now; global Apex is a permanent contract so shared code uses @namespaceAccessible; internal components get protected; plus the promotion gate and an irreversible-choice register.",
+      "files": [],
+      "expectations": [
+        "States that 2GP beta package versions cannot be installed in production orgs (only scratch orgs and sandboxes)",
+        "States that an installed beta version can never be upgraded",
+        "Recommends giving the pilot customers a promoted managed-released version, protected by an installation key or otherwise restricted",
+        "States that the namespace is fixed to the package when it is created and cannot be changed to `corvana` at GA",
+        "Recommends choosing the final, product-brand namespace before any customer install",
+        "States that global Apex classes cannot be removed once released in a managed version",
+        "Distinguishes callers: `@namespaceAccessible` works only between Corvana's packages sharing one namespace, while SI or subscriber code can reach only global members, so it recommends a small, deliberately versioned global facade instead of making every class global",
+        "Recommends marking internal-only components (custom settings, custom metadata types, labels or permissions) as protected before release",
+        "States that promotion to managed-released is irreversible or that only one beta per minor version can be promoted",
+        "Produces a register of irreversible choices (namespace, global API, protected components) with an owner or decision date per item"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Fieldmark here, field-service scheduling SaaS, 40 people, based in Austin. Our web app syncs Salesforce accounts and work orders over OAuth using a Connected App we created back in 2024. Nothing gets installed in the customer's org. Marketing wants an AppExchange listing live next month for lead gen. Since there's no package, I assume we skip the security review entirely, right? Ideally customers would also pay through the AppExchange checkout at $40 per user per month. What do we need to do?",
+      "expected_output": "Corrects the no-review assumption: API solutions pass the same review, scoped to the external web app and APIs with DAST; explains Checkout needs a managed package; moves the integration to an External Client App with PKCE and refresh token rotation; replaces 'next month' with a backward timeline.",
+      "files": [],
+      "expectations": [
+        "States that an API-only (Salesforce Platform API) listing must pass the AppExchange security review",
+        "Puts Fieldmark's web app and APIs in review scope because they authenticate users or exchange Salesforce data",
+        "Requires DAST scan reports (ZAP, Burp or equivalent) of the external endpoints",
+        "States that Checkmarx and Code Analyzer reports are not required when no package is submitted",
+        "States that AppExchange Checkout requires a managed package, so it is unavailable for an API-only listing",
+        "Offers the thin managed package carrying the integration (or the ECA) as the route if Checkout or packaged distribution is wanted",
+        "States that new Connected Apps can no longer be created (new integrations use an External Client App) while the existing 2024 Connected App stays in scope of the mandatory OAuth controls",
+        "Lists PKCE and refresh token rotation as mandatory controls for a Connected App or ECA used by more than two customer production orgs",
+        "Names AppExchange delisting or suspended access as the consequence of missing the mandatory OAuth controls",
+        "Rejects the one-month go-live with stage durations (1-2 weeks verification plus 3-4 weeks testing) and gives a backward timeline",
+        "Marks Salesforce fees, durations or dates with a dagger or similar footnote telling the reader to verify them against current Salesforce docs"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Ledgerly failed the AppExchange security review last week. The report lists three findings: a CRUD/FLS violation in InvoiceController.cls line 88, a stored XSS in our `invoiceTable` LWC, and 'insecure TLS 1.0' on legacy.ledgerly.io, which is an old marketing site the app never calls. Product wants to slip the new bulk-export feature into the same fixed version so we only pay for one more review, and our CTO wants to appeal the TLS finding. How do we get through this fastest?",
+      "expected_output": "Fix every instance of each finding class across the package, keep the fix version free of new features, keep package ID and namespace, handle the TLS item with a false-positive write-up or a fix rather than an appeal, rescan and resubmit as a follow-up review.",
+      "files": [],
+      "expectations": [
+        "Treats the three findings as representative examples and requires sweeping the whole solution for every instance of each class, not only line 88 and `invoiceTable`",
+        "Advises against bundling the bulk-export feature, because changes beyond the flagged issues force a full initial review",
+        "States that the follow-up review must keep the same package ID and namespace",
+        "States that a follow-up review after code changes costs a new review fee",
+        "States that a failed test result has no appeal path and points to Product Security office hours",
+        "Handles the TLS finding with a false-positive write-up explaining the host neither authenticates users nor exchanges Salesforce data, or by fixing TLS, not through an appeal",
+        "Requires rerunning the scanners (Code Analyzer and Source Code Scanner, plus DAST for the endpoint item) and attaching fresh reports",
+        "Gives the retest duration as roughly 2-4 weeks after verification",
+        "Recommends building the bulk-export feature in a later version on top of the passed version so it inherits listing readiness"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "We're Docuvane, a Toronto company. Our Salesforce managed package passed security review. Pricing is metered: $0.02 per document processed plus a $300/month platform fee per org, and our biggest deals are three-year enterprise contracts with custom discounts. Procurement teams hate invoices, so we want to sell everything through AppExchange Checkout with a card on file. Can you set up the commercial side for launch?",
+      "expected_output": "Rules Checkout out twice (unsupported pricing units, Canadian company outside US/UK/EU), routes to the non-Checkout PNR path with an offline PADA and Channel Order App duties, covers LMA licensing and trials, and warns about re-approval and expiry triggers.",
+      "files": [],
+      "expectations": [
+        "States that Checkout supports only one-time or subscription plans per user or per company, so per-document metered pricing cannot run through it",
+        "States that Checkout is available only to companies based in the US, UK or an EU country, which excludes a Toronto company",
+        "Routes Docuvane to the non-Checkout path with a PADA signed offline through the account manager",
+        "Presents the revenue share as set by the PADA, commonly 15% for ISVforce and 25% for OEM, rather than as a fixed published rate",
+        "Requires a Channel Order App order within one business day of each customer order",
+        "States that cancellation or reduction orders follow the PADA notice, usually 30+ days before renewal, and that COA blocks them within 5 days of the renewal date",
+        "States that switching between Checkout and non-Checkout, or between free and paid, sends the listing back for approval",
+        "Recommends registering the package version in the License Management App with a default license (Free Trial up to 90 days, or Active; per seat or site-wide)",
+        "Warns that unpaid revenue share expires the security review and removes the listing",
+        "Proposes the Feature Management App (or an equivalent licensing control) to gate paid features in the package",
+        "Rules out the GTM app private offers as well, because they support only seat-based packages, US customers and USD contracts"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Our managed package has been on AppExchange since 2024; version 2.3.0 passed security review. This week: (1) an email says we're due for a periodic security re-review, it went to a security contact who left the company in May; (2) we already cut 2.4.0 on top of 2.3.0 and want to list it; (3) the plan is to push 3.0.0 to all 1,400 customer orgs the weekend right after the Winter release, and 3.0 adds a new approvals feature we'd auto-assign to every user with a permission set in the post-install script. Does 3.0 need its own security review? Anything else we should worry about?",
+      "expected_output": "Explains readiness inheritance from a passed ancestor, takes the re-review seriously (contact update, fee, ~60-day remediation, expiry of every version if missed), and restages the push: test orgs, sandboxes, batches, wait 3-4 weeks after the release, no auto-assignment of new features.",
+      "files": [],
+      "expectations": [
+        "States that a version built on a passed version as ancestor is ready to list without a new security review",
+        "States that 2.4.0 or 3.0.0 cut during the re-review can be listed now and lose readiness only if the re-review ultimately fails",
+        "Requires updating the security review contact on the Partner Console Company Info page",
+        "States that a missed periodic re-review expires the review for all versions and removes the listing",
+        "States that periodic re-reviews carry the review fee and that a failed one typically gets about 60 days to remediate",
+        "Restages the 3.0 push: own test orgs first, then customer sandboxes for about a week, then production in batches (e.g. 50-100 orgs at first)",
+        "Recommends waiting 3-4 weeks after a major Salesforce release before pushing a major upgrade",
+        "Advises against auto-assigning the new approvals feature to existing users, leaving access to customer admins"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Our CEO just booked a booth at a big Salesforce conference 10 weeks from now and wants us 'live on AppExchange' by then. We're Pellucid, a 25-person meeting-notes SaaS. We haven't joined the Salesforce partner program. The idea is a package with a couple of Lightning web components and an Apex sync to put meeting notes on opportunities; paid, per user. Give me a week-by-week plan to hit the date.",
+      "expected_output": "A backward timeline that starts with the partner application, shows that ten weeks cannot reliably produce a public paid listing, schedules scanning from the first sprint and a failed-review buffer, and offers deliverables that do fit the booth date.",
+      "files": [],
+      "expectations": [
+        "Starts the plan with the Partner Community application and Partner Business Org provisioning",
+        "States that a public paid listing in 10 weeks from a standing start is unrealistic, citing a typical 4-9 month signup-to-first-paid-install span or equivalent stage math",
+        "Includes 1-2 weeks of submission verification and 3-4 weeks of security testing in the timeline",
+        "Includes a buffer for at least one failed review (2-4 weeks of retesting plus another fee)",
+        "Requires Lightning Ready certification before submission",
+        "Runs the PADA negotiation in parallel with the build",
+        "Includes the listing approval step before publishing",
+        "Proposes a booth deliverable that fits the date instead of a public paid listing, such as a demo org, a Test Drive or a review already submitted",
+        "Counts forward from today to give the realistic first-paid-install date, because counting back from a 10-week deadline yields a start date in the past"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Brightpath, Chicago. Our managed 2GP package (Agentforce actions plus prompt templates that summarise support cases, $45 per seat per month) passed security review in March. We sell to US companies on 12-month contracts and our finance team has filed every deal through the Channel Order App so far. Sales wants to keep doing that for new customers next quarter, auto-renew everything, and let customers pay by card. Separately, our CTO asks if the prompt templates need anything special before the next periodic re-review. What should change?",
+      "expected_output": "Routes qualifying net-new seat-based US deals to the AgentExchange GTM app instead of COA, lists the GTM constraints that clash with sales' plan (no auto-renew, NET30 ACH, upfront payment, PADA with GTM terms, by application), keeps existing COA contracts in place, and adds prompt-injection hardening for the Agentforce templates.",
+      "files": [],
+      "expectations": [
+        "States that net-new orders that meet the GTM app requirements must go through the AgentExchange GTM app rather than the Channel Order App",
+        "Lists the GTM eligibility conditions that fit Brightpath: existing ISVforce partner, seat-based managed package, USD, US customers, 12-month contracts",
+        "States that the GTM app does not auto-renew orders, contradicting sales' auto-renew plan",
+        "States GTM payment terms as NET30 with ACH debit and full payment upfront, contradicting card payment",
+        "Requires amending the PADA with the GTM app terms (applied for through the account manager)",
+        "Keeps extra licenses for existing COA customers of the same app on the Channel Order App during the active contract, moving them to the GTM app only at renewal",
+        "Adds prompt-injection testing or hardening (enclosing untrusted record data) for the Agentforce actions and prompt templates before the re-review",
+        "States that the periodic re-review carries the review fee"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "How long does the Salesforce AppExchange security review take and what do we have to submit with it?",
+      "should_trigger": true
+    },
+    {
+      "query": "we failed the appexchange security review on CRUD/FLS and an XSS, what's the fastest way to resubmit",
+      "should_trigger": true
+    },
+    {
+      "query": "For a brand-new Salesforce ISV app, should we build a 1GP or 2GP managed package?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our sales team keeps hearing customers ask if we're on the Salesforce marketplace. What does it take to get our SaaS listed there and sell through it?",
+      "should_trigger": true
+    },
+    {
+      "query": "AppExchange Checkout vs Channel Order App for per-seat pricing, which one and what do we owe Salesforce?",
+      "should_trigger": true
+    },
+    {
+      "query": "What is PNR and how much of our app revenue does Salesforce take as an ISV versus OEM?",
+      "should_trigger": true
+    },
+    {
+      "query": "Salesforce emailed us that our connected app needs PKCE and refresh token rotation or we get delisted from AgentExchange. What do we have to change?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can I install a 2GP beta package version in a pilot customer's production org and upgrade it later?",
+      "should_trigger": true
+    },
+    {
+      "query": "We got a periodic security re-review notice for our AppExchange package. What happens if we don't do it?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our product only calls the Salesforce REST API from our own servers. Can we list it on AgentExchange without a package?",
+      "should_trigger": true
+    },
+    {
+      "query": "Plan push upgrades of our managed package to 800 subscriber orgs without breaking anyone",
+      "should_trigger": true
+    },
+    {
+      "query": "Realistically, how many months from joining the Salesforce ISV partner program to our first paid install?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is the AppExchange security review fee $999 or $2,550 these days?",
+      "should_trigger": true
+    },
+    {
+      "query": "Picking a namespace for our Salesforce managed package - what can't we change later?",
+      "should_trigger": true
+    },
+    {
+      "query": "Trialforce or Test Drive for our AppExchange listing's free trial?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to ship Agentforce actions as a managed package on AgentExchange. What review and packaging path applies?",
+      "should_trigger": true
+    },
+    {
+      "query": "Rewrite our AppExchange listing tagline and reorder the screenshots so we rank for 'invoice automation'",
+      "should_trigger": false
+    },
+    {
+      "query": "How can we get more reviews on our AppExchange listing without breaking the marketplace rules?",
+      "should_trigger": false
+    },
+    {
+      "query": "Write an Apex trigger that rolls opportunity amounts up to the parent account",
+      "should_trigger": false
+    },
+    {
+      "query": "We're opening our own app marketplace. Design the security review process third-party apps go through before we list them.",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our bot approved in the Slack App Directory - scopes review and listing",
+      "should_trigger": false
+    },
+    {
+      "query": "Submit our Zapier integration for public listing and get out of beta",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the OAuth 2.0 authorization server for our public API: PKCE, refresh token rotation, token lifetimes",
+      "should_trigger": false
+    },
+    {
+      "query": "What revenue share should our own integration marketplace charge third-party developers?",
+      "should_trigger": false
+    },
+    {
+      "query": "Which ecosystem should we integrate with first - Salesforce, HubSpot or Microsoft Dynamics - given our pipeline data?",
+      "should_trigger": false
+    },
+    {
+      "query": "Run Salesforce Code Analyzer on our org's Apex in a GitHub Actions pipeline",
+      "should_trigger": false
+    },
+    {
+      "query": "Prepare our Atlassian Forge app for the Cloud Fortified badge",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Shopify app got rejected because it doesn't use the Billing API. How do we fix the submission?",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up Salesforce as our CRM: deal stages, lead routing and dashboards for our 12 AEs",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the partner developer onboarding journey on our own platform, from signup to first submitted app",
+      "should_trigger": false
+    },
+    {
+      "query": "Publish our TypeScript SDK to npm with provenance and a release pipeline",
+      "should_trigger": false
+    },
+    {
+      "query": "We launch on Product Hunt next Tuesday - plan the day",
+      "should_trigger": false
+    }
+  ]
+}
