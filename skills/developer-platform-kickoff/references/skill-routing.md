@@ -236,6 +236,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: getting a SaaS product listed and selling on Salesforce AppExchange or AgentExchange as an ISV, API listing vs managed 2GP package, namespace and global Apex decisions, passing or resubmitting the security review, PADA and PNR, Checkout vs GTM app private offers vs Channel Order App, LMA licenses and trials, periodic re-reviews, push upgrades, the Connected App/ECA OAuth mandates.
 - Do not route here: listing copy, search rank and reviews (`integration-listing-optimization`); Salesforce consulting listings; packages for your own Salesforce org; writing Apex or LWC; designing the review process for your own marketplace (`app-marketplace-review`); whether Salesforce deserves the investment at all (`integration-partnership-strategy`).
 
+### `samber/developer-platform-skills@slack-app-directory-playbook`
+
+- Route here: submitting or resubmitting a Slack app to the Slack Marketplace (formerly Slack App Directory), the active-workspace install gate, a returned submission, scope rejections and per-scope justifications, bot vs user token choice, enhanced review for history or search scopes, the Security & Compliance and AI disclosures, landing, support and privacy pages, review timelines, updating a listed app (staging app, new scopes, reinstalls), delisting warnings, listed vs unlisted distribution and the rate limits on unlisted apps.
+- Do not route here: listing copy, media order and install conversion (`integration-listing-optimization`); designing the review process for your own marketplace (`app-marketplace-review`); designing scopes for your own API's OAuth (`oauth2-provider-design`); building the MCP server itself (`mcp-server-offering`); writing Bolt code; running a community Slack workspace.
+
 ### `samber/developer-platform-skills@connector-marketplace-strategy`
 
 - Route here: "should we build an app store", "is our ecosystem ready", setting the take-rate _level_ and curation posture, governing third-party apps at the policy level, seeding a two-sided ecosystem from zero, build vs join vs embedded iPaaS.
@@ -316,6 +321,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 
 - **zapier-integration-playbook vs integration-listing-optimization / webhook-platform-design** - one platform's mechanics vs the generic method. "How do we build, review, launch and version our Zapier app?" → the playbook. "Why does our listing not convert across marketplaces?" → listing-optimization. "How does our API let anyone subscribe to events?" → webhook-platform-design, which the playbook's REST hook triggers then call.
 - **salesforce-appexchange-playbook vs integration-listing-optimization / app-marketplace-review** - one marketplace's admission and money path vs the generic listing method vs the operator's chair. "How do we pass Salesforce's security review, package and get paid?" → the playbook. "Why does our AppExchange listing not convert or rank?" → listing-optimization. "How should our own marketplace review third-party apps?" → app-marketplace-review.
+- **slack-app-directory-playbook vs integration-listing-optimization / app-marketplace-review / oauth2-provider-design** - one marketplace's admission rules vs the generic listing method vs the operator's chair vs the issuer's chair. "Why did Slack return our app and which scopes will pass?" → the playbook. "Why does our Slack listing not convert?" → listing-optimization. "How should our own marketplace review apps?" → app-marketplace-review. "How should our API's scopes be designed?" → oauth2-provider-design.
 
 **Split by side of the table:**
 

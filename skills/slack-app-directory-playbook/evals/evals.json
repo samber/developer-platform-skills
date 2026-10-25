@@ -1,0 +1,232 @@
+{
+  "skill_name": "slack-app-directory-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Pagerline, a 9-person incident tooling startup. Our Slack app is basically done: it posts incident timelines to a channel and lets people run /pagerline ack. It's installed on 6 workspaces right now (our own two test workspaces, two Developer Program sandboxes, and two pilot customers). We're launching at SREcon in 5 weeks and want the Slack Marketplace listing live that day, so we plan to submit next Monday. Scopes we're requesting: chat:write, commands, channels:history (user token, so we can read the incident channel as the responder), and users:read.email for the CRM sync we're building next quarter. Can you sanity-check the plan and give me the submission checklist?",
+      "expected_output": "Blocks the Monday submission: the app needs 10 active non-sandbox workspaces held through the whole review, sandboxes never count and the vendor's own test workspaces should not be relied on, so Pagerline has at most four and realistically two qualifying installs. Says the 5-week launch cannot rely on approval (preliminary up to 10 business days, functional up to 10 weeks, no expediting) and separates approval from publishing. Removes the future-feature scope, moves history reading to the bot token or flags user-token history as enhanced review, and gives per-scope justifications plus a timeline.",
+      "files": [],
+      "expectations": [
+        "States that the Slack Marketplace requires at least 10 installs on active workspaces before submission, not 5",
+        "States that Developer Program sandboxes do not count toward the install threshold and warns against relying on the vendor's own test workspaces",
+        "States that the install count must stay at or above the threshold for the whole duration of the review",
+        "Recommends getting more pilot customers onto the unlisted distributed app before submitting",
+        "Gives the preliminary review as up to 10 business days and the functional review of a new app as up to 10 weeks",
+        "States that Slack does not expedite or accelerate reviews to match a launch date",
+        "Explains that after approval the vendor chooses when to publish, so the launch should not depend on approval landing on a given day",
+        "Tells the user to remove users:read.email because it serves a feature that does not exist yet",
+        "Recommends the bot token instead of a user token for reading the incident channel, or flags user-token channels:history as needing a clear use case",
+        "Flags channels:history (a *:history scope) as triggering enhanced review",
+        "Writes or requests a per-scope justification that says how the app uses each scope rather than what the scope does",
+        "Marks Slack figures such as thresholds or durations as needing verification against current Slack docs"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Slack just sent our app (Tallyho, async standups) back from the preliminary review. Their notes: 1) 'scope reasons do not explain usage', 2) 'landing page does not meet guidelines', 3) 'unable to access app for testing'. Context: our scope reasons are copy-pasted from Slack's scope reference page, our landing page link points to our public GitHub README, support is GitHub Issues only, and for testing we gave them login credentials to our internal demo Slack workspace. I want to fix item 1 today and resubmit, then do the rest next sprint. Thoughts?",
+      "expected_output": "Advises against piecemeal resubmission because each preliminary resubmission resets the queue. Rewrites scope reasons as usage statements. Requires a dedicated public landing page (a README or repository fails) with install path and privacy link, and a support channel that needs no extra account with a 2-business-day response. Explains reviewers cannot access any Slack workspace: provide a self-serve install path, test accounts with dummy data, and a video.",
+      "files": [],
+      "expectations": [
+        "States that each resubmission during the preliminary review resets the queue position",
+        "Recommends fixing all three items before resubmitting rather than resubmitting after item 1 alone",
+        "Rewrites or instructs rewriting each scope reason to describe how Tallyho uses the scope, not what the scope does",
+        "States that a GitHub README or code repository is not an acceptable landing page and that it must be a public web page built for the Slack app",
+        "Lists landing page contents including an install path and a link to the privacy policy",
+        "States that GitHub Issues alone is not acceptable support and that a channel requiring no new account is needed",
+        "States the expected support response time of 2 business days",
+        "States that Slack reviewers cannot log into any Slack workspace, including a demo workspace",
+        "Tells the user to give reviewers a way to install the app themselves plus test accounts with dummy data",
+        "Recommends a video demo covering install, OAuth, setup, use and uninstall"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our Slack app Briefly has been listed on the Slack Marketplace since March. We're adding 'catch me up': it reads the last day of messages in channels the bot is in and summarizes them with GPT-4.1 via the OpenAI API. Engineering's plan is to add channels:history to the scopes in our install URL, deploy Friday, and email customers to reinstall. Anything we're missing?",
+      "expected_output": "Stops the Friday plan: the live app is locked, so new scopes need a resubmission with a staging app and video, and an unreviewed scope in the install URL breaks installs. Gives the update review time, the AI disclosures (model, retention, tenancy, residency in Security & Compliance, an inaccuracy disclaimer, no training on Slack data), enhanced review for history scopes, optional-scope handling and in-Slack reinstall messaging.",
+      "files": [],
+      "expectations": [
+        "States that a listed app's configuration and scopes are locked and require resubmission for review",
+        "Warns that adding an unreviewed scope to the live install URL will make installs fail",
+        "Recommends a staging app cloned from the published app's manifest for reviewers to install",
+        "Recommends a video demo showing the new feature and how the new scope is used",
+        "Gives the functional review for updates to a published app as up to 6 weeks",
+        "Lists the AI disclosures for the Security & Compliance section: model used, data retention and use by the LLM, LLM data tenancy and LLM data residency",
+        "Requires a disclaimer on the landing page and long description that LLM output can be inaccurate",
+        "States that Slack data must not be used to train LLMs",
+        "Flags channels:history as triggering enhanced review",
+        "Suggests marking the new scope optional if the core app works without it, without moving core scopes to optional",
+        "Recommends telling existing workspaces to reinstall through the app (App Home or an in-Slack message) after approval"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Quick strategy question. Our product Threadkeeper indexes Slack threads so customers can search decisions later. We distribute it with an Add to Slack button on our site (OAuth works fine, ~40 paying workspaces since June 2025). Our cofounder says the Marketplace listing is a hassle with no upside since there's no analytics and no reviews there, so we should stay unlisted. Is he right?",
+      "expected_output": "Disagrees: Slack's API terms make the Marketplace the channel for commercially distributed apps, and new installs of unlisted commercial apps are limited to 1 request per minute and 15 objects on conversations.history and conversations.replies, which hits an indexing product directly. Notes there is no listing fee, that listing-only levers exist (app suggestions, direct install), and flags that bulk-indexing message history is exactly what Slack scrutinizes. Points the indexing design toward fetching messages on demand or the Real-time Search API rather than stored copies.",
+      "files": [],
+      "expectations": [
+        "States that Slack's API terms treat the Slack Marketplace as the channel for commercially distributed apps",
+        "States that new installs of unlisted commercially distributed apps are limited to 1 request per minute on conversations.history and conversations.replies",
+        "States the 15-object limit per call for those methods",
+        "States that Slack charges no fee for Marketplace inclusion",
+        "Names at least one listing-only distribution lever such as app suggestions via the slack-app-id meta tag or direct install from the listing",
+        "Warns that bulk indexing or storing message history is what Slack restricts, points to fetching messages when needed or the Real-time Search API, and notes Real-time Search is unavailable to an unlisted app",
+        "Recommends tracking installs and uninstalls with the app's own data, such as an OAuth install ledger or the app_uninstalled event"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "We run Flowmesh, a workflow automation platform (think a smaller Zapier). We want our Slack connector listed on the Slack Marketplace. Users connect their Slack once and every Flowmesh user in their company can then build flows with it, including one popular template that archives every channel message to Google Drive nightly. Our marketing team also wants the launch page to say 'Slack-certified integration'. Draft our submission plan.",
+      "expected_output": "Applies the automation-platform rules: restrict installs to paid Slack plans with team.billing:read, never expose the Slack token, no user-token history or files:read for collection, no shared authorization between users. Flags the archive template as message export, an unsuitable use the platform must not enable. Refuses 'Slack-certified': the Marketplace Agreement forbids implying endorsement and the security review is not a certification.",
+      "files": [],
+      "expectations": [
+        "Requires requesting the team.billing:read bot scope and limiting installs to workspaces on paid Slack plans",
+        "States that the Slack API token must never be exposed to Flowmesh end users",
+        "States that one user's Slack authorization must not be shared with other Flowmesh users when user-token scopes are requested",
+        "States that the app must not request user-token history or files:read scopes to collect message and file data",
+        "Flags the nightly archive template as message export/backup that the platform must not enable",
+        "Rejects the 'Slack-certified' wording because the Marketplace Agreement forbids implying Slack endorsement or certification",
+        "States that Slack's security review is not a certification"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Ops question about our listed Slack app, Rosterly. Last month uninstalls tripled after a bad release, and our only support engineer quit two weeks ago, so a few tickets are sitting. We're doing a big rewrite, so I'd like to turn off public distribution for a month while we rebuild, and while we're at it switch on token rotation in production so we're more secure when we come back. What's the safest sequence?",
+      "expected_output": "Warns that deactivating public distribution uninstalls the app from every workspace and is not available to a listed app, whose only route is discontinuing the listing. Explains token rotation is irreversible and needs refresh within 12 hours, so test it on a staging app first. Names the uninstall spike and unanswered support as triggers for Slack to contact and then delist, and sets support within 2 business days, current contacts, a collaborator, and self-built install tracking.",
+      "files": [],
+      "expectations": [
+        "Warns that deactivating public distribution removes the app from every workspace except the original one",
+        "States that a listed app cannot simply deactivate distribution and must discontinue its Marketplace listing instead",
+        "Recommends against pulling the app during the rewrite and suggests rebuilding behind a staging app instead",
+        "States that token rotation cannot be turned off once enabled",
+        "States that rotated tokens must be refreshed within 12 hours and recommends testing rotation before production",
+        "Names an uninstall spike as a trigger for Slack to contact the developer and possibly delist the app",
+        "Names unanswered support requests as a delisting risk and sets a 2-business-day support response",
+        "Recommends keeping developer and support contact details current and having at least one collaborator on the app",
+        "Recommends tracking installs and uninstalls with the app's own data, such as an OAuth install ledger or the app_uninstalled event"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "We built a remote MCP server for our observability product, Lumatrace (tools: search_logs, get_trace, create_alert). Slack's new Slackbot MCP client looks like a great channel. Plan: a Slack app whose only feature is connecting our MCP server to Slackbot, mcp:connect as a required scope, list it next month. Our tool descriptions are one word each right now. What do we need to change to get through Slack Marketplace review?",
+      "expected_output": "Does not refuse: an MCP-only app can list when its tools do meaningful work in Slackbot conversations, with mcp:connect required as the sole function. Fixes the tool surface (human-readable titles, accurate descriptions, readOnlyHint on every tool with create_alert as a write tool, valid inputSchema), the submission notes and Slackbot screenshot, the OAuth callback or Fetch Tools step, the auto-off rule for repeated tool failures, and the 10-workspace gate.",
+      "files": [],
+      "expectations": [
+        "Does not refuse the MCP-only plan outright and states that an app whose only feature is an MCP server can list when its tools deliver meaningful work inside Slackbot conversations",
+        "States that mcp:connect must be required, not optional, when the MCP connection is the app's only function",
+        "Requires human-readable titles and accurate descriptions for every tool instead of one-word descriptions",
+        "Requires setting the readOnlyHint annotation on every tool and identifies create_alert as a write tool",
+        "Requires a valid inputSchema for tools that take parameters",
+        "Requires submission notes walking through install, authentication, a tool call and its response, plus a screenshot of a tool in a Slackbot conversation",
+        "Mentions the OAuth redirect https://oauth2.slack.com/external/auth/callback or running Fetch Tools in App Settings before submitting",
+        "States that repeated tool failures after listing can switch the app off automatically",
+        "Mentions the active-workspace install threshold as a prerequisite for submitting next month"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "Slack returned our marketplace submission saying our scope justifications don't explain usage. How do I rewrite them?",
+      "should_trigger": true
+    },
+    {
+      "query": "how many active workspaces does a slack app need before you can submit it to the slack marketplace",
+      "should_trigger": true
+    },
+    {
+      "query": "We're a dev tools startup and want our Slack bot listed in the Slack App Directory before our launch in 6 weeks. What's the review timeline and what will they reject?",
+      "should_trigger": true
+    },
+    {
+      "query": "our slack app is published, we need to add the files:read scope for a new feature. what does slack's re-review need from us?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it worth getting our Slack integration listed, or can we keep distributing it with the Add to Slack button? Heard something about rate limits on conversations.history",
+      "should_trigger": true
+    },
+    {
+      "query": "Fill out the Security & Compliance section for our Slack app submission: we use Claude via AWS Bedrock in us-east-1 and keep data 30 days",
+      "should_trigger": true
+    },
+    {
+      "query": "Slack emailed us that our app may be delisted because of uninstalls and slow support replies. What do we do?",
+      "should_trigger": true
+    },
+    {
+      "query": "bot token vs user token for our slack app - reviewer says we're using user scopes unnecessarily",
+      "should_trigger": true
+    },
+    {
+      "query": "Can we list a Slack app whose main feature is connecting our MCP server to Slackbot?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our SaaS wants into the Slack Marketplace. Walk me through the landing page, support page and privacy policy Slack requires.",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to get the Slack app approved and also sell it through AgentExchange - where do we start on the Slack side?",
+      "should_trigger": true
+    },
+    {
+      "query": "Prep our Slack app resubmission: reviewers couldn't install it and asked for test accounts",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Slack Marketplace listing gets few installs. Rewrite the short description and reorder the screenshots to convert better.",
+      "should_trigger": false
+    },
+    {
+      "query": "We're launching our own integrations marketplace. Design the review and approval process for third-party apps, including permission audits.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the OAuth scopes and consent screen for our public API so partners' apps can read invoices.",
+      "should_trigger": false
+    },
+    {
+      "query": "Help me pass the Salesforce AppExchange security review for our managed package.",
+      "should_trigger": false
+    },
+    {
+      "query": "We're publishing our Zapier integration. What does Zapier's review check before we leave beta?",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a Bolt for Python handler that responds to a slash command with a modal.",
+      "should_trigger": false
+    },
+    {
+      "query": "We're starting a Slack community for our open-source users. How should we structure channels and moderation?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our internal Slack bot keeps getting ratelimited on conversations.history. How do we page through channel history faster?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the MCP server for our product: which tools to expose and how to keep write tools safe.",
+      "should_trigger": false
+    },
+    {
+      "query": "Submit our Microsoft Teams app to AppSource and pass Teams store validation.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the listing rubric our marketplace uses to reject low-quality third-party listings.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our security team has to approve a vendor's Slack app. Walk me through its Security & Compliance tab and whether we should allow it.",
+      "should_trigger": false
+    },
+    {
+      "query": "can we just give customers our app manifest so each one creates their own internal Slack app and we skip the marketplace and the rate limits?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Slack app vanished from a customer's workspace after the person who installed it left the company. Why?",
+      "should_trigger": false
+    }
+  ]
+}
