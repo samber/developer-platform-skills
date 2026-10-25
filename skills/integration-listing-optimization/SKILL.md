@@ -1,10 +1,10 @@
 ---
 name: integration-listing-optimization
-description: Optimize a B2B SaaS vendor's own listing on a third-party app marketplace - Salesforce AppExchange, HubSpot, Atlassian Marketplace, Shopify App Store, Slack, or comparable directories. Covers the view-to-install funnel, keyword placement in title and tagline, screenshot and demo-video ordering, category choice, compliant review-velocity programs (incentivized reviews are banned everywhere), badge pursuit ranked by confirmed ranking effect, and defending rank against listing decay. Use whenever the user mentions AppExchange, marketplace listing conversion, marketplace search rank, app installs, or app reviews - even if they never say "listing optimization". Do NOT use for the operator's own rulebook - use samber/developer-platform-skills@app-marketplace-listing-standards instead.
+description: Optimize a B2B SaaS vendor's own listing on a third-party app marketplace - Salesforce AppExchange, HubSpot, Atlassian Marketplace, Shopify App Store, Slack, or comparable directories. Covers the view-to-install funnel, keyword placement in title and tagline, screenshot and demo-video ordering, category choice, compliant review-velocity programs (incentivized reviews are banned everywhere), badge pursuit ranked by confirmed ranking effect, and defending rank against listing decay. Use whenever the user mentions AppExchange, marketplace listing conversion, marketplace search rank, app installs, or app reviews - even if they never say "listing optimization". Do NOT use for the operator's own rulebook - use samber/developer-platform-skills@app-marketplace-listing-standards instead; for AppExchange packaging or security review, samber/developer-platform-skills@salesforce-appexchange-playbook.
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # Integration Listing Optimization
@@ -185,3 +185,4 @@ See also, same collection:
 - `samber/developer-platform-skills@integration-partnership-strategy` - which ecosystems deserve a listing investment at all; run it first when the marketplace portfolio itself is still open.
 - `samber/developer-platform-skills@etl-connector-strategy` - the same submitter posture specialized to ETL/ELT platforms, where certification and connector maintenance dominate the listing work.
 - `samber/developer-platform-skills@zapier-integration-playbook` - the Zapier-specific playbook: trigger design, review checks, beta, templates, embed and versioning on that one platform.
+- `samber/developer-platform-skills@salesforce-appexchange-playbook` - the AppExchange-specific playbook: listing type, managed packaging, security review, PADA and payment path behind the listing this skill optimizes.
