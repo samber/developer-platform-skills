@@ -4,7 +4,7 @@ description: Design the test/sandbox mode of a public API platform so external i
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # API Test Mode Design
@@ -71,7 +71,7 @@ Two orthogonal questions get conflated as "have a test mode": _whether_ test dat
 - effort: `hard separate-copy > soft toggle > no test mode`
 - value: `hard separate-copy > soft toggle > no test mode`
 
-- **Default rung: the soft toggle.** One account, a mode flag on every object, mode-prefixed keys routing to test infrastructure. Test data stays invisible to live calls and vice versa. Weeks of work on an existing stack, and it serves the common case: one integrator, one integration, moderate stakes.
+- **Default rung: the soft toggle.** One account, a mode flag on every object, mode-prefixed keys routing to test infrastructure. Test data stays invisible to live calls and vice versa. A week or two of work on an existing stack, most of it testing that nothing crosses modes, and it serves the common case: one integrator, one integration, moderate stakes.
 - **Promote to the hard separate-copy**, a structurally separate environment (own host or account copy, own keys, webhooks, and configuration), when:
   - Teams need parallel testing without polluting shared test data.
   - The compliance regime demands demonstrable isolation.
@@ -99,7 +99,7 @@ The sandbox's core deliverable is determinism: an integrator must be able to sum
 - effort: `config-driven fixture builder > on-demand simulation endpoints > magic values`
 - value: `config-driven fixture builder > on-demand simulation endpoints > magic values`
 
-- **Default rung: magic values.** A documented fake input deterministically selects an outcome. Days of work per outcome family, no new API surface, and integrators memorize them.
+- **Default rung: magic values.** A documented fake input deterministically selects an outcome. About a day of work per outcome family, no new API surface, and integrators memorize them.
 
   Design rules:
   - Pick the carrier integrators already type in your domain (see Product domain split above).

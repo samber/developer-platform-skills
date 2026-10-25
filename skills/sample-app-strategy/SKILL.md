@@ -4,7 +4,7 @@ description: Decide a developer platform's sample-code portfolio - which quickst
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Sample App Strategy

@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Public Roadmap Strategy
@@ -42,7 +42,7 @@ This is a strategy decision: interview before proposing anything. Ask one questi
 7. **Feedback today:** voting board, GitHub Discussions category, or none? Who triages it, and how large is the untriaged backlog?
 8. **Deadline, horizon, effort ceiling:** launch date, one-off page or standing practice, product-manager hours per month for upkeep, one-off setup time available, and legal and finance review capacity.
 
-Question 8 exists because the postures in step 2 diverge sharply on upkeep cost and reversibility. As a planning assumption, budget about a quarter hour per public item per monthly review for a horizon roadmap, plus setup measured in days (items, page, disclaimer, sales enablement); replace it with the first month's actual time.
+Question 8 exists because the postures in step 2 diverge sharply on upkeep cost and reversibility. As a planning assumption, budget about a quarter hour per public item per monthly review for a horizon roadmap, plus about a day of drafting and page setup (items, page, disclaimer draft) and the sales enablement sessions on top; replace it with the first month's actual time.
 
 ## Workflow
 

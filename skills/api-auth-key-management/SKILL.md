@@ -4,7 +4,7 @@ description: Design the API-key authentication surface a platform issues to its 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # API Auth & Key Management
@@ -107,8 +107,8 @@ Three rungs, ranked:
 - blast-radius containment: `fine-grained resource scoping > coarse per-key scopes > per-environment key split`
 - efficiency: `per-environment key split > coarse per-key scopes > fine-grained resource scoping`
 
-- **Default rungs - take both bottom rungs together**: one key per service per environment (dev/staging/production), plus a coarse restrictive-by-default scope set (read vs write, per product area). Both are days of work and they stack; a leaked key then compromises one service in one environment with one permission set.
-- **Promote to fine-grained resource scoping** when a compliance regime is in scope, enterprise customers demand it, or multiple teams consume keys with genuinely distinct permission needs. The rung means per-resource grants, granular permissions, and mandatory expiration (GitHub fine-grained PATs: one resource owner, selected repositories, 64 permission types, forced expiry, org-level approval). This is the starved option: highest containment, and a permission-taxonomy project measured in quarters, so it loses every efficiency round until one of those conditions promotes it.
+- **Default rungs - take both bottom rungs together**: one key per service per environment (dev/staging/production), plus a coarse restrictive-by-default scope set (read vs write, per product area). Both are about a day of work, mostly review and testing, and they stack; a leaked key then compromises one service in one environment with one permission set.
+- **Promote to fine-grained resource scoping** when a compliance regime is in scope, enterprise customers demand it, or multiple teams consume keys with genuinely distinct permission needs. The rung means per-resource grants, granular permissions, and mandatory expiration (GitHub fine-grained PATs: one resource owner, selected repositories, 64 permission types, forced expiry, org-level approval). This is the starved option: highest containment, and a permission-taxonomy project measured in months, most of it cross-team taxonomy decisions and consumer migration, so it loses every efficiency round until one of those conditions promotes it.
 - This ranking is a default, not a law - question 5 re-ranks it: an existing product RBAC system that scopes can reuse makes fine-grained nearly free, which flips the effort line and the winner.
 - Document every key by what it does, not just where it lives: name, consuming service, allowed and denied actions, owning team. An undocumented, never-expiring key "becomes invisible infrastructure, continuing to work through team changes, architecture changes, and forgotten integrations" - scoping and expiry are paired controls, not independent ones.
 

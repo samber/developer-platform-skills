@@ -4,7 +4,7 @@ description: Write the listing-content rulebook for the operator of a B2B SaaS a
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # App Marketplace Listing Standards
@@ -149,13 +149,13 @@ Rank by market reach bought per unit of combined operator-plus-vendor effort:
 
 First check question 7: **running no badge program at all is a legitimate architecture, not an oversight** - one of the eight benchmarked operators does exactly that, and its listing UX is still cited as best-in-class, which shows listing quality and certification are independent axes. If badges exist, four display mechanisms, ranked:
 
-- effort (descending): `renewal-linked display currency > off-marketplace promotional badge with brand rulebook > dedicated trust surface > inline badge chip`
+- effort (descending): `off-marketplace promotional badge with brand rulebook > renewal-linked display currency > dedicated trust surface > inline badge chip` - policing brand use across vendor sites is a standing job; the renewal wiring is a one-off integration build
 - buyer trust bought: `renewal-linked display currency > dedicated trust surface > inline badge chip > off-marketplace promotional badge`
 - efficiency: `dedicated trust surface > inline badge chip > renewal-linked display currency > off-marketplace promotional badge`
 
 - **Default rung: a dedicated trust surface** - a listing tab or section physically separate from the marketing copy, stating data-storage location, displaying earned badges, and listing compliance certifications (the benchmarked trust-tab pattern). Pair it with a written currency rule: a lapsed badge comes down, with a stated grace period.
 - **The inline chip** (a badge next to the listing name in search results) is the cheap complement, not a substitute - it asserts trust without the substantiating detail a diligence buyer needs.
-- **Starved option: renewal-linked display currency automation** - badge display wired to the review program's eligibility data so a badge that lapses (a failed recertification, a threshold no longer met) disappears without human intervention. Highest effort, and the only mechanism where displayed badges are guaranteed current; promote it once badges carry quantitative, lapsable thresholds - the benchmarked certification that works this way runs on a rolling renewal cycle.
+- **Starved option: renewal-linked display currency automation** - badge display wired to the review program's eligibility data so a badge that lapses (a failed recertification, a threshold no longer met) disappears without human intervention. Highest effort of the on-listing mechanisms, and the only one where displayed badges are guaranteed current, so it loses the efficiency round to the trust surface and the chip; promote it once badges carry quantitative, lapsable thresholds - the benchmarked certification that works this way runs on a rolling renewal cycle.
 - **The off-marketplace promotional badge** (vendors embed "available on X" on their own sites) is marketing reach, not listing trust; if offered, ship it with a brand-usage rulebook - use as provided, minimum clear space, size parity with competing badges, mandatory link back - because the most detailed benchmarked badge spec is exactly that rulebook.
 
 One hard rule whatever the rung: **never claim or imply an external listing-quality certification.** Targeted research found no ISO-, IAB-, or equivalent external body certifying marketplace listing quality anywhere in the industry - every real program is operator-proprietary. The honest positioning is compositional, named as yours ([references/decay-and-badge-programs.md](references/decay-and-badge-programs.md)):

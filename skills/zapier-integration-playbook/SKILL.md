@@ -13,7 +13,7 @@ description: >-
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Zapier integration playbook
@@ -107,10 +107,10 @@ Efficiency: Zap templates > a template embedded in the launch post and help arti
 | --- | --- | --- | --- |
 | 5-10 Zap templates for the top jobs | ++ | +++ | beta or public, ~2-week review |
 | Template embed in launch post and help article per job | ++ | +++ (minutes) | one public template |
-| Workflow Element in-product | +++ | ++ (hours) | beta or public, a public template, domain allowlist |
+| Workflow Element in-product | +++ | ++ (an hour or two) | beta or public, a public template, domain allowlist |
 | Onboarding, support macros, empty-search fallback | ++ | ++ | none |
 | Newsletter spotlight, featured week, blog flyover | + | ++ | Silver+ (50 active users) |
-| Custom marketplace on the Workflow API | +++ | - (weeks) | engineering capacity |
+| Custom marketplace on the Workflow API | +++ | - (a week) | engineering capacity |
 
 - Submit templates on approval day: every other surface embeds them, and private integrations cannot have any. Anyone can publish templates for your app, and Zapier generates some from usage; yours are the ones you control.
 - Any Zapier embed that produces one signup exits beta the next business day and, with a healthy score and the minimum active users, unlocks the next tier's benefits early. A deadline makes the first public template, embedded in the launch post, the fastest route; add the Workflow Element once templates are public.

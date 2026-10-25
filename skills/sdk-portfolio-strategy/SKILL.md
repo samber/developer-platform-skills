@@ -4,7 +4,7 @@ description: Decide a public API's language-SDK portfolio - which languages get 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # SDK Portfolio Strategy
@@ -108,7 +108,7 @@ The build model is one decision applied portfolio-wide, with at most one flagshi
 
 - **Default rung: a commercial generator driven by the OpenAPI spec.** It removes work an in-house pipeline would only relocate, and multi-language idiomatic output is exactly what it sells. Condition on the spec being a real source of truth (interview answer 2). Fix the spec first if it drifts.
 - **Step down to the free OpenAPI Generator** when procurement rules out vendors, air-gapped generation is required, or the language set is small and the team accepts the maintenance load - its output is widely described as technically correct but non-idiomatic, so budget curation effort. It is fully official-grade: Plaid generates its five official SDKs with it (documented in `plaid/plaid-openapi`) - "official" is a support commitment, not a build method.
-- **The starved option: the handwritten flagship** (or an in-house pipeline, Stripe's path). Highest value, highest standing effort - vendor-order-of-magnitude estimates put hand-maintaining many languages at multiple engineer-years - so it loses every efficiency round. What promotes it: the API is the core product and one language carries the bulk of revenue traffic. Handwrite that one, generate the rest.
+- **The starved option: the handwritten flagship** (or an in-house pipeline, Stripe's path). Highest value, highest standing effort - vendor-order-of-magnitude estimates put hand-maintaining many languages at multiple engineer-years, and the per-language review and release work stays even where writing the code gets faster - so it loses every efficiency round. What promotes it: the API is the core product and one language carries the bulk of revenue traffic. Handwrite that one, generate the rest.
 - Guardrails at every rung: keep the OpenAPI spec - not a vendor DSL - the single source of truth, prefer generators that can run self-hosted, and write the exit plan (who regenerates the SDKs if this vendor disappears?) into the decision record before signing.
 
 This ranking is a default, not a law: re-rank against interview answers 4, 5, and 9. A hard self-host requirement deletes the hosted rung outright rather than demoting it.

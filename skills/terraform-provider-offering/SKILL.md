@@ -4,7 +4,7 @@ description: "Decides whether a SaaS or API platform should ship its own Terrafo
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Terraform Provider Offering

@@ -4,7 +4,7 @@ description: Design a provider-side outbound webhook platform - event taxonomy a
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # Webhook Platform Design
@@ -51,7 +51,7 @@ Decide this before step 1 - it determines whether steps 4-6 are built or merely 
 - control (data residency, custom semantics): `in-house == self-hosted gateway > managed` - both keep event data on your infrastructure; in-house adds custom semantics at much higher cost
 - compliance cost: `managed > self-hosted gateway == in-house` - managed triggers DPA and data-residency review, and reversing it later means re-papering contracts and migrating live endpoints; the other two keep event data on your own infrastructure equally
 - efficiency: `managed > self-hosted gateway > in-house`
-- **Default rung: managed sending infrastructure**, when webhooks are a feature of your product rather than the product itself - the Svix/Hookdeck/Convoy class of vendor (names are citations, not requirements; evaluate whatever equivalent your ecosystem offers). Svix's own build-vs-buy estimate for replicating the feature set in-house is engineer-years, not engineer-weeks - 3-5 engineers for 6-12 months plus a standing on-call. Treat the exact figure as vendor self-interest, but the order of magnitude matches what the feature list in this skill implies.
+- **Default rung: managed sending infrastructure**, when webhooks are a feature of your product rather than the product itself - the Svix/Hookdeck/Convoy class of vendor (names are citations, not requirements; evaluate whatever equivalent your ecosystem offers). Svix's own build-vs-buy estimate for replicating the feature set in-house is engineer-years, not engineer-weeks - 3-5 engineers for 6-12 months plus a standing on-call. Treat the exact figure as vendor self-interest: the build itself lands nearer a few engineer-months, most of it review and load testing. The standing on-call does not shrink, and it keeps in-house the costliest rung.
 - **Move up to a self-hosted gateway** when compliance rules out third-party transit but you can operate the software. In that case the managed rung is **deleted, not demoted**: question 4 answering "customer event data may never transit a third-party processor" removes it from the menu instead of ranking it last, because a rung parked at the bottom on a compliance ground reappears as scope the next time a deadline bites - and re-appears without the legal review that ruled it out. Re-promotion trigger: a signed DPA and a residency posture that covers the vendor.
 - **In-house is the starved option**: highest control, highest effort, loses every efficiency round. Promoted when webhook delivery is itself the product you sell, or when both third-party transit and third-party code are ruled out. Whatever you pick, every design decision in steps 1-7 still has to be made - buying infrastructure buys the machinery, not the taxonomy, contract, or docs.
 - This ranking is a default, not a law. Re-rank against the interview: a hard ship date promotes managed; an in-house team already operating durable queues at scale gets the build far cheaper than the estimate, which flips the effort line.

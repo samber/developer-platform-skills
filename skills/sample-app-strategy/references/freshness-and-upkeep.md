@@ -69,10 +69,10 @@ No vendor publishes upkeep hours per sample. Estimate per type in orders of magn
 | Hosted collection        | Spec changes only                                           | near-zero to an hour                        |
 | Tiny quickstart          | One dependency tree, one route                              | an hour                                     |
 | Scenario sample (shared repo) | Shares CI and bot with siblings                        | an hour                                     |
-| Deploy template          | Host platform changes plus dependencies                     | a few hours                                 |
-| Flagship quickstart      | Many products, frontend plus backends                       | a day                                       |
+| Deploy template          | Host platform changes plus dependencies                     | an hour or two                              |
+| Flagship quickstart      | Many products, frontend plus backends                       | half a day                                  |
 | Mobile or device app     | App toolchain, OS releases, store or device changes        | a day or more                               |
 | Embedded playground      | Hosting, sandbox credentials, abuse controls                | a day or more, plus platform cost          |
-| Reference app            | Full dependency tree, infra, security review                | several days                                |
+| Reference app            | Full dependency tree, infra, security review                | a couple of days                            |
 
 Multiply by languages, sum the kept rows, compare with the interview capacity. Recalibrate after the first quarter using the real hours the owner logged.

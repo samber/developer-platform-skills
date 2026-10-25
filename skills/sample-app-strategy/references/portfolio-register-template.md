@@ -32,7 +32,7 @@ One row per repo or top-level sample directory. Fill every cell or write `unknow
 
 ## Worked example
 
-Input: a payments API with 23 sample repos across 8 languages (one checkout repo per language, per-language subscription and webhook repos, a 14-month-stale marketplace reference app, two device apps, a deploy-button starter, a 3DS flow, an API-v1 samples repo, a hackathon demo, a hosted collection); 12 red, one with no CI. SDK tier 1: Node, Python, Java, Go, Android. 60 upkeep hours per quarter, 6-week deadline, standing policy.
+Input: a payments API with 23 sample repos across 8 languages (one checkout repo per language, per-language subscription and webhook repos, a 14-month-stale marketplace reference app, two device apps, a deploy-button starter, a 3DS flow, an API-v1 samples repo, a hackathon demo, a hosted collection); 12 red, one with no CI. SDK tier 1: Node, Python, Java, Go, Android. 40 upkeep hours per quarter, 6-week deadline, standing policy.
 
 Output, condensed:
 
@@ -49,7 +49,7 @@ Output, condensed:
 
 Not served: "start a project", until tickets or API traffic show developers starting new projects on one framework.
 
-Capacity: steady-state upkeep about 48 of 60 hours (self-set estimates). Cleanup about 50 one-off hours, sequenced scans and archives first, payouts scenario before the launch, remaining fixes after.
+Capacity: steady-state upkeep about 32 of 40 hours (self-set estimates). Cleanup about 25 one-off hours, sequenced scans and archives first, payouts scenario before the launch, remaining fixes after.
 
 ## Strategy document template
 

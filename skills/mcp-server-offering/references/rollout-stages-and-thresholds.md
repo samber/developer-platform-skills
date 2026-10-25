@@ -2,7 +2,7 @@
 
 The three-stage plan below is based on named vendor practice - Cloudflare's internal portal is the closest real-world precedent (13 servers in April 2026 → 27 in Aug 2026, every one launched read-only first). The stage-gate numbers are not an industry standard; treat them as calibration defaults and re-baseline against your own first month of telemetry.
 
-## Stage 1 - a credible, safe read-only server (order of weeks)
+## Stage 1 - a credible, safe read-only server (order of a week or two)
 
 - Curate roughly 5-15 workflow-level tools designed top-down from real user jobs, never 1:1 from API endpoints (real-world median across 1,412 servers: 5 tools). Benchmark agent task-completion before and after pruning to this range.
 - Read-only only. Implement OAuth 2.1 with PKCE (S256) and resource indicators from day one on the remote server - this is what passes enterprise security review, and it already puts the server well ahead of the community-server long tail on auth compliance.
@@ -11,7 +11,7 @@ The three-stage plan below is based on named vendor practice - Cloudflare's inte
 
 **Gate to Stage 2**: sustained tool-call volume from real agent clients - explicitly not hackathon or demo spikes - and a tool-error rate under 2%.
 
-## Stage 2 - write tools behind graduated safety (order of a quarter)
+## Stage 2 - write tools behind graduated safety (weeks of build, then production time to clear the gate)
 
 - Adopt a four-tier risk model (Read Only / Minimal Impact / Contained Write / Critical) enforced server-side so it cannot be bypassed by switching clients.
 - Human-in-the-loop approval on every Contained Write tool.

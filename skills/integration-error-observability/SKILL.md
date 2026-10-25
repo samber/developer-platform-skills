@@ -4,7 +4,7 @@ description: Design how a platform surfaces integration failures to the external
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # Integration Error Observability
@@ -89,7 +89,7 @@ Where there are no webhooks, the request log is the default instead.
 
 **Move up to the full request log** - per call: timestamp, endpoint, status code, error code, request ID, and as much of the payload as question 7 permits - as soon as the audit shows synchronous API failures in the ticket pile. This is the rung that covers every integrator segment rather than only the webhook consumers.
 
-**Failure counts alone** are the floor rung: a number per integration with no detail behind it. It is cheap, and worth shipping the same week if nothing exists today. But understand what it buys: it tells a partner something is wrong and gives them no way to act, which converts a silent failure into a support ticket rather than into a fix.
+**Failure counts alone** are the floor rung: a number per integration with no detail behind it. It is cheap, and worth shipping within a day or two if nothing exists today. But understand what it buys: it tells a partner something is wrong and gives them no way to act, which converts a silent failure into a support ticket rather than into a fix.
 
 **The starved option: replay.** Letting an integrator re-send a failed event or re-run a request recovers value no other rung measures - the deflection axis above does not count it. But it carries the highest effort on the menu: idempotency guarantees, a bounded window, and a clear relationship to your own retry schedule. It loses every efficiency round as a result.
 
