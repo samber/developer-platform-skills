@@ -149,10 +149,11 @@ This collection covers the full developer-platform surface.
 - [`developer-portal-design`](./skills/developer-portal-design): Designs an external developer portal: information architecture, the signup-to-first-call path, self-service surface placement, search, RBAC, and build-vs-buy.
 - [`sample-app-strategy`](./skills/sample-app-strategy): Decides the sample-code portfolio: which quickstart repos, reference apps, templates and playgrounds exist, per developer job and language, with owners, CI-tested freshness, and archive rules.
 
-### Status and incident communication
+### Status, incidents and integration health
 
 - [`api-status-communication`](./skills/api-status-communication): Designs how an API platform tells consumers what is happening: status-page modeling, incident cadence, public postmortems, and SLA reporting.
 - [`integration-error-observability`](./skills/integration-error-observability): Designs how a platform surfaces integration failures to external developers: delivery logs, correlation IDs, error-rate aggregation, and notification posture.
+- [`integration-health-monitoring`](./skills/integration-health-monitoring): Finds deployed integrations that will break on a known date, reaches their owners, and gates the sunset on a per-integration readiness check.
 
 ### Integration partnerships
 

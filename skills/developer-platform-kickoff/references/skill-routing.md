@@ -191,6 +191,11 @@ Both kinds are collected under Boundary pairs below.
 - Route here: "build a developer-facing error dashboard", exposing request logs to integrators, correlation IDs that survive into a support ticket, alerting partners when their integration breaks, "cut integration support tickets".
 - Do not route here: platform-wide incident comms (`api-status-communication`), webhook delivery mechanics, the shape of a single error response.
 
+### `samber/developer-platform-skills@integration-health-monitoring`
+
+- Route here: version drift across deployed integrations, who still calls a deprecated endpoint or auth method, partners on old API or SDK versions, webhook endpoints on a retiring payload version, expiring or dormant integration credentials, chasing owners before a sunset, brownout scheduling, "is it safe to turn v1 off".
+- Do not route here: live error dashboards and error-rate alerts (`integration-error-observability`), writing the deprecation policy, notice windows or headers (`api-versioning-policy`), key expiry and rotation design (`api-auth-key-management`), migrating your own code off another vendor's deprecated API.
+
 ### `samber/developer-platform-skills@api-status-communication`
 
 - Route here: designing or auditing a status page, writing incident updates or a public postmortem, uptime and SLA reporting, announcing planned maintenance.
@@ -308,6 +313,8 @@ Where two or more siblings collide on keywords, decide from these declared-scope
   - One response body an integrator receives → api-error-design. "Our error messages are useless" routes here.
   - One integration's history, aggregated and replayable, visible to the integrator who built it → integration-error-observability. "Partners don't know their integration is broken" routes here.
   - The whole platform's health, visible to everyone at once → api-status-communication. "Customers didn't know we were down" routes here.
+- **integration-error-observability vs integration-health-monitoring** - split by tense. An integration failing now, seen in errors, logs and alerts → error-observability. An integration working today that a dated change will break - a sunset, an SDK end of life, a credential expiry → health-monitoring. "Partners don't know their integration is broken" routes to the first; "partners don't know their integration will break on March 31" routes to the second.
+- **api-versioning-policy vs integration-health-monitoring** - the policy sets notice windows, headers and enforcement style once; health-monitoring runs that policy integration by integration - census, outreach, brownouts, readiness gate. Pulling a published date earlier is a policy change and goes back to the policy.
 - **sql-jdbc-access-design vs bulk-data-sharing-design vs etl-connector-strategy** - three ways to give customers the data, split by who runs the pipe:
   - You expose a live queryable endpoint or share → SQL/JDBC.
   - You deliver files or a lake share on a cadence → bulk sharing.
@@ -345,6 +352,7 @@ Propose a chain only when the task genuinely decomposes this way; never fabricat
 - `integration-partnership-strategy` → `etl-connector-strategy` or `integration-listing-optimization` - the prioritization decides which platform is worth the connector or listing. Building either first pays a maintenance tax for a platform nobody's customers use.
 - `public-api-design-review` → `api-idempotency-retry` → `terraform-provider-offering` - the provider's readiness gate fails on non-idempotent creates and fields never read back; fix the contract before mapping it to resources, or every gap ships as a perpetual diff.
 - `webhook-platform-design` → `integration-error-observability` - delivery logs and replay are the debugging surface for the deliveries the first link creates.
+- `api-versioning-policy` → `integration-health-monitoring` → `integration-error-observability` - set the notice and enforcement rules, run them per integration until the gate passes, then catch the callers the census missed as errors after cutoff.
 - `public-api-design-review` → `api-beta-program` → `api-versioning-policy` - review the new surface at beta level, run the preview that freezes its shape, then put the GA surface under the compatibility promise. Enrolling partners before the review freezes an unreviewed shape.
 
 ## Sibling-repo recommendations
