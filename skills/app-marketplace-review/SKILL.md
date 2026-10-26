@@ -4,7 +4,7 @@ description: Design the operator-side review and approval process for third-part
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # App Marketplace Review
@@ -163,12 +163,12 @@ An appeal path is a deliberate design choice: six of the eight benchmarked marke
 
 - effort (descending): `dashboard-integrated appeal > defined human-reviewed appeal > escalation channel > fix-and-resubmit only`
 - developer churn and regulatory exposure reduced: `dashboard-integrated appeal > defined human-reviewed appeal > escalation channel > fix-and-resubmit only`
-- efficiency: `defined human-reviewed appeal > escalation channel > dashboard-integrated appeal > fix-and-resubmit only`
+- efficiency: `defined human-reviewed appeal > dashboard-integrated appeal > escalation channel > fix-and-resubmit only`
 
 - **Default rung: a defined, human-reviewed appeal with a stated turnaround**, explicitly distinct from resubmission - a named process where a human who did not make the original decision reviews the case (Shopify states this guarantee in writing). Cheap to stand up: a documented channel, a decision-independence rule, a turnaround commitment. Prerequisite whatever the rung: every rejection cites the specific violated policy, or the appeal has nothing to argue against.
 - **Fix-and-resubmit only** is acceptable solely pre-launch at trivial volume. If chosen, write the promotion date into the document.
 - **Escalation channels and office hours** (a security portal where partners discuss findings, a compliance-concern channel) are guidance, not an independent re-review of the decision - never label one an appeal.
-- **Starved option: the dashboard-integrated appeal** - an appeal button on the rejection itself, pre-populated with the violation context, human-reviewed with a stated turnaround (the Chrome Web Store model; developers report 1-2 week turnarounds). Highest build effort, so it loses the efficiency round. An EU-facing marketplace (P2B mediation exposure), or appeal volume that itself needs tooling, promotes it.
+- **Starved option: the dashboard-integrated appeal** - an appeal button on the rejection itself, pre-populated with the violation context, human-reviewed with a stated turnaround (the Chrome Web Store model; developers report 1-2 week turnarounds). Highest build effort, but the button-and-prefill build is small next to the human review it wraps, so it loses the efficiency round only to the defined appeal and still beats an escalation channel that re-reviews nothing. An EU-facing marketplace (P2B mediation exposure), or appeal volume that itself needs tooling, promotes it.
 
 ## 6. Revocation and post-approval enforcement
 

@@ -63,13 +63,13 @@ Decision: transfer-adopt when 1-5 mostly pass and the maintainer cooperates; for
 Week  Track A (provider)                        Track B (API and release)                 Decision point
 1     audit community provider, fill gate        API asks filed for every FAIL row          D1: path chosen (step 1)
       matrix and resource map
-2-3   scaffold, provider config, first resource  signing key, GoReleaser, both registries
+2     scaffold, provider config, first resource  signing key, GoReleaser, both registries
                                                  rehearsed with a snapshot build
-4-6   remaining core resources, data sources     sandbox account, sweepers, nightly CI      D2: cut list - objects still FAIL move out
-7     upgrade tests (from community address      docs generated, upgrade guide drafted
+3-4   remaining core resources, data sources     sandbox account, sweepers, nightly CI      D2: cut list - objects still FAIL move out
+5     upgrade tests (from community address      docs generated, upgrade guide drafted
       if adopting), import config generation
-8     prerelease tag, early-customer trial       OpenTofu provider and key submitted        D3: go / slip
-9-10  fixes from trial                           1.0.0 or 0.x tag, announcement
+6     prerelease tag, early-customer trial       OpenTofu provider and key submitted        D3: go / slip
+7-8   fixes from trial                           1.0.0 or 0.x tag, announcement
 ```
 
 - Pick `0.x` for the first release when the resource map is still moving; promise compatibility from `1.0.0`.

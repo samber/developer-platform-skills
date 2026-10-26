@@ -4,7 +4,7 @@ description: "Designs the provider-side pipeline that turns contract diffs of an
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # API Changelog Automation
@@ -46,12 +46,12 @@ Pick which rungs to build before the workflow; steps 6-7 run only when the chose
 
 | Rung | You do | You get | Effort |
 | --- | --- | --- | --- |
-| PR gate | Diff vs merge base, fail on `err`, severity map | Accidental breaks stopped before merge | An afternoon |
-| Release diff + declared channel | Diff vs last release, PR question, fragments | A complete record of what shipped, incl. behavior changes | A day plus a habit |
-| Approval record | Acknowledgement rows with fingerprint, approver, link | Audit trail; entry text for every accepted break | Hours, then per-break minutes |
-| Feed | JSON + Atom with stable ids, per version | Monitoring pipelines and agents consume changes | A day or two |
-| Usage-aware classification | Operation-level telemetry feeding the gate | Fewer false alarms; safe removal of deprecated elements | A week, needs telemetry |
-| Version-derived changelog | Each breaking change as a version-change record in code | Entries written at the change, impossible to omit | A quarter; only with per-version transformation |
+| PR gate | Diff vs merge base, fail on `err`, severity map | Accidental breaks stopped before merge | An hour or two, mostly reviewing the severity map |
+| Release diff + declared channel | Diff vs last release, PR question, fragments | A complete record of what shipped, incl. behavior changes | Half a day plus a habit |
+| Approval record | Acknowledgement rows with fingerprint, approver, link | Audit trail; entry text for every accepted break | A few hours, then per-break minutes |
+| Feed | JSON + Atom with stable ids, per version | Monitoring pipelines and agents consume changes | About a day |
+| Usage-aware classification | Operation-level telemetry feeding the gate | Fewer false alarms; safe removal of deprecated elements | A day or two, needs telemetry |
+| Version-derived changelog | Each breaking change as a version-change record in code | Entries written at the change, impossible to omit | Weeks; only with per-version transformation |
 
 - **Default:** PR gate plus release diff and declared channel. Add the approval record once the first accepted break lands.
 - **What the order starves:** the version-derived changelog loses every efficiency round. Promote it when the platform already runs date-based, per-account versioning with response transformers (Stripe's pattern); there it costs a documentation field on records you already write.

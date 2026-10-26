@@ -4,7 +4,7 @@ description: Design the OAuth2 authorization-server surface a B2B SaaS offers th
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.2"
+  version: "1.0.3"
 ---
 
 # OAuth2 Provider Design
@@ -87,7 +87,7 @@ Two granularity rungs, ranked - the broad catch-all scope is deleted below, not 
 
 - blast-radius containment: `fine-grained per-resource permissions > resource:action scopes`
 - integrating developer's effort: `fine-grained > resource:action` (more decisions per install)
-- provider effort: `fine-grained > resource:action` (a permission taxonomy is a quarters-long project)
+- provider effort: `fine-grained > resource:action` (a permission taxonomy is weeks of mapping and enforcement work, then a long migration)
 - efficiency: `resource:action > fine-grained`
 
 - **Default rung: `resource:action` naming with a read/write split and read-only defaults** - the dominant idiom across Slack, Microsoft Graph, and Stripe Connect (provider docs; comparison table in [references/scope-taxonomy-archetypes.md](references/scope-taxonomy-archetypes.md)). Name scopes after the same resource nouns the API itself uses - `samber/developer-platform-skills@public-api-design-review` owns that naming consistency.

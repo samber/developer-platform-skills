@@ -4,7 +4,7 @@ description: Design a SaaS product's MCP server as a product surface AI agents o
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.1.2"
+  version: "1.1.3"
 ---
 
 # MCP Server Offering
@@ -67,7 +67,7 @@ The honest baseline: for most B2B SaaS vendors an MCP server is defensive positi
 - Only 11-14% of enterprise agentic pilots reach production, and they stall on exactly the identity, audit, and access-control gaps steps 3-4 close.
 
 - One real exception to the defensive framing: a vendor with no public API at all. Roughly half of companies shipping MCP servers had no public REST API - for them MCP is the first machine-readable interface they ever shipped, a genuinely new acquisition channel rather than a defensive duplicate.
-- Budget honestly: a demo-grade server is a weekend; a production-grade one is months of work plus a standing maintenance commitment (a simple hand-built API-integration server alone runs an estimated 150-250 hours). This gap is what the hosting menu in step 4 prices.
+- Budget honestly: a demo-grade server takes hours; a production-grade one is weeks of work, most of it security review and testing, plus a standing maintenance commitment (a simple hand-built API-integration server alone runs an estimated 150-250 hours). This gap is what the hosting menu in step 4 prices.
 - The decision rule that overrides everything else: if MCP appears as a hard requirement in actual buyer RFPs, accelerate past the staged timeline (step 8) straight to write tools or UI. Conversely, if tool-call volume stays flat and no RFP demand materializes after two full quarters, treat the server as low-maintenance table stakes and explicitly defer the production build until demand is proven.
 
 Ground every business case in [references/evidence-and-do-not-cite.md](references/evidence-and-do-not-cite.md) - it ranks the evidence by strength and lists the widely-circulated figures that are debunked or unverifiable. Citing one of those poisons the whole case.
@@ -148,7 +148,7 @@ Six named patterns, each proven by a specific vendor, detailed in [references/wr
 - effort: `risk-tiered policy gates > human-in-the-loop approval > dry-run preflight > idempotency + spend caps > scoped credentials == read-only separation`
 - efficiency (protection per unit of effort): `scoped credentials == read-only separation > risk-tiered policy gates > idempotency + spend caps > dry-run preflight > human-in-the-loop approval`
 
-Human-in-the-loop approval sits second on effort even though building it is a day's work: its real cost is the standing human attention it consumes on every gated call, forever - which is exactly right for the calls that deserve it and unaffordable everywhere else. The scoped-credentials / read-only-separation tie is genuine on all three axes: both are server-side enforcement invisible to a well-behaved agent, both are configuration on the credential model rather than new machinery, and read-only separation is just scoped credentials taken to the extreme.
+Human-in-the-loop approval sits second on effort even though building it is a few hours' work: its real cost is the standing human attention it consumes on every gated call, forever - which is exactly right for the calls that deserve it and unaffordable everywhere else. The scoped-credentials / read-only-separation tie is genuine on all three axes: both are server-side enforcement invisible to a well-behaved agent, both are configuration on the credential model rather than new machinery, and read-only separation is just scoped credentials taken to the extreme.
 
 - **Default rung**: scoped credentials plus a verified read-only mode from day one; human-in-the-loop approval on every contained write; irreversible or deployment-triggering tools disabled by default. The two top-efficiency patterns carry that combination, and approval is affordable alongside them only because early write volume is low - the condition that expires, and the one that promotes the starved option below.
 - **Starved option**: risk-tiered server-side policy gates (classify every call as Read Only / Minimal Impact / Contained Write / Critical, then pass, enrich with agent attribution plus async audit, or block before the handler runs). Highest protection and highest build effort at once, so the efficiency order never puts it first and it keeps getting deferred - promote it anyway the moment background agents run unattended, write volume grows past what humans can approve, or the first write incident lands. The vendor that built it did so after an unattended agent closed thousands of tickets.
@@ -167,7 +167,7 @@ Three hosting postures, ranked:
 The value tie is genuine: the agent client sees the same OAuth-protected endpoint either way - hosting is invisible to the buyer until a custom server-side policy layer or residency constraint appears, which is precisely the promotion condition.
 
 - **Default rung: remote managed platform.** The protocol shipped four backward-incompatible revisions in its first twenty months; a managed platform absorbs that churn plus the mandatory OAuth machinery, and the economics tilt further toward managed once a few enterprise integrations exist. A hard deadline from question 6 reinforces this rung.
-- **Starved option: self-hosted remote.** Highest control and highest effort - months to production-grade plus standing maintenance. Promoted when the MCP server _is_ the product (vertical SaaS, proprietary dataset, regulated workflow - agent access is what customers pay for), when a custom risk-tier policy layer from step 3 must run in your own infrastructure, or when existing multi-tenant edge infrastructure flips the effort line.
+- **Starved option: self-hosted remote.** Highest control and highest effort - weeks to production-grade plus standing maintenance. Promoted when the MCP server _is_ the product (vertical SaaS, proprietary dataset, regulated workflow - agent access is what customers pay for), when a custom risk-tier policy layer from step 3 must run in your own infrastructure, or when existing multi-tenant edge infrastructure flips the effort line.
 - **Step down to local stdio** for developer-tool products operating on the user's own files and processes: single client, near-zero hosting effort, environment-variable credentials, and explicitly exempt from the OAuth requirements below. Rule it out entirely - not just demote it - when the audience is enterprise agent fleets, which consume hosted endpoints.
 - This ranking is a default, not a law; re-rank against questions 4-6.
 
