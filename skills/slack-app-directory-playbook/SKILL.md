@@ -55,7 +55,7 @@ Re-rank the install-gate menu against answer 3 and say which answer moved it. A 
 
 ## Route by stage
 
-- **Building** → Eligibility, Scopes, Submission packet, Review stages and timeline.
+- **Building** → Eligibility, Environments as code, Scopes, Submission packet, Review stages and timeline.
 - **Unlisted pilot** → the same four, starting with the install count.
 - **Submitted or returned** → Review stages and timeline; fix every point before resubmitting.
 - **Listed** → Changes after listing, Keep the listing, Visibility.
@@ -76,6 +76,19 @@ Check the idea against Slack's unsuitable list before building anything else. Re
 An app whose only feature is an MCP server for Slackbot can list, with `mcp:connect` required, when its tools deliver meaningful work inside Slackbot conversations. A thin, vaguely described or failing tool set is what Slack rejects.
 
 Clear the install gate by ranked efficiency, highest first: existing customers already asking for Slack, as an unlisted pilot > design partners recruited for the pilot > staff or partner teams on their own paid workspaces. Sandboxes never count; never rely on your own build or test workspaces, since reviewers expect the app proven where it was not built. A launch inside three months promotes design-partner recruiting to start this week. Pilot installs of history-reading features run at the unlisted rate limit: drive them from events, or warn pilot customers.
+
+## Environments as code
+
+Keep the app manifest in your repository and apply it with `apps.manifest.update` or the Slack CLI. Never edit app settings by hand: one templated file rebuilds dev and staging apps identical to production.
+
+1. Keep one manifest template. Change only these per environment: display name, slash commands (`/acme-dev`, so two apps can share one workspace), and the redirect, request and event URLs.
+2. Create three apps from it:
+   - `<app>-dev`: distribution off, so it installs only in your development workspace or a developer sandbox.
+   - `<app>-staging`: distribution on, never listed. Send its install link only to reviewers and pilot testers.
+   - production.
+3. Give each app its own signing secret, client secret and token store. Never share tokens between environments.
+4. Apply manifests from CI with an app configuration token. It expires after 12 hours†: rotate it with `tooling.tokens.rotate` and store the refresh token.
+5. Before every resubmission, diff the template against the live app (`apps.manifest.export`). That diff is the change list reviewers test.
 
 ## Scopes
 
@@ -109,7 +122,7 @@ Assemble it from [references/submission-packet.md](references/submission-packet.
 The live app is locked: configuration, features and scopes change only through a resubmission.
 
 - Display info, pricing, languages and existing URLs: resubmit, no demo needed.
-- New features or scopes, rewrites included: resubmit with a video and a staging app cloned from the published manifest (`<app>-staging`) reviewers can install. The live listing stays up meanwhile.
+- New features or scopes, rewrites included: resubmit with a video and the staging app from Environments as code, which reviewers can install. The live listing stays up meanwhile.
 - Never put an unreviewed scope in the live install URL: installs fail. After approval, update the OAuth URL and ask existing workspaces to reinstall through App Home or a message.
 - Irreversible switches:
   - token rotation: refresh within 12 hours†, persist each new refresh token, enable it on the staging app first;
