@@ -80,7 +80,7 @@ For an inherited integration, audit against this list first and classify each fi
 
 ## Build
 
-Zapier's Platform UI suits a small integration a non-engineer maintains; choose the CLI when the integration needs source control, CI tests, middleware, custom auth or canary releases. Moving UI → CLI is a `convert`; CLI → UI is a manual rebuild users cannot migrate to. For the code-level API, read [references/cli-build.md](references/cli-build.md).
+Default to the CLI: the integration lives as code, so a private staging integration is one `register` away and stays identical to production. Keep the Platform UI only for a small integration that a non-engineer maintains and that needs no staging copy. Moving UI → CLI is a `convert`; CLI → UI is a manual rebuild users cannot migrate to. For the code-level API, read [references/cli-build.md](references/cli-build.md).
 
 1. Scaffold with `zapier-platform init`, `register` the integration, pin `zapier-platform-core` exactly in `package.json`, keep secrets in per-version environment variables.
 2. Write `authentication` with a cheap `test` call and a connection label; for OAuth2 set `refreshAccessToken` and `autoRefresh`.
@@ -88,6 +88,7 @@ Zapier's Platform UI suits a small integration a non-engineer maintains; choose 
 4. Add input fields (static, dynamic dropdowns, dynamic fields, line items), output fields and a static `sample` per step.
 5. Centralize auth headers and error mapping in `beforeRequest` / `afterResponse`; throw only `z.errors.*`.
 6. Test locally with `zapier-platform invoke` and unit tests with mocked HTTP, then `validate` and `push` a version.
+7. Register a second, private integration (`<App> (Staging)`) from the same code. Keep the `.zapierapprc` that `register` or `link` writes for each integration as a per-environment file, and copy the right one in before `push`. Point the staging integration's environment variables at your staging API. Invite testers with `users:add` or `users:links`, and push and `invoke` there before you push to production. Never promote it: private integrations stay out of the app directory, and Zapier allows one public integration per app.
 
 ## Publish
 
