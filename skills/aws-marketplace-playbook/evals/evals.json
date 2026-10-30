@@ -1,0 +1,332 @@
+{
+  "skill_name": "aws-marketplace-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Ledgerline, a 60-person B2B SaaS for revenue reconciliation. Our app runs on GCP (we moved off AWS two years ago) but our API edge and backups are on AWS. Most of our deals are 2-3 year enterprise contracts at $150k-400k ACV with banks that have big AWS commitments. Our CRO wants us on AWS Marketplace this quarter because 'customers can burn 100% of their EDP with us'. Engineering wants to register with our existing prod AWS account (it's inside our AWS Organization) and start with pay-as-you-go pricing since it's simplest, then switch to contracts later. Can you sanity check the plan and tell me what to do?",
+      "expected_output": "A plan that rejects the 100% drawdown promise because the product is not fully on AWS, recommends a fresh standalone seller account, recommends SaaS contract pricing because the pricing model cannot be switched later, and gives a fit verdict.",
+      "files": [],
+      "expectations": [
+        "States that SaaS not running fully on AWS (application and control plane) does not carry the Deployed on AWS badge and should not be sold as retiring the buyer's EDP/PPA commitment",
+        "Refuses to promise a drawdown percentage and says the share is set in each buyer's private AWS contract (or that AWS publishes no cap figure)",
+        "Mentions that a fully-on-AWS edition or architecture change is the route to the badge",
+        "Recommends a new standalone AWS account for seller registration rather than the production account",
+        "States that the seller account becomes seller of record and cannot be changed once a product is listed",
+        "Flags the AWS Organizations tax inheritance or legal-entity risk of using an account inside the organization",
+        "States that the SaaS pricing model cannot be changed after publishing (to Limited), so starting with pay-as-you-go and switching later would need a new product",
+        "Recommends SaaS contract (or contract with consumption) pricing to match multi-year enterprise contracts",
+        "Gives an explicit fit verdict (for example list and sell privately without a drawdown promise)",
+        "Marks AWS figures with a verify-before-quoting footnote or dagger",
+        "Includes an irreversible-choice register or equivalent list naming seller account and pricing model with an owner or decision date"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Quick one. Our biggest customer, Harrow Insurance ($380k/yr, contract renews 1 Feb on our normal paper), asked to renew through AWS Marketplace instead so it counts against their AWS spend. We're fully hosted on AWS. We created our SaaS listing last week (our first and only product) and it's sitting in Limited. My AE wants to send them a private offer from the Limited listing on Monday so it's signed before Christmas, with the new term starting 1 Feb and paid quarterly. What fee do we pay and what do I need to set up?",
+      "expected_output": "Explains private offers need a public listing (so request Public first, 7-10 business days), flags the renewal so the 1.5% renewal fee applies, uses a future-dated agreement starting 1 Feb with quarterly installments, and runs the buyer pre-check.",
+      "files": [],
+      "expectations": [
+        "States that private offers require at least one active public listing, so the Limited listing cannot carry the offer",
+        "Tells the user to request Public visibility and cites a Seller Operations review of about 7-10 business days",
+        "Gives a realistic send date counted forward from the public approval rather than accepting Monday",
+        "States the renewal fee is 1.5% rather than the 3% new-deal tier",
+        "Tells the user to mark the offer as a renewal of an existing customer moving to AWS Marketplace (offer purpose)",
+        "Recommends a future-dated agreement with a service start date of 1 February",
+        "Notes that auto-renewal must be off before the future-dated agreement is accepted",
+        "Notes the quarterly installment plan needs the buyer to pay by invoice, not card",
+        "Tells the user to check whether the buyer runs a Private Marketplace and, if so, to extend the offer to the administrator account as well",
+        "Asks for or confirms the buyer's exact 12-digit AWS account ID before sending",
+        "Recommends cancelling any test subscriptions before requesting Public"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Enterprise prospect (Northvale Health) wants to buy our platform through AWS Marketplace but only via their reseller, Corbel Systems, who handles all their software. Deal is $500k list for 3 years. We want to give Corbel a 15% margin. Who pays the AWS fees in this setup? Also our ops lead wants to set up the reseller authorization now with loose terms and tighten them later once we know the deal shape.",
+      "expected_output": "Explains CPPO: ISV issues a selling authorization at a wholesale price, reseller marks up, the tier fee plus 0.5% is computed on the wholesale price and taken from the ISV payout; authorizations cannot be edited later; reseller must be a registered seller.",
+      "files": [],
+      "expectations": [
+        "Names the mechanism as a Channel Partner Private Offer (CPPO) with a selling or resale authorization from the ISV",
+        "States that the ISV sets a wholesale price or discount and the reseller marks it up to the buyer price",
+        "States the CPPO fee is the normal tier plus 0.5%",
+        "States the fee is computed on the wholesale price to the reseller, not the buyer price",
+        "States the fee is deducted from the ISV's payout, not the reseller's",
+        "Computes the fee on a $425k wholesale price at 3.5% (about $14,875) or shows equivalent arithmetic",
+        "Advises pricing the fee into the partner discount rather than absorbing it",
+        "States that a published selling authorization cannot be edited or extended, only deactivated",
+        "Recommends a single-buyer authorization tied to Northvale's account for this negotiated deal",
+        "States the reseller must itself be a registered paid AWS Marketplace seller"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "We listed on AWS Marketplace two months ago and nothing's happened, zero inbound. My VP Sales says AWS reps should be bringing us deals by now. His plan: dump all 120 open opportunities from Salesforce into ACE marked for visibility so AWS sees our pipeline, and apply to ISV Accelerate next week to get their sellers working for us. We've done 1 private offer so far. Does this work?",
+      "expected_output": "Explains that public listings draw little inbound and AWS sellers do not prospect for unknown ISVs; for-visibility-only opportunities do not count; ISV Accelerate thresholds are not met; gives a ranked co-sell ladder with ACE quality submissions as the default rung.",
+      "files": [],
+      "expectations": [
+        "States that a public listing alone generates little inbound and revenue comes from private offers on deals the vendor sources",
+        "States that AWS sellers do not prospect for an unknown ISV",
+        "States that opportunities submitted for visibility only do not count toward ISV Accelerate thresholds or co-sell",
+        "Recommends submitting only opportunities with real net-new AWS consumption instead of the whole CRM",
+        "Lists ISV Accelerate entry thresholds including 5 launched and 15 qualified opportunities in 12 months",
+        "Mentions the Foundational Technical Review (FTR) or Validated status as a prerequisite",
+        "Concludes the company does not yet qualify for ISV Accelerate with one private offer",
+        "Presents co-sell options as an ordered ranking by effort versus deals unblocked",
+        "Names ACE opportunity work as the default rung for now",
+        "Mentions responding to AWS-referred opportunities within 5 business days",
+        "Sets an expectation of roughly 6-12 months before meaningful AWS field engagement",
+        "Recommends linking AWS Partner Central to the Marketplace seller account"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Help. Two AWS Marketplace problems this week. (1) Kestrel Bank says our private offer link shows 'product not available in your private catalog'. We sent it to their account 4411-2290-7718. (2) Our existing customer Pinemoor is mid-way through a 3-year SaaS contract we sold them on Marketplace (paid annually, 2 payments left) and wants 50 more seats now; when we tried a new private offer they got 'You already have an active contract'. Our AE also wants to drop them from 200 to 150 seats on another module at the same time. What do we do?",
+      "expected_output": "For Kestrel, extend the offer to the Private Marketplace administrator account and get the product approved. For Pinemoor, use an agreement-based replacement offer, carry over the two unbilled annual payments, and explain no mid-term downsizing.",
+      "files": [],
+      "expectations": [
+        "Diagnoses the Kestrel error as a Private Marketplace restriction",
+        "Tells the user to extend the offer to the buyer's Private Marketplace administrator (or management) account as well",
+        "Says the buyer's administrator must approve the product in their Private Marketplace",
+        "Recommends an agreement-based (replacement or amendment) offer from the Agreements page for Pinemoor",
+        "States that the replacement cancels the old agreement's unbilled payments",
+        "Tells the user to re-include the two remaining annual payments in the new schedule",
+        "States the replacement takes effect on acceptance and cannot be future-dated",
+        "States contract buyers cannot reduce quantities mid-term; downsizing happens at renewal",
+        "Does not recommend cancelling the contract and reissuing as the first option"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Our CFO has two ideas for AWS Marketplace. First, bump our public listing price by 3% so the Marketplace fee is covered, and take the fee out of the rep's commission on Marketplace deals so it doesn't hit margin. Second, we're raising prices across the board on 1 March and she wants the AWS public price updated the same day for existing public subscribers. Anything wrong with this?",
+      "expected_output": "Rejects grossing up the public price and deducting the fee from commission; explains the 90-day notice before a public price increase takes effect and the 120-day lock; payout timing after collection.",
+      "files": [],
+      "expectations": [
+        "Advises against inflating the public price to recover the fee and keeps the public price at list",
+        "Recommends handling discounts and deal-specific pricing in private offers",
+        "Recommends paying reps the same commission and quota credit on Marketplace deals as direct deals",
+        "Explains that deducting the fee from commission makes reps route deals around Marketplace",
+        "Recommends crediting reps on offer acceptance",
+        "Does not promise that the new price applies to existing public subscribers on 1 March",
+        "States a price increase freezes further pricing updates for at least 90 days",
+        "Advises submitting any price decreases before the increase, or planning the change well ahead of 1 March",
+        "States AWS pays the seller only after collecting from the buyer"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I run a small devtool, a CLI plus hosted dashboard, $29/month per developer, almost all card signups from individual devs and small teams, no sales team. Someone on Twitter said AWS Marketplace is a growth channel because millions of AWS customers browse it. Should I list? I'm on Vercel and Fly.io today.",
+      "expected_output": "A skip-for-now verdict: self-serve card buyers, no AWS-committed enterprise buyers, no one to own offers, off-AWS hosting; explains listings are a procurement rail, not discovery; gives the condition to revisit.",
+      "files": [],
+      "expectations": [
+        "Gives a skip or not-now verdict",
+        "Explains that the listing is a procurement rail rather than a demand or discovery channel",
+        "Cites the absence of enterprise buyers with AWS commitments as a reason",
+        "Notes the product is not hosted on AWS so it would not retire buyer commitments",
+        "Names a concrete condition for revisiting, such as a named enterprise deal asking to buy through AWS",
+        "Does not walk the user through seller registration steps as if listing were recommended",
+        "Mentions the ongoing operational cost (integration, offers, owner) rather than the listing fee alone"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "how do private offers work on AWS Marketplace? we have a $1.2M 3-year deal and the buyer wants to pay through AWS",
+      "should_trigger": true
+    },
+    {
+      "query": "Our biggest customer wants to burn their AWS EDP by renewing with us through the marketplace. We run on Azure. Is that possible?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to get on AWS Marketplace this quarter. What do we need to do as a SaaS vendor, and how long does it take?",
+      "should_trigger": true
+    },
+    {
+      "query": "should our SaaS listing on aws marketplace be contract or subscription pricing? we sell annual seats with overage",
+      "should_trigger": true
+    },
+    {
+      "query": "the buyer insists on purchasing through their reseller, how do I set up a CPPO and who pays the fee",
+      "should_trigger": true
+    },
+    {
+      "query": "What are the ISV Accelerate requirements and is it worth applying now? We have 3 ACE opportunities",
+      "should_trigger": true
+    },
+    {
+      "query": "buyer gets 'You already have an active contract' when accepting our private offer for more seats, what now",
+      "should_trigger": true
+    },
+    {
+      "query": "How do we get AWS sellers to co-sell our product? We just got listed on Marketplace",
+      "should_trigger": true
+    },
+    {
+      "query": "is the Deployed on AWS badge worth re-architecting for? our control plane is on GCP",
+      "should_trigger": true
+    },
+    {
+      "query": "we're a 40-person security startup, enterprise prospects keep asking if they can buy us through their AWS account. what does that involve for us?",
+      "should_trigger": true
+    },
+    {
+      "query": "what's the fee AWS takes on a private offer renewal vs a new deal, and how do I mark an existing customer's renewal",
+      "should_trigger": true
+    },
+    {
+      "query": "Planning our first AWS Marketplace listing: which account should we register with, we have an AWS Organization with 30 accounts",
+      "should_trigger": true
+    },
+    {
+      "query": "Rewrite our AWS Marketplace product description and pick screenshots so we rank higher in marketplace search",
+      "should_trigger": false
+    },
+    {
+      "query": "write the Lambda that calls BatchMeterUsage every hour for our SaaS subscription product, with DynamoDB aggregation",
+      "should_trigger": false
+    },
+    {
+      "query": "We're launching our own app marketplace for partners. How should we bill developers and take a revenue share?",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we pass the Salesforce AppExchange security review for our managed package?",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I publish a transactable SaaS offer on Microsoft's commercial marketplace and get Azure IP co-sell eligible?",
+      "should_trigger": false
+    },
+    {
+      "query": "We're the buyer: how do we negotiate our AWS EDP renewal and get more discount on EC2?",
+      "should_trigger": false
+    },
+    {
+      "query": "As a procurement lead, how do I set up a Private Marketplace in our AWS Organization so teams only buy approved software?",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we invest in a partnership with Snowflake or Databricks first for our data product?",
+      "should_trigger": false
+    },
+    {
+      "query": "Do we need the AWS FTR to get into AWS Partner Solutions Finder as a consulting partner?",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we publish our dataset as a paid data product on AWS Data Exchange?",
+      "should_trigger": false
+    },
+    {
+      "query": "design a partner program with tiers and deal registration for our resellers",
+      "should_trigger": false
+    },
+    {
+      "query": "How should we design our usage-based API pricing and overage tiers on our own website?",
+      "should_trigger": false
+    },
+    {
+      "query": "AWS Marketplace says our SaaS integration was sent back before going public, what do they test exactly?",
+      "should_trigger": true
+    },
+    {
+      "query": "we sell through AWS marketplace and a customer wants Net 90 and quarterly payments on the private offer, can we do that",
+      "should_trigger": true
+    },
+    {
+      "query": "Can I renew a customer on AWS Marketplace with the new term starting when the old contract ends? future dated?",
+      "should_trigger": true
+    },
+    {
+      "query": "our AE wants to send a private offer while we're still in Limited listing status, will that work",
+      "should_trigger": true
+    },
+    {
+      "query": "Distributor wants a resale authorization for our product on AWS Marketplace, what should go in it",
+      "should_trigger": true
+    },
+    {
+      "query": "do aws marketplace purchases count toward a customer's private pricing agreement commitment and how much",
+      "should_trigger": true
+    },
+    {
+      "query": "we got an ACE referral from an AWS rep, what do we do and how fast",
+      "should_trigger": true
+    },
+    {
+      "query": "Should we hide public pricing on our AWS listing and only do private offers?",
+      "should_trigger": true
+    },
+    {
+      "query": "How long from AWS Marketplace seller registration to a live public SaaS listing, realistically? we're a UK company",
+      "should_trigger": true
+    },
+    {
+      "query": "How should we pay our sales reps on deals that close through AWS Marketplace private offers?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it worth doing the AWS FTR before we list?",
+      "should_trigger": true
+    },
+    {
+      "query": "we picked SaaS subscription pricing on AWS marketplace but now sell annual contracts, can we change it?",
+      "should_trigger": true
+    },
+    {
+      "query": "Raising our public price on AWS Marketplace next month, when does it apply to existing subscribers?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our GCP Marketplace listing needs a private offer for a customer with a Google committed spend, how?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our AWS Marketplace listing gets views but few contact requests - rewrite the title, highlights and screenshots",
+      "should_trigger": false
+    },
+    {
+      "query": "We're a reseller. An ISV sent us a resale authorization on AWS Marketplace - how do we build the CPPO, set our markup and pick net terms?",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I register opportunities in ACE as an AWS services partner for migration projects?",
+      "should_trigger": false
+    },
+    {
+      "query": "debug DuplicateRecord errors from BatchMeterUsage in our metering pipeline",
+      "should_trigger": false
+    },
+    {
+      "query": "Help me set up AWS Organizations SCPs and consolidated billing for our 12 accounts",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we build an integration marketplace inside our own product with partner-built connectors?",
+      "should_trigger": false
+    },
+    {
+      "query": "We're the customer: does buying our observability tool through AWS Marketplace count toward our PPA, and how much of it?",
+      "should_trigger": false
+    },
+    {
+      "query": "write a cold email sequence to AWS partner managers asking for intros",
+      "should_trigger": false
+    },
+    {
+      "query": "We're an AWS consulting partner; how do we get Advanced tier and competencies for our services firm?",
+      "should_trigger": false
+    },
+    {
+      "query": "how do I buy a SaaS product through AWS Marketplace with my company's AWS account?",
+      "should_trigger": false
+    },
+    {
+      "query": "List our self-hosted Kubernetes product as a container on AWS Marketplace with hourly plus annual pricing and Helm chart delivery",
+      "should_trigger": false
+    },
+    {
+      "query": "What should our technology partnership tiers look like for integration partners?",
+      "should_trigger": false
+    }
+  ]
+}
