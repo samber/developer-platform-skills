@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that existing subscriptions end at the end of their current billing cycle after delisting",
+        "evidence": "\"Delisting doesn't end subscriptions. Existing subscriptions run to their cycle end.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the app cannot be deleted until the current billing cycle ends",
+        "evidence": "\"Deleting the app is blocked while subscriptions run\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the Developer Agreement's 30 days written notice for removing a listing",
+        "evidence": "\"requires 30 days'\u2020 written notice before removal\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States support obligations to existing buyers continue after delisting",
+        "evidence": "\"Support and security duties continue.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that refund terms are the vendor's responsibility, not GitHub's",
+        "evidence": "\"GitHub refunds nothing... refund pro rata under your own terms.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that annual-plan buyers run until their cycle ends, beyond the end of the month",
+        "evidence": "\"Annual plans can run up to a year\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that deleting the action repository frees the Marketplace name for anyone to claim",
+        "evidence": "\"Deleting frees the Marketplace name for anyone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends delisting the action by unchecking Publish on every published release",
+        "evidence": "\"Uncheck 'Publish this Action to the GitHub Marketplace' on every published release\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends archiving the action repository instead of deleting it",
+        "evidence": "\"Archive it, don't delete it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a dated message to paying customers",
+        "evidence": "\"Email all buyers: shutdown date, service-through date, refund or serve-to-term choice, data deletion date\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that existing subscriptions end at the end of their current billing cycle after delisting",
+        "evidence": "Says subscribers \"keep getting billed until their plans end or are cancelled\"; no cycle-end rule stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the app cannot be deleted until the current billing cycle ends",
+        "evidence": "Says to delete last, as advice, not as a restriction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the Developer Agreement's 30 days written notice for removing a listing",
+        "evidence": "Only generic \"Contracts or ToS may require a minimum notice period (often 30 days or more)\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States support obligations to existing buyers continue after delisting",
+        "evidence": "\"Name a support contact that stays open through the wind-down\"; \"keep the backend and webhook receiver running, and answer support.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that refund terms are the vendor's responsibility, not GitHub's",
+        "evidence": "Says \"GitHub bills these customers, not you\" and asks GitHub Support how they refund; does not assign refunds to the vendor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that annual-plan buyers run until their cycle ends, beyond the end of the month",
+        "evidence": "\"Annual plans are prepaid. Shutting down mid-term means you owe prorated refunds or a service-continuity commitment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that deleting the action repository frees the Marketplace name for anyone to claim",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends delisting the action by unchecking Publish on every published release",
+        "evidence": "Only says \"delist it as well\" without the mechanism.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends archiving the action repository instead of deleting it",
+        "evidence": "\"Update the README, then archive the repo. Archived repos still resolve in `uses:`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a dated message to paying customers",
+        "evidence": "\"State the facts: the shutdown date, the last billing date, refund or proration terms...\" sent to all 60 org owners.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

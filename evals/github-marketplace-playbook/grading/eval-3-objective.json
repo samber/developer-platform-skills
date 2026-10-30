@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the organization profile Verified badge is different from the Marketplace verified creator badge for actions",
+        "evidence": "Table separates \"Org domain badge\" from \"Actions verified creator badge\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the verified creator badge is requested from GitHub partnerships or the Technology Partner Program",
+        "evidence": "\"Technology Partner Program... Then you email partnerships@github.com.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that the customer's 'Allow Marketplace actions by verified creators' policy blocks actions from creators without that badge",
+        "evidence": "The table asks whether each mark passes a \"GitHub and verified creators\" Actions policy; only the creator badge does. It also says \"The customer's policy is working as designed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the workaround that the customer's admin adds an explicit allowlist entry for the action (owner/repo pattern)",
+        "evidence": "\"allowlist your action... `ferrocline/scan-action@*`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that transferring the action repository drops the verified creator badge unless the new owner is a verified creator",
+        "evidence": "\"It drops the verified creator badge unless the new owner is also a verified creator.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a repository transfer keeps the Marketplace listing and a redirect for existing workflows",
+        "evidence": "\"A repository transfer keeps the Marketplace listing and the redirect.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that actions cannot carry a price on GitHub Marketplace",
+        "evidence": "\"Actions carry no pricing on Marketplace.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends monetizing the product the action calls instead of the action",
+        "evidence": "\"sell the product the action calls\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not claim the org Verified badge satisfies the verified-creators Actions policy",
+        "evidence": "Table: domain badge \"No\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not route the user to publisher verification as the fix for the action badge",
+        "evidence": "\"App publisher verification... Does it pass...? No.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the organization profile Verified badge is different from the Marketplace verified creator badge for actions",
+        "evidence": "\"The blue badge on your org profile doesn't make you a verified creator on Marketplace. They are two separate badges.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the verified creator badge is requested from GitHub partnerships or the Technology Partner Program",
+        "evidence": "Says request from \"Marketplace publisher settings or listing\"; no partnerships mention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that the customer's 'Allow Marketplace actions by verified creators' policy blocks actions from creators without that badge",
+        "evidence": "\"It looks at the Marketplace creator badge, so your action gets blocked until that exists.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the workaround that the customer's admin adds an explicit allowlist entry for the action (owner/repo pattern)",
+        "evidence": "\"Add `ferrocline/scan-action@*`\" to the allow list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that transferring the action repository drops the verified creator badge unless the new owner is a verified creator",
+        "evidence": "\"The badge attaches to the creator org, so the new owner starts without it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a repository transfer keeps the Marketplace listing and a redirect for existing workflows",
+        "evidence": "Says \"a Marketplace listing and existing `uses:` references may not follow\" and not to rely on the redirect.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that actions cannot carry a price on GitHub Marketplace",
+        "evidence": "\"Marketplace has no paid plans for Actions\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends monetizing the product the action calls instead of the action",
+        "evidence": "\"Keep the action free and sell the scanner... revenue comes from your own billing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not claim the org Verified badge satisfies the verified-creators Actions policy",
+        "evidence": "Table: org profile Verified, \"Does the customer's policy read it? \u274c No\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not route the user to publisher verification as the fix for the action badge",
+        "evidence": "Fix is a separate Verified creator application plus allowlist entry; publisher verification is tied only to paid App plans.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

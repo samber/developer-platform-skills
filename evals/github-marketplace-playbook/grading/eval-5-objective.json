@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags GitHub's rule against a free-only Marketplace plan for a product sold outside Marketplace as a review or rejection risk",
+        "evidence": "\"One bans them... Free-plan policy risk above.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that 150 installs exceeds the 100-installation paid threshold",
+        "evidence": "\"150 installs is above the 100\u2020 threshold for paid plans.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concludes a Marketplace paid plan would be owed, not a free-only listing",
+        "evidence": "\"I recommend the free listing, with the policy risk accepted\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States paid plans require an organization owner and publisher verification",
+        "evidence": "The paid-plans row lists \"Publisher verification\"; the gates say \"An organization owner creates the listing\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the unlisted public app installed from the vendor's site as the alternative that keeps Stripe billing",
+        "evidence": "Table: \"Unlisted public app... Billing stays on Stripe? Yes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GitHub retired GitHub App-based Copilot Extensions (November 2025)",
+        "evidence": "\"GitHub App-based Copilot Extensions ended on 2025-11-10\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Copilot Extensions Marketplace category no longer exists",
+        "evidence": "\"The category is gone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an MCP server as the replacement for the Copilot Extension",
+        "evidence": "\"Build the AI team's work as an MCP server instead.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions GitHub's 5% fee on Marketplace sales",
+        "evidence": "\"5%\u2020 fee\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the listing options or states a recommended order rather than listing them flat",
+        "evidence": "\"I recommend the free listing... Revisit the paid plan if...\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags GitHub's rule against a free-only Marketplace plan for a product sold outside Marketplace as a review or rejection risk",
+        "evidence": "Only says to \"Check GitHub's rules on off-platform payment\" and calls free-only \"common\"; does not flag a rule against it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that 150 installs exceeds the 100-installation paid threshold",
+        "evidence": "\"150 installs would clear that bar.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concludes a Marketplace paid plan would be owed, not a free-only listing",
+        "evidence": "Recommends \"submit the GitHub App as a free-only listing.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States paid plans require an organization owner and publisher verification",
+        "evidence": "Mentions verified publisher but not the organization owner requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers the unlisted public app installed from the vendor's site as the alternative that keeps Stripe billing",
+        "evidence": "No unlisted-app alternative offered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that GitHub retired GitHub App-based Copilot Extensions (November 2025)",
+        "evidence": "\"GitHub announced the sunset of GitHub-App-based Copilot Extensions in late 2025.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Copilot Extensions Marketplace category no longer exists",
+        "evidence": "Hedged: \"The Copilot listing may not exist\"; asks AI team to confirm.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends an MCP server as the replacement for the Copilot Extension",
+        "evidence": "Only notes the category moved \"toward MCP servers\" and asks what the replacement path is.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions GitHub's 5% fee on Marketplace sales",
+        "evidence": "Only says \"GitHub takes no cut\" for free-only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the listing options or states a recommended order rather than listing them flat",
+        "evidence": "\"Order\" table: App listing first, Copilot second; \"I'm confident in the order (App first)\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that GitHub does not resend failed marketplace_purchase webhook deliveries",
+        "evidence": "\"GitHub never redelivers a failed delivery on its own.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends periodic reconciliation against the list-accounts-for-a-plan endpoint",
+        "evidence": "\"Add a daily sync against `GET /marketplace_listing/plans/{plan_id}/accounts`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that downgrades take effect at the end of the current billing cycle, not at the click",
+        "evidence": "\"The downgrade takes effect at the next cycle, via `changed`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions effective_date as the field that tells when the change applies",
+        "evidence": "\"Read `effective_date`, never the delivery time.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the pending_change event that announces a scheduled downgrade or cancellation",
+        "evidence": "\"A downgrade click produces `pending_change`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GitHub does not uninstall the app when a paid plan is cancelled",
+        "evidence": "\"GitHub does not uninstall the app.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a cancelled paid plan should fall back to the app's free plan",
+        "evidence": "\"a cancelled Team plan means you drop the account to Free.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists cancellation duties: deactivate the account, revoke the OAuth token, delete customer data within 30 days",
+        "evidence": "\"Deactivate the account. Revoke the token. Delete customer data within 30 days\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects testing purchases on the live listing",
+        "evidence": "\"Never test purchases on the live listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a separate public development app with a draft listing for purchase tests",
+        "evidence": "\"Register a second public app... Create a draft listing for it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that purchases on published plans in a draft listing are not charged",
+        "evidence": "\"Published plans in a draft listing can be bought free as simulations.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the Apply Pending Change developer feature (or equivalent) to force pending downgrades during tests",
+        "evidence": "\"Force pending downgrades with 'Apply Pending Change'\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that GitHub does not resend failed marketplace_purchase webhook deliveries",
+        "evidence": "Says webhooks \"can be dropped, duplicated\" and to redeliver manually, but never says GitHub does not retry.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends periodic reconciliation against the list-accounts-for-a-plan endpoint",
+        "evidence": "Recommends reconciling with `GET /marketplace_listing/accounts/{account_id}`, a different endpoint.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that downgrades take effect at the end of the current billing cycle, not at the click",
+        "evidence": "\"GitHub applies downgrades at the end of the billing cycle.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions effective_date as the field that tells when the change applies",
+        "evidence": "\"Store the plan ID, account ID, and `effective_date`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the pending_change event that announces a scheduled downgrade or cancellation",
+        "evidence": "\"The click only produces `pending_change` with a future effective date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GitHub does not uninstall the app when a paid plan is cancelled",
+        "evidence": "\"cancelling a plan does not uninstall the app.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a cancelled paid plan should fall back to the app's free plan",
+        "evidence": "\"move the account to Free (it has a Free plan, so this is probably right)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists cancellation duties: deactivate the account, revoke the OAuth token, delete customer data within 30 days",
+        "evidence": "Only revoke paid entitlements and a retention policy; no OAuth token or 30-day deletion.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects testing purchases on the live listing",
+        "evidence": "\"QA buying Team on the live listing... avoid.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a separate public development app with a draft listing for purchase tests",
+        "evidence": "\"create a separate test app with a draft listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that purchases on published plans in a draft listing are not charged",
+        "evidence": "\"Purchases on a draft listing don't create real transactions or card charges.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the Apply Pending Change developer feature (or equivalent) to force pending downgrades during tests",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

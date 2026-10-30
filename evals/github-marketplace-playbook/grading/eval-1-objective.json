@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the app must be transferred from the personal account to an organization before it can sell on Marketplace",
+        "evidence": "\"Move ownership to an organization... Transfer the app to it (app settings, Advanced).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the organization must pass publisher verification before publishing a paid plan",
+        "evidence": "\"Only an organization that passed publisher verification can sell.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at least two publisher-verification requirements among org-wide 2FA, a verified domain, and a contact email",
+        "evidence": "\"Turn on org-wide 2FA. Verify the company domain. Add a contact email.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that 340 installs clears GitHub's 100-installation minimum for paid GitHub Apps",
+        "evidence": "\"340 installs exceeds the 100\u2020 threshold for requesting paid plans.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GitHub's docs describe per-unit plans as per user but the unit label can be custom (e.g. a bundle of repositories), to confirm with the onboarding expert",
+        "evidence": "\"The docs describe per-unit as per user. The unit label is free text... Confirm with the onboarding expert.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes a repository-bundle unit (such as per 10 repositories) or flat-rate tiers with an in-app cap",
+        "evidence": "\"The fallback is flat tiers, such as 10, 25 or 50 repos.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that every paid plan needs both a monthly and an annual price",
+        "evidence": "It says plans carry both but then hedges: \"I can't confirm... the annual price can be left empty\" and \"Annual plans only matter if GitHub requires them.\" This does not state the requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a published plan's price cannot be edited, only retired and recreated",
+        "evidence": "\"A published price is permanent. You can only retire a plan\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that buyers on a retired plan stay on it until they move and GitHub cannot move them",
+        "evidence": "\"buyers stay on it at its old price until they move. GitHub cannot move them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends testing prices before publishing (draft listing or direct deals) rather than adjusting after launch",
+        "evidence": "\"Test the price first with direct deals or a draft-listing plan.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the app must handle marketplace_purchase events before approval",
+        "evidence": "\"The onboarding expert tests this before approval... handle `marketplace_purchase`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a Setup URL is required for a GitHub App to process Marketplace purchases",
+        "evidence": "\"without it you can't process purchases.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks at least one GitHub-specific figure (threshold, fee or duration) as needing verification against current GitHub docs",
+        "evidence": "\"Figures marked `\u2020` come from the playbook. Check them against current GitHub Marketplace docs\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the app must be transferred from the personal account to an organization before it can sell on Marketplace",
+        "evidence": "Blocker 1: \"The app is on a personal account... A verified organization has to own the app. The cofounder transfers it to the Quaystone org.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the organization must pass publisher verification before publishing a paid plan",
+        "evidence": "Step 2: \"Apply for verified publisher status on the org.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at least two publisher-verification requirements among org-wide 2FA, a verified domain, and a contact email",
+        "evidence": "Step 1 \"Enforce 2FA for all members\"; step 2 \"domain verification and an identity check\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that 340 installs clears GitHub's 100-installation minimum for paid GitHub Apps",
+        "evidence": "\"I recall 100 installs for GitHub Apps. You have 340, so you clear it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GitHub's docs describe per-unit plans as per user but the unit label can be custom (e.g. a bundle of repositories), to confirm with the onboarding expert",
+        "evidence": "Only says \"Unit name: `repository`\"; never notes docs describe per-user units or suggests confirming the label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes a repository-bundle unit (such as per 10 repositories) or flat-rate tiers with an in-app cap",
+        "evidence": "Keeps $12 per single repository; no bundle or flat-tier proposal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that every paid plan needs both a monthly and an annual price",
+        "evidence": "Hedged: \"The form may also ask for a yearly price. If it's required...\" and \"If you can leave it blank, do.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a published plan's price cannot be edited, only retired and recreated",
+        "evidence": "\"you can't edit the price of a published plan. You retire it and create a new one\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that buyers on a retired plan stay on it until they move and GitHub cannot move them",
+        "evidence": "Says \"Existing subscribers stay on the retired plan until you migrate them\" but never says GitHub cannot move them.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends testing prices before publishing (draft listing or direct deals) rather than adjusting after launch",
+        "evidence": "Step 15: \"Review conversion and quantity data after a month\" and adjust after launch; no pre-publish test advice.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the app must handle marketplace_purchase events before approval",
+        "evidence": "Step 6 adds the handler; step 9: \"Test with the Marketplace stubbed endpoints and the purchase webhooks before you submit.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a Setup URL is required for a GitHub App to process Marketplace purchases",
+        "evidence": "Step 8 only says \"Set a setup or redirect URL so a new buyer lands on your onboarding page\"; not stated as required.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks at least one GitHub-specific figure (threshold, fee or duration) as needing verification against current GitHub docs",
+        "evidence": "\"\u26a0\ufe0f I recall 100 installs...\" and \"\u26a0\ufe0f I don't remember GitHub's current revenue share\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
