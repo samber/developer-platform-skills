@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that SaaS not running fully on AWS (application and control plane) does not carry the Deployed on AWS badge and should not be sold as retiring the buyer's EDP/PPA commitment",
+        "evidence": "\"Only products with the Deployed on AWS badge may still retire EDP or PPA commitments... Your edge and backups on AWS don't offset a GCP application plane.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to promise a drawdown percentage and says the share is set in each buyer's private AWS contract (or that AWS publishes no cap figure)",
+        "evidence": "\"the share of a commitment that Marketplace can retire is set in each buyer's private AWS contract. AWS publishes no figure.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a fully-on-AWS edition or architecture change is the route to the badge",
+        "evidence": "\"Treat a fully-on-AWS edition as a separate strategic decision. It is a re-platform\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a new standalone AWS account for seller registration rather than the production account",
+        "evidence": "\"Create a fresh standalone account under the Ledgerline legal entity\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the seller account becomes seller of record and cannot be changed once a product is listed",
+        "evidence": "\"It becomes seller of record forever\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the AWS Organizations tax inheritance or legal-entity risk of using an account inside the organization",
+        "evidence": "\"A member account also inherits the management account's legal entity for tax.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the SaaS pricing model cannot be changed after publishing (to Limited), so starting with pay-as-you-go and switching later would need a new product",
+        "evidence": "\"The model is fixed once the product is published to Limited, so switching later means a new product.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends SaaS contract (or contract with consumption) pricing to match multi-year enterprise contracts",
+        "evidence": "\"use **SaaS contract**. Move to contract with consumption only if overage...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives an explicit fit verdict (for example list and sell privately without a drawdown promise)",
+        "evidence": "\"Fit verdict: Transact, no commit\" and \"Verdict: list, but change three of the four planned decisions.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks AWS figures with a verify-before-quoting footnote or dagger",
+        "evidence": "\"All AWS fees, durations and thresholds marked \u2020 ... Verify them against the current guide before quoting them to anyone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an irreversible-choice register or equivalent list naming seller account and pricing model with an owner or decision date",
+        "evidence": "Table \"Irreversible-choice register\" with Owner / date column: \"Finance + eng lead, before registration (target 2026-11-04)\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that SaaS not running fully on AWS (application and control plane) does not carry the Deployed on AWS badge and should not be sold as retiring the buyer's EDP/PPA commitment",
+        "evidence": "\"Your core app runs on GCP, and an edge plus backups on AWS probably doesn't qualify... stop saying '100%' in sales material.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to promise a drawdown percentage and says the share is set in each buyer's private AWS contract (or that AWS publishes no cap figure)",
+        "evidence": "\"This is not guaranteed... depends on each customer's own contract... Ask each bank for its actual cap.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a fully-on-AWS edition or architecture change is the route to the badge",
+        "evidence": "No mention of an AWS-only edition or re-architecture to earn the badge.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a new standalone AWS account for seller registration rather than the production account",
+        "evidence": "Recommends \"a dedicated member account in your Organization\", not a standalone account.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the seller account becomes seller of record and cannot be changed once a product is listed",
+        "evidence": "Says \"permanent seller account\" but \"Changing it later needs AWS Support and is painful\", which implies it can be changed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the AWS Organizations tax inheritance or legal-entity risk of using an account inside the organization",
+        "evidence": "Not mentioned; it recommends a member account inside the Organization.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the SaaS pricing model cannot be changed after publishing (to Limited), so starting with pay-as-you-go and switching later would need a new product",
+        "evidence": "\"A SaaS pricing model can't be switched in place... 'Switch later' means a new listing, a second integration\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends SaaS contract (or contract with consumption) pricing to match multi-year enterprise contracts",
+        "evidence": "\"Do: build one SaaS contract listing. Sell real deals through private offers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives an explicit fit verdict (for example list and sell privately without a drawdown promise)",
+        "evidence": "\"Don't register the prod account. Don't start with PAYG.\" plus contract listing with private offers and no \"100%\" claim.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks AWS figures with a verify-before-quoting footnote or dagger",
+        "evidence": "\"roughly 3% on SaaS private offers last I knew. Verify the current schedule.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an irreversible-choice register or equivalent list naming seller account and pricing model with an owner or decision date",
+        "evidence": "No register of irreversible choices with owners or dates.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
