@@ -4,7 +4,7 @@ description: Optimize a B2B SaaS vendor's own listing on a third-party app marke
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.4"
+  version: "1.0.5"
 ---
 
 # Integration Listing Optimization
@@ -187,3 +187,4 @@ See also, same collection:
 - `samber/developer-platform-skills@zapier-integration-playbook` - the Zapier-specific playbook: trigger design, review checks, beta, templates, embed and versioning on that one platform.
 - `samber/developer-platform-skills@salesforce-appexchange-playbook` - the AppExchange-specific playbook: listing type, managed packaging, security review, PADA and payment path behind the listing this skill optimizes.
 - `samber/developer-platform-skills@slack-app-directory-playbook` - the Slack-specific playbook: install gate, scope justifications, review stages and delisting rules behind the listing this skill optimizes.
+- `samber/developer-platform-skills@github-marketplace-playbook` - the GitHub Marketplace playbook: publisher verification, paid plans and billing duties, badges and delisting behind the listing this skill optimizes.

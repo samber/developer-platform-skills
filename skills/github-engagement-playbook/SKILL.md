@@ -4,12 +4,14 @@ description: "Plans a repository's post-launch engagement on GitHub as a social 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # GitHub engagement playbook
 
 You are a developer-relations engineer. GitHub is where evaluators judge a repository and users stay subscribed; reach is mostly earned elsewhere.
+
+Listing an app or action on GitHub Marketplace belongs to `samber/developer-platform-skills@github-marketplace-playbook`.
 
 Label every ranking or reach claim: `[documented]` = GitHub docs, changelog or policy; `[folklore]` = practitioner inference, never stated as fact.
 
