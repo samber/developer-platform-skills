@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Uses the most minimal framework per language that shows the platform calls, and adds framework-specific starters only when telemetry shows framework concentration",
+        "evidence": "The plan never says which framework or runtime each language uses, and it never states a 'most minimal framework' rule (for example plain HTTP or Flask rather than a full framework). The only nods to minimalism are that the quickstart has 'one route and no frontend' and is priced at the tiny-quickstart rate. Framework-specific starters are handled loosely: Measurement says the Q1 signals will tell 'whether Java or Go samples, a playground or a framework template are worth adding'. That is gating by data, but it is not tied to telemetry showing framework concentration. The Vercel template ships",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Uses the most minimal framework per language that shows the platform calls, and adds framework-specific starters only when telemetry shows framework concentration",
+        "evidence": "The plan never says which framework the per-language samples use, and never says to keep them minimal. It does add a framework-specific starter, the 'Vercel deploy template (Next.js, reuses the Node samples)'. The justification is language share ('reaches the 48% Node audience') and cheapness compared with the playground. It cites no telemetry showing Next.js or Vercel concentration. Traffic data is used only for language ranking, never for framework choice, so the rubric's condition for adding a framework starter is not met.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Does not refuse the MCP-only plan outright and states that an app whose only feature is an MCP server can list when its tools deliver meaningful work inside Slackbot conversations",
+        "evidence": "\"Eligible. An app whose only feature is an MCP server for Slackbot can list with `mcp:connect` required, if its tools do meaningful work\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that mcp:connect must be required, not optional, when the MCP connection is the app's only function",
+        "evidence": "\"Required, because MCP is the only function\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires human-readable titles and accurate descriptions for every tool instead of one-word descriptions",
+        "evidence": "\"Every tool needs four things: a human-readable title, an accurate description, `readOnlyHint`, and a valid `inputSchema`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires setting the readOnlyHint annotation on every tool and identifies create_alert as a write tool",
+        "evidence": "Table: `create_alert` ... `readOnlyHint` \"false\"; \"It writes to your product\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a valid inputSchema for tools that take parameters",
+        "evidence": "\"a valid `inputSchema`\"; \"Give every parameter a type, a description, an example, and bounds.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires submission notes walking through install, authentication, a tool call and its response, plus a screenshot of a tool in a Slackbot conversation",
+        "evidence": "\"Walk install, authentication, one tool call and its response.\"; \"At least one shows a Lumatrace tool in a Slackbot conversation\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the OAuth redirect https://oauth2.slack.com/external/auth/callback or running Fetch Tools in App Settings before submitting",
+        "evidence": "\"Run **Fetch Tools** in App Settings before submitting.\"; redirect \"https://oauth2.slack.com/external/auth/callback\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that repeated tool failures after listing can switch the app off automatically",
+        "evidence": "\"After listing, repeated tool failures switch the app off automatically.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the active-workspace install threshold as a prerequisite for submitting next month",
+        "evidence": "\"Slack blocks submission below 10 active workspaces\u2020\"; \"Install gate: the submission blocker\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Does not refuse the MCP-only plan outright and states that an app whose only feature is an MCP server can list when its tools deliver meaningful work inside Slackbot conversations",
+        "evidence": "Says \"expect 'insufficient functionality'\" unless a dedicated listing type exists; doesn't state it can list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that mcp:connect must be required, not optional, when the MCP connection is the app's only function",
+        "evidence": "Only \"If mcp:connect is the only one needed, request only that.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires human-readable titles and accurate descriptions for every tool instead of one-word descriptions",
+        "evidence": "\"Add `title`... For each tool, write: what it does...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires setting the readOnlyHint annotation on every tool and identifies create_alert as a write tool",
+        "evidence": "\"`readOnlyHint: true` on the two read tools; `destructiveHint` and `readOnlyHint: false` on `create_alert`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a valid inputSchema for tools that take parameters",
+        "evidence": "\"Add `title` and a strict `inputSchema` with `description` on every field.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires submission notes walking through install, authentication, a tool call and its response, plus a screenshot of a tool in a Slackbot conversation",
+        "evidence": "Lists test workspace, demo video and screenshots, but no walkthrough submission notes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the OAuth redirect https://oauth2.slack.com/external/auth/callback or running Fetch Tools in App Settings before submitting",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that repeated tool failures after listing can switch the app off automatically",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the active-workspace install threshold as a prerequisite for submitting next month",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

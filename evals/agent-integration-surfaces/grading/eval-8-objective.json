@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Deletes the provision-then-claim signup rung because there is no self-serve path",
+        "evidence": "\"F. Provision-then-claim signup | Sales-led with no self-serve path (answer 4)\" in Deleted rungs; \"## 5. Signup path: Deleted.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes rather than parks the rungs the config-only ceiling rules out (credentials, skill plus CLI, MCP, claim flow)",
+        "evidence": "\"### Deleted rungs\" table lists C, D, E, F, agent card with reasons.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps reachability gate fixes inside the 2-week window",
+        "evidence": "\"Days 3-5: fix blocks.\" and \"Days 10-14: re-run the gate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shrinks measurement to edge-log classification under the config-only ceiling",
+        "evidence": "\"Config-only ceiling shrinks A to edge logs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shrinks the docs rung to the Context7 claim or other config-only work",
+        "evidence": "\"B: Context7 claim, docs and pricing markdown\" owned by docs team and CDN admin; config-only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats api-catalog as a background task alongside the public spec, not an agent-readiness milestone",
+        "evidence": "\"background task, not a launch milestone\"; \"G: api-catalog... Background only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend an agent card without an agent endpoint",
+        "evidence": "\"Agent card | The product exposes no agent for other agents to talk to.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States which interview answer moved which rung",
+        "evidence": "\"What moved it\" column: \"Config-only ceiling shrinks A to edge logs\", \"Date (answer 8) keeps only what ships in 2 weeks\", \"Sales-led (answer 4)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names what the efficiency order starves or the condition that would bring a deleted rung back",
+        "evidence": "\"Trigger to revisit\" column, e.g. \"A customer or RFP names MCP, or logs show chat clients calling the API\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents rankings on more than one axis (for example effort, value, efficiency) rather than a single blended list",
+        "evidence": "Only a single ordered rung table (\"# | Rung | Owner | Delegated skill | What moved it\") plus a passing \"Efficiency rank 2\" mention; no separate effort/value/efficiency rankings.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not promise an MCP server within the 2-week window",
+        "evidence": "\"E. MCP server | Needs engineering... The CMO asking for it is not evidence\"; launch wording bans claiming \"MCP server\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists deleted rungs with their reasons in the plan",
+        "evidence": "\"### Deleted rungs\" table with Reason column for C, D, E, F and Agent card.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Deletes the provision-then-claim signup rung because there is no self-serve path",
+        "evidence": "'Agent signup: no self-serve exists... Skip it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes rather than parks the rungs the config-only ceiling rules out (credentials, skill plus CLI, MCP, claim flow)",
+        "evidence": "'Product-API MCP server... Plan for Q1' and 'Needs engineering', so these are parked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps reachability gate fixes inside the 2-week window",
+        "evidence": "Crawler unblock on days 1-2 with a curl rerun.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shrinks measurement to edge-log classification under the config-only ceiling",
+        "evidence": "Uses is-agentic or Frase scoring instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Shrinks the docs rung to the Context7 claim or other config-only work",
+        "evidence": "No Context7 mention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats api-catalog as a background task alongside the public spec, not an agent-readiness milestone",
+        "evidence": "Only a Link rel=service-desc header; no api-catalog.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend an agent card without an agent endpoint",
+        "evidence": "'A2A agent card... A card that points nowhere is a false claim.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States which interview answer moved which rung",
+        "evidence": "'Sales-led, SSO-only means three of your asks don't fit the product.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names what the efficiency order starves or the condition that would bring a deleted rung back",
+        "evidence": "Only 'Q1 project'; no condition named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents rankings on more than one axis (for example effort, value, efficiency) rather than a single blended list",
+        "evidence": "Single ranked list with an effort column; rank is a blended formula.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not promise an MCP server within the 2-week window",
+        "evidence": "Docs MCP server is scheduled for days 3-6, conditional on a platform toggle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists deleted rungs with their reasons in the plan",
+        "evidence": "'Do not do now' table with a reason per item.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

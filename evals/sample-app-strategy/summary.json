@@ -1,0 +1,454 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "sample-app-strategy",
+  "scenarios": 7,
+  "expectations_total": 98,
+  "expectations_subjective": 1,
+  "expectations_objective": 97,
+  "pass_rate_with_skill_pct": 78.6,
+  "pass_rate_without_skill_pct": 17.3,
+  "delta_pp": 61.3,
+  "uplift_multiplier": 4.54,
+  "trigger_accuracy_pct": 59.5,
+  "trigger_queries": 84,
+  "trigger_positive_fire_rate": 0.429,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Builds a register with one row per repo before giving any verdict, with a shared scenario ID across the checkout-* rows and any unfilled cell marked `unknown`"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives checkout-elixir a community-maintained label under Marek rather than archiving it, with banner text stating it is not created, reviewed or supported by Brackenpay"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats GitHub-traffic-only as usage not measured, never as zero; because the deadline is 5 weeks away it decides those rows on tickets and inbound links and says so in each row"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Because this is a standing policy, drafts the freshness contract and archive rules in full before the cleanup starts, and presents the strategy section by section for approval"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects 'every sample in every language'; full language parity goes to the flagship quickstart only, across the five tier-1 languages (Node, Python, Java, Go, Kotlin)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "When over capacity, cuts within a job first (drop languages, then step down to the default artifact) before cutting across jobs"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Uses the most minimal framework per language that shows the platform calls, and adds framework-specific starters only when telemetry shows framework concentration"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the efficiency and upkeep orderings of artifact types explicitly as ordering lines, not only as a table"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the ranking lines for value, upkeep and efficiency, with lean golden path named as the default"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Refuses to publish the conference reference app without a named owner and CI in place, naming it a campaign sample otherwise"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives `routing-v1-demo` and `geocode-express-old` `deprecated` entries with successors, plus aliases, so the CLI and coding assistants stop offering them"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Records the approved index location and the measurement baseline in `developer-platform-context.md` when the harness has persistent memory"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes the 'which SDK languages next' question to `samber/developer-platform-skills@sdk-portfolio-strategy` instead of deciding languages inline"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes the sandbox design to `samber/developer-platform-skills@api-test-mode-design`"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes writing the quickstart page to `samber/developer-relations-skills@developer-quickstart-guide`"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks the interview questions one per message with the offered options, waiting for each answer before the next"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks what samples can run against in CI (sandbox or test mode, live service only, nothing yet) and states that 'nothing yet' degrades CI to build, lint and type-check"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks which named people can own samples and how many engineer-hours per quarter go to upkeep, stating that this answer caps the portfolio size"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks who signs off on archiving and which artifacts are linked from docs, sales decks or partner material"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks the date the first decision must land and whether this is a one-off cleanup or a standing quarterly policy"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the SDK tiers from sdk-portfolio-strategy gate sample coverage, never the reverse"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Builds a register with one row per repo before giving any verdict, with a shared scenario ID across the checkout-* rows and any unfilled cell marked `unknown`"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Runs or schedules a secret scan and a dependency vulnerability scan on every repo in the org before issuing verdicts, not only on checkout-node"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives checkout-node a fix-this-week verdict (revoke and rotate the leaked live key, purge it) ahead of every other row, and keeps the repo on the adoption path rather than archiving it"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Archives api-v1-samples with a redirect because it targets the retired v1 API, naming its successor"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives checkout-elixir a community-maintained label under Marek rather than archiving it, with banner text stating it is not created, reviewed or supported by Brackenpay"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives auth-quickstart a fix-in-place (or rebuild) verdict, escalates ownership to the sign-off owner, states the portfolio owner owns it by default after one review cycle, and never archives or relabels it for lack of an owner"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives webhooks-node a 'fix then merge' verdict into the shared scenarios repo, counted as one row"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Archives subscriptions-ruby and hackathon-demo-2025 with a redirect, each with a successor or an explicit 'none'"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Relabels checkout-dotnet community-maintained because of Dana's veto, never back to kept, and its banner states 'Currently failing CI'"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Archives marketplace-reference-app with a redirect only after notifying sales and swapping the slide link"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Rejects 'DevRel' as an owner, offers rows to Ingrid and Tomasz by name, and records any row nobody accepts as ownerless, which is a finding"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats GitHub-traffic-only as usage not measured, never as zero; because the deadline is 5 weeks away it decides those rows on tickets and inbound links and says so in each row"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Merges checkout-node, checkout-python, checkout-java and checkout-go into one flagship repo with one folder per language, merges payouts-node and payouts-python into the shared scenarios repo, and keeps deploy-starter in its own repo"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Because this is a standing policy, drafts the freshness contract and archive rules in full before the cleanup starts, and presents the strategy section by section for approval"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects 'every sample in every language'; full language parity goes to the flagship quickstart only, across the five tier-1 languages (Node, Python, Java, Go, Kotlin)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Ships the Conversations sample in one language first (Node) because it is a new product"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Marks Ruby, PHP, .NET and Swift as community-labelled or absent and publishes a supported / community / absent tier table rather than leaving the gap silent"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Builds the flagship quickstart as one repo with one folder per language, covered by one CI harness and one index entry"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives a per-type upkeep estimate in hours per quarter multiplied by its languages, labelled self-set"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "When over capacity, cuts within a job first (drop languages, then step down to the default artifact) before cutting across jobs"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps the Android sample app despite its low efficiency rank because the Kotlin mobile SDK is tier 1, stating that the last artifact serving a tier-1 SDK's job is never cut"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Does not build the contact-center reference app in this plan; serves 'learn the production pattern' with a docs architecture page plus scenarios, and states the condition that would promote the reference app (multi-service flow drives deals and the capacity sum still fits)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Uses the most minimal framework per language that shows the platform calls, and adds framework-specific starters only when telemetry shows framework concentration"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Writes each unserved job as 'not served' with the condition that would add it (for example the deploy template / start-a-project job)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Marks the inbound voice callback scenario 'compiled, not run' because the sandbox does not simulate that flow, while other scenarios run against the sandbox"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the efficiency and upkeep orderings of artifact types explicitly as ordering lines, not only as a table"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that with no sandbox CI degrades to build, lint and type-check only, and labels every repo 'compiled, not run' until a sandbox exists"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Makes building a sandbox or test mode the first queue item and routes its design to `samber/developer-platform-skills@api-test-mode-design`"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Removes the production key from CI; CI credentials become sandbox-only test keys, with test fixtures cleaned up after each run and runs paced under the sandbox rate limit"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Replaces the weekly ungrouped bot PRs with grouped updates: minor updates monthly, patch updates quarterly, security alerts at any time"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Stops the no-gate weekly automerge; automerge is allowed only behind a green CI run against the sandbox"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Excludes archived and legacy paths from the dependency bot so it stops reviving them"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Writes the red-build SLA as three numbers labelled self-set: time to an owner ticket after the first red run, days red before a fix-or-deprecate decision, days deprecated before archive"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Names a fallback decider for when Ravi is absent, stating that an SLA with no fallback never fires"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Pins the SDK major, runtime and API version per repo and checks each against the SDK support window and the API versioning policy"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives the Postman collection a contract run against the sandbox on every API spec change instead of a build, because a hosted collection has no build"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Routes the 400 docs snippets to `samber/developer-relations-skills@docs-code-sample-standards` and inherits its snippet policy rather than writing one here"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States why inactivity is a weak proxy for health: closing a bot issue resets the clock, and a repo with recent commits can still be red"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects deleting any repo; archives read-only, because forks, inbound links and coding agents keep reaching the repo"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rejects the under-10-stars rule; stars are reported as vanity and never used to decide"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists the triggers: red past the SLA with no fix scheduled; no named owner for one review cycle outside the adoption path; superseded by a merged or newer artifact; SDK major or API version at end of life; low usage and red together, retired first"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gives the archive sequence in order: final commit with banner and successor and removal of deploy buttons and the template-repository flag; removal from the index's current list plus a redirect entry; removal from docs, gallery, CLI list and agent index; disabling the dependency bot and scheduled CI; a last secret scan; then archive read-only"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Specifies a README banner carrying the archive date, the reason, a 'use instead' successor link, migration notes, and a line that the code stays readable and forkable but may not work against the current API"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "For deploy-shopfront, the banner states that already-deployed copies keep running on their own keys and tells owners to rotate any key the template printed or stored"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Announces the archive in the changelog whenever the sample was on the adoption path"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gives storefront-legacy a `deprecated` entry with a successor (and an alias) in the canonical index so coding assistants and old links learn what replaced it"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "For checkout-react, notifies the partner-material owner and swaps the deck link before archiving"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires every archived artifact to carry a successor or an explicit 'none' in the index"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Offers an intermediate posture for linked or heavily forked repos: retire first (README status and migration notes) then archive later, or security-patch-only"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Presents two or three named portfolio shapes (lean golden path, gallery-led, reference-app anchored) with trade-offs and a recommendation, and lets the user pick or blend"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the ranking lines for value, upkeep and efficiency, with lean golden path named as the default"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Names reference-app anchored as the starved shape and promotes it only on its stated condition: a regulated or multi-service flow drives deals and the capacity sum still fits"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Estimates the reference app at a couple of days of upkeep per quarter (self-set), sums it with the lean core, compares to Omar's 50 hours, and says whether it fits"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Caps the reference app to the one onboarding-to-payout pattern it teaches and cuts dispute handling or further feature growth as reference-app sprawl"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects quickstarts in all 7 languages: full parity only for the flagship across tier 1 (Node, Python, Java); Go, Ruby, PHP and .NET are community-labelled or absent, with the tier table published"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Builds the flagship quickstart as one repo with one folder per language"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Rejects or defers the gallery because it needs curated intake, one repo per template and per-template telemetry, which 50 hours does not cover"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Licenses the samples MIT-0 or MIT so customers embed the code without attribution review"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ships `.env.example`, never `.env`, with keys injected through the CLI in test mode only"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Refuses to publish the conference reference app without a named owner and CI in place, naming it a campaign sample otherwise"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Tags the reference app's API traffic with its sample ID through the SDK user-agent or app-info field so deal-driven usage traces back to it"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Writes 'not served' for each job the chosen shape leaves out, with the condition that would add it"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies the index schema with ID, type, job, languages, status and successor per sample"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Drives the docs links, the gallery, `hw samples list`, GitHub topics and template-repository flags from the index, with no surface edited separately"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives `routing-v1-demo` and `geocode-express-old` `deprecated` entries with successors, plus aliases, so the CLI and coding assistants stop offering them"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Specifies `hw samples create` as a scaffold command that writes test keys into `.env`"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Instruments four signals per artifact: invocations tagged with the sample ID, time to first successful sandbox call from those credentials, support tickets naming the sample, and CI pass rate over the quarter"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Sets its own baseline in the first quarter and states that no vendor publishes clone-to-signup or deploy-to-activation benchmarks, inventing none"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Records the approved index location and the measurement baseline in `developer-platform-context.md` when the harness has persistent memory"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes the 'which SDK languages next' question to `samber/developer-platform-skills@sdk-portfolio-strategy` instead of deciding languages inline"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes the sandbox design to `samber/developer-platform-skills@api-test-mode-design`"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes writing the quickstart page to `samber/developer-relations-skills@developer-quickstart-guide`"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that building one hackathon demo app is not a portfolio decision, and that if it enters the portfolio it ships only with a named owner and CI"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Refuses to guess the inventory from 'around 14, maybe more'; asks for the samples org listing or a count by type and language, including the old org"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks the interview questions one per message with the offered options, waiting for each answer before the next"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks what samples can run against in CI (sandbox or test mode, live service only, nothing yet) and states that 'nothing yet' degrades CI to build, lint and type-check"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks which named people can own samples and how many engineer-hours per quarter go to upkeep, stating that this answer caps the portfolio size"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks who signs off on archiving and which artifacts are linked from docs, sales decks or partner material"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Asks the date the first decision must land and whether this is a one-off cleanup or a standing quarterly policy"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Produces no register rows and no verdicts before the inventory is supplied"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the SDK tiers from sdk-portfolio-strategy gate sample coverage, never the reverse"
+      }
+    ]
+  }
+}

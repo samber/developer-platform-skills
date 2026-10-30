@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects putting a session token in the URL because URLs land in logs, history, referrers and transcripts",
+        "evidence": "\"The URL is a session secret, and URLs leak into logs, history, referrers, analytics and the agent transcript.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the claim link to be single-use",
+        "evidence": "\"single-use, expiring\"; \"A claim code works once.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the claim link to work only after the human logs in or signs up, and never act as a session",
+        "evidence": "\"The human must log in or sign up before it does anything\"; \"The claim code is not a session token and must never be accepted as one.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires unclaimed stores to expire rather than live forever",
+        "evidence": "\"Unclaimed stores expire (start at 72 hours)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires quotas on unclaimed resources small enough to make abuse unprofitable",
+        "evidence": "\"small quotas\"; \"Set them so that abuse isn't profitable.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named machine-readable error for operations that need a human, rather than a generic 403",
+        "evidence": "\"Return a named error, `capability_requires_claim`, with the claim URL in the body.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires pre-claim tokens to be revoked and credentials rotated at claim",
+        "evidence": "\"Claiming revokes pre-claim tokens and rotates credentials\"; \"revoke the pre-claim store credential, issue a new credential\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires creation caps per IP or per signature as abuse control",
+        "evidence": "\"Per-IP and per-signature creation caps\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires Terms of Service acceptance at claim",
+        "evidence": "\"Accept Terms at claim.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that unclaimed resources should hold no personal data",
+        "evidence": "\"Unclaimed stores hold no personal data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the state flow unclaimed, claiming, claimed or an equivalent",
+        "evidence": "\"`unclaimed \u2192 claiming \u2192 claimed`\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Response returns connection details, a claim URL and an expiry timestamp from the creation call",
+        "evidence": "The 201 JSON includes \"connection\", \"expires_at\", \"claim_url\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects putting a session token in the URL because URLs land in logs, history, referrers and transcripts",
+        "evidence": "'A session token in a query string is a leak' (logs, history, Referer, transcripts).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the claim link to be single-use",
+        "evidence": "'Make it single-use, at least 128 bits'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the claim link to work only after the human logs in or signs up, and never act as a session",
+        "evidence": "Renamed claim token, confirmation step, store-scoped limited session until verified email/OAuth.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires unclaimed stores to expire rather than live forever",
+        "evidence": "Unclaimed TTL 24h, hard delete.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires quotas on unclaimed resources small enough to make abuse unprofitable",
+        "evidence": "'Tiny quota (e.g. 10 MB, low ops/s)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named machine-readable error for operations that need a human, rather than a generic 403",
+        "evidence": "Only 429/410 mentioned; no named human-required error.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires pre-claim tokens to be revoked and credentials rotated at claim",
+        "evidence": "Claim token is consumed, but no rotation of the api_key at claim.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires creation caps per IP or per signature as abuse control",
+        "evidence": "'5 creations per IP per day'; cap unclaimed stores per IP.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires Terms of Service acceptance at claim",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that unclaimed resources should hold no personal data",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the state flow unclaimed, claiming, claimed or an equivalent",
+        "evidence": "State table Unclaimed / Claimed (free) / Claimed (paid), plus 'state: unclaimed'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Response returns connection details, a claim URL and an expiry timestamp from the creation call",
+        "evidence": "Example 201 includes endpoint, api_key, claim_url, expires_at.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

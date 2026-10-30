@@ -1,0 +1,782 @@
+{
+  "skill_name": "graphql-federation-offering",
+  "description": "Design how a platform lets outside partners and third-party apps contribute fields or data to its own public GraphQL graph - the extension ladder from app-owned custom fields and platform-run connectors up to partner-hosted subgraphs, what partner SDL may claim (@override, @requires), what the router forwards to a partner, blast radius, and offboarding. Use whenever the user mentions partner subgraphs, letting partner apps add fields to their schema, a partner-extensible supergraph, or stitching partner APIs into the graph they publish - even without saying federation. Not for consuming third-party APIs in your own client, or building an app on another platform. Do NOT use for a single-owner schema or internal federation - use samber/developer-platform-skills@public-graphql-api-design instead.",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "Our partners want to add their own fields to our public GraphQL schema, how should we let them?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "can partner companies ship subgraphs into our supergraph or is that a bad idea",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design a partner-extensible GraphQL graph for our SaaS platform",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We want marketplace apps to store custom data on our Customer type and read it back through our GraphQL API",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Review this partner subgraph SDL before we compose it into our partners variant",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do we stop a partner's subgraph from using @override on our fields",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "What should our router forward to a third-party subgraph? Right now we propagate all headers",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We're stitching three partner GraphQL APIs into the graph we publish to customers. What do we lock down?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Writing the partner developer guide for contributing to our federated graph - what rules should partners follow?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "partner's @requires pulls customer email into their subgraph, is that ok?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Is it safe to let an insurance partner run a subgraph that adds quotes to our Vehicle type?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How do Shopify and Atlassian let apps extend their GraphQL without letting them ship subgraphs?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Our app ecosystem wants live data on our Employee type in our public graph, 40 self-serve apps. Remote schemas per app?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We need to offboard a partner whose subgraph adds fields to our public graph, contract ends Friday",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Set timeouts and circuit breakers for partner subgraphs so a slow partner doesn't take down our API",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Should we accept customer-hosted resolvers into our public GraphQL API?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How do we namespace partner types so they never collide with ours in the supergraph?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We let partners register a GraphQL endpoint URL that our gateway calls. Any security issues?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Which tenants should see a partner's fields in our GraphQL schema, all of them or only installers?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Partner contract for a mediated extension field on Order - what should the field return?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our CTO wants to give partners GraphOS keys to publish their own subgraphs from CI. Good idea?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Can a partner subgraph shadow our Money type if both are @shareable?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Partner pricing engine needs patient date of birth via @requires, we're an EU health SaaS",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "rung choice: app-owned metafields vs partner subgraph for logistics tracking on our orders",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We're opening our GraphQL platform to ISVs. How do they extend Product with their own data?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "partner subgraph passed rover check, can I just publish it",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we run schema checks for partner-contributed subgraphs without giving them publish access?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Plugin developers want to add fields to our GraphQL types - what's the safest extension model?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Our federated graph is internal today; we want to open it to partner-built extensions next year. Plan it.",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "What data does an untrusted subgraph receive from the router in _entities calls?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Should partner fields on our platform types be nullable or non-null?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We want third parties to contribute to our GraphQL supergraph but keep the main router safe",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Partner-hosted resolvers in our public GraphQL API: authentication between our gateway and their endpoint",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How do we stop a partner subgraph from caching one tenant's data and serving it to another through our gateway?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should our partner subgraph program be built on the Composite Schemas spec or Apollo Federation?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "apps on our marketplace want to show live computed scores on our Account type in GraphQL, design it",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How should we handle a platform schema change that breaks a partner's subgraph composition?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Do I need a separate router for partner subgraphs?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "connectors vs partner subgraphs for putting partner REST data in our public graph",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Partner wants interface-wide fields via @interfaceObject on our Node interface, allow it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're a CRM platform; how do integration partners attach their data to Contact in our GraphQL API?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "threat model for accepting third-party subgraphs into our graph",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How many partners before a partner subgraph program stops making sense vs a single extension field?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our partner's subgraph is slow and our dashboard p95 doubled - how should the partner integration be isolated?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Draft the policy check that runs on every partner subgraph publish",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Design uninstall semantics for app-owned extension data in our GraphQL API",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Partners want their own root query fields in our public graph - how do we namespace and govern that?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Is header propagation of Authorization to partner subgraphs ever acceptable?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Design our public GraphQL schema: naming, nullability, Relay pagination and error result types",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should our public API be GraphQL or REST? We have web, mobile and partner clients",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Split our GraphQL schema across our 5 internal teams with Apollo Federation",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How do we make sure our internal subgraphs are never directly reachable from the internet?",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Set depth and complexity limits for our public GraphQL API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Persisted queries for our first-party mobile app - allowlist or not?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Add our internal billing service to Hasura as a remote schema",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want to stitch the GitHub and Stripe GraphQL APIs into our frontend BFF so the React app makes one call",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "My Shopify app needs to store a loyalty tier on customers with app-owned metafields - how do I define them?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write a @deprecated policy and notice windows for our GraphQL fields",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the partner developer signup and sandbox provisioning flow",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design our outbound webhook platform: signing, retries, event catalog",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Which technology partners should we integrate with first?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we build our own app marketplace or list on others?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the review and approval process for third-party apps on our marketplace",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write the listing content standards for apps on our marketplace",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design our OAuth2 authorization server for third-party apps",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our tenants want to add custom fields to records and see them in our GraphQL API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Set the rate-limit policy and quota numbers for our public GraphQL API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Configure Apollo Router telemetry and tracing for our internal subgraphs",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write Apollo Federation entity resolvers in TypeScript for our products subgraph",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Fix composition error INVALID_FIELD_SHARING in our internal subgraphs",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design our gRPC public API and buf breaking-change gates",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we ship an MCP server for AI agents on top of our API?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Plan our SDK portfolio: which languages first",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we design error codes for our REST API?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our GraphQL N+1 queries are slow, how to add DataLoader",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design a design-partner beta program for our new GraphQL API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Build a Zapier integration for our product",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How should we decide whether to evolve from product to platform at all?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the certification program for connectors partners build on our platform",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Audit our REST API surface for consistency",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Set up GraphQL subscriptions vs webhooks for real-time updates",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do I migrate from schema stitching to federation in my own monorepo?",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Write the migration guide for our GraphQL v2 breaking changes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We use Hasura Data Connectors to connect our own Postgres and Mongo - how to configure?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the developer portal information architecture",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do I query the Atlassian GraphQL Gateway from my Forge app?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Monitor deployed partner integrations for deprecated API usage",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "What should a GraphQL API platform engineer interview loop test?",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Expose live SQL access to our customers' data warehouse",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design a sandbox test mode for integrators with test keys",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Price our API usage-based tiers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Set up Apollo GraphOS contracts to give our mobile team a filtered schema",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we version our public GraphQL API like Shopify's quarterly versions?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our status page for API incidents - component modeling",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Generate TypeScript types from our GraphQL schema for the frontend",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Choose between Apollo Router and Cosmo for our internal federated graph",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 96,
+    "passed": 64,
+    "failed": 32
+  }
+}

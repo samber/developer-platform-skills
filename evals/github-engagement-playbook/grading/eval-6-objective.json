@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Cuts the scheme to about 15 labels and states the rule: add one only when a weekly triage keeps reaching for it",
+        "evidence": "Keeps 19 labels ('keep 19 labels, not about 40'), though it quotes 'Start around 15'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps GitHub's default spelling 'bug' (and enhancement, documentation, question, duplicate, wontfix, invalid, good first issue, help wanted) instead of 'type: defect', because contributors and tools already know them",
+        "evidence": "'`type: defect` | `bug` | Keep GitHub's default spellings.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects priority labels because nobody reorders work by them, stating that unused priorities read as neglect",
+        "evidence": "'Priority labels nobody reorders work by read as neglect.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects version labels and person labels, pointing to milestones and assignees instead",
+        "evidence": "Milestones for versions, assignees for people.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the area/ prefix only because that group exceeds four labels, and applies no prefix to the smaller groups",
+        "evidence": "'`area/` stays as a prefix because you have more than four areas.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the six groups: Type, Status, Resolution, Contributors, Release notes, Area",
+        "evidence": "Table groups: Type, Status, Resolution, Contributors, Release notes, Area.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes the Release-notes group (breaking-change, dependencies, skip-changelog) and a .github/release.yml mapping that excludes skip-changelog",
+        "evidence": "release.yml with 'exclude: labels: [skip-changelog]'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that renaming 'bug' breaks auto-generated release notes unless .github/release.yml and workflows change in the same PR",
+        "evidence": "'Never rename a label this file uses without editing `release.yml` in the same PR.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restricts 'good first issue' to issues with a written outline of the fix and a named file, not anything that looks small",
+        "evidence": "'Only issues with a written outline of the fix and a named file qualify.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties labelling to a weekly triage pass and requires removing needs-triage the moment someone has read the issue",
+        "evidence": "'Remove `needs-triage` as soon as someone has read the issue.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States exactly one Type and at most one Status per issue, and that every label gets a description",
+        "evidence": "'Every issue gets exactly one Type and at most one Status.' 'Give every label a description.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the reach claims: 'good first issue' feeds the /contribute page [documented]; 'help wanted' as the newcomer filter is [folklore]",
+        "evidence": "No /contribute or help-wanted reach claim.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets labels: in issue forms so bug reports arrive as bug plus needs-triage, and keeps the label list as code synced by a label-sync action or script",
+        "evidence": "'Set `labels: [\"bug\", \"needs-triage\"]` in the bug form'; 'label-sync action'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the organization issue-types alternative: if issue types are on, use the type field instead of Type labels",
+        "evidence": "No mention of issue types.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Cuts the scheme to about 15 labels and states the rule: add one only when a weekly triage keeps reaching for it",
+        "evidence": "The scheme has 19 labels and states a different rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps GitHub's default spelling 'bug' (and enhancement, documentation, question, duplicate, wontfix, invalid, good first issue, help wanted) instead of 'type: defect', because contributors and tools already know them",
+        "evidence": "It uses `type: defect` instead of `bug`.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects priority labels because nobody reorders work by them, stating that unused priorities read as neglect",
+        "evidence": "It keeps priority P0\u2013P2.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects version labels and person labels, pointing to milestones and assignees instead",
+        "evidence": "\"Versions become milestones\"; \"Owners become the Assignee field\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the area/ prefix only because that group exceeds four labels, and applies no prefix to the smaller groups",
+        "evidence": "It uses `type:`, `priority:` and `status:` prefixes on small groups.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the six groups: Type, Status, Resolution, Contributors, Release notes, Area",
+        "evidence": "Different groups; no Resolution or Contributors group as specified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes the Release-notes group (breaking-change, dependencies, skip-changelog) and a .github/release.yml mapping that excludes skip-changelog",
+        "evidence": "Includes breaking change and skip-changelog, but no dependencies label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that renaming 'bug' breaks auto-generated release notes unless .github/release.yml and workflows change in the same PR",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Restricts 'good first issue' to issues with a written outline of the fix and a named file, not anything that looks small",
+        "evidence": "\"the files are named in the issue, and a test shows how to verify it\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties labelling to a weekly triage pass and requires removing needs-triage the moment someone has read the issue",
+        "evidence": "It rejects a schedule; the only required act is removing the label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States exactly one Type and at most one Status per issue, and that every label gets a description",
+        "evidence": "\"one per item\"; \"exactly one on every open issue\"; script gives descriptions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the reach claims: 'good first issue' feeds the /contribute page [documented]; 'help wanted' as the newcomer filter is [folklore]",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets labels: in issue forms so bug reports arrive as bug plus needs-triage, and keeps the label list as code synced by a label-sync action or script",
+        "evidence": "Issue form `labels: [\"type: defect\", \"status: needs-triage\"]`; idempotent gh script.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the organization issue-types alternative: if issue types are on, use the type field instead of Type labels",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Warns that deactivating public distribution removes the app from every workspace except the original one",
+        "evidence": "\"Deactivate Public Distribution uninstalls the app from every other workspace\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a listed app cannot simply deactivate distribution and must discontinue its Marketplace listing instead",
+        "evidence": "Only says \"a listed app can't use it\"; never says the listing must be discontinued instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends against pulling the app during the rewrite and suggests rebuilding behind a staging app instead",
+        "evidence": "\"Don't turn off public distribution.\" \"Step 2: build the rewrite off-production... Create `<app>-staging`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that token rotation cannot be turned off once enabled",
+        "evidence": "\"It is irreversible.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that rotated tokens must be refreshed within 12 hours and recommends testing rotation before production",
+        "evidence": "\"Each token must be refreshed within 12 hours\u2020\"; \"Enable it on the staging app first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names an uninstall spike as a trigger for Slack to contact the developer and possibly delist the app",
+        "evidence": "\"Tripled uninstalls plus unanswered tickets is the profile Slack contacts you about. If it goes unanswered, Slack delists\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names unanswered support requests as a delisting risk and sets a 2-business-day support response",
+        "evidence": "\"commit to replies within 2 business days\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping developer and support contact details current and having at least one collaborator on the app",
+        "evidence": "\"Update the developer, support and security contacts\"; \"Add a second collaborator to the app.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking installs and uninstalls with the app's own data, such as an OAuth install ledger or the app_uninstalled event",
+        "evidence": "\"Check your own `app_uninstalled` ledger\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Warns that deactivating public distribution removes the app from every workspace except the original one",
+        "evidence": "Only \"Check whether workspaces that already installed keep working... Never assume.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a listed app cannot simply deactivate distribution and must discontinue its Marketplace listing instead",
+        "evidence": "\"If the app is in the Slack Marketplace, you probably cannot flip a toggle. Removal likely goes through Slack\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends against pulling the app during the rewrite and suggests rebuilding behind a staging app instead",
+        "evidence": "\"A banner on your site... reach that goal without risking the listing\"; \"Use a separate Slack app ID for rewrite testing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that token rotation cannot be turned off once enabled",
+        "evidence": "\"Opting in is... irreversible for that app\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that rotated tokens must be refreshed within 12 hours and recommends testing rotation before production",
+        "evidence": "\"Tokens then expire after about 12 hours\"; \"enable only on a staging copy first\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names an uninstall spike as a trigger for Slack to contact the developer and possibly delist the app",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names unanswered support requests as a delisting risk and sets a 2-business-day support response",
+        "evidence": "Only urges an owner and an auto-reply; no delisting risk or 2-day target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping developer and support contact details current and having at least one collaborator on the app",
+        "evidence": "Mentions checking the support email but no collaborator.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking installs and uninstalls with the app's own data, such as an OAuth install ledger or the app_uninstalled event",
+        "evidence": "\"Subscribe to `app_uninstalled` and `tokens_revoked`\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

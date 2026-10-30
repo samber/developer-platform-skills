@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a listed app's configuration and scopes are locked and require resubmission for review",
+        "evidence": "\"The live app is locked. New scopes go through a resubmission\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that adding an unreviewed scope to the live install URL will make installs fail",
+        "evidence": "\"an unreviewed scope in the live install URL makes installs fail for everyone\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a staging app cloned from the published app's manifest for reviewers to install",
+        "evidence": "\"Staging app: cloned from the published manifest through your environments-as-code flow.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a video demo showing the new feature and how the new scope is used",
+        "evidence": "\"it should show the new feature and every new scope\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the functional review for updates to a published app as up to 6 weeks",
+        "evidence": "\"Functional review | up to 6 weeks for an update\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the AI disclosures for the Security & Compliance section: model used, data retention and use by the LLM, LLM data tenancy and LLM data residency",
+        "evidence": "\"model used: GPT-4.1; retention, and how the LLM uses user data; LLM data tenancy; LLM data residency\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a disclaimer on the landing page and long description that LLM output can be inaccurate",
+        "evidence": "\"Listing and landing page. State that LLM output can be inaccurate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack data must not be used to train LLMs",
+        "evidence": "\"Slack bars apps that train LLMs on Slack data\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags channels:history as triggering enhanced review",
+        "evidence": "\"`*:history` scopes get enhanced review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Suggests marking the new scope optional if the core app works without it, without moving core scopes to optional",
+        "evidence": "\"Make the new scope optional. Catch-up only enhances the core experience, so `bot_optional` is legitimate here.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends telling existing workspaces to reinstall through the app (App Home or an in-Slack message) after approval",
+        "evidence": "\"approval, update the OAuth URL, then ask existing workspaces to reinstall (App Home plus a message)\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a listed app's configuration and scopes are locked and require resubmission for review",
+        "evidence": "\"For a listed app, new scopes normally need Slack's re-review\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that adding an unreviewed scope to the live install URL will make installs fail",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a staging app cloned from the published app's manifest for reviewers to install",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a video demo showing the new feature and how the new scope is used",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the functional review for updates to a published app as up to 6 weeks",
+        "evidence": "No review duration given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the AI disclosures for the Security & Compliance section: model used, data retention and use by the LLM, LLM data tenancy and LLM data residency",
+        "evidence": "Only asks to confirm OpenAI zero retention and residency settings; no Security & Compliance disclosure list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a disclaimer on the landing page and long description that LLM output can be inaccurate",
+        "evidence": "Only \"Mark the output as AI-generated.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Slack data must not be used to train LLMs",
+        "evidence": "Says guidelines \"restrict how Slack data is used with AI. Verify\"; no training prohibition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags channels:history as triggering enhanced review",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Suggests marking the new scope optional if the core app works without it, without moving core scopes to optional",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends telling existing workspaces to reinstall through the app (App Home or an in-Slack message) after approval",
+        "evidence": "\"Use the in-product prompt as the main channel\"; \"Don't email customers until Slack approves.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Writes the tracking issue with items as '- [ ] #<sub-issue>' lines so GitHub renders each title and state and shows the task count, not bullet text",
+        "evidence": "'- [ ] #<sub-issue 1> <area 1>'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instructs ticking a box only when its sub-issue closes, not when work starts",
+        "evidence": "'Tick when the sub-issue closes, not when someone starts.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes Scope (In / Out), Progress grouped by phase or area, 'How to help' (claim by commenting on the sub-issue and link the PR there) and 'Done when' sections",
+        "evidence": "Template includes all four sections with grouped Progress.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends attaching each item as a native sub-issue so the parent shows a progress bar, and pinning the tracking issue while active",
+        "evidence": "'attach them as native sub-issues... Pin the issue while it's active.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For the three true duplicates, supplies the pointer-to-existing-issue reply: where #412 stands, close as duplicate choosing #412 as the main issue so GitHub links them, and an ask to add their use case plus a thumbs-up on the first post to size demand",
+        "evidence": "Template 12 with 'Close as duplicate', use-case ask and \ud83d\udc4d.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For #431 (503 vs 429), does not close it as a duplicate; supplies the related-but-different reply with the one-sentence difference and keeps both open",
+        "evidence": "'#431: keep open, link to #412 (template 13)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the rule that if the difference cannot be written in one sentence, the issues are duplicates",
+        "evidence": "'If you can't fill the \"different because\" sentence from the code, they are duplicates.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "PR template sections: one line on what changes for a user, Why, What changed, How to check it, Notes for reviewers",
+        "evidence": "One line, Why, What changed, How to check it, Notes for reviewers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Fixes, Closes or Resolves are used only when merging really ends the issue, and partial PRs write 'Part of #<tracking issue>'",
+        "evidence": "'use `Fixes`, `Closes` or `Resolves` only when merging the PR really ends the issue'; 'Part of #'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves unknown <placeholders> visible rather than inventing sub-issue numbers or dates",
+        "evidence": "'<sub-issue 1>', '<version>' left as placeholders.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says an item without an issue yet gets one opened before anyone starts it",
+        "evidence": "'Open the 9 sub-issues first, then list them'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Writes the tracking issue with items as '- [ ] #<sub-issue>' lines so GitHub renders each title and state and shows the task count, not bullet text",
+        "evidence": "Items are `- [ ] <area 1>` bullet text. Child issues are only an \"Optional upgrade\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs ticking a box only when its sub-issue closes, not when work starts",
+        "evidence": "\"A box is ticked when the work is merged.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes Scope (In / Out), Progress grouped by phase or area, 'How to help' (claim by commenting on the sub-issue and link the PR there) and 'Done when' sections",
+        "evidence": "There is Out of scope and How to help, but no Done when and no phase grouping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends attaching each item as a native sub-issue so the parent shows a progress bar, and pinning the tracking issue while active",
+        "evidence": "Neither is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For the three true duplicates, supplies the pointer-to-existing-issue reply: where #412 stands, close as duplicate choosing #412 as the main issue so GitHub links them, and an ask to add their use case plus a thumbs-up on the first post to size demand",
+        "evidence": "The reply has no thumbs-up ask and no status of #412.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For #431 (503 vs 429), does not close it as a duplicate; supplies the related-but-different reply with the one-sentence difference and keeps both open",
+        "evidence": "\"don't close it as a duplicate\"; comment: \"This one covers 503, so I'm keeping it open\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the rule that if the difference cannot be written in one sentence, the issues are duplicates",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "PR template sections: one line on what changes for a user, Why, What changed, How to check it, Notes for reviewers",
+        "evidence": "Its sections are What and why, Related issues, Breaking changes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Fixes, Closes or Resolves are used only when merging really ends the issue, and partial PRs write 'Part of #<tracking issue>'",
+        "evidence": "\"Partial work or part of a migration (does NOT close): Part of #123\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves unknown <placeholders> visible rather than inventing sub-issue numbers or dates",
+        "evidence": "Uses <area 1> etc. and asks for the 9 areas.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says an item without an issue yet gets one opened before anyone starts it",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

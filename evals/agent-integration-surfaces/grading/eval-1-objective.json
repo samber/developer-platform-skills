@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Runs or specifies a reachability check per agent class and surface before recommending any new surface",
+        "evidence": "\"## 2. Reachability gate (first, week 1)\" has a Class | Surface | Test | Status table, and the ranked rungs start with \"0 | Gate fixes\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that disallowing ClaudeBot does not block Claude-User or Claude-SearchBot, because robots.txt tokens are per class",
+        "evidence": "\"`GPTBot` and `ClaudeBot` are training crawlers. Disallowing them says nothing about `Claude-User`, `Claude-SearchBot`...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that OpenAI's ChatGPT-User may not apply robots.txt rules, so the robots.txt line is not an access-control boundary",
+        "evidence": "\"OpenAI says robots.txt rules 'may not apply' to it.\" and \"robots.txt is a preference, not enforcement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the CDN 'Block AI bots' preset as an edge rule that must be read and owned, separate from robots.txt",
+        "evidence": "\"The preset was a deliberate security decision... Enforce at the CDN, not in robots.txt alone.\" and \"Read the CDN rule that fired.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the security preset to its owner with the cost named rather than silently disabling it",
+        "evidence": "\"don't flip it silently. Hand it to the security owner with the cost named: 'AI answers can't fetch our docs or pricing'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects giving agents the customer's long-lived live secret key",
+        "evidence": "\"**No.** A live key is a human's long-lived credential, and Pellucid can issue refunds.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends per-agent, scoped, short-lived credentials with per-agent revocation",
+        "evidence": "Table: \"agent-labelled restricted key\", \"Lifetime | days, never 'until revoked'\", \"Revocation | per key, from the user's settings, without logging the human out\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires refunds or other money-moving actions to need a human approval delivered outside the agent's channel",
+        "evidence": "\"every refund and every live-mode write goes to `pending_approval`. The user confirms by email or push, outside the agent's session.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the CEO's MCP request as not, by itself, evidence that shell-less agent clients exist",
+        "evidence": "\"A stakeholder asking for a surface is not evidence that its client class exists.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places the existing CLI with --json plus an Agent Skill ahead of a new MCP server for coding agents inside the 6-week window",
+        "evidence": "Rung 4 D \"Skill + --json CLI\" in weeks 3\u20135; rung 5 \"E. MCP | after summit\". \"Recommended for the summit: demo skill plus CLI\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "When date and money conflict, keeps a minimal credential and approval rung inside the window rather than deferring it",
+        "evidence": "\"Minimal C ships inside the 6 weeks... Money wins inside the window.\" Rung 3 C (minimal), weeks 2\u20135.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes replacing the CAPTCHA-only signup gate with an allow rule for verified agents and/or an API or claim path",
+        "evidence": "\"add an allow rule for verified signed agents, so hosted browser agents don't hit a CAPTCHA-only gate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends instrumenting agent measurement before shipping the first rung, as the baseline",
+        "evidence": "\"## 9. Measurement (before any rung ships)\" and \"A. Measurement | Baseline before anything else\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Output contains an agent class x surface matrix",
+        "evidence": "\"## 3. Agent class \u00d7 surface matrix\" with Training / AI search / User-triggered / Hosted browser agent / Coding agent columns.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Runs or specifies a reachability check per agent class and surface before recommending any new surface",
+        "evidence": "Specifies curl with the ClaudeBot UA and the default UA against a signup URL and a dashboard URL, plus a browser check for the CAPTCHA.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that disallowing ClaudeBot does not block Claude-User or Claude-SearchBot, because robots.txt tokens are per class",
+        "evidence": "Never states that robots.txt tokens are per class; only mentions Claude-User as a missing UA.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that OpenAI's ChatGPT-User may not apply robots.txt rules, so the robots.txt line is not an access-control boundary",
+        "evidence": "Calls ChatGPT-User a user-triggered fetch but does not say it may ignore robots.txt.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies the CDN 'Block AI bots' preset as an edge rule that must be read and owned, separate from robots.txt",
+        "evidence": "'The CDN preset only catches bots that identify themselves' and 'robots.txt blocks nothing'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the security preset to its owner with the cost named rather than silently disabling it",
+        "evidence": "'1-day change for security and platform team'; devs get worse answers; asks 'Who owns the CDN config'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects giving agents the customer's long-lived live secret key",
+        "evidence": "'No live secret key in an env var. Reject the engineer's proposal'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends per-agent, scoped, short-lived credentials with per-agent revocation",
+        "evidence": "Gives scoped, short-lived tokens tagged with a client ID, but never mentions per-agent revocation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires refunds or other money-moving actions to need a human approval delivered outside the agent's channel",
+        "evidence": "Refund request is approved by a human in the dashboard or via MCP elicitation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the CEO's MCP request as not, by itself, evidence that shell-less agent clients exist",
+        "evidence": "Not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Places the existing CLI with --json plus an Agent Skill ahead of a new MCP server for coding agents inside the 6-week window",
+        "evidence": "Says pb --json is valid, but builds a remote MCP server in weeks 2-3 and proposes no Agent Skill.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "When date and money conflict, keeps a minimal credential and approval rung inside the window rather than deferring it",
+        "evidence": "Week 2 auth and week 4 refund-request flow with human approval; 'cut refunds first, not security'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes replacing the CAPTCHA-only signup gate with an allow rule for verified agents and/or an API or claim path",
+        "evidence": "'Signup stays human. Keep the CAPTCHA.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends instrumenting agent measurement before shipping the first rung, as the baseline",
+        "evidence": "No measurement baseline step.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Output contains an agent class x surface matrix",
+        "evidence": "No matrix present.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

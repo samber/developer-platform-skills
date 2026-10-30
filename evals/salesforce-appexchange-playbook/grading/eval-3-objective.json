@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Treats the three findings as representative examples and requires sweeping the whole solution for every instance of each class, not only line 88 and `invoiceTable`",
+        "evidence": "\"Each finding is one example of a class. Fix every instance: all queries and DML...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against bundling the bulk-export feature, because changes beyond the flagged issues force a full initial review",
+        "evidence": "\"Any change beyond the flagged issues forces a full initial review and a new fee.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the follow-up review must keep the same package ID and namespace",
+        "evidence": "\"You keep the same package ID and namespace, rescan, and start a follow-up review\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a follow-up review after code changes costs a new review fee",
+        "evidence": "\"start a follow-up review (fee due)\"; \"Pay the fee.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a failed test result has no appeal path and points to Product Security office hours",
+        "evidence": "\"A failed test has no appeal. The channel is Product Security office hours.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Handles the TLS finding with a false-positive write-up explaining the host neither authenticates users nor exchanges Salesforce data, or by fixing TLS, not through an appeal",
+        "evidence": "\"Fix, don't argue. Disable TLS 1.0 and 1.1 on the host.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires rerunning the scanners (Code Analyzer and Source Code Scanner, plus DAST for the endpoint item) and attaching fresh reports",
+        "evidence": "\"Run Code Analyzer and the Checkmarx scanner... Run DAST on every in-scope endpoint and attach a screenshot\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the retest duration as roughly 2-4 weeks after verification",
+        "evidence": "\"Retest: 2-4 weeks\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends building the bulk-export feature in a later version on top of the passed version so it inherits listing readiness",
+        "evidence": "\"After the pass, cut the bulk-export version with the passed fix version as ancestor.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Treats the three findings as representative examples and requires sweeping the whole solution for every instance of each class, not only line 88 and `invoiceTable`",
+        "evidence": "\"Don't fix only line 88. Run `sf code-analyzer run --rule-selector AppExchange` on the whole project.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against bundling the bulk-export feature, because changes beyond the flagged issues force a full initial review",
+        "evidence": "It advises against bundling, but for failure-cycle risk, and says \"Ask Salesforce... whether the upgrade needs a full review or a delta review. Don't assume.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the follow-up review must keep the same package ID and namespace",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a follow-up review after code changes costs a new review fee",
+        "evidence": "It only says \"The rules on re-review fees and scope change, so check them with your ISV contact.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a failed test result has no appeal path and points to Product Security office hours",
+        "evidence": "It says an appeal \"can lose\" and does not mention office hours.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Handles the TLS finding with a false-positive write-up explaining the host neither authenticates users nor exchanges Salesforce data, or by fixing TLS, not through an appeal",
+        "evidence": "\"tell the CTO to fix the TLS finding instead of appealing it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires rerunning the scanners (Code Analyzer and Source Code Scanner, plus DAST for the endpoint item) and attaching fresh reports",
+        "evidence": "\"Attach clean scanner reports.\" and the code-analyzer rerun plus the nmap re-test.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the retest duration as roughly 2-4 weeks after verification",
+        "evidence": "No retest duration is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends building the bulk-export feature in a later version on top of the passed version so it inherits listing readiness",
+        "evidence": "\"Ship bulk-export as the next version... Bulk-export follows on a clean base.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

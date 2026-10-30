@@ -1,0 +1,94 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires requesting the team.billing:read bot scope and limiting installs to workspaces on paid Slack plans",
+        "evidence": "Table row `team.billing:read` ... \"Checks the workspace plan right after OAuth; revoke the token on free workspaces.\" \"Required for automation platforms\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the Slack API token must never be exposed to Flowmesh end users",
+        "evidence": "\"Flowmesh never hands raw Slack tokens to flow builders.\"; \"never expose the Slack token to your users\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that one user's Slack authorization must not be shared with other Flowmesh users when user-token scopes are requested",
+        "evidence": "\"never share one user's Slack authorization with others\"; \"No one reuses another person's user token.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the app must not request user-token history or files:read scopes to collect message and file data",
+        "evidence": "Table: \"`channels:history`, `groups:history`, `files:read` | **Do not request**\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the nightly archive template as message export/backup that the platform must not enable",
+        "evidence": "\"Block it, and ship none like it\"; \"Automation platforms must block templates that export, back up or bulk-delete Slack data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'Slack-certified' wording because the Marketplace Agreement forbids implying Slack endorsement or certification",
+        "evidence": "\"The Marketplace Agreement forbids implying Slack endorsement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack's security review is not a certification",
+        "evidence": "\"Slack calls its security review 'not a certification'.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires requesting the team.billing:read bot scope and limiting installs to workspaces on paid Slack plans",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the Slack API token must never be exposed to Flowmesh end users",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that one user's Slack authorization must not be shared with other Flowmesh users when user-token scopes are requested",
+        "evidence": "\"A flow built by user B would act with the access of user A... Without both pieces, expect rejection.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the app must not request user-token history or files:read scopes to collect message and file data",
+        "evidence": "Only says reviewers push back on history scopes; no prohibition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the nightly archive template as message export/backup that the platform must not enable",
+        "evidence": "Keeps it as an optional admin-only capability instead of ruling it out.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the 'Slack-certified' wording because the Marketplace Agreement forbids implying Slack endorsement or certification",
+        "evidence": "\"Slack has no 'certified' status... Slack's brand guidelines forbid implying endorsement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack's security review is not a certification",
+        "evidence": "\"Marketplace approval means the app passed review.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends identifying which credentials still send keys in the query string before any brownout.",
+        "evidence": "\"each credential that has used query-string auth\"; lookback and census items before Monday",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends targeted notices to those credentials' owners with call counts and last-seen times, beyond the changelog.",
+        "evidence": "\"The email carries the credential, call count, last seen, one sample request ID\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the single 72-hour brownout with several shorter brownouts that escalate in duration.",
+        "evidence": "4 h, 24 h, 48 h table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the brownout schedule to be published in advance.",
+        "evidence": "Changelog post dates table; \"Announce\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the brownout error response body to include the schedule or a link to it.",
+        "evidence": "\"schedule\": [\"2026-11-10T14:00Z/4h\", ...]",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds Cache-Control: no-store (or an equivalent anti-caching measure) to brownout responses so a cached failure does not outlive the window.",
+        "evidence": "\"Cache-Control: no-store\" in brownout response",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks brownout errors as temporary in the response body while keeping them on the same failure path integrations will hit at removal.",
+        "evidence": "410 Gone same as removal; \"Temporary brownout\" in message",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises holding brownouts until the header-auth replacement has been stable with no open incident.",
+        "evidence": "\"Gate for the first window: postmortem closed, remediation shipped, SLO met\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends starting brownout windows during working hours for the affected users.",
+        "evidence": "Only \"14:00 UTC on a weekday\"; no working-hours rationale stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds an in-response warning on query-string-auth calls before the brownouts.",
+        "evidence": "\"From Monday, add Deprecation and Sunset headers\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Questions whether a removal date on the 30th leaves enough notice, or defers the notice window to the deprecation policy.",
+        "evidence": "\"a four-week window is a policy question for api-versioning-policy\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers per-credential exceptions with an expiry for owners who cannot meet the date, rather than moving the date for everyone.",
+        "evidence": "\"per-integration exceptions. We are not moving the date for everyone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The changelog draft states the brownout dates and the final removal date.",
+        "evidence": "Dates table with brownouts and \"30 Nov, 00:00 removed permanently\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends identifying which credentials still send keys in the query string before any brownout.",
+        "evidence": "\"You need a per-key count of query-string callers first, so you can contact the stragglers by name.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends targeted notices to those credentials' owners with call counts and last-seen times, beyond the changelog.",
+        "evidence": "\"Email the owners of every key seen using query-string auth\"; no counts or last-seen.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the single 72-hour brownout with several shorter brownouts that escalate in duration.",
+        "evidence": "\"Nov 10 1-hour... Nov 17 4-hour... Nov 24 24-hour\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the brownout schedule to be published in advance.",
+        "evidence": "The changelog timeline table lists the test windows.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the brownout error response body to include the schedule or a link to it.",
+        "evidence": "Body: \"stable code... how to fix the call and link to the docs\"; no schedule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds Cache-Control: no-store (or an equivalent anti-caching measure) to brownout responses so a cached failure does not outlive the window.",
+        "evidence": "\"Send `Cache-Control: no-store` on every brownout response.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks brownout errors as temporary in the response body while keeping them on the same failure path integrations will hit at removal.",
+        "evidence": "The body is not said to mark the error as temporary; the same error code is used, but there is no temporary flag.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises holding brownouts until the header-auth replacement has been stable with no open incident.",
+        "evidence": "\"Gate the first brownout on the postmortem being closed and its action items shipped.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends starting brownout windows during working hours for the affected users.",
+        "evidence": "\"1-hour brownout, midday\"; \"short, escalating, business-hours windows\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds an in-response warning on query-string-auth calls before the brownouts.",
+        "evidence": "\"Deprecation and Sunset headers plus a warning in the response body on every query-string call\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Questions whether a removal date on the 30th leaves enough notice, or defers the notice window to the deprecation policy.",
+        "evidence": "\"The removal gets 28 days' notice, which is tight for a credential change.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers per-credential exceptions with an expiry for owners who cannot meet the date, rather than moving the date for everyone.",
+        "evidence": "Only \"slip the date and say so publicly\"; no per-credential exceptions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The changelog draft states the brownout dates and the final removal date.",
+        "evidence": "Timeline table: Nov 10, Nov 17, Nov 24 windows; \"Nov 30 Query-string authentication is removed permanently.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects or changes the proposal to require 1,000 monthly active users before GA, stating that a usage minimum on the tier that unlocks production use is circular (partners cannot gather users on a connector buyers are told not to deploy)",
+        "evidence": "\"Rejected as stated... Partners cannot gather users on a connector customers are told not to deploy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places any usage threshold on a tier above the production-use tier, or offers a time-based exception path instead",
+        "evidence": "The only usage threshold is for the regression layer inside Verified (\"required only above the usage threshold\"). It is not on a higher tier, and there is no time-based exception path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects making certification mandatory for listing, keeping a separate listing bar and certification label",
+        "evidence": "\"Rejected. Replaced by a mandatory listing bar... Listing and certification stay separate bars.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the automatic Verified grant for Gold partners, stating that commercial or partner-revenue status certifies the relationship rather than the connector",
+        "evidence": "\"It certifies the partner relationship, not the connector.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not keep a grandfather clause that lets Gold partners retain Verified without the new evidence",
+        "evidence": "\"Do not grandfather them: a grandfather clause keeps the old meaning of the badge alive.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins each badge to the test-kit version and the platform/API version it was earned on",
+        "evidence": "\"each badge records kit v1.x, API version (v5) with the date of the last platform-matrix run\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires re-running the conformance kit when a platform release changes the contract connectors depend on",
+        "evidence": "Triggers: \"an API release that changes the contract connectors depend on\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the kit version for the next contract-changing API release must reach partners before that release goes generally available (for example at the API beta)",
+        "evidence": "\"ships to partners at API beta, with at least 60 days (starting value) before general availability.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes an explicit support sentence for every label, shown on the listing, stating who supports the connector",
+        "evidence": "The \u00a75 table has a listing sentence for all four labels.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that a label carrying the operator's brand ('Ferrowell Verified') reads as an operator support promise, and either drops the brand from the label or pairs it with the support sentence",
+        "evidence": "\"A label carrying the operator's brand reads as an operator support promise.\" It drops the brand or pairs the label with the support sentence.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a transition section mapping existing Verified badges to new labels with a re-earn deadline",
+        "evidence": "\u00a79 maps old labels to Partner-maintained with \"kit GA + 120 days\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an explicit verdict on each of the VP's two proposals (adopted, changed or rejected) with the rule it breaks",
+        "evidence": "\u00a70b: 1,000 MAU is \"Rejected as stated\" and mandatory Verified is \"Rejected\", each with the rule it breaks.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the one-time review call as the primary certification evidence with a test kit and/or operator-measured telemetry",
+        "evidence": "\"Changed to kit evidence, pinned and renewed on triggers.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects or changes the proposal to require 1,000 monthly active users before GA, stating that a usage minimum on the tier that unlocks production use is circular (partners cannot gather users on a connector buyers are told not to deploy)",
+        "evidence": "\"It is a chicken-and-egg gate. Connectors need GA visibility to get users.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Places any usage threshold on a tier above the production-use tier, or offers a time-based exception path instead",
+        "evidence": "Usage is kept only as a signal and a \"Popular\" label; \"Never use it as a quality gate.\" No higher-tier threshold or exception path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects making certification mandatory for listing, keeping a separate listing bar and certification label",
+        "evidence": "Level 1 Listed is mandatory and automated; Verified is \"earned, expiring, opt-in\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the automatic Verified grant for Gold partners, stating that commercial or partner-revenue status certifies the relationship rather than the connector",
+        "evidence": "\"Remove automatic Verified. Gold becomes a commercial tier, not a quality tier.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not keep a grandfather clause that lets Gold partners retain Verified without the new evidence",
+        "evidence": "\"Re-review all currently Verified connectors, including Gold auto-Verified\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins each badge to the test-kit version and the platform/API version it was earned on",
+        "evidence": "Only API versions are shown and suspension is per major API version; the kit version is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires re-running the conformance kit when a platform release changes the contract connectors depend on",
+        "evidence": "\"suspended (not revoked) on any major API version until the connector passes again\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the kit version for the next contract-changing API release must reach partners before that release goes generally available (for example at the API beta)",
+        "evidence": "\"90 days of sandbox and beta access before any breaking API version reaches GA\"; connector passes contract tests before GA.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes an explicit support sentence for every label, shown on the listing, stating who supports the connector",
+        "evidence": "Listing text: \"Built and supported by [Partner]. Ferrowell supports the platform, not this connector.\" Listing shows \"supporting party\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that a label carrying the operator's brand ('Ferrowell Verified') reads as an operator support promise, and either drops the brand from the label or pairs it with the support sentence",
+        "evidence": "\"Customers assumed Ferrowell supports it\"; Verified \"does not mean Ferrowell supports it\" plus the listing sentence.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a transition section mapping existing Verified badges to new labels with a re-earn deadline",
+        "evidence": "Section 6: re-review all Verified; \"Verification under review\" after day 90.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an explicit verdict on each of the VP's two proposals (adopted, changed or rejected) with the rule it breaks",
+        "evidence": "Section 2 covers both proposals: MAU \"tests popularity, not reliability\"; mandatory Verified \"dilutes the badge\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the one-time review call as the primary certification evidence with a test kit and/or operator-measured telemetry",
+        "evidence": "Automated nightly contract tests, pass-rate floor, automatic suspension.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

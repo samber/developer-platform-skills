@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Mentions the rungs/options in terms of effort for the platform versus value delivered, not only feature descriptions",
+        "evidence": "Section 2 ranks the rungs still in play (0, 1, 2) on separate axes. 'Effort, highest first: ingested connector > app-owned extension data > webhooks plus callback' and 'Value (live partner data in one query): ingested connector == app-owned extension data > webhooks plus callback'. It adds efficiency, compliance cost and durability rankings. Section 7 treats rung 5 as needing standing staff for partner schema review and says it 'will not be ready before January', which is an effort cost. Not a 5: the final choice of rung 2 over rung 1 rests on 'a canonical Shipment type exists' and never weigh",
+        "score": 4,
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Mentions the rungs/options in terms of effort for the platform versus value delivered, not only feature descriptions",
+        "evidence": "The transcript partly frames A and B by cost and benefit. On effort: 'Three partners means three SLAs and three on-call rotations. That is a lot of coordination for a 6-week window'; 'Option B adds work in the middle: SLA negotiation, security review and pipeline setup'; 'If yes, option A is clearly faster'; 'option A's cost may be smaller than expected'. On value: A 'gives you tracking data when Quayside is down', and the contract allows moving from A to B 'without a client-facing change'. It never sets effort against value side by side for each option, though. It doesn't estimate A's build c",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

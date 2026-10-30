@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that passing composition does not mean the partner is authorized to claim what the SDL claims",
+        "evidence": "'rover subgraph check passing only means the SDL composes... composition never checks whether a partner is allowed to claim what it claims.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `price: Money! @override(from: \"catalog\")` as the partner taking resolution of a platform-owned field",
+        "evidence": "Blocker 1: '@override is Never for partners... router sends every Product.price query to Orbweave'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends rejecting or not publishing the subgraph as submitted",
+        "evidence": "'Verdict: do not publish tonight'; 'Send Orbweave the rejection reasons'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `type Money @shareable` as an unprefixed type that merges with or co-resolves the platform's Money type",
+        "evidence": "Blocker 2: 'unprefixed and lets Orbweave co-resolve your Money type... a redefinition, not an extension.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `orbweaveRating: Float!` as non-null and requires it to be nullable",
+        "evidence": "Blocker 4: 'make orbweaveRating nullable'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `reviewDigest @requires(fields: \"email\")` as shipping a platform-owned field (email) to the partner",
+        "evidence": "Blocker 3: 'ships personal data to the partner... email'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the @requires concern to a data-clearance list or consent for each field the partner receives",
+        "evidence": "'email is on the clearance list only if you have all of these: tenant consent..., signed data-processing terms..., residency check'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `type Review` and `Query.reviews` as missing a partner namespace/prefix",
+        "evidence": "Blocker 5: 'Unprefixed names: Review, Money, Query.reviews, and reviewDigest'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a blocking policy check in the platform registry that rejects banned directives on every partner publish, not a manual review comment",
+        "evidence": "'Policy check as a blocking step. A platform-owned step must parse the submitted SDL and reject...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists @override, @provides and @shareable on platform fields as directives a partner may not use",
+        "evidence": "'reject: @override, @provides, @shareable on platform types, @interfaceObject...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides a corrected SDL or a field-by-field fix list with prefixed partner types",
+        "evidence": "'Corrected SDL (what I would accept)' with Orbweave_Review and Orbweave_Namespace.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the partner itself should not hold publish rights; the platform publishes",
+        "evidence": "'Orbweave runs checks only... Only you publish to the partners variant.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that passing composition does not mean the partner is authorized to claim what the SDL claims",
+        "evidence": "'`rover subgraph check` only proves the SDL composes... Composition can't tell a legitimate override from a hijack.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `price: Money! @override(from: \"catalog\")` as the partner taking resolution of a platform-owned field",
+        "evidence": "'moves ownership of `Product.price` from your catalog subgraph to a reviews partner.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends rejecting or not publishing the subgraph as submitted",
+        "evidence": "'Do not publish tonight.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `type Money @shareable` as an unprefixed type that merges with or co-resolves the platform's Money type",
+        "evidence": "'`Money @shareable` composes. It becomes redundant once `price` is removed.' It is treated as fine.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags `orbweaveRating: Float!` as non-null and requires it to be nullable",
+        "evidence": "'Make it `Float` (nullable).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags `reviewDigest @requires(fields: \"email\")` as shipping a platform-owned field (email) to the partner",
+        "evidence": "'The router will send `Product.email` to Orbweave's servers'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the @requires concern to a data-clearance list or consent for each field the partner receives",
+        "evidence": "Only says 'Confirm that your contract or DPA covers this field'. No per-field clearance list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags `type Review` and `Query.reviews` as missing a partner namespace/prefix",
+        "evidence": "'`Review` without `@key` is fine as a plain value type.' Nothing about prefixes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a blocking policy check in the platform registry that rejects banned directives on every partner publish, not a manual review comment",
+        "evidence": "Only manual review and re-running `rover subgraph check`; no registry policy gate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists @override, @provides and @shareable on platform fields as directives a partner may not use",
+        "evidence": "Says to remove @override here; calls @provides 'harmless' and @shareable fine. No banned-directive list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides a corrected SDL or a field-by-field fix list with prefixed partner types",
+        "evidence": "Numbered blockers and should-fix items, each with a 'Fix' or action.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the partner itself should not hold publish rights; the platform publishes",
+        "evidence": "'Ask for a revised SDL' and 'Publish after the revised SDL...' imply the platform publishes, but it is never stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Sets fetch-depth: 0 (or otherwise fetches full history) because git-revision baselines need history",
+        "evidence": "fetch-depth: 0",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces @latest with a pinned oasdiff version",
+        "evidence": "OASDIFF_VERSION v1.34.1",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to review classification changes when bumping the pinned oasdiff version",
+        "evidence": "\"review the rule diff on every bump\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the merge base with the target branch (or the PR base) as the PR-gate baseline",
+        "evidence": "git merge-base",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Covers all four spec files, either per file or with oasdiff breaking-files",
+        "evidence": "SPECS loop",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that oasdiff's severity-levels file accepts only check-id and level per line, so the comment and third column must go",
+        "evidence": "\"oasdiff accepts only `<check-id> <level>` per line and exits 106\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves the 'why' column into a separate human-readable severity map that the levels file is generated from",
+        "evidence": "api/severity-map.md generates levels",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses --fail-on ERR in the PR gate",
+        "evidence": "--fail-on ERR",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Emits PR annotations or a comment (e.g. -f githubactions)",
+        "evidence": "-f githubactions",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not publish the changelog from the merge-to-main diff; moves publishing to a release job diffing against the last release tag",
+        "evidence": "api-changelog-publish release trigger; explanation",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Runs entry generation and the trace check before publishing, and publishes only when the trace check passes",
+        "evidence": "check-entry-trace.py before aws s3 cp, set -e",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps published changelog entries per spec/API (or per version) rather than one undifferentiated stream",
+        "evidence": "Per-spec entries merged into a single changelog.json feed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Passes the generated ignore file (from acknowledgement records) rather than a hand-edited one, or mentions acknowledgement records for accepted breaks",
+        "evidence": "build-entries.py --acks ... --ignore-out",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ensures the ignore file and acknowledgement list exist before the gate runs (e.g. committed empty at setup, regenerated in the PR job)",
+        "evidence": "Commit acks.json [] and empty ignore file; exit 121 note",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Sets fetch-depth: 0 (or otherwise fetches full history) because git-revision baselines need history",
+        "evidence": "Both jobs use 'fetch-depth: 0'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces @latest with a pinned oasdiff version",
+        "evidence": "'OASDIFF_VERSION: v1.11.7'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to review classification changes when bumping the pinned oasdiff version",
+        "evidence": "Says pin to stop upstream changes mid-PR but doesn't mention reviewing on bump.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the merge base with the target branch (or the PR base) as the PR-gate baseline",
+        "evidence": "Uses 'origin/${BASE_REF}' tip, not git merge-base.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Covers all four spec files, either per file or with oasdiff breaking-files",
+        "evidence": "Loops over billing ledger payouts identity.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that oasdiff's severity-levels file accepts only check-id and level per line, so the comment and third column must go",
+        "evidence": "Hedged: 'I don't believe --severity-levels accepts comments... haven't confirmed'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Moves the 'why' column into a separate human-readable severity map that the levels file is generated from",
+        "evidence": "The annotated file is the source; awk generates a clean temp levels file from it.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses --fail-on ERR in the PR gate",
+        "evidence": "'--fail-on ERR'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Emits PR annotations or a comment (e.g. -f githubactions)",
+        "evidence": "'--format githubactions'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not publish the changelog from the merge-to-main diff; moves publishing to a release job diffing against the last release tag",
+        "evidence": "The publish job runs on push to main and diffs against github.event.before.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs entry generation and the trace check before publishing, and publishes only when the trace check passes",
+        "evidence": "No trace check.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps published changelog entries per spec/API (or per version) rather than one undifferentiated stream",
+        "evidence": "changelog.json keys changes by service name.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Passes the generated ignore file (from acknowledgement records) rather than a hand-edited one, or mentions acknowledgement records for accepted breaks",
+        "evidence": "No ack records or ignore file.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ensures the ignore file and acknowledgement list exist before the gate runs (e.g. committed empty at setup, regenerated in the PR job)",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects revoking the dormant keys as a way to shrink the v1 residue for the sunset.",
+        "evidence": "\"A dormant key makes no calls. Revoking it doesn't reduce v1 traffic.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a key unused for 60 days may belong to a periodic (monthly, quarterly or annual) job that will resume.",
+        "evidence": "\"60 days is shorter than your business cycles... seasonal and about to resume\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping dormant keys in the v1 census with their last-seen dates rather than removing them.",
+        "evidence": "\"Put the 1,400 keys in the same table, flagged dormant with last-seen dates.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends distinguishing abandoned keys from seasonal ones (e.g. by owner confirmation or historical call pattern) before revoking.",
+        "evidence": "\"Treat a key as confirmed abandoned only with owner confirmation, or a full lookback of silence\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes revocation of confirmed-abandoned keys to the key-management/revocation process rather than the sunset program.",
+        "evidence": "\"Hand those to the api-auth-key-management revocation flow.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying the owners of dormant keys that last called v1 before Feb 28.",
+        "evidence": "Notice to every contact on file; \"Send each owner a confirmation request\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends that new accounts or new integrations default to the replacement version instead of v1.",
+        "evidence": "\"Default new accounts, new app registrations and new webhook destinations to v2\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps key rotations and new keys for existing integrations that still use v1 working until Feb 28 or their exception, rather than forcing them onto the replacement early.",
+        "evidence": "\"Rotated keys, new tokens and new installs of an existing app keep that app's current version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends preventing new integrations from starting on v1 after the sunset notice.",
+        "evidence": "\"Do first: pin new integrations to v2\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking the number of new integrations starting on v1 (target zero).",
+        "evidence": "\"Report new integrations starting on v1 after the switch. The target is zero.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a dashboard made to look clean by revocation hides integrations that will break on Feb 28.",
+        "evidence": "\"The dashboard would look clean without being safe... Deleting them hides the risk.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines migrated per integration by observed replacement usage over a full cycle or owner confirmation, not by absence of recent calls.",
+        "evidence": "Census joins first v2 call but never defines 'migrated'; only 'confirmed abandoned' is defined.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends checking the dormant keys' historical call pattern (e.g. last year's same period) or asking owners, before classifying them as abandoned.",
+        "evidence": "\"no call in 12+ months and no seasonal pattern\"; \"Called in the last 12 months: possibly seasonal.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects revoking the dormant keys as a way to shrink the v1 residue for the sunset.",
+        "evidence": "\"Revoking it removes zero live v1 load... a cosmetic win.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a key unused for 60 days may belong to a periodic (monthly, quarterly or annual) job that will resume.",
+        "evidence": "\"Quarterly and annual jobs, disaster-recovery failover paths, seasonal batches\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping dormant keys in the v1 census with their last-seen dates rather than removing them.",
+        "evidence": "Tiers dormant keys by last use for revocation; does not keep them in the sunset census.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends distinguishing abandoned keys from seasonal ones (e.g. by owner confirmation or historical call pattern) before revoking.",
+        "evidence": "\"Tier them by last use... Notify key owners and give 14\u201330 days' notice.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes revocation of confirmed-abandoned keys to the key-management/revocation process rather than the sunset program.",
+        "evidence": "Only says to report revocation as security cleanup; no separate process routing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying the owners of dormant keys that last called v1 before Feb 28.",
+        "evidence": "\"Notify key owners and give 14\u201330 days' notice.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends that new accounts or new integrations default to the replacement version instead of v1.",
+        "evidence": "\"default new keys to v2 now\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps key rotations and new keys for existing integrations that still use v1 working until Feb 28 or their exception, rather than forcing them onto the replacement early.",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends preventing new integrations from starting on v1 after the sunset notice.",
+        "evidence": "Allows opt-in: \"Anyone who really needs v1 can opt in explicitly\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking the number of new integrations starting on v1 (target zero).",
+        "evidence": "Only \"you can log those opt-ins\"; no tracking metric or zero target.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that a dashboard made to look clean by revocation hides integrations that will break on Feb 28.",
+        "evidence": "\"A dashboard that looks clean after the revocation would overstate migration progress.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines migrated per integration by observed replacement usage over a full cycle or owner confirmation, not by absence of recent calls.",
+        "evidence": "Suggests measuring \"v1 requests and distinct active customers on v1\"; no migrated definition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends checking the dormant keys' historical call pattern (e.g. last year's same period) or asking owners, before classifying them as abandoned.",
+        "evidence": "Tiers by last use and notifies owners, but no historical pattern check such as last year's same period.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

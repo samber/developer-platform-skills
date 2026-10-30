@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the curve as visitors rising while stars and dependents do not, and reads it as the page failing evaluators rather than an awareness gap",
+        "evidence": "'Row: \"Visitors rise, stars and dependents do not.\" Reading: the page fails evaluators.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the first action README work via the readme-optimization skill, before any further awareness push",
+        "evidence": "'Rewrite using `samber/developer-relations-skills@readme-optimization`'; podcasts held at current cadence.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the user's numbers through: 400 to 1,100 weekly visitors, 310 to 345 stars, 12 dependents",
+        "evidence": "'~400 to ~1,100 per week', '310 to 345', 'Used by: 12'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects posting in other repos' issues: no promotion, hidden as spam, policed; only a disclosed answer to that exact issue",
+        "evidence": "'Acceptable Use Policies ban bulk promotion. Maintainers hide it as spam... only allowed form is a disclosed answer'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that the github/explore PR template attests the change is not self-promotion and that self-promotion is unlikely to be accepted",
+        "evidence": "'\"This change is not self-promotion\"... \"unlikely to be accepted\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes awesome lists as venues that usually accept an author's PR meeting their criteria, each with its own rules",
+        "evidence": "'Awesome lists... usually accept an author's PR that meets their criteria. Check each list's rules.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a one-line star ask at the end of future podcast show notes or talk slides, asked once with nothing offered",
+        "evidence": "'Add a star ask to every new show note and talk slide (template 14).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not rewrite the README inline; routes it to readme-optimization",
+        "evidence": "'I can run the readme-optimization skill on your current README next.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Still ranks the standing surfaces (traffic archive, releases as feed events, topics) with the efficiency order stated",
+        "evidence": "'Order is value per maintainer hour' with traffic archive, releases, topics, Discussions.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends archiving traffic weekly now because the current referrer rows disappear after 14 days [documented]",
+        "evidence": "14-day deletion stated in 'Do now' without a [documented] label; weekly export listed but not tied to referrer rows disappearing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels reach and ranking claims [documented] or [folklore]",
+        "evidence": "`[folklore]` and `[documented]` used throughout.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets no star target and lists unique visitors, referrers, watchers, dependents and downloads as the metrics",
+        "evidence": "'Stars are never a target.' Metrics list visitors, referrers, watchers, dependents, downloads.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the curve as visitors rising while stars and dependents do not, and reads it as the page failing evaluators rather than an awareness gap",
+        "evidence": "\"Awareness is not the bottleneck... The leak is after the visit.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the first action README work via the readme-optimization skill, before any further awareness push",
+        "evidence": "The first action is pulling Insights traffic, and no skill is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Carries the user's numbers through: 400 to 1,100 weekly visitors, 310 to 345 stars, 12 dependents",
+        "evidence": "It includes 400\u21921,100 and 12, but not 310\u2192345 stars (it says \"~35\" extra stars).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects posting in other repos' issues: no promotion, hidden as spam, policed; only a disclosed answer to that exact issue",
+        "evidence": "\"don't. It reads as spam... with disclosure and no pitch.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that the github/explore PR template attests the change is not self-promotion and that self-promotion is unlikely to be accepted",
+        "evidence": "It says only that curated surfaces reject self-promotion.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes awesome lists as venues that usually accept an author's PR meeting their criteria, each with its own rules",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a one-line star ask at the end of future podcast show notes or talk slides, asked once with nothing offered",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not rewrite the README inline; routes it to readme-optimization",
+        "evidence": "It plans a README audit inline with no skill routing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Still ranks the standing surfaces (traffic archive, releases as feed events, topics) with the efficiency order stated",
+        "evidence": "Not done.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends archiving traffic weekly now because the current referrer rows disappear after 14 days [documented]",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels reach and ranking claims [documented] or [folklore]",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets no star target and lists unique visitors, referrers, watchers, dependents and downloads as the metrics",
+        "evidence": "It uses a conversion-rate metric and does not list watchers or dependents.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

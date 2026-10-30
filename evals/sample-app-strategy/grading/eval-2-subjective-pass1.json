@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Uses the most minimal framework per language that shows the platform calls, and adds framework-specific starters only when telemetry shows framework concentration",
+        "evidence": "The transcript hints at minimalism and telemetry gating, but never states either as a rule. The quickstart is described as having \"one route and no frontend\". The measurement section says the Q1 data \"also tells you whether Java or Go samples, a playground or a framework template are worth adding.\" It never names or picks a minimal framework per language (for example stdlib or Express for Node, Flask for Python), and it never says to avoid framework-specific variants. The telemetry trigger is framed as general usage signals, not as evidence that usage is concentrated in one framework. The Verc",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Uses the most minimal framework per language that shows the platform calls, and adds framework-specific starters only when telemetry shows framework concentration",
+        "evidence": "The transcript never says which framework each language's samples use, and it never says to keep them minimal (plain HTTP handlers, no heavy framework). It adds a framework-specific starter, the 'Vercel deploy template (Next.js, reuses the Node samples)', on the grounds that it 'reaches the 48% Node audience' and substitutes for the playground. That 48% is language share, not evidence that Node users concentrate on Next.js or Vercel. So the framework starter was added without the framework-concentration evidence the rubric requires.",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

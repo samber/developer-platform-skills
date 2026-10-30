@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends operator triage-then-route for the certified tier: the operator takes the first call and isolates platform versus connector fault",
+        "evidence": "\"Certified | Glimmerdeck | Partner... Glimmerdeck isolates and routes within 1 business day\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns fixes for connector-side bugs to the partner under a stated response-time commitment",
+        "evidence": "\"Partner first response \u22643 business days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends partner-owned support with published routing for non-certified tiers",
+        "evidence": "Partner-maintained and Community rows give first contact, fixer and sentence.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects announcing that certified connectors are 'fully supported by Glimmerdeck'",
+        "evidence": "\"don't announce 'fully supported by Glimmerdeck'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties any joint SLA or full operator support to certified connectors being sold inside a paid plan, and notes they are not here",
+        "evidence": "\"Joint SLA is promoted only for paid plans... Yours are free\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a written support sentence for every tier, shown on the listing",
+        "evidence": "The \u00a73 table has a sentence for all four labels.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that buyers read 'certified' as 'the platform stands behind it' unless the listing says otherwise",
+        "evidence": "The \"silent support promise\" failure mode causes misrouted tickets, and \"If the brand appears, the support sentence goes right next to it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a KPI for tickets misrouted to the operator on partner-owned connectors",
+        "evidence": "\"Tickets misrouted to Glimmerdeck for partner-owned connectors. Baseline is today's 30%.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a partner response-time criterion (with window and minimum ticket count) as part of what keeps the certified label",
+        "evidence": "\"First response \u22643 business days | Trailing quarter | \u22655 tickets\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends operator triage-then-route for the certified tier: the operator takes the first call and isolates platform versus connector fault",
+        "evidence": "\"Front door... Triage... Fix\"; Glimmerdeck decides platform vs partner code.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns fixes for connector-side bugs to the partner under a stated response-time commitment",
+        "evidence": "Sev1 4 business hours acknowledgement, fix-plan SLAs.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends partner-owned support with published routing for non-certified tiers",
+        "evidence": "Tier 0: \"Glimmerdeck gives no support for connector behavior\"; no published routing to the partner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects announcing that certified connectors are 'fully supported by Glimmerdeck'",
+        "evidence": "\"do not announce 'fully supported by Glimmerdeck.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties any joint SLA or full operator support to certified connectors being sold inside a paid plan, and notes they are not here",
+        "evidence": "\"Fully supported\" only for first-party or a customer with a paid support plan; \"unfunded obligation to a free product\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a written support sentence for every tier, shown on the listing",
+        "evidence": "Tier 1 label and Tier 0 listing text exist; Tier 2 has none.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that buyers read 'certified' as 'the platform stands behind it' unless the listing says otherwise",
+        "evidence": "Only says 'fully supported' would be quoted in renewals; no explanation about the 'certified' reading.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds a KPI for tickets misrouted to the operator on partner-owned connectors",
+        "evidence": "KPIs: time to route, share resolved by partner; no misrouted KPI.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a partner response-time criterion (with window and minimum ticket count) as part of what keeps the certified label",
+        "evidence": "SLA compliance over two quarters, but no minimum ticket count.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

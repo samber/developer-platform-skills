@@ -1,0 +1,94 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that Slack's API terms treat the Slack Marketplace as the channel for commercially distributed apps",
+        "evidence": "\"Slack's API terms name the Marketplace the only channel for commercial apps\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that new installs of unlisted commercially distributed apps are limited to 1 request per minute on conversations.history and conversations.replies",
+        "evidence": "\"1 request per minute and 15 objects\u2020 on `conversations.history` and `conversations.replies`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the 15-object limit per call for those methods",
+        "evidence": "\"15 objects\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack charges no fee for Marketplace inclusion",
+        "evidence": "\"Listing costs no fee\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at least one listing-only distribution lever such as app suggestions via the slack-app-id meta tag or direct install from the listing",
+        "evidence": "\"`slack-app-id` meta tag ... It also gives you direct install from the listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that bulk indexing or storing message history is what Slack restricts, points to fetching messages when needed or the Real-time Search API, and notes Real-time Search is unavailable to an unlisted app",
+        "evidence": "\"Bulk indexing is the problem\"; \"Real-time Search API\u2020 ... serves listed apps only, and Slack's guidance is to fetch on demand rather than store copies\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking installs and uninstalls with the app's own data, such as an OAuth install ledger or the app_uninstalled event",
+        "evidence": "\"Track installs and uninstalls yourself with an OAuth install ledger and the `app_uninstalled` event.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that Slack's API terms treat the Slack Marketplace as the channel for commercially distributed apps",
+        "evidence": "\"Commercially distributed apps that aren't in the Marketplace get a tight limit\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that new installs of unlisted commercially distributed apps are limited to 1 request per minute on conversations.history and conversations.replies",
+        "evidence": "\"about 1 request per minute and 15 messages per request\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the 15-object limit per call for those methods",
+        "evidence": "\"15 messages per request\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack charges no fee for Marketplace inclusion",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names at least one listing-only distribution lever such as app suggestions via the slack-app-id meta tag or direct install from the listing",
+        "evidence": "Mentions only search and category pages; no meta tag or direct install from listing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that bulk indexing or storing message history is what Slack restricts, points to fetching messages when needed or the Real-time Search API, and notes Real-time Search is unavailable to an unlisted app",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends tracking installs and uninstalls with the app's own data, such as an OAuth install ledger or the app_uninstalled event",
+        "evidence": "Only \"your own funnel analytics on your site\"; no install ledger or app_uninstalled.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

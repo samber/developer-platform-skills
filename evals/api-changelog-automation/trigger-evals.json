@@ -1,0 +1,1198 @@
+{
+  "skill_name": "api-changelog-automation",
+  "description": "Designs the provider-side pipeline that turns contract diffs of an API you publish (OpenAPI, GraphQL SDL, protobuf, AsyncAPI) into a breaking-change CI gate and a traced, per-version API changelog feed, classified by your own policy. Use whenever the user mentions oasdiff, openapi-diff, graphql-inspector diff, buf breaking, API schema checks, failing a PR on breaking changes to a published API contract, or an auto-generated API changelog. Do NOT use for release-note prose (samber/developer-relations-skills@changelog-writing), consumer-side upgrades (samber/developer-relations-skills@version-migration-guide), deprecation policy (samber/developer-platform-skills@api-versioning-policy) or callers of deprecated endpoints (samber/developer-platform-skills@integration-health-monitoring).",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "set up oasdiff in github actions so a PR that breaks openapi.yaml fails, and generate the API changelog per release",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How do I auto-generate an API changelog from our OpenAPI spec diffs?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our graphql-inspector check flags every enum value we add as dangerous, how should we configure it against our compatibility rules",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we want buf breaking in CI and a partner-facing changelog generated from the proto changes, what's the setup",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Design a pipeline that detects breaking changes between two versions of our OpenAPI document and publishes a JSON feed of changes",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our oasdiff ignore file has 80 lines nobody can explain, how do we clean this up and keep an audit trail of accepted breaks",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "which baseline should our spec diff use, main or the last release tag? we use it for both CI and the changelog",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "partners keep getting surprised by API changes even though we have a changelog page, can we automate the record from our spec?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Is there a way to make CI fail when someone removes a field from our REST API response?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we publish date-based API versions, how do I produce a per-version changelog automatically from the spec",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our springdoc-generated openapi.json changes on every build even with no code change, so the breaking-change check is noisy",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "openapi-diff vs oasdiff for gating PRs on backward compatibility, and how to map our breaking-change rules onto them",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Can an LLM write our API release notes from the spec diff without making stuff up? How do we verify it",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Apollo schema checks say zero operations use the field, ok to delete it in CI?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we need a machine-readable changelog that our customers' coding agents can poll for API changes",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How should we record approvals for intentional breaking changes flagged by our API diff tool in CI?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "set up asyncapi diff for our event payloads and route unclassified changes somewhere sensible",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our API changelog lists internal and beta endpoints because they share the spec file, how do we filter them out automatically",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "the spec diff passed but we changed default sort order and partners broke, how do we capture changes that don't touch the spec",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "x-sunset and x-stability-level - how do I use them so oasdiff stops flagging planned removals?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Need a GitHub Action that comments the API breaking changes on each PR touching api/openapi.yaml",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we want stripe-style API changelog entries: version, affected area, breaking or not. how do we generate them from our spec?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do I stop our oasdiff upgrade from suddenly reclassifying response enum additions as breaking",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Generate a changelog of API contract changes between v2.3.0 and v2.4.0 tags of our OpenAPI file and flag the breaking ones",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our team keeps adding lines to the breaking-change ignore list just to get builds green, what process should replace that",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how to detect breaking changes in a GraphQL schema in CI with usage data so we don't block on unused fields",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we generate SDKs with Speakeasy from our spec; how do we gate breaking spec changes and produce an API changelog separate from SDK notes",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Is a green breaking-change check enough to promise partners nothing broke this release?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "automate API change detection for our protobuf and grpc-gateway REST facade, partners use the JSON side",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "create an RSS feed of breaking API changes from our openapi spec history",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we fixed our spec to mark a field required that the server always required; oasdiff fails - just ignore it?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "design CI for contract diffing across our REST and GraphQL APIs with one changelog at the end",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what should our severity-levels file for oasdiff contain if our policy says auth changes are breaking",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "pls help, need breaking change detection on our public api spec + auto changelog, we're on gitlab",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do I make sure every entry in our generated API changelog actually corresponds to a change in the spec",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our API versions are header-based and one codebase serves all of them. How do we diff each version's contract separately?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we want to fail the build when a breaking change ships without a major bump of info.version",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "build me a release job that turns the spec diff into changelog entries with action-required text for breaking changes",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Product asks for an API change feed per customer audience (public vs partner) generated automatically from the OpenAPI files",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "why does oasdiff report one finding for a shared schema used in 200 places and how should the changelog show it",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what would a declared-change fragment look like for API behavior changes the spec can't express",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We rename operationIds sometimes. Does that break anything and will our spec diff catch it?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "wire graphql hive / apollo checks into our PR flow and publish the schema changes as an API changelog",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Is it ok to diff yesterday's spec against today's every night and post the result as our API changelog?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we have optic in CI from 2023, should we keep it for breaking-change detection?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How do I treat WARN level findings from oasdiff in the published changelog?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up breaking-change detection for our webhook event schemas described in AsyncAPI and include them in the API changelog",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what metrics tell us our automated API changelog is missing breaking changes",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our partners want to subscribe to API changes affecting only the endpoints they use, how do we structure the generated entries",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "The CTO wants every breaking API change blocked unless someone signs it off. How do we implement that in CI with the spec diff?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do I collapse 300 near-identical diff lines into readable API changelog entries without losing traceability",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we need the API changelog to show deprecations with sunset dates pulled from the spec",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "compare two openapi files in CI, fail on breaking, annotate the PR, and keep a record of exceptions",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our grpc team uses WIRE in buf.yaml, is that enough for a public changelog?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "migrating from a hand-maintained API changelog to one generated from spec diffs - where do we start?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "can you write the github workflow that runs oasdiff changelog on release tags and publishes entries.json",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how should a declared behavior change be versioned when we use date-pinned API versions?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we keep breaking clients by tightening validation in handlers; how do we get that into the API changelog automatically",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up a drift check so our published OpenAPI spec can't silently diverge from what the API serves, for changelog accuracy",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our graphql-inspector and buf outputs have no ids, how do we build a stable changelog feed from them",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do I give each auto-generated API changelog entry an id that survives rebuilds and multiple API versions",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "oasdiff fails with 'invalid line #1' on our severity levels file, how should that file look",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what's the right github actions setup for oasdiff on a monorepo with several openapi files",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we backport a fix to two pinned API versions, how should the generated changelog show it",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "publish an Atom feed of API contract changes per version, what should the entry ids be",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "turn buf breaking results into partner-facing changelog entries",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our release job should diff the spec against the last tag and fail if any breaking change lacks an approval",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do I stop an approval for one breaking change in our oasdiff ignore list from silently covering another",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "merge GraphQL and REST contract changes into one change feed for partners",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should we run oasdiff with @latest in CI?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "generate the oasdiff ignore file from a list of approved breaking changes instead of hand editing",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what's a good JSON schema for machine-readable API changelog entries",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we want our API contract checks in CI to also tell partners what changed in each release",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "graphql-inspector keeps failing when we remove deprecated fields we already sunset, how do we configure that safely",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Write the release notes for v3.2 of our CLI from these merged PRs",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "turn this list of commits into a CHANGELOG.md entry following Keep a Changelog",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write the migration guide for our v2 to v3 API upgrade with before/after code samples",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "define our API versioning and deprecation policy: URI or header versions, notice windows, sunset headers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Which integrations are still calling our deprecated /v1/orders endpoint and how do we reach their owners before sunset?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "review our REST API design for naming, pagination and error consistency",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "audit our API reference docs for undocumented endpoints and missing examples",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the error response format and error codes for our public API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how should we design our GraphQL schema so it can evolve without versions",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design our webhook platform: signing, retries, event versioning",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we're launching a beta for a new API feature, how do we run the design partner program",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "publish our SDKs to npm and PyPI with proper pre-release channels and release notes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up semantic-release to bump versions and generate CHANGELOG.md from conventional commits",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a friendly 'what's new' in-app announcement for our product's new dashboard",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do we design a public status page and incident communication for our API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "generate an OpenAPI spec from our Express routes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "generate TypeScript types from our OpenAPI file",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a blog post announcing our API v4 launch",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our app's App Store release notes need rewriting for the new version",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the rate-limit policy and 429 contract for our API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Which SDK languages should we build first for our API?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "upgrade our app from Stripe API version 2024-06-20 to the latest one",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we use the Shopify API and need to migrate to the new quarterly version, what changed for us",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "help me fix the breaking changes after upgrading React Router to v7",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "lint our OpenAPI spec with Spectral for naming and description rules",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up contract testing with Schemathesis against our OpenAPI spec",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design our developer portal information architecture",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "what's our public roadmap posture, should we publish upcoming API features",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do I version our open-source library: semver or calver, and what's our backport policy",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write the deprecation email to customers about the sunset of our legacy reporting API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design idempotency keys and retry guidance for our payments API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up error dashboards per integration so partners can debug failed calls",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design our gRPC API package versioning and proto style guide",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "plan the OAuth2 scopes and consent screen for third-party apps",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "diff two JSON config files and show what changed",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "compare two database schema migrations and detect destructive changes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up Dependabot and summarize breaking changes in our dependency upgrades",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write release notes for our mobile app's 5.0 release for end users",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Create a changelog page design for our marketing site with nice cards",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the sandbox / test mode for our API so developers can simulate failures",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "plan our API monetization: usage-based pricing for API calls",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "help me write a CHANGELOG entry for this single bug fix PR",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our Kubernetes cluster upgrade removed some APIs, which manifests do we need to fix",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "which of our partners' apps need re-review in the marketplace after the API change",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up Terraform provider releases and its changelog for the registry",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "draft a security advisory for a vulnerability in our SDK",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "translate our existing API changelog into Japanese and German",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we measure developer relations success and report it to execs?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a tutorial showing how to call our new invoices endpoint",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up Renovate to auto-merge minor dependency updates",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design a JSON schema for our product catalog import files",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "make our docs show the right content per API version with a version switcher",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "what should our API's breaking-change definition include? we have none written",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how long should our deprecation notice period be for public API consumers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a newsletter issue summarizing this month's product updates for developers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "generate a Postman collection from our OpenAPI spec",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the event schema naming conventions for our webhooks",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up a GitHub release workflow that tags and publishes binaries for our CLI",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do I compare the performance of two API versions with load tests?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write the GitHub Actions workflow that runs our unit tests and lints our TypeScript",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "pin our GitHub Actions to commit SHAs for supply-chain security",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design an RSS feed for our engineering blog",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "build a JSON schema for our webhook event payloads",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how should our SDK's CHANGELOG.md group features and fixes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up a monorepo release process with changesets for our npm packages",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "what's the deprecation timeline we should promise partners for /v1",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "migrate our GraphQL clients after the provider removed a field",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write the security advisory for the fix we're backporting to old versions",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design GraphQL schema federation for partner subgraphs",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "generate client SDKs from our protobuf files",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do we design pagination for our list endpoints",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "diff two Terraform plans and summarize what changes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write release notes for our internal admin UI's sprint 42",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "compare two versions of the JSON config schema our library reads and flag removed keys",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 148,
+    "passed": 94,
+    "failed": 54
+  }
+}

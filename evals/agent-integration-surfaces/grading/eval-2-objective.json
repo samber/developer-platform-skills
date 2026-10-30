@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a confirmation modal inside the session the agent drives can be clicked by the agent itself",
+        "evidence": "\"The agent can click it. A browser agent driving the session sees the modal and clicks 'Confirm'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the payroll approval to travel out of the agent's channel (push, email or second device)",
+        "evidence": "\"The approval has to travel outside the agent's channel: push, email or a second device.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a User-Agent string is a claim anyone can send, so a UA-substring allowlist admits spoofers",
+        "evidence": "\"A user-agent is a claim, not an identity. Anyone can send `User-Agent: Claude`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends verifying hosted agents by Web Bot Auth signature or vendor-published IP lists",
+        "evidence": "\"allow rule on a verified identity: ... (Web Bot Auth, RFC 9421 based), or vendor IP lists.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes hosted browser agents from local browser agents running in the user's own browser",
+        "evidence": "Matrix has separate \"Hosted browser agent\" and \"Local browser agent\" columns; \"Agents running in the vendor's cloud\" vs \"customer's own Chrome\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that local browser agents cannot be targeted by edge policy because they share the user's IP and user-agent",
+        "evidence": "\"Local agents run in the user's own Chrome with the same IP and user-agent as the human.\" and \"Local browser agents cannot be targeted at the edge.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes an API or delegated-token path as the preferred route for agents performing payroll actions",
+        "evidence": "\"the API plus SDKs with agent credentials. This is the preferred path\"; \"use the API\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a spend or action cap per agent credential for money-moving operations",
+        "evidence": "\"Add a per-credential spend cap.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends per-agent credentials or delegated tokens rather than agents riding the human's session where an API path exists",
+        "evidence": "\"Per-agent key or delegated token... Never the human's key or session\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions a pending-approval state the user confirms elsewhere as a mechanism that works today",
+        "evidence": "\"'Submit payroll' returns `pending_approval`. A named human approves it out of band\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend skipping the bot challenge for all requests that merely claim to be an AI agent",
+        "evidence": "\"Replace the UA rule with an allow rule on a verified identity... Everything else keeps the challenge.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a confirmation modal inside the session the agent drives can be clicked by the agent itself",
+        "evidence": "'The agent clicks \"Confirm.\"... same actor in the same session approves its own action.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the payroll approval to travel out of the agent's channel (push, email or second device)",
+        "evidence": "'Require out-of-band approval: passkey/WebAuthn..., or a push or email link to an approver.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a User-Agent string is a claim anyone can send, so a UA-substring allowlist admits spoofers",
+        "evidence": "'Anyone can spoof it... User-Agent: ChatGPT'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends verifying hosted agents by Web Bot Auth signature or vendor-published IP lists",
+        "evidence": "'signed requests (Web Bot Auth / HTTP Message Signatures) or vendor-published IP ranges'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes hosted browser agents from local browser agents running in the user's own browser",
+        "evidence": "Separate points for extension agents and hosted headless agents.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that local browser agents cannot be targeted by edge policy because they share the user's IP and user-agent",
+        "evidence": "Extension 'has the same UA, IP, cookies and TLS fingerprint as a human'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes an API or delegated-token path as the preferred route for agents performing payroll actions",
+        "evidence": "'Offer a real API or MCP server with OAuth scopes, amount caps and rate limits.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a spend or action cap per agent credential for money-moving operations",
+        "evidence": "'OAuth scopes, amount caps and rate limits'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends per-agent credentials or delegated tokens rather than agents riding the human's session where an API path exists",
+        "evidence": "Agent sessions get a 'preparer' role with no submit scope, via scoped delegation.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions a pending-approval state the user confirms elsewhere as a mechanism that works today",
+        "evidence": "Maker-checker approval by a different person via push/email; hold runs before release.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend skipping the bot challenge for all requests that merely claim to be an AI agent",
+        "evidence": "'Never exempt login or credential endpoints'; 'Do not trust a string'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

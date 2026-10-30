@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the WIRE category misses changes that break JSON clients, such as field renames",
+        "evidence": "\"WIRE ignores JSON field names, so renaming a field breaks every partner and still passes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends at least the WIRE_JSON category because partners use the JSON facade",
+        "evidence": "buf.yaml use WIRE_JSON",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that buf breaking does not check google.api.http (custom option) transcoding annotations",
+        "evidence": "\"It ignores custom options such as google.api.http\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends also diffing the generated OpenAPI of the HTTP/JSON facade with an OpenAPI diff tool",
+        "evidence": "Section 2",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the partner changelog should be generated against the last released schema/tag rather than main",
+        "evidence": "Baseline table: spec of last released tag",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the main-branch comparison for the PR gate only",
+        "evidence": "PR gate merge base row",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Suggests excluding internal-only or unstable packages from the partner gate (e.g. ignore_unstable_packages or audience filtering) rather than weakening the whole category",
+        "evidence": "\"Keep except and ignore_unstable_packages for beta packages\"; x-internal filter",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires entries to be generated from structured diff output with a source reference per entry",
+        "evidence": "\"Build entries from structured output only\"; \"any entry without a source fails\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a changelog entry classification of breaking / potentially-breaking / non-breaking",
+        "evidence": "Breaking, Potentially breaking, additions; fragment classification field",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an approval record for any accepted breaking finding",
+        "evidence": "Section 5 acknowledgement file",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points to the gRPC-specific design skill (public-grpc-api-design) for proto package versioning rather than redesigning it here",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend keeping WIRE for the partner-facing gate",
+        "evidence": "Switch to WIRE_JSON",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says partner-facing entries should name the HTTP method and path partners call on the JSON facade, not only the proto RPC",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the WIRE category misses changes that break JSON clients, such as field renames",
+        "evidence": "'WIRE checks the wrong contract'; the table covers renaming train_id to trainId.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends at least the WIRE_JSON category because partners use the JSON facade",
+        "evidence": "'Switch from WIRE to WIRE_JSON at minimum.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that buf breaking does not check google.api.http (custom option) transcoding annotations",
+        "evidence": "'buf ignores google.api.http options.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends also diffing the generated OpenAPI of the HTTP/JSON facade with an OpenAPI diff tool",
+        "evidence": "Add an OpenAPI generation step and diff with oasdiff.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the partner changelog should be generated against the last released schema/tag rather than main",
+        "evidence": "'diff the previous release tag against the new one'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the main-branch comparison for the PR gate only",
+        "evidence": "'.git#branch=main works for PR gating only.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Suggests excluding internal-only or unstable packages from the partner gate (e.g. ignore_unstable_packages or audience filtering) rather than weakening the whole category",
+        "evidence": "'Use ignore_unstable_packages: true, and ignore_only... instead of dropping to a weak category.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires entries to be generated from structured diff output with a source reference per entry",
+        "evidence": "Mentions JSON output but no per-entry source reference.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a changelog entry classification of breaking / potentially-breaking / non-breaking",
+        "evidence": "Only notes that oasdiff gives 'a severity level'; it does not require classification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires an approval record for any accepted breaking finding",
+        "evidence": "Only an 'approved breaking' label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points to the gRPC-specific design skill (public-grpc-api-design) for proto package versioning rather than redesigning it here",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend keeping WIRE for the partner-facing gate",
+        "evidence": "Recommends WIRE_JSON for the partner-facing surface.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says partner-facing entries should name the HTTP method and path partners call on the JSON facade, not only the proto RPC",
+        "evidence": "Not required.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

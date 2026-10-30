@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires the version notice on stderr so stdout carries only JSON",
+        "evidence": "\"Send banners, progress, warnings and update notices to stderr.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects copying the CLI flag reference into the skill because it drifts on the next CLI release",
+        "evidence": "\"The copy drifts on the next CLI release... Delete it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points the skill at a machine-readable help (for example --help --json) instead",
+        "evidence": "\"The skill points the agent at `drift <cmd> --help --json`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the skill holds the workflow (order, checks, recovery, human-only actions) while the CLI holds commands and output",
+        "evidence": "Division of labor table: skill owns workflows, ordering, checks, recovery, human-only actions; CLI owns commands, flags, JSON.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats agent-mode 'next command' strings built from API data as a command-injection surface",
+        "evidence": "\"The display name is untrusted user-generated content, placed in a command line... rated a security vulnerability.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends emitting next-step hints as data fields or identifiers rather than shell command lines",
+        "evidence": "\"Emit data, never a shell string. Use `\"next\": {\"command\": \"domains.add\", \"args\": {...}}`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a CI test that parses stdout of every --json command as JSON, including in agent-detected mode",
+        "evidence": "\"CI parses stdout of every `--json` command as JSON, in both normal and agent-detected mode.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends that the CLI not prompt when stdin is not a TTY",
+        "evidence": "\"no prompt when stdin isn't a TTY, and every prompt has a flag\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Assigns MCP, not skill plus CLI, to the chat assistant without a shell",
+        "evidence": "\"Chat assistant users (no shell): an MCP server.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends both paths come from one source of truth so they cannot disagree",
+        "evidence": "\"build the MCP server and the CLI's `--help --json` from one command catalog, so they can't drift apart.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands the CLI's own command and contract design to samber/developer-platform-skills@cli-interface-design or skill versioning to samber/developer-platform-skills@agent-skill-offering",
+        "evidence": "No hand-off to samber/developer-platform-skills@cli-interface-design or agent-skill-offering appears anywhere in the transcript.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires the version notice on stderr so stdout carries only JSON",
+        "evidence": "'Send the notice to stderr, or drop it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects copying the CLI flag reference into the skill because it drifts on the next CLI release",
+        "evidence": "'Don't copy the 40-command flag reference. It goes stale.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points the skill at a machine-readable help (for example --help --json) instead",
+        "evidence": "'drift help --json or drift schema'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the skill holds the workflow (order, checks, recovery, human-only actions) while the CLI holds commands and output",
+        "evidence": "'CLI owns facts and safety. The skill owns judgment and workflow.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats agent-mode 'next command' strings built from API data as a command-injection surface",
+        "evidence": "'prompt injection through your own CLI'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends emitting next-step hints as data fields or identifiers rather than shell command lines",
+        "evidence": "Structured next_actions with argv and slug.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a CI test that parses stdout of every --json command as JSON, including in agent-detected mode",
+        "evidence": "'drift --json <cmd> | jq . must pass, with a golden test that stdout is pure JSON'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends that the CLI not prompt when stdin is not a TTY",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Assigns MCP, not skill plus CLI, to the chat assistant without a shell",
+        "evidence": "'expose the same operations through an API or MCP server' for assistants that must act.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends both paths come from one source of truth so they cannot disagree",
+        "evidence": "'Make the CLI the machine-readable source of truth'; generated reference.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands the CLI's own command and contract design to samber/developer-platform-skills@cli-interface-design or skill versioning to samber/developer-platform-skills@agent-skill-offering",
+        "evidence": "No reference to cli-interface-design or agent-skill-offering.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

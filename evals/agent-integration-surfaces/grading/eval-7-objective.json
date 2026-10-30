@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends claiming the existing third-party Context7 listing rather than submitting a new one",
+        "evidence": "\"The existing entry is a third-party index of your repo\"; \"2. Claim the entry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the claim uses context7.json with the generated key committed at repo root for a repo-sourced library",
+        "evidence": "\"Commit one `context7.json` at the repo root on the default branch. It carries the generated public key\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies that a folder named v1-reference is not caught by default exclusions and must be renamed or listed in excludeFolders",
+        "evidence": "\"Your `/docs/v1-reference` folder doesn't match Context7's default exclusion patterns\"; \"`excludeFolders: [\"docs/v1-reference\"]`\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends previousVersions or equivalent version configuration for v1 rather than indexing it as current",
+        "evidence": "\"`previousVersions`: your v1 git tags, so v1 stays queryable as v1\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that long-tail libraries refresh less often, so docs can lag for weeks",
+        "evidence": "\"Long-tail libraries refresh on request only once the docs are up to 45 days old... you serve stale docs for weeks.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends triggering a Context7 refresh on push to the default branch",
+        "evidence": "\"Add a refresh call on push to the default branch.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an A2A agent card only applies when the product exposes an agent endpoint, so it will not fix this",
+        "evidence": "\"it advertises an agent endpoint that other agents talk to. Quiverlane is a library with no agent endpoint\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes llms.txt and docs markdown endpoints to samber/developer-relations-skills@coding-agent-docs-optimization",
+        "evidence": "\"it belongs to `samber/developer-relations-skills@coding-agent-docs-optimization`\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not present the agent card as a discovery fix for a library",
+        "evidence": "\"Skip it.\" and G \"Deleted: no agent endpoint\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that Context7 title and description reject instructions or promotional text",
+        "evidence": "\"Plain facts only. Agent instructions and promotion are rejected.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends claiming the existing third-party Context7 listing rather than submitting a new one",
+        "evidence": "'Claim the Context7 listing... Someone else listed your repo'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the claim uses context7.json with the generated key committed at repo root for a repo-sourced library",
+        "evidence": "Mentions context7.json at repo root but not the generated key.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies that a folder named v1-reference is not caught by default exclusions and must be renamed or listed in excludeFolders",
+        "evidence": "Use 'excludeFolders' for docs/v1-reference.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends previousVersions or equivalent version configuration for v1 rather than indexing it as current",
+        "evidence": "'If it supports previous-version entries, list v1 there'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that long-tail libraries refresh less often, so docs can lag for weeks",
+        "evidence": "Says training data lags, not Context7 refresh lag.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends triggering a Context7 refresh on push to the default branch",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that an A2A agent card only applies when the product exposes an agent endpoint, so it will not fix this",
+        "evidence": "'Quiverlane is a library with no running agent'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes llms.txt and docs markdown endpoints to samber/developer-relations-skills@coding-agent-docs-optimization",
+        "evidence": "Writes llms.txt itself with no routing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not present the agent card as a discovery fix for a library",
+        "evidence": "'Skip the A2A agent card.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that Context7 title and description reject instructions or promotional text",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

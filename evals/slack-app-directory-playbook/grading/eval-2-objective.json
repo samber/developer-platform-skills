@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that each resubmission during the preliminary review resets the queue position",
+        "evidence": "\"Every resubmission at this stage resets your queue position.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing all three items before resubmitting rather than resubmitting after item 1 alone",
+        "evidence": "\"Don't resubmit with item 1 only. Fix all three first, then resubmit once.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites or instructs rewriting each scope reason to describe how Tallyho uses the scope, not what the scope does",
+        "evidence": "\"one sentence with three parts: the feature, the user action that triggers it, and what the app does with the data. Never restate what the scope does.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a GitHub README or code repository is not an acceptable landing page and that it must be a public web page built for the Slack app",
+        "evidence": "\"A GitHub README fails the rule. The page must be built for the Slack app, not a doc or repository.\" \"Put it on your domain\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists landing page contents including an install path and a link to the privacy policy",
+        "evidence": "\"overview, how it works in Slack, the install path, a post-install success page..., a privacy-policy link\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GitHub Issues alone is not acceptable support and that a channel requiring no new account is needed",
+        "evidence": "\"GitHub Issues alone fails. Add an email or form that needs no new account\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the expected support response time of 2 business days",
+        "evidence": "\"with a 2-business-day\u2020 response\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack reviewers cannot log into any Slack workspace, including a demo workspace",
+        "evidence": "\"Reviewers cannot log into any Slack workspace, yours included.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to give reviewers a way to install the app themselves plus test accounts with dummy data",
+        "evidence": "\"An install link... A Tallyho test account loaded with dummy data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a video demo covering install, OAuth, setup, use and uninstall",
+        "evidence": "\"Show install and OAuth, setup, a full standup cycle, and uninstall.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that each resubmission during the preliminary review resets the queue position",
+        "evidence": "Says only that a rejected resubmission \"costs you a full review cycle\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing all three items before resubmitting rather than resubmitting after item 1 alone",
+        "evidence": "\"Don't resubmit with only item 1 fixed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites or instructs rewriting each scope reason to describe how Tallyho uses the scope, not what the scope does",
+        "evidence": "\"Tallyho uses `X` to do Y when the user does Z.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a GitHub README or code repository is not an acceptable landing page and that it must be a public web page built for the Slack app",
+        "evidence": "\"A GitHub README is not a landing page. Slack wants a real page\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists landing page contents including an install path and a link to the privacy policy",
+        "evidence": "\"description, a screenshot, an install button, a privacy policy, and a support email\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that GitHub Issues alone is not acceptable support and that a channel requiring no new account is needed",
+        "evidence": "Calls it \"a weak support channel\" but doesn't say unacceptable or mention no new account.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the expected support response time of 2 business days",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Slack reviewers cannot log into any Slack workspace, including a demo workspace",
+        "evidence": "\"Reviewers generally install the app into their own workspace. Logins to someone else's workspace tend to hit 2FA... or just get ignored.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to give reviewers a way to install the app themselves plus test accounts with dummy data",
+        "evidence": "Suggests a how-to-test doc and a guest invite link; no test accounts with dummy data.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a video demo covering install, OAuth, setup, use and uninstall",
+        "evidence": "No video demo recommended.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

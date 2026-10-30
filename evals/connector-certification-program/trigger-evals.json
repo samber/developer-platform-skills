@@ -1,0 +1,702 @@
+{
+  "skill_name": "connector-certification-program",
+  "description": "Design the certification program a platform operator runs for connectors partners build on it - go/no-go, ownership-first labels, measurable criteria, test kit, telemetry gates, support routing, renewal, decertification. Use whenever the user mentions connector certification, a certified or verified badge for partner-built connectors, a partner integration test suite, certification renewal or expiry, decertification, or certified-vs-community labels - even without saying \"certification\". Do NOT use for app admission security review (samber/developer-platform-skills@app-marketplace-review), earning a badge on someone else''s platform (samber/developer-platform-skills@etl-connector-strategy), or certifying people (samber/developer-relations-skills@developer-certification-program).",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "design a certification program for the connectors partners build on our ELT platform",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our 'Verified' badge on partner integrations never expires and two broke after our API v4 - how do we fix renewal?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "what criteria should a partner-built connector meet to be certified on our iPaaS",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should we run a certified tier for third-party integrations or just label who maintains each one",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do we decertify a partner connector that's been abandoned but still has 300 customers using it",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "build a conformance test kit partners must pass before their integration gets our certified badge",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "certified vs community connectors - what should each label promise our buyers",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we have 120 partner adapters for our database, how do we decide which ones get a 'Trusted' label",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "customers keep opening tickets with us for bugs in partner-built connectors marked certified, how should support work per tier",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "is it a good idea to require 1000 active users before a partner connector can leave preview",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "partner integration test suite: what goes in it, who runs it, how do we version it against our releases",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our marketplace wants a Gold/Silver/Bronze badge for partner integrations based on installs, sanity check please",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how often should partner-built connectors be recertified when we ship breaking platform changes twice a year",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a certification charter for third-party SCIM provisioning integrations on our identity network",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we give a verified badge to integrations after a one-off review call, is that enough",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "telemetry-based criteria for keeping a connector certified - success rate, window, min volume?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do Airbyte, Power Platform and Tableau handle certifying partner connectors, and what should we copy",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should certification be mandatory to get listed in our integration catalog",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our partner program wants every Premier partner to get automatic certification on their connectors - good or bad?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "what happens to installed customers when we pull the certified badge from a partner integration",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up a quality badge for community-contributed plugins on our data pipeline tool",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "partners complain our connector certification takes 9 weeks of manual code review, how do we automate it",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "can partners self-certify their integrations with a questionnaire instead of us testing them",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "define what 'abandoned' means for a certified partner connector and what we do about it",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we're launching an integrations network for our observability product, need a verified-integration program for partner exporters",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "minimum test coverage and pass rate for a partner connector to earn our certified label",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how much notice do certified partners get when we add new certification requirements",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "ship our connector certification test harness to partners before the platform GA so certified connectors don't break on release day",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "badge inflation - every partner connector on our catalog is 'certified' now and buyers ignore it, how do we fix the program",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our 'Approved Integration' seal for partner-built apps: what should earn it and what should take it away",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design tiers for driver and adapter certification on our database platform, partners build the drivers",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "do we let search ranking in our connector catalog depend on certification status",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "security vulnerability in a certified partner connector, what's our policy for blocking installs",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "connector certification program for our reverse ETL destinations built by partners",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do we transition our old partner badges to a new certification scheme without breaking existing listings",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "need measurable criteria for 'well maintained' partner connectors before we certify them",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "operator side: who should own customer support for certified partner integrations on our platform",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "is a certification program worth it if we build 90% of our connectors ourselves",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the security review process third-party apps go through before they get into our marketplace",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write the listing content rules for our app marketplace: screenshots, description, categories",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the onboarding journey for partner developers from signup to first submitted app",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should our SaaS build its own app marketplace or join others' marketplaces",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we want our product listed as a certified source connector on Fivetran and Airbyte, what's the plan",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do we get the Built for Shopify badge for our app and does it help ranking",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design a developer certification exam for engineers who build on our API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "which technology partners should we integrate with first and how deep should each partnership go",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do we move from Silver to Gold in the Zapier partner program",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "get our Terraform provider verified on the registry",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do we renew our SSL certificates automatically before they expire",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "prepare our company for SOC 2 Type II certification",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design how integration failures surface to the partners who built on our API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set a versioning and deprecation policy for our public REST API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design sandbox test mode with test keys and simulated events for our API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up consumer-driven contract tests with Pact between our own microservices",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the OAuth scopes and consent screen third-party apps request on our platform",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "what revenue share should our marketplace take from paid partner apps",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "optimize our listing on the HubSpot app marketplace to get more installs",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write acceptance tests for the Salesforce connector inside our own codebase",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "build a Jira connector for our product following our existing integration pattern",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "publish our SDK to npm and PyPI with provenance and signing",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "monitor error rates and deprecated-API usage across integrations customers have deployed",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "plan the launch marketing for our new app marketplace's first partner cohort",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "get ISO 27001 certified as a 40-person startup",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our MCP server: which tools should we expose to AI agents",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design a partner tier program with benefits by sourced revenue for our resellers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do we pass the Salesforce AppExchange security review on the first try",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "create a CE marking compliance checklist for our IoT hardware",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design webhooks for our platform: signatures, retries, replay",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "run a beta program for our new API endpoints with design partners",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a migration guide for customers moving from our v1 to v2 SDK",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our status page: how do we communicate API incidents to integrators",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "AWS certification path for a junior cloud engineer",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design rate limits and quotas for our public API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "code signing certificate for our Windows desktop app installer",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should we offer GraphQL, gRPC or REST to external developers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "decide which language SDKs we officially support and which stay community-maintained",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we built 30 connectors ourselves and have 60 partner ones in our catalog - partners want a 'certified' label that means something, where do we start",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set the rules for when a partner's certified integration loses its badge on our platform",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our certified partner integrations keep breaking every time we ship a platform release, what should the certification process require",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "operator question: how do we certify MCP servers that partners publish into our agent tool directory",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we're a CRM vendor - how do we get our connector certified on Microsoft Power Platform",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "design Silver, Gold and Platinum levels for our partner program with certified-partner requirements for resellers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write an integration test suite for our Kafka connector before we submit it to Confluent",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do we get the verified creator badge for our GitHub Action on the Marketplace",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "two of our verified partner drivers broke after the platform upgrade and customers blamed us - redesign how verification works",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "pick which connector frameworks to support for our internal data team's pipelines",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 86,
+    "passed": 72,
+    "failed": 14
+  }
+}

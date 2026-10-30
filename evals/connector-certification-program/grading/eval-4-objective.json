@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Blocks new installs of the vulnerable connector within days through a security fast path",
+        "evidence": "\"Suspend the Certified badge, block new installs... rung 3 on the security fast path\"; \"takes effect within 3 days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes or suspends the Certified label immediately while the listing and existing installs are handled separately",
+        "evidence": "\"Suspend the badge and block new installs. The listing label reverts... Existing installs keep running.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend disabling the connector for all 340 existing customers immediately",
+        "evidence": "\"Today: no. Do not disable the 340 existing installs yet.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires notifying affected customers before existing installs are disabled",
+        "evidence": "Step 3 \"Notify all 340 customers today\", with disable on day 14.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a published migration path or workaround before any disable date for existing installs",
+        "evidence": "\"Migration path published first\" in rung 4.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the standing policy as separate rungs: warning, badge suspended, new installs blocked, existing installs disabled",
+        "evidence": "The \u00a77 ladder has Warning, Badge suspended, New installs blocked and Existing installs disabled.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives every rung a trigger, an owner, a notice period and a customer action",
+        "evidence": "All four columns are filled for every rung.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines abandonment with a number (for example months without a release and without a support response) rather than leaving it undefined",
+        "evidence": "\"no release and no support response for 6 months\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the decertification ladder must be published before the next decertification, not written during one",
+        "evidence": "It says \"You had no published ladder\" and \"so this is not a scramble next time\", but never states that the ladder must be published before any decertification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats removing the badge, blocking new installs and disabling existing installs as distinct consequences rather than one switch",
+        "evidence": "\"separate badge from installs\"; each is a distinct rung.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the security fast path a concrete duration in days",
+        "evidence": "\"takes effect within 3 days. A critical vulnerability gets 7 days.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Blocks new installs of the vulnerable connector within days through a security fast path",
+        "evidence": "\"Delist now... block new installs\"; Hour 2\u20134 in the timeline.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes or suspends the Certified label immediately while the listing and existing installs are handled separately",
+        "evidence": "Delisting is mentioned but the Certified label is never addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend disabling the connector for all 340 existing customers immediately",
+        "evidence": "\"wrong about 'everywhere, today.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires notifying affected customers before existing installs are disabled",
+        "evidence": "Customer notice at hour 4\u20138, before disabling idle installs at hour 8 and the dated cutoff.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a published migration path or workaround before any disable date for existing installs",
+        "evidence": "Notice includes \"Here is the alternative or migration path\"; migration help before cutoff.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the standing policy as separate rungs: warning, badge suspended, new installs blocked, existing installs disabled",
+        "evidence": "Ladder: warning badge, delist, suspend; no badge-suspension rung.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives every rung a trigger, an owner, a notice period and a customer action",
+        "evidence": "Ladder table has only day and action.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defines abandonment with a number (for example months without a release and without a support response) rather than leaving it undefined",
+        "evidence": "\"No release in 12 months and no response to a heartbeat check\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the decertification ladder must be published before the next decertification, not written during one",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats removing the badge, blocking new installs and disabling existing installs as distinct consequences rather than one switch",
+        "evidence": "Delist and install block are combined; the badge is not treated separately.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the security fast path a concrete duration in days",
+        "evidence": "Critical ladder: Day 7 warning, Day 14 delist, Day 21 suspend; 7-day payroll cutoff.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

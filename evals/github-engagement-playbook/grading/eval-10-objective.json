@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the curve as unique visitors flat with the registry page and docs missing from referrers: no inflow, GitHub is not the bottleneck",
+        "evidence": "'Row matched: \"Unique visitors flat; registry page and docs missing from referrers.\"... GitHub is not the bottleneck.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the first action fixing the registry-to-repo link (pkg.go.dev, Homebrew) via the sdk-package-publishing skill",
+        "evidence": "Says make registry and docs link to the repo, but never names sdk-package-publishing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the next step to off-platform distribution via the oss-distribution-strategy skill rather than more GitHub surface work",
+        "evidence": "'move off-platform using `samber/developer-relations-skills@oss-distribution-strategy`'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Applies the FUNDING.yml limits: 1 organization plus 4 developers on GitHub Sponsors, 4 custom URLs, 1 account per other platform, and the button stays off until enabled in settings; so 6 contributors do not fit as drafted",
+        "evidence": "'1 organization plus 4 developers... 4 custom URLs... The button stays off until you enable it in settings.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the feed reaches followers, stargazers and watchers only, not strangers [documented], so weekly Discussions tips create no inflow",
+        "evidence": "'The feed reaches followers, stargazers and watchers, not strangers [documented].'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Declines the weekly Discussions tips as a reach channel and opens Discussions only with a named public answerer",
+        "evidence": "'It reaches existing followers, not new visitors. Start it only once Q&A has an answerer'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps rung 1: a weekly traffic archive plus Google Alerts for off-GitHub mentions",
+        "evidence": "KPI sheet plus Google Alerts for \"qmig\", \"quartzline/qmig\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Compares visitors, watchers and dependents against the same window a quarter earlier rather than a fixed threshold",
+        "evidence": "Only 'against the baseline'; 'no absolute number' but no same-window-a-quarter-earlier rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets 5-10 accurate topics as the one-hour compounding step, noting each feeds a github.com/topics page [documented]",
+        "evidence": "Gives 5-10 topics and limits but omits that each feeds github.com/topics/<name>.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels every ranking or reach claim [documented] or [folklore]",
+        "evidence": "[documented] used on feed, topics, FUNDING limits.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the ranked surfaces with the efficiency order and says which data or interview answer moved which rung",
+        "evidence": "'Discussions moves to rung 2 only if... (Q3)... (Q6)... I don't have Q3 or Q6, so Discussions stays at rung 4.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes no star target; states stars are never a target",
+        "evidence": "'Stars are never a target.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the curve as unique visitors flat with the registry page and docs missing from referrers: no inflow, GitHub is not the bottleneck",
+        "evidence": "It treats missing referrers as a repo-link problem.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes the first action fixing the registry-to-repo link (pkg.go.dev, Homebrew) via the sdk-package-publishing skill",
+        "evidence": "The first action is setting the About Website field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the next step to off-platform distribution via the oss-distribution-strategy skill rather than more GitHub surface work",
+        "evidence": "Only a generic note: \"the next lever is outside the repo\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Applies the FUNDING.yml limits: 1 organization plus 4 developers on GitHub Sponsors, 4 custom URLs, 1 account per other platform, and the button stays off until enabled in settings; so 6 contributors do not fit as drafted",
+        "evidence": "Only the 4-username limit is given; the other limits are missing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the feed reaches followers, stargazers and watchers only, not strangers [documented], so weekly Discussions tips create no inflow",
+        "evidence": "It recommends Discussions tips to create docs referrers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Declines the weekly Discussions tips as a reach channel and opens Discussions only with a named public answerer",
+        "evidence": "It enables Discussions and seeds tips.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps rung 1: a weekly traffic archive plus Google Alerts for off-GitHub mentions",
+        "evidence": "The weekly archive is covered, but there is no Google Alerts.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Compares visitors, watchers and dependents against the same window a quarter earlier rather than a fixed threshold",
+        "evidence": "It uses a fixed ~90 baseline.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets 5-10 accurate topics as the one-hour compounding step, noting each feeds a github.com/topics page [documented]",
+        "evidence": "It lists topics but does not note the topics page.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels every ranking or reach claim [documented] or [folklore]",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the ranked surfaces with the efficiency order and says which data or interview answer moved which rung",
+        "evidence": "There is an ordered list but no efficiency rationale tied to data.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes no star target; states stars are never a target",
+        "evidence": "No star target is proposed, but it never states stars are never a target.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

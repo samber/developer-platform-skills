@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that raising oasdiff to fail on WARN or enabling more checks would not have caught these three changes",
+        "evidence": "\"All three incidents most likely produced no finding at all.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that the changes were invisible because none of them changed the spec",
+        "evidence": "Table: handler-side default invisible; rate limit \"Never\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a declared-change channel: a PR template question about behavior, defaults, validation, rate limits or pagination changes made without a spec change",
+        "evidence": "\"Behavior changed without a spec change...\" template block",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a committed change fragment for each declared change, merged into the same changelog as diff-derived entries",
+        "evidence": "\"Merge the output with fragments and acknowledgement rows\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says declared breaking changes go through the same approval as diff-detected breaking changes",
+        "evidence": "\"Declared breaks go through the same approval as diff-detected ones.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends declaring the page-size default in the spec (default keyword) so future changes become visible to the diff",
+        "evidence": "\"Declare default: 100, maximum and maxLength\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends mirroring the 500-character validation into the spec (maxLength) so the diff can see it",
+        "evidence": "maxLength: 500 in step 3",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the rate-limit change as something only the declared channel (or a separate rate-limit page) can carry, not the spec diff",
+        "evidence": "\"Never\" visible to diff; \"Any change requires a fragment\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a drift alarm comparing the spec against the running service or live traffic, or contract tests, to catch spec/implementation divergence",
+        "evidence": "Steps 5 and 6",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes a metric counting breaking changes reported by integrators that had no changelog entry (escaped breaks)",
+        "evidence": "\"Escaped breaks... Target zero\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies each of the three changes as breaking for callers",
+        "evidence": "Hedged: \"`breaking` or `potentially-breaking` per your policy\"; note limit just \"a validation tightening\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not claim that a green spec-diff check proves no breaking change shipped",
+        "evidence": "\"Your green check meant 'the document didn't regress', not 'the API didn't'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says each declared fragment names the affected operation and the action callers must take",
+        "evidence": "Fragment carries affected operations, action_required",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that raising oasdiff to fail on WARN or enabling more checks would not have caught these three changes",
+        "evidence": "'No. It helps with one of the three incidents at best'; the table marks note limit and rate limit as 'No'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that the changes were invisible because none of them changed the spec",
+        "evidence": "'oasdiff compares spec to spec'; 'the handler enforces a limit the spec never states'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds a declared-change channel: a PR template question about behavior, defaults, validation, rate limits or pagination changes made without a spec change",
+        "evidence": "'Add a PR template question, \"Does a client-visible behavior change?\"'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a committed change fragment for each declared change, merged into the same changelog as diff-derived entries",
+        "evidence": "'Generate the changelog from several sources: oasdiff changelog, the gateway config diff, and a required changelog.d/ entry'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says declared breaking changes go through the same approval as diff-detected breaking changes",
+        "evidence": "Only a label forcing a changelog entry and notice; no equivalence of approval is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends declaring the page-size default in the spec (default keyword) so future changes become visible to the diff",
+        "evidence": "'Declare the page size default and maximum... in the spec.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends mirroring the 500-character validation into the spec (maxLength) so the diff can see it",
+        "evidence": "'maxLength: 500 on note, in the spec.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the rate-limit change as something only the declared channel (or a separate rate-limit page) can carry, not the spec diff",
+        "evidence": "Suggests an x-ratelimit spec extension so oasdiff can see it, rather than relying only on the declared channel.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a drift alarm comparing the spec against the running service or live traffic, or contract tests, to catch spec/implementation divergence",
+        "evidence": "'Run a conformance test (Schemathesis or similar)' and boundary tests.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes a metric counting breaking changes reported by integrators that had no changelog entry (escaped breaks)",
+        "evidence": "The success metric is 'zero... behavior changes that ship without a changelog entry', not integrator-reported escaped breaks.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies each of the three changes as breaking for callers",
+        "evidence": "Says 'Treat tightening as breaking' generally but does not classify the three changes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not claim that a green spec-diff check proves no breaking change shipped",
+        "evidence": "'this closes the spec-visible gap only'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says each declared fragment names the affected operation and the action callers must take",
+        "evidence": "No fragment content requirements are specified.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "integration-health-monitoring",
+  "scenarios": 7,
+  "expectations_total": 90,
+  "expectations_subjective": 1,
+  "expectations_objective": 89,
+  "pass_rate_with_skill_pct": 95.6,
+  "pass_rate_without_skill_pct": 64.4,
+  "delta_pp": 31.2,
+  "uplift_multiplier": 1.48,
+  "trigger_accuracy_pct": 53.3,
+  "trigger_queries": 90,
+  "trigger_positive_fire_rate": 0.178,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Mentions that moving a webhook endpoint to a new version may require a new endpoint with overlap during which consumers must handle duplicate deliveries idempotently."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Splits the list into rows for named partner-manager outreach versus rows handled by automated notices, sized to the two managers' capacity."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends starting brownout windows during working hours for the affected users."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Defines migrated per integration by observed replacement usage over a full cycle or owner confirmation, not by absence of recent calls."
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Defines 'migrated' per integration using calls on /v2/payment_intents plus the absence of later /v1 calls over a full cycle (or written owner confirmation), not a single replacement call or a call count."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Ranks the remaining integrations by end customers or installs affected (e.g. the partner apps' installs), not by call volume."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires notices to the remaining integrations to name the endpoint, call count, last-seen time, a sample request ID and the break date."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends notifying installing customers/merchants' admins (customer-side fallback) for partner apps whose developers do not respond."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes scheduled, pre-announced brownouts before the cutoff, starting short and escalating in length."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Conditions brownouts or cutoff on the replacement having run the migrated traffic stably with no open incident."
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends keeping the v1 code path re-enableable behind an allowlist after cutoff for emergency exceptions rather than a global rollback."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends one census row per integration (credential/app) rather than per account default."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Counts integrations (and their end customers) still on 2024-06-01, not just accounts or traffic share."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Includes dormant credentials or inactive accounts pinned to 2024-06-01 in the census instead of excluding them as inactive."
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions that moving a webhook endpoint to a new version may require a new endpoint with overlap during which consumers must handle duplicate deliveries idempotently."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Routes apps with no reachable developer to the installing customers' admins."
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Does not block new installs of marketplace apps still on the legacy scopes before March 1 (flags them instead), or explains that blocking would break partners inside the notice window."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends in-response warnings and/or brownouts to reach the unattributed traffic."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Splits the list into rows for named partner-manager outreach versus rows handled by automated notices, sized to the two managers' capacity."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends notifying the customer admins of LeadLoop's or Zapline's installs if the developer does not respond."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains the ranking rule (days to break, then end customers affected) explicitly rather than only listing an order."
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Suggests checking whether Acme internal sync has other jobs or routes before marking anything migrated, or defines migrated per integration."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends targeted notices to those credentials' owners with call counts and last-seen times, beyond the changelog."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires the brownout error response body to include the schedule or a link to it."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Marks brownout errors as temporary in the response body while keeping them on the same failure path integrations will hit at removal."
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Offers per-credential exceptions with an expiry for owners who cannot meet the date, rather than moving the date for everyone."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Ranks the partner call list by days to break and end customers affected, not by call volume."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes the owner contact and whether it is verified for each row."
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes a 'dispute this attribution' or similar path for partners who believe calls were misattributed."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends keeping dormant keys in the v1 census with their last-seen dates rather than removing them."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes revocation of confirmed-abandoned keys to the key-management/revocation process rather than the sunset program."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps key rotations and new keys for existing integrations that still use v1 working until Feb 28 or their exception, rather than forcing them onto the replacement early."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends preventing new integrations from starting on v1 after the sunset notice."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends tracking the number of new integrations starting on v1 (target zero)."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Defines migrated per integration by observed replacement usage over a full cycle or owner confirmation, not by absence of recent calls."
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends checking the dormant keys' historical call pattern (e.g. last year's same period) or asking owners, before classifying them as abandoned."
+      }
+    ]
+  }
+}

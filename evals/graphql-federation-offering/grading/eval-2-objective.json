@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Opens with a list of blockers or must-fix items before any general design discussion",
+        "evidence": "Verdict line, then '## Blockers' with router.yaml blockers 1-3 first.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the `propagate: matching: \".*\"` rule as forwarding all client headers, including credentials, to the partner subgraph",
+        "evidence": "'forwards every client header to every subgraph. That includes Authorization and Cookie.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags explicit propagation of `Authorization` to the partner as forwarding the end user's credential to a third party",
+        "evidence": "'Brackwater's resolver receives fleet managers' end-user bearer tokens on every call.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a per-partner credential minted per request (short-lived, audience-bound to the insurer, scoped to tenant) instead of the client token",
+        "evidence": "'per-partner token that is short-lived, bound to Brackwater's audience, the installing tenant, and consented scopes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a static header insert in router config cannot carry a per-request tenant-bound token, so a router extension, coprocessor or proxy is needed",
+        "evidence": "'A static insert can't carry a per-tenant token. Mint it per request in a coprocessor... or in the egress proxy.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that `@requires(fields: \"dateOfBirth ...\")` ships the driver's date of birth to the insurer on every resolve, whether or not the client selected it",
+        "evidence": "'The router sends dateOfBirth to Brackwater whenever the field resolves, even if the client never selected it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends replacing date of birth with a coarser derived platform field (e.g. age or age band) for the insurer to require",
+        "evidence": "'Option A (preferred): ... derived platform field such as ageBand'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that `brackwaterQuote: Quote!` is non-null and should be nullable so an insurer failure does not null out the Driver object",
+        "evidence": "'Unprefixed, non-null type: brackwaterQuote: Quote! ... The field must be nullable.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets a per-partner subgraph timeout explicitly below the 800 ms SLA, derived from the SLA minus internal latency before the partner hop",
+        "evidence": "'800 ms minus internal p95 to the @requires hop, minus a margin... timeout is 450 ms'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the router's default subgraph or request timeouts (around 30 s) far exceed the 800 ms SLA",
+        "evidence": "'The subgraph timeout is 30 s and the router timeout is 30 s.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a whole-request router timeout set at or below the partner timeout turns a stalled partner into a failed query instead of partial data",
+        "evidence": "'Router deadline: set above the partner timeout, never below. If it fires first, the whole query fails instead of returning platform data plus a partner-field error.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a circuit breaker per partner, or an egress proxy with outlier detection where the router lacks one",
+        "evidence": "'Put an egress proxy with outlier detection in front of every insurer, counting timeouts as failures.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the insurer endpoint to authenticate router calls (mTLS or signed platform token) and take tenant from the token, not from the entity representation",
+        "evidence": "'mTLS or token verification on every call. Tenant and scopes taken from the token, never from the entity representation.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises `deduplicate_query` or shared caching as a cross-tenant sharing risk for partner responses",
+        "evidence": "Blocker 2: 'one tenant's insurance quote can be served to another caller'; plus the caching check.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes `licenseClass` is also required and must be on the data-clearance list (or declared @external) like dateOfBirth",
+        "evidence": "'licenseClass isn't declared @external'; Option B 'put dateOfBirth and licenseClass on the Driver clearance list'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Opens with a list of blockers or must-fix items before any general design discussion",
+        "evidence": "Verdict, then '## Must fix before Nov 18' as the first section.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the `propagate: matching: \".*\"` rule as forwarding all client headers, including credentials, to the partner subgraph",
+        "evidence": "'`matching: \".*\"` forwards every client header to every subgraph. That includes cookies, `Authorization`...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags explicit propagation of `Authorization` to the partner as forwarding the end user's credential to a third party",
+        "evidence": "'sends every client header, including the user's `Authorization` token, to a third-party insurer.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a per-partner credential minted per request (short-lived, audience-bound to the insurer, scoped to tenant) instead of the client token",
+        "evidence": "Recommends a static per-insurer service credential from an env var ('Give each insurer its own service credential... Load it from an env var').",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a static header insert in router config cannot carry a per-request tenant-bound token, so a router extension, coprocessor or proxy is needed",
+        "evidence": "The fix uses a static `insert` of `${env.BRACKWATER_API_KEY}`. It never notes the limitation or suggests a coprocessor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that `@requires(fields: \"dateOfBirth ...\")` ships the driver's date of birth to the insurer on every resolve, whether or not the client selected it",
+        "evidence": "'Router will send Brackwater {... dateOfBirth, licenseClass} for every driver in the query... 500 dates of birth in one request.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends replacing date of birth with a coarser derived platform field (e.g. age or age band) for the insurer to require",
+        "evidence": "'An internal computed `ageYears` or age band as the required field'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that `brackwaterQuote: Quote!` is non-null and should be nullable so an insurer failure does not null out the Driver object",
+        "evidence": "'Make every insurer field nullable (`Quote`).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets a per-partner subgraph timeout explicitly below the 800 ms SLA, derived from the SLA minus internal latency before the partner hop",
+        "evidence": "'brackwater: timeout: 400ms' with steps to subtract current p95 from 800 ms.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the router's default subgraph or request timeouts (around 30 s) far exceed the 800 ms SLA",
+        "evidence": "'Subgraph timeouts default to about 30 s'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a whole-request router timeout set at or below the partner timeout turns a stalled partner into a failed query instead of partial data",
+        "evidence": "Sets the router timeout at 2s with no warning about the relationship between the router and partner timeouts.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a circuit breaker per partner, or an egress proxy with outlier detection where the router lacks one",
+        "evidence": "No circuit breaker is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the insurer endpoint to authenticate router calls (mTLS or signed platform token) and take tenant from the token, not from the entity representation",
+        "evidence": "Mentions 'mTLS if Brackwater supports it' and a partner key, but nothing on deriving tenant from the token rather than the representation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Raises `deduplicate_query` or shared caching as a cross-tenant sharing risk for partner responses",
+        "evidence": "Discusses dedupe only as ineffective and says 'Don't cache quotes'. No cross-tenant sharing risk is raised.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes `licenseClass` is also required and must be on the data-clearance list (or declared @external) like dateOfBirth",
+        "evidence": "'`licenseClass` appears in `@requires` but isn't marked `@external`'; the approved list includes `licenseClass`.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

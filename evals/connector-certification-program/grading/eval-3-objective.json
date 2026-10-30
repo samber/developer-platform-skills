@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rewrites every kept criterion with all five parts: metric, threshold, window, minimum volume, and who measures it",
+        "evidence": "The \u00a73 table has Metric, Threshold, Window, Minimum volume and Measured by for every row.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites or cuts 'high-quality, well-structured code' because it is not measurable as written",
+        "evidence": "\"Rejected as written, replaced... A kit's contract and static layers replace it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites 'responsive partner support' as a measurable response-time criterion with a window and minimum ticket volume",
+        "evidence": "\"first response within 3 business days, over a trailing quarter, with at least 5 tickets\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes the Premier partner-level criterion as a commercial-status criterion that does not describe the integration",
+        "evidence": "\"Rejected. A commercial criterion. It certifies the partner relationship, not the connector.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes the 3-joint-enterprise-customers criterion as commercial rather than technical",
+        "evidence": "\"Rejected... It is commercial. It is also a usage catch-22\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces '99% uptime' with an operator-measured production success-rate criterion from Tidewick's telemetry",
+        "evidence": "\"It becomes production success rate, with platform-caused errors excluded.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires excluding errors caused by Tidewick's own platform outages from an integration's success rate (fault split)",
+        "evidence": "The fault split section classifies failures into four classes and says \"Only connector faults count against the partner.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says that below the minimum volume a telemetry criterion reads 'insufficient data' rather than pass or fail",
+        "evidence": "\"reads 'insufficient data' on telemetry rows\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says an integration with only insufficient-data telemetry can still hold the label on test-kit evidence",
+        "evidence": "\"It holds the label on kit evidence alone\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells Tidewick to set thresholds from its own baseline (what its best existing integrations achieve) and labels any borrowed number a starting value",
+        "evidence": "Baseline steps compute the 28-day rate for all ~200 connectors and set the bar near the best. 95% is marked \"starting value\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces 'passes our review' with a named evidence source such as an operator-run conformance kit with required tests",
+        "evidence": "\"The default is an operator-run conformance kit.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not keep any criterion phrased only with an adjective such as 'high quality' or 'well documented'",
+        "evidence": "Documentation is a checklist: \"Setup, auth scopes, field list, error-code reference and changelog all present\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rewrites every kept criterion with all five parts: metric, threshold, window, minimum volume, and who measures it",
+        "evidence": "C1 items (e.g. schema stability, supply chain) lack min volume and window; C3 has no volume.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rewrites or cuts 'high-quality, well-structured code' because it is not measurable as written",
+        "evidence": "C1 replaces it with \"observable checks\" such as contract conformance and malformed-response rate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rewrites 'responsive partner support' as a measurable response-time criterion with a window and minimum ticket volume",
+        "evidence": "C2: \"trailing 90 days\", severity targets, \"fewer than 5 tickets\" triggers a scripted test.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Deletes the Premier partner-level criterion as a commercial-status criterion that does not describe the integration",
+        "evidence": "\"Keep as an eligibility gate\" (G1).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Deletes the 3-joint-enterprise-customers criterion as commercial rather than technical",
+        "evidence": "C5 keeps it with redefined terms.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces '99% uptime' with an operator-measured production success-rate criterion from Tidewick's telemetry",
+        "evidence": "C4: \"Success rate... from Tidewick call telemetry\", 99.5%.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires excluding errors caused by Tidewick's own platform outages from an integration's success rate (fault split)",
+        "evidence": "Taxonomy: \"Tidewick platform fault... No\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says that below the minimum volume a telemetry criterion reads 'insufficient data' rather than pass or fail",
+        "evidence": "\"Below it, the integration can't be certified yet.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says an integration with only insufficient-data telemetry can still hold the label on test-kit evidence",
+        "evidence": "No such path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells Tidewick to set thresholds from its own baseline (what its best existing integrations achieve) and labels any borrowed number a starting value",
+        "evidence": "Run the telemetry query and calibrate so ~10\u201320% qualify; \ud83c\udfaf marks proposed defaults.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces 'passes our review' with a named evidence source such as an operator-run conformance kit with required tests",
+        "evidence": "\"Tidewick's integration test suite... Name the suite in the program guide.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not keep any criterion phrased only with an adjective such as 'high quality' or 'well documented'",
+        "evidence": "All criteria are replaced with checks, checklists or numbers.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

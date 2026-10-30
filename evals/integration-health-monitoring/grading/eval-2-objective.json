@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the account default version does not reflect the version actually served on requests that set a version per request or via SDK configuration.",
+        "evidence": "\"Account default is not the version served.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names per-request version overrides (header or SDK option) as a source of drift the accounts-table report misses.",
+        "evidence": "\"a per-request header, the SDK release\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names webhook endpoints configured with their own version as a separate drift source that must be censused per endpoint.",
+        "evidence": "\"each webhook endpoint separately\"; \"Each webhook endpoint's version.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that typed SDKs such as Java and Go pin the API version to the SDK release, so the SDK release in use determines the version for those integrations.",
+        "evidence": "\"Java, Go and Node pin the version of their release date\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends logging the resolved/served version per request at the gateway and building the census from that.",
+        "evidence": "\"Version resolved per request at the gateway\"; \"does the gateway log the resolved version per request?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends one census row per integration (credential/app) rather than per account default.",
+        "evidence": "\"one row per integration identity (API key ID, OAuth client ID or app ID) per risk, not per account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Counts integrations (and their end customers) still on 2024-06-01, not just accounts or traffic share.",
+        "evidence": "\"One partner app installed across 2,000 customer accounts is one fix and 2,000 breakages.\"; gate reads integrations curve",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a lookback covering the longest business cycle of the integrations rather than a short fixed window.",
+        "evidence": "\"Set it to your longest business cycle... Don't use 7, 30 or 90 days.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes dormant credentials or inactive accounts pinned to 2024-06-01 in the census instead of excluding them as inactive.",
+        "evidence": "\"Dormant credentials. List them with their last-seen date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Links each at-risk integration to an owner contact before the notice goes out.",
+        "evidence": "Census fields: \"Contacts (technical, commercial, and customer admin for fleets) and the date each was last verified.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that moving a webhook endpoint to a new version may require a new endpoint with overlap during which consumers must handle duplicate deliveries idempotently.",
+        "evidence": "No mention of new endpoint overlap or idempotency anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not treat the 92% figure as sufficient to announce or schedule retirement.",
+        "evidence": "\"the 92% can't support a retirement decision.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the account default version does not reflect the version actually served on requests that set a version per request or via SDK configuration.",
+        "evidence": "\"`default_version` only applies when a request names no version. Per-request or SDK-pinned versions... override it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names per-request version overrides (header or SDK option) as a source of drift the accounts-table report misses.",
+        "evidence": "\"Per-request or SDK-pinned versions... override it\"; resolution source `header`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names webhook endpoints configured with their own version as a separate drift source that must be censused per endpoint.",
+        "evidence": "\"Webhooks are versioned separately\"; \"Run the same query against the webhook delivery log, grouped by endpoint.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that typed SDKs such as Java and Go pin the API version to the SDK release, so the SDK release in use determines the version for those integrations.",
+        "evidence": "\"If the Java, Go or Node SDK pins a version at release time, customers on old SDK builds call 2024-06-01\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends logging the resolved/served version per request at the gateway and building the census from that.",
+        "evidence": "\"Check first: does your gateway log the effective version?\"; \"Add effective-version logging now\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends one census row per integration (credential/app) rather than per account default.",
+        "evidence": "The SQL groups by account_id, resolution_source, sdk; the unit is the account, not the credential/app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Counts integrations (and their end customers) still on 2024-06-01, not just accounts or traffic share.",
+        "evidence": "Counts \"Distinct accounts with \u22651 request\" and volume/revenue share; no integrations or end customers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a lookback covering the longest business cycle of the integrations rather than a short fixed window.",
+        "evidence": "\"90 days at minimum, so quarterly batch jobs and seasonal peaks show up.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes dormant credentials or inactive accounts pinned to 2024-06-01 in the census instead of excluding them as inactive.",
+        "evidence": "Last-seen \"separates dead integrations from live ones\"; dormant ones are not explicitly kept in the census.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Links each at-risk integration to an owner contact before the notice goes out.",
+        "evidence": "\"Top 50 affected accounts with owner and contact\"; \"named list of affected accounts and endpoints, with owners\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that moving a webhook endpoint to a new version may require a new endpoint with overlap during which consumers must handle duplicate deliveries idempotently.",
+        "evidence": "No mention of overlap or duplicate deliveries.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not treat the 92% figure as sufficient to announce or schedule retirement.",
+        "evidence": "\"don't announce on 92%.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

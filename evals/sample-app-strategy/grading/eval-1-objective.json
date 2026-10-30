@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Builds a register with one row per repo before giving any verdict, with a shared scenario ID across the checkout-* rows and any unfilled cell marked `unknown`",
+        "evidence": "The triage table comes first. The 'Inventory and baseline' section holds only counts ('7 red, 7 green', 'Pins are unknown everywhere'), not one row per repo.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs or schedules a secret scan and a dependency vulnerability scan on every repo in the org before issuing verdicts, not only on checkout-node",
+        "evidence": "W1: 'Full-history secret and vulnerability scan on all 15 repos: 3'. The first week precedes the archives in W2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives checkout-node a fix-this-week verdict (revoke and rotate the leaked live key, purge it) ahead of every other row, and keeps the repo on the adoption path rather than archiving it",
+        "evidence": "'Do first: revoke the bp_live_ key in checkout-node today'. The repo is merged into checkout-quickstart and the old one is archived only after the key is dead.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Archives api-v1-samples with a redirect because it targets the retired v1 API, naming its successor",
+        "evidence": "'Archive, redirect to checkout-quickstart and the v1-to-v2 migration guide'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives checkout-elixir a community-maintained label under Marek rather than archiving it, with banner text stating it is not created, reviewed or supported by Brackenpay",
+        "evidence": "It gives a community label with Marek as maintainer, but no banner text about 'not created, reviewed or supported by Brackenpay'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives auth-quickstart a fix-in-place (or rebuild) verdict, escalates ownership to the sign-off owner, states the portfolio owner owns it by default after one review cycle, and never archives or relabels it for lack of an owner",
+        "evidence": "'you sign off on the escalation, and after one review cycle you own it by default. Never archive it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives webhooks-node a 'fix then merge' verdict into the shared scenarios repo, counted as one row",
+        "evidence": "'Fix, then merge into scenarios'; counted in 'Fix then merge: 3'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Archives subscriptions-ruby and hackathon-demo-2025 with a redirect, each with a successor or an explicit 'none'",
+        "evidence": "Both rows read 'Archive, successor \"none\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Relabels checkout-dotnet community-maintained because of Dana's veto, never back to kept, and its banner states 'Currently failing CI'",
+        "evidence": "'Dana's veto turns it into a community label with a \"currently failing CI\" banner'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Archives marketplace-reference-app with a redirect only after notifying sales and swapping the slide link",
+        "evidence": "'Archive, redirect to the payouts scenarios. Swap Sales' slide link first'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'DevRel' as an owner, offers rows to Ingrid and Tomasz by name, and records any row nobody accepts as ownerless, which is a finding",
+        "evidence": "'\"DevRel\" can do labor but never fills the owner column'; Ingrid, Tomasz and the proposed hours; '0 confirmed owners'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats GitHub-traffic-only as usage not measured, never as zero; because the deadline is 5 weeks away it decides those rows on tickets and inbound links and says so in each row",
+        "evidence": "It says 'treat usage as not measured, never zero', but the rows do not say they were decided on tickets and inbound links.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Merges checkout-node, checkout-python, checkout-java and checkout-go into one flagship repo with one folder per language, merges payouts-node and payouts-python into the shared scenarios repo, and keeps deploy-starter in its own repo",
+        "evidence": "checkout-python/-java/-go merge into checkout-quickstart (Node, Python, Java, Go); payouts-node and payouts-python merge into scenarios; deploy-starter is kept.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Budgets the cleanup from the 60 one-off hours separately from the 40 hours per quarter, sequencing scans and archives first and adoption-path fixes before the 5-week deadline",
+        "evidence": "'One-off 60 hours, in sequence' (W1 scans, W2 archives, W2\u20133 fixes) next to 'Total 31 of 40'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Because this is a standing policy, drafts the freshness contract and archive rules in full before the cleanup starts, and presents the strategy section by section for approval",
+        "evidence": "It delivers everything in one batch: 'Every section below is unapproved - assumed, because the answers came in one batch.'",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Builds a register with one row per repo before giving any verdict, with a shared scenario ID across the checkout-* rows and any unfilled cell marked `unknown`",
+        "evidence": "The response opens with a 'Triage' table of verdicts. There is no register, no scenario ID and no `unknown` cells.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Runs or schedules a secret scan and a dependency vulnerability scan on every repo in the org before issuing verdicts, not only on checkout-node",
+        "evidence": "It budgets a 'secret scan of all 15 repos'. It schedules no dependency vulnerability scan, and the verdicts come first.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives checkout-node a fix-this-week verdict (revoke and rotate the leaked live key, purge it) ahead of every other row, and keeps the repo on the adoption path rather than archiving it",
+        "evidence": "It says 'Revoking is the fix. Rewriting git history does not remove forks or cached copies', so it does not purge. The repo is kept and listed first.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Archives api-v1-samples with a redirect because it targets the retired v1 API, naming its successor",
+        "evidence": "'Archive' is conditional on an assumption: 'If it means January 2027, keep the repo'. No redirect or named successor is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives checkout-elixir a community-maintained label under Marek rather than archiving it, with banner text stating it is not created, reviewed or supported by Brackenpay",
+        "evidence": "It recommends labelling the repo 'community-maintained' and transferring it to Marek. It gives no banner text.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives auth-quickstart a fix-in-place (or rebuild) verdict, escalates ownership to the sign-off owner, states the portfolio owner owns it by default after one review cycle, and never archives or relabels it for lack of an owner",
+        "evidence": "The row says 'Keep, fix | Ingrid'. There is no ownership escalation or default-owner rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives webhooks-node a 'fix then merge' verdict into the shared scenarios repo, counted as one row",
+        "evidence": "'do not consolidate them before v3'. The repo is kept standalone.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Archives subscriptions-ruby and hackathon-demo-2025 with a redirect, each with a successor or an explicit 'none'",
+        "evidence": "Both rows say 'Archive'. The owner is 'none', but no redirect or successor is stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Relabels checkout-dotnet community-maintained because of Dana's veto, never back to kept, and its banner states 'Currently failing CI'",
+        "evidence": "The verdict is 'Dana-gated'. It proposes a 6-hour fix, and a fix that goes green is 'keep it as best-effort'. There is no community label or banner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Archives marketplace-reference-app with a redirect only after notifying sales and swapping the slide link",
+        "evidence": "'Needs a Dana nudge for the slide' and the budget line 'fix the slide link'. There is no redirect and no explicit sequencing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'DevRel' as an owner, offers rows to Ingrid and Tomasz by name, and records any row nobody accepts as ownerless, which is a finding",
+        "evidence": "It assigns 'DevRel' as owner for deploy-starter and checkout-dotnet.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats GitHub-traffic-only as usage not measured, never as zero; because the deadline is 5 weeks away it decides those rows on tickets and inbound links and says so in each row",
+        "evidence": "'Do not decide on it this round.' The rows do not say they were decided on tickets or links.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Merges checkout-node, checkout-python, checkout-java and checkout-go into one flagship repo with one folder per language, merges payouts-node and payouts-python into the shared scenarios repo, and keeps deploy-starter in its own repo",
+        "evidence": "checkout-* and payouts-* are all kept as separate repos.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Budgets the cleanup from the 60 one-off hours separately from the 40 hours per quarter, sequencing scans and archives first and adoption-path fixes before the 5-week deadline",
+        "evidence": "'One-off budget: 60h' and 'Quarterly: 40h' are separate sections. 'Run the secret scan before archiving anything.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Because this is a standing policy, drafts the freshness contract and archive rules in full before the cleanup starts, and presents the strategy section by section for approval",
+        "evidence": "It gives rules in outline only and presents the whole plan at once.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

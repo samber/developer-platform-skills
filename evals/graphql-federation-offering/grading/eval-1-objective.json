@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the partner need into a shape before choosing a mechanism (stored data, events, live data, or the partner's own capabilities)",
+        "evidence": "Section 2 'Classification (workflow step 1)' table: stored data, events pushed into storage, live data.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies tracking number and carrier name as stored data the platform can hold, not data that must be computed live by the partner at query time",
+        "evidence": "Table row: 'Tracking number, carrier name | Stored data on Order'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies parcel status updates as an event-driven need served by webhooks or partner write-back, not a partner resolver",
+        "evidence": "'Status updates as the parcel moves | Events pushed into storage'; partners POST events to /partner/v1/shipments/{id}/events.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends platform-stored, app-owned namespaced extension fields or objects as the default mechanism for the tracking data",
+        "evidence": "Recommends a platform-owned canonical `Shipment` type fed by an ingest connector (rung 2). The ranking lists app-owned extension data first on efficiency, but it is not the recommended mechanism, and no namespaced extension fields are proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explicitly declines to put Quayside's subgraph into the existing first-party production supergraph",
+        "evidence": "'Don't onboard Quayside's subgraph into the supergraph... Refuse it for all three partners.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not produce an onboarding procedure for a partner subgraph into the production supergraph as the main deliverable",
+        "evidence": "The main deliverable is the platform-owned Shipment design plus partner ingest API.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the condition under which a partner-hosted resolver or partner subgraph would become justified (data that must be live and computed by the partner)",
+        "evidence": "Section 7: rung 5 only if 'live entity data a single mediated field can't shape, partners few and under contract, and you can staff partner schema review'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the candidate mechanisms with an explicit ordering (e.g. using > or a ranked list), not a flat unranked menu",
+        "evidence": "'Efficiency: app-owned extension data > webhooks plus callback > ingested connector' and the other ranking lines.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a partner namespace or reserved prefix for the partner's extension definitions",
+        "evidence": "The main design has no partner extension definitions and no prefix rule. The `Quayside_` namespace appears only in the live-data fallback (rung 3).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that partner extension data should be visible only to tenants that installed or authorized that partner",
+        "evidence": "Says 'There is no installed partner concept because partners never appear in the graph'; visibility is per buyer's own orders, not per installing tenant.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defines what happens to the partner's definitions and values when a tenant uninstalls or the partner leaves",
+        "evidence": "'Offboard: revoke the credential. Shipment data stays in your storage, and no graph field disappears.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses the January peak deadline as a reason favouring the mechanisms that need no partner engineering",
+        "evidence": "'The January date (interview answer 7) moves nothing. It only promotes rung 3 for live data, and this need is stored.'",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the partner need into a shape before choosing a mechanism (stored data, events, live data, or the partner's own capabilities)",
+        "evidence": "Goes straight to 'Don't let Quayside's subgraph sit in the live query path' and the Option A/B split. It never classifies the need as stored data, events or live data.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies tracking number and carrier name as stored data the platform can hold, not data that must be computed live by the partner at query time",
+        "evidence": "Option A stores pushed events, but nowhere says tracking number and carrier are static stored data as opposed to partner-computed live data.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Identifies parcel status updates as an event-driven need served by webhooks or partner write-back, not a partner resolver",
+        "evidence": "'Quayside pushes tracking data into it (webhook or API)'; ingestion API with event ID idempotency.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends platform-stored, app-owned namespaced extension fields or objects as the default mechanism for the tracking data",
+        "evidence": "Recommends a Fernhill-owned `shipping` subgraph with a carrier-neutral Shipment type, not namespaced partner extension fields or objects.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explicitly declines to put Quayside's subgraph into the existing first-party production supergraph",
+        "evidence": "'Don't let Quayside's subgraph sit in the live query path for Order tracking before January.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not produce an onboarding procedure for a partner subgraph into the production supergraph as the main deliverable",
+        "evidence": "The recommended path is Option A. The detailed Option B section is conditional ('Use this only if...').",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the condition under which a partner-hosted resolver or partner subgraph would become justified (data that must be live and computed by the partner)",
+        "evidence": "Option B is justified only 'if Quayside can't push events or the platform lead requires it', not by data that must be live and partner-computed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the candidate mechanisms with an explicit ordering (e.g. using > or a ranked list), not a flat unranked menu",
+        "evidence": "'Option A ... (recommended)', 'start with option A and move to B'; the rollout and recommendation are ordered.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a partner namespace or reserved prefix for the partner's extension definitions",
+        "evidence": "No prefix or namespace requirement for partner definitions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that partner extension data should be visible only to tenants that installed or authorized that partner",
+        "evidence": "Only says a shipment is visible to the customer account that owns the order. No install-based visibility.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defines what happens to the partner's definitions and values when a tenant uninstalls or the partner leaves",
+        "evidence": "Nothing on uninstall or partner departure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses the January peak deadline as a reason favouring the mechanisms that need no partner engineering",
+        "evidence": "The deadline favours A over B, but A still needs Quayside to build webhooks ('Whether Quayside can push webhooks is the open question'). The reasoning is not about avoiding partner engineering.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

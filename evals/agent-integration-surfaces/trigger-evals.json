@@ -1,0 +1,814 @@
+{
+  "skill_name": "agent-integration-surfaces",
+  "description": "Plans how a SaaS or developer platform opens itself to AI agents, provider side - which agent classes may reach which surface, how an agent proves its identity and acts for a user (Web Bot Auth, delegated tokens, provision-then-claim signup), which execution path each gets, where agents find it (Context7, api-catalog) and how agent usage is counted. Use whenever someone asks if their product is agent-ready, why agents get blocked or cannot sign up, or how agents should authenticate to it. Do NOT use for MCP tool design (samber/developer-platform-skills@mcp-server-offering), surface build order (samber/developer-platform-skills@api-integration-surface-strategy) or agent-readable docs (samber/developer-relations-skills@coding-agent-docs-optimization).",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "is our SaaS agent-ready? where do we even start",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Claude Code users say they can't sign up for our product because of the CAPTCHA, what should we do",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how should AI agents authenticate to our API when acting for a user",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our security team turned on the CDN block AI bots toggle, what did that break for agents",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "should an agent just use the customer's API key?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we want agents to provision a database without an account and let the human claim it later - how to design that",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do I verify that a request really comes from ChatGPT agent and not a scraper",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what's Web Bot Auth and should our platform accept signed agents at signup",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "plan for exposing our billing platform to AI agents: crawlers, browser agents, coding agents",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how much of our product usage comes from AI coding agents and how would we measure it",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "design a policy for which AI bots can reach our marketing site, docs, signup and app",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "robots.txt blocks ClaudeBot, does that stop Claude from using our dashboard?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "agent identity vs delegation - our agents send signed requests, is that enough to act for the user?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "CEO wants us 'AI-agent ready' by the conference, what do we ship first with one engineer",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "should we put a confirm dialog in the UI so AI browser agents can't submit payments alone",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do we let customers' agent fleets call our API without long-lived keys",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we have a CLI already, how do agents, skills, CLI and MCP fit together for our platform",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should we claim our library on Context7 and how",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "do we need /.well-known/api-catalog or an A2A agent card for our API product",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "agent-originated signups: how do we track agents creating accounts on our platform",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what tokens should AI agents get on our platform, how long should they live",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our dashboard is used by computer-use agents, how do we keep money actions safe",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "which agent classes should we allow on our signup page",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do we tag our CLI and SDK requests so we know which coding agent made them",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "AI_AGENT vs AGENT env var - which should our CLI read to detect agents",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Perplexity-User ignores robots, how do we enforce our policy on the app subdomain",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "make our developer platform usable by AI agents end to end, provider side",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we're a payroll API, agents want to act for HR admins - delegation design please",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "should we use pay per crawl on our marketing site or just block AI training crawlers",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our free tier gets abused, now agents create accounts too - how to open signup to agents safely",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "agents keep getting a 403 challenge from our CDN when they hit our API host, how do we fix the policy",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "the board asks what share of new accounts are created by agents, how do we answer honestly",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we want an agent strategy across docs, CLI, MCP, auth and signup - one plan",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "magic link with session token for agent-created accounts, is that ok",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "which on-behalf-of OAuth draft should we implement for AI agents",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do I write robots.txt and CDN rules that allow AI search but deny training on our site",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "agents operate our app through the browser extension, can our WAF tell them apart",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "is our product discoverable by coding agents beyond docs, like Context7 or registries",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design an agent credential model with sponsor, scope, lifetime and revocation",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Supabase says 70% of databases are made by agents, should that be our target",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our pricing page should be readable by agents comparing products, how",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "set up the plan for an agent-readiness audit of our SaaS",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how should our platform handle agents that need a human approval before destructive actions",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we launched agent mode in our CLI, what security issues should we watch for",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do we stop agent traffic being invisible in our analytics",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "agent signup without CAPTCHA but also without bots abusing us",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what should our platform do about signed agents verified by Cloudflare",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "can coding agents use the device flow to log into our CLI on behalf of the user",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our API product needs a short plan to be agent friendly before a partner demo next month",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "agents create resources on our platform, how do we measure claim rate and conversion to paid",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "design the MCP tool list for our product, 5-15 tools, with annotations",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "which integration surfaces should we build first: REST, webhooks, SDKs, GraphQL?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "write an llms.txt for docs.example.com",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our docs get cited at the wrong version in ChatGPT answers, how to fix",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the --json output and exit codes for our CLI",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "ship a SKILL.md inside our SDK repo versioned with releases",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how should our internal support agent authenticate to Salesforce and Zendesk on behalf of reps",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "build an AI agent with LangGraph that calls our CRM",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design API key formats, prefixes and rotation for our API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design our OAuth2 authorization server consent screen and scopes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our rate limit headers: RateLimit vs X-RateLimit and Retry-After",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design an error envelope for our REST API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "idempotency keys for our payments API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how much of our blog traffic comes from ChatGPT referrals",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "GEO: how to get our marketing site cited in AI Overviews",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a robots.txt for our WordPress blog to improve SEO",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up Cloudflare WAF rules to block credential stuffing on our login page",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do I use Context7 to fetch React docs in Cursor",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "install the Context7 MCP server in Claude Code",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a cold-run test to see if an agent can integrate our SDK from docs",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our quickstart is too long, rewrite it for first API call in 5 minutes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design a sandbox / test mode for our API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "plan a Terraform provider for our platform",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should we build a VS Code extension for our product",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design a GitHub Action customers use to deploy with our platform",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "CAPTCHA vs honeypot for our newsletter signup form",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "bot detection for our ecommerce checkout to stop scalpers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a Zapier integration for our app",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "what's the best open source LLM agent framework in 2026",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "implement HTTP message signatures for our webhooks",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design webhook retries and HMAC signing",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how to version our MCP server tools without breaking clients",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write the migration guide for v3 of our SDK",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our coding agent at work keeps hallucinating library APIs, how do I give it better docs",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "MCP server OAuth 2.1 remote hosting setup",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up OpenTelemetry tracing for our microservices",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "measure DevRel ROI and developer signups from conferences",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design the pricing for our usage-based API",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "choose which SDK languages to support first",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how to publish our CLI to Homebrew and npm",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "audit our OpenAPI reference for undocumented endpoints",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write a Stack Overflow answer strategy for our product tag",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design our developer portal navigation",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "set up SSO with Okta for our employees",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do I give Claude Code access to my GitHub token safely on my laptop",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "build a browser automation agent with Playwright for scraping competitors",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design our status page and incident communication for API outages",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our partner integrations break silently, set up error observability",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "write Cloudflare Workers code to rewrite headers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should our company adopt AI coding agents internally, policy and security",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 100,
+    "passed": 51,
+    "failed": 49
+  }
+}

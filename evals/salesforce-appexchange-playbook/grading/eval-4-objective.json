@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that Checkout supports only one-time or subscription plans per user or per company, so per-document metered pricing cannot run through it",
+        "evidence": "\"Checkout covers per-seat or per-org, one-time or monthly/annual subscriptions only\u2020. Usage-based pricing belongs on COA\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Checkout is available only to companies based in the US, UK or an EU country, which excludes a Toronto company",
+        "evidence": "\"Checkout requires a company in the US, UK or EU\u2020. Canada isn't listed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes Docuvane to the non-Checkout path with a PADA signed offline through the account manager",
+        "evidence": "\"Path: managed 2GP + COA (offline PADA).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the revenue share as set by the PADA, commonly 15% for ISVforce and 25% for OEM, rather than as a fixed published rate",
+        "evidence": "Only \"set in your PADA, commonly 15% for ISVforce\"; the 25% OEM figure is absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a Channel Order App order within one business day of each customer order",
+        "evidence": "\"report each order through the COA within one business day of the sale\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that cancellation or reduction orders follow the PADA notice, usually 30+ days before renewal, and that COA blocks them within 5 days of the renewal date",
+        "evidence": "Says \"usually 30+ days before renewal\u2020\" but never mentions the 5-day COA block.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that switching between Checkout and non-Checkout, or between free and paid, sends the listing back for approval",
+        "evidence": "\"Switching Checkout \u2194 non-Checkout, or changing pricing units, sends the listing back to approval\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends registering the package version in the License Management App with a default license (Free Trial up to 90 days, or Active; per seat or site-wide)",
+        "evidence": "No mention of License Management App or default license.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that unpaid revenue share expires the security review and removes the listing",
+        "evidence": "\"unpaid ones expire the review and pull the listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes the Feature Management App (or an equivalent licensing control) to gate paid features in the package",
+        "evidence": "No licensing or feature-gating control is proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rules out the GTM app private offers as well, because they support only seat-based packages, US customers and USD contracts",
+        "evidence": "\"The GTM app allows 12-month orders, no auto-renew, and seat-based deals only\u2020.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that Checkout supports only one-time or subscription plans per user or per company, so per-document metered pricing cannot run through it",
+        "evidence": "\"Checkout doesn't meter usage. It sells fixed products: per-user or flat subscriptions and one-time items\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Checkout is available only to companies based in the US, UK or an EU country, which excludes a Toronto company",
+        "evidence": "It only asks \"Is a Toronto entity enrolled?\" as an open item.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes Docuvane to the non-Checkout path with a PADA signed offline through the account manager",
+        "evidence": "It mentions direct paper and a partner agreement but never the PADA signed through the account manager.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the revenue share as set by the PADA, commonly 15% for ISVforce and 25% for OEM, rather than as a fixed published rate",
+        "evidence": "It only asks \"What are the fees and revenue share?\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a Channel Order App order within one business day of each customer order",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that cancellation or reduction orders follow the PADA notice, usually 30+ days before renewal, and that COA blocks them within 5 days of the renewal date",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that switching between Checkout and non-Checkout, or between free and paid, sends the listing back for approval",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends registering the package version in the License Management App with a default license (Free Trial up to 90 days, or Active; per seat or site-wide)",
+        "evidence": "LMA provisioning is mentioned, but there is no default license (Free Trial/Active) registration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that unpaid revenue share expires the security review and removes the listing",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes the Feature Management App (or an equivalent licensing control) to gate paid features in the package",
+        "evidence": "It proposes reading entitlement from \"custom license fields or a feature parameter\" for bundle limits, not gating paid features with the Feature Management App.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rules out the GTM app private offers as well, because they support only seat-based packages, US customers and USD contracts",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

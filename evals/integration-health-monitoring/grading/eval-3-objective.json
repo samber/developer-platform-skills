@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Advises against sending to all 3,000 developer accounts and limits notices to integrations still using the legacy scopes.",
+        "evidence": "\"don't send the blast to all 3,000 accounts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes identifying affected apps from actual token/scope usage per OAuth client before sending.",
+        "evidence": "\"Group by OAuth client ID.\" census on legacy scopes",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the 38% bounced addresses as unverified contacts that need resolution, not as notified.",
+        "evidence": "\"Silence from the other 62% still counts as unverified\"; bounce-recovery variant",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes holding more than one contact role per app (e.g. technical and commercial owner).",
+        "evidence": "\"Send it to everyone else on the app's developer team and the commercial owner.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes apps with no reachable developer to the installing customers' admins.",
+        "evidence": "\"for installed apps, your customers' admins\"; customer-admin notice",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recognises that for plugin-style apps installed by agencies, each end site or client may need to upgrade separately even after the developer ships a fix.",
+        "evidence": "\"Each agency-installed site upgrades on its own schedule\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The email draft names the specific scopes the app still requests or the calls using them.",
+        "evidence": "\"Scopes: {{legacy_scopes}}\"; \"Calls using them: {{call_count}}\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The email draft includes usage evidence such as a count, last-seen date or a sample request/token identifier.",
+        "evidence": "\"Last seen\", \"Sample request you can look up\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The email draft states the March 1 date and what happens on it.",
+        "evidence": "\"What happens on 2027-03-01 ... token requests fail\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The email draft asks the recipient to confirm ownership or name the right owner.",
+        "evidence": "\"Confirmed - I maintain this app\" / name of whoever maintains it",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends named, person-to-person outreach for the apps with the most installs.",
+        "evidence": "\"Top tier: named outreach by a partner manager.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds at least one channel that reaches still-calling integrations without email, such as an in-response warning or dashboard flag.",
+        "evidence": "\"In-response warning\" Deprecation/Sunset headers; dashboard banner",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not wait for contact verification before sending the next notice given the March 1 date.",
+        "evidence": "Notice day sends to every contact on file with confirmation request inside the email; verification not a precondition",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not block new installs of marketplace apps still on the legacy scopes before March 1 (flags them instead), or explains that blocking would break partners inside the notice window.",
+        "evidence": "\"Block new installs only after 2027-03-01.\"; \"Don't block rotated keys...\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Advises against sending to all 3,000 developer accounts and limits notices to integrations still using the legacy scopes.",
+        "evidence": "\"I recommend against the blast as framed\"; Segment A \"Apps still calling legacy scopes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes identifying affected apps from actual token/scope usage per OAuth client before sending.",
+        "evidence": "\"Pull this from OAuth token and grant logs, not from the marketplace listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the 38% bounced addresses as unverified contacts that need resolution, not as notified.",
+        "evidence": "Segment C: \"Apps whose owner hard-bounced\" go to partner manager, secondary contacts, fallback channels.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes holding more than one contact role per app (e.g. technical and commercial owner).",
+        "evidence": "\"owner address, all developer accounts attached to the app, the partner-manager contact, and any billing or security contact\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes apps with no reachable developer to the installing customers' admins.",
+        "evidence": "The admin notice covers plugin installs (Segment B); unreachable Segment C uses partner manager, banner, postal/LinkedIn, not install admins.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recognises that for plugin-style apps installed by agencies, each end site or client may need to upgrade separately even after the developer ships a fix.",
+        "evidence": "\"the agencies and their clients must install it\"; \"Plan for a gap between your release and when agencies update.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The email draft names the specific scopes the app still requests or the calls using them.",
+        "evidence": "\"people.read.all, {{other_legacy_scopes}}\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The email draft includes usage evidence such as a count, last-seen date or a sample request/token identifier.",
+        "evidence": "\"called them {{call_count}} times in the last 30 days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The email draft states the March 1 date and what happens on it.",
+        "evidence": "\"On March 1, 2027... those calls will return {{error_code}}\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The email draft asks the recipient to confirm ownership or name the right owner.",
+        "evidence": "\"If you know the right person... add them in the console\"; Email C: \"Who should we talk to?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends named, person-to-person outreach for the apps with the most installs.",
+        "evidence": "\"Partner manager calls for the top 30 apps by install count.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds at least one channel that reaches still-calling integrations without email, such as an in-response warning or dashboard flag.",
+        "evidence": "\"Add `Deprecation` and `Sunset: <date>` response headers\"; console banner",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not wait for contact verification before sending the next notice given the March 1 date.",
+        "evidence": "The send plan runs waves and reminders on fixed dates regardless of bounce resolution.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not block new installs of marketplace apps still on the legacy scopes before March 1 (flags them instead), or explains that blocking would break partners inside the notice window.",
+        "evidence": "No mention of new installs or marketplace listing handling.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
