@@ -159,7 +159,7 @@ Both kinds are collected under Boundary pairs below.
 ### `samber/developer-platform-skills@ide-extension-offering`
 
 - Route here: "developers want us in the editor", should we build an official VS Code extension or JetBrains plugin, which jobs it serves, a stale community extension using our API, Cursor or VSCodium users missing our extension, Open VSX namespace or `ovsx`, `vsce` publishing auth, the verified publisher badge, JetBrains Marketplace review or `until-build`, extension telemetry and the IDE telemetry setting, extension login and secret storage, keeping the extension in sync with the CLI, deprecating an extension.
-- Do not route here: the CLI's commands, `--json` or exit codes (`cli-interface-design`); MCP server design, even when the extension bundles it (`mcp-server-offering`); npm or other package registries (`sdk-package-publishing`); internal-only extensions, themes, or writing extension and language-server code.
+- Do not route here: the CLI's commands, `--json` or exit codes (`cli-interface-design`); MCP server design, even when the extension bundles it (`mcp-server-offering`); npm or other package registries (`sdk-package-publishing`); internal-only extensions, themes, or writing extension and language-server code; browser extensions on the Chrome Web Store (`chrome-web-store-playbook`).
 
 ### `samber/developer-platform-skills@terraform-provider-offering`
 
@@ -240,6 +240,11 @@ Both kinds are collected under Boundary pairs below.
 
 - Route here: submitting or resubmitting a Slack app to the Slack Marketplace (formerly Slack App Directory), the active-workspace install gate, a returned submission, scope rejections and per-scope justifications, bot vs user token choice, enhanced review for history or search scopes, the Security & Compliance and AI disclosures, landing, support and privacy pages, review timelines, updating a listed app (staging app, new scopes, reinstalls), delisting warnings, listed vs unlisted distribution and the rate limits on unlisted apps.
 - Do not route here: listing copy, media order and install conversion (`integration-listing-optimization`); designing the review process for your own marketplace (`app-marketplace-review`); designing scopes for your own API's OAuth (`oauth2-provider-design`); building the MCP server itself (`mcp-server-offering`); writing Bolt code; running a community Slack workspace.
+
+### `samber/developer-platform-skills@chrome-web-store-playbook`
+
+- Route here: publishing a vendor's companion Chrome extension, a Chrome Web Store rejection, warning or takedown and its violation ID (Purple Potassium, Yellow Magnesium, Blue Argon, Red Titanium), host permissions and `<all_urls>` review risk, reviewer access to login-gated or SSO features, the Privacy practices tab and Limited Use, review delays and staged publishing, a permission added in an update, partial rollout and rollback, verified CRX uploads and publisher-account security, the item limit, trader declaration, beta items, per-customer white-label builds, private publishing to a customer organization and admin force-install.
+- Do not route here: VS Code or JetBrains extensions (`ide-extension-offering`); listing copy, screenshots and install conversion (`integration-listing-optimization`); designing your own marketplace's review (`app-marketplace-review`); whether a browser extension belongs in the surface roadmap (`api-integration-surface-strategy`); writing extension code; Firefox AMO, Edge Add-ons or Safari; IT admins choosing which extensions to allow.
 
 ### `samber/developer-platform-skills@connector-marketplace-strategy`
 
@@ -322,6 +327,7 @@ Where two or more siblings collide on keywords, decide from these declared-scope
 - **zapier-integration-playbook vs integration-listing-optimization / webhook-platform-design** - one platform's mechanics vs the generic method. "How do we build, review, launch and version our Zapier app?" → the playbook. "Why does our listing not convert across marketplaces?" → listing-optimization. "How does our API let anyone subscribe to events?" → webhook-platform-design, which the playbook's REST hook triggers then call.
 - **salesforce-appexchange-playbook vs integration-listing-optimization / app-marketplace-review** - one marketplace's admission and money path vs the generic listing method vs the operator's chair. "How do we pass Salesforce's security review, package and get paid?" → the playbook. "Why does our AppExchange listing not convert or rank?" → listing-optimization. "How should our own marketplace review third-party apps?" → app-marketplace-review.
 - **slack-app-directory-playbook vs integration-listing-optimization / app-marketplace-review / oauth2-provider-design** - one marketplace's admission rules vs the generic listing method vs the operator's chair vs the issuer's chair. "Why did Slack return our app and which scopes will pass?" → the playbook. "Why does our Slack listing not convert?" → listing-optimization. "How should our own marketplace review apps?" → app-marketplace-review. "How should our API's scopes be designed?" → oauth2-provider-design.
+- **chrome-web-store-playbook vs ide-extension-offering / integration-listing-optimization / app-marketplace-review** - a browser extension's store admission vs an editor extension as a product vs the generic listing method vs the operator's chair. "Why did Chrome reject our extension and how do we ship the next permission safely?" → the playbook. "Should we ship a VS Code extension and publish it to Open VSX?" → ide-extension-offering. "Why does our Chrome listing not convert?" → listing-optimization. "How should our own marketplace review extensions?" → app-marketplace-review.
 
 **Split by side of the table:**
 
