@@ -1,0 +1,218 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "aws-marketplace-playbook",
+  "scenarios": 7,
+  "expectations_total": 69,
+  "expectations_subjective": 0,
+  "expectations_objective": 69,
+  "pass_rate_with_skill_pct": 97.1,
+  "pass_rate_without_skill_pct": 40.6,
+  "delta_pp": 56.5,
+  "uplift_multiplier": 2.39,
+  "trigger_accuracy_pct": 78.0,
+  "trigger_queries": 50,
+  "trigger_positive_fire_rate": 0.92,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 4,
+        "expectation": "Presents co-sell options as an ordered ranking by effort versus deals unblocked"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States AWS pays the seller only after collecting from the buyer"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Mentions that a fully-on-AWS edition or architecture change is the route to the badge"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends a new standalone AWS account for seller registration rather than the production account"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the seller account becomes seller of record and cannot be changed once a product is listed"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Flags the AWS Organizations tax inheritance or legal-entity risk of using an account inside the organization"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes an irreversible-choice register or equivalent list naming seller account and pricing model with an owner or decision date"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that private offers require at least one active public listing, so the Limited listing cannot carry the offer"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Tells the user to request Public visibility and cites a Seller Operations review of about 7-10 business days"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives a realistic send date counted forward from the public approval rather than accepting Monday"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the renewal fee is 1.5% rather than the 3% new-deal tier"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Tells the user to mark the offer as a renewal of an existing customer moving to AWS Marketplace (offer purpose)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that auto-renewal must be off before the future-dated agreement is accepted"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes the quarterly installment plan needs the buyer to pay by invoice, not card"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Tells the user to check whether the buyer runs a Private Marketplace and, if so, to extend the offer to the administrator account as well"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends cancelling any test subscriptions before requesting Public"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the CPPO fee is the normal tier plus 0.5%"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the fee is computed on the wholesale price to the reseller, not the buyer price"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Computes the fee on a $425k wholesale price at 3.5% (about $14,875) or shows equivalent arithmetic"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Advises pricing the fee into the partner discount rather than absorbing it"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a published selling authorization cannot be edited or extended, only deactivated"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States the reseller must itself be a registered paid AWS Marketplace seller"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that opportunities submitted for visibility only do not count toward ISV Accelerate thresholds or co-sell"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends submitting only opportunities with real net-new AWS consumption instead of the whole CRM"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists ISV Accelerate entry thresholds including 5 launched and 15 qualified opportunities in 12 months"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Presents co-sell options as an ordered ranking by effort versus deals unblocked"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names ACE opportunity work as the default rung for now"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions responding to AWS-referred opportunities within 5 business days"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Sets an expectation of roughly 6-12 months before meaningful AWS field engagement"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends linking AWS Partner Central to the Marketplace seller account"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Diagnoses the Kestrel error as a Private Marketplace restriction"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Tells the user to extend the offer to the buyer's Private Marketplace administrator (or management) account as well"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the replacement cancels the old agreement's unbilled payments"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the replacement takes effect on acceptance and cannot be future-dated"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States contract buyers cannot reduce quantities mid-term; downsizing happens at renewal"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Advises against inflating the public price to recover the fee and keeps the public price at list"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends handling discounts and deal-specific pricing in private offers"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends paying reps the same commission and quota credit on Marketplace deals as direct deals"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends crediting reps on offer acceptance"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States a price increase freezes further pricing updates for at least 90 days"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Advises submitting any price decreases before the increase, or planning the change well ahead of 1 March"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States AWS pays the seller only after collecting from the buyer"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes the product is not hosted on AWS so it would not retire buyer commitments"
+      }
+    ]
+  }
+}

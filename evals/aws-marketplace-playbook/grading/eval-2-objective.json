@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that private offers require at least one active public listing, so the Limited listing cannot carry the offer",
+        "evidence": "\"Your seller account needs at least one public listing priced above zero before any private offer can go out.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to request Public visibility and cites a Seller Operations review of about 7-10 business days",
+        "evidence": "\"request Public with the real price. Seller Operations reviews in 7-10 business days\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a realistic send date counted forward from the public approval rather than accepting Monday",
+        "evidence": "\"mid-Nov at the earliest, realistically late Nov or early Dec\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the renewal fee is 1.5% rather than the 3% new-deal tier",
+        "evidence": "\"1.5%\u2020 of pre-tax total contract value, if the offer carries the renewal flag. Without the flag it is 3%\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to mark the offer as a renewal of an existing customer moving to AWS Marketplace (offer purpose)",
+        "evidence": "\"flagged **Existing Customer Moving to AWS Marketplace**\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a future-dated agreement with a service start date of 1 February",
+        "evidence": "\"Future-dated to 1 Feb, the day after the current agreement ends\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that auto-renewal must be off before the future-dated agreement is accepted",
+        "evidence": "\"Must be off before acceptance on a future-dated agreement, and it can't be turned back on.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the quarterly installment plan needs the buyer to pay by invoice, not card",
+        "evidence": "\"Payment by invoice, not card. Card buyers are charged immediately, so installments and net terms do nothing for them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to check whether the buyer runs a Private Marketplace and, if so, to extend the offer to the administrator account as well",
+        "evidence": "\"If so, extend the offer to their account and to the administrator account, and ask the administrator to approve the product.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks for or confirms the buyer's exact 12-digit AWS account ID before sending",
+        "evidence": "\"The 12-digit AWS account that will own the subscription.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends cancelling any test subscriptions before requesting Public",
+        "evidence": "\"**Cancel every test subscription,** then **request Public** at the real price.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that private offers require at least one active public listing, so the Limited listing cannot carry the offer",
+        "evidence": "\"I believe private offers work on Limited listings\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to request Public visibility and cites a Seller Operations review of about 7-10 business days",
+        "evidence": "No mention of requesting Public visibility.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives a realistic send date counted forward from the public approval rather than accepting Monday",
+        "evidence": "Treats Monday 2 Nov as realistic if the integration test passes and pricing is contract.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the renewal fee is 1.5% rather than the 3% new-deal tier",
+        "evidence": "\"Fee: 3% of the transaction value\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to mark the offer as a renewal of an existing customer moving to AWS Marketplace (offer purpose)",
+        "evidence": "No offer-purpose or renewal marking mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a future-dated agreement with a service start date of 1 February",
+        "evidence": "\"Terms: 12 months, agreement start 1 Feb. Future-dated start is supported\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that auto-renewal must be off before the future-dated agreement is accepted",
+        "evidence": "Auto-renewal is not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the quarterly installment plan needs the buyer to pay by invoice, not card",
+        "evidence": "Says \"AWS invoices Harrow\" but never states that card payment is incompatible.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to check whether the buyer runs a Private Marketplace and, if so, to extend the offer to the administrator account as well",
+        "evidence": "Mentions only that the payer account may differ; no Private Marketplace.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks for or confirms the buyer's exact 12-digit AWS account ID before sending",
+        "evidence": "\"Buyer: Harrow's AWS account ID. Ask which account holds their Marketplace purchases\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends cancelling any test subscriptions before requesting Public",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

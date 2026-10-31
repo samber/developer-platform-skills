@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Names the mechanism as a Channel Partner Private Offer (CPPO) with a selling or resale authorization from the ISV",
+        "evidence": "\"This is a CPPO (channel partner private offer) deal. You issue Corbel a selling authorization\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the ISV sets a wholesale price or discount and the reseller marks it up to the buyer price",
+        "evidence": "\"with a wholesale price. Corbel marks it up and sells to Northvale\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the CPPO fee is the normal tier plus 0.5%",
+        "evidence": "\"3% new private offer under $1M\u2020 + 0.5% CPPO\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the fee is computed on the wholesale price to the reseller, not the buyer price",
+        "evidence": "\"The 0.5% CPPO surcharge is computed on the wholesale price\"; \"on wholesale\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the fee is deducted from the ISV's payout, not the reseller's",
+        "evidence": "\"You: AWS deducts the fee from your payout.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Computes the fee on a $425k wholesale price at 3.5% (about $14,875) or shows equivalent arithmetic",
+        "evidence": "\"3.5% \u00d7 $425,000 = **$14,875**\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises pricing the fee into the partner discount rather than absorbing it",
+        "evidence": "\"Price the 0.5% into the 15% discussion.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a published selling authorization cannot be edited or extended, only deactivated",
+        "evidence": "\"A published authorization can't be edited or extended\"; \"only deactivated\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a single-buyer authorization tied to Northvale's account for this negotiated deal",
+        "evidence": "\"Single buyer: Northvale's account ID.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reseller must itself be a registered paid AWS Marketplace seller",
+        "evidence": "\"Confirm Corbel is a registered paid AWS Marketplace seller. The authorization can't be issued otherwise.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Names the mechanism as a Channel Partner Private Offer (CPPO) with a selling or resale authorization from the ISV",
+        "evidence": "\"AWS Marketplace channel-partner private offer\" and the \"authorization\" discussion.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the ISV sets a wholesale price or discount and the reseller marks it up to the buyer price",
+        "evidence": "\"Corbel keeps its margin. It is the difference between your wholesale price and what it charges Northvale.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the CPPO fee is the normal tier plus 0.5%",
+        "evidence": "Uses 3% as an assumption, with no +0.5%.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the fee is computed on the wholesale price to the reseller, not the buyer price",
+        "evidence": "\"I have not checked... $12.75k if on wholesale; $15k if on $500k\" is left ambiguous.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the fee is deducted from the ISV's payout, not the reseller's",
+        "evidence": "\"It comes out of your disbursement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Computes the fee on a $425k wholesale price at 3.5% (about $14,875) or shows equivalent arithmetic",
+        "evidence": "Computes 3% only ($12.75k).",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises pricing the fee into the partner discount rather than absorbing it",
+        "evidence": "Not advised.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a published selling authorization cannot be edited or extended, only deactivated",
+        "evidence": "Says \"an expiry you can extend\" is fine and is unsure whether an authorization can be edited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a single-buyer authorization tied to Northvale's account for this negotiated deal",
+        "evidence": "\"Scope it to... Northvale's AWS account if the portal supports buyer scoping.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the reseller must itself be a registered paid AWS Marketplace seller",
+        "evidence": "Says only \"eligible AWS Marketplace channel partner\".",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

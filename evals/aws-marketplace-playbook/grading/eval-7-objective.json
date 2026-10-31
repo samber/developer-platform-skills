@@ -1,0 +1,94 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Gives a skip or not-now verdict",
+        "evidence": "\"Verdict: skip for now. Revisit when a named customer deal asks for it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that the listing is a procurement rail rather than a demand or discovery channel",
+        "evidence": "\"A listing is a procurement rail, not a demand channel.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the absence of enterprise buyers with AWS commitments as a reason",
+        "evidence": "\"individual devs and small teams paying by card. None of them hold an AWS commitment.\" \"Your $29/mo card buyers don't buy through procurement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the product is not hosted on AWS so it would not retire buyer commitments",
+        "evidence": "\"Vercel and Fly.io fail that test, so you'd be in the 'transact, no commit' bucket.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a concrete condition for revisiting, such as a named enterprise deal asking to buy through AWS",
+        "evidence": "\"List when a named prospect asks to buy through AWS Marketplace.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not walk the user through seller registration steps as if listing were recommended",
+        "evidence": "Steps are framed conditionally under \"What would change the verdict\"; the verdict stays skip.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the ongoing operational cost (integration, offers, owner) rather than the listing fee alone",
+        "evidence": "\"Billing becomes a second system... integrate entitlement checks, hourly metering and EventBridge... no one owns offers\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Gives a skip or not-now verdict",
+        "evidence": "\"Don't list on AWS Marketplace now.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that the listing is a procurement rail rather than a demand or discovery channel",
+        "evidence": "\"Marketplace is a procurement channel... Devtool discovery on Marketplace is weak\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites the absence of enterprise buyers with AWS commitments as a reason",
+        "evidence": "\"Your buyers don't use it... Individual devs paying $29 by card never open it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the product is not hosted on AWS so it would not retire buyer commitments",
+        "evidence": "Says \"Vercel and Fly.io don't block you\" and never addresses commitment retirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a concrete condition for revisiting, such as a named enterprise deal asking to buy through AWS",
+        "evidence": "\"Two or more team prospects say 'we can only buy through AWS Marketplace.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not walk the user through seller registration steps as if listing were recommended",
+        "evidence": "Only mentions registration, tax and bank setup as a cost; gives no steps.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the ongoing operational cost (integration, offers, owner) rather than the listing fee alone",
+        "evidence": "\"private offers, co-sell... need someone to run them\" and \"Integration cost is real... 3 to 6 engineering weeks\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

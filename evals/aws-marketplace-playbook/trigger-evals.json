@@ -1,0 +1,414 @@
+{
+  "skill_name": "aws-marketplace-playbook",
+  "description": "Takes a B2B SaaS vendor onto AWS Marketplace as the ISV seller - whether to list, irreversible account and pricing model choices, going public, private offers, CPPO resale authorizations, EDP/PPA commit drawdown, and co-selling through ACE and ISV Accelerate. Use whenever a vendor mentions AWS Marketplace, a private offer, CPPO, burning a customer's AWS commit, the Deployed on AWS badge, or ACE, ISV Accelerate or FTR for its listing, even if they only ask how to sell through AWS. ISV side only: not buyers, not resellers. Do NOT use for listing copy or search rank (use samber/developer-platform-skills@integration-listing-optimization), for your own marketplace's billing (use samber/developer-platform-skills@app-marketplace-monetization-model), or for metering code.",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "how do private offers work on AWS Marketplace? we have a $1.2M 3-year deal and the buyer wants to pay through AWS",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our biggest customer wants to burn their AWS EDP by renewing with us through the marketplace. We run on Azure. Is that possible?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want to get on AWS Marketplace this quarter. What do we need to do as a SaaS vendor, and how long does it take?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "should our SaaS listing on aws marketplace be contract or subscription pricing? we sell annual seats with overage",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "the buyer insists on purchasing through their reseller, how do I set up a CPPO and who pays the fee",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "What are the ISV Accelerate requirements and is it worth applying now? We have 3 ACE opportunities",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "buyer gets 'You already have an active contract' when accepting our private offer for more seats, what now",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we get AWS sellers to co-sell our product? We just got listed on Marketplace",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "is the Deployed on AWS badge worth re-architecting for? our control plane is on GCP",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we're a 40-person security startup, enterprise prospects keep asking if they can buy us through their AWS account. what does that involve for us?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "what's the fee AWS takes on a private offer renewal vs a new deal, and how do I mark an existing customer's renewal",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Planning our first AWS Marketplace listing: which account should we register with, we have an AWS Organization with 30 accounts",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Rewrite our AWS Marketplace product description and pick screenshots so we rank higher in marketplace search",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "write the Lambda that calls BatchMeterUsage every hour for our SaaS subscription product, with DynamoDB aggregation",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're launching our own app marketplace for partners. How should we bill developers and take a revenue share?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we pass the Salesforce AppExchange security review for our managed package?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do I publish a transactable SaaS offer on Microsoft's commercial marketplace and get Azure IP co-sell eligible?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're the buyer: how do we negotiate our AWS EDP renewal and get more discount on EC2?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "As a procurement lead, how do I set up a Private Marketplace in our AWS Organization so teams only buy approved software?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Should we invest in a partnership with Snowflake or Databricks first for our data product?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Do we need the AWS FTR to get into AWS Partner Solutions Finder as a consulting partner?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we publish our dataset as a paid data product on AWS Data Exchange?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "design a partner program with tiers and deal registration for our resellers",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How should we design our usage-based API pricing and overage tiers on our own website?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "AWS Marketplace says our SaaS integration was sent back before going public, what do they test exactly?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we sell through AWS marketplace and a customer wants Net 90 and quarterly payments on the private offer, can we do that",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Can I renew a customer on AWS Marketplace with the new term starting when the old contract ends? future dated?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our AE wants to send a private offer while we're still in Limited listing status, will that work",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Distributor wants a resale authorization for our product on AWS Marketplace, what should go in it",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "do aws marketplace purchases count toward a customer's private pricing agreement commitment and how much",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we got an ACE referral from an AWS rep, what do we do and how fast",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we hide public pricing on our AWS listing and only do private offers?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How long from AWS Marketplace seller registration to a live public SaaS listing, realistically? we're a UK company",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How should we pay our sales reps on deals that close through AWS Marketplace private offers?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Is it worth doing the AWS FTR before we list?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we picked SaaS subscription pricing on AWS marketplace but now sell annual contracts, can we change it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Raising our public price on AWS Marketplace next month, when does it apply to existing subscribers?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our GCP Marketplace listing needs a private offer for a customer with a Google committed spend, how?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our AWS Marketplace listing gets views but few contact requests - rewrite the title, highlights and screenshots",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We're a reseller. An ISV sent us a resale authorization on AWS Marketplace - how do we build the CPPO, set our markup and pick net terms?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How do I register opportunities in ACE as an AWS services partner for migration projects?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "debug DuplicateRecord errors from BatchMeterUsage in our metering pipeline",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Help me set up AWS Organizations SCPs and consolidated billing for our 12 accounts",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we build an integration marketplace inside our own product with partner-built connectors?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're the customer: does buying our observability tool through AWS Marketplace count toward our PPA, and how much of it?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "write a cold email sequence to AWS partner managers asking for intros",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're an AWS consulting partner; how do we get Advanced tier and competencies for our services firm?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how do I buy a SaaS product through AWS Marketplace with my company's AWS account?",
+      "should_trigger": false,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "List our self-hosted Kubernetes product as a container on AWS Marketplace with hourly plus annual pricing and Helm chart delivery",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "What should our technology partnership tiers look like for integration partners?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 50,
+    "passed": 39,
+    "failed": 11
+  }
+}
