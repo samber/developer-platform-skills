@@ -4,7 +4,7 @@ description: Design the operator-side review and approval process for third-part
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.3"
+  version: "1.0.4"
 ---
 
 # App Marketplace Review
@@ -236,4 +236,5 @@ See also, same collection:
 - `samber/developer-platform-skills@partner-app-onboarding` - the submitter's journey through the gate designed here: docs, sandbox tenancy, certification steps.
 - `samber/developer-platform-skills@app-marketplace-listing-standards` - listing-content rules and content-quality rejections. Admission is decided here, badge display there.
 - `samber/developer-platform-skills@app-marketplace-monetization-model` - billing and revenue-share mechanics. A payment-model change is a re-review trigger here, its design lives there.
+- `samber/developer-platform-skills@google-workspace-marketplace-playbook` - the submitter's side of a two-gate review (OAuth verification plus listing review, with a third-party security assessment for restricted scopes), useful as a benchmark when designing your own.
 - `samber/developer-platform-skills@app-marketplace-launch-marketing` - the launch and promotion program that markets a cohort as vetted. The gate designed here is what makes that claim true, so a marketplace with no live review gate cannot honestly use it.
