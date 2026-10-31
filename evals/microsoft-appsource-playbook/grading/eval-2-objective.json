@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that all plans in one SaaS offer share one pricing model (flat rate or per user)",
+        "evidence": "\"It is the same for every plan in that offer\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the pricing model cannot be changed after the offer is published",
+        "evidence": "\"can't change after publish\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says adding per-seat plans later to a flat-rate offer requires a new offer",
+        "evidence": "\"Switching later means a second offer, a new review and MACC re-enrollment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that metered billing is only available on flat-rate plans, not per-user plans",
+        "evidence": "\"Metering exists only on flat-rate plans.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a SaaS offer linked to a Teams app must use per-user pricing",
+        "evidence": "\"A Teams-linked offer must be per user.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concludes that one offer cannot serve both the Teams link and API-call metering, and proposes a resolution (separate offers or a model choice)",
+        "evidence": "Option A one per-user offer; Option B two offers, one Teams-linked per-user and one flat-rate with meter.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags uncertainty about switching a published Contact Me SaaS offer to transactable, and recommends building transact from the start or confirming with Microsoft support",
+        "evidence": "\"Microsoft's pages disagree... Either build transact from day one, or get Partner Center support to confirm in writing\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a Contact Me listing unlocks no MACC, co-sell eligibility or private offers",
+        "evidence": "\"It unlocks no MACC, no IP co-sell and no private offers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that test purchases on a live offer are actually invoiced",
+        "evidence": "\"Test purchases are invoiced. They are refunded only if cancelled within 72 hours\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a separate test offer or a private plan at a nominal price for testing",
+        "evidence": "\"Use a separate DEV offer in preview at a nominal price\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists plan ID or metered dimension IDs among choices that lock at publish",
+        "evidence": "\"Plan ID, seat limits, dimension IDs and values... are all locked once published.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that all plans in one SaaS offer share one pricing model (flat rate or per user)",
+        "evidence": "Says \"A plan is either flat-rate or per-user\", which is per plan rather than per offer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the pricing model cannot be changed after the offer is published",
+        "evidence": "\"Pricing model is permanent per plan... I believe it can't be changed after publishing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says adding per-seat plans later to a flat-rate offer requires a new offer",
+        "evidence": "Says \"'flat monthly now, per-seat later' means new plans next to the old ones\", not a new offer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that metered billing is only available on flat-rate plans, not per-user plans",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a SaaS offer linked to a Teams app must use per-user pricing",
+        "evidence": "Not stated; says only that the Teams app links to a SaaS offer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Concludes that one offer cannot serve both the Teams link and API-call metering, and proposes a resolution (separate offers or a model choice)",
+        "evidence": "Recommends \"one set of plans and one fulfillment backend\", with no conflict identified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags uncertainty about switching a published Contact Me SaaS offer to transactable, and recommends building transact from the start or confirming with Microsoft support",
+        "evidence": "\"The flip probably isn't a flip... I believe moving to transactable means creating a new offer\"; \"skip Contact Me and go straight to a transactable offer\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a Contact Me listing unlocks no MACC, co-sell eligibility or private offers",
+        "evidence": "Says only that a Contact Me listing \"only generates leads\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that test purchases on a live offer are actually invoiced",
+        "evidence": "\"It's a real purchase... your card gets charged... may generate taxes, invoices, and a payout.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a separate test offer or a private plan at a nominal price for testing",
+        "evidence": "\"Create a private plan at a nominal price (or a private offer) restricted to your test tenant\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists plan ID or metered dimension IDs among choices that lock at publish",
+        "evidence": "\"Dimension IDs are permanent\"; \"Decide the API-call meter's ID, unit, and included quantity now\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
