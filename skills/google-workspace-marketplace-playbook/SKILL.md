@@ -80,7 +80,13 @@ Ranked by efficiency for a B2B vendor:
 
 Before promising Marketplace billing or featuring, read the packet's Pricing and Featuring sections: Google bills nothing, and featuring cannot be bought.
 
-Private listings serve only the publisher's own organization, never customers. Visibility (public or private) is permanent once saved, and a consumer Gmail account can publish only public. Pilot customers before approval through OAuth Testing status with named test users (tester warning, user cap, short-lived tokens†), then switch to In production before submitting: Testing status is a named rejection cause. Draft testers on a public listing must be Gmail accounts, so Workspace-domain customers cannot preview it. That Testing route reaches customers only through your web app's own OAuth flow: users at customer companies get an add-on or Chat app only after public approval.
+Visibility and piloting:
+
+- **Private listings** serve only the publisher's own organization, never customers.
+- **Visibility** (public or private) is permanent once saved. A consumer Gmail account can publish only public.
+- **Pilot before approval** through OAuth Testing status with named test users (tester warning, user cap, short-lived tokens†). Switch to In production before submitting: Testing status is a named rejection cause.
+- **The Testing route reaches customers only through your web app's own OAuth flow.** Users at customer companies get an add-on or Chat app only after public approval.
+- **Draft testers** on a public listing must be Gmail accounts, so Workspace-domain customers cannot preview it.
 
 ## Sequence
 
