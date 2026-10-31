@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that not responding to a quality check within 7 days leads to demotion",
+        "evidence": "\"Answer within 7 days\u2020. Silence demotes the app in the store.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that required changes not made within 30 days can lead to unpublishing",
+        "evidence": "\"Ship the required changes within 30 days\u2020, or the app can be unpublished.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises responding to the quality check immediately in the Partner Dashboard with evidence of changes",
+        "evidence": "Says \"Reply to the email today. Name an owner and give a date for each required change.\" It mentions neither the Partner Dashboard nor evidence of changes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that customer names and emails are Level 2 protected customer data needing approval",
+        "evidence": "\"Reading customer name and email is Level 2 protected customer data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that protected customer data access must be requested before the app enters review",
+        "evidence": "\"Request this before you submit. Shopify refuses protected-data requests while the app is in review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that unapproved protected fields come back redacted or null",
+        "evidence": "\"Unapproved fields come back redacted.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the expiring offline access token requirement for all public apps with its deadline",
+        "evidence": "\"Expiring offline access tokens by 2027-01-01\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions a reason per requested field or data minimization in the access request",
+        "evidence": "\"Each field needs its own one-line reason\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the new sync update as requiring review time before release rather than shipping immediately",
+        "evidence": "\"It is not realistic for the release date. Plan for the feature to go live weeks later.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that reading orders is already Level 1 protected customer data requiring a request",
+        "evidence": "\"Reading orders or customers is Level 1 and needs approval.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that not responding to a quality check within 7 days leads to demotion",
+        "evidence": "Only says the app 'can be hidden from search or delisted'; no 7-day figure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that required changes not made within 30 days can lead to unpublishing",
+        "evidence": "No 30-day figure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises responding to the quality check immediately in the Partner Dashboard with evidence of changes",
+        "evidence": "'Answer... today'; reply 'in the channel the email names', checking the Partner Dashboard item.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that customer names and emails are Level 2 protected customer data needing approval",
+        "evidence": "'Name and email are in the higher tier, usually called Level 2.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that protected customer data access must be requested before the app enters review",
+        "evidence": "'Submit it at the start of the sprint'; enable the flag and submit the app update only after approval.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that unapproved protected fields come back redacted or null",
+        "evidence": "'those fields come back empty or the API returns an access error.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the expiring offline access token requirement for all public apps with its deadline",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions a reason per requested field or data minimization in the access request",
+        "evidence": "'You must justify each field'; 'Minimize: store only what the ticket needs.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the new sync update as requiring review time before release rather than shipping immediately",
+        "evidence": "'The data-access request has its own review, with a wait you don't control... submit the app update' after approval.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that reading orders is already Level 1 protected customer data requiring a request",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

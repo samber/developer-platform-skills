@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects putting statistics or numbers like 10,000 merchants or 4.9 stars in the listing subtitle",
+        "evidence": "Shopify bans stats... in the listing; \"Do not ship\" for \"trusted by 10,000 merchants, 4.9 stars\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects '#1' or 'best' style claims in the listing",
+        "evidence": "\"bans stats, 'best' claims, testimonials\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adding keywords to the subtitle to improve search is against Shopify's rules",
+        "evidence": "\"keyword-stuffed subtitles\" banned; \"no search keywords\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects offering a free month or any incentive in exchange for reviews",
+        "evidence": "\"One free month... Do not ship, highest risk\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Shopify can remove reviews, demote, or delist apps that incentivize reviews",
+        "evidence": "\"Shopify removes the reviews and demotes or delists the app\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends Shopify's Reviews API (shopify.reviews.request) for review requests",
+        "evidence": "\"shopify.reviews.request()\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises triggering the review request after a real usage milestone, not from a button",
+        "evidence": "\"Define a real milestone\"; \"Never wire it to a button.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Reviews API rate limits (about once per 60 days, 3 per year)",
+        "evidence": "\"at most once per 60 days and 3 times a year\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels ranking claims by source, distinguishing Shopify-published factors from practitioner reports",
+        "evidence": "\"Published: Built for Shopify... Reported: an exact phrase in the app title\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not assert review count as a confirmed primary ranking factor",
+        "evidence": "\"Partly true, overstated\"; \"they are not the one lever.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Built for Shopify status as an officially stated search ranking boost",
+        "evidence": "\"Built for Shopify and the 'increased visibility' achievement boost search\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Suggests including the category term in the app name alongside the brand, within the name length limit",
+        "evidence": "\"Lead with the Metricly brand and add the category term 'Analytics' within 30 characters\u2020\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects putting statistics or numbers like 10,000 merchants or 4.9 stars in the listing subtitle",
+        "evidence": "'Drop... restrict superlatives, unsubstantiated claims, and ratings or review stats in listing text.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects '#1' or 'best' style claims in the listing",
+        "evidence": "Same row: the '#1' claim is dropped and described as 'false while you sit on page 3'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adding keywords to the subtitle to improve search is against Shopify's rules",
+        "evidence": "It recommends keyword subtitles: 'Describe the function with keywords and no claims.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects offering a free month or any incentive in exchange for reviews",
+        "evidence": "'Free month for anyone who leaves a review \u2014 Drop.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Shopify can remove reviews, demote, or delist apps that incentivize reviews",
+        "evidence": "'review removal, a listing penalty, or delisting'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends Shopify's Reviews API (shopify.reviews.request) for review requests",
+        "evidence": "Recommends a plain link to the App Store review page, not the Reviews API.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises triggering the review request after a real usage milestone, not from a button",
+        "evidence": "'Trigger a neutral in-app prompt after a success moment.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Reviews API rate limits (about once per 60 days, 3 per year)",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels ranking claims by source, distinguishing Shopify-published factors from practitioner reports",
+        "evidence": "It notes 'Shopify doesn't publish ranking weights' but does not label which factors are Shopify-stated and which are practitioner reports.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not assert review count as a confirmed primary ranking factor",
+        "evidence": "'Reviews are the main ranking factor \u2014 Unverified.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Built for Shopify status as an officially stated search ranking boost",
+        "evidence": "'The badge gives visibility and rank benefits.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Suggests including the category term in the app name alongside the brand, within the name length limit",
+        "evidence": "'Keep the brand and add one descriptive keyword only if the policy allows it.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
