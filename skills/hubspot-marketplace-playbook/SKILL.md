@@ -81,7 +81,13 @@ Ranked by efficiency, highest first: existing customers already on HubSpot, inst
 
 ## Legacy app with installs
 
-An unlisted legacy public app with more than 25 installs is stuck: it cannot list as legacy, and migrating it enforces the 25-install cap. Before running `hs app migrate`, open a support request or write to the technology partner team (your Technology Partner Manager, if you have one, sits under App Listings > More > View listing details). Cite the install count and ask three questions: what happens to existing installs above 25, whether new installs error, and whether a cap exception exists. Never migrate without a written answer. A listed legacy app migrates without that cap; schedule it before the enforcement date.
+An unlisted legacy public app with more than 25 installs is stuck: it cannot list as legacy, and migrating it enforces the 25-install cap. A listed legacy app migrates without that cap; schedule it before the enforcement date.
+
+For the unlisted case:
+
+1. Open a support request or write to the technology partner team before running `hs app migrate`. Your Technology Partner Manager, if you have one, sits under App Listings > More > View listing details.
+2. Cite the install count and ask three questions: what happens to existing installs above 25, whether new installs error, and whether a cap exception exists.
+3. Migrate only once you hold a written answer.
 
 ## Submission
 
