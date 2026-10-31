@@ -1,0 +1,326 @@
+{
+  "skill_name": "microsoft-appsource-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Tallyfold, a meeting-notes SaaS (about 40 people, ~$6M ARR), everything runs on AWS in us-east-1. We just finished a Teams bot + meeting extension and our CRO wants to 'get on AppSource and get Microsoft reps selling us through co-sell', ideally so enterprise customers can burn their Azure commit on us. Plan: submit the Teams app this month, then apply for co-sell. Can you sanity-check the plan and tell me the steps?",
+      "expected_output": "Explains that the Teams app alone cannot reach co-sell status, that co-sell and MACC run on a transactable SaaS offer, that an AWS-hosted SaaS can transact but cannot become Azure IP co-sell eligible or draw down MACC, and gives a corrected path with the Teams app linked to a per-user transactable SaaS offer.",
+      "files": [],
+      "expectations": [
+        "States that Teams apps (apps and add-ins for Microsoft 365/Office) are not eligible for co-sell-ready status",
+        "Recommends publishing a separate transactable SaaS offer (Sell through Microsoft) to carry co-sell",
+        "States that MACC drawdown requires Azure IP co-sell eligible status",
+        "States that Azure IP co-sell eligibility requires the SaaS to be primarily platformed on Azure, so the AWS-hosted product does not qualify",
+        "Tells the user that the 'burn Azure commit' goal is unavailable unless the product moves to Azure, rather than deferring it as a later step",
+        "Says a non-Azure SaaS can still list and transact only if it integrates with or extends a Microsoft product, and that the Teams app satisfies this",
+        "Recommends linking the Teams app to the SaaS offer through the manifest subscriptionOffer field",
+        "States that a Teams-linked SaaS offer must use per-user pricing",
+        "Mentions the $100,000 revenue threshold (Azure consumed revenue or marketplace billed) for IP co-sell eligibility",
+        "Describes co-sell ready as visibility to Microsoft sellers, not a source of referrals by itself",
+        "Mentions Publisher Verification as a prerequisite before the Teams submission",
+        "Mentions that Publisher Attestation is completed once the app is live in the store",
+        "Asks or states an assumption about who owns outreach to Microsoft sellers or the target date"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "quick one: we're putting our API monitoring product (Pingwell) on Microsoft Marketplace. Plan is a Contact Me listing now so we're 'in the catalog', then in Q2 flip it to transactable with a flat monthly plan, and later add per-seat plans for bigger teams plus a usage meter for API calls. We also want the Teams app to sell the same offer. We'll test the checkout on the live offer with our own corporate card. Anything wrong with that?",
+      "expected_output": "Flags that the pricing model is fixed per offer at publish, that per-seat plans cannot be added to a flat-rate offer, that metering exists only on flat-rate plans while Teams-linked offers must be per user, that the listing-only to transact switch is uncertain across Microsoft pages, and that test purchases are invoiced so testing belongs on a separate offer or private plan.",
+      "files": [],
+      "expectations": [
+        "States that all plans in one SaaS offer share one pricing model (flat rate or per user)",
+        "States that the pricing model cannot be changed after the offer is published",
+        "Says adding per-seat plans later to a flat-rate offer requires a new offer",
+        "States that metered billing is only available on flat-rate plans, not per-user plans",
+        "States that a SaaS offer linked to a Teams app must use per-user pricing",
+        "Concludes that one offer cannot serve both the Teams link and API-call metering, and proposes a resolution (separate offers or a model choice)",
+        "Flags uncertainty about switching a published Contact Me SaaS offer to transactable, and recommends building transact from the start or confirming with Microsoft support",
+        "Says a Contact Me listing unlocks no MACC, co-sell eligibility or private offers",
+        "Warns that test purchases on a live offer are actually invoiced",
+        "Recommends a separate test offer or a private plan at a nominal price for testing",
+        "Lists plan ID or metered dimension IDs among choices that lock at publish"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our Teams app (Shiftlane, a rota and shift-swap app) got its second 'Attention needed' validation report. Issues: app name in Partner Center is 'Shiftlane for Teams' but manifest says 'Shiftlane', our validDomains include staging.shiftlane.io, and they said the bot 'does not respond to Help'. Also Partner Center keeps nagging about Publisher Attestation but the attestation form won't let us complete it. Marketing promised a launch date in 10 days. What do we fix, in what order, and is 10 days realistic? Our app name for the listing is just 'Shifts' in some places, by the way.",
+      "expected_output": "Gives a fix list (matching names across manifest and Partner Center, removing staging domains, bot handling Help/Hi with no dead ends, prefixing the common-noun name), explains attestation cannot be completed until a new app is live and should be done the day it lists, keeps Publisher Verification as a must-fix, explains the concierge reply and confirmation loop, and resets the 10-day expectation against Microsoft's multi-week sizing.",
+      "files": [],
+      "expectations": [
+        "Requires the app name to match exactly across the manifest and Partner Center",
+        "Requires removing staging or non-production domains from validDomains",
+        "Requires the bot to respond to Help (and greetings) without dead ends",
+        "Flags 'Shifts' as a common noun that must be prefixed or suffixed with the publisher brand",
+        "Explains that a new app cannot complete Publisher Attestation until it is live in the Teams store",
+        "Recommends completing Publisher Attestation immediately after the app goes live and renewing it yearly",
+        "Mentions Publisher Verification as a Must fix item",
+        "Mentions the validation report categories (Must fix, Good-to-fix, Blocker, Query) or that only must-fix and blocker items gate approval",
+        "Tells the user to reply to the concierge email thread and wait for confirmation before resubmitting",
+        "Says the 10-day date is at risk and cites a multi-week planning range rather than the 24-hour report figure",
+        "Advises against changing app functionality during validation",
+        "Mentions that each resubmission needs a new manifest version number with the same app ID"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "VP Sales here at Corvane (data-quality SaaS, hosted on Azure, ~$180k billed through Microsoft Marketplace so far, mostly two enterprise deals). We got 'Co-sell ready' in July. It's late October and we've had zero referrals from Microsoft. My CEO thinks Marketplace was a waste and wants to pull the listing. What do I tell him, and what should we actually be doing?",
+      "expected_output": "Explains co-sell ready is catalog visibility, checks the path to Azure IP co-sell eligible (already past the $100K billed threshold, needs Azure technical validation and reference architecture diagram), recommends partner-led co-sell with self-registered opportunities, account mapping to Microsoft sellers and a MACC drawdown pitch, private offers and renewal migration, and argues against pulling the listing.",
+      "files": [],
+      "expectations": [
+        "Explains that co-sell ready status only makes the solution visible to Microsoft sellers and does not generate referrals by itself",
+        "Notes the company already exceeds the $100,000 marketplace billed revenue threshold for Azure IP co-sell eligible",
+        "Lists the reference architecture diagram as a remaining requirement for SaaS IP co-sell eligibility",
+        "Lists the Azure technical validation (primarily platformed on Azure) as a requirement",
+        "Explains that IP co-sell eligibility makes the offer count toward customers' MACC",
+        "Recommends registering their own opportunities in Partner Center rather than waiting for inbound referrals",
+        "Recommends mapping target accounts to Microsoft account executives and pitching MACC drawdown",
+        "Recommends using private offers for enterprise deals",
+        "Recommends moving existing customer renewals onto Marketplace private offers with the renewal self-attestation for the fee discount",
+        "Mentions Frontier Accelerate for Marketplace enrollment as a prerequisite or current home of co-sell benefits",
+        "Advises against pulling the listing, with a reason tied to MACC or private-offer procurement",
+        "Sets an expectation of months, not weeks, for seller engagement",
+        "Marks Microsoft thresholds or fees as needing verification in Partner Center"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Finance question. We sell Ledgerkite (AP automation, Azure-hosted, IP co-sell eligible). 1) A big customer's renewal is coming in January; their contract is off-marketplace today. 2) Another customer bought via a private offer we created in August 2024 that auto-renews next month. 3) A reseller in Germany wants to resell us to its customers through CSP and the customer wants it to count against their Azure commitment. What fee do we pay in each case and what should we set up?",
+      "expected_output": "Case 1: create a new private offer and self-attest it as a renewal for the 50% fee discount (1.5% instead of 3%) for the term. Case 2: offers created before October 1, 2024 are ineligible; the customer must cancel or stop auto-renew and accept a new attested private offer. Case 3: CSP private offers complete outside Marketplace and do not decrement MACC; use a multiparty private offer with the reseller if MACC drawdown matters.",
+      "files": [],
+      "expectations": [
+        "States the standard store service fee is 3%",
+        "States the renewal discount halves the fee for customer private offer or multiparty private offer renewals",
+        "Says the renewal status must be self-attested during private offer creation",
+        "Recommends converting case 1 into a new private offer flagged as a renewal",
+        "States that private offers created before October 1, 2024 are not eligible for the renewal discount",
+        "Says case 2 needs auto-renew turned off or the subscription cancelled and a new attested private offer accepted",
+        "States that CSP private offers do not count toward the customer's MACC",
+        "Recommends a multiparty private offer with the German reseller when MACC drawdown is required",
+        "States a multiparty private offer allows only one channel partner",
+        "Marks fee figures as needing verification in Partner Center",
+        "States the renewal attestation must be made at private offer creation and cannot be added afterwards"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I'm the partnerships lead at Brightmoor (contract analytics SaaS on Azure, not yet on Marketplace). From some 2024 notes: step 1 apply to ISV Success for Azure credits, step 2 sign up for Marketplace Rewards, step 3 send our leads through the Qualified Referral Program, step 4 list on AppSource. Can you turn that into a current plan for the next quarter? We want our first Marketplace transaction by end of January.",
+      "expected_output": "Updates the stale plan: AppSource and Azure Marketplace are now Microsoft Marketplace, ISV Success and Marketplace Rewards were folded into Frontier Accelerate for Marketplace (no-cost and paid Premium tiers, enrollment a prerequisite for co-sell listing), QRP is retired and referrals live in Partner Center, and reorders around a transactable SaaS offer with a private offer as the first transaction, with figures flagged for verification.",
+      "files": [],
+      "expectations": [
+        "States that AppSource and Azure Marketplace are now unified as Microsoft Marketplace",
+        "States that ISV Success and Marketplace Rewards were consolidated into Frontier Accelerate for Marketplace",
+        "Mentions that Frontier Accelerate has a no-cost tier and a paid Premium tier",
+        "States that Frontier Accelerate enrollment is a prerequisite for a co-sell listing",
+        "States that the Qualified Referral Program is retired and referrals are managed in Partner Center referrals",
+        "Puts a transactable SaaS offer (landing page, Fulfillment API, webhook, Entra SSO) on the critical path",
+        "Recommends the first transaction be a private offer",
+        "Mentions the tax profile and payout profile must be set up before transacting",
+        "Builds the timeline backward from the end-of-January target",
+        "Includes at least one failed certification cycle in the timeline",
+        "Flags program names, prices or criteria as needing verification in Partner Center"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "how do we get our SaaS listed on AppSource and actually transactable through Microsoft?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Teams app failed store validation again, the report says Must fix on validDomains and the bot help command. how do I get it through?",
+      "should_trigger": true
+    },
+    {
+      "query": "What's the difference between co-sell ready and Azure IP co-sell eligible, and what do we need for the MACC thing?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want customers to be able to spend their Azure commitment on our product. what does that take on the Microsoft side?",
+      "should_trigger": true
+    },
+    {
+      "query": "Partner Center says I need Publisher Attestation for our Teams app but the form won't let me submit it",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I link our Teams app to a paid SaaS offer so admins can buy seats inside Teams?",
+      "should_trigger": true
+    },
+    {
+      "query": "Should our Microsoft Marketplace offer be Contact Me, free trial or sell through Microsoft? we're a B2B HR SaaS",
+      "should_trigger": true
+    },
+    {
+      "query": "ISV Success seems gone, what replaced it and do we still get Marketplace Rewards?",
+      "should_trigger": true
+    },
+    {
+      "query": "what's Microsoft's marketplace fee on private offers and is there a discount for renewals?",
+      "should_trigger": true
+    },
+    {
+      "query": "we're on AWS, is it even worth putting our product on Microsoft Marketplace?",
+      "should_trigger": true
+    },
+    {
+      "query": "Prepare the co-sell solution package for Partner Center: one-pager, pitch deck, architecture diagram. what goes in each?",
+      "should_trigger": true
+    },
+    {
+      "query": "our reseller wants to sell us through CSP to a customer, how does a CSP private offer differ from a multiparty private offer?",
+      "should_trigger": true
+    },
+    {
+      "query": "Building the landing page and SaaS fulfillment webhook for our Azure Marketplace SaaS offer, what does certification check?",
+      "should_trigger": true
+    },
+    {
+      "query": "can we change our marketplace SaaS offer from flat rate to per user after publishing?",
+      "should_trigger": true
+    },
+    {
+      "query": "Teams store submission checklist for a productivity app, we submit next week",
+      "should_trigger": true
+    },
+    {
+      "query": "We got co-sell ready months ago and zero referrals from Microsoft reps. what are we doing wrong?",
+      "should_trigger": true
+    },
+    {
+      "query": "I'm a solo founder, my SaaS is on Azure. Is Frontier Accelerate Premium worth paying for, or is the free tier enough to start selling on Microsoft Marketplace?",
+      "should_trigger": true
+    },
+    {
+      "query": "Microsoft wants a reference architecture diagram for IP co-sell. What should it show for a SaaS product?",
+      "should_trigger": true
+    },
+    {
+      "query": "How long does Teams store review actually take? Marketing wants a launch date.",
+      "should_trigger": true
+    },
+    {
+      "query": "We have an Outlook add-in and want to charge for it, how does monetization work in the Microsoft 365 store?",
+      "should_trigger": true
+    },
+    {
+      "query": "ok so our partner manager says we need $100k of something before Microsoft sellers get paid on our deals. what exactly and how do we track it",
+      "should_trigger": true
+    },
+    {
+      "query": "Do we need Microsoft 365 Certification to be in the Teams store or is that optional? a bank prospect asked for it",
+      "should_trigger": true
+    },
+    {
+      "query": "Customer bought our SaaS offer in the Azure portal but the subscription is stuck pending configuration, what's wrong with our activation flow?",
+      "should_trigger": true
+    },
+    {
+      "query": "Partner Center onboarding for a new ISV: account, tax profile, payout, publisher verification - what order and what blocks what?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is the AppSource listing for our Teams app separate from the Azure Marketplace SaaS offer, or are they the same thing now?",
+      "should_trigger": true
+    },
+    {
+      "query": "Write the listing description and screenshots captions for our Microsoft Marketplace page to rank higher in search",
+      "should_trigger": false
+    },
+    {
+      "query": "We run our own integrations marketplace; how should our review team test third-party apps before approving them?",
+      "should_trigger": false
+    },
+    {
+      "query": "Help me build a Teams bot in TypeScript that posts adaptive cards when a deploy finishes",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I pass the Salesforce AppExchange security review for our managed package?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Slack app got rejected from the Slack Marketplace for scope justifications, what now?",
+      "should_trigger": false
+    },
+    {
+      "query": "List our SaaS on AWS Marketplace with private offers and get into ISV Accelerate",
+      "should_trigger": false
+    },
+    {
+      "query": "Publish our desktop app to the Microsoft Store as an MSIX package",
+      "should_trigger": false
+    },
+    {
+      "query": "We're publishing a VS Code extension to the Visual Studio Marketplace, how do we get the verified publisher badge?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our app approved on Google Workspace Marketplace, they want an OAuth verification and security assessment",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we partner with Microsoft or Salesforce first for our integration strategy next year?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the pricing tiers for our own app marketplace and decide the revenue share we take from partners",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Microsoft Entra OAuth app needs admin consent for Graph Mail.Read, how do we design the scopes and token lifetimes?",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan the launch campaign for our new partner app marketplace, featured apps and co-marketing tiers",
+      "should_trigger": false
+    },
+    {
+      "query": "Publish our Copilot Studio connector as a custom connector in Power Platform for our own tenant only",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up our partner channel deal registration and rules of engagement for resellers",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a GitHub Action and list it on the GitHub Marketplace with a verified creator badge",
+      "should_trigger": false
+    },
+    {
+      "query": "Write release notes for version 3 of our Teams app",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we measure ROI of our cloud marketplace channel across AWS, Azure and GCP for the board?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design OAuth2 authorization server endpoints for our own public API",
+      "should_trigger": false
+    },
+    {
+      "query": "Help me create an Azure Managed Application ARM template for deploying into customer subscriptions",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Atlassian Marketplace app needs Cloud Fortified, what are the requirements?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Shopify app through App Store review and Built for Shopify",
+      "should_trigger": false
+    },
+    {
+      "query": "Choose between Microsoft Teams and Slack for our internal company chat",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up co-marketing MDF with our reseller partners and track claims",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the case study for our customer that deployed us with an SI partner",
+      "should_trigger": false
+    }
+  ]
+}
