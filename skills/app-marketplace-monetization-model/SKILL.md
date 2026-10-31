@@ -4,7 +4,7 @@ description: Design how a B2B SaaS app/connector marketplace makes money, operat
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # App Marketplace Monetization Model
@@ -232,3 +232,4 @@ See also, same collection:
 - `samber/developer-platform-skills@app-marketplace-listing-standards` - listing quality standards and the approval rubric, separate from what a listing costs.
 - `samber/developer-platform-skills@app-marketplace-launch-marketing` - launch and co-marketing budgets for the marketplace, spend rather than revenue design.
 - `samber/developer-platform-skills@partner-app-onboarding` - the partner journey where registration fees and seller agreements actually land on developers.
+- `samber/developer-platform-skills@wordpress-plugin-directory-playbook` - the vendor's view of a zero-fee directory that bans in-plugin paywalls, so paid value moves to the vendor's own service.
