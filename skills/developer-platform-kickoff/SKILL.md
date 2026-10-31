@@ -4,7 +4,7 @@ description: Before starting any developer-platform, public-API, or integration 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.17"
+  version: "1.0.18"
 ---
 
 # Developer Platform Kickoff
@@ -129,6 +129,7 @@ Rows are grouped by the collection's own categories. Each macro skill sits besid
 | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `samber/developer-platform-skills@github-engagement-playbook` | A repository's engagement on GitHub after launch: diagnosing a flat star curve, releases as feed events and watcher notifications, Discussions Q&A and announcements, topics, labels for issues, PRs and discussions, small frequent releases and Dependabot as activity, traffic and mention tracking, the limits on star tactics |
 | `samber/developer-platform-skills@stackoverflow-playbook` | A vendor's Stack Overflow presence: owning the product tag and its excerpt, staff answers with disclosure and no AI drafting, triaging hundreds of unanswered questions by views, self-answered canonical Q&A that ranks in search, the reputation gates new staff accounts hit |
+| `samber/developer-platform-skills@huggingface-playbook` | The company's own models, datasets and demo Spaces on the Hugging Face Hub: repo-per-variant layout, card metadata, license and gating with the EU AI Act open-weights duties, Space plan and ZeroGPU limits, a missing inference widget, trending and the Community tab, reading Hub download counts |
 
 ### Connector marketplace (operator side)
 
@@ -365,7 +366,8 @@ If the harness has no scheduled routines, fall back to one recurring calendar re
 No skill in the collection covers these. Name the gap; never promise or invent a skill:
 
 - **Per-marketplace submission playbooks beyond Zapier, Salesforce AppExchange and Slack.** Shopify, Atlassian, HubSpot, AWS, GitHub, Google Workspace, Microsoft AppSource, WordPress and Chrome Web Store sit further out. `zapier-integration-playbook` covers Zapier only, not Make, n8n or Power Automate; `salesforce-appexchange-playbook` covers AppExchange ISV listings, not Salesforce consulting listings; `slack-app-directory-playbook` covers Slack Marketplace submission and upkeep, not Microsoft Teams, Google Chat or Discord app stores; `integration-listing-optimization` covers marketplace-agnostic optimization, not one platform's submission mechanics or review criteria; `github-action-offering` covers listing a GitHub Action, not GitHub Apps.
-- **YouTube publishing playbook.** YouTube is planned for v1.1 and not shipped; `github-engagement-playbook` and `stackoverflow-playbook` each cover one platform only. Hacker News, dev.to and Product Hunt are _not_ gaps: recommend `samber/developer-relations-skills@hackernews-playbook`, `samber/developer-relations-skills@devto-playbook` or `samber/developer-relations-skills@producthunt-playbook`.
+- **YouTube publishing playbook.** YouTube is planned for v1.1 and not shipped; `github-engagement-playbook` and `stackoverflow-playbook` each cover one platform only.
+- **Model hubs beyond Hugging Face**: Kaggle Models, ModelScope, Replicate, the Ollama library. `huggingface-playbook` covers the Hugging Face Hub only. Hacker News, dev.to and Product Hunt are _not_ gaps: recommend `samber/developer-relations-skills@hackernews-playbook`, `samber/developer-relations-skills@devto-playbook` or `samber/developer-relations-skills@producthunt-playbook`.
 - **API monetization**: usage-based pricing and packaging.
 - **Infrastructure-as-code surfaces beyond Terraform and OpenTofu**: Pulumi native providers, Crossplane providers, CDK construct libraries, Ansible collections. `terraform-provider-offering` covers the Terraform/OpenTofu provider only; Pulumi's bridged providers inherit its schema but not its release mechanics.
 - **Editor integrations beyond VS Code-API editors and JetBrains**: Visual Studio (not Code) extensions, Eclipse plugins, Xcode source editor extensions, native Neovim or Zed plugins. `ide-extension-offering` reaches those editors only through a language server and JSON schema.

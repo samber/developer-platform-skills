@@ -1,0 +1,369 @@
+{
+  "skill_name": "huggingface-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Tallowmere, 25 people, building speech models. Our Hugging Face org `tallowmere` is on the free plan. Next Tuesday we open-source Tallow-ASR in tiny/small/medium plus a GGUF build. Plan: one repo `tallowmere/tallow-asr` with a subfolder per size and the GGUF in /gguf, weights are the pytorch_model.bin files from training. We also want a Gradio demo Space under the org so people can try it. To get on trending fast we'll raffle three RTX cards among everyone who likes the repo in launch week. Can you write the launch checklist?",
+      "expected_output": "A release plan that splits the variants into one repo each linked by base_model and grouped in a collection, converts pickle weights to safetensors, flags that a free org cannot create a Gradio Space and offers Static or a paid plan, refuses the like raffle as restricted metric manipulation, and gives a dated cadence.",
+      "files": [],
+      "expectations": [
+        "Recommends one Hub repository per size (tiny, small, medium) instead of subfolders in a single repo",
+        "Recommends a separate repository for the GGUF build",
+        "Sets base_model (with base_model_relation quantized or equivalent) on the GGUF repo card pointing at the original model repo",
+        "Recommends grouping the repos in a Hugging Face collection",
+        "States that subfolders inside one repo lose separate URLs, search entries or download counts",
+        "States that pickle .bin weights trigger import-scan warnings on the Hub page and recommends safetensors",
+        "States that a free organization cannot create a Gradio (compute) Space and needs a paid plan such as Team",
+        "Offers a Static Space (e.g. in-browser via transformers.js or ONNX) or a plan upgrade as the demo path",
+        "Cites Hugging Face's Content Policy wording on incentivizing metric manipulation or exchanging rewards for likes when refusing the raffle",
+        "Names a sanction such as unranking or removal for metric manipulation",
+        "Proposes driving real visits to the model page instead of rewarded likes",
+        "Lists card metadata fields to fill before launch, including at least pipeline_tag, library_name and license",
+        "Includes a dated cadence that flips repos public together on launch day and staffs the Community tab",
+        "Does not set base_model between the independently trained sizes (tiny, small, medium)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our sales VP at Brightwell Data wants every download of our open embedding model (Apache-2.0) to become a lead. Plan is to turn on gated access with manual approval and ask for company, job title, phone and team size, then SDRs approve the good ones and reject students. We release in two weeks on HF. How should I set up the gate?",
+      "expected_output": "Pushes back on a lead-capture gate: grants are per user not per company, manual approval adds a queue, rejection is permanent, PII responsibility; recommends open or click-through gate and a commercial link in the card for leads, ranked with adoption vs compliance cost.",
+      "files": [],
+      "expectations": [
+        "Recommends an open repo or an automatic-approval click-through gate instead of manual approval for this Apache-2.0 model",
+        "States that Hugging Face grants gated access to individual users, not to whole companies",
+        "Points out that every engineer and CI job at an adopting company would need its own approved account or token",
+        "States that rejected users cannot request access again",
+        "States that gating shares requesters' username and email by default and makes the publisher responsible for that personal data",
+        "Mentions linking or publishing a privacy policy or notice if personal data is collected",
+        "Presents gate options ordered by adoption cost (open first, manual or external approval last)",
+        "Includes a compliance or legal cost dimension in the comparison",
+        "Recommends capturing sales interest via a link in the model card or pinned FAQ to the company's own form",
+        "Mentions that username and email collection can be turned off in the gating settings",
+        "Does not provide an extra_gated_fields block asking for phone number as the recommended configuration"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Board deck question. Our model page on Hugging Face shows 2.1M downloads last month, our Python SDK on PyPI had 310k. I want to put 'Monthly active developers: 2.4M' on the slide. Also marketing says the launch flopped because the model only got 140 likes, versus 3,000+ for the big lab releases. Can you sanity check before Thursday?",
+      "expected_output": "Refuses to sum Hub and PyPI downloads or call them active developers; explains Hub counting (GET/HEAD on query file, not deduplicated); explains likes and downloads measure different things; proposes separate lines and derivative count; names Publisher Analytics / unique downloader limits.",
+      "files": [],
+      "expectations": [
+        "States that Hub downloads count requests on query files rather than people, so 2.1M cannot be read as developers",
+        "States that Hub and PyPI download counts use different counting rules and cannot be summed",
+        "Explains that a Hub download is a GET or HEAD request on a query file such as config.json",
+        "States that Hub download counts are not deduplicated by user",
+        "Mentions that clones, CI runs or cache misses can inflate the download count",
+        "Explains that likes and downloads measure different things (attention to new releases vs ongoing pipeline usage)",
+        "Does not conclude the launch failed from the like count alone",
+        "Proposes reporting likes, downloads and other numbers as separate lines with their counting rules",
+        "Proposes derivatives in the model tree (fine-tunes, quantizations, adapters) as an adoption signal",
+        "States that unique downloader data is only available as a paid Enterprise-tier log export or similar paid analytics",
+        "Suggests a defensible replacement slide label such as 'Hub downloads (non-deduplicated)'"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "We're Lumière Labs in Lyon. We trained a 7B text-generation model from scratch, about 3e23 FLOP. License: our 'Lumière Open License', free for companies under $5M revenue, paid above, and no use for military purposes. Marketing wants to announce it as 'fully open source' on Hugging Face and legal assumed the AI Act open-source exemption covers us so we skip the paperwork. What do I put in the card and are we good?",
+      "expected_output": "Says the model likely meets the GPAI indicative test, the open-source exemption likely does not apply because of monetisation and use restrictions, copyright policy and training-data summary apply regardless, sets license other + license_name + license_link, avoids 'open source' wording, routes to counsel.",
+      "files": [],
+      "expectations": [
+        "States the model likely falls under the EU AI Act general-purpose AI model obligations (training compute above about 1e23 FLOP and generates text)",
+        "States that the open-source exemption requires a free and open-source license without monetisation",
+        "Concludes the paid-above-$5M term likely disqualifies the exemption",
+        "States that a copyright policy is required even for exempt open-source models",
+        "States that a public training-data summary (on the AI Office template) is required even for exempt open-source models",
+        "Mentions the 2 August 2025 application date of the obligations",
+        "Notes the systemic-risk threshold (around 1e25 FLOP) is not reached at 3e23",
+        "Sets license: other with license_name and license_link (or a LICENSE file) in the card metadata",
+        "Lists what the open-source exemption covers: technical documentation for authorities, documentation for downstream providers, and the EU authorised representative",
+        "Recommends linking the training-data summary and copyright policy from the model card",
+        "Mentions that the Commission enforces the GPAI obligations, including fines, from 2 August 2026"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Our model `kestrel-ai/kestrel-vision-2b` has been on the Hub for three weeks and the page still has no 'Inference' box where people can try it like the big models do. Our CEO asked me to just enable the HF inference API on it before the webinar on the 12th. Where's the setting?",
+      "expected_output": "Explains there is no owner setting: widgets appear only when an Inference Provider serves the model and providers choose what they deploy; offers ask-for-provider-support, widget example outputs in card YAML, a linked Space demo, and self-hosting via Inference Endpoints; does not promise a widget by the webinar.",
+      "files": [],
+      "expectations": [
+        "States there is no setting a model owner can toggle to enable the inference widget",
+        "States the widget appears only when at least one Inference Provider serves the model",
+        "States that Inference Providers decide themselves which models they deploy",
+        "Recommends the 'Ask for provider support' request on the model page",
+        "Recommends adding example outputs to the card via the widget YAML metadata",
+        "Recommends a Space demo linked to the model (models: in the Space README) as the try-it path for the webinar",
+        "Mentions checking whether the org plan allows a Gradio Space or using a Static Space",
+        "Mentions self-hosting (e.g. Inference Endpoints, TGI or vLLM) as a fallback",
+        "Does not promise the widget will be live by the webinar date",
+        "Checks or mentions that correct pipeline_tag and model metadata are prerequisites for a widget"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Quick one: our paper went on arXiv on Sept 30 and we launch the model on HF Oct 20. Today is Oct 18. I want to submit it to Daily Papers on launch day for the bump. Also our org is on Team, and for the ZeroGPU demo I set @spaces.GPU(duration=300) everywhere just to be safe since generation takes ~20 seconds. Anything else I should do in the last 48 hours?",
+      "expected_output": "Flags the closed Daily Papers window (14 days after arXiv date), keeps the arxiv link in the card; tells them to set duration to realistic worst case because declared duration is checked against visitor quota; gives a compressed 48-hour checklist.",
+      "files": [],
+      "expectations": [
+        "States the Daily Papers window closes 14 days after the arXiv publication date",
+        "Concludes the Sept 30 paper can no longer be submitted on Oct 20",
+        "Recommends still linking the arXiv paper in the model card so the Hub creates the arxiv tag and paper-page cross-link",
+        "States that the declared ZeroGPU duration is checked against the visitor's remaining daily quota",
+        "Explains that duration=300 would lock out free or anonymous visitors whose daily quota is only a few minutes",
+        "Recommends setting duration close to the realistic worst case (for example around 30-60 seconds for a ~20 s task)",
+        "Mentions that a shorter declared duration also improves queue priority",
+        "Includes testing the usage snippet in a clean environment before flipping public",
+        "Includes linking the Space to the model repo via models: in the Space README",
+        "Includes staffing the Community tab on launch day",
+        "Gives a compressed checklist adapted to the 48 hours left rather than a multi-week plan",
+        "States that the 14-day window counts from the paper's first arXiv version and a new version does not reopen it"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "We're Harrowgate Voice, a US startup (Delaware, Austin office). We're putting our 3B text-to-speech model on Hugging Face next month, Apache-2.0, trained with roughly 2e23 FLOP. Our counsel says the EU AI Act is irrelevant because we have no EU customers and TTS isn't a 'general-purpose' chatbot anyway. To be extra safe they want us to turn on the EU block in the gating settings and call it done. Can you confirm and give me the card checklist?",
+      "expected_output": "Corrects both premises: audio generation is inside the Commission's modality test, and a public Hub release places the model on the EU market; Apache-2.0 likely qualifies for the open-source exemption but copyright policy and training-data summary still apply; EU IP block is not an AI Act opt-out and gating hurts adoption; card checklist with metadata and links.",
+      "files": [],
+      "expectations": [
+        "States the Commission's indicative test covers models that generate language including audio, so a text-to-speech model is inside the modality test",
+        "States that 2e23 FLOP is above the roughly 1e23 FLOP indicative threshold",
+        "States that a public Hugging Face repo downloadable from the EU places the model on the EU market regardless of customer location",
+        "States that the extra_gated_eu_disallowed EU block is not an AI Act exemption or opt-out",
+        "States that the EU block only works on gated repos, so it would force a gate on an Apache-2.0 model",
+        "Concludes the Apache-2.0 release likely qualifies for the open-source exemption if weights and usage information are public and it is not systemic-risk",
+        "States the copyright policy obligation still applies under the exemption",
+        "States the public training-data summary still applies under the exemption",
+        "Mentions that a non-EU provider outside the exemption would need an EU authorised representative",
+        "Includes pipeline_tag text-to-speech and library_name in the card metadata checklist",
+        "Recommends linking the training-data summary and copyright policy from the model card",
+        "Recommends counsel re-check the conclusion given the corrected premises",
+        "Notes that a lack-of-significant-generality argument, not customer location, is the only premise of counsel's position worth documenting"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "We're releasing our first open-weights model on Hugging Face next month, what should the org and repo setup look like?",
+      "should_trigger": true
+    },
+    {
+      "query": "should we gate our model on HF or keep it open? legal wants a record of who accepted the license",
+      "should_trigger": true
+    },
+    {
+      "query": "Why doesn't our Hugging Face model page show an inference widget like other models do?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do models get onto the hugging face trending page? ours launched tuesday and isn't there",
+      "should_trigger": true
+    },
+    {
+      "query": "Can our free HF org host a Gradio demo for the model or do we need to pay?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our HF model has 900k downloads but I don't think that's 900k users, how are downloads counted?",
+      "should_trigger": true
+    },
+    {
+      "query": "We have 4 sizes of our model plus AWQ and GGUF quants - one repo or many on the Hub?",
+      "should_trigger": true
+    },
+    {
+      "query": "What should go in the YAML header of our model card so it shows up in the right searches?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is our custom 'community license' OK to call open source when we publish weights on Hugging Face?",
+      "should_trigger": true
+    },
+    {
+      "query": "Do we owe anything under the EU AI Act if we put our 8B model's weights on Hugging Face under Apache 2.0?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our company name is taken on huggingface.co by some random user, how do we get a verified org?",
+      "should_trigger": true
+    },
+    {
+      "query": "Plan the launch-week activity on our Hugging Face model's Community tab",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to publish our labeled support-ticket dataset on Hugging Face for researchers, what card and license do we need?",
+      "should_trigger": true
+    },
+    {
+      "query": "Marketing wants to give swag to people who like our HF repo, is that ok?",
+      "should_trigger": true
+    },
+    {
+      "query": "the ZeroGPU demo for our model keeps telling visitors quota exceeded after one try, it's a launch demo for our org",
+      "should_trigger": true
+    },
+    {
+      "query": "When is the deadline to get our paper on HF Daily Papers if our model release is two weeks after arXiv?",
+      "should_trigger": true
+    },
+    {
+      "query": "head of devrel here, we're an LLM startup and want a Hugging Face presence plan for the next quarter",
+      "should_trigger": true
+    },
+    {
+      "query": "We fine-tuned Qwen for legal docs, how do we publish it on the Hub so it appears in Qwen's model tree?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can we use gated access on HF to sell commercial licenses to our model?",
+      "should_trigger": true
+    },
+    {
+      "query": "What can we show the board from Hugging Face analytics for our open model, likes or downloads?",
+      "should_trigger": true
+    },
+    {
+      "query": "our model's .bin weights show a pickle warning on the hub, does it matter for enterprise users?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want our own library's loading snippet to appear on model pages that use it, how do we get that on the Hub?",
+      "should_trigger": true
+    },
+    {
+      "query": "Putting our speech model on HF next week, give me the release checklist",
+      "should_trigger": true
+    },
+    {
+      "query": "Should we host our model demo on a HF Space or on our own site?",
+      "should_trigger": true
+    },
+    {
+      "query": "we sell an inference API; does it make sense to have a Hugging Face org at all?",
+      "should_trigger": true
+    },
+    {
+      "query": "Set up trusted publishing for our Python SDK on PyPI from GitHub Actions",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan our open-source launch across Hacker News, Reddit and X for next week",
+      "should_trigger": false
+    },
+    {
+      "query": "Fix the CUDA error in my @spaces.GPU decorated function, torch.compile fails",
+      "should_trigger": false
+    },
+    {
+      "query": "Which open model from Hugging Face should I run locally on a 32GB MacBook for coding?",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a training script to fine-tune Llama 3 with LoRA using TRL",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I download a gated model with hf_hub_download in my notebook?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our GitHub repo stars are flat after launch, what should we change?",
+      "should_trigger": false
+    },
+    {
+      "query": "Should our SDK be MIT or Apache-2.0, and do we need a CLA?",
+      "should_trigger": false
+    },
+    {
+      "query": "Which sample apps and starter repos should our platform maintain?",
+      "should_trigger": false
+    },
+    {
+      "query": "Optimize our listing on the Slack Marketplace to get more installs",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the MCP server for our SaaS product",
+      "should_trigger": false
+    },
+    {
+      "query": "Ship an Agent Skill inside our CLI's GitHub repo",
+      "should_trigger": false
+    },
+    {
+      "query": "Which devrel KPIs should we report to the exec team this quarter?",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we rank in a Kaggle competition with our team's notebook?",
+      "should_trigger": false
+    },
+    {
+      "query": "Publish our CLI as a Homebrew formula and a Docker image",
+      "should_trigger": false
+    },
+    {
+      "query": "Evaluate our model on MMLU and GPQA with lighteval on a local GPU",
+      "should_trigger": false
+    },
+    {
+      "query": "Post our release announcement on dev.to with the right tags",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Product Hunt launch is Tuesday, how do we prepare the maker comment?",
+      "should_trigger": false
+    },
+    {
+      "query": "Build an in-browser sentiment classifier with transformers.js in my React app",
+      "should_trigger": false
+    },
+    {
+      "query": "Deploy a Hugging Face model to SageMaker with the right IAM role",
+      "should_trigger": false
+    },
+    {
+      "query": "Choose between Mintlify and Docusaurus for our API docs",
+      "should_trigger": false
+    },
+    {
+      "query": "Upload a 40GB folder to my existing HF dataset repo with the hf CLI, it times out",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan our distribution channels for the open-source library over the next six months",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Stack Overflow tag has 800 unanswered questions about our SDK",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our AI app approved on the Chrome Web Store",
+      "should_trigger": false
+    },
+    {
+      "query": "Which Inference Provider on Hugging Face is cheapest for running Qwen3 32B from our backend?",
+      "should_trigger": false
+    },
+    {
+      "query": "This embedding model has 4M downloads on HF, does that mean it's trusted enough for our prod search?",
+      "should_trigger": false
+    },
+    {
+      "query": "My personal ZeroGPU Space for a side project keeps hitting quota, should I buy PRO?",
+      "should_trigger": false
+    },
+    {
+      "query": "We're a TTS startup releasing our voice model weights on HF - does the AI Act apply if we only sell in the US?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our ML team wants to put the 3 sizes of our reranker on huggingface under our company org, how should we structure it?",
+      "should_trigger": true
+    },
+    {
+      "query": "we flipped our model repo public and realized old checkpoints are in the history, what's the clean way to do launches?",
+      "should_trigger": true
+    }
+  ]
+}
