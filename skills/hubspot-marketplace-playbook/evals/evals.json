@@ -1,0 +1,334 @@
+{
+  "skill_name": "hubspot-marketplace-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Linkwise, a unified API for CRMs: our customers (other SaaS companies) embed our connector so their users can sync with HubSpot, Salesforce and Pipedrive, all under their own brand. HubSpot is 60% of our traffic so we want a HubSpot Marketplace listing for the Linkwise HubSpot connector to get more visibility and look legit. We have about 400 end-customer portals connected through our OAuth app already. Can you plan the listing submission? We'd like to submit next week.",
+      "expected_output": "Refuses to plan the listing as asked: white-label integration infrastructure embedded in another party's product, developer-only infrastructure and token brokering are ineligible. Explains which rule applies, and offers what can list instead (an end-user product of Linkwise's own, or each customer listing its own branded app on its own app ID).",
+      "files": [],
+      "expectations": [
+        "States that the Linkwise connector as described is not eligible for a HubSpot Marketplace listing",
+        "Names white-label or invisibly embedded integration infrastructure as the excluded category",
+        "Names developer-only infrastructure or credential/token brokering as a further excluded pattern",
+        "Does not produce a submission timeline or listing packet for the connector as described",
+        "Notes that the 400 connected portals do not change eligibility",
+        "Offers an alternative: Linkwise's customers listing their own branded apps under their own app ID and OAuth client",
+        "Mentions that a listing must use a single HubSpot app ID tied to the listing and must not redirect to or depend on another app",
+        "Does not claim HubSpot charges a listing fee or revenue share",
+        "Marks quoted HubSpot figures or rules with a verify-against-current-docs flag"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Hey! I'm CTO at Quotely (CPQ tool, 6 people). We just built our HubSpot app on the new developer platform, set up as private with a static token because that was the quickest. Two design partners are lined up, plus we installed it in our own HubSpot portal and a dev test account. We're launching at SaaStock in 5 weeks and want to be live on the HubSpot Marketplace with the Certified badge by then. We also requested scopes for contacts, companies, deals, tickets and files since we'll need tickets and files later this year. What's the plan?",
+      "expected_output": "Resets the plan: certification is impossible at launch (6 months listed + 60 installs), the listing needs 3 active unaffiliated installs (own portal and test account don't count), static token caps at one portal so switch to marketplace distribution + OAuth (25 installs before listing), remove unused tickets/files scopes, build a backward timeline with 10-business-day initial review and one Draft bounce, and a fallback announcement if approval misses SaaStock.",
+      "files": [],
+      "expectations": [
+        "States that certification is not possible by the launch because it requires the app to be listed for about 6 months",
+        "States the 60 active install requirement for certification",
+        "States that listing requires at least 3 active installs from unaffiliated production accounts",
+        "Says the vendor's own HubSpot portal and the developer test account do not count toward active installs",
+        "Says the two design partners alone are not enough and at least one more unaffiliated customer portal is needed",
+        "Says a static-token app installs in only one standard account and recommends switching to marketplace distribution with OAuth",
+        "Mentions the cap of 25 installs for an unlisted marketplace-distribution app",
+        "Tells them to remove the tickets and files scopes until features use them, or make them optional",
+        "Mentions the initial review of about 10 business days",
+        "Builds a timeline backward from the SaaStock date that includes at least one Draft bounce or resubmission round",
+        "Gives a fallback for launch day if approval has not landed, such as announcing the integration as coming soon",
+        "Defines active installs as accounts with successful app activity in the last 30 days, not OAuth installs alone"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our HubSpot integration (Trackpoint, field-service scheduling) is an old public app from 2021: not on projects, never listed on the marketplace, installed in about 140 customer portals via our own settings page. It still uses classic CRM cards. Plan for next quarter: migrate it to the latest developer platform version, add agent tools so Breeze agents can book jobs, and then finally list it. Can you sequence this?",
+      "expected_output": "Flags the deadlock: an unlisted legacy public app with 140 installs cannot list as a legacy app (rejected for new listings from November 2026), and migrating it enforces the 25-install cap on unlisted apps. Sequence: contact HubSpot support or the technology partner team before migrating, convert classic CRM cards to app cards, migrate with the cap handled, list the migrated app, then add agent tools through their separate review.",
+      "files": [],
+      "expectations": [
+        "States that legacy (pre-projects) public apps are rejected for new listings from a dated enforcement point, marked to verify",
+        "Warns that migrating an unlisted app with more than 25 installs enforces the 25-install cap",
+        "Says to contact HubSpot (support request, technology partner team or partner manager) before running the migration",
+        "Does not recommend listing the app as-is on the legacy architecture",
+        "States that classic CRM cards block new listings and must be converted to app cards",
+        "Puts listing after migration to the developer platform in the recommended sequence",
+        "Puts agent tools after the app is on the developer platform",
+        "States that agent tools need their own HubSpot review before a listed app can deploy them",
+        "Recommends migrating to a currently supported platform version rather than an older projects version",
+        "Notes that legacy public apps can no longer be created, so a new legacy app is not an option"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Product lead at Asklane here. Our product is an AI assistant: sales reps type questions like 'which deals slipped this week, update the close dates' and the LLM decides which HubSpot API calls to make. We authenticate with a normal OAuth app, account-wide scopes, installed by an admin. It's listed already on the HubSpot Marketplace. Next we want to (1) expand the assistant to write to tickets and (2) add our MCP server to the same listed app so customers can use it from Breeze. Anything HubSpot-specific we should know before shipping?",
+      "expected_output": "Flags that an app where AI interprets natural language and decides CRM actions must enforce user-level permissions (MCP auth app or isUserLevel), a standard account-wide OAuth token is not sufficient; MCP listing requirements say a new standalone app with its own listing, server owned by them; new ticket write scope must be used and reflected in Shared data; listing edit returns to review.",
+      "files": [],
+      "expectations": [
+        "States that apps where AI decides which CRM actions to take must enforce the installing user's HubSpot permissions",
+        "States that a standard account-wide OAuth token does not satisfy that requirement",
+        "Names the MCP auth app or user-level access (isUserLevel) as the build route",
+        "States that the MCP listing requirements call for a standalone app with its own listing rather than adding it to the existing listed app",
+        "Mentions the MCP server must be owned by or delegated to the vendor, not a connector to someone else's server",
+        "Says the new tickets write scope must be used by a shipped feature and reflected in the Shared data table",
+        "Says a write scope added alongside a read scope on tickets means the sync is advertised as bi-directional where both apply",
+        "Says the listing edit goes back through HubSpot review",
+        "Flags the EU AI Act high-risk or unacceptable use restriction for AI tools or MCP components",
+        "Does not invent a HubSpot revenue share or fee"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "HubSpot bounced our listing back to Draft. Feedback: 1) Shared data shows contacts as one-way to HubSpot but you request crm.objects.contacts.read and write. 2) Pricing shows our Starter plan, which doesn't include the HubSpot integration. 3) Setup documentation URL could not be accessed. 4) Please review branding guidelines. Our app is called 'HubSpot Sync by Fieldnote', the setup URL is our docs homepage (behind SSO for customers), and our site's bot protection is on. While we fix this, we also want to submit our second app, Fieldnote Forms, so both are in the queue. Also should we just set the plan to Free since we have a 14-day trial?",
+      "expected_output": "One fix per point: shared data bi-directional or drop write scope; remove Starter from listing pricing; public HubSpot-specific setup guide not homepage not behind SSO, allowlist HubSpot Crawler; rename app without HubSpot/Hub; do not submit second app concurrently (auto-rejected); Free only for free-forever/freemium, not trial; single resubmission.",
+      "files": [],
+      "expectations": [
+        "Says to mark contacts as bi-directional in Shared data or remove the write scope if unused",
+        "Says to remove the Starter plan from listing pricing because only plans including the integration may be listed",
+        "Says the setup guide must be public, not behind login or SSO",
+        "Says the setup guide must be HubSpot-specific and not the docs homepage",
+        "Says to allowlist the HubSpot Crawler user agent in bot protection",
+        "Says the app name must not include HubSpot or Hub and proposes a renamed form",
+        "Says submitting the second app while the first is in review gets it rejected automatically",
+        "Says the Free pricing plan is only for free-forever or freemium, not a free trial",
+        "Recommends fixing all feedback points in one resubmission",
+        "Mentions writing HubSpot with a capital S across assets"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "We've been listed on the HubSpot Marketplace for 14 months (app: Ledgerly, accounting sync). 45 active installs, 6 reviews, 3.8 average. Leadership wants us to become a Premier HubSpot technology partner and get the Certified badge next quarter. Our API success rate in the dashboard is 88%, mostly 429 errors. Marketing proposes a $25 gift card for every review to push the rating up. What's realistic?",
+      "expected_output": "Certification blocked until 60 active installs and success >95% (fix 429 by throttling to 100 req/10 s per account, batching, webhooks); no gift cards - review guidelines ban compensation; use 30-day review email and review link; reply to negative reviews; stars show at 10 reviews; Premier needs $7M attached MRR, 10+ reviews 4.0+, certification mandatory, exec sponsor; tier applies to account; propose realistic tier path.",
+      "files": [],
+      "expectations": [
+        "States certification needs at least 60 active installs and Ledgerly has 45",
+        "States certification needs an average API success rate above 95%",
+        "Recommends throttling to HubSpot's per-account rate limit of about 100 requests per 10 seconds, or batching and webhooks, to cut 429s",
+        "Rejects the gift card plan because HubSpot's review guidelines ban compensation of any kind for reviews",
+        "Recommends HubSpot's review request email or review link sent to customers eligible under the review guidelines instead",
+        "Says the listing needs at least 10 reviews before a star rating is shown",
+        "Says replies to negative reviews are expected and checked for certification",
+        "States Premier requires attached MRR in the millions (about $7M), or the $100K influenced-deal exception that still requires every other Premier requirement",
+        "States Premier requires certification and at least 10 reviews with 4.0 or higher",
+        "States tiers are evaluated on a fixed cadence (quarterly tier-ups) over a trailing 12 months",
+        "Says certification does not by itself unlock go-to-market benefits",
+        "Recommends logging influenced deals in the developer platform to count toward tiers"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "how many installs do we need before HubSpot lets us list our app on the marketplace?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our HubSpot marketplace listing got sent back to Draft because the shared data table doesn't match our scopes. What else will they check before we resubmit?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want the HubSpot Certified App badge for our integration. What are the requirements and how long does certification take?",
+      "should_trigger": true
+    },
+    {
+      "query": "our hubspot app says 'unverified app' when customers install it, how do we get rid of that",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it worth putting our sales engagement tool on the HubSpot App Marketplace? We already have a public app with 30 customer installs, never listed.",
+      "should_trigger": true
+    },
+    {
+      "query": "HubSpot rejected our marketplace submission saying it's white-label integration infrastructure. We're an embedded iPaaS. Is there any way to list?",
+      "should_trigger": true
+    },
+    {
+      "query": "We built an MCP server for our product and want it available to HubSpot customers through the marketplace. What does HubSpot require?",
+      "should_trigger": true
+    },
+    {
+      "query": "What's the difference between Rising, Leading and Premier in the HubSpot technology partner program and how do we move up?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our hubspot app is stuck at 25 installs and new customers get an error. We haven't listed yet. What do we do?",
+      "should_trigger": true
+    },
+    {
+      "query": "Does HubSpot take a cut if we sell our app through their marketplace? Planning pricing for our integration listing.",
+      "should_trigger": true
+    },
+    {
+      "query": "We still use classic CRM cards in our listed HubSpot app. Are we going to get delisted?",
+      "should_trigger": true
+    },
+    {
+      "query": "Plan the submission for our HubSpot marketplace listing: setup guide, demo video, pricing tab, the whole packet.",
+      "should_trigger": true
+    },
+    {
+      "query": "Our AI sales assistant writes to HubSpot through OAuth. HubSpot's EQ team says it needs user-level permissions to stay listed. What does that mean for us?",
+      "should_trigger": true
+    },
+    {
+      "query": "We have a data enrichment product that fills company firmographics in HubSpot. Can we get it onto the HubSpot marketplace?",
+      "should_trigger": true
+    },
+    {
+      "query": "how long does hubspot ecosystem quality review take for a new app listing? launch is in 6 weeks",
+      "should_trigger": true
+    },
+    {
+      "query": "Our HubSpot certified app lost its badge because installs dropped. When can we re-apply?",
+      "should_trigger": true
+    },
+    {
+      "query": "Should our HubSpot app use private or marketplace distribution while we pilot with 5 customers? We plan to list later.",
+      "should_trigger": true
+    },
+    {
+      "query": "we want to add agent tools for breeze to our listed hubspot app, is there a separate approval?",
+      "should_trigger": true
+    },
+    {
+      "query": "We're migrating our legacy HubSpot public app to the projects platform. It has 200 installs and isn't on the marketplace. Any gotchas?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our HubSpot integration listing hasn't had a new install in months. Can HubSpot remove it?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our HubSpot marketplace listing gets views but few installs. Rewrite the overview and reorder screenshots to convert better.",
+      "should_trigger": false
+    },
+    {
+      "query": "We run our own app marketplace for our CRM product. Design the review process for third-party apps that want to list.",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our managed package through the Salesforce AppExchange security review.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Slack app was returned by Slack Marketplace review for unneeded scopes. Help us fix it.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we build a HubSpot integration or a Salesforce integration first? We have engineering for one.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a Node script that pages through HubSpot contacts with the CRM search API and handles 429s.",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up a HubSpot workflow that assigns new leads to reps by territory and sends a Slack alert.",
+      "should_trigger": false
+    },
+    {
+      "query": "We're a HubSpot Solutions Partner agency. How do we go from Gold to Platinum tier?",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I pass the HubSpot Inbound Marketing certification exam in HubSpot Academy?",
+      "should_trigger": false
+    },
+    {
+      "query": "We want to join the HubSpot affiliate program and earn commission referring customers.",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Shopify app through App Store review and qualify for Built for Shopify.",
+      "should_trigger": false
+    },
+    {
+      "query": "Publish our Atlassian Forge app on the Atlassian Marketplace and pick a licensing model.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the OAuth scopes and consent screen for third-party apps calling our own public API.",
+      "should_trigger": false
+    },
+    {
+      "query": "Build an MCP server for our product: tool design, auth, and hosting.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Google Workspace add-on needs OAuth verification and a security assessment before Marketplace listing. Plan it.",
+      "should_trigger": false
+    },
+    {
+      "query": "Build our Zapier integration with the Platform CLI and get it through Zapier's review.",
+      "should_trigger": false
+    },
+    {
+      "query": "Create a private app in our own HubSpot portal with a static token to sync our ERP data internally.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should our company build its own integration marketplace or just list on others?",
+      "should_trigger": false
+    },
+    {
+      "query": "Automate our CRM: lead management and deal tracking rules in HubSpot.",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan co-marketing with HubSpot for our integration launch: webinar, blog swap, joint email.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our HubSpot listing approval email says we are now a technology partner. What obligations come with that agreement?",
+      "should_trigger": true
+    },
+    {
+      "query": "HubSpot wants an uninstall demo video and a security questionnaire for our recertification. What exactly do they check?",
+      "should_trigger": true
+    },
+    {
+      "query": "we're on hubspot projects 2025.1, can we still submit our app for marketplace listing next month?",
+      "should_trigger": true
+    },
+    {
+      "query": "A customer asked if our HubSpot app is 'approved by HubSpot'. We're unlisted with 12 installs. What would it take to list it properly?",
+      "should_trigger": true
+    },
+    {
+      "query": "Which pricing plans can we show on our HubSpot marketplace listing? We have Free trial, Starter, Pro and Enterprise, and only Pro+ include the HubSpot sync.",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Chrome extension adds a HubSpot sidebar to Gmail. Get it through Chrome Web Store review.",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the tier structure for our own technology partner program for ISVs building on our platform.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the HubSpot integration's in-app onboarding emails for new users after they connect.",
+      "should_trigger": false
+    },
+    {
+      "query": "Migrate our company's HubSpot portal from Sales Hub Professional to Enterprise and clean up properties.",
+      "should_trigger": false
+    },
+    {
+      "query": "List our product on the AWS Marketplace with a private offer for an enterprise buyer.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our CMS theme got rejected from the HubSpot Template Marketplace. What do we change before resubmitting?",
+      "should_trigger": false
+    },
+    {
+      "query": "A vendor's HubSpot app asks our users to type 'I accept the risk' when installing. As the HubSpot admin, is it safe to approve?",
+      "should_trigger": false
+    },
+    {
+      "query": "We have 2 paying customers using our HubSpot app and a launch in 6 weeks. Can we be on the HubSpot Marketplace by then?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our hubspot app injects buttons into the record page through a chrome extension. Will that block our listing or certification?",
+      "should_trigger": true
+    }
+  ]
+}
