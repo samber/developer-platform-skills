@@ -4,7 +4,7 @@ description: Design the OAuth2 authorization-server surface a B2B SaaS offers th
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.3"
+  version: "1.0.4"
 ---
 
 # OAuth2 Provider Design
@@ -184,4 +184,5 @@ See also, same collection:
 - `samber/developer-platform-skills@mcp-server-offering` - the MCP resource-server posture that consumes the authorization server designed here.
 - `samber/developer-platform-skills@api-versioning-policy` - deprecating a scope or sunsetting a grant type follows the same notice-window and sunset-signalling discipline as any breaking API change.
 - `samber/developer-platform-skills@zapier-integration-playbook` - Zapier as an OAuth client: it refreshes tokens only on HTTP 401, and changing the auth scheme later forces a new integration major version.
+- `samber/developer-platform-skills@google-workspace-marketplace-playbook` - the client side of a live verification program: Google's scope tiers, demo-video review and CASA assessment, as a vendor goes through them.
 - `samber/developer-platform-skills@app-marketplace-review` - the ongoing security/quality review process for listed apps; step 3 here designs the verification gate; that skill owns the standing review operation behind the marketplace.
