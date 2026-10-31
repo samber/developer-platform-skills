@@ -5,7 +5,7 @@ description: >-
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.1"
+  version: "1.0.2"
 ---
 
 # SDK Package Publishing
@@ -155,3 +155,4 @@ Iterate until every gate passes:
 - `samber/developer-platform-skills@agent-skill-offering` - an agent skill bundled in the package (`skills/` in the published files) and versioned with it.
 - `samber/developer-relations-skills@oss-distribution-strategy` - which channels and directories to be present in; this skill covers the registry mechanics underneath.
 - `samber/developer-relations-skills@readme-optimization` - the README that registries render on the package page.
+- `samber/developer-platform-skills@huggingface-playbook` - model weights, datasets and demo Spaces on the Hugging Face Hub, which this skill's registries do not cover.

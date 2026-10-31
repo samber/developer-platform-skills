@@ -1,0 +1,138 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "huggingface-playbook",
+  "scenarios": 7,
+  "expectations_total": 82,
+  "expectations_subjective": 2,
+  "expectations_objective": 80,
+  "pass_rate_with_skill_pct": 97.6,
+  "pass_rate_without_skill_pct": 74.4,
+  "delta_pp": 23.2,
+  "uplift_multiplier": 1.31,
+  "trigger_accuracy_pct": 71.4,
+  "trigger_queries": 56,
+  "trigger_positive_fire_rate": 0.786,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "States that rejected users cannot request access again"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists what the open-source exemption covers: technical documentation for authorities, documentation for downstream providers, and the EU authorised representative"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that a free organization cannot create a Gradio (compute) Space and needs a paid plan such as Team"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Cites Hugging Face's Content Policy wording on incentivizing metric manipulation or exchanging rewards for likes when refusing the raffle"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that Hugging Face grants gated access to individual users, not to whole companies"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Points out that every engineer and CI job at an adopting company would need its own approved account or token"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that rejected users cannot request access again"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that gating shares requesters' username and email by default and makes the publisher responsible for that personal data"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions that username and email collection can be turned off in the gating settings"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains that a Hub download is a GET or HEAD request on a query file such as config.json"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that unique downloader data is only available as a paid Enterprise-tier log export or similar paid analytics"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists what the open-source exemption covers: technical documentation for authorities, documentation for downstream providers, and the EU authorised representative"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends the 'Ask for provider support' request on the model page"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends adding example outputs to the card via the widget YAML metadata"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions checking whether the org plan allows a Gradio Space or using a Static Space"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the Daily Papers window closes 14 days after the arXiv publication date"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Concludes the Sept 30 paper can no longer be submitted on Oct 20"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes linking the Space to the model repo via models: in the Space README"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that the 14-day window counts from the paper's first arXiv version and a new version does not reopen it"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the extra_gated_eu_disallowed EU block is not an AI Act exemption or opt-out"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the EU block only works on gated repos, so it would force a gate on an Apache-2.0 model"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Mentions that a non-EU provider outside the exemption would need an EU authorised representative"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Includes pipeline_tag text-to-speech and library_name in the card metadata checklist"
+      }
+    ]
+  }
+}

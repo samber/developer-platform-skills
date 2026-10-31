@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends one Hub repository per size (tiny, small, medium) instead of subfolders in a single repo",
+        "evidence": "\"Use one repo per variant, grouped in a collection.\" Repo table lists tallow-asr-tiny, -small and -medium.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a separate repository for the GGUF build",
+        "evidence": "`tallowmere/tallow-asr-<size>-gguf` row; \"Create one GGUF repo per size you actually ship.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets base_model (with base_model_relation quantized or equivalent) on the GGUF repo card pointing at the original model repo",
+        "evidence": "GGUF card YAML: `base_model: tallowmere/tallow-asr-<size>` and `base_model_relation: quantized`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends grouping the repos in a Hugging Face collection",
+        "evidence": "\"Collection \\\"Tallow-ASR\\\" | groups all of the above\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that subfolders inside one repo lose separate URLs, search entries or download counts",
+        "evidence": "\"A folder has no URL, no search entry and no download count.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that pickle .bin weights trigger import-scan warnings on the Hub page and recommends safetensors",
+        "evidence": "\"Convert to safetensors. Pickle files get import-scan warnings\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a free organization cannot create a Gradio (compute) Space and needs a paid plan such as Team",
+        "evidence": "\"A free org can host Static Spaces only. Gradio and Docker need Team or Enterprise\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a Static Space (e.g. in-browser via transformers.js or ONNX) or a plan upgrade as the demo path",
+        "evidence": "Space plan option 1 is a Static Space (transformers.js or ONNX); option 2 is upgrading to Team.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Hugging Face's Content Policy wording on incentivizing metric manipulation or exchanging rewards for likes when refusing the raffle",
+        "evidence": "\"incentivizing manipulation of Hugging Face Hub metrics (e.g., exchanging rewards for likes)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a sanction such as unranking or removal for metric manipulation",
+        "evidence": "\"Sanctions include unranking, which is the opposite of trending.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes driving real visits to the model page instead of rewarded likes",
+        "evidence": "\"Ask people to try the model, never to like it in exchange for anything\"; link posts to the Hub model page.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists card metadata fields to fill before launch, including at least pipeline_tag, library_name and license",
+        "evidence": "Model card YAML includes license, pipeline_tag: automatic-speech-recognition, library_name: transformers, language, datasets.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a dated cadence that flips repos public together on launch day and staffs the Community tab",
+        "evidence": "\"Tue 11-03 (T-0) | Flip all repos public together... Staff the Community tab daily.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not set base_model between the independently trained sizes (tiny, small, medium)",
+        "evidence": "\"Never set `base_model` between the sibling sizes.\" Size rows say \"none (trained from scratch)\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends one Hub repository per size (tiny, small, medium) instead of subfolders in a single repo",
+        "evidence": "Suggested layout: `tallowmere/tallow-asr-tiny`, `-small`, `-medium`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a separate repository for the GGUF build",
+        "evidence": "`tallowmere/tallow-asr-GGUF`, with the quant type in each filename",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets base_model (with base_model_relation quantized or equivalent) on the GGUF repo card pointing at the original model repo",
+        "evidence": "\"Add `base_model` and `quantized_by` metadata so the GGUF links back to the originals.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends grouping the repos in a Hugging Face collection",
+        "evidence": "one **Collection** `Tallow-ASR` grouping them all",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that subfolders inside one repo lose separate URLs, search entries or download counts",
+        "evidence": "\"Download counts, model-card metadata (base model, quantization, size), and the file browser all become ambiguous.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that pickle .bin weights trigger import-scan warnings on the Hub page and recommends safetensors",
+        "evidence": "\".bin files are pickles. HF shows scan warnings\" and \"Convert to safetensors\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a free organization cannot create a Gradio (compute) Space and needs a paid plan such as Team",
+        "evidence": "It says free hardware is CPU-basic and only \"ZeroGPU and GPU Spaces need a paid plan\". It never says a free org cannot create a Gradio Space.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers a Static Space (e.g. in-browser via transformers.js or ONNX) or a plan upgrade as the demo path",
+        "evidence": "\"Decide: pay for a GPU Space for launch week, or serve tiny/small (or the GGUF build) on CPU.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Cites Hugging Face's Content Policy wording on incentivizing metric manipulation or exchanging rewards for likes when refusing the raffle",
+        "evidence": "It only says \"read the HF content policy first\" and does not quote or cite the wording.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a sanction such as unranking or removal for metric manipulation",
+        "evidence": "\"It can get the repo down-ranked or flagged\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes driving real visits to the model page instead of rewarded likes",
+        "evidence": "\"raffle among people who do something with the model... Likes then come on their own.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists card metadata fields to fill before launch, including at least pipeline_tag, library_name and license",
+        "evidence": "front-matter: `pipeline_tag: automatic-speech-recognition`, `library_name`, `license`, `language`, `base_model`, `model-index`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a dated cadence that flips repos public together on launch day and staffs the Community tab",
+        "evidence": "\u00a76: \"Flip the 4 repos to public, then the Collection and the Space\" and \"one person on HF Discussions/GitHub issues\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not set base_model between the independently trained sizes (tiny, small, medium)",
+        "evidence": "base_model is mentioned only for the GGUF build and for \"base_model if any\" in the card front-matter; no link between the sizes.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

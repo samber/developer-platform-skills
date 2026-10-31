@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the Daily Papers window closes 14 days after the arXiv publication date",
+        "evidence": "\"Submission closes 14 days after the arXiv date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concludes the Sept 30 paper can no longer be submitted on Oct 20",
+        "evidence": "\"Sept 30 + 14 days = Oct 14... the window closed 4 days ago.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends still linking the arXiv paper in the model card so the Hub creates the arxiv tag and paper-page cross-link",
+        "evidence": "\"put the arXiv link in the card's citation section. That creates the `arxiv:` tag and ties the paper page to the model.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the declared ZeroGPU duration is checked against the visitor's remaining daily quota",
+        "evidence": "\"The platform refuses a run when the visitor's remaining daily quota is below the declared duration.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that duration=300 would lock out free or anonymous visitors whose daily quota is only a few minutes",
+        "evidence": "\"Anonymous visitors get 2 min... at 300 s they can never run the demo. Free accounts get 5 min, which allows one run at most.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends setting duration close to the realistic worst case (for example around 30-60 seconds for a ~20 s task)",
+        "evidence": "\"Generation takes about 20 s, so declare roughly 30\u201345 s.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a shorter declared duration also improves queue priority",
+        "evidence": "\"Shorter declared durations also get queue priority.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes testing the usage snippet in a clean environment before flipping public",
+        "evidence": "Item 10: \"Test the copy-run snippet in a clean environment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes linking the Space to the model repo via models: in the Space README",
+        "evidence": "\"List the repo under `models:` in the Space README.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes staffing the Community tab on launch day",
+        "evidence": "Item 16: \"Staff the Community tab daily\" under Launch day.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the 14-day window counts from the paper's first arXiv version and a new version does not reopen it",
+        "evidence": "\"14 days after the arXiv date\"; \"A v2 does not reopen it.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the Daily Papers window closes 14 days after the arXiv publication date",
+        "evidence": "\"I can't confirm Daily Papers' current age rules from memory\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Concludes the Sept 30 paper can no longer be submitted on Oct 20",
+        "evidence": "\"If it's accepted, submit it now\" and \"If it's rejected as too old\"; no conclusion is reached.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends still linking the arXiv paper in the model card so the Hub creates the arxiv tag and paper-page cross-link",
+        "evidence": "\"Put the arXiv URL in the model card. That adds the `arxiv:<id>` tag, and the model then appears on the paper page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the declared ZeroGPU duration is checked against the visitor's remaining daily quota",
+        "evidence": "\"A visitor whose remaining daily quota is below the requested duration can be refused outright.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that duration=300 would lock out free or anonymous visitors whose daily quota is only a few minutes",
+        "evidence": "\"Logged-out and free visitors have small quotas, so on launch day many of them will hit 'quota exceeded'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends setting duration close to the realistic worst case (for example around 30-60 seconds for a ~20 s task)",
+        "evidence": "\"For ~20 s generation, use `@spaces.GPU(duration=60)`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a shorter declared duration also improves queue priority",
+        "evidence": "\"A long `duration` lowers your queue priority.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes testing the usage snippet in a clean environment before flipping public",
+        "evidence": "\"In a fresh venv, run exactly the snippet from your model card\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes linking the Space to the model repo via models: in the Space README",
+        "evidence": "It says only \"Link the Space from the model card and the model from the Space\" and never names the `models:` README metadata.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes staffing the Community tab on launch day",
+        "evidence": "\"Turn on discussions and notifications for the org. Assign someone to answer the first-day issues.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the 14-day window counts from the paper's first arXiv version and a new version does not reopen it",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
