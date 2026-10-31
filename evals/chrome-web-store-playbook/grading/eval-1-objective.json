@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends replacing <all_urls> with required host permissions limited to Ticketly's own domains",
+        "evidence": "`<all_urls>` | Remove | Replace with your own origins as required hosts; host_permissions: [\"https://app.ticketly.example/*\"]",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends requesting customer portal domains as optional host permissions at runtime from a user gesture (permissions.request)",
+        "evidence": "An \"Enable on support.customer.com\" button then calls `permissions.request` for that origin only, from a user gesture.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions activeTab as an alternative for click-triggered access",
+        "evidence": "activeTab never appears in the Section 1 transcript.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States or ranks host-access options in an explicit order from narrowest/most efficient to broad patterns",
+        "evidence": "It gives a single recommended layout. There is no ranked list of host-access options.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that broad host patterns lengthen review or draw closer review",
+        "evidence": "`<all_urls>` plus `tabs` and `cookies` gets the slowest review and the scariest install warning.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Questions whether the tabs permission is needed, noting host access or activeTab may already cover it",
+        "evidence": "`tabs` | Remove | Host access already exposes URL and title on matched pages.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Questions whether the cookies permission is needed (e.g. not needed for document.cookie)",
+        "evidence": "`cookies` | Remove | Sign in through your own flow...; Open question 1: \"Why does the extension use `cookies` and `tabs`?\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that review can take from a few days up to a few weeks, not a guaranteed 1-3 days",
+        "evidence": "Google states review takes a few days to a few weeks\u2020. Queues hit 3-4 weeks\u2020 in April 2026.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends unticking auto-publish (deferred/staged publishing) so the approved build is published on demo day",
+        "evidence": "**Untick auto-publish.** An approved build waits up to 30 days\u2020, then reverts to draft.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a staged approved build must be published within 30 days or it reverts to draft",
+        "evidence": "An approved build waits up to 30 days\u2020, then reverts to draft.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against cancelling and resubmitting a pending review because it resets the queue position",
+        "evidence": "**Don't cancel and resubmit.** Google staff warned in 2026 that cancelling resets your queue position\u2020.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides a fallback if approval does not land before the talk (e.g. demo from an unpacked/local build or announce 'coming soon')",
+        "evidence": "If still pending, the local build is the demo, full stop; Say \"coming to the Chrome Web Store\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks for or includes reviewer test credentials in the Test instructions tab because the sidebar needs a Ticketly login",
+        "evidence": "Template: Account: reviewer@ticketly-demo.example / <password in this field only>",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes writing one justification per permission naming the user-facing feature",
+        "evidence": "Section 2 Permission-to-feature map with a Feature and Justification column per permission.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends replacing <all_urls> with required host permissions limited to Ticketly's own domains",
+        "evidence": "\"Remove `<all_urls>` from `host_permissions`. Keep only your own domains there (Ticketly API and app).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends requesting customer portal domains as optional host permissions at runtime from a user gesture (permissions.request)",
+        "evidence": "\"Declare `optional_host_permissions`... Call `chrome.permissions.request({origins: [...]})` from a user click.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions activeTab as an alternative for click-triggered access",
+        "evidence": "\"Consider `activeTab` for click-to-open.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States or ranks host-access options in an explicit order from narrowest/most efficient to broad patterns",
+        "evidence": "No explicit ranking of host-access options is given; only a prescriptive list of steps.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that broad host patterns lengthen review or draw closer review",
+        "evidence": "\"`<all_urls>` plus `tabs`... most likely to trigger a slow, in-depth review\"; \"Broad host permissions can push it to weeks\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Questions whether the tabs permission is needed, noting host access or activeTab may already cover it",
+        "evidence": "\"Drop `tabs` unless you can name a feature that needs `tab.url`... Granted host permissions already expose those\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Questions whether the cookies permission is needed (e.g. not needed for document.cookie)",
+        "evidence": "\"Drop `cookies`, or justify it in one sentence. Prefer OAuth or a token in `chrome.storage`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that review can take from a few days up to a few weeks, not a guaranteed 1-3 days",
+        "evidence": "\"Typical review takes a few days. Broad host permissions can push it to weeks\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends unticking auto-publish (deferred/staged publishing) so the approved build is published on demo day",
+        "evidence": "\"Submit with **deferred publishing** on. Then you control the go-live moment\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a staged approved build must be published within 30 days or it reverts to draft",
+        "evidence": "No 30-day limit is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns against cancelling and resubmitting a pending review because it resets the queue position",
+        "evidence": "Only \"each rejection restarts the clock\"; nothing about cancelling a pending review.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides a fallback if approval does not land before the talk (e.g. demo from an unpacked/local build or announce 'coming soon')",
+        "evidence": "\"load the extension unpacked on the demo machine and a backup machine\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks for or includes reviewer test credentials in the Test instructions tab because the sidebar needs a Ticketly login",
+        "evidence": "\"Add test instructions in the submission... a test Ticketly account (credentials in the test-instructions field only).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes writing one justification per permission naming the user-facing feature",
+        "evidence": "\"Written justification for each permission. Name the feature that needs it.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
