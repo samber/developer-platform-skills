@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags loading analytics or Intercom scripts from a CDN at runtime as remotely hosted code that gets rejected (Blue Argon)",
+        "evidence": "Analytics and Intercom loaded from CDNs at runtime: Blue Argon",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends bundling those scripts inside the package or dropping them",
+        "evidence": "bundle the analytics library into the package, or send events to your own endpoint; Intercom: link out (recommended)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that fetching remote configuration or data is allowed while remote logic is not",
+        "evidence": "Remote data is allowed. Remote code is not.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the obfuscator as a policy violation (Red Titanium) and states minification is allowed",
+        "evidence": "Minify at most. Obfuscation is a rejection on its own.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that sending page URLs to the API is collection of user data / web browsing activity that must be disclosed",
+        "evidence": "Page URLs count as browsing activity. Sending them to your API is collection",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that browsing-activity collection is only allowed for a user-facing feature described prominently in the listing and UI",
+        "evidence": "Collection rules (the use is user-facing, because the listing describes the enrichment); Purple Magnesium: browsing activity collected without a user-facing need.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that ticking 'does not collect user data' would mismatch the code and risk rejection or removal",
+        "evidence": "The claim also contradicts the code, and review compares the two.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends disclosing analytics and the Intercom data flow in the Privacy tab data types",
+        "evidence": "Declare these events in the Privacy tab, as above; User activity: if the analytics snippet records clicks or usage.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a privacy policy linked in the dedicated Privacy field, not only in the description",
+        "evidence": "Link a working privacy policy in the Privacy field, not only in the description.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the Limited Use statement on the vendor's own website",
+        "evidence": "Certify Limited Use on all three statements, and put the Limited Use sentence on your own site.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions prominent disclosure and consent before collecting data that is not obvious from the listing",
+        "evidence": "Disclose before collecting, with a consent step on first run.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that data must be transmitted securely (HTTPS)",
+        "evidence": "Send over HTTPS.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags loading analytics or Intercom scripts from a CDN at runtime as remotely hosted code that gets rejected (Blue Argon)",
+        "evidence": "\"Manifest V3 bans remotely hosted code... This is a common rejection reason.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends bundling those scripts inside the package or dropping them",
+        "evidence": "\"bundle the SDK into the build\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that fetching remote configuration or data is allowed while remote logic is not",
+        "evidence": "\"Remote data and config are fine. Remote code is not.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the obfuscator as a policy violation (Red Titanium) and states minification is allowed",
+        "evidence": "\"CWS prohibits obfuscated code. Minification is allowed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that sending page URLs to the API is collection of user data / web browsing activity that must be disclosed",
+        "evidence": "\"Page URLs of LinkedIn profiles count as web history... You must declare at least these categories\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that browsing-activity collection is only allowed for a user-facing feature described prominently in the listing and UI",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that ticking 'does not collect user data' would mismatch the code and risk rejection or removal",
+        "evidence": "\"A false declaration is grounds for removal\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends disclosing analytics and the Intercom data flow in the Privacy tab data types",
+        "evidence": "\"User activity, if your analytics tracks clicks... Anything Intercom collects\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a privacy policy linked in the dedicated Privacy field, not only in the description",
+        "evidence": "\"Add a **privacy policy URL**... fill the Privacy tab\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the Limited Use statement on the vendor's own website",
+        "evidence": "\"Certify the three Limited Use statements.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions prominent disclosure and consent before collecting data that is not obvious from the listing",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that data must be transmitted securely (HTTPS)",
+        "evidence": "No HTTPS requirement mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
