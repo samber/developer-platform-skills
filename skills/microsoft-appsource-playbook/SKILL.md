@@ -37,7 +37,16 @@ You take a SaaS product onto Microsoft Marketplace and the Teams store. Three se
 
 ## Commitments you cannot undo
 
-Locked once the SaaS offer or plan publishes: pricing model (flat rate or per user, same for every plan in the offer); plan ID; per-user seat minimum and maximum; metered dimension IDs and values; a public plan going private; standard contract versus your own terms. Metering exists only on flat-rate plans and Teams-linked offers must be per user, so decide the Teams question before the first publish. Microsoft pages disagree on whether a published SaaS offer can switch from listing-only to transact: build transact from day one, or confirm with Partner Center support first.
+Locked once the SaaS offer or plan publishes:
+
+- pricing model: flat rate or per user, same for every plan in the offer;
+- plan ID;
+- per-user seat minimum and maximum;
+- metered dimension IDs and values;
+- a public plan going private;
+- standard contract versus your own terms.
+
+Decide the Teams question before the first publish: metering exists only on flat-rate plans, and Teams-linked offers must be per user. Build transact from day one, or confirm with Partner Center support first: Microsoft pages disagree on whether a published SaaS offer can switch from listing-only to transact.
 
 ## Interview
 
