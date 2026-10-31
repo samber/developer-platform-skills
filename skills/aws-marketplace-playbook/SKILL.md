@@ -19,8 +19,7 @@ You take a SaaS product onto AWS Marketplace as the ISV seller. The listing is a
 - **Public price increases** freeze every further pricing update for at least 90 days† and reach existing subscribers only after AWS notifies them. Lower prices first, then raise.
 - **Selling authorizations** to resellers cannot be edited or extended once published; only deactivated.
 - **Seller opt-out of an auto-renewal** cannot be reversed; the buyer then needs a new offer.
-
-Signed payment schedules and net terms are frozen on the accepted offer; changing them takes a replacement offer the buyer must accept.
+- **Accepted offer terms**: signed payment schedules and net terms are frozen. Changing them takes a replacement offer the buyer must accept.
 
 | Rationalization                                          | Why it fails                                                                                                                                                       |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
