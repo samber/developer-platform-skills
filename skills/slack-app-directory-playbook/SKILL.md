@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Slack App Directory playbook
@@ -155,3 +155,4 @@ Key the answer on the route. A single question gets a direct answer plus the sec
 - samber/developer-platform-skills@integration-listing-optimization - listing copy, media order, install conversion.
 - samber/developer-platform-skills@oauth2-provider-design - the issuer side of scopes and consent, for your own API.
 - samber/developer-platform-skills@mcp-server-offering - the MCP server behind a Slackbot MCP listing.
+- samber/developer-platform-skills@atlassian-marketplace-playbook - the same vendor job for a Jira or Confluence app on the Atlassian Marketplace.

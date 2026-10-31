@@ -1,0 +1,323 @@
+{
+  "skill_name": "atlassian-marketplace-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Notebridge, a 14-person meeting-notes SaaS ($12/user/month, billed through Stripe). We want a Jira Cloud integration that turns action items from meetings into Jira issues and shows the meeting summary in an issue panel. Our backend and OAuth flows already exist, so the plan is: build it as an Atlassian Connect app since that just points at our existing servers, list it Free on the Atlassian Marketplace, and sell a 'Notebridge for Jira Pro' tier (auto-assign, bulk sync) on our own pricing page through Stripe. Enterprise prospects keep asking about security, so we also want to apply for Cloud Fortified right after launch. We're demoing at a conference in 6 weeks and want the listing live by then. Can you turn this into a plan?",
+      "expected_output": "Rejects Connect (no new Connect submissions, end of support) and recommends Forge UI with Forge remotes calling the existing backend. Splits the payment question: the core connector to Notebridge's SaaS can be Free with the paid account disclosed, noting Atlassian's guidance asks for as-is value and has no ruling on this case; a 'Pro' tier that unlocks the Jira app's own features sold off-Marketplace reads as undeclared Paid via Vendor, so either fold it into the SaaS plan or list Paid via Atlassian, and get Atlassian's ruling in writing on the ticket. Redirects Cloud Fortified to Atlassian Enterprise Certified (Forge-only) and starts with the Privacy & Security tab and trust center. Builds a timeline with prerequisites (ECOHELP access, KYC/KYB, security questionnaire, payment profile, legal docs) and a returned round, and says the 6-week date is tight.",
+      "files": [],
+      "expectations": [
+        "Advises against building on Atlassian Connect and states the Marketplace no longer accepts new Connect apps",
+        "Recommends Forge, with Forge remotes (or equivalent) so the app can call Notebridge's existing backend",
+        "States that a Forge cloud app can be listed only as Free or Paid via Atlassian, with no Paid via Vendor option absent Atlassian's written permission",
+        "Flags that Atlassian's guidance on a Free listing requiring an external paid account is unsettled, or requires the app to do something useful without the account",
+        "Flags the off-Marketplace 'Pro' tier for Jira-specific features as the risky part and proposes either folding it into the SaaS subscription or using Paid via Atlassian",
+        "Recommends getting Atlassian's ruling on the payment model in writing on the approval or support ticket before building the Pro billing",
+        "States that Cloud Fortified no longer accepts new apps and names Atlassian Enterprise Certified as its replacement",
+        "States that Enterprise Certified is open to Forge apps only or requires no Connect modules",
+        "Lists partner identity verification (KYC/KYB) and the app security questionnaire as prerequisites to finish before or at submission",
+        "Recommends shipping some in-Jira value that works without a Notebridge account (preview, read-only panel or sample data)",
+        "Builds the 6-week timeline backward with at least one returned review round and calls the conference date at risk or tight",
+        "Mentions that declaring egress domains or scopes later creates major versions needing admin consent, so they should be settled before launch"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I run engineering at Tallyforge. Our Confluence Cloud app 'Tallyforge Tables' has been on the Marketplace since 2019 as a Connect app, Paid via Atlassian, about 1,400 paying sites. Product wants a new 'export to PDF' macro shipped this month, so I was going to add it to atlassian-connect.json like we always have. Separately, someone told me Connect keeps working until 2027 so we can do the Forge migration next year. What's the right sequencing here, and does anything change on our revenue share if we migrate?",
+      "expected_output": "Says apps with a Connect descriptor no longer receive updates, so the new macro cannot ship via atlassian-connect.json; it has to come through a Forge manifest (Connect on Forge) on the same listing with app.connect.key. Explains Connect end of support on 31 Jan 2027 with security-patch-only support afterward, so migration is this quarter's work, not next year's. Gives the migration order: first Forge version using inherited scopes ships as a minor update without admin approval; changing baseUrl or elevating scopes forces admin approval; suspended and access-token installs never auto-upgrade. Revenue share: Connect rate (75%) applies while any Connect module remains; Forge-only qualifies for 83% and the 100%-to-$1M lifetime Forge incentive, counting only revenue after the first Forge-only version.",
+      "files": [],
+      "expectations": [
+        "States that apps with a Connect descriptor can no longer receive updates, so the macro cannot ship by editing atlassian-connect.json",
+        "Routes the new macro through a Forge manifest on the same listing (Connect on Forge or full Forge)",
+        "Mentions the app.connect.key manifest property (or linking the Forge app to the existing Connect listing)",
+        "Gives Connect end of support as 31 January 2027 and says only critical security patches follow",
+        "Rejects postponing the migration to next year",
+        "States that a first Forge version using only scopes inherited from the Connect scopes ships without admin approval",
+        "Names at least one change that forces admin approval on the migration (changing the Connect baseUrl, elevating scopes, or switching free/paid)",
+        "Warns that installations with a suspended license or licensed via access tokens are not auto-upgraded",
+        "States that any remaining Connect module keeps the app on the Connect revenue share rate",
+        "Gives the Forge partner share as higher than Connect (83% vs 75% from 1 Oct 2026, or marks the figures as needing verification)",
+        "States that only revenue earned after the first Forge-only version counts toward the $1M lifetime Forge incentive",
+        "Recommends front-loading Forge-specific scopes and remotes into the first Forge version, since adding them later while Connect modules remain needs admin approval"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our free Jira app 'Sprintlight' (Forge, ~3,000 installs, listed Free since 2024) finally has enough traction to charge for it. Plan for next month: flip the listing to Paid via Atlassian at $2/user, and in the same release add Slack notifications, which means calling hooks.slack.com and adding the write:jira-work scope so we can post status comments back. We'd like all existing customers to just start paying from the next billing cycle. Anything we're missing?",
+      "expected_output": "Explains the payment model cannot be flipped in place: enable licensing in the manifest, release a new version, go through re-approval; enabling licensing is a major version that each site admin must accept, and existing installs count as unlicensed until the admin subscribes, so 'everyone starts paying next cycle' will not happen. Recommends a deprecation policy: keep existing features free for a grace period and gate only new features behind the license check. Points out the new egress and scope are also majors needing consent, so batch them deliberately or ship separately, and declare egress precisely. Notes pricing per host user tier (whole site), annual at 10x monthly, and license checks in code (context.license.active, appIsLicensed filter).",
+      "files": [],
+      "expectations": [
+        "States that a Free to Paid via Atlassian change cannot be made on the existing listing settings and requires a new version with licensing enabled",
+        "States that the payment-model change triggers Atlassian re-approval",
+        "States that enabling licensing creates a major version that site admins must consent to",
+        "States that existing installations count as unlicensed until a site admin subscribes",
+        "Rejects the assumption that all existing customers will automatically start paying next billing cycle",
+        "Recommends a grace or deprecation period keeping existing features free while gating new features behind the license",
+        "Identifies adding hooks.slack.com egress as a major version trigger",
+        "Identifies adding a new OAuth scope as a major version trigger",
+        "Advises a deliberate plan for the consent-requiring changes (batching into one planned major or sequencing them) instead of shipping them casually",
+        "States that a paid license covers the host site's whole licensed user count rather than selected users",
+        "Mentions checking the license in code (context.license.active, view.getContext, or the appIsLicensed trigger filter)"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Help, we're stuck. We submitted our Forge app 'Ledgerline for Confluence' to the Marketplace 3 weeks ago and yesterday got 'Rejected - Timeout' with no other explanation. Our cofounder submitted it from her personal Atlassian account and gets a Forbidden page when she opens the ECOHELP link. We present at a partner summit in 10 days and need to be listed. Also, while waiting, we installed the production build on our own company Confluence to test the paid flow and now see a charge. What do we do now?",
+      "expected_output": "Diagnoses Timeout as the review expiring on unfinished prerequisites, commonly partner verification (KYC/KYB), the app security questionnaire or payment profile, often because the submitter cannot open the ECOHELP ticket. Steps: get ticket access fixed (support request), complete KYC/KYB, questionnaire, Privacy & Security tab, payment profile, legal docs, then resubmit (a new ticket). Sets realistic timing: 10 days is unlikely to cover verification plus review; prepare a 'coming to Marketplace' announcement and share via installation link only if not yet licensed (licensed/submitted apps can't be shared by link, need a separate unlicensed copy). Explains production paid installs are billed; test in development or staging with forge install --license. Notes company email domain requirement for PvA.",
+      "files": [],
+      "expectations": [
+        "Explains a Timeout rejection as the review expiring while prerequisites were incomplete (partner verification, security questionnaire or payment profile)",
+        "Treats the submitter's lack of ECOHELP ticket access as the first thing to fix, via an Atlassian support request",
+        "Lists partner identity verification (KYC/KYB) as a required step",
+        "Lists the app security questionnaire as a required step",
+        "Mentions completing the Privacy & Security tab or payment profile before resubmitting",
+        "States that resubmitting creates a new review ticket or restarts the review",
+        "States that the 10-day summit date is unlikely to be met with a fresh review and plans a fallback announcement",
+        "States that every production install of a paid app is billed, including the vendor's own",
+        "Recommends testing paid behaviour in the development or staging environment, with forge install --license (or equivalent license override)",
+        "Notes that a licensed or submitted Forge app cannot be shared by installation link and needs a separate unlicensed copy for testers",
+        "Asks or recommends asking on the ticket what specifically timed out instead of resubmitting blindly"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Our Jira app has the Marketplace bug bounty badge and about 900 paying sites. Bugcrowd just reported a stored XSS in our issue panel, scored CVSS 7.6, and it showed up as an AMS ticket. Our next sprint is fully booked with the AI feature for our big launch, so I'm planning to fix it early next quarter, about 9 weeks from now. Alternatively I could bundle the fix into our launch release next month, which also adds egress to our new AI backend and a new read:confluence-content scope. Is either OK? We haven't seen any exploitation.",
+      "expected_output": "Says no: High severity (CVSS >= 7.0) must be fixed within 4 weeks for cloud apps, after a two-week triage window for bug-bounty findings (unanswered findings auto-accepted). Explains enforcement: with a badge, badges are removed on the first day the due date is breached and the app is hidden from new installs after 15 days; hidden means no new installs. Extensions only for listed reasons (breaking change, platform cause, platform dependency, third-party block, changed risk), and a booked sprint is not one. Mentions the Security Threat Assessment for critical/high and incident reporting within 24 hours if exploitation is found. Recommends triage response now and scheduling the fix inside the window. Rejects bundling the fix with the launch release: added egress and scope make it a major that waits for Marketplace review; ship the fix as a minor first.",
+      "files": [],
+      "expectations": [
+        "States that the plan to fix in about 9 weeks breaches Atlassian's deadline",
+        "Gives the cloud High-severity fix deadline as 4 weeks",
+        "Mentions the two-week triage period for bug-bounty findings, after which unanswered findings are accepted",
+        "States that badges are removed on the first day the due date is breached",
+        "States that the app is hidden after the breach continues for more than 15 days",
+        "Explains that a hidden app cannot be installed by new customers",
+        "States that extensions are granted only for specific reasons and that roadmap or sprint capacity is not one of them",
+        "Recommends responding on the AMS ticket within the triage window",
+        "Mentions the requirement to report a security incident to Atlassian within 24 hours if exploitation is discovered",
+        "Recommends rescheduling the fix inside the deadline rather than after the launch",
+        "States that a release adding egress or a scope is a major version that re-enters Marketplace review, so bundling the fix with it delays the fix"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "We're pricing our new Forge app 'Auditwave for Jira' (compliance evidence collection). Our main target is a bank with a 2,000-user Jira Cloud site where only the 40-person compliance team will use it, so we want to charge $5/user for those 40 users only. The bank's infra team also asked whether we can ship a Data Center version for their on-prem Jira. And finance wants to know how much Atlassian keeps so we can model margins. Can you put together the pricing plan?",
+      "expected_output": "Explains that a Paid via Atlassian license must match the host site's user tier, so the bank pays for all 2,000 users; prices must be designed per host tier (lower per-user rate at high tiers) or the per-team model needs another approach. Says new Data Center apps can't be submitted and DC sales to new customers ended (EOL 2029), offering cloud alternatives (data residency, Runs on Atlassian if fully Atlassian-hosted, Isolated or Government Cloud as separate app types). Revenue share: Forge-only app gets 83% (from 1 Oct 2026) and 100% until $1M lifetime Forge revenue; Connect modules drop it to 75%. Mentions annual = 10x monthly, multi-instance pricing for Enterprise, Solution Partner discount, 60-day grandfathering on price changes, and Forge consumption costs.",
+      "files": [],
+      "expectations": [
+        "States that a Paid via Atlassian app license must cover the host site's whole licensed user count, so the bank cannot license only 40 users",
+        "Recalculates or flags the price at the 2,000-user tier rather than 40 users",
+        "States that adding any Connect module or Connect scope would drop the partner share to the Connect rate",
+        "States that new Data Center apps can no longer be submitted to the Marketplace",
+        "Mentions that Data Center reaches end of life (2029) or stopped selling to new customers",
+        "Offers a cloud alternative for the bank's on-prem concern (data residency, Runs on Atlassian, Isolated Cloud or Government Cloud)",
+        "States the 100% revenue share until $1M lifetime Forge revenue",
+        "Gives the standard Forge partner share (83% from 1 Oct 2026)",
+        "Mentions that annual pricing is set at 10 times the monthly price",
+        "Mentions the 60-day protection of existing customers' prices after a price change",
+        "Mentions Forge platform consumption charges billed to the developer above free allowances"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "We're about to submit our first Forge app for Jira to the Atlassian Marketplace, what do we need ready so review doesn't stall?",
+      "should_trigger": true
+    },
+    {
+      "query": "our atlassian marketplace submission got rejected with 'Timeout' and I can't open the ECOHELP ticket, what now",
+      "should_trigger": true
+    },
+    {
+      "query": "Should our Jira integration be built on Forge or Connect if our backend already exists on AWS?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can we list our Forge app as free and sell the premium features on our own website with Stripe?",
+      "should_trigger": true
+    },
+    {
+      "query": "How do we migrate our Connect app on the Atlassian Marketplace to Forge without making 2,000 customer admins approve an update?",
+      "should_trigger": true
+    },
+    {
+      "query": "What revenue share does Atlassian take on Marketplace apps now, and does Connect vs Forge change it?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is Cloud Fortified still worth applying for? Enterprise buyers of our Confluence app keep asking.",
+      "should_trigger": true
+    },
+    {
+      "query": "We have a free Confluence app with 5k installs and want to start charging. How does switching to Paid via Atlassian work?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our app needs a new OAuth scope and egress to our API. What happens to customers already on the Marketplace version?",
+      "should_trigger": true
+    },
+    {
+      "query": "How do we get the Runs on Atlassian badge for our Jira app?",
+      "should_trigger": true
+    },
+    {
+      "query": "A customer wants our Jira app priced only for the 30 people who use it on their 1,500-user site. Can Atlassian Marketplace do that?",
+      "should_trigger": true
+    },
+    {
+      "query": "We got an AMS ticket rated High for our Marketplace app. How long do we have before Atlassian hides it?",
+      "should_trigger": true
+    },
+    {
+      "query": "Building a Jira Service Management app for our ITSM SaaS - free listing or paid via atlassian given customers already pay us?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can we still ship a Data Center version of our Jira app for banks that want on-prem?",
+      "should_trigger": true
+    },
+    {
+      "query": "what's the difference between Atlassian Enterprise Certified and Cloud Fortified for a marketplace partner",
+      "should_trigger": true
+    },
+    {
+      "query": "Atlassian Marketplace approval guidelines: what gets an app rejected?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to become a Silver Marketplace Partner. What does that take?",
+      "should_trigger": true
+    },
+    {
+      "query": "Do we need to complete KYC/KYB verification before our Atlassian Marketplace listing goes live?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Forge app is listed paid. How do we test license states without being billed?",
+      "should_trigger": true
+    },
+    {
+      "query": "Plan our launch on the Atlassian Marketplace for our product analytics tool's Jira integration, we demo in 8 weeks",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Connect descriptor won't accept updates anymore, how do we ship the new Confluence macro?",
+      "should_trigger": true
+    },
+    {
+      "query": "Does adding app editions (Standard and Advanced) to our Atlassian Marketplace app trigger a new review?",
+      "should_trigger": true
+    },
+    {
+      "query": "is it true atlassian stops supporting Connect apps in 2027? we have 3 listed apps",
+      "should_trigger": true
+    },
+    {
+      "query": "How should we price a Jira Cloud app across user tiers on the Atlassian Marketplace?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to retire one of our paid Atlassian Marketplace apps. What do we owe existing customers?",
+      "should_trigger": true
+    },
+    {
+      "query": "Rewrite our Atlassian Marketplace listing tagline and highlights so we rank higher in search",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we get more reviews on our Jira app listing without violating rules?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Slack app was returned by the Slack Marketplace for scope justifications, help us resubmit",
+      "should_trigger": false
+    },
+    {
+      "query": "Walk us through Salesforce AppExchange security review for our managed package",
+      "should_trigger": false
+    },
+    {
+      "query": "We're submitting our HubSpot app to the HubSpot App Marketplace, what certification requirements apply?",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we build integrations for Jira, Linear or Asana first given our customer base?",
+      "should_trigger": false
+    },
+    {
+      "query": "We're building our own app marketplace; how should we review third-party apps before listing?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the OAuth scopes for our public API so partners request least privilege",
+      "should_trigger": false
+    },
+    {
+      "query": "My Forge resolver throws 'invocation timed out' in the issue panel, help me debug it",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a Forge manifest.yml for a Jira issue panel that calls our REST API",
+      "should_trigger": false
+    },
+    {
+      "query": "As a Jira admin, how do I evaluate whether a Marketplace app is safe to install?",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up the Atlassian MCP server so Claude can create Jira tickets for me",
+      "should_trigger": false
+    },
+    {
+      "query": "Which take rate should our own integration marketplace charge third-party developers?",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we list our product on the Shopify App Store and use Shopify billing?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Chrome extension through Chrome Web Store review",
+      "should_trigger": false
+    },
+    {
+      "query": "We sell through AWS Marketplace; how do private offers work?",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan a Microsoft AppSource SaaS offer and co-sell",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a migration guide for our customers moving from Jira Server to Jira Cloud",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we run a bug bounty program on HackerOne for our own SaaS?",
+      "should_trigger": false
+    },
+    {
+      "query": "Optimize our Forge app to cut GB-seconds and storage costs",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we publish our GitHub Action on the GitHub Marketplace?",
+      "should_trigger": false
+    },
+    {
+      "query": "Recommend the best Jira Marketplace apps for time tracking for our team",
+      "should_trigger": false
+    },
+    {
+      "query": "We're listing our Bitbucket Cloud pipeline app on the Atlassian Marketplace - can we bill customers ourselves?",
+      "should_trigger": false
+    },
+    {
+      "query": "We built a Forge app only for our own three Jira sites, how do we distribute it internally without the Marketplace?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our security team only allows Cloud Fortified apps in Jira - what replaced it and how do we check an app we're buying?",
+      "should_trigger": false
+    }
+  ]
+}
