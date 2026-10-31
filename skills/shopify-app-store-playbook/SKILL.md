@@ -76,7 +76,11 @@ Default rung: a public app with limited visibility for the pilot, flipped to ful
 2. Make the Stripe path unreachable from a Shopify install: a merchant with no SaaS account never sees your checkout, and a detected existing account pays the Shopify portion as Partner Support confirmed in writing. Reviewers fail apps where they can reach it (reported).
 3. Default to Shopify App Pricing for a new app: plans in the Partner Dashboard, Shopify-hosted plan page, trials and proration handled. Once opted in, you cannot create new recurring Billing API charges†, and only apps without active paid merchants can opt in†. Choose manual pricing (Billing API) for the whole app instead when you need local-currency prices or usage caps†, or one-time charges†, which App Pricing lacks; decide before opting in.
 4. Keep pricing only in the Pricing details section (requirement 4.2†): no prices in images, no "billed separately", no links to your pricing page. A suspension over "billed separately" wording was reported.
-5. Budget fees: register once ($19†, a Manage financials role), then 0% on the first $1M† lifetime gross app revenue earned since 2025, counted across associated developer accounts, then 15%; 15% on everything after a $20M† App Store year or at $100M† company revenue; 2.9%† processing plus tax, plus a regulatory fee in some countries.
+5. Budget fees:
+   - Registration: once, $19†, needs a Manage financials role.
+   - Revenue share: 0% on the first $1M† lifetime gross app revenue earned since 2025, counted across associated developer accounts, then 15%.
+   - Revenue share past the threshold: 15% on everything after a $20M† App Store year or at $100M† company revenue.
+   - Processing: 2.9%† plus tax, plus a regulatory fee in some countries.
 
 ## Submission
 
