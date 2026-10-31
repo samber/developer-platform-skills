@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Advises fixing every flagged item before resubmitting rather than resubmitting after the 500 fix alone",
+        "evidence": "\"Resubmit once, with all three items fixed\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a test account exempt from 2FA, OTP and SSO that keeps working after publish",
+        "evidence": "\"exempt from SSO, 2FA and OTP\"; \"It must keep working after publish.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the app must not ask merchants to enter a shop domain manually",
+        "evidence": "\"never ask for a shop domain\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that installation must start from a Shopify surface and authenticate before any app UI (OAuth or token exchange)",
+        "evidence": "\"Shopify-managed installation with token exchange... Shopify authenticates before any UI.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against disputing item 2, since it is a written requirement",
+        "evidence": "\"Don't push back on item 2.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that failing to fix issues across two or more exchanges can put the app into a cooldown",
+        "evidence": "\"Leaving issues unfixed after two exchanges.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that each resubmission slows review or costs queue position",
+        "evidence": "\"Every resubmission slows review\u2020... sends you to the back.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that next Thursday's launch is unrealistic given review round times",
+        "evidence": "\"You can't launch on the App Store next Thursday.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends retesting the full install, uninstall and reinstall path because review stops at the first core failure",
+        "evidence": "\"retest the whole path... Test uninstall then reinstall.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a screencast or step-by-step testing instructions covering any step in the vendor's own UI",
+        "evidence": "\"step-by-step testing instructions. Include every step inside your own UI.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not treat this Paused state (no cooldown date) as a cooldown with a mandatory waiting period",
+        "evidence": "\"No date: ... Fix every flagged item... Then click Submit fixes.\" Cooldown applies only when a date shows.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Advises fixing every flagged item before resubmitting rather than resubmitting after the 500 fix alone",
+        "evidence": "'Resubmit once, with all three fixed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a test account exempt from 2FA, OTP and SSO that keeps working after publish",
+        "evidence": "Specifies 'no SSO, no MFA' but never says the account must keep working after publish.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the app must not ask merchants to enter a shop domain manually",
+        "evidence": "'Shopify's requirements bar asking merchants to type their myshopify.com domain.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that installation must start from a Shopify surface and authenticate before any app UI (OAuth or token exchange)",
+        "evidence": "'Switch to Shopify-managed installation... use token exchange'; install from the listing.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against disputing item 2, since it is a written requirement",
+        "evidence": "'Item 2: don't push back.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that failing to fix issues across two or more exchanges can put the app into a cooldown",
+        "evidence": "No cooldown warning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that each resubmission slows review or costs queue position",
+        "evidence": "Only says a premature resubmission 'burns a cycle', with no mention of queue position or slower review.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that next Thursday's launch is unrealistic given review round times",
+        "evidence": "Says only 'Approval by then isn't guaranteed.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends retesting the full install, uninstall and reinstall path because review stops at the first core failure",
+        "evidence": "Only 'install \u2192 settings \u2192 save flow'; no uninstall or reinstall.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a screencast or step-by-step testing instructions covering any step in the vendor's own UI",
+        "evidence": "'Put the credentials and step-by-step testing notes... Add a short screencast.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not treat this Paused state (no cooldown date) as a cooldown with a mandatory waiting period",
+        "evidence": "There is no cooldown or waiting-period claim.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that describing the app as a free connector to a paid service does not exempt it from Shopify's billing requirement",
+        "evidence": "\"A free app that connects to Ticketly while everyone keeps paying through Stripe is the case Shopify staff rejected\"; \"A free sidebar is not a plan Shopify will accept.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that charges attributable to the Shopify integration must go through Shopify App Pricing or the Shopify Billing API",
+        "evidence": "\"Anything the Shopify integration delivers must be charged through Shopify App Pricing or the Billing API.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says existing-customer status does not by itself keep Shopify-attributable charges on Stripe, or flags this as the current Shopify position to re-check",
+        "evidence": "\"Earlier staff replies said they could keep their Stripe plan, and the latest clarification says no (reported).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes pricing the Shopify integration as its own line or plan billed through Shopify",
+        "evidence": "\"Price the Shopify integration as its own line.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends Shopify App Pricing as the default billing method for a new public app",
+        "evidence": "\"App Pricing is the default for a new app\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against listing copy or in-app text saying charges are billed separately or linking to external pricing",
+        "evidence": "\"avoid 'billed separately', and don't link to your pricing page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a review timeline of multiple weeks per round and more than one round, making a 5-week go-live unlikely",
+        "evidence": "\"Plan for 2-3 review rounds and 6-14 weeks to Published (reported).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes a conference fallback such as announcing the app as coming to the Shopify App Store or a limited-visibility pilot",
+        "evidence": "\"needs a 'coming to the Shopify App Store' story\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says billing exemptions are rare and must be asked for explicitly (Partner Support or review notes) rather than assumed",
+        "evidence": "The plan asks Partner Support about existing customers but never says billing exemptions are rare or must be explicitly requested rather than assumed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends making the vendor's own Stripe checkout unreachable for merchants who install from Shopify",
+        "evidence": "\"Make the Stripe path unreachable from a Shopify install.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that describing the app as a free connector to a paid service does not exempt it from Shopify's billing requirement",
+        "evidence": "Says the 'Free app, existing Ticketly subscription billed on Stripe' pattern is 'probably allowed'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that charges attributable to the Shopify integration must go through Shopify App Pricing or the Shopify Billing API",
+        "evidence": "It says charges 'must go through its Billing API' but then treats Stripe billing as probably fine, so it never applies the rule to the integration.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says existing-customer status does not by itself keep Shopify-attributable charges on Stripe, or flags this as the current Shopify position to re-check",
+        "evidence": "'Read the current App Store requirements on billing and external accounts, or ask Partner Support, in week 1. If they say no, the plan changes.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes pricing the Shopify integration as its own line or plan billed through Shopify",
+        "evidence": "Only offers 'a Billing API variant as plan B' for new-customer paths.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends Shopify App Pricing as the default billing method for a new public app",
+        "evidence": "The plan defaults to free install with Stripe billing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns against listing copy or in-app text saying charges are billed separately or linking to external pricing",
+        "evidence": "Recommends the opposite: 'State plainly that a Ticketly account is required, and where it's billed.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives a review timeline of multiple weeks per round and more than one round, making a 5-week go-live unlikely",
+        "evidence": "Says each cycle 'can take days to weeks' and plans submission at week 3 for 'roughly two review cycles'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes a conference fallback such as announcing the app as coming to the Shopify App Store or a limited-visibility pilot",
+        "evidence": "Fallback is a dev-store demo with a direct install link, not a coming-soon announcement or limited-visibility pilot.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says billing exemptions are rare and must be asked for explicitly (Partner Support or review notes) rather than assumed",
+        "evidence": "Calls the Stripe pattern 'common' and 'probably allowed' and does not say exemptions are rare.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends making the vendor's own Stripe checkout unreachable for merchants who install from Shopify",
+        "evidence": "The plan never mentions blocking the external checkout.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
