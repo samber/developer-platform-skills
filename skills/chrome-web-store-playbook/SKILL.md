@@ -54,7 +54,11 @@ Ask one question at a time; skip what the request answers. When you cannot ask, 
 Layer it; `content_scripts.matches` counts as host access too, so moving `<all_urls>` there narrows nothing.
 
 1. Required host permissions: your own origins only.
-2. Customer or third-party sites, ranked by efficiency (review speed and install conversion per unit of engineering): `activeTab` for click-triggered features > optional host permissions for the customer's domain, requested from a user gesture, then `scripting.registerContentScripts` > a per-customer build with that host required (Specific Host exception; a separate item, slot and review per customer) > broad host patterns.
+2. Customer or third-party sites, ranked by efficiency (review speed and install conversion per unit of engineering), highest first:
+   1. `activeTab` for click-triggered features.
+   2. Optional host permissions for the customer's domain, requested from a user gesture, then `scripting.registerContentScripts`.
+   3. A per-customer build with that host required (Specific Host exception; a separate item, slot and review per customer).
+   4. Broad host patterns.
 3. Broad patterns earn their place only when the single purpose spans every page (a page annotator); justify it explicitly. They draw in-depth review and the "read and change all your data" warning.
 
 Force-install grants required permissions silently, but optional hosts still prompt each user. When customer IT pushes the extension and it must run on their domain without a click, choose between one Enable click per user and the per-customer build; test the choice on a managed profile.
