@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the standard store service fee is 3%",
+        "evidence": "\"The standard marketplace fee is 3%\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the renewal discount halves the fee for customer private offer or multiparty private offer renewals",
+        "evidence": "\"the renewal attestation halves it\u2020, so 1.5%\u2020\"; case 3 ticks attestation for renewal in the multiparty structure",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the renewal status must be self-attested during private offer creation",
+        "evidence": "\"Tick the renewal attestation when you create it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends converting case 1 into a new private offer flagged as a renewal",
+        "evidence": "\"Create a new private offer with the renewal attestation ticked\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that private offers created before October 1, 2024 are not eligible for the renewal discount",
+        "evidence": "\"An offer created before October 2024 never qualifies for the reduced fee.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says case 2 needs auto-renew turned off or the subscription cancelled and a new attested private offer accepted",
+        "evidence": "\"Ask the customer to stop auto-renew now... Create a new private offer... customer accepts\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that CSP private offers do not count toward the customer's MACC",
+        "evidence": "\"CSP private offers never count toward MACC.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a multiparty private offer with the German reseller when MACC drawdown is required",
+        "evidence": "Lists multiparty only as an option, says it \"doesn't say whether these count toward MACC, so confirm\"; no recommendation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States a multiparty private offer allows only one channel partner",
+        "evidence": "\"with one channel partner per offer\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks fee figures as needing verification in Partner Center",
+        "evidence": "\"\u2020 means verify in Partner Center before quoting.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the renewal attestation must be made at private offer creation and cannot be added afterwards",
+        "evidence": "\"It cannot be added later\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the standard store service fee is 3%",
+        "evidence": "\"you pay the 3% transactable fee for SaaS and Azure apps\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the renewal discount halves the fee for customer private offer or multiparty private offer renewals",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the renewal status must be self-attested during private offer creation",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends converting case 1 into a new private offer flagged as a renewal",
+        "evidence": "Recommends a new private offer, but not flagged as a renewal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that private offers created before October 1, 2024 are not eligible for the renewal discount",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says case 2 needs auto-renew turned off or the subscription cancelled and a new attested private offer accepted",
+        "evidence": "Says the renewal runs at the original price, and a new private offer is needed only if terms change.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that CSP private offers do not count toward the customer's MACC",
+        "evidence": "Hedges: \"I am not sure a CSP-resold purchase retires the customer's Azure commitment... A plain CSP resale generally does not.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a multiparty private offer with the German reseller when MACC drawdown is required",
+        "evidence": "\"Create a multiparty private offer. You set the wholesale price and the reseller's margin.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States a multiparty private offer allows only one channel partner",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks fee figures as needing verification in Partner Center",
+        "evidence": "\"Confirm the points marked \u26a0\ufe0f against your current Partner Center fee and payout terms\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the renewal attestation must be made at private offer creation and cannot be added afterwards",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

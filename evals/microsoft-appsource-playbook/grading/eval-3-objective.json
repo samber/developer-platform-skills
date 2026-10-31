@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Requires the app name to match exactly across the manifest and Partner Center",
+        "evidence": "\"app name to be identical in the manifest and Partner Center\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires removing staging or non-production domains from validDomains",
+        "evidence": "\"Remove `staging.shiftlane.io` from `validDomains`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the bot to respond to Help (and greetings) without dead ends",
+        "evidence": "\"answer 'Hi', 'Hello' and 'Help'. It must never dead-end\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags 'Shifts' as a common noun that must be prefixed or suffixed with the publisher brand",
+        "evidence": "\"prefix or suffix a common noun with your brand... bare 'Shifts' breaks it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a new app cannot complete Publisher Attestation until it is live in the Teams store",
+        "evidence": "\"A new app can't attest before it is listed\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends completing Publisher Attestation immediately after the app goes live and renewing it yearly",
+        "evidence": "\"Do the attestation the day the app goes live, and renew it yearly.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Publisher Verification as a Must fix item",
+        "evidence": "\"If it isn't, it is a Must fix and comes first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the validation report categories (Must fix, Good-to-fix, Blocker, Query) or that only must-fix and blocker items gate approval",
+        "evidence": "Only mentions \"Must fix\" for Publisher Verification and \"Attention needed\"; no category list or gating explanation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to reply to the concierge email thread and wait for confirmation before resubmitting",
+        "evidence": "\"Reply to the concierge email, wait for confirmation, then resubmit.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the 10-day date is at risk and cites a multi-week planning range rather than the 24-hour report figure",
+        "evidence": "\"The skill budgets three to six weeks\u2020 for the whole validation, not one day.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against changing app functionality during validation",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that each resubmission needs a new manifest version number with the same app ID",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Requires the app name to match exactly across the manifest and Partner Center",
+        "evidence": "\"Pick one canonical name... Sweep every surface for the final name\"; manifest and Partner Center listing title are listed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires removing staging or non-production domains from validDomains",
+        "evidence": "\"Remove `staging.shiftlane.io` from `validDomains`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the bot to respond to Help (and greetings) without dead ends",
+        "evidence": "\"Handle `help` case-insensitively in every scope... Make the reply useful: what the app does, how to start, and a support link.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags 'Shifts' as a common noun that must be prefixed or suffixed with the publisher brand",
+        "evidence": "Says to drop it because it is Microsoft's first-party app name, and does not mention the common-noun rule or branding it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that a new app cannot complete Publisher Attestation until it is live in the Teams store",
+        "evidence": "Treats attestation as a blocker to troubleshoot (role, incomplete sections, wrong tenant) and never says it needs the live app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends completing Publisher Attestation immediately after the app goes live and renewing it yearly",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions Publisher Verification as a Must fix item",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the validation report categories (Must fix, Good-to-fix, Blocker, Query) or that only must-fix and blocker items gate approval",
+        "evidence": "No mention of Must fix, Good-to-fix, Blocker or Query.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to reply to the concierge email thread and wait for confirmation before resubmitting",
+        "evidence": "Says \"Reply to the validation email too\" but not to wait for confirmation; it also advises \"submit anyway\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the 10-day date is at risk and cites a multi-week planning range rather than the 24-hour report figure",
+        "evidence": "\"Likely: Day 14\u201321\"; \"Bad: Beyond 3 weeks\"; \"the date is conditional\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against changing app functionality during validation",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that each resubmission needs a new manifest version number with the same app ID",
+        "evidence": "\"Make one rebuild, one version bump, and one resubmission\"; \"Bump the manifest version.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
