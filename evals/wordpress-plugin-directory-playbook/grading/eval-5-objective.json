@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Says only the first five tags are displayed and used for search",
+        "evidence": "\"Only the first 5 tags count.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says competitor names such as hubspot or salesforce must not be used as tags",
+        "evidence": "\"A competitor's name in a tag is banned.\"; \"drop hubspot and salesforce\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends updating Tested up to, noting a readme-only change needs no new version unless release confirmation froze the tag",
+        "evidence": "It says to test and ship a real release to update Tested up to. It never mentions that a readme-only change needs no new version.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that search scoring decays with time since last update (roughly after six months) and with a stale Tested up to",
+        "evidence": "\"Ranking drops after about 6 months\u2020 without an update, and also when 'Tested up to' is stale.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends resolving forum threads because the percentage of resolved support threads feeds ranking",
+        "evidence": "\"The resolved-thread share is a ranking multiplier\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the ranking factors as coming from the platform's own open-source search code",
+        "evidence": "The factors (log-scale install multiplier, text-match weights) are stated without saying they come from the open-source search code.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects daily SVN commits as gaming recency against the frequent-commit guideline",
+        "evidence": "\"Rapid-fire commits to look recent break Guideline 14.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects discounts for 5-star reviews as compensating for reviews, a guideline violation that can close plugins",
+        "evidence": "\"Never ask for, pay for or seed reviews. An employee's conduct can close every plugin the owner has.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves paid-plan billing support off the WordPress.org forums to the vendor's own channel",
+        "evidence": "\"Reply with one pointer to your own paid-support channel and keep billing details out of the thread.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions opting into the Commercial label by email to get a support URL on the listing",
+        "evidence": "\"Email the Plugins Team to opt into the Commercial label, which adds a support URL to the listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the auto-replying helpdesk contact email as not permitted and a risk to every plugin the account owns",
+        "evidence": "\"Auto-replies that continue after warnings can close every plugin the account owns.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a head term like crm is dominated by high-install plugins and recommends targeting long-tail integration phrases instead",
+        "evidence": "\"Head terms rarely move away from high-install plugins... Aim at long-tail phrases\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags 18 tags as over the Guideline 12 spam limit of 12, not merely ignored",
+        "evidence": "\"More than 12\u2020 is spam under Guideline 12.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Says only the first five tags are displayed and used for search",
+        "evidence": "\"wp.org only uses the first 5, and stuffing 18 reads as keyword spam.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says competitor names such as hubspot or salesforce must not be used as tags",
+        "evidence": "\"keep them only if the plugin actually integrates with those products... put them in the top 5\" contradicts the rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends updating Tested up to, noting a readme-only change needs no new version unless release confirmation froze the tag",
+        "evidence": "It recommends a full compatibility release and never notes that a readme-only change suffices.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that search scoring decays with time since last update (roughly after six months) and with a stale Tested up to",
+        "evidence": "Calls \"Tested up to 6.2\" and a 14-month-old release \"freshness signals\" but describes no scoring decay.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends resolving forum threads because the percentage of resolved support threads feeds ranking",
+        "evidence": "\"Mark threads resolved only after replying\"; it lists \"support responsiveness\" among the ranking signals and tracks \"resolved percentage\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels the ranking factors as coming from the platform's own open-source search code",
+        "evidence": "\"wp.org doesn't publish its ranking formula... the signals it appears to weigh\" is the opposite claim.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects daily SVN commits as gaming recency against the frequent-commit guideline",
+        "evidence": "\"Daily SVN commits to look fresh | \u274c Don't | ...empty commits don't change what users see.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects discounts for 5-star reviews as compensating for reviews, a guideline violation that can close plugins",
+        "evidence": "\"wp.org prohibits incentivized or manipulated reviews... penalty can be review removal or plugin closure\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Moves paid-plan billing support off the WordPress.org forums to the vendor's own channel",
+        "evidence": "\"handle billing in your helpdesk\"; \"Billing and paid-plan questions can't be handled in these forums.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions opting into the Commercial label by email to get a support URL on the listing",
+        "evidence": "No mention of the Commercial label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the auto-replying helpdesk contact email as not permitted and a risk to every plugin the account owns",
+        "evidence": "Says \"Stop the auto-reply loop\" as a support-quality fix, without saying it is not permitted or a risk to the account's plugins.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says a head term like crm is dominated by high-install plugins and recommends targeting long-tail integration phrases instead",
+        "evidence": "\"Page 4 for the generic head term 'crm' is not a realistic place to win\"; \"Target long-tail searches like 'sync WordPress forms to HubSpot.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags 18 tags as over the Guideline 12 spam limit of 12, not merely ignored",
+        "evidence": "Says only that WordPress.org \"only uses the first 5\" and that 18 \"reads as keyword spam\". It cites no 12-tag limit.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

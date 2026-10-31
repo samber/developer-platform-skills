@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Advises against a new submission and to reply in the existing review email thread",
+        "evidence": "\"Don't submit a new zip as a fresh submission. Reply in the same 'Review in Progress' email thread\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to upload the fixed zip on the existing submission page before replying",
+        "evidence": "\"upload the fixed zip on the submission page first\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes an External services section naming the Acme API host, data sent, when it is sent, and terms and privacy links",
+        "evidence": "It only lists requirements for the section and a reply sentence with placeholders. It does not draft the section itself.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the disclosure is required even though the external service is the vendor's own",
+        "evidence": "\"Cover every host the plugin calls, your own Acme API included.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the ai_ prefix with a distinct prefix of at least four characters applied to functions, classes, options, hooks and constants",
+        "evidence": "\"Pick something unique, such as acmeinvsync_... Apply it to every function, class, namespace, define, option, transient, hook, and script handle.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces inline script tags with wp_enqueue_script or wp_add_inline_script",
+        "evidence": "\"Load it with wp_enqueue_script()... wp_add_inline_script() or wp_localize_script()\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the readme to be written in English, with translations through translate.wordpress.org",
+        "evidence": "\"the readme must be in English. Translations come from translate.wordpress.org\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Drafts a reply that answers each reviewer point by number",
+        "evidence": "The reply has numbered points 1-3: External service, Generic names, Inline scripts.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing every point in one upload rather than partial rounds",
+        "evidence": "It says \"Fix list for your dev (before sending)\" and the reply says 1.0.1 addresses each point. It never states the one-upload principle.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a review still incomplete after about three months is rejected and can be continued by resubmitting and replying in the old thread",
+        "evidence": "It says \"A review still incomplete after 3 months\u2020 is rejected, and then you resubmit.\" It does not mention replying in the old thread.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Advises against a new submission and to reply in the existing review email thread",
+        "evidence": "\"Don't submit a new zip as a new submission. Reply to the review email and attach the fixed zip\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to upload the fixed zip on the existing submission page before replying",
+        "evidence": "\"or upload it through the existing submission.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes an External services section naming the Acme API host, data sent, when it is sent, and terms and privacy links",
+        "evidence": "It gives only a generic list of what to state and tells the user to fill in \"The service name(s), data sent, and ToS and privacy links\". No section is written and no host is named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the disclosure is required even though the external service is the vendor's own",
+        "evidence": "No such statement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Replaces the ai_ prefix with a distinct prefix of at least four characters applied to functions, classes, options, hooks and constants",
+        "evidence": "\"Use 4 to 5 characters or more... such as acmeinv_. Apply it to every function, class, define, namespace, option, transient, hook name...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces inline script tags with wp_enqueue_script or wp_add_inline_script",
+        "evidence": "\"Move the code into a .js file loaded with wp_enqueue_script()... wp_localize_script() or wp_add_inline_script()\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the readme to be written in English, with translations through translate.wordpress.org",
+        "evidence": "\"The directory expects readme.txt in English. German belongs in translations through translate.wordpress.org\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Drafts a reply that answers each reviewer point by number",
+        "evidence": "The reply has numbered sections 1, 2 and 3 matching the reviewer's points.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing every point in one upload rather than partial rounds",
+        "evidence": "The reply says all three points were addressed in one zip, but the transcript never recommends one upload over partial rounds.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a review still incomplete after about three months is rejected and can be continued by resubmitting and replying in the old thread",
+        "evidence": "No mention.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
