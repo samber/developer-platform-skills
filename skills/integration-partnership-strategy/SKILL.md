@@ -211,3 +211,4 @@ See also, same collection:
 - `samber/developer-platform-skills@partner-app-onboarding` - the partner-developer onboarding path (docs, sandbox tenancy, certification steps) once the partners chosen here start building.
 - `samber/developer-platform-skills@salesforce-appexchange-playbook` - execution once Salesforce wins the prioritization: AppExchange listing type, packaging, security review and revenue share.
 - `samber/developer-platform-skills@microsoft-appsource-playbook` - execution once Microsoft wins the prioritization: transactable Marketplace offer, Teams store validation and co-sell or MACC eligibility.
+- `samber/developer-platform-skills@shopify-app-store-playbook` - execution once Shopify wins the prioritization: distribution choice, Shopify billing for your connector, App Store review and ranking.

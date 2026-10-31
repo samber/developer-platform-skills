@@ -168,6 +168,7 @@ This collection covers the full developer-platform surface.
 - [`salesforce-appexchange-playbook`](./skills/salesforce-appexchange-playbook): Takes a vendor's product onto Salesforce AppExchange as an ISV: listing type, irreversible 2GP choices, security review, PADA and payment path, and post-listing upkeep.
 - [`slack-app-directory-playbook`](./skills/slack-app-directory-playbook): Gets a vendor's Slack app approved for the Slack Marketplace and keeps it listed: install gate, scope justifications, submission packet, review timeline, and post-listing rules.
 - [`aws-marketplace-playbook`](./skills/aws-marketplace-playbook): Takes a vendor's SaaS onto AWS Marketplace as a seller: fit verdict, irreversible account and pricing choices, private offers, resellers, commit drawdown, and AWS co-sell.
+- [`shopify-app-store-playbook`](./skills/shopify-app-store-playbook): Gets a SaaS vendor's app approved and kept on the Shopify App Store: distribution lock, Shopify billing, submission packet, review rounds, Built for Shopify, and ranking.
 - [`zapier-integration-playbook`](./skills/zapier-integration-playbook): Builds, publishes and maintains a vendor's Zapier integration: step design, Platform CLI code, review checks and beta, templates and embed, and versioning without breaking live Zaps.
 
 ### Publishing-platform playbooks
