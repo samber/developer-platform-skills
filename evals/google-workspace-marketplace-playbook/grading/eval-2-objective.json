@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Names drive.metadata.readonly as restricted, so a metadata-only scan does not avoid CASA",
+        "evidence": "Only says \"Do not request `drive.metadata.readonly` as well. `drive.readonly` already covers listing and reading.\" It never names the scope as restricted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a multi-customer SaaS like Ferrovia cannot rely on Internal user type for law-firm customers",
+        "evidence": "\"Internal only covers one organization... none of their users can use an Internal app.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that an Internal consent screen is a named Marketplace rejection reason or blocks a public listing",
+        "evidence": "\"Internal apps fail Marketplace review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that domain-wide installation does not remove the OAuth verification requirement for sensitive or restricted scopes",
+        "evidence": "\"Admin install does not skip verification for your scopes... restricted scopes still require OAuth verification plus a paid CASA assessment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies drive or drive.readonly as restricted scopes",
+        "evidence": "Scope table: `drive.readonly` \u2014 **Restricted**.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that restricted Drive access needs a CASA security assessment renewed annually",
+        "evidence": "\"CASA (restricted scopes only)... Revalidate every 12 months\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks the use case against Google's permitted application types for Drive restricted scopes",
+        "evidence": "\"Drive permits sync or backup, productivity apps... sharing or security reporting. Contract analytics most plausibly counts as a productivity app.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents drive.file with the Google Picker as the narrower alternative and names what feature it gives up (scanning files the user never picked)",
+        "evidence": "\"`drive.file` cannot work because it only reaches files a user opened or picked, and the product must find contracts nobody picks.\" The Picker is not named.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that domain installation bypasses per-user consent only for approved Marketplace apps",
+        "evidence": "\"It removes the per-user consent prompt for an approved app... You still have to get approved first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the Admin Only install setting or admin domain install for law-firm rollout",
+        "evidence": "Assumes \"firm admins install for the whole firm\"; recommends the Individual + Admin install setting and documents the Admin install path.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that firm admins who restrict Drive access must trust the app's OAuth client ID",
+        "evidence": "\"Tell admins to mark the client ID Trusted under Security > API controls if they restrict API access.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Names drive.metadata.readonly as restricted, so a metadata-only scan does not avoid CASA",
+        "evidence": "drive.metadata.readonly is never mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a multi-customer SaaS like Ferrovia cannot rely on Internal user type for law-firm customers",
+        "evidence": "'Every law-firm user would get an `org_internal` error. Internal is for in-house tools, not a SaaS sold to other companies.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that an Internal consent screen is a named Marketplace rejection reason or blocks a public listing",
+        "evidence": "The transcript does not say this.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that domain-wide installation does not remove the OAuth verification requirement for sensitive or restricted scopes",
+        "evidence": "'A Marketplace install doesn't remove review... Until verification is done, the app is \"unverified\".'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies drive or drive.readonly as restricted scopes",
+        "evidence": "'`drive` and `drive.readonly` are both restricted.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that restricted Drive access needs a CASA security assessment renewed annually",
+        "evidence": "'independent security assessment (CASA, repeated annually)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks the use case against Google's permitted application types for Drive restricted scopes",
+        "evidence": "No mention of permitted application types.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents drive.file with the Google Picker as the narrower alternative and names what feature it gives up (scanning files the user never picked)",
+        "evidence": "'`drive.file` + Picker fallback... The cost is UX: no silent full-Drive scan.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that domain installation bypasses per-user consent only for approved Marketplace apps",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends the Admin Only install setting or admin domain install for law-firm rollout",
+        "evidence": "Admin Only install is not mentioned. It suggests admins mark the app Trusted or use delegation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that firm admins who restrict Drive access must trust the app's OAuth client ID",
+        "evidence": "'Customer admins can also mark your app as Trusted in their Admin console (API controls).'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

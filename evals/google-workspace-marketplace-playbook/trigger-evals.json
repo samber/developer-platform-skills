@@ -1,0 +1,414 @@
+{
+  "skill_name": "google-workspace-marketplace-playbook",
+  "description": "Gets a SaaS vendor's Google Workspace integration through Google OAuth app verification and onto the Google Workspace Marketplace - Gmail, Drive and Chat scope choice, the CASA security assessment, listing review, admin domain-wide install, changes after listing. Use whenever a vendor mentions publishing a Workspace add-on, Gmail or Drive integration, or Chat app, the \"Google hasn't verified this app\" screen, the 100-user cap, CASA, restricted scopes, or a rejected Marketplace review. Do NOT use for listing copy (use samber/developer-platform-skills@integration-listing-optimization), for your own API's OAuth (use samber/developer-platform-skills@oauth2-provider-design), or for internal-only apps.",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "Google keeps showing 'Google hasn't verified this app' when customers connect Gmail to our SaaS. How do we get rid of it before launch?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We hit the 100 user cap on our unverified Google OAuth app. What's the fastest path to verification for a Drive integration?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Trust & Safety asked for a CASA assessment for our Gmail app. Which lab, how much, how long?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how do we publish our Google Sheets add-on publicly on the Workspace Marketplace",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Workspace Marketplace submission was rejected for 'OAuth verification incomplete' even though we submitted weeks ago. What now?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Which Gmail scopes avoid the restricted-scope security assessment for a CRM sidebar add-on?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We want IT admins to install our Google Chat app for their whole company without each user consenting. How do we set that up on the Marketplace?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Adding drive.readonly to our listed Google Workspace add-on next sprint - what re-review does that trigger?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Google demo video for sensitive scope verification got rejected. What exactly must it show?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "is it worth listing our calendar integration on google workspace marketplace or just verifying the oauth app",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We built a Meet add-on; what does Google's Marketplace review check for Meet specifically?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Can we use Gmail data from our Google integration to train our AI model? We're preparing OAuth verification.",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Google Workspace Marketplace listing: private vs public visibility for our B2B pilot customers",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "The cofounder who owned our Google Cloud project left and we lost access to our Marketplace listing. Recovery steps?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Our Chrome Web Store extension got rejected for requesting too many host permissions. How do we fix the listing?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the OAuth consent screen and scope taxonomy for third-party apps calling our own public API.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Rewrite our HubSpot and Google Workspace Marketplace listing descriptions to convert more installs.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're a Workspace admin; how do we vet and restrict third-party apps employees connect to Gmail?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write an Apps Script that copies rows from one Google Sheet to another every night.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How should our own app marketplace review third-party apps before they get listed?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Get our Slack app approved on the Slack Marketplace - we have 7 active workspaces.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Microsoft Teams app failed validation for the Teams store. What do they check?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we list on AWS Marketplace and use private offers for enterprise deals?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Set up Sign in with Google on our website login page with only email and profile.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Use the gws CLI to list my Drive files and export them to CSV.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Plan the launch marketing for our new integration across Product Hunt, Hacker News and our newsletter.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Which technology partners should we build integrations with first: Google Workspace, Microsoft 365 or Salesforce?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our internal HR tool uses the Admin SDK for our own company domain only. Do we need anything from Google?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Our add-on needs drive.file plus the Picker - does that still need Google verification before we list it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Google says our privacy policy must be on the homepage domain. We host it on Notion. Will that fail brand verification?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "What's the difference between Google OAuth verification and the Workspace Marketplace app review? Do we need both?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Restricted scope verification for our Gmail backup product - which app types does Google allow?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we're moving 2 workspace marketplace listings into one, what do we lose",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Workspace add-on users only granted half the scopes on the new consent screen and the add-on crashes. Will review flag this?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Can a Gmail add-on built in Apps Script skip the CASA assessment if no data leaves Google?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How long does Google sensitive scope verification take for a Calendar integration? Our launch is in three weeks.",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We sell to schools; district admins want to push our Classroom/Drive add-on to all teachers. Marketplace setup?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Do we need to state pricing a certain way on our Google Workspace Marketplace listing for UK customers?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We unpublished our old Workspace add-on but customers still use it. How do we fully retire it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design an onboarding journey for partners building apps on our own developer platform.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Atlassian Forge app needs Paid via Atlassian pricing; how do we set it up?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Audit our Google Search Console coverage errors on the docs site.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we adopt CASA-style security assessments for apps on our own marketplace?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Implement Gmail API push notifications with Pub/Sub watch in our Node backend.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write the privacy policy for our mobile app's analytics SDK under GDPR.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Shopify app was rejected for not using Shopify billing. What do we change?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We need SOC 2 Type II before enterprise deals; how do we scope the audit?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Rank our listing higher on the Google Workspace Marketplace search results with better keywords and screenshots.",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Get our Zapier integration out of beta and into public status.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Build a Google Chat bot in Python that answers questions from our docs.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 50,
+    "passed": 38,
+    "failed": 12
+  }
+}
