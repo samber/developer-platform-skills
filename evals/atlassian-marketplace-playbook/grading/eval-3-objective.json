@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a Free to Paid via Atlassian change cannot be made on the existing listing settings and requires a new version with licensing enabled",
+        "evidence": "\"Free \u2192 Paid via Atlassian (PvA) is a new version, a re-review and a major version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the payment-model change triggers Atlassian re-approval",
+        "evidence": "\"a new version, a re-review and a major version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that enabling licensing creates a major version that site admins must consent to",
+        "evidence": "\"a major version that each site admin must accept\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that existing installations count as unlicensed until a site admin subscribes",
+        "evidence": "\"Installs on the new major count as unlicensed until the admin subscribes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the assumption that all existing customers will automatically start paying next billing cycle",
+        "evidence": "\"Existing customers cannot 'just start paying next cycle'... Nothing in the process bills a site automatically.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a grace or deprecation period keeping existing features free while gating new features behind the license",
+        "evidence": "\"Existing features stay free for a grace date you publish\"; \"Slack notifications are the only licensed feature.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies adding hooks.slack.com egress as a major version trigger",
+        "evidence": "\"`hooks.slack.com` is new egress... Each is a major that waits for admin consent.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies adding a new OAuth scope as a major version trigger",
+        "evidence": "\"`write:jira-work` is a new scope. Each is a major\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises a deliberate plan for the consent-requiring changes (batching into one planned major or sequencing them) instead of shipping them casually",
+        "evidence": "\"one major, with Slack as the paid feature\"; alternative \"Split in two\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a paid license covers the host site's whole licensed user count rather than selected users",
+        "evidence": "\"A 2,000-user Jira site cannot license 40 Sprintlight users.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions checking the license in code (context.license.active, view.getContext, or the appIsLicensed trigger filter)",
+        "evidence": "\"Gate Slack in code with `context.license.active`, and use `filter.appIsLicensed` on triggers.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a Free to Paid via Atlassian change cannot be made on the existing listing settings and requires a new version with licensing enabled",
+        "evidence": "Says it \"may need a new listing\"; licensing in the manifest is mentioned only as conditional on \"If a flip is allowed\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the payment-model change triggers Atlassian re-approval",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that enabling licensing creates a major version that site admins must consent to",
+        "evidence": "Major version consent is tied only to the scope and egress change.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that existing installations count as unlicensed until a site admin subscribes",
+        "evidence": "\"Free installs have no paid license. Customers have to opt in, either by upgrading or by installing the new listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the assumption that all existing customers will automatically start paying next billing cycle",
+        "evidence": "\"Existing customers can't be made to 'just start paying'... You can't charge them silently\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a grace or deprecation period keeping existing features free while gating new features behind the license",
+        "evidence": "\"Grandfather: existing installs stay free for 6\u201312 months.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies adding hooks.slack.com egress as a major version trigger",
+        "evidence": "\"Adding write:jira-work and external fetch to hooks.slack.com is a major Forge version. It needs admin consent\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies adding a new OAuth scope as a major version trigger",
+        "evidence": "Same sentence covers the new scope.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises a deliberate plan for the consent-requiring changes (batching into one planned major or sequencing them) instead of shipping them casually",
+        "evidence": "\"Don't bundle the new scope and egress with the pricing change... ship Slack in release 1 and monetize in release 2\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a paid license covers the host site's whole licensed user count rather than selected users",
+        "evidence": "Only says prices follow \"user tier of the host product\"; it doesn't say the license covers all users.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions checking the license in code (context.license.active, view.getContext, or the appIsLicensed trigger filter)",
+        "evidence": "No mention of context.license, view.getContext, or appIsLicensed.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

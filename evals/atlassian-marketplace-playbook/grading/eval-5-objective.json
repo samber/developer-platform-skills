@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the plan to fix in about 9 weeks breaches Atlassian's deadline",
+        "evidence": "\"9 weeks is past the hard stop.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the cloud High-severity fix deadline as 4 weeks",
+        "evidence": "\"CVSS 7.6 is High. The fix deadline is 4 weeks\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the two-week triage period for bug-bounty findings, after which unanswered findings are accepted",
+        "evidence": "\"Bug-bounty findings get two weeks of triage, then count as accepted\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that badges are removed on the first day the due date is breached",
+        "evidence": "\"a missed High deadline removes your badges. The app is then hidden after 15 days\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the app is hidden after the breach continues for more than 15 days",
+        "evidence": "\"The app is then hidden after 15 days\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a hidden app cannot be installed by new customers",
+        "evidence": "No statement that new customers cannot install a hidden app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that extensions are granted only for specific reasons and that roadmap or sprint capacity is not one of them",
+        "evidence": "\"Extensions are granted only for a breaking change... A booked sprint is not on that list.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends responding on the AMS ticket within the triage window",
+        "evidence": "Only says to read the due date and ask when the clock started; no advice to respond within the two-week triage window.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the requirement to report a security incident to Atlassian within 24 hours if exploitation is discovered",
+        "evidence": "No mention of the 24-hour incident report.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends rescheduling the fix inside the deadline rather than after the launch",
+        "evidence": "\"Get the fix into this sprint... the launch can slip while the deadline cannot.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a release adding egress or a scope is a major version that re-enters Marketplace review, so bundling the fix with it delays the fix",
+        "evidence": "\"The launch release is a major version... each major re-enters Marketplace review... The fix waits behind that review\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the plan to fix in about 9 weeks breaches Atlassian's deadline",
+        "evidence": "\"A 9-week plan almost certainly misses the High window.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the cloud High-severity fix deadline as 4 weeks",
+        "evidence": "\"High findings being measured in weeks, not quarters, but I can't confirm the exact number.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the two-week triage period for bug-bounty findings, after which unanswered findings are accepted",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that badges are removed on the first day the due date is breached",
+        "evidence": "Only \"Missed deadlines can mean badge removal\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the app is hidden after the breach continues for more than 15 days",
+        "evidence": "Only vague \"listing restrictions, or... delisting\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that a hidden app cannot be installed by new customers",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that extensions are granted only for specific reasons and that roadmap or sprint capacity is not one of them",
+        "evidence": "Recommends requesting an extension and doesn't mention the restriction.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends responding on the AMS ticket within the triage window",
+        "evidence": "\"Today: open the AMS ticket and note the due date. Reply to acknowledge it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the requirement to report a security incident to Atlassian within 24 hours if exploitation is discovered",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends rescheduling the fix inside the deadline rather than after the launch",
+        "evidence": "\"carve out a small fix... Ship it as its own minimal release\"; \"a High finding with a deadline outranks launch scope\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a release adding egress or a scope is a major version that re-enters Marketplace review, so bundling the fix with it delays the fix",
+        "evidence": "\"The new scope triggers an upgrade consent step\"; \"The new egress means a new review... The fix shouldn't wait on that review either.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

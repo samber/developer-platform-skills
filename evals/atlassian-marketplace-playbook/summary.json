@@ -1,0 +1,222 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "atlassian-marketplace-playbook",
+  "scenarios": 6,
+  "expectations_total": 68,
+  "expectations_subjective": 0,
+  "expectations_objective": 68,
+  "pass_rate_with_skill_pct": 94.1,
+  "pass_rate_without_skill_pct": 41.2,
+  "delta_pp": 52.9,
+  "uplift_multiplier": 2.28,
+  "trigger_accuracy_pct": 82.0,
+  "trigger_queries": 50,
+  "trigger_positive_fire_rate": 0.96,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "States that only revenue earned after the first Forge-only version counts toward the $1M lifetime Forge incentive"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Explains that a hidden app cannot be installed by new customers"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends responding on the AMS ticket within the triage window"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions the requirement to report a security incident to Atlassian within 24 hours if exploitation is discovered"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that a Forge cloud app can be listed only as Free or Paid via Atlassian, with no Paid via Vendor option absent Atlassian's written permission"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that Cloud Fortified no longer accepts new apps and names Atlassian Enterprise Certified as its replacement"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that Enterprise Certified is open to Forge apps only or requires no Connect modules"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends shipping some in-Jira value that works without a Notebridge account (preview, read-only panel or sample data)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Mentions that declaring egress domains or scopes later creates major versions needing admin consent, so they should be settled before launch"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that apps with a Connect descriptor can no longer receive updates, so the macro cannot ship by editing atlassian-connect.json"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions the app.connect.key manifest property (or linking the Forge app to the existing Connect listing)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives Connect end of support as 31 January 2027 and says only critical security patches follow"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that a first Forge version using only scopes inherited from the Connect scopes ships without admin approval"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns that installations with a suspended license or licensed via access tokens are not auto-upgraded"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that any remaining Connect module keeps the app on the Connect revenue share rate"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives the Forge partner share as higher than Connect (83% vs 75% from 1 Oct 2026, or marks the figures as needing verification)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that only revenue earned after the first Forge-only version counts toward the $1M lifetime Forge incentive"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends front-loading Forge-specific scopes and remotes into the first Forge version, since adding them later while Connect modules remain needs admin approval"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a Free to Paid via Atlassian change cannot be made on the existing listing settings and requires a new version with licensing enabled"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the payment-model change triggers Atlassian re-approval"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that enabling licensing creates a major version that site admins must consent to"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a paid license covers the host site's whole licensed user count rather than selected users"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Mentions checking the license in code (context.license.active, view.getContext, or the appIsLicensed trigger filter)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains a Timeout rejection as the review expiring while prerequisites were incomplete (partner verification, security questionnaire or payment profile)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists partner identity verification (KYC/KYB) as a required step"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists the app security questionnaire as a required step"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions completing the Privacy & Security tab or payment profile before resubmitting"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that resubmitting creates a new review ticket or restarts the review"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that every production install of a paid app is billed, including the vendor's own"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends testing paid behaviour in the development or staging environment, with forge install --license (or equivalent license override)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that a licensed or submitted Forge app cannot be shared by installation link and needs a separate unlicensed copy for testers"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Gives the cloud High-severity fix deadline as 4 weeks"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions the two-week triage period for bug-bounty findings, after which unanswered findings are accepted"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that badges are removed on the first day the due date is breached"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the app is hidden after the breach continues for more than 15 days"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Explains that a hidden app cannot be installed by new customers"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that extensions are granted only for specific reasons and that roadmap or sprint capacity is not one of them"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions the requirement to report a security incident to Atlassian within 24 hours if exploitation is discovered"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that adding any Connect module or Connect scope would drop the partner share to the Connect rate"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that new Data Center apps can no longer be submitted to the Marketplace"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the 100% revenue share until $1M lifetime Forge revenue"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the standard Forge partner share (83% from 1 Oct 2026)"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Mentions that annual pricing is set at 10 times the monthly price"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Mentions the 60-day protection of existing customers' prices after a price change"
+      }
+    ]
+  }
+}

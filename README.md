@@ -159,6 +159,7 @@ This collection covers the full developer-platform surface.
 
 ### Integration partnerships
 
+- [`atlassian-marketplace-playbook`](./skills/atlassian-marketplace-playbook): Takes a vendor's Jira, Confluence or JSM app onto the Atlassian Marketplace on Forge: payment model, pricing and revenue share, approval prerequisites, versions and consent, Connect migration, and post-listing security rules.
 - [`integration-listing-optimization`](./skills/integration-listing-optimization): Optimizes a vendor's listing on a third-party app marketplace: funnel instrumentation, indexed keyword placement, media ordering, reviews, and badges.
 - [`integration-partnership-strategy`](./skills/integration-partnership-strategy): Decides which technology partners to integrate with and how deep each goes, using a demand-data scorecard, depth ladder, and pipeline attribution.
 - [`partner-app-onboarding`](./skills/partner-app-onboarding): Designs the partner-developer journey from signup to first submitted app: entry gate, sandbox provisioning, education, support ladder, and funnel checkpoints.
