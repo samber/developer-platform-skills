@@ -1,0 +1,182 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "wordpress-plugin-directory-playbook",
+  "scenarios": 6,
+  "expectations_total": 68,
+  "expectations_subjective": 0,
+  "expectations_objective": 68,
+  "pass_rate_with_skill_pct": 91.2,
+  "pass_rate_without_skill_pct": 58.8,
+  "delta_pp": 32.4,
+  "uplift_multiplier": 1.55,
+  "trigger_accuracy_pct": 86.0,
+  "trigger_queries": 50,
+  "trigger_positive_fire_rate": 0.92,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that the free plugin may link to the paid offer but must not install the add-on or premium code itself"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends updating Tested up to, noting a readme-only change needs no new version unless release confirmation froze the tag"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Labels the ranking factors as coming from the platform's own open-source search code"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Writes an External services section naming the Acme API host, data sent, when it is sent, and terms and privacy links"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends fixing every point in one upload rather than partial rounds"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Mentions that a review still incomplete after about three months is rejected and can be continued by resubmitting and replying in the old thread"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that the free plugin may link to the paid offer but must not install the add-on or premium code itself"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the slug is permanent once the plugin is approved"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions the slug can be checked in the confirmation email and changed only once before approval"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States only one plugin can be in review per account at a time, so both plugins cannot be submitted together from one account"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns against creating extra accounts to get around the one-at-a-time limit"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States there is no queue jumping for a launch date (only security or legal issues)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Says to reply to the review email to fix a wrong submitting account rather than resubmitting"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rejects 'hotfix without releases' through remote code as a reason, since updates must come through WordPress.org releases"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends counting installs at the point the admin connects or registers the Tallyhub account instead"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States WordPress.org does not permit temporary closure of a plugin"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that author-requested closure is meant to be permanent and reopening requires a full current standards and security review"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes a plugin above 10,000 users cannot be closed by the author from the Advanced tab and needs an email to the Plugins Team"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that a blocked release is not offered as an update while the previous distributed version keeps being served and the plugin stays open"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Says a false-positive reply to the block email is possible but slower"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Resets the one-hour target: every release waits a cooldown (about 6 hours) during an automated security review before distribution"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions that the new release goes through the same automated review and could be blocked again"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Marks the cooldown duration as a figure to verify"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says competitor names such as hubspot or salesforce must not be used as tags"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends updating Tested up to, noting a readme-only change needs no new version unless release confirmation froze the tag"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Explains that search scoring decays with time since last update (roughly after six months) and with a stale Tested up to"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Labels the ranking factors as coming from the platform's own open-source search code"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions opting into the Commercial label by email to get a support URL on the listing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Flags the auto-replying helpdesk contact email as not permitted and a risk to every plugin the account owns"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Flags 18 tags as over the Guideline 12 spam limit of 12, not merely ignored"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Writes an External services section naming the Acme API host, data sent, when it is sent, and terms and privacy links"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the disclosure is required even though the external service is the vendor's own"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends fixing every point in one upload rather than partial rounds"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Mentions that a review still incomplete after about three months is rejected and can be continued by resubmitting and replying in the old thread"
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the locked, greyed-out Pro tab behind a license key as trialware banned by the directory guidelines",
+        "evidence": "\"Locked UI shipped in the plugin is trialware (Rule 1)\" and \"A key that unlocks local code is banned\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the 14-day trial that disables itself inside the plugin as banned (functionality disabled after a trial period)",
+        "evidence": "\"14-day trial that switches itself off in the plugin | Time-limited features are trialware\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enforcing the Pro plan in the Formline service (API returns plan or quota limits) rather than in plugin code",
+        "evidence": "\"Start the trial in your service... The plugin shows 'N days left' from the API\"; \"Count and enforce in your service\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a separate premium add-on sold and hosted outside WordPress.org as the alternative for features that must run locally",
+        "evidence": "\"If variant swapping must run in local PHP or JS, rung 2 (a premium add-on) moves up.\" It does not say the add-on is sold outside WordPress.org, so this is a thin pass.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the paid-value options with service-side enforcement as the default for a SaaS",
+        "evidence": "\"Paid-value verdict: rung 1... It is one codebase and one review, and it's the default for a SaaS.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to remove Pro-only code and named Pro feature stubs from the directory plugin, not just hide them",
+        "evidence": "\"Named-but-absent pro features in free code read as trialware to reviewers, so don't leave them in the code as stubs\"; checklist item 1 \"Remove the greyed Pro UI, license-key unlock and local trial logic\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the free plugin may link to the paid offer but must not install the add-on or premium code itself",
+        "evidence": "The transcript only mentions a link to the pricing page. It never says the plugin must not install or update premium code.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Limits upgrade prompts to the plugin's own settings page or contextual spots, with any site-wide notice dismissible",
+        "evidence": "\"show one contextual upgrade note on your settings page, with a link to your pricing page.\" Dismissibility is not mentioned, so this is a thin pass.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an External services section in the readme naming the Formline API, data sent, when, and terms and privacy links",
+        "evidence": "The \"External services draft\" names api.formline.example, the data sent, the trigger (after an administrator connects), and terms and privacy links.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the 500-submission free quota is acceptable only when the service enforces it, not a local counter in the plugin",
+        "evidence": "\"Fine only if the service counts it... Count and enforce in your service.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not propose a license-key validation endpoint as the 'service' that unlocks local code",
+        "evidence": "\"Replace it with an account connection (OAuth or an account API key) that only identifies the site to Formline\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the locked, greyed-out Pro tab behind a license key as trialware banned by the directory guidelines",
+        "evidence": "\"Pro tab, greyed out until a license key unlocks it | \u274c Likely rejected | Guideline 5 bars features that are locked in the plugin's own code.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies the 14-day trial that disables itself inside the plugin as banned (functionality disabled after a trial period)",
+        "evidence": "\"14-day trial that switches off inside the plugin | \u274c Rejected | Guideline 5 bars trialware\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enforcing the Pro plan in the Formline service (API returns plan or quota limits) rather than in plugin code",
+        "evidence": "\"The plugin asks your API for the plan and its state... It never computes expiry itself\"; \"The service decides and the plugin displays.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a separate premium add-on sold and hosted outside WordPress.org as the alternative for features that must run locally",
+        "evidence": "\"Separate Pro plugin. Host a 'Formline Pro' add-on on formline.com. The .org plugin never contains the Pro code.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the paid-value options with service-side enforcement as the default for a SaaS",
+        "evidence": "\"Serviceware (recommended).\" is listed first, ahead of the separate Pro plugin.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to remove Pro-only code and named Pro feature stubs from the directory plugin, not just hide them",
+        "evidence": "\"Do not render dead, greyed-out controls\"; \"The plugin ships no Pro logic to unlock.\"; \"The .org plugin never contains the Pro code.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the free plugin may link to the paid offer but must not install the add-on or premium code itself",
+        "evidence": "The transcript allows \"one link to the pricing page\" but never says the plugin must not install the add-on or premium code.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Limits upgrade prompts to the plugin's own settings page or contextual spots, with any site-wide notice dismissible",
+        "evidence": "\"Keep upgrade prompts to that tab, plus at most one dismissible notice. No banners on every admin page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an External services section in the readme naming the Formline API, data sent, when, and terms and privacy links",
+        "evidence": "The draft \"== External services ==\" section covers the Formline service, what is sent and when, and \"Terms of service: <URL> Privacy policy: <URL>\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the 500-submission free quota is acceptable only when the service enforces it, not a local counter in the plugin",
+        "evidence": "\"\u2705 OK if the service enforces it ... The limit must live on Formline's servers, not in plugin code.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not propose a license-key validation endpoint as the 'service' that unlocks local code",
+        "evidence": "\"A Pro account unlocks them server-side\"; a license key is acceptable \"only if it only authenticates the account to your service.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
