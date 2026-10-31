@@ -1,0 +1,190 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "shopify-app-store-playbook",
+  "scenarios": 6,
+  "expectations_total": 66,
+  "expectations_subjective": 0,
+  "expectations_objective": 66,
+  "pass_rate_with_skill_pct": 95.5,
+  "pass_rate_without_skill_pct": 50.0,
+  "delta_pp": 45.5,
+  "uplift_multiplier": 1.91,
+  "trigger_accuracy_pct": 72.0,
+  "trigger_queries": 50,
+  "trigger_positive_fire_rate": 0.8,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Says billing exemptions are rare and must be asked for explicitly (Partner Support or review notes) rather than assumed"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that pilot merchants on a limited-visibility public app still fall under the Shopify billing rule for the Shopify portion"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Advises responding to the quality check immediately in the Partner Dashboard with evidence of changes"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that describing the app as a free connector to a paid service does not exempt it from Shopify's billing requirement"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that charges attributable to the Shopify integration must go through Shopify App Pricing or the Shopify Billing API"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Proposes pricing the Shopify integration as its own line or plan billed through Shopify"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends Shopify App Pricing as the default billing method for a new public app"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Warns against listing copy or in-app text saying charges are billed separately or linking to external pricing"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives a review timeline of multiple weeks per round and more than one round, making a 5-week go-live unlikely"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Proposes a conference fallback such as announcing the app as coming to the Shopify App Store or a limited-visibility pilot"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Says billing exemptions are rare and must be asked for explicitly (Partner Support or review notes) rather than assumed"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends making the vendor's own Stripe checkout unreachable for merchants who install from Shopify"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the trade-off between a limited-visibility public pilot (waits for approval) and a custom pilot (faster first install but a second app, second review and reinstalls)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that limited visibility can be switched to fully visible later"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that a limited-visibility public app still goes through the same App Store review"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that custom apps cannot charge through Shopify's billing system"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions that new public apps must use the GraphQL Admin API or expiring offline tokens as build-time constraints"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that pilot merchants on a limited-visibility public app still fall under the Shopify billing rule for the Shopify portion"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires a test account exempt from 2FA, OTP and SSO that keeps working after publish"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that failing to fix issues across two or more exchanges can put the app into a cooldown"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that each resubmission slows review or costs queue position"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that next Thursday's launch is unrealistic given review round times"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends retesting the full install, uninstall and reinstall path because review stops at the first core failure"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that adding keywords to the subtitle to improve search is against Shopify's rules"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends Shopify's Reviews API (shopify.reviews.request) for review requests"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States the Reviews API rate limits (about once per 60 days, 3 per year)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Labels ranking claims by source, distinguishing Shopify-published factors from practitioner reports"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the prerequisite of 50 net installs from active shops on paid plans"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions a minimum rating threshold that Shopify does not publish"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions Web Vitals need a minimum sample (100 calls in 28 days) before assessment"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions email marketing category requirements such as web pixels, Shopify segments or customer data sync"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Warns that failing the same criterion three times suspends the application for three months"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that not responding to a quality check within 7 days leads to demotion"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that required changes not made within 30 days can lead to unpublishing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Flags the expiring offline access token requirement for all public apps with its deadline"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that reading orders is already Level 1 protected customer data requiring a request"
+      }
+    ]
+  }
+}
