@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that apps where AI decides which CRM actions to take must enforce the installing user's HubSpot permissions",
+        "evidence": "\"For that kind of AI, HubSpot requires the app to enforce the installing user's permissions.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a standard account-wide OAuth token does not satisfy that requirement",
+        "evidence": "\"A standard admin-installed, account-wide OAuth token fails that rule.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the MCP auth app or user-level access (isUserLevel) as the build route",
+        "evidence": "\"build on its MCP auth app, or set `isUserLevel: true` on platform 2026.09\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the MCP listing requirements call for a standalone app with its own listing rather than adding it to the existing listed app",
+        "evidence": "\"An MCP server lists as its own standalone app with its own listing, app ID and review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the MCP server must be owned by or delegated to the vendor, not a connector to someone else's server",
+        "evidence": "\"The server must be one you own, or one its owner delegated to you.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the new tickets write scope must be used by a shipped feature and reflected in the Shared data table",
+        "evidence": "\"You must actually use every scope you request\" and \"Add the Tickets row to the Shared data table\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a write scope added alongside a read scope on tickets means the sync is advertised as bi-directional where both apply",
+        "evidence": "\"Read plus write on an object counts as bi-directional.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the listing edit goes back through HubSpot review",
+        "evidence": "\"Every listing edit goes back through review\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the EU AI Act high-risk or unacceptable use restriction for AI tools or MCP components",
+        "evidence": "The EU AI Act is not mentioned anywhere.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not invent a HubSpot revenue share or fee",
+        "evidence": "No fee or revenue share is mentioned.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that apps where AI decides which CRM actions to take must enforce the installing user's HubSpot permissions",
+        "evidence": "\"check the calling rep's HubSpot permissions before every write.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a standard account-wide OAuth token does not satisfy that requirement",
+        "evidence": "\"An account-wide token acts as the app, not as the rep.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the MCP auth app or user-level access (isUserLevel) as the build route",
+        "evidence": "It only says \"Check whether HubSpot now offers user-level auth for MCP or Breeze\" and mentions \"a separate MCP auth app type\" as unknown.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the MCP listing requirements call for a standalone app with its own listing rather than adding it to the existing listed app",
+        "evidence": "\"I don't know whether... that goes through the same listed app or a separate MCP auth app type.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the MCP server must be owned by or delegated to the vendor, not a connector to someone else's server",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the new tickets write scope must be used by a shipped feature and reflected in the Shared data table",
+        "evidence": "It mentions scope justification and listing text updates but not the Shared data table or shipped-feature requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says a write scope added alongside a read scope on tickets means the sync is advertised as bi-directional where both apply",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the listing edit goes back through HubSpot review",
+        "evidence": "\"Expect a re-review. Reviewers check that every scope is justified.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the EU AI Act high-risk or unacceptable use restriction for AI tools or MCP components",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not invent a HubSpot revenue share or fee",
+        "evidence": "No fee or revenue share is mentioned.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
