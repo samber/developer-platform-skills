@@ -1,0 +1,321 @@
+{
+  "skill_name": "shopify-app-store-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We run Ticketly, a helpdesk SaaS ($49/agent/month, billed through our own Stripe). About 300 of our customers run Shopify stores and keep asking for an order-lookup sidebar. Plan: ship a free Shopify app that connects to their existing Ticketly account, list it on the App Store, keep billing everyone through Stripe like today. We want it live for our booth at a commerce conference in 5 weeks. Can you write the go-to-market plan for the listing?",
+      "expected_output": "Flags that a free connector into a paid SaaS still falls under Shopify's billing rule, that charges attributable to the Shopify integration (including for existing customers) must go through Shopify App Pricing or the Billing API, plans a Shopify-billed path, warns 5 weeks is unrealistic for review, and gives a fallback for the conference.",
+      "files": [],
+      "expectations": [
+        "States that describing the app as a free connector to a paid service does not exempt it from Shopify's billing requirement",
+        "States that charges attributable to the Shopify integration must go through Shopify App Pricing or the Shopify Billing API",
+        "Says existing-customer status does not by itself keep Shopify-attributable charges on Stripe, or flags this as the current Shopify position to re-check",
+        "Proposes pricing the Shopify integration as its own line or plan billed through Shopify",
+        "Recommends Shopify App Pricing as the default billing method for a new public app",
+        "Warns against listing copy or in-app text saying charges are billed separately or linking to external pricing",
+        "Gives a review timeline of multiple weeks per round and more than one round, making a 5-week go-live unlikely",
+        "Proposes a conference fallback such as announcing the app as coming to the Shopify App Store or a limited-visibility pilot",
+        "Says billing exemptions are rare and must be asked for explicitly (Partner Support or review notes) rather than assumed",
+        "Recommends making the vendor's own Stripe checkout unreachable for merchants who install from Shopify"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm the integrations PM at an ERP vendor. Three Shopify Plus brands want our inventory sync now. Fastest route I can see: build it as a custom app for those three, get feedback over the next quarter, then flip it to a public App Store app in Q1 for everyone else. Engineering wants to start Monday. Any concerns before we kick off?",
+      "expected_output": "Warns the distribution method cannot be changed once selected, so a custom pilot means a second app and reinstalls; recommends a public app with limited visibility for the pilot instead; notes custom apps serve one store or one Plus organization each and cannot use Shopify billing.",
+      "files": [],
+      "expectations": [
+        "States that the distribution method (public vs custom) cannot be changed after it is selected",
+        "Explains that a custom-app pilot would require building and reviewing a separate public app later",
+        "Mentions pilot merchants would have to reinstall or migrate to the new public app",
+        "States the trade-off between a limited-visibility public pilot (waits for approval) and a custom pilot (faster first install but a second app, second review and reinstalls)",
+        "States that limited visibility can be switched to fully visible later",
+        "Notes that a limited-visibility public app still goes through the same App Store review",
+        "States that a custom app is limited to one store or the stores of one Plus organization",
+        "States that custom apps cannot charge through Shopify's billing system",
+        "Mentions that new public apps must use the GraphQL Admin API or expiring offline tokens as build-time constraints",
+        "Recommends planning Shopify billing for the public app before submission",
+        "States that pilot merchants on a limited-visibility public app still fall under the Shopify billing rule for the Shopify portion"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our Shopify app got paused. Reviewer notes: (1) couldn't log in with the test account (it's behind our Okta SSO), (2) the install flow asks the merchant to type their myshopify domain on our website, which they say isn't allowed, (3) a 500 error on the settings page. I can fix the 500 today and resubmit tonight; item 2 is how our whole onboarding works so I want to push back on that. Launch is next Thursday. What do I do?",
+      "expected_output": "Fix all three before resubmitting, provide a 2FA/SSO-exempt test account, rebuild install to start from Shopify with OAuth first and no manual domain entry, use the per-requirement notes only for genuine misreads, warn about cooldowns and queue position, reset launch expectations.",
+      "files": [],
+      "expectations": [
+        "Advises fixing every flagged item before resubmitting rather than resubmitting after the 500 fix alone",
+        "Requires a test account exempt from 2FA, OTP and SSO that keeps working after publish",
+        "States that the app must not ask merchants to enter a shop domain manually",
+        "States that installation must start from a Shopify surface and authenticate before any app UI (OAuth or token exchange)",
+        "Advises against disputing item 2, since it is a written requirement",
+        "Warns that failing to fix issues across two or more exchanges can put the app into a cooldown",
+        "Warns that each resubmission slows review or costs queue position",
+        "States that next Thursday's launch is unrealistic given review round times",
+        "Recommends retesting the full install, uninstall and reinstall path because review stops at the first core failure",
+        "Recommends a screencast or step-by-step testing instructions covering any step in the vendor's own UI",
+        "Does not treat this Paused state (no cooldown date) as a cooldown with a mandatory waiting period"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Our analytics app (Metricly) is live on the Shopify App Store but stuck on page 3 for 'analytics'. Ideas from the team: change the subtitle to 'The #1 analytics app - trusted by 10,000 merchants, 4.9 stars', add a 'Rate us 5 stars' button on the dashboard, and give one free month to anyone who leaves a review. Also someone read reviews are the main ranking factor. Can you turn this into a ranking plan?",
+      "expected_output": "Rejects stats, #1 claims and review counts in the listing, rejects incentivized reviews and the 5-star button, recommends the Reviews API after a milestone with its rate limits, labels ranking factors as Shopify-published vs practitioner, suggests brand plus category term in the name and Built for Shopify.",
+      "files": [],
+      "expectations": [
+        "Rejects putting statistics or numbers like 10,000 merchants or 4.9 stars in the listing subtitle",
+        "Rejects '#1' or 'best' style claims in the listing",
+        "States that adding keywords to the subtitle to improve search is against Shopify's rules",
+        "Rejects offering a free month or any incentive in exchange for reviews",
+        "Mentions Shopify can remove reviews, demote, or delist apps that incentivize reviews",
+        "Recommends Shopify's Reviews API (shopify.reviews.request) for review requests",
+        "Advises triggering the review request after a real usage milestone, not from a button",
+        "States the Reviews API rate limits (about once per 60 days, 3 per year)",
+        "Labels ranking claims by source, distinguishing Shopify-published factors from practitioner reports",
+        "Does not assert review count as a confirmed primary ranking factor",
+        "Mentions Built for Shopify status as an officially stated search ranking boost",
+        "Suggests including the category term in the app name alongside the brand, within the name length limit"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Mailwise (email marketing SaaS) launched its Shopify app 3 weeks ago: 20 installs, 2 reviews. The app home is our web dashboard loaded in an iframe and merchants log in with their Mailwise account. Leadership wants the Built for Shopify badge within 6 weeks for a press push. What has to happen?",
+      "expected_output": "Lists BFS prerequisites (50 net installs from active paid shops, 5 reviews, rating floor, Web Vitals with 100 calls), says 6 weeks is unlikely from 20 installs, flags iframe of external site, workflows and settings inside admin, connect-existing-credentials exception, email category requirements.",
+      "files": [],
+      "expectations": [
+        "States the prerequisite of 50 net installs from active shops on paid plans",
+        "States the prerequisite of at least 5 reviews",
+        "Mentions a minimum rating threshold that Shopify does not publish",
+        "Lists admin Web Vitals targets at the 75th percentile (LCP 2.5 s, CLS 0.1, INP 200 ms)",
+        "Mentions Web Vitals need a minimum sample (100 calls in 28 days) before assessment",
+        "States that embedding the external web dashboard in an iframe does not meet Built for Shopify",
+        "States primary workflows and connection settings must be available inside the Shopify admin",
+        "Describes the exception for existing accounts: onboarding first asks merchants to connect existing credentials",
+        "Mentions email marketing category requirements such as web pixels, Shopify segments or customer data sync",
+        "Concludes the 6-week badge target is unrealistic from 20 installs and 2 reviews",
+        "Does not recommend incentivizing reviews to reach the review minimum",
+        "Warns that failing the same criterion three times suspends the application for three months"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Small team here, our support-desk Shopify app has been listed for a year. Ten days ago we got an email about an 'app quality check' and nobody answered it yet. Next sprint we also want to start syncing customer names and emails into tickets and push the update for review right away. Anything I should worry about?",
+      "expected_output": "Answer the quality check now (7-day window passed, demotion risk; 30 days to fix or unpublish), request Level 2 protected customer data before submitting (not possible during review), plan the expiring offline tokens deadline.",
+      "files": [],
+      "expectations": [
+        "States that not responding to a quality check within 7 days leads to demotion",
+        "States that required changes not made within 30 days can lead to unpublishing",
+        "Advises responding to the quality check immediately in the Partner Dashboard with evidence of changes",
+        "States that customer names and emails are Level 2 protected customer data needing approval",
+        "States that protected customer data access must be requested before the app enters review",
+        "Mentions that unapproved protected fields come back redacted or null",
+        "Flags the expiring offline access token requirement for all public apps with its deadline",
+        "Mentions a reason per requested field or data minimization in the access request",
+        "Treats the new sync update as requiring review time before release rather than shipping immediately",
+        "States that reading orders is already Level 1 protected customer data requiring a request"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "We're a SaaS helpdesk and want to list a free Shopify app that connects to customers' existing accounts. Do we have to use Shopify billing?",
+      "should_trigger": true
+    },
+    {
+      "query": "our shopify app submission got paused again, second time, what's the cooldown and how do i avoid a month suspension",
+      "should_trigger": true
+    },
+    {
+      "query": "How long does Shopify App Store review take right now? Need to plan a launch date for our ERP connector.",
+      "should_trigger": true
+    },
+    {
+      "query": "Should we pilot our inventory sync as a custom app for 3 Plus merchants or go public from the start?",
+      "should_trigger": true
+    },
+    {
+      "query": "What do we need to get the Built for Shopify badge for our email marketing app?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do i rank higher on apps.shopify.com for 'reviews'?",
+      "should_trigger": true
+    },
+    {
+      "query": "Shopify reviewer says our test login doesn't work because of SSO. What do they need?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it ok to give merchants a free month for leaving a review of our Shopify app?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can a limited-visibility Shopify app bill existing customers through our own Stripe?",
+      "should_trigger": true
+    },
+    {
+      "query": "Need a checklist before submitting our analytics app to the Shopify App Store",
+      "should_trigger": true
+    },
+    {
+      "query": "Shopify App Pricing vs the Billing API for a new public app with usage-based plans - which and what are the limits?",
+      "should_trigger": true
+    },
+    {
+      "query": "We got a Shopify 'app quality check' email. What happens if we ignore it?",
+      "should_trigger": true
+    },
+    {
+      "query": "our connector reads customer emails from orders - what do we request from Shopify before review?",
+      "should_trigger": true
+    },
+    {
+      "query": "Shopify rejected our app for off-platform billing under 1.2.1. How do we restructure pricing?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is Built for Shopify worth it for a B2B connector, and does it actually boost search?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to name our app 'Shopify Inventory Sync by Acme'. Any problem?",
+      "should_trigger": true
+    },
+    {
+      "query": "How does Shopify's revenue share work for app developers once we pass $1M?",
+      "should_trigger": true
+    },
+    {
+      "query": "When should our Shopify app call shopify.reviews.request()?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our CTO wants to iframe our web dashboard as the Shopify app home - will that block approval or BFS?",
+      "should_trigger": true
+    },
+    {
+      "query": "vendor side: getting our support SaaS onto the Shopify app marketplace, where do we start",
+      "should_trigger": true
+    },
+    {
+      "query": "Do App Store ads on Shopify help organic ranking for our app?",
+      "should_trigger": true
+    },
+    {
+      "query": "Reviewer flagged that merchants type their shop domain on our signup page. How should the Shopify install flow work?",
+      "should_trigger": true
+    },
+    {
+      "query": "Rewrite our app listing description and screenshot order to convert better on the HubSpot marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "Help me write marketplace listing copy and choose screenshots that convert, any marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "We run our own app marketplace; design the review process for third-party apps submitted to us",
+      "should_trigger": false
+    },
+    {
+      "query": "How should we design rev share and billing for the app marketplace we're launching?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Slack app approved on the Slack Marketplace, what's the install threshold?",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan our Salesforce AppExchange security review and managed package choice",
+      "should_trigger": false
+    },
+    {
+      "query": "List our GitHub App on GitHub Marketplace with paid plans",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we publish our SaaS on AWS Marketplace with private offers?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Teams app through Microsoft AppSource validation",
+      "should_trigger": false
+    },
+    {
+      "query": "Submit our Chrome extension to the Chrome Web Store and pass permissions review",
+      "should_trigger": false
+    },
+    {
+      "query": "Help me set up my Shopify store, pick a theme and configure shipping zones",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a Liquid section for my Shopify theme that shows product reviews",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the GraphQL Admin API mutation to create a product in Shopify",
+      "should_trigger": false
+    },
+    {
+      "query": "Which Shopify apps should my store install for email marketing?",
+      "should_trigger": false
+    },
+    {
+      "query": "Run the Shopify App Store compliance check against my local codebase",
+      "should_trigger": false
+    },
+    {
+      "query": "Which technology partners should our SaaS integrate with next: Shopify, NetSuite or HubSpot?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design a webhook delivery and retry system for our public API like Shopify's",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan the launch cohort and featured apps for the marketplace we operate",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Zapier integration is in beta; how do we get out of the 90-day beta?",
+      "should_trigger": false
+    },
+    {
+      "query": "Optimize our Atlassian Marketplace listing for Forge vs Connect",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our WordPress plugin approved on WordPress.org",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we become a Shopify Partner agency and build stores for clients?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our app is approved on Shopify but set to limited visibility - when should we make it fully visible?",
+      "should_trigger": true
+    },
+    {
+      "query": "Shopify says our app name is too similar to another app. What are the naming rules for the App Store?",
+      "should_trigger": true
+    },
+    {
+      "query": "we bundle Shopify, BigCommerce and WooCommerce sync in one plan - does Shopify want a cut of that?",
+      "should_trigger": true
+    },
+    {
+      "query": "Draft our merchant onboarding emails for a Shopify store selling coffee",
+      "should_trigger": false
+    },
+    {
+      "query": "Build an MCP server so agents can call our helpdesk API",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan our Product Hunt launch for the new Shopify integration announcement",
+      "should_trigger": false
+    }
+  ]
+}
