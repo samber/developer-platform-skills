@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Says to mark contacts as bi-directional in Shared data or remove the write scope if unused",
+        "evidence": "\"If the logs show real reads, keep both scopes. Change the row to 'Bi-directional'\" and \"drop `crm.objects.contacts.read`\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to remove the Starter plan from listing pricing because only plans including the integration may be listed",
+        "evidence": "\"Delete Starter from the Pricing tab. List only plans that include the integration\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the setup guide must be public, not behind login or SSO",
+        "evidence": "\"It must not be the docs homepage and must not need login.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the setup guide must be HubSpot-specific and not the docs homepage",
+        "evidence": "\"Publish a new public page, 'Set up Fieldnote Sync with HubSpot'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to allowlist the HubSpot Crawler user agent in bot protection",
+        "evidence": "\"Allowlist the `HubSpot Crawler` user agent in your bot protection.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the app name must not include HubSpot or Hub and proposes a renamed form",
+        "evidence": "\"Rename the app to your brand, for example **Fieldnote Sync**.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says submitting the second app while the first is in review gets it rejected automatically",
+        "evidence": "\"HubSpot rejects the second submission automatically.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the Free pricing plan is only for free-forever or freemium, not a free trial",
+        "evidence": "\"The 14-day trial does not make the plan Free. Free is only for free-forever or freemium plans.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing all feedback points in one resubmission",
+        "evidence": "\"## Fix all four in one pass\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions writing HubSpot with a capital S across assets",
+        "evidence": "\"Write HubSpot with a capital S.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Says to mark contacts as bi-directional in Shared data or remove the write scope if unused",
+        "evidence": "\"Keep both scopes. Change Shared data to two-way and say what you read and why.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to remove the Starter plan from listing pricing because only plans including the integration may be listed",
+        "evidence": "\"List only plans that include the HubSpot integration. Remove Starter.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the setup guide must be public, not behind login or SSO",
+        "evidence": "\"Publish a public page... No login, no SSO redirect.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the setup guide must be HubSpot-specific and not the docs homepage",
+        "evidence": "\"A homepage is also not a setup guide.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to allowlist the HubSpot Crawler user agent in bot protection",
+        "evidence": "It recommends a path-based WAF exemption and says \"reviewers don't come from a published IP list\". It never names the HubSpot Crawler user agent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the app name must not include HubSpot or Hub and proposes a renamed form",
+        "evidence": "It proposes \"Fieldnote for HubSpot\", which still contains HubSpot, and says only that names can't start with it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says submitting the second app while the first is in review gets it rejected automatically",
+        "evidence": "\"Submit Fieldnote Forms the same day\"; \"I can't confirm how HubSpot's review queue treats two submissions at once.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the Free pricing plan is only for free-forever or freemium, not a free trial",
+        "evidence": "\"No, don't set the plan to Free... A 14-day trial still ends in a paid plan.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing all feedback points in one resubmission",
+        "evidence": "The resubmission note addresses all four items together.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions writing HubSpot with a capital S across assets",
+        "evidence": "\"Write 'HubSpot' with that exact capitalization.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
