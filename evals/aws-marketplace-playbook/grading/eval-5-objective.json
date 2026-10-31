@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Diagnoses the Kestrel error as a Private Marketplace restriction",
+        "evidence": "\"Most likely cause: Kestrel runs a Private Marketplace (PMP).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to extend the offer to the buyer's Private Marketplace administrator (or management) account as well",
+        "evidence": "\"Extend the offer to the buyer account **and** the PMP administrator account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the buyer's administrator must approve the product in their Private Marketplace",
+        "evidence": "\"Ask the administrator to approve the product in the PMP.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an agreement-based (replacement or amendment) offer from the Agreements page for Pinemoor",
+        "evidence": "\"In the Agreements page, issue a **replacement offer** from Pinemoor's current agreement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the replacement cancels the old agreement's unbilled payments",
+        "evidence": "\"Acceptance cancels the old agreement's pending payments.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to re-include the two remaining annual payments in the new schedule",
+        "evidence": "\"**Re-include both unbilled annual installments in the replacement.**\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the replacement takes effect on acceptance and cannot be future-dated",
+        "evidence": "\"It takes effect on acceptance and cannot be future-dated.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States contract buyers cannot reduce quantities mid-term; downsizing happens at renewal",
+        "evidence": "\"Contract buyers can upgrade but never downsize mid-term. They shrink at renewal.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend cancelling the contract and reissuing as the first option",
+        "evidence": "\"Cancelling the agreement instead is the wrong tool.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Diagnoses the Kestrel error as a Private Marketplace restriction",
+        "evidence": "Calls wrong account \"the most likely cause\"; Private Marketplace is only item 4 of 5.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to extend the offer to the buyer's Private Marketplace administrator (or management) account as well",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the buyer's administrator must approve the product in their Private Marketplace",
+        "evidence": "\"the product may need approval in their private marketplace... Kestrel's admin approves the product\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an agreement-based (replacement or amendment) offer from the Agreements page for Pinemoor",
+        "evidence": "\"Use a replacement (upgrade) private offer that replaces the existing agreement.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the replacement cancels the old agreement's unbilled payments",
+        "evidence": "Says acceptance terminates the old agreement, but never says unbilled payments are cancelled.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to re-include the two remaining annual payments in the new schedule",
+        "evidence": "\"Future payments fall on the same dates as the old remaining installments\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the replacement takes effect on acceptance and cannot be future-dated",
+        "evidence": "Says termination on acceptance, but nothing about future-dating.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States contract buyers cannot reduce quantities mid-term; downsizing happens at renewal",
+        "evidence": "Says \"no right to cut it mid-term\" but then builds a \u221250 seat swap into the replacement offer, with no mention of renewal.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend cancelling the contract and reissuing as the first option",
+        "evidence": "Recommends the replacement offer first.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
