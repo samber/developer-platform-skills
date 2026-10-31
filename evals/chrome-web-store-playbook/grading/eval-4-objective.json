@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that separate public listings with the same functionality per customer violate the repetitive content policy",
+        "evidence": "The store bans that as repetitive content (violation **Yellow Nickel**).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that abuse of repetitive-content exceptions can lead to account-level suspension",
+        "evidence": "abusing the exceptions can cost the whole developer account.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that new publishers have a default limit of two extension slots and increases must be requested",
+        "evidence": "Your account also starts with two extension slots\u2020; request an increase if needed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends private publishing to the customer's organization via the approval link (organization publishing)",
+        "evidence": "Rung 2: Private publishing to a customer's Google Workspace organization.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that customer admins can force-install the extension by policy",
+        "evidence": "Customer IT force-installs that one item by its extension ID.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a single extension configured per tenant at sign-in as an alternative to per-customer builds",
+        "evidence": "Rung 1: One public or unlisted \"Brightdesk\" item. After sign-in it loads the tenant's logo, name and domains.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the distribution options in an explicit order rather than listing them flat",
+        "evidence": "Distribution plan, ranked by efficiency, Rungs 1-4.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a white-label per-customer build must be unlisted and distributed directly to the client",
+        "evidence": "Make it unlisted and send it to that client only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the required exception statement text for white-label builds in the description and single purpose field",
+        "evidence": "`THIS IS A WHITE LABEL ENTERPRISE EXTENSION FOR <CUSTOMER NAME>` in both the description and single purpose field.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that if a customer revokes organization approval, the item stays published but can no longer be updated",
+        "evidence": "If the customer revokes approval, the item stays published but can't update.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says it is undocumented whether private or organization-published items count toward the item limit and recommends asking support",
+        "evidence": "Ask Chrome Web Store support first whether private or unlisted items count toward the item limit. That's undocumented.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends declaring as a trader with company details (shown publicly to EU users)",
+        "evidence": "Declare Trader status with company details. They show publicly in the EU.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that separate public listings with the same functionality per customer violate the repetitive content policy",
+        "evidence": "\"spam rules prohibit multiple extensions with duplicate functionality\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that abuse of repetitive-content exceptions can lead to account-level suspension",
+        "evidence": "\"with repeat violations, suspend the whole publisher account\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that new publishers have a default limit of two extension slots and increases must be requested",
+        "evidence": "Says \"I recall about 20 items per developer account\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends private publishing to the customer's organization via the approval link (organization publishing)",
+        "evidence": "Suggests customer-owned account publishing unlisted/private, not the org approval-link mechanism.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that customer admins can force-install the extension by policy",
+        "evidence": "\"Force-install works for public, unlisted, and private items alike.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a single extension configured per tenant at sign-in as an alternative to per-customer builds",
+        "evidence": "\"Sign-in lookup. Resolve the tenant from the user's email domain\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the distribution options in an explicit order rather than listing them flat",
+        "evidence": "\"Rank the options by risk: 1. Customer-owned item... 2. Unlisted... 3. 30 public items (avoid)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a white-label per-customer build must be unlisted and distributed directly to the client",
+        "evidence": "Public items are not stated to be disallowed for white-label; unlisted is only an option.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the required exception statement text for white-label builds in the description and single purpose field",
+        "evidence": "No such text.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that if a customer revokes organization approval, the item stays published but can no longer be updated",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says it is undocumented whether private or organization-published items count toward the item limit and recommends asking support",
+        "evidence": "Asserts \"It still counts toward your item limit\" for unlisted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends declaring as a trader with company details (shown publicly to EU users)",
+        "evidence": "\"Declare trader status honestly... publicly shows your verified address\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

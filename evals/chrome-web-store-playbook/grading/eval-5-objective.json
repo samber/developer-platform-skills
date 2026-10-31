@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Explains that the Cyberhaven compromise came from an employee granting OAuth consent to a malicious app with Chrome Web Store publish access",
+        "evidence": "a phished employee granted a malicious OAuth app publish access to the Chrome Web Store.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that 2-Step Verification did not prevent that OAuth-consent attack",
+        "evidence": "No 2-Step Verification prompt fired.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends opting in to Verified CRX Uploads so only packages signed with the vendor's private key are accepted",
+        "evidence": "Opt in to Verified CRX Uploads... Every later package must then be a CRX signed with your private key.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends storing the signing key outside the Google account (CI secrets or HSM)",
+        "evidence": "Keep that private key in CI secrets or an HSM. Never put it in the Google account",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a lost signing key takes up to about a week to replace through support",
+        "evidence": "A lost key takes up to a week\u2020 to replace",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the developer account email cannot be changed and the fix is a new company-owned account plus an item transfer",
+        "evidence": "The only path is a new company publisher account plus an item transfer request.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding teammates as publisher members with roles instead of sharing one login",
+        "evidence": "Add teammates as members with roles. No shared login.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends restricting third-party app access in Google Workspace so unverified apps cannot obtain the Chrome Web Store scope",
+        "evidence": "Restrict third-party app access in your Google Workspace.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing from CI rather than manual laptop uploads",
+        "evidence": "Publish from CI through the Chrome Web Store API with a dedicated service account",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends alerting on any published version that CI did not produce",
+        "evidence": "Alert on any published version that CI did not produce.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a rollback runbook",
+        "evidence": "Write a rollback runbook:",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that approved updates reach installed users without a holding period",
+        "evidence": "The attacker's update passed review and reached installs with no hold.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Explains that the Cyberhaven compromise came from an employee granting OAuth consent to a malicious app with Chrome Web Store publish access",
+        "evidence": "\"phished a developer into approving a malicious OAuth app. That gave them publish rights\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that 2-Step Verification did not prevent that OAuth-consent attack",
+        "evidence": "\"Password 2FA was on and didn't help, because the attacker never needed the password.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends opting in to Verified CRX Uploads so only packages signed with the vendor's private key are accepted",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends storing the signing key outside the Google account (CI secrets or HSM)",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a lost signing key takes up to about a week to replace through support",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the developer account email cannot be changed and the fix is a new company-owned account plus an item transfer",
+        "evidence": "Says to change the recovery email and transfer to a new publisher, but never states the account email cannot be changed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding teammates as publisher members with roles instead of sharing one login",
+        "evidence": "\"Prefer a Chrome Web Store group publisher... Individuals should act under their own Workspace identities as group members.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends restricting third-party app access in Google Workspace so unverified apps cannot obtain the Chrome Web Store scope",
+        "evidence": "\"restrict third-party app access to an allowlist and block unreviewed consent grants\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing from CI rather than manual laptop uploads",
+        "evidence": "\"Publish through the Chrome Web Store API from CI.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends alerting on any published version that CI did not produce",
+        "evidence": "\"Any version the pipeline didn't produce pages the on-call engineer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a rollback runbook",
+        "evidence": "\"Write a runbook for a hijacked publish: how to push a clean version fast\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that approved updates reach installed users without a holding period",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
