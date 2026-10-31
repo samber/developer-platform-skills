@@ -4,7 +4,7 @@ description: "Decides whether a developer platform should ship an official IDE e
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # IDE Extension Offering
@@ -217,3 +217,4 @@ A release ships only when every gate passes:
 - `samber/developer-platform-skills@api-integration-surface-strategy` - whether the editor belongs in the surface roadmap at all.
 - `samber/developer-platform-skills@github-action-offering` - the same thin-wrapper-over-CLI pattern for CI.
 - `samber/developer-platform-skills@agent-skill-offering` - shipping an Agent Skill beside the CLI the extension wraps.
+- `samber/developer-platform-skills@chrome-web-store-playbook` - a browser extension instead of an editor one: Chrome Web Store review, permissions and enterprise distribution.
