@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that Hub downloads count requests on query files rather than people, so 2.1M cannot be read as developers",
+        "evidence": "\"Downloads are not developers... any GET or HEAD on a query file\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Hub and PyPI download counts use different counting rules and cannot be summed",
+        "evidence": "\"Hub and PyPI use different counting rules, so the playbook says never add them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a Hub download is a GET or HEAD request on a query file such as config.json",
+        "evidence": "\"any GET or HEAD on a query file (`config.json` by default)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Hub download counts are not deduplicated by user",
+        "evidence": "\"It isn't deduplicated\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that clones, CI runs or cache misses can inflate the download count",
+        "evidence": "\"a clone or a CI cache miss counts\"; CI pipeline re-pulling example.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that likes and downloads measure different things (attention to new releases vs ongoing pipeline usage)",
+        "evidence": "\"Likes go to new frontier releases in their first weeks. Downloads accrue to small, stable models over years.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not conclude the launch failed from the like count alone",
+        "evidence": "\"don't tell the board the launch flopped\"; \"The comparison is not like-for-like.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes reporting likes, downloads and other numbers as separate lines with their counting rules",
+        "evidence": "\"List likes, downloads and Space visits as three separate lines, each with its counting rule.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes derivatives in the model tree (fine-tunes, quantizations, adapters) as an adoption signal",
+        "evidence": "\"Derivatives on the Hub... best adoption signal for an open model.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that unique downloader data is only available as a paid Enterprise-tier log export or similar paid analytics",
+        "evidence": "\"Unique downloaders exist only as an Enterprise Plus log export.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Suggests a defensible replacement slide label such as 'Hub downloads (non-deduplicated)'",
+        "evidence": "\"2.1M model downloads (non-deduplicated)\" is true.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that Hub downloads count requests on query files rather than people, so 2.1M cannot be read as developers",
+        "evidence": "\"Hugging Face counts requests, not unique people.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Hub and PyPI download counts use different counting rules and cannot be summed",
+        "evidence": "\"You're also adding two different units: model-file requests plus package installs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a Hub download is a GET or HEAD request on a query file such as config.json",
+        "evidence": "No mention of the GET/HEAD request or config.json.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Hub download counts are not deduplicated by user",
+        "evidence": "\"Neither source gives you unique people\" and the footnote \"not deduplicated\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that clones, CI runs or cache misses can inflate the download count",
+        "evidence": "\"One developer, one CI pipeline, or one Docker rebuild can generate thousands of downloads.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that likes and downloads measure different things (attention to new releases vs ongoing pipeline usage)",
+        "evidence": "\"Likes are a social bookmark. Adoption shows up in downloads, derivatives, and usage.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not conclude the launch failed from the like count alone",
+        "evidence": "\"The 'flop' claim isn't supported by 140 likes vs 3,000+.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes reporting likes, downloads and other numbers as separate lines with their counting rules",
+        "evidence": "\"Footnote every metric with its source and what it counts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes derivatives in the model tree (fine-tunes, quantizations, adapters) as an adoption signal",
+        "evidence": "\"Derivatives: fine-tunes, quantizations, and Spaces built on the model.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that unique downloader data is only available as a paid Enterprise-tier log export or similar paid analytics",
+        "evidence": "Not mentioned; it only suggests the team's own logs.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Suggests a defensible replacement slide label such as 'Hub downloads (non-deduplicated)'",
+        "evidence": "\"Monthly downloads: 2.4M (Hugging Face 2.1M + PyPI 310k)\", footnote: \"not deduplicated, includes automated installs\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

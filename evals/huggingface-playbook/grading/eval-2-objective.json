@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends an open repo or an automatic-approval click-through gate instead of manual approval for this Apache-2.0 model",
+        "evidence": "\"Don't set up the lead gate. Release the model open\"; click-through with automatic approval offered as fallback.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Hugging Face grants gated access to individual users, not to whole companies",
+        "evidence": "\"Access is granted per person, not per company.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points out that every engineer and CI job at an adopting company would need its own approved account or token",
+        "evidence": "\"Every engineer, notebook and CI job at a prospect must request access separately... has set a token.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that rejected users cannot request access again",
+        "evidence": "No mention of rejected users being unable to re-request access.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that gating shares requesters' username and email by default and makes the publisher responsible for that personal data",
+        "evidence": "\"Gating hands you requesters' email addresses and the duty to handle them.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions linking or publishing a privacy policy or notice if personal data is collected",
+        "evidence": "\"That means a privacy notice, a retention rule, a review queue and an SDR-hours cost.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents gate options ordered by adoption cost (open first, manual or external approval last)",
+        "evidence": "Gate table orders Open (+++), automatic click-through (++), manual (-), own-system approval (---).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a compliance or legal cost dimension in the comparison",
+        "evidence": "Gate table has a \"Compliance\" column (+, ++, ---, ---).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends capturing sales interest via a link in the model card or pinned FAQ to the company's own form",
+        "evidence": "\"Card and pinned FAQ: add a 'commercial support, SLA or hosted API' link to your own form.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that username and email collection can be turned off in the gating settings",
+        "evidence": "\"use the skill's template with automatic approval and username and email collection off\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not provide an extra_gated_fields block asking for phone number as the recommended configuration",
+        "evidence": "The only extra_gated_fields block is `I accept the license terms: checkbox`.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends an open repo or an automatic-approval click-through gate instead of manual approval for this Apache-2.0 model",
+        "evidence": "\"Release the model ungated\" and \"Use auto-approval with minimal fields.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Hugging Face grants gated access to individual users, not to whole companies",
+        "evidence": "Not stated anywhere in the transcript.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points out that every engineer and CI job at an adopting company would need its own approved account or token",
+        "evidence": "It only says tooling \"all need an HF_TOKEN\"; it does not say each person or job needs its own approved account.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that rejected users cannot request access again",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that gating shares requesters' username and email by default and makes the publisher responsible for that personal data",
+        "evidence": "The prompt text says \"Your Hugging Face email is shared with Brightwell Data\", but it never states the default sharing or the publisher's responsibility for the data.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions linking or publishing a privacy policy or notice if personal data is collected",
+        "evidence": "\"See our privacy notice: <URL>\" and \"Put the privacy notice and the retention period in the form.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents gate options ordered by adoption cost (open first, manual or external approval last)",
+        "evidence": "Ungated is \u00a72, the light auto gate is \u00a73, and the manual gate on a separate pack comes last.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a compliance or legal cost dimension in the comparison",
+        "evidence": "\"get legal and privacy to review the form text, the data retention policy and the lawful basis\" and the GDPR point on phone numbers",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends capturing sales interest via a link in the model card or pinned FAQ to the company's own form",
+        "evidence": "\"Add an opt-in call to action at the top of the model card... with a link to a short form\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that username and email collection can be turned off in the gating settings",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not provide an extra_gated_fields block asking for phone number as the recommended configuration",
+        "evidence": "\"Drop phone and team size.\" The YAML has company, use-case select and a checkbox only.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States there is no setting a model owner can toggle to enable the inference widget",
+        "evidence": "\"There is no setting for this.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the widget appears only when at least one Inference Provider serves the model",
+        "evidence": "\"The widget appears only when an Inference Provider serves the model.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Inference Providers decide themselves which models they deploy",
+        "evidence": "\"providers 'autonomously choose' what they deploy\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the 'Ask for provider support' request on the model page",
+        "evidence": "Item 1: Request provider support with a template.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding example outputs to the card via the widget YAML metadata",
+        "evidence": "\"The card's `widget:` YAML supports `output` examples.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a Space demo linked to the model (models: in the Space README) as the try-it path for the webinar",
+        "evidence": "Item 4: \"List `kestrel-ai/kestrel-vision-2b` under `models:` in the Space README\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions checking whether the org plan allows a Gradio Space or using a Static Space",
+        "evidence": "\"Static Spaces... free for everyone. Gradio and Docker Spaces need Team or Enterprise for an org.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions self-hosting (e.g. Inference Endpoints, TGI or vLLM) as a fallback",
+        "evidence": "\"Use Inference Endpoints, TGI or vLLM.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not promise the widget will be live by the webinar date",
+        "evidence": "\"This is a request, not a guarantee. Don't put 'try it live on the Hub box' in the webinar plan.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks or mentions that correct pipeline_tag and model metadata are prerequisites for a widget",
+        "evidence": "Item 2 lists `pipeline_tag`, `library_name`, `license`, and says missing metadata hurts the widget.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States there is no setting a model owner can toggle to enable the inference widget",
+        "evidence": "\"There's no toggle for this.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the widget appears only when at least one Inference Provider serves the model",
+        "evidence": "\"The box only appears if a provider serves your model.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Inference Providers decide themselves which models they deploy",
+        "evidence": "\"Providers choose models mostly by demand and architecture support.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the 'Ask for provider support' request on the model page",
+        "evidence": "It only says \"You can ask providers directly, or ask the HF team through your org contact\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding example outputs to the card via the widget YAML metadata",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a Space demo linked to the model (models: in the Space README) as the try-it path for the webinar",
+        "evidence": "\"Link it from the model by adding `models: [kestrel-ai/kestrel-vision-2b]` to the Space's README metadata.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions checking whether the org plan allows a Gradio Space or using a Static Space",
+        "evidence": "It suggests ZeroGPU or a GPU for the Space but does not mention plan limits or a Static Space.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions self-hosting (e.g. Inference Endpoints, TGI or vLLM) as a fallback",
+        "evidence": "\"Dedicated Inference Endpoint... gives you a real API you can call live.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not promise the widget will be live by the webinar date",
+        "evidence": "\"Don't count on the serverless box.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Checks or mentions that correct pipeline_tag and model metadata are prerequisites for a widget",
+        "evidence": "\"Confirm `pipeline_tag` is set... Without it, no widget can render.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

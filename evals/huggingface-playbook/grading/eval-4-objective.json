@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the model likely falls under the EU AI Act general-purpose AI model obligations (training compute above about 1e23 FLOP and generates text)",
+        "evidence": "\"provider of a general-purpose AI model\"; 3\u00d710\u00b2\u00b3 above indicative 10\u00b2\u00b3 and model generates text.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the open-source exemption requires a free and open-source license without monetisation",
+        "evidence": "\"The exemption needs a free and open-source license with no monetisation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concludes the paid-above-$5M term likely disqualifies the exemption",
+        "evidence": "\"A paid tier above $5M is monetisation\"; \"open-source exemption likely does not apply\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a copyright policy is required even for exempt open-source models",
+        "evidence": "Relicense alternative: \"You would still owe the copyright policy and the public training-data summary.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a public training-data summary (on the AI Office template) is required even for exempt open-source models",
+        "evidence": "Same sentence names the public training-data summary.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the 2 August 2025 application date of the obligations",
+        "evidence": "\"Obligations apply since 2 August 2025\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the systemic-risk threshold (around 1e25 FLOP) is not reached at 3e23",
+        "evidence": "\"You are far below the presumption threshold of 10\u00b2\u2075 FLOP. No systemic-risk duties apply.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets license: other with license_name and license_link (or a LICENSE file) in the card metadata",
+        "evidence": "YAML: `license: other`, `license_name: lumiere-open-license`, `license_link: LICENSE`.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists what the open-source exemption covers: technical documentation for authorities, documentation for downstream providers, and the EU authorised representative",
+        "evidence": "Lists technical documentation and downstream information as duties owed, but never states these are what the exemption would lift. Authorised representative is mentioned only as 'not needed'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends linking the training-data summary and copyright policy from the model card",
+        "evidence": "\"Link the copyright policy... Link the public training-data summary\" in the card body section 6.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that the Commission enforces the GPAI obligations, including fines, from 2 August 2026",
+        "evidence": "\"the Commission has enforced them, including fines, since 2 August 2026\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the model likely falls under the EU AI Act general-purpose AI model obligations (training compute above about 1e23 FLOP and generates text)",
+        "evidence": "\"A model trained with more than 1e23 FLOP that generates text is presumed general-purpose. At about 3e23 FLOP you pass that test.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the open-source exemption requires a free and open-source license without monetisation",
+        "evidence": "Art. 53(2) exempts only a \"free and open-source licence\"; \"monetisation takes a model out of the exemption.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concludes the paid-above-$5M term likely disqualifies the exemption",
+        "evidence": "\"Paid above $5M revenue | This is monetisation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a copyright policy is required even for exempt open-source models",
+        "evidence": "Table row (c) copyright policy: \"Exemption would have removed it? No\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a public training-data summary (on the AI Office template) is required even for exempt open-source models",
+        "evidence": "Row (d): \"Public training-content summary, using the Commission's template\" \u2014 \"No\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the 2 August 2025 application date of the obligations",
+        "evidence": "\"the obligations have applied since 2 Aug 2025\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the systemic-risk threshold (around 1e25 FLOP) is not reached at 3e23",
+        "evidence": "\"the presumption starts at 1e25 FLOP, and you are about 33 times below it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets license: other with license_name and license_link (or a LICENSE file) in the card metadata",
+        "evidence": "YAML: `license: other`, `license_name: lumiere-open-license`, `license_link: LICENSE`",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists what the open-source exemption covers: technical documentation for authorities, documentation for downstream providers, and the EU authorised representative",
+        "evidence": "It lists technical documentation and downstream information as exempt, but never mentions the EU authorised representative.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends linking the training-data summary and copyright policy from the model card",
+        "evidence": "Card body: \"Training content summary: <link>\" and \"Copyright policy... <link>\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that the Commission enforces the GPAI obligations, including fines, from 2 August 2026",
+        "evidence": "\"The AI Office has had enforcement powers since 2 Aug 2026.\" and \"Fines: up to 3% of worldwide turnover or \u20ac15M\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

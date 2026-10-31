@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States the Commission's indicative test covers models that generate language including audio, so a text-to-speech model is inside the modality test",
+        "evidence": "\"language (text or audio)... TTS generates audio, so it sits inside the modality test.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that 2e23 FLOP is above the roughly 1e23 FLOP indicative threshold",
+        "evidence": "\"Your 2e23 is about 2x the threshold\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a public Hugging Face repo downloadable from the EU places the model on the EU market regardless of customer location",
+        "evidence": "\"A public Hub repo can be downloaded in the EU, which places the model on the EU market.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the extra_gated_eu_disallowed EU block is not an AI Act exemption or opt-out",
+        "evidence": "\"It is a license-distribution control, not an AI Act opt-out.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the EU block only works on gated repos, so it would force a gate on an Apache-2.0 model",
+        "evidence": "\"only works on gated repos... would also force you to gate an Apache-2.0 model\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Concludes the Apache-2.0 release likely qualifies for the open-source exemption if weights and usage information are public and it is not systemic-risk",
+        "evidence": "\"Apache-2.0 and 2e23 fit those conditions.\" Exemption lifts documentation duties.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the copyright policy obligation still applies under the exemption",
+        "evidence": "\"The copyright policy and the public training-data summary still apply.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the public training-data summary still applies under the exemption",
+        "evidence": "Same sentence; \"Duties that apply either way\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a non-EU provider outside the exemption would need an EU authorised representative",
+        "evidence": "\"Non-EU providers outside the exemption also owe an EU authorised representative.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes pipeline_tag text-to-speech and library_name in the card metadata checklist",
+        "evidence": "Checklist: `pipeline_tag: text-to-speech`, `library_name` set explicitly.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends linking the training-data summary and copyright policy from the model card",
+        "evidence": "\"Links to the copyright policy and training-data summary.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends counsel re-check the conclusion given the corrected premises",
+        "evidence": "\"counsel makes the final call. They should work from the points below.\"; \"Counsel confirms the exemption\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States the Commission's indicative test covers models that generate language including audio, so a text-to-speech model is inside the modality test",
+        "evidence": "\"the model generates language, in text or audio. Your ~2e23 FLOP speech model meets both parts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that 2e23 FLOP is above the roughly 1e23 FLOP indicative threshold",
+        "evidence": "\"training compute above 1e23 FLOP... Your ~2e23 FLOP speech model meets both parts\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a public Hugging Face repo downloadable from the EU places the model on the EU market regardless of customer location",
+        "evidence": "\"Customers aren't the test... a public Hugging Face repo does that.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the extra_gated_eu_disallowed EU block is not an AI Act exemption or opt-out",
+        "evidence": "It says the block \"may not satisfy the Act\" and \"I couldn't verify that Hugging Face offers a native country block\"; it never names the setting.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the EU block only works on gated repos, so it would force a gate on an Apache-2.0 model",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Concludes the Apache-2.0 release likely qualifies for the open-source exemption if weights and usage information are public and it is not systemic-risk",
+        "evidence": "\"I'd lean to A + C: the exemption is available\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the copyright policy obligation still applies under the exemption",
+        "evidence": "\"Required even with the open-source exemption: Copyright policy\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the public training-data summary still applies under the exemption",
+        "evidence": "\"Public training-content summary, using the Commission's template\" under the same heading",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a non-EU provider outside the exemption would need an EU authorised representative",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes pipeline_tag text-to-speech and library_name in the card metadata checklist",
+        "evidence": "The checklist has no pipeline_tag or library_name entries.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends linking the training-data summary and copyright policy from the model card",
+        "evidence": "\"Copyright policy, published or linked\" in the model card checklist",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends counsel re-check the conclusion given the corrected premises",
+        "evidence": "\"Get counsel's written answer to the three questions first.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
