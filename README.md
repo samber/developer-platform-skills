@@ -159,6 +159,7 @@ This collection covers the full developer-platform surface.
 
 ### Integration partnerships
 
+- [`google-workspace-marketplace-playbook`](./skills/google-workspace-marketplace-playbook): Takes a vendor's Google Workspace integration through OAuth verification and onto the Workspace Marketplace: scope tiers, CASA assessment, listing review, and admin install.
 - [`integration-listing-optimization`](./skills/integration-listing-optimization): Optimizes a vendor's listing on a third-party app marketplace: funnel instrumentation, indexed keyword placement, media ordering, reviews, and badges.
 - [`integration-partnership-strategy`](./skills/integration-partnership-strategy): Decides which technology partners to integrate with and how deep each goes, using a demand-data scorecard, depth ladder, and pipeline attribution.
 - [`partner-app-onboarding`](./skills/partner-app-onboarding): Designs the partner-developer journey from signup to first submitted app: entry gate, sandbox provisioning, education, support ladder, and funnel checkpoints.

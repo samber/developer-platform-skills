@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Attributes the double permission prompt to scopes that differ between the manifest, Marketplace SDK and consent screen",
+        "evidence": "\"The usual cause is scope drift between the three places that must be identical.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that users at the three customer companies can get the add-on only after public approval, since a Testing pilot reaches them only through a web app's own OAuth flow",
+        "evidence": "\"This covers only what your web app does. It does not deliver the Sheets add-on to those users\"; \"add-on access arrives after approval\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the privacy policy to be on the same domain as the homepage and the same URL as on the consent screen",
+        "evidence": "\"Publish a dedicated privacy policy page on the same domain as your homepage\"; \"Use the same URL in three places\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the reviewer test account to carry sample data reaching the scoped features",
+        "evidence": "\"Create a dedicated reviewer account on your service with sample data already loaded.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that public or private visibility cannot be changed after it is saved",
+        "evidence": "\"Visibility is permanent once saved.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a private listing is only available to the publisher's own organization, so it cannot serve three customer companies",
+        "evidence": "\"Private listings only serve the publisher's own organization, never customers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a consumer Gmail account can only publish publicly",
+        "evidence": "\"A consumer Gmail account can publish only public.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the Cloud project into an organization resource with at least two owners",
+        "evidence": "\"Move the existing project into a Google Cloud organization... Set at least two Owners.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing every point in the review document before a single resubmission",
+        "evidence": "Title: \"Fix the three review points... Resubmit once as a public listing\"; plan says \"resubmit once\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that Testing status must be switched to In production before resubmitting",
+        "evidence": "\"Testing status is a named rejection cause. Switch to **In production** before submitting.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Attributes the double permission prompt to scopes that differ between the manifest, Marketplace SDK and consent screen",
+        "evidence": "'The `oauthScopes` in `appsscript.json` differ from the scopes declared in the Marketplace SDK and on the OAuth consent screen. Make all three lists identical.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that users at the three customer companies can get the add-on only after public approval, since a Testing pilot reaches them only through a web app's own OAuth flow",
+        "evidence": "It recommends an unverified-app pilot with test users and 'share a test deployment or install link'. This contradicts the rubric point.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the privacy policy to be on the same domain as the homepage and the same URL as on the consent screen",
+        "evidence": "'Host it on the same verified domain as your homepage... Use the same URL in the Marketplace SDK listing and on the OAuth consent screen.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the reviewer test account to carry sample data reaching the scoped features",
+        "evidence": "'Pre-load it with sample data so the add-on does something on the first run.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that public or private visibility cannot be changed after it is saved",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a private listing is only available to the publisher's own organization, so it cannot serve three customer companies",
+        "evidence": "'A private listing installs only for users in the publisher's own Workspace domain.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a consumer Gmail account can only publish publicly",
+        "evidence": "It says only 'Private visibility may not even be selectable there', which is hedged.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the Cloud project into an organization resource with at least two owners",
+        "evidence": "It recommends migrating to a Cloud org but never mentions two owners.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing every point in the review document before a single resubmission",
+        "evidence": "'Step 1: fix the three rejection reasons (one resubmission)'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that Testing status must be switched to In production before resubmitting",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
