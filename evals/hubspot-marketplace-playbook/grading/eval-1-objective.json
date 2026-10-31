@@ -1,0 +1,118 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the Linkwise connector as described is not eligible for a HubSpot Marketplace listing",
+        "evidence": "\"## Verdict: excluded\" and \"HubSpot excludes this architecture.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names white-label or invisibly embedded integration infrastructure as the excluded category",
+        "evidence": "\"White-label integrations embedded invisibly in another vendor's product.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names developer-only infrastructure or credential/token brokering as a further excluded pattern",
+        "evidence": "\"Token or credential brokering.\" and \"Developer-only infrastructure.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not produce a submission timeline or listing packet for the connector as described",
+        "evidence": "\"Do not plan a Linkwise listing at all\"; the review-time line is only a side note, and the packet checklist is for the customers' own apps.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the 400 connected portals do not change eligibility",
+        "evidence": "\"No install count cures an excluded architecture, so 400 portals changes nothing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers an alternative: Linkwise's customers listing their own branded apps under their own app ID and OAuth client",
+        "evidence": "\"Each customer gets their own developer account, branded app, and OAuth client with marketplace distribution.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a listing must use a single HubSpot app ID tied to the listing and must not redirect to or depend on another app",
+        "evidence": "It says \"One app ID and one OAuth client per listing\" but never says a listing must not redirect to or depend on another app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not claim HubSpot charges a listing fee or revenue share",
+        "evidence": "No fee or revenue share is mentioned anywhere.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks quoted HubSpot figures or rules with a verify-against-current-docs flag",
+        "evidence": "\"\u2020 Verify against current HubSpot developer docs and changelog.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the Linkwise connector as described is not eligible for a HubSpot Marketplace listing",
+        "evidence": "\"Submitting next week is feasible.\" It treats the white-label issue as a fixable risk, not as ineligibility.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names white-label or invisibly embedded integration infrastructure as the excluded category",
+        "evidence": "It calls white-label a \"structural risk\" to solve with a landing page. It never says the category is excluded.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names developer-only infrastructure or credential/token brokering as a further excluded pattern",
+        "evidence": "No mention of an excluded infrastructure or token-brokering pattern.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not produce a submission timeline or listing packet for the connector as described",
+        "evidence": "It gives a \"Day-by-day schedule\" from Day 1 to Day 5, including listing content and submission.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the 400 connected portals do not change eligibility",
+        "evidence": "\"If the 400 portals sit under one app, they count.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers an alternative: Linkwise's customers listing their own branded apps under their own app ID and OAuth client",
+        "evidence": "The alternatives are Option A and Option B, both for Linkwise's own listing. Customers listing their own apps is not offered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that a listing must use a single HubSpot app ID tied to the listing and must not redirect to or depend on another app",
+        "evidence": "Decision 3 covers one app ID. Option A \"deep-links into each one\" (the host apps), which is the dependency the rubric forbids.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not claim HubSpot charges a listing fee or revenue share",
+        "evidence": "No fee or revenue share is mentioned.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks quoted HubSpot figures or rules with a verify-against-current-docs flag",
+        "evidence": "\"I wrote this from memory... I marked the items to verify on day 1.\" Also \"(I recall 60)\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

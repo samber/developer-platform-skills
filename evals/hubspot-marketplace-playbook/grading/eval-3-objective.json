@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that legacy (pre-projects) public apps are rejected for new listings from a dated enforcement point, marked to verify",
+        "evidence": "\"From November 2, 2026\u2020, HubSpot rejects legacy public apps for new listings.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that migrating an unlisted app with more than 25 installs enforces the 25-install cap",
+        "evidence": "\"Migrating an unlisted app enforces the 25-install cap\u2020, and you have about 115 installs above it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to contact HubSpot (support request, technology partner team or partner manager) before running the migration",
+        "evidence": "\"Open a support request, or write to your Technology Partner Manager\" and \"Do not run `hs app migrate` until you have their answer in writing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend listing the app as-is on the legacy architecture",
+        "evidence": "\"Legacy apps can't list... Migration is mandatory, not optional.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that classic CRM cards block new listings and must be converted to app cards",
+        "evidence": "\"Classic CRM cards can't list either. They are banned for new listings\u2020, so they must become app cards.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts listing after migration to the developer platform in the recommended sequence",
+        "evidence": "Phase 2 (migrate) comes before Phase 4 (submit listing).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts agent tools after the app is on the developer platform",
+        "evidence": "\"App cards and agent tools exist only on the developer platform (projects)... So migration comes first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that agent tools need their own HubSpot review before a listed app can deploy them",
+        "evidence": "\"They carry their own review\" and \"the review form is separate\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends migrating to a currently supported platform version rather than an older projects version",
+        "evidence": "\"Target platform version 2026.09\u2020... Don't chase 2027.03.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that legacy public apps can no longer be created, so a new legacy app is not an option",
+        "evidence": "\"Legacy public apps can no longer be created\u2020, so there is no throwaway legacy app\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that legacy (pre-projects) public apps are rejected for new listings from a dated enforcement point, marked to verify",
+        "evidence": "It only asks for the \"Sunset date for classic CRM cards and legacy apps\". It does not say legacy listings are rejected.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that migrating an unlisted app with more than 25 installs enforces the 25-install cap",
+        "evidence": "It recommends in-place migration keeping 140 installs and does not mention the 25-install cap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says to contact HubSpot (support request, technology partner team or partner manager) before running the migration",
+        "evidence": "No step to contact HubSpot before migrating.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend listing the app as-is on the legacy architecture",
+        "evidence": "\"Order: migrate, then agent tools, then list.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that classic CRM cards block new listings and must be converted to app cards",
+        "evidence": "It plans to rebuild the cards as UI extensions but does not say classic cards block listings.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts listing after migration to the developer platform in the recommended sequence",
+        "evidence": "\"Order: migrate, then agent tools, then list.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts agent tools after the app is on the developer platform",
+        "evidence": "\"Agent tools need the new platform. So migrate first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that agent tools need their own HubSpot review before a listed app can deploy them",
+        "evidence": "No separate agent-tool review is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends migrating to a currently supported platform version rather than an older projects version",
+        "evidence": "No platform version guidance is given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that legacy public apps can no longer be created, so a new legacy app is not an option",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
