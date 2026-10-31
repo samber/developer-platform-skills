@@ -1,0 +1,330 @@
+{
+  "skill_name": "chrome-web-store-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Ticketly, a helpdesk SaaS (~400 customers). Our first Chrome extension adds a sidebar on customers' own support portals (each customer has a different domain) so agents can see Ticketly context. Manifest right now: host_permissions [\"<all_urls>\"], permissions [\"tabs\", \"cookies\", \"storage\", \"scripting\"]. We're demoing it on stage at SupportConf in 9 days and plan to submit to the Chrome Web Store tomorrow and hit publish the morning of the talk. Can you give me a launch checklist?",
+      "expected_output": "Reworks host access (own origins required, customer domains optional at runtime, activeTab), questions tabs and cookies, warns that review can take weeks and plans staged publishing and a fallback, without cancel-resubmit.",
+      "files": [],
+      "expectations": [
+        "Recommends replacing <all_urls> with required host permissions limited to Ticketly's own domains",
+        "Recommends requesting customer portal domains as optional host permissions at runtime from a user gesture (permissions.request)",
+        "Mentions activeTab as an alternative for click-triggered access",
+        "States or ranks host-access options in an explicit order from narrowest/most efficient to broad patterns",
+        "Flags that broad host patterns lengthen review or draw closer review",
+        "Questions whether the tabs permission is needed, noting host access or activeTab may already cover it",
+        "Questions whether the cookies permission is needed (e.g. not needed for document.cookie)",
+        "States that review can take from a few days up to a few weeks, not a guaranteed 1-3 days",
+        "Recommends unticking auto-publish (deferred/staged publishing) so the approved build is published on demo day",
+        "States that a staged approved build must be published within 30 days or it reverts to draft",
+        "Warns against cancelling and resubmitting a pending review because it resets the queue position",
+        "Provides a fallback if approval does not land before the talk (e.g. demo from an unpacked/local build or announce 'coming soon')",
+        "Asks for or includes reviewer test credentials in the Test instructions tab because the sidebar needs a Ticketly login",
+        "Includes writing one justification per permission naming the user-facing feature"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our extension (Clearpath, B2B analytics) just got rejected, email says 'Yellow Magnesium - functionality not working'. It works fine for us! The extension needs you to sign in with your company Okta SSO and our free trial is 7 days. I'm furious, I want to file an appeal today saying the reviewer is wrong. Draft the appeal?",
+      "expected_output": "Diagnoses the login wall as the likely cause, steers to fixing test access and resubmitting rather than spending the single appeal, and specifies a reviewer test account without SSO, MFA or expiry plus an account-required state.",
+      "files": [],
+      "expectations": [
+        "Identifies the SSO login wall or expiring trial as the likely reason the reviewer could not exercise the features",
+        "States that each violation can be appealed only once",
+        "Recommends fixing and resubmitting (or asking support for clarification) before using the appeal",
+        "Recommends filling the Test instructions tab with reviewer credentials",
+        "Specifies a reviewer account that does not depend on SSO-only login",
+        "Specifies a reviewer account that does not require MFA",
+        "Specifies an account that does not expire before review completes (permanent rather than a 7-day trial)",
+        "Recommends seeding the demo tenant with data so every feature can be reached",
+        "Recommends showing an 'account required, sign in' state inside the extension",
+        "Recommends testing the exact packed package that was uploaded",
+        "Mentions checking that server allowlists or network restrictions do not block reviewers",
+        "If an appeal is drafted, it includes concrete evidence (steps, recording or code references) rather than only asserting the reviewer is wrong",
+        "Notes that the rejection leaves the live listing or previously published version unchanged"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our Chrome extension Notewise has about 42,000 weekly users. Next release adds a 'capture from any tab' feature, so I'm adding \"tabs\" and host permission \"https://*/*\" to the manifest, plus we're migrating chrome.storage.local from v1 schema to v2 (old keys deleted). Planning to push it Friday to everyone. Anything I should watch for?",
+      "expected_output": "Warns that new warning-triggering permissions disable the extension for all users until they accept, recommends optional permissions behind an enable button, partial rollout, and notes rollback is unsafe with the destructive storage migration.",
+      "files": [],
+      "expectations": [
+        "Warns that adding a permission that triggers a new install warning disables the extension for existing users until they accept it",
+        "Recommends moving the new access to optional permissions or optional host permissions requested at runtime",
+        "States that adding optional permissions does not disable the extension",
+        "Recommends gating the feature behind an in-product enable action that triggers the permission request",
+        "Recommends testing the upgrade locally by packing two CRX versions (old and new)",
+        "Recommends a partial rollout, noting eligibility above 10,000 seven-day active users",
+        "States that raising the rollout percentage does not need a new review",
+        "Describes rollback as republishing the previous version under a new higher version number",
+        "Warns that deleting the v1 storage keys makes rollback break or lose data, and recommends a backward-compatible migration",
+        "Notes that rollback discards pending submissions or an in-progress partial rollout",
+        "Notes the update goes through full review again, so Friday publication is not guaranteed",
+        "Questions whether tabs is needed if host permissions or activeTab already cover the feature"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "We're Brightdesk, a white-label customer engagement platform. We just created a Chrome Web Store developer account. Plan is one public extension per customer, each with the customer's logo and name, 30 customers at launch, same code underneath with a config file swapped. Our enterprise customers' IT teams want to push the extension to all employees. How do we set this up in the store?",
+      "expected_output": "Flags repetitive-content risk and the two-slot default limit, ranks organization publishing plus admin force-install and a single tenant-configured extension above per-customer listings, and specifies the labelled white-label exception if used.",
+      "files": [],
+      "expectations": [
+        "States that separate public listings with the same functionality per customer violate the repetitive content policy",
+        "Warns that abuse of repetitive-content exceptions can lead to account-level suspension",
+        "States that new publishers have a default limit of two extension slots and increases must be requested",
+        "Recommends private publishing to the customer's organization via the approval link (organization publishing)",
+        "Mentions that customer admins can force-install the extension by policy",
+        "Offers a single extension configured per tenant at sign-in as an alternative to per-customer builds",
+        "Ranks the distribution options in an explicit order rather than listing them flat",
+        "States that a white-label per-customer build must be unlisted and distributed directly to the client",
+        "Gives the required exception statement text for white-label builds in the description and single purpose field",
+        "Notes that if a customer revokes organization approval, the item stays published but can no longer be updated",
+        "Says it is undocumented whether private or organization-published items count toward the item limit and recommends asking support",
+        "Recommends declaring as a trader with company details (shown publicly to EU users)"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "After reading about the Cyberhaven extension hack, our CISO asked me to review how we publish our Chrome extension (80k users, mostly enterprise). Current state: the developer account is a former engineer's personal Gmail (he left but still shares the password with us via 1Password), 2FA is on, and we upload zips manually from a laptop. What should change?",
+      "expected_output": "Explains the OAuth-consent attack path that MFA did not stop, recommends verified CRX uploads with an offline key, moving off the personal account via item transfer, member roles, Workspace third-party app restrictions, and release monitoring.",
+      "files": [],
+      "expectations": [
+        "Explains that the Cyberhaven compromise came from an employee granting OAuth consent to a malicious app with Chrome Web Store publish access",
+        "Notes that 2-Step Verification did not prevent that OAuth-consent attack",
+        "Recommends opting in to Verified CRX Uploads so only packages signed with the vendor's private key are accepted",
+        "Recommends storing the signing key outside the Google account (CI secrets or HSM)",
+        "Notes that a lost signing key takes up to about a week to replace through support",
+        "States that the developer account email cannot be changed and the fix is a new company-owned account plus an item transfer",
+        "Recommends adding teammates as publisher members with roles instead of sharing one login",
+        "Recommends restricting third-party app access in Google Workspace so unverified apps cannot obtain the Chrome Web Store scope",
+        "Recommends publishing from CI rather than manual laptop uploads",
+        "Recommends alerting on any published version that CI did not produce",
+        "Recommends a rollback runbook",
+        "Notes that approved updates reach installed users without a holding period"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Shipping v1 of Leadhound's Chrome extension (it enriches LinkedIn profiles with our B2B data). To keep things light we load our analytics snippet and the Intercom widget from their CDNs at runtime, and we run javascript-obfuscator on the build so competitors can't copy our scoring logic. In the Privacy tab I was going to tick 'does not collect user data' since we only send page URLs to our API for matching. Sanity check before I submit?",
+      "expected_output": "Flags remote code (Blue Argon), obfuscation (Red Titanium), and the false privacy disclosure; explains that page URLs are browsing activity needing disclosure and a user-facing purpose; asks for a privacy policy and Limited Use statement.",
+      "files": [],
+      "expectations": [
+        "Flags loading analytics or Intercom scripts from a CDN at runtime as remotely hosted code that gets rejected (Blue Argon)",
+        "Recommends bundling those scripts inside the package or dropping them",
+        "States that fetching remote configuration or data is allowed while remote logic is not",
+        "Flags the obfuscator as a policy violation (Red Titanium) and states minification is allowed",
+        "States that sending page URLs to the API is collection of user data / web browsing activity that must be disclosed",
+        "States that browsing-activity collection is only allowed for a user-facing feature described prominently in the listing and UI",
+        "States that ticking 'does not collect user data' would mismatch the code and risk rejection or removal",
+        "Recommends disclosing analytics and the Intercom data flow in the Privacy tab data types",
+        "Requires a privacy policy linked in the dedicated Privacy field, not only in the description",
+        "Mentions the Limited Use statement on the vendor's own website",
+        "Mentions prominent disclosure and consent before collecting data that is not obvious from the listing",
+        "Notes that data must be transmitted securely (HTTPS)"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "how do I get our company's chrome extension approved on the chrome web store? first time submitting",
+      "should_trigger": true
+    },
+    {
+      "query": "Chrome Web Store rejected our extension with 'Purple Potassium'. What does that mean and how do we fix it?",
+      "should_trigger": true
+    },
+    {
+      "query": "our extension got taken down from the chrome store yesterday, email mentions Blue Argon, we're a B2B SaaS and customers are screaming",
+      "should_trigger": true
+    },
+    {
+      "query": "we need <all_urls> because the extension runs on every customer's CRM domain, will google reject that?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Chrome extension has been 'Pending review' for 19 days. Should I cancel and resubmit?",
+      "should_trigger": true
+    },
+    {
+      "query": "what do I put in the Privacy practices tab for single purpose and permission justifications? extension is a companion to our SaaS app",
+      "should_trigger": true
+    },
+    {
+      "query": "reviewers can't log into our extension because we use SAML SSO, how do we give the Chrome Web Store team access?",
+      "should_trigger": true
+    },
+    {
+      "query": "We're adding a new permission to our extension in the next release, 60k users. Is there any risk?",
+      "should_trigger": true
+    },
+    {
+      "query": "how does partial rollout work on the chrome web store and can I roll back a bad extension release?",
+      "should_trigger": true
+    },
+    {
+      "query": "dashboard says I've reached my extension limit of 2, we want to publish a third extension for our new product",
+      "should_trigger": true
+    },
+    {
+      "query": "Can we ship a white-labeled version of our browser extension to each enterprise customer through the Chrome Web Store?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do I publish our Chrome extension privately to a customer's Google Workspace org so their IT can force install it?",
+      "should_trigger": true
+    },
+    {
+      "query": "after the Cyberhaven incident, how should we lock down the account that publishes our chrome extension?",
+      "should_trigger": true
+    },
+    {
+      "query": "What are verified CRX uploads and should our team turn them on?",
+      "should_trigger": true
+    },
+    {
+      "query": "we want a beta channel for our extension alongside the production one, can we list both on the web store?",
+      "should_trigger": true
+    },
+    {
+      "query": "Got a warning email from Chrome Web Store saying our extension will be removed in 14 days for a user data policy violation, what now?",
+      "should_trigger": true
+    },
+    {
+      "query": "our extension minifies with terser and Google flagged it as obfuscated code, how do I respond?",
+      "should_trigger": true
+    },
+    {
+      "query": "is it worth appealing a chrome web store rejection or should we just resubmit?",
+      "should_trigger": true
+    },
+    {
+      "query": "planning the launch of our devtool's browser extension, we want it live on a fixed date for Product Hunt; how far ahead must we submit to the store?",
+      "should_trigger": true
+    },
+    {
+      "query": "Do we need to verify as a trader for the chrome web store? we're a US B2B SaaS selling in the EU",
+      "should_trigger": true
+    },
+    {
+      "query": "our sales team wants a Chrome extension that injects our widget into Gmail and Salesforce pages; what will the web store review look at?",
+      "should_trigger": true
+    },
+    {
+      "query": "extension rejected 'Yellow Magnesium' but works locally, help",
+      "should_trigger": true
+    },
+    {
+      "query": "can our chrome extension load its feature code from our CDN so we can update without store review?",
+      "should_trigger": true
+    },
+    {
+      "query": "we keep getting single purpose violations because our extension has a tab manager and our CRM sidebar, what are our options?",
+      "should_trigger": true
+    },
+    {
+      "query": "How do I publish our VS Code extension to both the Marketplace and Open VSX?",
+      "should_trigger": false
+    },
+    {
+      "query": "our JetBrains plugin update has been in review for a week, is that normal?",
+      "should_trigger": false
+    },
+    {
+      "query": "Rewrite the description and screenshot captions on our Chrome Web Store listing so more visitors install",
+      "should_trigger": false
+    },
+    {
+      "query": "help me write a manifest v3 service worker that listens for tab updates and messages the content script",
+      "should_trigger": false
+    },
+    {
+      "query": "migrate our extension from manifest v2 background pages to an MV3 service worker, code is attached",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I implement Clerk or Firebase auth inside a Chrome extension popup?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Slack app submission was returned for scope justification, what do reviewers want?",
+      "should_trigger": false
+    },
+    {
+      "query": "We need OAuth verification and a CASA assessment for our Google Workspace Marketplace add-on, where do we start?",
+      "should_trigger": false
+    },
+    {
+      "query": "we're building our own app marketplace and want a review process like the Chrome Web Store's, including appeals",
+      "should_trigger": false
+    },
+    {
+      "query": "Which browser extensions should our security team allowlist for employees via Chrome Enterprise policy?",
+      "should_trigger": false
+    },
+    {
+      "query": "use chrome devtools to profile why our web app is slow on load",
+      "should_trigger": false
+    },
+    {
+      "query": "Should our API platform invest in a browser extension, a VS Code extension or an MCP server first?",
+      "should_trigger": false
+    },
+    {
+      "query": "write release notes for v3.2 of our browser extension for the changelog page",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Shopify app got rejected for not using the Billing API, how do we fix it?",
+      "should_trigger": false
+    },
+    {
+      "query": "how do I submit our add-on to Firefox AMO with a source code package for the minified build?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our app approved on the Microsoft Teams store and AppSource",
+      "should_trigger": false
+    },
+    {
+      "query": "publish our CLI to npm and Homebrew with provenance",
+      "should_trigger": false
+    },
+    {
+      "query": "automate a Chrome browser to scrape competitor pricing pages every night",
+      "should_trigger": false
+    },
+    {
+      "query": "our GitHub Action needs to be listed on the GitHub Marketplace, what are the requirements?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the OAuth consent screen and scopes for our public API so third-party apps can request access",
+      "should_trigger": false
+    },
+    {
+      "query": "we want to list our connector on the Zapier app directory, how does the review go?",
+      "should_trigger": false
+    },
+    {
+      "query": "how should we price the premium tier of our browser extension, monthly vs lifetime?",
+      "should_trigger": false
+    },
+    {
+      "query": "debug why our content script doesn't run on pages inside iframes",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a WordPress plugin readme that passes the plugin directory review",
+      "should_trigger": false
+    },
+    {
+      "query": "Edge Add-ons certification notes: what test account info does Microsoft want for our extension?",
+      "should_trigger": false
+    },
+    {
+      "query": "the person who registered our chrome web store developer account left the company, how do we get the extension under a company account?",
+      "should_trigger": true
+    }
+  ]
+}
