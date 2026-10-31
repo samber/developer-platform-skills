@@ -1,0 +1,198 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "github-marketplace-playbook",
+  "scenarios": 6,
+  "expectations_total": 67,
+  "expectations_subjective": 0,
+  "expectations_objective": 67,
+  "pass_rate_with_skill_pct": 95.5,
+  "pass_rate_without_skill_pct": 47.8,
+  "delta_pp": 47.7,
+  "uplift_multiplier": 2.0,
+  "trigger_accuracy_pct": 72.5,
+  "trigger_queries": 51,
+  "trigger_positive_fire_rate": 0.88,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that every paid plan needs both a monthly and an annual price"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that a paid listing adds a financial onboarding phase after review that can stall for weeks"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Concludes a Marketplace paid plan would be owed, not a free-only listing"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that GitHub's docs describe per-unit plans as per user but the unit label can be custom (e.g. a bundle of repositories), to confirm with the onboarding expert"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Proposes a repository-bundle unit (such as per 10 repositories) or flat-rate tiers with an in-app cap"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that every paid plan needs both a monthly and an annual price"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that buyers on a retired plan stay on it until they move and GitHub cannot move them"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends testing prices before publishing (draft listing or direct deals) rather than adjusting after launch"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that a Setup URL is required for a GitHub App to process Marketplace purchases"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that invoiced enterprise accounts cannot purchase paid GitHub Marketplace apps"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Says the app must reconcile entitlements from both Marketplace and direct contracts per account"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that inside an enterprise only an enterprise owner (who is also an org owner) can purchase Marketplace apps"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that GitHub publishes no review duration or SLA for app listings"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Says practitioners report review waits from about three weeks to over two months without reply"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Advises against committing to Marketplace availability on March 18"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends launching with an unlisted app installed from the vendor's own site or install button"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns against clicking Withdraw request or resubmitting to speed up review"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends a GitHub Support ticket after several weeks of silence, filed under Billing or Account since the form has no Marketplace category"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that a paid listing adds a financial onboarding phase after review that can stall for weeks"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Says the verified creator badge is requested from GitHub partnerships or the Technology Partner Program"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a repository transfer keeps the Marketplace listing and a redirect for existing workflows"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that GitHub does not resend failed marketplace_purchase webhook deliveries"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends periodic reconciliation against the list-accounts-for-a-plan endpoint"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists cancellation duties: deactivate the account, revoke the OAuth token, delete customer data within 30 days"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions the Apply Pending Change developer feature (or equivalent) to force pending downgrades during tests"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Flags GitHub's rule against a free-only Marketplace plan for a product sold outside Marketplace as a review or rejection risk"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Concludes a Marketplace paid plan would be owed, not a free-only listing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States paid plans require an organization owner and publisher verification"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Offers the unlisted public app installed from the vendor's site as the alternative that keeps Stripe billing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the Copilot Extensions Marketplace category no longer exists"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends an MCP server as the replacement for the Copilot Extension"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Mentions GitHub's 5% fee on Marketplace sales"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that existing subscriptions end at the end of their current billing cycle after delisting"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States the app cannot be deleted until the current billing cycle ends"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Mentions the Developer Agreement's 30 days written notice for removing a listing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that refund terms are the vendor's responsibility, not GitHub's"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Warns that deleting the action repository frees the Marketplace name for anyone to claim"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends delisting the action by unchecking Publish on every published release"
+      }
+    ]
+  }
+}

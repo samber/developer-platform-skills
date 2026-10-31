@@ -1,0 +1,422 @@
+{
+  "skill_name": "github-marketplace-playbook",
+  "description": "Gets a vendor's GitHub App or GitHub Action listed on GitHub Marketplace and, for apps, selling there - free vs paid listing, publisher verification, marketplace_purchase billing duties, immutable pricing plans, enterprise buyers Marketplace cannot bill, the verified creator badge, delisting. Use whenever a vendor mentions GitHub Marketplace, listing a GitHub App, Marketplace paid plans, or selling through GitHub billing. Publisher side only; not for buying or allowlisting Marketplace apps as a customer. Do NOT use for building the action (use samber/developer-platform-skills@github-action-offering), repository growth (use samber/developer-platform-skills@github-engagement-playbook), or launch announcements (use samber/developer-platform-skills@app-marketplace-launch-marketing).",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "how do we start charging for our GitHub App through GitHub Marketplace? we have ~200 installs",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "What does GitHub require for publisher verification before we can publish a paid plan on Marketplace?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "our marketplace listing has been 'under review by GitHub for publishing' for 6 weeks, what do we do",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "can I change the price of a published plan on our GitHub Marketplace listing or do I need a new plan",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Customer says their org only allows actions from verified creators. How do we get that badge for our action?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we want to list our GitHub App free on marketplace but keep billing in Stripe, is that allowed",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Enterprise customer on invoice billing can't buy our app on GitHub Marketplace, error says invoiced customers can't purchase. Options?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Plan the launch of our code review bot on GitHub Marketplace with a 14-day free trial and a Team plan",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "how should our app handle marketplace_purchase pending_change and cancelled events for GitHub billing",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We're sunsetting our GitHub App that sells through Marketplace; how do we delist without leaving paying orgs stranded?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "is it worth putting our devtool on GitHub Marketplace at all vs just an install button on our site",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "moving our action repo to a new org, will the Marketplace listing and verified creator badge survive",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We have a GitHub App owned by my personal account and want to sell it in the marketplace, what's the path",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want to rename the api_key input of our official GitHub Action to api-key, is that a breaking change for v2 users?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our open source repo's stars have been flat for three months, how do we use releases and Discussions to grow it?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Submitting our Slack app to the Slack Marketplace, how do we justify the channels:history scope?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're an ISV going through the Salesforce AppExchange security review, what gets apps rejected?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the rev-share and payout model for the app marketplace we're launching inside our own SaaS",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We run our own integrations marketplace; design the review process for third-party apps partners submit",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Which GitHub Marketplace action should I use to cache pnpm dependencies in my CI workflow?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do I publish our VS Code extension to the VS Code Marketplace and Open VSX with a verified publisher?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Rewrite our HubSpot App Marketplace listing description and reorder screenshots to lift install conversion",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we set up GitHub Sponsors tiers for our open source library, and what should each tier offer?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "List our SaaS on AWS Marketplace with private offers so customers can burn their committed spend",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design fine-grained OAuth permissions for third-party apps calling our own public API, modeled on GitHub Apps",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our company wants to restrict which GitHub Apps employees can install in our GitHub org; how do we set the policy?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "GitHub Marketplace takes what cut of paid app sales, and when do payouts start?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our GitHub App listing says 'App meets the requirements for listing' instead of the verified publisher badge, why can't we change pricing",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Should our per-seat pricing on GitHub Marketplace be per-unit or flat-rate? we price by repository",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "what's the difference between the verified creator badge and publisher verification on GitHub marketplace",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How do we test Marketplace purchases for our GitHub App without charging a real card?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Setup URL is optional in our GitHub App settings, do we need it to sell on Marketplace?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we got 90 installs on our GitHub App, can we already add a paid plan to the marketplace listing?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Publish our new GitHub Action to the Marketplace: name collision with an existing org, what are the naming rules?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our GitHub marketplace OAuth app has 180 users, enough to go paid?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Customer cancelled their Team plan bought on GitHub Marketplace; what do we owe them and what data must we delete?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "we want to take our action off the GitHub Marketplace but keep the repo working for existing workflows",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "GitHub Marketplace onboarding expert hasn't answered our Request publish, should we resubmit?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our action's v1 tag points at a compromised commit; walk me through the incident runbook",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do we get more contributors and Discussions activity on our GitHub repo after launch?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Get our Zapier integration through Zapier's publishing review and into the public app directory",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the developer portal for our public API, with API reference, quickstarts and keys",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Help me pick between Atlassian Forge and Connect for our Jira app before listing on Atlassian Marketplace",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Submit our extension to the Chrome Web Store, it keeps getting rejected for permissions",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write a GitHub Actions workflow that runs our tests and publishes to npm with provenance",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Shopify app keeps failing the Built for Shopify review; what do they check?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want a certification badge program for connectors partners build on our platform",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How should our GitHub App request the minimum repository permissions and handle installation tokens?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Plan the launch marketing for the app marketplace we're opening to partners next quarter",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Publish our Python SDK to PyPI with trusted publishing from GitHub Actions",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Optimize our listing title and keywords on the Atlassian Marketplace to rank higher in search",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 51,
+    "passed": 37,
+    "failed": 14
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "skill_name": "github-marketplace-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm head of product at Quaystone, we make a PR-review bot shipped as a GitHub App. It has around 340 installs and it's registered under my cofounder's personal GitHub account because that's where she created it in 2023. We want to start charging through GitHub Marketplace: $12 per repository per month as a per-unit plan, monthly only for now since annual is a pain for us. We'll probably adjust the price after a month of data, so we just want to get something live. Can you lay out the setup steps?",
+      "expected_output": "Transfer the app to an organization and pass publisher verification before any paid plan; GitHub describes per-unit plans as per user, so per-repository units need verification with flat-rate tiers as the fallback; monthly and annual prices are both required; published plans are immutable, so price changes mean retire-and-recreate with buyers kept on the old plan; figures flagged for verification.",
+      "files": [],
+      "expectations": [
+        "States the app must be transferred from the personal account to an organization before it can sell on Marketplace",
+        "States the organization must pass publisher verification before publishing a paid plan",
+        "Names at least two publisher-verification requirements among org-wide 2FA, a verified domain, and a contact email",
+        "States that 340 installs clears GitHub's 100-installation minimum for paid GitHub Apps",
+        "States that GitHub's docs describe per-unit plans as per user but the unit label can be custom (e.g. a bundle of repositories), to confirm with the onboarding expert",
+        "Proposes a repository-bundle unit (such as per 10 repositories) or flat-rate tiers with an in-app cap",
+        "States that every paid plan needs both a monthly and an annual price",
+        "States that a published plan's price cannot be edited, only retired and recreated",
+        "States that buyers on a retired plan stay on it until they move and GitHub cannot move them",
+        "Recommends testing prices before publishing (draft listing or direct deals) rather than adjusting after launch",
+        "States that the app must handle marketplace_purchase events before approval",
+        "States that a Setup URL is required for a GitHub App to process Marketplace purchases",
+        "Marks at least one GitHub-specific figure (threshold, fee or duration) as needing verification against current GitHub docs"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're Tessellate, 25 people, our GitHub App does dependency license checks. Two of our biggest prospects are a bank and an insurer, both on GitHub Enterprise Cloud and both pay GitHub by invoice. Our sales lead wants them to simply buy our paid plan on GitHub Marketplace so procurement is easy. We also want to announce Marketplace availability at our customer conference on March 18, about five weeks from now, and we haven't submitted the listing yet. How do we make both happen?",
+      "expected_output": "Invoiced enterprise accounts cannot buy paid Marketplace apps, so keep a direct contract path and reconcile two entitlement sources; GitHub publishes no review time and practitioners report multi-week waits, so do not promise Marketplace availability on the date; launch the unlisted app with own install button and announce it as coming to Marketplace.",
+      "files": [],
+      "expectations": [
+        "States that invoiced enterprise accounts cannot purchase paid GitHub Marketplace apps",
+        "Recommends a direct contract or off-Marketplace purchase path for the bank and the insurer",
+        "Says the app must reconcile entitlements from both Marketplace and direct contracts per account",
+        "States that inside an enterprise only an enterprise owner (who is also an org owner) can purchase Marketplace apps",
+        "States that GitHub publishes no review duration or SLA for app listings",
+        "Says practitioners report review waits from about three weeks to over two months without reply",
+        "Advises against committing to Marketplace availability on March 18",
+        "Recommends launching with an unlisted app installed from the vendor's own site or install button",
+        "Suggests announcing the listing as pending or coming to GitHub Marketplace rather than live",
+        "Warns against clicking Withdraw request or resubmitting to speed up review",
+        "Recommends a GitHub Support ticket after several weeks of silence, filed under Billing or Account since the form has no Marketplace category",
+        "States that a paid listing adds a financial onboarding phase after review that can stall for weeks"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Ferrocline here, we sell an infrastructure drift scanner and ship ferrocline/scan-action as our GitHub Action. Our org already has the blue Verified badge on its GitHub profile since we verified our domain, so we're verified on Marketplace, right? A big customer says their enterprise only allows actions from GitHub and verified creators and ours gets blocked. Also we're moving the action repo to a new ferrocline-oss org next week, and finance asked whether we can put a price on the action itself on Marketplace.",
+      "expected_output": "Distinguishes the org Verified domain badge from the Actions verified creator badge (partner program via GitHub partnerships), explains the verified-creators policy and the per-action allowlist workaround, warns the transfer drops the verified creator badge unless the new owner is verified, and states actions carry no Marketplace pricing.",
+      "files": [],
+      "expectations": [
+        "States that the organization profile Verified badge is different from the Marketplace verified creator badge for actions",
+        "Says the verified creator badge is requested from GitHub partnerships or the Technology Partner Program",
+        "Explains that the customer's 'Allow Marketplace actions by verified creators' policy blocks actions from creators without that badge",
+        "Offers the workaround that the customer's admin adds an explicit allowlist entry for the action (owner/repo pattern)",
+        "Warns that transferring the action repository drops the verified creator badge unless the new owner is a verified creator",
+        "States that a repository transfer keeps the Marketplace listing and a redirect for existing workflows",
+        "States that actions cannot carry a price on GitHub Marketplace",
+        "Recommends monetizing the product the action calls instead of the action",
+        "Does not claim the org Verified badge satisfies the verified-creators Actions policy",
+        "Does not route the user to publisher verification as the fix for the action badge"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Our backend lead at Lanternfish (GitHub App for test flake detection, already listed on Marketplace with a Free and a Team plan at $40/org/month) wrote this billing plan and I want a second opinion: 1) we update the customer's plan whenever a marketplace_purchase webhook arrives, that's our single source of truth; 2) when someone downgrades from Team to Free we cut Team features the moment we get the downgrade click; 3) on cancellation GitHub uninstalls the app so we don't need to do anything; 4) QA will test upgrades by buying the Team plan on our live listing with a company card and refunding it. Anything wrong?",
+      "expected_output": "Webhooks are not redelivered so add periodic sync against the plan accounts endpoint; downgrades take effect at the end of the cycle via effective_date, pending_change arrives first; GitHub does not uninstall on cancellation, so downgrade to free, and on full cancellation deactivate, revoke token, delete data within 30 days; never test on the live listing, use a separate public dev app with a draft listing.",
+      "files": [],
+      "expectations": [
+        "States that GitHub does not resend failed marketplace_purchase webhook deliveries",
+        "Recommends periodic reconciliation against the list-accounts-for-a-plan endpoint",
+        "States that downgrades take effect at the end of the current billing cycle, not at the click",
+        "Mentions effective_date as the field that tells when the change applies",
+        "Mentions the pending_change event that announces a scheduled downgrade or cancellation",
+        "States that GitHub does not uninstall the app when a paid plan is cancelled",
+        "Says a cancelled paid plan should fall back to the app's free plan",
+        "Lists cancellation duties: deactivate the account, revoke the OAuth token, delete customer data within 30 days",
+        "Rejects testing purchases on the live listing",
+        "Recommends a separate public development app with a draft listing for purchase tests",
+        "Notes that purchases on published plans in a draft listing are not charged",
+        "Mentions the Apply Pending Change developer feature (or equivalent) to force pending downgrades during tests"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Bramblework sells a code-coverage SaaS on our own website with Stripe, $20/seat. Our GitHub App has about 150 installs and we want to put it on GitHub Marketplace as free-only so we get discovery but keep all billing on Stripe. Separately our AI team wants to list our Copilot Extension in the Copilot category of the Marketplace next month. Which listing should we do first?",
+      "expected_output": "GitHub bans or limits a free-only listing for a product sold outside Marketplace (150 installs also clears the 100-install paid gate), so a free-only listing is a review risk and a paid plan is likely owed and needs org publisher verification; Copilot Extensions were retired on 2025-11-10 and the category removed, so build an MCP server instead.",
+      "files": [],
+      "expectations": [
+        "Flags GitHub's rule against a free-only Marketplace plan for a product sold outside Marketplace as a review or rejection risk",
+        "States that 150 installs exceeds the 100-installation paid threshold",
+        "Concludes a Marketplace paid plan would be owed, not a free-only listing",
+        "States paid plans require an organization owner and publisher verification",
+        "Offers the unlisted public app installed from the vendor's site as the alternative that keeps Stripe billing",
+        "States that GitHub retired GitHub App-based Copilot Extensions (November 2025)",
+        "States the Copilot Extensions Marketplace category no longer exists",
+        "Recommends an MCP server as the replacement for the Copilot Extension",
+        "Mentions GitHub's 5% fee on Marketplace sales",
+        "Ranks the listing options or states a recommended order rather than listing them flat"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Pebblecart is shutting down its GitHub App Pebble Insights at the end of this month. It's listed on GitHub Marketplace with about 60 paying orgs on monthly and annual plans. Plan: click delist today, delete the GitHub App registration on Friday, and delete our own action pebblecart/insights-action repo too so nobody uses it. What do we need to watch out for?",
+      "expected_output": "Delisting is immediate but subscriptions run to cycle end and the app cannot be deleted before then; the Developer Agreement asks 30 days written notice and continued support and refund terms for existing buyers; deleting the action repo deletes the listing and frees the name for anyone, so delist the action by unchecking publish on each release instead.",
+      "files": [],
+      "expectations": [
+        "States that existing subscriptions end at the end of their current billing cycle after delisting",
+        "States the app cannot be deleted until the current billing cycle ends",
+        "Mentions the Developer Agreement's 30 days written notice for removing a listing",
+        "States support obligations to existing buyers continue after delisting",
+        "States that refund terms are the vendor's responsibility, not GitHub's",
+        "Flags that annual-plan buyers run until their cycle ends, beyond the end of the month",
+        "Warns that deleting the action repository frees the Marketplace name for anyone to claim",
+        "Recommends delisting the action by unchecking Publish on every published release",
+        "Recommends archiving the action repository instead of deleting it",
+        "Recommends a dated message to paying customers"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "how do we start charging for our GitHub App through GitHub Marketplace? we have ~200 installs",
+      "should_trigger": true
+    },
+    {
+      "query": "What does GitHub require for publisher verification before we can publish a paid plan on Marketplace?",
+      "should_trigger": true
+    },
+    {
+      "query": "our marketplace listing has been 'under review by GitHub for publishing' for 6 weeks, what do we do",
+      "should_trigger": true
+    },
+    {
+      "query": "can I change the price of a published plan on our GitHub Marketplace listing or do I need a new plan",
+      "should_trigger": true
+    },
+    {
+      "query": "Customer says their org only allows actions from verified creators. How do we get that badge for our action?",
+      "should_trigger": true
+    },
+    {
+      "query": "we want to list our GitHub App free on marketplace but keep billing in Stripe, is that allowed",
+      "should_trigger": true
+    },
+    {
+      "query": "Enterprise customer on invoice billing can't buy our app on GitHub Marketplace, error says invoiced customers can't purchase. Options?",
+      "should_trigger": true
+    },
+    {
+      "query": "Plan the launch of our code review bot on GitHub Marketplace with a 14-day free trial and a Team plan",
+      "should_trigger": true
+    },
+    {
+      "query": "how should our app handle marketplace_purchase pending_change and cancelled events for GitHub billing",
+      "should_trigger": true
+    },
+    {
+      "query": "We're sunsetting our GitHub App that sells through Marketplace; how do we delist without leaving paying orgs stranded?",
+      "should_trigger": true
+    },
+    {
+      "query": "is it worth putting our devtool on GitHub Marketplace at all vs just an install button on our site",
+      "should_trigger": true
+    },
+    {
+      "query": "moving our action repo to a new org, will the Marketplace listing and verified creator badge survive",
+      "should_trigger": true
+    },
+    {
+      "query": "We have a GitHub App owned by my personal account and want to sell it in the marketplace, what's the path",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to rename the api_key input of our official GitHub Action to api-key, is that a breaking change for v2 users?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our open source repo's stars have been flat for three months, how do we use releases and Discussions to grow it?",
+      "should_trigger": false
+    },
+    {
+      "query": "Submitting our Slack app to the Slack Marketplace, how do we justify the channels:history scope?",
+      "should_trigger": false
+    },
+    {
+      "query": "We're an ISV going through the Salesforce AppExchange security review, what gets apps rejected?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the rev-share and payout model for the app marketplace we're launching inside our own SaaS",
+      "should_trigger": false
+    },
+    {
+      "query": "We run our own integrations marketplace; design the review process for third-party apps partners submit",
+      "should_trigger": false
+    },
+    {
+      "query": "Which GitHub Marketplace action should I use to cache pnpm dependencies in my CI workflow?",
+      "should_trigger": false
+    },
+    {
+      "query": "How do I publish our VS Code extension to the VS Code Marketplace and Open VSX with a verified publisher?",
+      "should_trigger": false
+    },
+    {
+      "query": "Rewrite our HubSpot App Marketplace listing description and reorder screenshots to lift install conversion",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we set up GitHub Sponsors tiers for our open source library, and what should each tier offer?",
+      "should_trigger": false
+    },
+    {
+      "query": "List our SaaS on AWS Marketplace with private offers so customers can burn their committed spend",
+      "should_trigger": false
+    },
+    {
+      "query": "Design fine-grained OAuth permissions for third-party apps calling our own public API, modeled on GitHub Apps",
+      "should_trigger": false
+    },
+    {
+      "query": "Our company wants to restrict which GitHub Apps employees can install in our GitHub org; how do we set the policy?",
+      "should_trigger": false
+    },
+    {
+      "query": "GitHub Marketplace takes what cut of paid app sales, and when do payouts start?",
+      "should_trigger": true
+    },
+    {
+      "query": "our GitHub App listing says 'App meets the requirements for listing' instead of the verified publisher badge, why can't we change pricing",
+      "should_trigger": true
+    },
+    {
+      "query": "Should our per-seat pricing on GitHub Marketplace be per-unit or flat-rate? we price by repository",
+      "should_trigger": true
+    },
+    {
+      "query": "what's the difference between the verified creator badge and publisher verification on GitHub marketplace",
+      "should_trigger": true
+    },
+    {
+      "query": "How do we test Marketplace purchases for our GitHub App without charging a real card?",
+      "should_trigger": true
+    },
+    {
+      "query": "Setup URL is optional in our GitHub App settings, do we need it to sell on Marketplace?",
+      "should_trigger": true
+    },
+    {
+      "query": "we got 90 installs on our GitHub App, can we already add a paid plan to the marketplace listing?",
+      "should_trigger": true
+    },
+    {
+      "query": "Publish our new GitHub Action to the Marketplace: name collision with an existing org, what are the naming rules?",
+      "should_trigger": true
+    },
+    {
+      "query": "our GitHub marketplace OAuth app has 180 users, enough to go paid?",
+      "should_trigger": true
+    },
+    {
+      "query": "Customer cancelled their Team plan bought on GitHub Marketplace; what do we owe them and what data must we delete?",
+      "should_trigger": true
+    },
+    {
+      "query": "we want to take our action off the GitHub Marketplace but keep the repo working for existing workflows",
+      "should_trigger": true
+    },
+    {
+      "query": "GitHub Marketplace onboarding expert hasn't answered our Request publish, should we resubmit?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our action's v1 tag points at a compromised commit; walk me through the incident runbook",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we get more contributors and Discussions activity on our GitHub repo after launch?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Zapier integration through Zapier's publishing review and into the public app directory",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the developer portal for our public API, with API reference, quickstarts and keys",
+      "should_trigger": false
+    },
+    {
+      "query": "Help me pick between Atlassian Forge and Connect for our Jira app before listing on Atlassian Marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "Submit our extension to the Chrome Web Store, it keeps getting rejected for permissions",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a GitHub Actions workflow that runs our tests and publishes to npm with provenance",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Shopify app keeps failing the Built for Shopify review; what do they check?",
+      "should_trigger": false
+    },
+    {
+      "query": "We want a certification badge program for connectors partners build on our platform",
+      "should_trigger": false
+    },
+    {
+      "query": "How should our GitHub App request the minimum repository permissions and handle installation tokens?",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan the launch marketing for the app marketplace we're opening to partners next quarter",
+      "should_trigger": false
+    },
+    {
+      "query": "Publish our Python SDK to PyPI with trusted publishing from GitHub Actions",
+      "should_trigger": false
+    },
+    {
+      "query": "Optimize our listing title and keywords on the Atlassian Marketplace to rank higher in search",
+      "should_trigger": false
+    }
+  ]
+}

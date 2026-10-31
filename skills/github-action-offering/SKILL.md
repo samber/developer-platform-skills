@@ -4,7 +4,7 @@ description: "Ships a vendor's official GitHub Action customers run in CI to cal
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # GitHub Action Offering
@@ -164,7 +164,7 @@ For bad/good injection pairs, digest pinning, repo hardening, scanners and the i
 
 - Keep one `action.yml` at the root of a public repository so Marketplace can list it.
 - Pick a unique `name`, a short `description`, a `branding` icon and color, and one primary category.
-- Request the verified creator badge through GitHub partnerships; enterprise allowlists key on it more than on listing rank.
+- Request the verified creator badge through GitHub partnerships; enterprise allowlists key on it more than on listing rank. For listing rules, the badge, transfers and delisting, see `samber/developer-platform-skills@github-marketplace-playbook`.
 - Open the README with a copy-paste workflow: the SHA-pinned `uses:` line with its version comment, the `permissions:` block, the OIDC setup, every input with default, every output, the minimum runner and GHES versions.
 - Put the same snippet in the vendor's docs quickstart; that page, not Marketplace, drives adoption.
 - Tell GHES customers how they get the action: GitHub Connect when their admin enables it, otherwise `actions-sync` into their instance. GHES signs OIDC tokens with its own issuer, usually on a private network the vendor backend cannot reach; support it through a customer-registered issuer or uploaded JWKS, or document GHES as key-only.
