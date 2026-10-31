@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the distribution method (public vs custom) cannot be changed after it is selected",
+        "evidence": "\"Shopify never lets you switch distribution method\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a custom-app pilot would require building and reviewing a separate public app later",
+        "evidence": "\"'Flipping' in Q1 means a second app, a second review\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions pilot merchants would have to reinstall or migrate to the new public app",
+        "evidence": "\"the three brands uninstalling and reinstalling\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the trade-off between a limited-visibility public pilot (waits for approval) and a custom pilot (faster first install but a second app, second review and reinstalls)",
+        "evidence": "Concern 4: public app \"can't install on the brands' production stores until it's approved\"; custom cost: \"one custom app per Plus organization, no Shopify billing, and a reinstall on the public app later.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that limited visibility can be switched to fully visible later",
+        "evidence": "\"Switching to fully visible is allowed at any time.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a limited-visibility public app still goes through the same App Store review",
+        "evidence": "\"It's one review, installable from its App Store URL\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a custom app is limited to one store or the stores of one Plus organization",
+        "evidence": "\"Custom apps serve one store or one Plus organization\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that custom apps cannot charge through Shopify's billing system",
+        "evidence": "\"Custom apps skip review, can't use Shopify billing, and never list.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that new public apps must use the GraphQL Admin API or expiring offline tokens as build-time constraints",
+        "evidence": "\"GraphQL Admin API only, expiring offline tokens, and Shopify-managed install.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends planning Shopify billing for the public app before submission",
+        "evidence": "Timeline: \"Build: embedded UI, Shopify billing, compliance webhooks\" before the Dec 18 submit.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that pilot merchants on a limited-visibility public app still fall under the Shopify billing rule for the Shopify portion",
+        "evidence": "Only says pilot brands \"may see a price change\"; it never states limited visibility does not avoid the billing rule.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the distribution method (public vs custom) cannot be changed after it is selected",
+        "evidence": "'Distribution method is chosen once per app... A custom-distribution app can't be converted to a listed public app.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a custom-app pilot would require building and reviewing a separate public app later",
+        "evidence": "'The Q1 \"flip\" would really mean a new app record with a new client ID.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions pilot merchants would have to reinstall or migrate to the new public app",
+        "evidence": "'Every brand would reinstall and re-authorize.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the trade-off between a limited-visibility public pilot (waits for approval) and a custom pilot (faster first install but a second app, second review and reinstalls)",
+        "evidence": "Option B only asks partner support 'whether any unlisted or limited-install path exists' and does not compare the two paths.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that limited visibility can be switched to fully visible later",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a limited-visibility public app still goes through the same App Store review",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a custom app is limited to one store or the stores of one Plus organization",
+        "evidence": "'Multi-store install is easy only when the stores sit under one Plus organization.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that custom apps cannot charge through Shopify's billing system",
+        "evidence": "Only says 'Custom apps are not bound the same way.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that new public apps must use the GraphQL Admin API or expiring offline tokens as build-time constraints",
+        "evidence": "Mentions GraphQL only as rate limits, not as a build-time requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends planning Shopify billing for the public app before submission",
+        "evidence": "'Shopify Billing API hooks, even if they stay off for the pilot'; 'Decide the pricing model before Q1.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that pilot merchants on a limited-visibility public app still fall under the Shopify billing rule for the Shopify portion",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
