@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a web app connecting Calendar needs OAuth verification but not necessarily a Marketplace listing",
+        "evidence": "\"No, Brightslot does not need a listing. Do the OAuth app verification, and skip the Marketplace for now.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names what a listing adds: admin domain install without per-user consent or presence inside Workspace apps",
+        "evidence": "\"an install surface inside Google's apps, admin install without a per-user consent prompt, or self-serve discovery\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the options (no listing, Admin Only listing, Individual + Admin listing) and states the default",
+        "evidence": "Options A, B and C are compared; \"Choose Individual + Admin install by default.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Google provides no billing through the Workspace Marketplace and the vendor must identify itself as seller",
+        "evidence": "\"Google bills nothing, and you stay the seller\"; the listing must state \"That you are the seller.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that featuring cannot be bought",
+        "evidence": "\"Featuring cannot be bought.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Editor's choice requires a Workspace add-on, which a web app listing is not",
+        "evidence": "\"Editor's Choice requires: A Workspace add-on... Brightslot has no add-on, so it can't qualify.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the Editor's choice install threshold (100,000 installs, or 10,000 with rating 4+ for apps under 6 months)",
+        "evidence": "\"100,000 installs\u2020, or 10,000 installs and a rating of 4 or above if published in the last 6 months\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists pricing disclosure duties: total price with mandatory fees or how usage pricing is calculated",
+        "evidence": "\"The total price, with mandatory fees included. How usage pricing is calculated. The renewal terms.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing the OAuth client ID in admin-facing documentation",
+        "evidence": "\"Publish this in your help center: OAuth client ID: <id>.apps.googleusercontent.com\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the listing name must match the OAuth consent screen app name",
+        "evidence": "No statement that the listing name must match the consent screen app name.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a web app connecting Calendar needs OAuth verification but not necessarily a Marketplace listing",
+        "evidence": "'Calendar OAuth works without any listing... Sensitive scopes require Google's OAuth verification, which is separate from any listing.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names what a listing adds: admin domain install without per-user consent or presence inside Workspace apps",
+        "evidence": "'A route to domain-wide install by an admin. The ability to ship a Calendar or Gmail sidebar add-on.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the options (no listing, Admin Only listing, Individual + Admin listing) and states the default",
+        "evidence": "It offers only list or don't list, with no Admin Only vs Individual+Admin ranking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Google provides no billing through the Workspace Marketplace and the vendor must identify itself as seller",
+        "evidence": "It says there is no billing system but never says the vendor must identify itself as seller.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that featuring cannot be bought",
+        "evidence": "'Editor's Choice is an editorial badge Google awards. You can't buy it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Editor's choice requires a Workspace add-on, which a web app listing is not",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the Editor's choice install threshold (100,000 installs, or 10,000 with rating 4+ for apps under 6 months)",
+        "evidence": "No thresholds are given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists pricing disclosure duties: total price with mandatory fees or how usage pricing is calculated",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing the OAuth client ID in admin-facing documentation",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the listing name must match the OAuth consent screen app name",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

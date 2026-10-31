@@ -1,0 +1,186 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "google-workspace-marketplace-playbook",
+  "scenarios": 6,
+  "expectations_total": 63,
+  "expectations_subjective": 0,
+  "expectations_objective": 63,
+  "pass_rate_with_skill_pct": 95.2,
+  "pass_rate_without_skill_pct": 49.2,
+  "delta_pp": 46.0,
+  "uplift_multiplier": 1.93,
+  "trigger_accuracy_pct": 76.0,
+  "trigger_queries": 50,
+  "trigger_positive_fire_rate": 0.84,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that gmail.metadata is restricted too, so a metadata-only fallback does not avoid the security assessment"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names drive.metadata.readonly as restricted, so a metadata-only scan does not avoid CASA"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that the listing name must match the OAuth consent screen app name"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that gmail.metadata is restricted too, so a metadata-only fallback does not avoid the security assessment"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that narrowing scopes after launch costs another verification round"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Produces a scope table mapping each feature to a scope and its tier (non-sensitive, sensitive, restricted)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the Marketplace listing cannot be approved until OAuth verification completes"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Says the scopes must match across the add-on manifest, the Marketplace SDK and the OAuth consent screen"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires a per-scope justification explaining why a narrower scope fails"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Lists the demo video requirements, including the OAuth client ID visible in the address bar or the English consent screen"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names drive.metadata.readonly as restricted, so a metadata-only scan does not avoid CASA"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that an Internal consent screen is a named Marketplace rejection reason or blocks a public listing"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Checks the use case against Google's permitted application types for Drive restricted scopes"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Explains that domain installation bypasses per-user consent only for approved Marketplace apps"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends the Admin Only install setting or admin domain install for law-firm rollout"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that CASA now uses assurance levels AL1 and AL2 rather than tiers"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the CASA self-scan is deprecated and an authorized lab must perform the assessment"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Mentions existing certifications such as ISO 27001 or SOC 2 can shorten the assessment through the CASA accelerator"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Advises keeping project owner and contact emails current so renewal notices arrive"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that until admins re-grant, users in those domains are prompted individually"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that adding Calendar as a new host app to the Workspace add-on triggers a Marketplace review"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Says the live listing stays published while the draft is under review"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions handling granular consent so users who decline the new scope can still use Docs and Sheets features"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that users at the three customer companies can get the add-on only after public approval, since a Testing pilot reaches them only through a web app's own OAuth flow"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that public or private visibility cannot be changed after it is saved"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that a consumer Gmail account can only publish publicly"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends moving the Cloud project into an organization resource with at least two owners"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that Testing status must be switched to In production before resubmitting"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Ranks the options (no listing, Admin Only listing, Individual + Admin listing) and states the default"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that Google provides no billing through the Workspace Marketplace and the vendor must identify itself as seller"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that Editor's choice requires a Workspace add-on, which a web app listing is not"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Gives the Editor's choice install threshold (100,000 installs, or 10,000 with rating 4+ for apps under 6 months)"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Lists pricing disclosure duties: total price with mandatory fees or how usage pricing is calculated"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends publishing the OAuth client ID in admin-facing documentation"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that the listing name must match the OAuth consent screen app name"
+      }
+    ]
+  }
+}
