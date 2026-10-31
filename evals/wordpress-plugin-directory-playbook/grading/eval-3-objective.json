@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags the iframed admin page as banned and recommends building the admin screen locally and calling the Tallyhub API",
+        "evidence": "\"Guideline 8 bans iframes... Build a small native settings screen in the plugin\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags loading admin UI JavaScript or CSS from a CDN as banned and requires shipping it inside the plugin",
+        "evidence": "\"Admin UI library: must ship inside the plugin... remote JS or CSS in wp-admin is banned\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the customer-facing chat widget served by the service itself as a possible service exception that must be documented, from admin assets that must be local",
+        "evidence": "\"Widget: allowed. It is customer-facing and part of the service... document it in 'External services'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'hotfix without releases' through remote code as a reason, since updates must come through WordPress.org releases",
+        "evidence": "\"'Hotfix without releases' holds for the widget only. Every plugin release waits a cooldown of 6 hours\u2020.\" Weakly framed, but it does restrict the claim to the widget.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the activation POST of site URL and admin email as tracking without consent",
+        "evidence": "\"Install analytics is not the service, so consent to the service does not cover it... Sending the admin email makes this worse.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends counting installs at the point the admin connects or registers the Tallyhub account instead",
+        "evidence": "\"Count installs when the admin connects the account (OAuth or registration)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags installing the pro add-on zip from Tallyhub's servers from inside the plugin as banned",
+        "evidence": "\"Installs or updates from your servers and custom updaters are banned.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows linking to the add-on purchase page while the user installs it manually",
+        "evidence": "\"The free plugin may only link to a page on your site. It must not install the add-on or hold its code.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the 'Powered by' footer credit to be off by default and opt-in",
+        "evidence": "\"'Powered by' links in plugin code must default off. Make it an opt-in setting.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the '100% GDPR compliant' claim and rewrites it as helping with compliance",
+        "evidence": "\"Helps support teams handle data-subject requests. Requires a Tallyhub account.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting the Tallyhub service in an External services readme section",
+        "evidence": "\"External services section in the readme. One block each for api.tallyhub.io and the widget CDN.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags the iframed admin page as banned and recommends building the admin screen locally and calling the Tallyhub API",
+        "evidence": "\"Guideline 8 disallows iframing... Build a small native settings page\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags loading admin UI JavaScript or CSS from a CDN as banned and requires shipping it inside the plugin",
+        "evidence": "\"Bundle the admin UI library inside the plugin.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes the customer-facing chat widget served by the service itself as a possible service exception that must be documented, from admin assets that must be local",
+        "evidence": "\"Item 2b... Loading the service's own client script is the service, not a library... Disclose it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'hotfix without releases' through remote code as a reason, since updates must come through WordPress.org releases",
+        "evidence": "\"Your hotfix goal still works. Keep the widget script remote\" accepts the goal and does not say updates must go through WordPress.org releases.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags the activation POST of site URL and admin email as tracking without consent",
+        "evidence": "\"Guideline 7 forbids tracking or collecting data without explicit, opt-in consent.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends counting installs at the point the admin connects or registers the Tallyhub account instead",
+        "evidence": "It recommends opt-in analytics and WordPress.org's install counts, not counting at account connection.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags installing the pro add-on zip from Tallyhub's servers from inside the plugin as banned",
+        "evidence": "\"Guideline 8 forbids plugins from installing other plugins or add-ons from outside the repository\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Allows linking to the add-on purchase page while the user installs it manually",
+        "evidence": "\"Make the button a plain link to your pricing or checkout page. Customers download the Pro zip... and upload it themselves.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the 'Powered by' footer credit to be off by default and opt-in",
+        "evidence": "\"Default to off and add a clearly labeled setting.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the '100% GDPR compliant' claim and rewrites it as helping with compliance",
+        "evidence": "Suggests \"Helps you run your support desk with GDPR-minded controls\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires documenting the Tallyhub service in an External services readme section",
+        "evidence": "\"Add an 'External services' section to the readme... link to your Terms and Privacy Policy.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

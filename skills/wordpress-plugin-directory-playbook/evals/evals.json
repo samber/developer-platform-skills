@@ -1,0 +1,323 @@
+{
+  "skill_name": "wordpress-plugin-directory-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Formline, a form-analytics SaaS (free plan up to 500 submissions/month, Pro is $29/mo). Our WordPress plugin has a Settings tab, a free Insights tab, and a Pro tab with A/B testing and heatmaps that's visible but greyed out with an 'Upgrade' button until the site enters a Pro license key. We also want a 14-day Pro trial that switches itself off inside the plugin. Can you check this setup and get it ready to submit to WordPress.org next week?",
+      "expected_output": "Flags the greyed-out Pro tab and in-plugin 14-day trial as trialware, moves paid enforcement to the Formline service (plan and quota returned by the API) or an off-directory add-on, ranks those options, and lists the readme/service disclosure work before submitting.",
+      "files": [],
+      "expectations": [
+        "Identifies the locked, greyed-out Pro tab behind a license key as trialware banned by the directory guidelines",
+        "Identifies the 14-day trial that disables itself inside the plugin as banned (functionality disabled after a trial period)",
+        "Recommends enforcing the Pro plan in the Formline service (API returns plan or quota limits) rather than in plugin code",
+        "Offers a separate premium add-on sold and hosted outside WordPress.org as the alternative for features that must run locally",
+        "Ranks the paid-value options with service-side enforcement as the default for a SaaS",
+        "Tells the user to remove Pro-only code and named Pro feature stubs from the directory plugin, not just hide them",
+        "States that the free plugin may link to the paid offer but must not install the add-on or premium code itself",
+        "Limits upgrade prompts to the plugin's own settings page or contextual spots, with any site-wide notice dismissible",
+        "Requires an External services section in the readme naming the Formline API, data sent, when, and terms and privacy links",
+        "Notes the 500-submission free quota is acceptable only when the service enforces it, not a local counter in the plugin",
+        "Does not propose a license-key validation endpoint as the 'service' that unlocks local code"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I run a small agency. Our client Brevlo (email marketing SaaS) wants an official 'Brevlo Forms' plugin live on WordPress.org before their customer conference on the 14th, which is 10 days away. I'll submit it from my personal wordpress.org account (my gmail) since I'm the dev, and we'll hand it to them later. We have a second plugin for another client ready too, so I'll submit both today. Brevlo's website for the plugin is still a coming-soon page. What's the plan?",
+      "expected_output": "Moves submission to Brevlo's own company account with a company-domain email, explains the brand-first slug and its permanence, one-submission-at-a-time, live website requirement, no queue jumping, and a launch plan that survives approval missing the conference.",
+      "files": [],
+      "expectations": [
+        "Says the official Brevlo plugin must be submitted from Brevlo's own WordPress.org account with a company-domain email, not the agency's personal gmail account",
+        "Explains that a slug or name starting with the Brevlo brand is reserved to the brand owner and gets flagged when a non-owner submits",
+        "States the slug is permanent once the plugin is approved",
+        "Mentions the slug can be checked in the confirmation email and changed only once before approval",
+        "States only one plugin can be in review per account at a time, so both plugins cannot be submitted together from one account",
+        "Warns against creating extra accounts to get around the one-at-a-time limit",
+        "Requires the plugin and author URLs plus terms and privacy pages to be live before submitting, so the coming-soon page must be finished first",
+        "States there is no queue jumping for a launch date (only security or legal issues)",
+        "Gives a launch fallback such as announcing the plugin as coming to WordPress.org if approval misses the conference",
+        "Requires 2FA on the submitting and committer accounts",
+        "Marks review-time figures as variable or to verify rather than promising a fixed approval date",
+        "Says to reply to the review email to fix a wrong submitting account rather than resubmitting"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our product team specced the v1 WordPress connector for Tallyhub (customer support SaaS): 1) the admin page is an iframe of app.tallyhub.io so we don't rebuild the dashboard, 2) the chat widget JS and our admin UI library load from our CDN so we can hotfix without releases, 3) on activation we POST the site URL and admin email to our API for install analytics, 4) a 'Get Tallyhub Pro' button that downloads and installs our pro add-on zip from our servers, 5) 'Powered by Tallyhub' in the site footer, on by default, 6) the readme headline says 'Makes your support desk 100% GDPR compliant'. Anything we need to change before submitting?",
+      "expected_output": "Flags all six items with the fix for each: local settings screen calling the API, bundled admin assets (service widget acceptable only as the service, documented), no activation call before consent, no installing off-directory code, credit off by default, 'helps' compliance wording.",
+      "files": [],
+      "expectations": [
+        "Flags the iframed admin page as banned and recommends building the admin screen locally and calling the Tallyhub API",
+        "Flags loading admin UI JavaScript or CSS from a CDN as banned and requires shipping it inside the plugin",
+        "Distinguishes the customer-facing chat widget served by the service itself as a possible service exception that must be documented, from admin assets that must be local",
+        "Rejects 'hotfix without releases' through remote code as a reason, since updates must come through WordPress.org releases",
+        "Flags the activation POST of site URL and admin email as tracking without consent",
+        "Recommends counting installs at the point the admin connects or registers the Tallyhub account instead",
+        "Flags installing the pro add-on zip from Tallyhub's servers from inside the plugin as banned",
+        "Allows linking to the add-on purchase page while the user installs it manually",
+        "Requires the 'Powered by' footer credit to be off by default and opt-in",
+        "Flags the '100% GDPR compliant' claim and rewrites it as helping with compliance",
+        "Requires documenting the Tallyhub service in an External services readme section"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Urgent: our plugin (Shipwell Labels, ~40,000 active installs on WordPress.org) has an auth bypass reported this morning. Our CTO wants to close the plugin on WordPress.org for a couple of days while we patch, then reopen it. Also yesterday's 3.4.1 release got an email saying it was 'blocked from distribution' with some findings we think are false positives. We need the fix on customer sites within the hour. How do we handle this?",
+      "expected_output": "Rejects temporary closure (not permitted, permanent by design, over 10,000 users needs email anyway), explains the blocked release semantics and that a new fixed release is faster than an appeal, gives the SVN tag release steps, and resets the one-hour expectation against the release cooldown.",
+      "files": [],
+      "expectations": [
+        "States WordPress.org does not permit temporary closure of a plugin",
+        "Explains that author-requested closure is meant to be permanent and reopening requires a full current standards and security review",
+        "Notes a plugin above 10,000 users cannot be closed by the author from the Advanced tab and needs an email to the Plugins Team",
+        "Recommends shipping the fixed version as the response instead of closing",
+        "Explains that a blocked release is not offered as an update while the previous distributed version keeps being served and the plugin stays open",
+        "Recommends fixing the findings and shipping a new version rather than waiting on a false-positive appeal",
+        "Says a false-positive reply to the block email is possible but slower",
+        "Resets the one-hour target: every release waits a cooldown (about 6 hours) during an automated security review before distribution",
+        "Gives the release mechanics: bump Version, update Stable tag, commit trunk and copy to a new tag",
+        "Mentions that the new release goes through the same automated review and could be blocked again",
+        "Marks the cooldown duration as a figure to verify"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Our WordPress plugin (Pipeworks CRM Sync, 3 years on wordpress.org, ~2k installs) sits on page 4 for 'crm'. Readme: Tested up to 6.2, 18 tags including 'hubspot' and 'salesforce' (competitors), last code release 14 months ago, 60% of forum threads unanswered because support@ goes into our helpdesk which auto-replies. Our growth lead suggests: commit to SVN daily so we look fresh, give a 20% discount to anyone who leaves a 5-star review, and answer paid-plan billing questions in the wp.org forum since that's where people ask. What should we actually do?",
+      "expected_output": "Ranks fixes by effort-to-effect using the platform's open search code (name/slug match, recency decay, tested-up-to, resolved threads, rating, installs), rejects daily commits and incentivized reviews, moves paid support off the forum with the Commercial label, and fixes the auto-reply contact risk.",
+      "files": [],
+      "expectations": [
+        "Says only the first five tags are displayed and used for search",
+        "Says competitor names such as hubspot or salesforce must not be used as tags",
+        "Recommends updating Tested up to, noting a readme-only change needs no new version unless release confirmation froze the tag",
+        "Explains that search scoring decays with time since last update (roughly after six months) and with a stale Tested up to",
+        "Recommends resolving forum threads because the percentage of resolved support threads feeds ranking",
+        "Labels the ranking factors as coming from the platform's own open-source search code",
+        "Rejects daily SVN commits as gaming recency against the frequent-commit guideline",
+        "Rejects discounts for 5-star reviews as compensating for reviews, a guideline violation that can close plugins",
+        "Moves paid-plan billing support off the WordPress.org forums to the vendor's own channel",
+        "Mentions opting into the Commercial label by email to get a support URL on the listing",
+        "Flags the auto-replying helpdesk contact email as not permitted and a risk to every plugin the account owns",
+        "Says a head term like crm is dominated by high-install plugins and recommends targeting long-tail integration phrases instead",
+        "Flags 18 tags as over the Guideline 12 spam limit of 12, not merely ignored"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Got our first review email for 'Acme Inventory Sync': 1) 'Undocumented use of a 3rd party / external service', 2) 'Generic function/class/define/namespace/option names' (we prefix with ai_), 3) inline <script> tags in the admin page. Our readme is in German because our customers are in DACH. My dev wants to fix it and submit a fresh zip as a new submission to restart cleanly. Can you write what we send back?",
+      "expected_output": "Keeps the existing review thread (upload the fix on the submission page, reply to the email), writes the External services block, a 4+ character prefix rename, enqueue-based script fix, English readme, and a reply that answers each point.",
+      "files": [],
+      "expectations": [
+        "Advises against a new submission and to reply in the existing review email thread",
+        "Says to upload the fixed zip on the existing submission page before replying",
+        "Writes an External services section naming the Acme API host, data sent, when it is sent, and terms and privacy links",
+        "States the disclosure is required even though the external service is the vendor's own",
+        "Replaces the ai_ prefix with a distinct prefix of at least four characters applied to functions, classes, options, hooks and constants",
+        "Replaces inline script tags with wp_enqueue_script or wp_add_inline_script",
+        "Requires the readme to be written in English, with translations through translate.wordpress.org",
+        "Drafts a reply that answers each reviewer point by number",
+        "Recommends fixing every point in one upload rather than partial rounds",
+        "Mentions that a review still incomplete after about three months is rejected and can be continued by resubmitting and replying in the old thread"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "we built a wordpress plugin for our saas, how do we get it onto wordpress.org?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our WordPress.org plugin review email says 'Review in Progress' with 6 issues, how should I respond?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it trialware if our WordPress plugin shows Pro features greyed out until they enter a license key?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can a free WordPress.org plugin require a paid account on our SaaS to work?",
+      "should_trigger": true
+    },
+    {
+      "query": "wp.org blocked our plugin release 2.3.0 from distribution after an automated security review, what now",
+      "should_trigger": true
+    },
+    {
+      "query": "Our plugin got closed on WordPress.org for a guideline violation, how do we get it reopened?",
+      "should_trigger": true
+    },
+    {
+      "query": "Which account should submit our company's official plugin to the WordPress plugin directory? Our contractor built it.",
+      "should_trigger": true
+    },
+    {
+      "query": "What do I put in the External services section of readme.txt for a plugin that calls our API?",
+      "should_trigger": true
+    },
+    {
+      "query": "How do SVN trunk and tags work for releasing a WordPress.org plugin? We use GitHub for development.",
+      "should_trigger": true
+    },
+    {
+      "query": "We want to sell a pro version of our WordPress connector, how do we structure free vs paid to pass review?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can our WordPress plugin admin page just iframe our web app dashboard?",
+      "should_trigger": true
+    },
+    {
+      "query": "how long does the wordpress plugin directory review take, we launch at a conference in 3 weeks",
+      "should_trigger": true
+    },
+    {
+      "query": "Our wp.org plugin slug is wrong after approval, can we rename it?",
+      "should_trigger": true
+    },
+    {
+      "query": "Why is our WordPress plugin not ranking in the plugin directory search for our category?",
+      "should_trigger": true
+    },
+    {
+      "query": "Is it OK to answer billing questions for our paid plan in the WordPress.org support forum of our free plugin?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can we temporarily take our WordPress.org plugin offline while we fix a bug?",
+      "should_trigger": true
+    },
+    {
+      "query": "plugin check says error in plugin repo category and wp.org won't accept my zip upload",
+      "should_trigger": true
+    },
+    {
+      "query": "Do we need to bump the version on WordPress.org just to update Tested up to?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our WordPress plugin sends the site URL to our server on activation for analytics. Will the plugin review team reject that?",
+      "should_trigger": true
+    },
+    {
+      "query": "We have 2 plugins to submit to the WordPress repository, can we submit both at once?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our client wants their brand name first in the WordPress plugin name, but we're the agency submitting it",
+      "should_trigger": true
+    },
+    {
+      "query": "The WordPress.org plugin team emailed us a final warning, what does that mean for our other plugins?",
+      "should_trigger": true
+    },
+    {
+      "query": "Release Confirmation and the 24-hour auto-update delay on wordpress.org, should we turn them on?",
+      "should_trigger": true
+    },
+    {
+      "query": "We're a CRM SaaS and want a WordPress integration listed for distribution. What will reviewers check?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can a WordPress.org plugin auto-install our premium add-on from our own servers?",
+      "should_trigger": true
+    },
+    {
+      "query": "Review our WordPress plugin PHP for missing nonces, escaping and sanitization before release",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a Gutenberg block that displays our latest Acme invoices",
+      "should_trigger": false
+    },
+    {
+      "query": "Optimize our listing copy and screenshots on the Shopify App Store to convert more installs",
+      "should_trigger": false
+    },
+    {
+      "query": "How do we publish our PHP SDK to Packagist with tagged releases?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Chrome extension through Chrome Web Store review, it was rejected for permissions",
+      "should_trigger": false
+    },
+    {
+      "query": "Submit our Slack app to the Slack Marketplace, we have 6 active workspaces",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the review process for third-party apps on our own integration marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "Should our SaaS build integrations with WordPress, Webflow or Shopify first?",
+      "should_trigger": false
+    },
+    {
+      "query": "We sell our pro WordPress plugin only from our own site with license keys, how do we set up the license server and auto-updates?",
+      "should_trigger": false
+    },
+    {
+      "query": "We are submitting our block theme to the WordPress.org theme directory, what will the theme reviewers check?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our WooCommerce store checkout is slow, how do we speed it up?",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a tutorial blog post showing developers how to use our API from WordPress",
+      "should_trigger": false
+    },
+    {
+      "query": "Publish our npm package with provenance and trusted publishing",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our app listed on the Atlassian Marketplace with Forge",
+      "should_trigger": false
+    },
+    {
+      "query": "What revenue share should our own app marketplace take from partner apps?",
+      "should_trigger": false
+    },
+    {
+      "query": "Migrate our WordPress site from shared hosting to a managed host with WP-CLI",
+      "should_trigger": false
+    },
+    {
+      "query": "Write a Zapier integration for our form builder",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up a WordPress Playground blueprint for our docs demo",
+      "should_trigger": false
+    },
+    {
+      "query": "Run PHPStan on our WordPress plugin and fix the level 6 errors",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan our launch on Product Hunt for the new WordPress plugin",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our app approved on the HubSpot App Marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "Build a WordPress theme for the ThemeForest marketplace",
+      "should_trigger": false
+    },
+    {
+      "query": "How should we structure our developer docs site navigation?",
+      "should_trigger": false
+    },
+    {
+      "query": "A plugin we use on our client sites was just closed on WordPress.org, is it safe to keep running it?",
+      "should_trigger": false
+    },
+    {
+      "query": "List our VS Code extension on the Visual Studio Marketplace",
+      "should_trigger": false
+    }
+  ]
+}
