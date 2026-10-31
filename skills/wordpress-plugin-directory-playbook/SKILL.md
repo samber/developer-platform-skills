@@ -53,13 +53,6 @@ Ask one question at a time; skip what the request answers. When you cannot ask, 
 
 Re-rank the menu below against answers 1 and 2, and say which answer moved it: paid features that must run in PHP or JS on the site promote rung 2.
 
-## Output
-
-- **Not submitted**: assumptions; paid-value verdict with the menu rung; name, account and slug; packet checklist with an owner each; timeline with review rounds.
-- **In review**: one fix per reviewer point, then the reply.
-- **Live, blocked or closed**: the cause, the next release or reply, and the obligations at risk.
-- Close with the measure to watch: approval date, then connected sites as a share of active installs, and the resolved-thread share.
-
 ## Where paid value lives
 
 Ranked by efficiency (value per unit of effort), highest first. Value = search reach, one-click install and core auto-updates.
@@ -109,6 +102,13 @@ The ranking code is open source (platform-published; weights change on deploy).
 - **Text match:** title and slug weigh most, then author and contributors, then excerpt, description and tags. Only the first five tags count; more than 12 is spam under Guideline 12; never a competitor's name.
 - **Multipliers:** active installs (log scale), resolved support-thread share, rating, plus decay after about six months without an update and with a stale Tested up to.
 - **Effort order:** target long-tail integration phrases ("<their product> <your category>") > resolve every forum thread > keep Tested up to current > ship real releases. Head terms rarely move away from high-install plugins. Rapid-fire commits to look recent break Guideline 14.
+
+## Output
+
+- **Not submitted**: assumptions; paid-value verdict with the menu rung; name, account and slug; packet checklist with an owner each; timeline with review rounds.
+- **In review**: one fix per reviewer point, then the reply.
+- **Live, blocked or closed**: the cause, the next release or reply, and the obligations at risk.
+- Close with the measure to watch: approval date, then connected sites as a share of active installs, and the resolved-thread share.
 
 ## References
 
