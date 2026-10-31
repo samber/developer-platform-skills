@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that Teams apps (apps and add-ins for Microsoft 365/Office) are not eligible for co-sell-ready status",
+        "evidence": "\"Microsoft excludes Teams, Outlook and Excel apps from co-sell-ready status.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing a separate transactable SaaS offer (Sell through Microsoft) to carry co-sell",
+        "evidence": "\"Co-sell and MACC run on a separate transactable SaaS offer, which the Teams app links to.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that MACC drawdown requires Azure IP co-sell eligible status",
+        "evidence": "\"MACC drawdown requires Azure IP co-sell eligibility.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Azure IP co-sell eligibility requires the SaaS to be primarily platformed on Azure, so the AWS-hosted product does not qualify",
+        "evidence": "\"a solution primarily on Azure... MACC counts only usage that runs in Azure\"; \"not reachable while you run on AWS\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user that the 'burn Azure commit' goal is unavailable unless the product moves to Azure, rather than deferring it as a later step",
+        "evidence": "\"'Enterprise customers burn their Azure commit on us' is not reachable while you run on AWS.\"; \"Delete Azure IP co-sell and MACC unless an Azure migration is already decided.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a non-Azure SaaS can still list and transact only if it integrates with or extends a Microsoft product, and that the Teams app satisfies this",
+        "evidence": "\"A non-Azure SaaS may list only if it integrates with or extends a Microsoft product... Your Teams bot and meeting extension should meet that test\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends linking the Teams app to the SaaS offer through the manifest subscriptionOffer field",
+        "evidence": "\"Add `subscriptionOffer` (`publisherId.offerId`) to the manifest\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a Teams-linked SaaS offer must use per-user pricing",
+        "evidence": "\"Teams linking requires it\"; \"Teams-linked offers must be per user\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the $100,000 revenue threshold (Azure consumed revenue or marketplace billed) for IP co-sell eligibility",
+        "evidence": "\"$100K\u2020 of Azure consumed or billed\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes co-sell ready as visibility to Microsoft sellers, not a source of referrals by itself",
+        "evidence": "\"makes you visible in Microsoft's internal seller catalogs. It is not pipeline\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Publisher Verification as a prerequisite before the Teams submission",
+        "evidence": "\"Complete Publisher Verification. It is a Must fix for the Teams app.\" (Week 1)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that Publisher Attestation is completed once the app is live in the store",
+        "evidence": "\"complete it the day the Teams app goes live. It is a post-listing duty, not a listing gate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks or states an assumption about who owns outreach to Microsoft sellers or the target date",
+        "evidence": "\"Ownership: Nobody yet owns Microsoft seller outreach. Please name an owner.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that Teams apps (apps and add-ins for Microsoft 365/Office) are not eligible for co-sell-ready status",
+        "evidence": "Says the Teams app is a free-to-install listing and \"Co-sell is configured on that SaaS offer\", but never states that Teams apps are ineligible for co-sell ready.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends publishing a separate transactable SaaS offer (Sell through Microsoft) to carry co-sell",
+        "evidence": "\"You need a separate transactable SaaS offer in Partner Center, linked to the Teams app. Co-sell is configured on that SaaS offer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that MACC drawdown requires Azure IP co-sell eligible status",
+        "evidence": "\"counts toward MACC only if it's transactable and 'Azure benefit eligible'. That in turn depends on Azure IP co-sell status\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Azure IP co-sell eligibility requires the SaaS to be primarily platformed on Azure, so the AWS-hosted product does not qualify",
+        "evidence": "\"Azure IP co-sell... requires an Azure-hosted solution\"; \"you are 100% AWS\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user that the 'burn Azure commit' goal is unavailable unless the product moves to Azure, rather than deferring it as a later step",
+        "evidence": "Frames it as Path B and says \"Defer the decision on B until you have deal evidence\", and Phase 5 is optional.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says a non-Azure SaaS can still list and transact only if it integrates with or extends a Microsoft product, and that the Teams app satisfies this",
+        "evidence": "\"You can reach this tier from AWS, as long as the product meaningfully integrates with Microsoft. Your Teams and Entra integration should qualify.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends linking the Teams app to the SaaS offer through the manifest subscriptionOffer field",
+        "evidence": "Only says \"Link the Teams app to the SaaS offer\"; the manifest field is never named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a Teams-linked SaaS offer must use per-user pricing",
+        "evidence": "No mention of per-user pricing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the $100,000 revenue threshold (Azure consumed revenue or marketplace billed) for IP co-sell eligibility",
+        "evidence": "Only says \"There has historically been a billed-revenue threshold too\", with no figure.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes co-sell ready as visibility to Microsoft sellers, not a source of referrals by itself",
+        "evidence": "\"listed in the partner catalog, and reps may bring you into deals. It carries no quota credit\"; \"Standard co-sell is mostly lead sharing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Publisher Verification as a prerequisite before the Teams submission",
+        "evidence": "Phase 1: \"Complete publisher verification and domain verification for your Entra app registrations.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that Publisher Attestation is completed once the app is live in the store",
+        "evidence": "Puts attestation in Phase 1, before submission: \"I believe it is mandatory for Teams store listing.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks or states an assumption about who owns outreach to Microsoft sellers or the target date",
+        "evidence": "\"Today is Oct 31, so 'this month' means November\"; Phase 0 confirms who owns the Partner Center account and asks for a named Microsoft contact.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

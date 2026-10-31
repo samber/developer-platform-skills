@@ -1,0 +1,226 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "microsoft-appsource-playbook",
+  "scenarios": 6,
+  "expectations_total": 71,
+  "expectations_subjective": 0,
+  "expectations_objective": 71,
+  "pass_rate_with_skill_pct": 90.1,
+  "pass_rate_without_skill_pct": 46.5,
+  "delta_pp": 43.6,
+  "uplift_multiplier": 1.94,
+  "trigger_accuracy_pct": 86.0,
+  "trigger_queries": 50,
+  "trigger_positive_fire_rate": 0.96,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 3,
+        "expectation": "Mentions the validation report categories (Must fix, Good-to-fix, Blocker, Query) or that only must-fix and blocker items gate approval"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Advises against changing app functionality during validation"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Mentions that each resubmission needs a new manifest version number with the same app ID"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends a multiparty private offer with the German reseller when MACC drawdown is required"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Mentions that Frontier Accelerate has a no-cost tier and a paid Premium tier"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that Frontier Accelerate enrollment is a prerequisite for a co-sell listing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Builds the timeline backward from the end-of-January target"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that Teams apps (apps and add-ins for Microsoft 365/Office) are not eligible for co-sell-ready status"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Tells the user that the 'burn Azure commit' goal is unavailable unless the product moves to Azure, rather than deferring it as a later step"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends linking the Teams app to the SaaS offer through the manifest subscriptionOffer field"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that a Teams-linked SaaS offer must use per-user pricing"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Mentions the $100,000 revenue threshold (Azure consumed revenue or marketplace billed) for IP co-sell eligibility"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Mentions that Publisher Attestation is completed once the app is live in the store"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that all plans in one SaaS offer share one pricing model (flat rate or per user)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Says adding per-seat plans later to a flat-rate offer requires a new offer"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that metered billing is only available on flat-rate plans, not per-user plans"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that a SaaS offer linked to a Teams app must use per-user pricing"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Concludes that one offer cannot serve both the Teams link and API-call metering, and proposes a resolution (separate offers or a model choice)"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Says a Contact Me listing unlocks no MACC, co-sell eligibility or private offers"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags 'Shifts' as a common noun that must be prefixed or suffixed with the publisher brand"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Explains that a new app cannot complete Publisher Attestation until it is live in the Teams store"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends completing Publisher Attestation immediately after the app goes live and renewing it yearly"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Mentions Publisher Verification as a Must fix item"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Mentions the validation report categories (Must fix, Good-to-fix, Blocker, Query) or that only must-fix and blocker items gate approval"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Tells the user to reply to the concierge email thread and wait for confirmation before resubmitting"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Advises against changing app functionality during validation"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes the company already exceeds the $100,000 marketplace billed revenue threshold for Azure IP co-sell eligible"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists the reference architecture diagram as a remaining requirement for SaaS IP co-sell eligibility"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Lists the Azure technical validation (primarily platformed on Azure) as a requirement"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Explains that IP co-sell eligibility makes the offer count toward customers' MACC"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends moving existing customer renewals onto Marketplace private offers with the renewal self-attestation for the fee discount"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions Frontier Accelerate for Marketplace enrollment as a prerequisite or current home of co-sell benefits"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the renewal discount halves the fee for customer private offer or multiparty private offer renewals"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says the renewal status must be self-attested during private offer creation"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends converting case 1 into a new private offer flagged as a renewal"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that private offers created before October 1, 2024 are not eligible for the renewal discount"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says case 2 needs auto-renew turned off or the subscription cancelled and a new attested private offer accepted"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that CSP private offers do not count toward the customer's MACC"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States a multiparty private offer allows only one channel partner"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States the renewal attestation must be made at private offer creation and cannot be added afterwards"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that ISV Success and Marketplace Rewards were consolidated into Frontier Accelerate for Marketplace"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Mentions that Frontier Accelerate has a no-cost tier and a paid Premium tier"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that Frontier Accelerate enrollment is a prerequisite for a co-sell listing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that the Qualified Referral Program is retired and referrals are managed in Partner Center referrals"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Builds the timeline backward from the end-of-January target"
+      }
+    ]
+  }
+}
