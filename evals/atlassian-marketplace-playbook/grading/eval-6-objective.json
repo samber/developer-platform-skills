@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a Paid via Atlassian app license must cover the host site's whole licensed user count, so the bank cannot license only 40 users",
+        "evidence": "\"customers cannot license a subset of users. The bank pays for the 2,000-user tier.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recalculates or flags the price at the 2,000-user tier rather than 40 users",
+        "evidence": "Table of ACV at 2,000 users: \"$5.00 | $100,000\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adding any Connect module or Connect scope would drop the partner share to the Connect rate",
+        "evidence": "\"If the app has any Connect module or scope, Atlassian keeps 25%\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that new Data Center apps can no longer be submitted to the Marketplace",
+        "evidence": "\"New Data Center app submissions have been closed since 16 Dec 2025\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that Data Center reaches end of life (2029) or stopped selling to new customers",
+        "evidence": "\"Data Center reaches end of life on 28 Mar 2029\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a cloud alternative for the bank's on-prem concern (data residency, Runs on Atlassian, Isolated Cloud or Government Cloud)",
+        "evidence": "\"Forge with data residency, Atlassian Government Cloud or Isolated Cloud\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the 100% revenue share until $1M lifetime Forge revenue",
+        "evidence": "\"100%\u2020 of Forge revenue is yours until lifetime Forge revenue reaches $1M\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the standard Forge partner share (83% from 1 Oct 2026)",
+        "evidence": "\"Forge... 83%\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that annual pricing is set at 10 times the monthly price",
+        "evidence": "\"Annual price: 10 times the monthly price\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the 60-day protection of existing customers' prices after a price change",
+        "evidence": "\"Existing customers keep the old price for 60 days\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions Forge platform consumption charges billed to the developer above free allowances",
+        "evidence": "\"Forge consumption: usage above each monthly free allowance is invoiced to you\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a Paid via Atlassian app license must cover the host site's whole licensed user count, so the bank cannot license only 40 users",
+        "evidence": "\"A 2,000-user site pays the tier price whether 40 or 2,000 people use the app.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recalculates or flags the price at the 2,000-user tier rather than 40 users",
+        "evidence": "\"The bank's 2,000-user site lands in the 1,001\u20132,000 tier and pays that tier's price.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adding any Connect module or Connect scope would drop the partner share to the Connect rate",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that new Data Center apps can no longer be submitted to the Marketplace",
+        "evidence": "Says only that new DC sales to customers ended and a DC app is \"a second product\"; doesn't say submissions are closed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that Data Center reaches end of life (2029) or stopped selling to new customers",
+        "evidence": "\"new DC sales to new customers ended in March 2026, and end of life is March 2029\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers a cloud alternative for the bank's on-prem concern (data residency, Runs on Atlassian, Isolated Cloud or Government Cloud)",
+        "evidence": "\"Forge's 'Runs on Atlassian' model and data residency may answer it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the 100% revenue share until $1M lifetime Forge revenue",
+        "evidence": "Not mentioned; models 25% base and 15% upside.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the standard Forge partner share (83% from 1 Oct 2026)",
+        "evidence": "Uses 25% and 15% shares instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions that annual pricing is set at 10 times the monthly price",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the 60-day protection of existing customers' prices after a price change",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions Forge platform consumption charges billed to the developer above free allowances",
+        "evidence": "\"Forge usage beyond the free allowance (compute, storage, egress) is billed to you as the vendor.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that apps with a Connect descriptor can no longer receive updates, so the macro cannot ship by editing atlassian-connect.json",
+        "evidence": "\"Apps with a Connect descriptor stopped receiving updates in Mar 2026\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the new macro through a Forge manifest on the same listing (Connect on Forge or full Forge)",
+        "evidence": "\"F1: hybrid Forge version on the same listing, containing the PDF macro\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the app.connect.key manifest property (or linking the Forge app to the existing Connect listing)",
+        "evidence": "\"Declare Forge on the existing app by setting `app.connect.key` in `manifest.yml`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives Connect end of support as 31 January 2027 and says only critical security patches follow",
+        "evidence": "\"31 Jan 2027\u2020 is Connect end of support, with critical security patches only.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects postponing the migration to next year",
+        "evidence": "\"do the Forge migration now, not next year\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a first Forge version using only scopes inherited from the Connect scopes ships without admin approval",
+        "evidence": "\"In the first Forge version these ship without admin approval, except `read:chat:rovo` and scopes that elevate beyond your Connect scopes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names at least one change that forces admin approval on the migration (changing the Connect baseUrl, elevating scopes, or switching free/paid)",
+        "evidence": "\"Do not change the Connect `baseUrl`, any auth provider, or free vs paid in this version.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that installations with a suspended license or licensed via access tokens are not auto-upgraded",
+        "evidence": "\"Suspended or access-token installs never auto-upgrade.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that any remaining Connect module keeps the app on the Connect revenue share rate",
+        "evidence": "\"A single remaining Connect module or scope keeps you there.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the Forge partner share as higher than Connect (83% vs 75% from 1 Oct 2026, or marks the figures as needing verification)",
+        "evidence": "Table: Connect 75%\u2020, Forge only 83%\u2020.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that only revenue earned after the first Forge-only version counts toward the $1M lifetime Forge incentive",
+        "evidence": "Only says \"Connect-era revenue from your 1,400 sites does not count\" and \"I can't tell... whether a hybrid app's revenue qualifies\"; never states the after-first-Forge-only-version rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends front-loading Forge-specific scopes and remotes into the first Forge version, since adding them later while Connect modules remain needs admin approval",
+        "evidence": "\"Front-load every Forge scope, remote and fetch permission the end state needs... Afterwards, while any Connect module remains, the same additions need admin approval.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that apps with a Connect descriptor can no longer receive updates, so the macro cannot ship by editing atlassian-connect.json",
+        "evidence": "Only says adding a Connect module is \"new surface area on a platform that is going away\"; it recommends keeping the Connect app and adding Forge modules.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the new macro through a Forge manifest on the same listing (Connect on Forge or full Forge)",
+        "evidence": "\"keep the existing Connect app and add Forge modules to it... You keep the same app key, listing and licences\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the app.connect.key manifest property (or linking the Forge app to the existing Connect listing)",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives Connect end of support as 31 January 2027 and says only critical security patches follow",
+        "evidence": "Gives \"31 Dec 2026\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects postponing the migration to next year",
+        "evidence": "\"Don't plan around 'Connect works until 2027.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a first Forge version using only scopes inherited from the Connect scopes ships without admin approval",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names at least one change that forces admin approval on the migration (changing the Connect baseUrl, elevating scopes, or switching free/paid)",
+        "evidence": "\"Moving to Forge usually adds scopes and egress declarations, and admins have to approve those.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that installations with a suspended license or licensed via access tokens are not auto-upgraded",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that any remaining Connect module keeps the app on the Connect revenue share rate",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the Forge partner share as higher than Connect (83% vs 75% from 1 Oct 2026, or marks the figures as needing verification)",
+        "evidence": "Says \"Migration alone shouldn't change your revenue share\" and \"Migrating... should leave your share the same\", which contradicts a higher Forge share.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that only revenue earned after the first Forge-only version counts toward the $1M lifetime Forge incentive",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends front-loading Forge-specific scopes and remotes into the first Forge version, since adding them later while Connect modules remain needs admin approval",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

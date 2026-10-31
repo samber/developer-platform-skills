@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Advises against building on Atlassian Connect and states the Marketplace no longer accepts new Connect apps",
+        "evidence": "\"Build as a Connect app | \u274c Not possible\"; \"The Marketplace has accepted only Forge apps since 17 Sep 2025\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends Forge, with Forge remotes (or equivalent) so the app can call Notebridge's existing backend",
+        "evidence": "\"Forge UI with Forge remotes to your existing backend\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a Forge cloud app can be listed only as Free or Paid via Atlassian, with no Paid via Vendor option absent Atlassian's written permission",
+        "evidence": "\"Atlassian recommends Paid via Vendor, which Forge apps cannot use.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags that Atlassian's guidance on a Free listing requiring an external paid account is unsettled, or requires the app to do something useful without the account",
+        "evidence": "\"Atlassian has published no ruling that an external plan can unlock the app's own features\"; \"A free app must be useful 'as is'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the off-Marketplace 'Pro' tier for Jira-specific features as the risky part and proposes either folding it into the SaaS subscription or using Paid via Atlassian",
+        "evidence": "\"Free, sell Pro on Stripe | \u26a0\ufe0f Unruled and risky\"; \"use Paid via Atlassian (PvA) for Pro\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends getting Atlassian's ruling on the payment model in writing on the approval or support ticket before building the Pro billing",
+        "evidence": "\"Open an ECOHELP ticket asking for a written ruling\"; \"Get Atlassian's written ruling before building billing\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Cloud Fortified no longer accepts new apps and names Atlassian Enterprise Certified as its replacement",
+        "evidence": "\"Cloud Fortified takes no new apps... AEC replaces it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Enterprise Certified is open to Forge apps only or requires no Connect modules",
+        "evidence": "\"Forge-only with no Connect modules.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists partner identity verification (KYC/KYB) and the app security questionnaire as prerequisites to finish before or at submission",
+        "evidence": "\"Start partner verification (KYC/KYB)\"; checklist item 3 \"App security questionnaire (Forge variant)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping some in-Jira value that works without a Notebridge account (preview, read-only panel or sample data)",
+        "evidence": "\"Add some in-product value that works without an account: a read-only summary panel, a preview, or sample data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds the 6-week timeline backward with at least one returned review round and calls the conference date at risk or tight",
+        "evidence": "Timeline table with review round 1, \"If returned, fix every point in one pass and resubmit\"; \"Listing live in 6 weeks | \u26a0\ufe0f Only if the first review round is clean\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that declaring egress domains or scopes later creates major versions needing admin consent, so they should be settled before launch",
+        "evidence": "\"Any later addition, or a false \u2192 true flip, is a major version.\"; \"Admins must accept it\"; irreversibles frozen by 13 Nov.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Advises against building on Atlassian Connect and states the Marketplace no longer accepts new Connect apps",
+        "evidence": "\"Don't build on Atlassian Connect... no new Connect apps on the Marketplace from late 2025\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends Forge, with Forge remotes (or equivalent) so the app can call Notebridge's existing backend",
+        "evidence": "\"Build on Forge with Forge Remote. Forge Remote keeps your existing backend and OAuth flows.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a Forge cloud app can be listed only as Free or Paid via Atlassian, with no Paid via Vendor option absent Atlassian's written permission",
+        "evidence": "Option B \"Paid via vendor... Matches your Stripe setup\" is presented as viable, with only \"may carry stricter requirements\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags that Atlassian's guidance on a Free listing requiring an external paid account is unsettled, or requires the app to do something useful without the account",
+        "evidence": "\"Free listing plus Pro sold on your own Stripe page needs a policy check first... external paywalls may conflict with policy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the off-Marketplace 'Pro' tier for Jira-specific features as the risky part and proposes either folding it into the SaaS subscription or using Paid via Atlassian",
+        "evidence": "Option A \"Pro on your plan... billed via Stripe\" and Option C \"Paid via Atlassian\"; \"Don't put checkout links inside the Jira UI until Atlassian confirms\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends getting Atlassian's ruling on the payment model in writing on the approval or support ticket before building the Pro billing",
+        "evidence": "\"Ask Marketplace partner support in writing. Don't build the upsell before the answer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Cloud Fortified no longer accepts new apps and names Atlassian Enterprise Certified as its replacement",
+        "evidence": "Only hedged: \"has been reported as replaced or renamed\"; asks to confirm \"current Fortified/Enterprise-certification status\" without naming it as the replacement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Enterprise Certified is open to Forge apps only or requires no Connect modules",
+        "evidence": "No such statement appears.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists partner identity verification (KYC/KYB) and the app security questionnaire as prerequisites to finish before or at submission",
+        "evidence": "\"Register the Marketplace vendor account and start company and tax verification\"; submission includes \"security self-assessment\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping some in-Jira value that works without a Notebridge account (preview, read-only panel or sample data)",
+        "evidence": "Not recommended; the read-only panel appears only as a demo fallback.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds the 6-week timeline backward with at least one returned review round and calls the conference date at risk or tight",
+        "evidence": "\"Submit to the Marketplace by end of week 4\", \"Week 5: review buffer\", \"Treat 'listing live in 6 weeks' as a stretch goal\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that declaring egress domains or scopes later creates major versions needing admin consent, so they should be settled before launch",
+        "evidence": "No mention of admin consent or major versions.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

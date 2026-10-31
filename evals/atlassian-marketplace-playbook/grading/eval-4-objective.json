@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Explains a Timeout rejection as the review expiring while prerequisites were incomplete (partner verification, security questionnaire or payment profile)",
+        "evidence": "\"Practitioners report most Timeout rejections come from unfinished prerequisites, not from the reviewer.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the submitter's lack of ECOHELP ticket access as the first thing to fix, via an Atlassian support request",
+        "evidence": "\"Get ECOHELP access for a company account... Request portal access... through a support request.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists partner identity verification (KYC/KYB) as a required step",
+        "evidence": "\"Partner verification (KYC/KYB) is done.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the app security questionnaire as a required step",
+        "evidence": "\"The app security questionnaire passes, with no Fail answers.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions completing the Privacy & Security tab or payment profile before resubmitting",
+        "evidence": "\"The Privacy & Security tab is complete\"; \"The payment profile is set.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that resubmitting creates a new review ticket or restarts the review",
+        "evidence": "\"A resubmission is a new round.\"; \"re-enters review, which restarts the clock.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the 10-day summit date is unlikely to be met with a fresh review and plans a fallback announcement",
+        "evidence": "\"Do not plan on being listed in 10 days.\"; \"Tell partners 'in Marketplace review'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that every production install of a paid app is billed, including the vendor's own",
+        "evidence": "\"every production install of a paid app is billed, including your own.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends testing paid behaviour in the development or staging environment, with forge install --license (or equivalent license override)",
+        "evidence": "\"Run `forge install --license active` for the paid path\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a licensed or submitted Forge app cannot be shared by installation link and needs a separate unlicensed copy for testers",
+        "evidence": "\"it can't be shared by installation link. Give testers a separate unlicensed copy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks or recommends asking on the ticket what specifically timed out instead of resubmitting blindly",
+        "evidence": "\"Ask on the ticket what timed out.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Explains a Timeout rejection as the review expiring while prerequisites were incomplete (partner verification, security questionnaire or payment profile)",
+        "evidence": "Attributes it to an unanswered reviewer question: \"Atlassian asked a question on the ticket and got no answer\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the submitter's lack of ECOHELP ticket access as the first thing to fix, via an Atlassian support request",
+        "evidence": "\"Do now... open the ECOHELP link\"; \"If the ticket stays locked, open a new Marketplace Partner support request\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists partner identity verification (KYC/KYB) as a required step",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the app security questionnaire as a required step",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions completing the Privacy & Security tab or payment profile before resubmitting",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that resubmitting creates a new review ticket or restarts the review",
+        "evidence": "Asks only whether the ticket can be reopened or resubmitted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the 10-day summit date is unlikely to be met with a fresh review and plans a fallback announcement",
+        "evidence": "\"Do not promise a listing date... Not listed: demo from your own site with the production build.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that every production install of a paid app is billed, including the vendor's own",
+        "evidence": "Only advises \"Do not buy your own app on production\"; never states that installs are billed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends testing paid behaviour in the development or staging environment, with forge install --license (or equivalent license override)",
+        "evidence": "Suggests asking Partner support for \"test or evaluation licenses\"; no dev environment or license override.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a licensed or submitted Forge app cannot be shared by installation link and needs a separate unlicensed copy for testers",
+        "evidence": "Says a distribution link \"works for non-paid installs. Check that it fits your setup first.\" No separate copy is mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks or recommends asking on the ticket what specifically timed out instead of resubmitting blindly",
+        "evidence": "\"What did the reviewer need, and which info request timed out?\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}
