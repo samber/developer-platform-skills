@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Distinguishes stopping data flow to the partner from removing the partner's fields from the public schema",
+        "evidence": "'Deleting the subgraph is a schema change. Legal's requirement is about data leaving. Those are two different things.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends cutting the partner's traffic or credentials by the deadline without requiring the schema fields to disappear at the same moment (e.g. resolve to null with an error, open the circuit, revoke the token)",
+        "evidence": "'Keep the field, return null... The data flow stops Friday... You remove the schema field after the window.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a removal-impact check (composition and client operations) before deleting the subgraph",
+        "evidence": "'Run the registry's removal-impact check now. Cosmo: wgc subgraph check --delete.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires pulling usage of the partner's fields by clients before removal",
+        "evidence": "'Pull per-field usage for tidemark_payrunSummary and the Tidemark_ types over the last 30 days.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that removing the partner's fields is a breaking change for clients that query them",
+        "evidence": "'any query that selects it fails validation as a whole... their dashboards break.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands the field removal to the platform's deprecation/notice window rather than deleting on Friday",
+        "evidence": "Recommended option: 'Tenants' queries keep working, so you give them a real deprecation window. You remove the schema field after the window.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders removal: partner variant or contract first, then the base graph",
+        "evidence": "Plan says 'remove the subgraph from the partners variant and recompose' but never mentions a base-graph step or the variant-then-base order.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying the roughly 30 tenants that had the partner installed",
+        "evidence": "'Notify the ~30 tenants and any app owners that call the field'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Addresses revoking the per-partner credentials or tokens the router used toward the partner",
+        "evidence": "'Revoke the per-partner credential or block the egress host for Tidemark.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises what happens to data the partner already received or stored, under the partner's data terms",
+        "evidence": "'Past data is a separate legal question... deletion or return request'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend simply deleting the subgraph and recomposing Friday as the complete plan",
+        "evidence": "'Don't make delete subgraph + recompose the legal control. Cut the data flow first.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes or stops the partner from receiving `_entities` calls and required fields by the legal deadline, not only from appearing in the schema",
+        "evidence": "'Cut data flow first... Router and egress logs show zero requests to Tidemark's host after the cut time.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Distinguishes stopping data flow to the partner from removing the partner's fields from the public schema",
+        "evidence": "Gap 1: 'Deleting from the registry doesn't stop traffic'; gap 2: removing the field breaks clients; gap 4: other data channels.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends cutting the partner's traffic or credentials by the deadline without requiring the schema fields to disappear at the same moment (e.g. resolve to null with an error, open the circuit, revoke the token)",
+        "evidence": "'Add a fast hard stop that doesn't depend on the schema, such as an egress block or a `override_subgraph_url` to a dead stub.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a removal-impact check (composition and client operations) before deleting the subgraph",
+        "evidence": "Composition dry-run with `rover supergraph compose`; 'Run schema checks against real traffic'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires pulling usage of the partner's fields by clients before removal",
+        "evidence": "'Run schema checks against real traffic or usage reports for the last 30 days.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that removing the partner's fields is a breaking change for clients that query them",
+        "evidence": "'An unknown field is a validation error, so the whole operation fails.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands the field removal to the platform's deprecation/notice window rather than deleting on Friday",
+        "evidence": "Only 'Warn those clients before the cutover' and deleting Thursday or Friday. No deprecation window.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Orders removal: partner variant or contract first, then the base graph",
+        "evidence": "Says 'Delete from every variant', with no staged ordering of partner variant before base graph.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying the roughly 30 tenants that had the partner installed",
+        "evidence": "'Tell the 30 tenants.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Addresses revoking the per-partner credentials or tokens the router used toward the partner",
+        "evidence": "'OAuth tokens, API keys and installation records. Revoke or disable them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises what happens to data the partner already received or stored, under the partner's data terms",
+        "evidence": "'Ask legal about data already sent... Get a written deletion or return confirmation from Tidemark.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not recommend simply deleting the subgraph and recomposing Friday as the complete plan",
+        "evidence": "'Don't just delete the subgraph on Friday evening.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes or stops the partner from receiving `_entities` calls and required fields by the legal deadline, not only from appearing in the schema",
+        "evidence": "Egress block, revoked tokens, and 'confirm every replica's supergraph hash', with egress logs showing zero requests.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

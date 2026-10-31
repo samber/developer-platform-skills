@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States GitHub keeps traffic for 14 days only and the top 10 referrers and paths only, labelled [documented], so the January history is unrecoverable",
+        "evidence": "'keeps **14 days only**, shows the top 10 referrers and paths... [documented]'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the monthly cron with a weekly export, because a monthly run against 14-day retention loses days",
+        "evidence": "'Run it **weekly**.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the four endpoints: /traffic/views, /traffic/clones, /traffic/popular/referrers, /traffic/popular/paths",
+        "evidence": "No /traffic/views etc. paths named.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the token needs push access on every tracked repository (classic repo scope, or fine-grained Administration read), so a read-only token fails",
+        "evidence": "'Check that the token has push access on **all 4 repos**.' Administration read / classic repo.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects hardcoding the token and stores GITHUB_TOKENS and GITHUB_PROFILE in Apps Script Script properties",
+        "evidence": "'add `GITHUB_TOKENS`... and `GITHUB_PROFILE`. The token goes here and nowhere else.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes the bundled Apps Script setup: a sheet named 'List GitHub repositories' with owner in column A and repo in column B from row 2, one script file per .gs file, and a weekly time-driven trigger per entry point",
+        "evidence": "Sheet 'List GitHub repositories', owner column A, repo column B from row 2, one .gs file each, weekly triggers.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names the entry points mainGithubRepositories, mainGithubSearch and mainGithubDependents and the sheets they write",
+        "evidence": "mainGithubRepositories, mainGithubSearch, mainGithubDependents; sheets 'Github repositories', 'Github referrers', 'Github popular paths'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects clones as the headline adoption number: cloners stay diagnostic because CI inflates them",
+        "evidence": "'Keep cloners as a diagnostic only.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends Google Alerts for off-GitHub mentions with the queries \"<project>\", \"<owner>/<repo>\" and the package name, once a week, all results",
+        "evidence": "Alerts for \"Lanternfold\", \"<owner>/<sdk repo>\", package name; 'once a week... all results'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends OSS Insight for star and contributor history since creation and says to quote the GitHub figure when the two disagree",
+        "evidence": "'quote GitHub's figure when they disagree.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the tool ordering: value KPI sheet > OSS Insight > Google Alerts, effort KPI sheet > Google Alerts == OSS Insight, and starts with the KPI sheet because traffic deletion is irreversible",
+        "evidence": "No explicit ordering KPI sheet > OSS Insight > Alerts; only 'Do step 1 today'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that the code_unreliable search column returns inconsistent totals and that the dependents script scrapes the 'Used by' page, which has no API and breaks when the HTML changes",
+        "evidence": "'Skip the `code_unreliable` column'; dependents script 'reads GitHub's public \"Used by\" page, which has no API'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a run failing for one repository still writes the others, then raises an error naming the failed ones",
+        "evidence": "'One missing repo fails only that repo, and the run then raises an error naming it.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States GitHub keeps traffic for 14 days only and the top 10 referrers and paths only, labelled [documented], so the January history is unrecoverable",
+        "evidence": "\"GitHub keeps only the last 14 days ... Anything before it is gone\"; \"top 10 sites\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the monthly cron with a weekly export, because a monthly run against 14-day retention loses days",
+        "evidence": "It recommends \"Run daily\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the four endpoints: /traffic/views, /traffic/clones, /traffic/popular/referrers, /traffic/popular/paths",
+        "evidence": "Only the views and clones endpoints are used.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the token needs push access on every tracked repository (classic repo scope, or fine-grained Administration read), so a read-only token fails",
+        "evidence": "\"traffic endpoints need admin-level read on the repo\"; Administration: read.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects hardcoding the token and stores GITHUB_TOKENS and GITHUB_PROFILE in Apps Script Script properties",
+        "evidence": "It uses env vars, not Apps Script.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes the bundled Apps Script setup: a sheet named 'List GitHub repositories' with owner in column A and repo in column B from row 2, one script file per .gs file, and a weekly time-driven trigger per entry point",
+        "evidence": "It uses a Python script.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names the entry points mainGithubRepositories, mainGithubSearch and mainGithubDependents and the sheets they write",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects clones as the headline adoption number: cloners stay diagnostic because CI inflates them",
+        "evidence": "\"Clones = installs\" is rejected; unique cloners are shown as secondary.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends Google Alerts for off-GitHub mentions with the queries \"<project>\", \"<owner>/<repo>\" and the package name, once a week, all results",
+        "evidence": "It recommends Alerts, but with different queries and a daily poll.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends OSS Insight for star and contributor history since creation and says to quote the GitHub figure when the two disagree",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the tool ordering: value KPI sheet > OSS Insight > Google Alerts, effort KPI sheet > Google Alerts == OSS Insight, and starts with the KPI sheet because traffic deletion is irreversible",
+        "evidence": "Not given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns that the code_unreliable search column returns inconsistent totals and that the dependents script scrapes the 'Used by' page, which has no API and breaks when the HTML changes",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that a run failing for one repository still writes the others, then raises an error naming the failed ones",
+        "evidence": "The script has no per-repo error handling.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

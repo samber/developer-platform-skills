@@ -1,0 +1,214 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "graphql-federation-offering",
+  "scenarios": 7,
+  "expectations_total": 92,
+  "expectations_subjective": 1,
+  "expectations_objective": 91,
+  "pass_rate_with_skill_pct": 94.6,
+  "pass_rate_without_skill_pct": 62.0,
+  "delta_pp": 32.6,
+  "uplift_multiplier": 1.53,
+  "trigger_accuracy_pct": 66.7,
+  "trigger_queries": 96,
+  "trigger_positive_fire_rate": 0.708,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 0.2,
+  "subjective_pass_disagreements": [
+    {
+      "eval_id": 1,
+      "condition": "with_skill",
+      "expectation": "Mentions the rungs/options in terms of effort for the platform versus value delivered, not only feature descriptions",
+      "pass1": true,
+      "pass2": false
+    }
+  ],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Recommends platform-stored, app-owned namespaced extension fields or objects as the default mechanism for the tracking data"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires a partner namespace or reserved prefix for the partner's extension definitions"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that partner extension data should be visible only to tenants that installed or authorized that partner"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Uses the January peak deadline as a reason favouring the mechanisms that need no partner engineering"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Orders removal: partner variant or contract first, then the base graph"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Classifies the partner need into a shape before choosing a mechanism (stored data, events, live data, or the partner's own capabilities)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Identifies tracking number and carrier name as stored data the platform can hold, not data that must be computed live by the partner at query time"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends platform-stored, app-owned namespaced extension fields or objects as the default mechanism for the tracking data"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names the condition under which a partner-hosted resolver or partner subgraph would become justified (data that must be live and computed by the partner)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires a partner namespace or reserved prefix for the partner's extension definitions"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that partner extension data should be visible only to tenants that installed or authorized that partner"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Defines what happens to the partner's definitions and values when a tenant uninstalls or the partner leaves"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Uses the January peak deadline as a reason favouring the mechanisms that need no partner engineering"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Mentions the rungs/options in terms of effort for the platform versus value delivered, not only feature descriptions"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends a per-partner credential minted per request (short-lived, audience-bound to the insurer, scoped to tenant) instead of the client token"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that a static header insert in router config cannot carry a per-request tenant-bound token, so a router extension, coprocessor or proxy is needed"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Warns that a whole-request router timeout set at or below the partner timeout turns a stalled partner into a failed query instead of partial data"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires a circuit breaker per partner, or an egress proxy with outlier detection where the router lacks one"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Requires the insurer endpoint to authenticate router calls (mTLS or signed platform token) and take tenant from the token, not from the entity representation"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Raises `deduplicate_query` or shared caching as a cross-tenant sharing risk for partner responses"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags `type Money @shareable` as an unprefixed type that merges with or co-resolves the platform's Money type"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Ties the @requires concern to a data-clearance list or consent for each field the partner receives"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags `type Review` and `Query.reviews` as missing a partner namespace/prefix"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a blocking policy check in the platform registry that rejects banned directives on every partner publish, not a manual review comment"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Lists @override, @provides and @shareable on platform fields as directives a partner may not use"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Notes that the partner itself should not hold publish rights; the platform publishes"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that many self-serve apps make per-partner mapping or per-partner schema review (remote schemas or subgraphs) not scale"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Specifies what the mediated field returns (e.g. a platform-defined envelope plus a validated partner payload, or compares envelope vs JSON scalar vs per-partner union)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Hands the field removal to the platform's deprecation/notice window rather than deleting on Friday"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Orders removal: partner variant or contract first, then the base graph"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Acknowledges that a few contracted partners needing live data joined across several platform entities is the condition that can justify partner subgraphs"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Rejects composing partner subgraphs into the main first-party supergraph and requires a separate partner variant or router"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Distinguishes what partners must run (a subgraph library, check access) from the platform's router/composition licensing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes a blocking policy check on every partner publish in the guide or platform process"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes an offboarding or removal section in the guide"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Notes that @requires ships the required fields once per entity, so a 50-prescription page sends patient data for every row"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires the partner endpoint to authenticate platform calls and not take tenant from the representation"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that no clinic user credential is forwarded to the partner"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Masks partner error messages and does not pass partner response extensions through to clinic clients"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Classifies the pricing need as live partner-computed data before specifying the field"
+      }
+    ]
+  }
+}

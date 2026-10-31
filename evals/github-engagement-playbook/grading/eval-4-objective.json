@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Recommends shipping each merged user-visible fix or feature as its own GitHub Release instead of one quarterly release",
+        "evidence": "'Cut the first unreleased fixes now, one release per user-visible change.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that every Release is a feed event for the repository's stargazers and watchers, labelled [documented], so ten small releases reach them ten times where one reaches them once",
+        "evidence": "'Ten small releases reach them ten times. v4.2 with 31 PRs reached them once.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States never to batch fixes to make a release look bigger",
+        "evidence": "'Never batch fixes to make a release look bigger.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a written release body, states a release with an empty body is not worth its feed slot, and that one real change with a one-line body is enough",
+        "evidence": "Says a tag-only body wastes the event, but never says one change with a one-line body is enough.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs ticking 'Create a discussion for this release' into an Announcement category, and notes that Announcement posts require maintain or admin role [documented]",
+        "evidence": "Tick instruction present, but no statement that Announcement posts need maintain or admin role.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides the release body template with a one-line outcome (not the version number), two sentences on who should upgrade, Breaking changes / New / Fixed sections, a pinned install command and a Q&A link",
+        "evidence": "Template 1 has outcome line, who upgrades, Breaking/New/Fixed, install, Q&A link.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Provides the Announcement discussion template",
+        "evidence": "Template 2 provided.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises merging Dependabot PRs weekly as they arrive rather than squashing them, labelling the fresh-commit-graph claim as [folklore] and naming the security patches as real value on their own",
+        "evidence": "'[folklore]'; 'Security patches have real value on their own.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the per-release sequence: release body, the auto-created Announcement, then an off-platform post",
+        "evidence": "'Write the body... Tick \"Create a discussion\"... Post off-platform.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the feed reaches followers, stargazers and watchers only, not strangers [documented]",
+        "evidence": "'GitHub's feed reaches only followers, stargazers and watchers [documented].'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Back-fills bodies on the last three releases in weeks 1-2",
+        "evidence": "'Back-fill bodies on the last three releases, v4.2 included.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the CHANGELOG writing itself to the changelog-writing skill rather than redesigning it inline",
+        "evidence": "'Write the body (see `changelog-writing`).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes a .github/release.yml label mapping (breaking-change, enhancement, bug, dependencies, with skip-changelog excluded) so bodies generate from labelled PRs",
+        "evidence": "No release.yml mention anywhere.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Recommends shipping each merged user-visible fix or feature as its own GitHub Release instead of one quarterly release",
+        "evidence": "\"Move to a monthly or per-fix cadence\", with a quarterly roll-up kept.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that every Release is a feed event for the repository's stargazers and watchers, labelled [documented], so ten small releases reach them ten times where one reaches them once",
+        "evidence": "It says only that watchers get a notification.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States never to batch fixes to make a release look bigger",
+        "evidence": "It says \"Looking substantial\" is a problem but gives no explicit rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a written release body, states a release with an empty body is not worth its feed slot, and that one real change with a one-line body is enough",
+        "evidence": "Notes are required, but they are a long template and there is no one-line-body rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Instructs ticking 'Create a discussion for this release' into an Announcement category, and notes that Announcement posts require maintain or admin role [documented]",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides the release body template with a one-line outcome (not the version number), two sentences on who should upgrade, Breaking changes / New / Fixed sections, a pinned install command and a Q&A link",
+        "evidence": "The skeleton lacks a one-line outcome, a who-should-upgrade paragraph and a Q&A link.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Provides the Announcement discussion template",
+        "evidence": "None.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises merging Dependabot PRs weekly as they arrive rather than squashing them, labelling the fresh-commit-graph claim as [folklore] and naming the security patches as real value on their own",
+        "evidence": "It advises grouped updates, with no weekly merging and no folklore label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the per-release sequence: release body, the auto-created Announcement, then an off-platform post",
+        "evidence": "It gives a release-day checklist, not this sequence.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the feed reaches followers, stargazers and watchers only, not strangers [documented]",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Back-fills bodies on the last three releases in weeks 1-2",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the CHANGELOG writing itself to the changelog-writing skill rather than redesigning it inline",
+        "evidence": "No skill referenced.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes a .github/release.yml label mapping (breaking-change, enhancement, bug, dependencies, with skip-changelog excluded) so bodies generate from labelled PRs",
+        "evidence": "It names categories but gives no label mapping or skip-changelog exclusion.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

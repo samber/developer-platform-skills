@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Flags that there is no written breaking-change definition and that tool defaults would silently become the policy",
+        "evidence": "\"Every severity here is my choice or the tool's default, not Fenmoor's rule\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes writing the breaking-change policy to samber/developer-platform-skills@api-versioning-policy",
+        "evidence": "\"route a real one to `api-versioning-policy`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the severity map or gate configuration as provisional pending policy sign-off",
+        "evidence": "Status provisional in map",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping only the PR gate (diff vs main or merge base, fail on ERR) within the one engineer-day",
+        "evidence": "Rung table; PR gate shipped first",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defers the changelog feed, approval records and usage analytics to later rungs instead of building them this week",
+        "evidence": "Table: Next week / Week 3 / Deleted",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States an explicit ordering of the automation rungs (e.g. PR gate first, then release diff and declared channel, then approval record, then feed)",
+        "evidence": "Table and After Friday list",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that the deadline (Friday) is what promotes the PR gate alone",
+        "evidence": "\"The skill's rule for a fixed date is to ship the PR gate alone first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes or deletes usage-aware classification from the plan when no per-operation usage data exists, or makes it conditional on having that data",
+        "evidence": "\"Deleted until you have per-operation telemetry\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a concrete oasdiff command or CI step with --fail-on ERR",
+        "evidence": "Gate step with --fail-on ERR",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a renamed response field is a removal plus an addition and is caught by the diff as breaking",
+        "evidence": "Mentions rename test but never explains removal plus addition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says a named approver (e.g. code owners on the spec path) must sign off any accepted breaking finding",
+        "evidence": "CODEOWNERS @fenmoor/api-review with required review",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks for or recommends pinning the oasdiff version",
+        "evidence": "OASDIFF_VERSION: v1.34.1",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user the full set they asked for (feed, approvals, usage analytics) does not fit in one engineer-day",
+        "evidence": "\"One engineer-day buys the PR gate...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the gate configuration (severity/levels file) in the repository next to the spec",
+        "evidence": "api/severity-map.md, api/oasdiff-levels.txt",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Flags that there is no written breaking-change definition and that tool defaults would silently become the policy",
+        "evidence": "'Today it enforces whatever oasdiff's defaults say.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes writing the breaking-change policy to samber/developer-platform-skills@api-versioning-policy",
+        "evidence": "Drafts the policy itself and names no skill.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks the severity map or gate configuration as provisional pending policy sign-off",
+        "evidence": "The policy is a draft for CTO sign-off, but the gate is not marked provisional.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping only the PR gate (diff vs main or merge base, fail on ERR) within the one engineer-day",
+        "evidence": "Also ships the policy, approvals and a per-PR changelog summary.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Defers the changelog feed, approval records and usage analytics to later rungs instead of building them this week",
+        "evidence": "Defers the feed and analytics but builds approvals (label plus CODEOWNERS) now.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States an explicit ordering of the automation rungs (e.g. PR gate first, then release diff and declared channel, then approval record, then feed)",
+        "evidence": "Gives only a day plan and a deferred list.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that the deadline (Friday) is what promotes the PR gate alone",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes or deletes usage-aware classification from the plan when no per-operation usage data exists, or makes it conditional on having that data",
+        "evidence": "Usage analytics are 'Not this week' and need gateway or log data.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a concrete oasdiff command or CI step with --fail-on ERR",
+        "evidence": "'oasdiff breaking /tmp/base.yaml \"${SPEC_PATH}\" --fail-on ERR'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that a renamed response field is a removal plus an addition and is caught by the diff as breaking",
+        "evidence": "Uses a rename as the self-test but does not explain it as removal plus addition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says a named approver (e.g. code owners on the spec path) must sign off any accepted breaking finding",
+        "evidence": "CODEOWNERS '/openapi.yaml @fenmoor/api-owners' with required code-owner review.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks for or recommends pinning the oasdiff version",
+        "evidence": "'OASDIFF_VERSION ... Pin the version you tested; do not use @latest'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user the full set they asked for (feed, approvals, usage analytics) does not fit in one engineer-day",
+        "evidence": "'The first four rows fit in the day. Cutting analytics is the only way to get there.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the gate configuration (severity/levels file) in the repository next to the spec",
+        "evidence": "No severity or levels file; only fixtures and the workflow.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

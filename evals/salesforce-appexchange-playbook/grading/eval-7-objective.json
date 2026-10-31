@@ -1,0 +1,106 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that net-new orders that meet the GTM app requirements must go through the AgentExchange GTM app rather than the Channel Order App",
+        "evidence": "\"Net-new orders that qualify must use it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the GTM eligibility conditions that fit Brightpath: existing ISVforce partner, seat-based managed package, USD, US customers, 12-month contracts",
+        "evidence": "Mentions seat-based, US customers, 12-month and USD, but never states the existing ISVforce partner requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the GTM app does not auto-renew orders, contradicting sales' auto-renew plan",
+        "evidence": "\"Not allowed: 12-month orders, no auto-renew\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States GTM payment terms as NET30 with ACH debit and full payment upfront, contradicting card payment",
+        "evidence": "\"No: NET30 ACH, paid upfront\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires amending the PADA with the GTM app terms (applied for through the account manager)",
+        "evidence": "Only asks \"Does my PADA carry GTM terms\"; it never requires amending the PADA to add them.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps extra licenses for existing COA customers of the same app on the Channel Order App during the active contract, moving them to the GTM app only at renewal",
+        "evidence": "\"Existing COA customers keep expanding through COA until renewal.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds prompt-injection testing or hardening (enclosing untrusted record data) for the Agentforce actions and prompt templates before the re-review",
+        "evidence": "\"Wrap case text as data... Test with real injection cases.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the periodic re-review carries the review fee",
+        "evidence": "\"a periodic re-review... a $999\u2020 fee is due.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that net-new orders that meet the GTM app requirements must go through the AgentExchange GTM app rather than the Channel Order App",
+        "evidence": "It says \"Don't make the Channel Order App (COA) the default route\" and never mentions the GTM app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the GTM eligibility conditions that fit Brightpath: existing ISVforce partner, seat-based managed package, USD, US customers, 12-month contracts",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the GTM app does not auto-renew orders, contradicting sales' auto-renew plan",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States GTM payment terms as NET30 with ACH debit and full payment upfront, contradicting card payment",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires amending the PADA with the GTM app terms (applied for through the account manager)",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps extra licenses for existing COA customers of the same app on the Channel Order App during the active contract, moving them to the GTM app only at renewal",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds prompt-injection testing or hardening (enclosing untrusted record data) for the Agentforce actions and prompt templates before the re-review",
+        "evidence": "\"Prompt injection. Case text is untrusted input... Keep instructions and case data clearly separated in each template\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the periodic re-review carries the review fee",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

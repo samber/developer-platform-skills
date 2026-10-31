@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that 2GP beta package versions cannot be installed in production orgs (only scratch orgs and sandboxes)",
+        "evidence": "\"Betas install only in scratch orgs and sandboxes, and they never upgrade.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an installed beta version can never be upgraded",
+        "evidence": "\"...and they never upgrade.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends giving the pilot customers a promoted managed-released version, protected by an installation key or otherwise restricted",
+        "evidence": "\"Pilots need a **promoted, managed-released** version and its installation key.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the namespace is fixed to the package when it is created and cannot be changed to `corvana` at GA",
+        "evidence": "\"A namespace is fixed to the package at creation. A rename means a new package and no upgrade path.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends choosing the final, product-brand namespace before any customer install",
+        "evidence": "\"register `corvana` as the namespace... Nothing is released yet\"; \"Never promote any `cvnbeta` version.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that global Apex classes cannot be removed once released in a managed version",
+        "evidence": "\"Global Apex can never be removed once released.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes callers: `@namespaceAccessible` works only between Corvana's packages sharing one namespace, while SI or subscriber code can reach only global members, so it recommends a small, deliberately versioned global facade instead of making every class global",
+        "evidence": "\"Your own add-on packages: keep services public and mark them @namespaceAccessible. This works only if the add-ons share the corvana namespace. SIs and subscribers: expose one small, versioned global facade.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends marking internal-only components (custom settings, custom metadata types, labels or permissions) as protected before release",
+        "evidence": "\"Mark internal custom settings, custom metadata types, labels and permissions **protected**. Once released unprotected, they stay unprotected.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that promotion to managed-released is irreversible or that only one beta per minor version can be promoted",
+        "evidence": "\"Promotion never reverses. Only one beta per minor version can be promoted.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces a register of irreversible choices (namespace, global API, protected components) with an owner or decision date per item",
+        "evidence": "Irreversible-choice register table with Namespace, Global API, Protected components rows, owner \"Tech lead\" and dates like \"Mon 2026-11-02\".",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that 2GP beta package versions cannot be installed in production orgs (only scratch orgs and sandboxes)",
+        "evidence": "\"A beta package version installs only in sandbox, scratch, and Developer Edition orgs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that an installed beta version can never be upgraded",
+        "evidence": "\"You cannot upgrade a beta version to a later version. You must uninstall it first\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends giving the pilot customers a promoted managed-released version, protected by an installation key or otherwise restricted",
+        "evidence": "\"Promote `1.0.0` for the pilots\" and \"Use an installation key on the package, and share install links only with the three pilot admins.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the namespace is fixed to the package when it is created and cannot be changed to `corvana` at GA",
+        "evidence": "\"A package is bound to its namespace for life. You cannot rename it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends choosing the final, product-brand namespace before any customer install",
+        "evidence": "\"Rename the namespace in the codebase... Do it before any customer install.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that global Apex classes cannot be removed once released in a managed version",
+        "evidence": "\"After promotion, `global` classes, methods, and interfaces are public API. You cannot remove or change their signatures.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes callers: `@namespaceAccessible` works only between Corvana's packages sharing one namespace, while SI or subscriber code can reach only global members, so it recommends a small, deliberately versioned global facade instead of making every class global",
+        "evidence": "\"Your own add-on packages don't need `global` if they share the `corvana` namespace... Only SIs and other namespaces need `global`.\" and \"expose one small, deliberate global facade\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends marking internal-only components (custom settings, custom metadata types, labels or permissions) as protected before release",
+        "evidence": "No mention of protected custom settings, custom metadata, labels or permissions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that promotion to managed-released is irreversible or that only one beta per minor version can be promoted",
+        "evidence": "It says schema is sticky after promotion, but it never states that promotion is irreversible.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces a register of irreversible choices (namespace, global API, protected components) with an owner or decision date per item",
+        "evidence": "There is a revised plan with time estimates but no register with owners or decision dates.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

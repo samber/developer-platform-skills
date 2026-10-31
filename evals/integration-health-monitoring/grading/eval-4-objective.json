@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Does not order the list by calls per day.",
+        "evidence": "\"I did not rank by call volume.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts Zapline (certificate expiring Nov 30) at or near the top because it breaks soonest.",
+        "evidence": "Row 1, 31 days",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks LeadLoop above Acme internal sync because of its 2,600 affected customer accounts.",
+        "evidence": "LeadLoop #2, Acme #5",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats Quarterly Forecaster's zero recent calls as a likely seasonal/quarterly job that will resume, not as migrated.",
+        "evidence": "\"it is dormant and about to resume. It is not abandoned.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes FinBridge because of its contract/SLA-credit exposure despite being a single account.",
+        "evidence": "\"Commercial weight promotes it into the top tier.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates the unattributed public-endpoint traffic into its own group that cannot be notified directly.",
+        "evidence": "\"Not on the managers' list: the unknown caller\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends in-response warnings and/or brownouts to reach the unattributed traffic.",
+        "evidence": "\"Only in-response warnings and brownouts reach it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying the customer admins of LeadLoop's or Zapline's installs if the developer does not respond.",
+        "evidence": "\"notify the 410 installing customers' admins\"; LeadLoop 2,600 notice",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats the cert expiry as a forward risk in the same census as the endpoint sunsets.",
+        "evidence": "Zapline cert row ranked alongside endpoint sunsets in one table",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the ranking rule (days to break, then end customers affected) explicitly rather than only listing an order.",
+        "evidence": "\"I ranked by days to break first, then by customers affected.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Suggests checking whether Acme internal sync has other jobs or routes before marking anything migrated, or defines migrated per integration.",
+        "evidence": "Migrated defined as written confirmation that every job moved (FinBridge); \"One call on the replacement proves nothing.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Does not order the list by calls per day.",
+        "evidence": "Acme, with 2.1M calls/day, is ranked fourth.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts Zapline (certificate expiring Nov 30) at or near the top because it breaks soonest.",
+        "evidence": "\"1. Zapline (#4): the cert expires Nov 30, 31 days from now.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks LeadLoop above Acme internal sync because of its 2,600 affected customer accounts.",
+        "evidence": "LeadLoop is #3, Acme is #4; \"2,600 accounts hold the install\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats Quarterly Forecaster's zero recent calls as a likely seasonal/quarterly job that will resume, not as migrated.",
+        "evidence": "\"A quarterly job fits that pattern... Treat it as alive, not dead\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Promotes FinBridge because of its contract/SLA-credit exposure despite being a single account.",
+        "evidence": "Ranked 2 above LeadLoop and Acme: \"enterprise contract with SLA credits\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates the unattributed public-endpoint traffic into its own group that cannot be notified directly.",
+        "evidence": "\"Off the partner queue... Unknown caller (#6)... Partner managers cannot chase an unknown party.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends in-response warnings and/or brownouts to reach the unattributed traffic.",
+        "evidence": "Only routes to security and platform engineering.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying the customer admins of LeadLoop's or Zapline's installs if the developer does not respond.",
+        "evidence": "Only asks LeadLoop's vendor for active-install counts and contacts the Zapline vendor.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats the cert expiry as a forward risk in the same census as the endpoint sunsets.",
+        "evidence": "Zapline is ranked alongside the endpoint sunsets in the same list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains the ranking rule (days to break, then end customers affected) explicitly rather than only listing an order.",
+        "evidence": "Gives per-item reasons but no stated rule such as days to break, then customers affected.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Suggests checking whether Acme internal sync has other jobs or routes before marking anything migrated, or defines migrated per integration.",
+        "evidence": "Acme: \"one account with one known date... One kickoff email\"",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

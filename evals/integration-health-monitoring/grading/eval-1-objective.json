@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the 0.4% share of calls as evidence of readiness and asks how many distinct integrations or credentials still call /v1/charges.",
+        "evidence": "\"0.4% is a call share, not an owner count. The gate reads integrations still on v1, not traffic.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a 30-day window cannot see integrations that only call at quarter-end (or year-end), and sets the lookback to at least the longest business cycle (a full quarter or longer).",
+        "evidence": "\"A 30-day lookback counts a quarter-end or year-end job as migrated\"; census over \"at least 12 months\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes grouping /v1/charges calls by credential (API key, OAuth client ID or app ID) to produce one row per integration.",
+        "evidence": "\"Group v1 charge calls by credential over that window.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines 'migrated' per integration using calls on /v2/payment_intents plus the absence of later /v1 calls over a full cycle (or written owner confirmation), not a single replacement call or a call count.",
+        "evidence": "\"no v1 call for a full lookback after its first v2 call, or the owner's written confirmation\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the remaining integrations by end customers or installs affected (e.g. the partner apps' installs), not by call volume.",
+        "evidence": "\"Sort by end customers affected, never by call volume.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Treats moving the date earlier than the announced January 15 as a change to the published deprecation policy/notice rather than an operational decision justified by traffic share.",
+        "evidence": "\"Pulling the date in is a policy change, not a burn-down result.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends per-integration exceptions (allowlist keyed on credential with an expiry) instead of a global date change for laggards.",
+        "evidence": "\"allowlist entry keyed to its credential. Record the owner, the reason, and a single expiry.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires notices to the remaining integrations to name the endpoint, call count, last-seen time, a sample request ID and the break date.",
+        "evidence": "Email: \"called POST /v1/charges <N> times ... most recently on <date> (request <req_id>)... stops working on 2027-01-15\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying installing customers/merchants' admins (customer-side fallback) for partner apps whose developers do not respond.",
+        "evidence": "\"Step 4: customer-admin notice ... for apps whose developer stays unverified or silent.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes scheduled, pre-announced brownouts before the cutoff, starting short and escalating in length.",
+        "evidence": "Table with 4 h, 12 h, 24 h; \"Announce each window ... one week ahead.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Conditions brownouts or cutoff on the replacement having run the migrated traffic stably with no open incident.",
+        "evidence": "\"Step 5: brownouts, only if line 4 holds\"; \"Pause if the replacement has an incident.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Presents the decision as a go/no-go against explicit readiness criteria (gate lines), not as a date plus a percentage.",
+        "evidence": "\"Readiness gate, status today\" with Lines 1-5 and NO-GO verdict",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping the v1 code path re-enableable behind an allowlist after cutoff for emergency exceptions rather than a global rollback.",
+        "evidence": "\"Keep the v1 code path behind the allowlist for one lookback after cutoff.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the 0.4% share of calls as evidence of readiness and asks how many distinct integrations or credentials still call /v1/charges.",
+        "evidence": "\"Share is not count... Absolute requests and distinct callers matter more.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a 30-day window cannot see integrations that only call at quarter-end (or year-end), and sets the lookback to at least the longest business cycle (a full quarter or longer).",
+        "evidence": "\"The 30-day window hides periodic callers\"; \"query v1 logs for the last 180 days\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes grouping /v1/charges calls by credential (API key, OAuth client ID or app ID) to produce one row per integration.",
+        "evidence": "\"Group by account and API key\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines 'migrated' per integration using calls on /v2/payment_intents plus the absence of later /v1 calls over a full cycle (or written owner confirmation), not a single replacement call or a call count.",
+        "evidence": "The gate only requires callers to have \"confirmed a migration date\"; no v2-usage definition of migrated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ranks the remaining integrations by end customers or installs affected (e.g. the partner apps' installs), not by call volume.",
+        "evidence": "No ranking by installs. It only says to \"Tag each caller\" and set a \"volume\" threshold.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats moving the date earlier than the announced January 15 as a change to the published deprecation policy/notice rather than an operational decision justified by traffic share.",
+        "evidence": "\"Cutting a public sunset early breaks a promise. Check your ToS, contracts, and SLAs for a notice period.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends per-integration exceptions (allowlist keyed on credential with an expiry) instead of a global date change for laggards.",
+        "evidence": "\"default-deny with an allowlist\"; \"per-account extensions to named stragglers instead of moving the global date\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires notices to the remaining integrations to name the endpoint, call count, last-seen time, a sample request ID and the break date.",
+        "evidence": "Notices are \"a named email to each one\"; no required contents listed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying installing customers/merchants' admins (customer-side fallback) for partner apps whose developers do not respond.",
+        "evidence": "Only notifies app owners through the app directory; no customer-admin fallback.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes scheduled, pre-announced brownouts before the cutoff, starting short and escalating in length.",
+        "evidence": "\"short windows of 1 hour on weekdays\"; no escalation in length.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Conditions brownouts or cutoff on the replacement having run the migrated traffic stably with no open incident.",
+        "evidence": "Gate lists callers contacted, no new callers, legal, and support; nothing on v2 stability.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Presents the decision as a go/no-go against explicit readiness criteria (gate lines), not as a date plus a percentage.",
+        "evidence": "\"Nov 20: decision gate. Pull in the date only if all of these hold\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends keeping the v1 code path re-enableable behind an allowlist after cutoff for emergency exceptions rather than a global rollback.",
+        "evidence": "No mention of keeping v1 code re-enableable after cutoff.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

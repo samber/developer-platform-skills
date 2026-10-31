@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a User-Agent substring grep is spoofable and unverified, so 3.1% is not a measured agent share",
+        "evidence": "\"A User-Agent is a claim, not an identity... Your number can include scrapers copying those strings.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Separates crawler or fetcher traffic from agent API calls instead of summing them into one 'agent traffic' figure",
+        "evidence": "\"Don't sum crawler hits and agent API calls.\" and the classes \"never merge them into one 'agent traffic' number\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that env-var detection (AI_AGENT, AGENT, CLAUDECODE) is a self-report that undercounts, so it yields a floor",
+        "evidence": "\"self-report, a floor only\"; \"Many agent harnesses set no env var, so env detection undercounts. Treat it as a floor.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends appending the detected agent to the CLI or SDK User-Agent and logging it as its own field",
+        "evidence": "\"Append the detected agent to your SDK and CLI User-Agent... Log it server-side as its own field.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends logging MCP clientInfo per session if an MCP server exists",
+        "evidence": "Table row: \"MCP `clientInfo`, if you ship an MCP server | which MCP client connected | client-declared\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects using Supabase's agent-share figure as a target for a different product",
+        "evidence": "\"Don't use it as a benchmark... Your product isn't infrastructure that agents provision by default.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the published Neon or Supabase figures are company-reported creations, not paid workloads",
+        "evidence": "\"company-reported. The counting methods are undisclosed, and they count database creations, not paid workloads.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes an agent funnel that includes agent-created signups or resources and their conversion to paid",
+        "evidence": "\"The agent funnel\": agent-created signups, claim rate, \"Claimed to activated, then to paid\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends verifying crawler tokens against vendor IP lists or signatures before counting them",
+        "evidence": "Table: \"CDN logs with IP-list or signature verification | crawlers... | high once verified\"; \"confirm with the vendor's IP list or a verified Web Bot Auth signature\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends reporting any agent share with its method and an 'at least' or floor caveat",
+        "evidence": "\"report agent share as 'at least N%, by method M'\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a stored agent-class field on request records with an explicit unknown value",
+        "evidence": "\"Store a class field on every request record: `crawler`... `unknown`. `unknown` is a value, not a null.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not endorse the slide claim '3% of our traffic is AI agents' as written",
+        "evidence": "\"\u274c '3% of our traffic is AI agents.' Don't put this on a slide.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a User-Agent substring grep is spoofable and unverified, so 3.1% is not a measured agent share",
+        "evidence": "Explains mixing and undercounting but never says UA strings are spoofable or unverified.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Separates crawler or fetcher traffic from agent API calls instead of summing them into one 'agent traffic' figure",
+        "evidence": "'It mixes four different things... Split the actors.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that env-var detection (AI_AGENT, AGENT, CLAUDECODE) is a self-report that undercounts, so it yields a floor",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends appending the detected agent to the CLI or SDK User-Agent and logging it as its own field",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends logging MCP clientInfo per session if an MCP server exists",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects using Supabase's agent-share figure as a target for a different product",
+        "evidence": "'Supabase's share is not a benchmark for you'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the published Neon or Supabase figures are company-reported creations, not paid workloads",
+        "evidence": "'vendor-reported number... likely counting databases created programmatically'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes an agent funnel that includes agent-created signups or resources and their conversion to paid",
+        "evidence": "Quality by cohort: activation, retention, paid conversion for agent-assisted signups.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends verifying crawler tokens against vendor IP lists or signatures before counting them",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends reporting any agent share with its method and an 'at least' or floor caveat",
+        "evidence": "'At least 3% of requests self-identify... Lower bound'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a stored agent-class field on request records with an explicit unknown value",
+        "evidence": "No stored field or unknown value proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not endorse the slide claim '3% of our traffic is AI agents' as written",
+        "evidence": "'Don't put \"3% of traffic is AI agents\" on the slide'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "agent-integration-surfaces",
+  "scenarios": 8,
+  "expectations_total": 94,
+  "expectations_subjective": 0,
+  "expectations_objective": 94,
+  "pass_rate_with_skill_pct": 96.8,
+  "pass_rate_without_skill_pct": 59.6,
+  "delta_pp": 37.2,
+  "uplift_multiplier": 1.62,
+  "trigger_accuracy_pct": 51.0,
+  "trigger_queries": 100,
+  "trigger_positive_fire_rate": 0.04,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 5,
+        "expectation": "Requires per-agent revocation that does not log the human out"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Hands the CLI's own command and contract design to samber/developer-platform-skills@cli-interface-design or skill versioning to samber/developer-platform-skills@agent-skill-offering"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Presents rankings on more than one axis (for example effort, value, efficiency) rather than a single blended list"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that disallowing ClaudeBot does not block Claude-User or Claude-SearchBot, because robots.txt tokens are per class"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that OpenAI's ChatGPT-User may not apply robots.txt rules, so the robots.txt line is not an access-control boundary"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends per-agent, scoped, short-lived credentials with per-agent revocation"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Treats the CEO's MCP request as not, by itself, evidence that shell-less agent clients exist"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Places the existing CLI with --json plus an Agent Skill ahead of a new MCP server for coding agents inside the 6-week window"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Proposes replacing the CAPTCHA-only signup gate with an allow rule for verified agents and/or an API or claim path"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Recommends instrumenting agent measurement before shipping the first rung, as the baseline"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Output contains an agent class x surface matrix"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a User-Agent substring grep is spoofable and unverified, so 3.1% is not a measured agent share"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that env-var detection (AI_AGENT, AGENT, CLAUDECODE) is a self-report that undercounts, so it yields a floor"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends appending the detected agent to the CLI or SDK User-Agent and logging it as its own field"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends logging MCP clientInfo per session if an MCP server exists"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends verifying crawler tokens against vendor IP lists or signatures before counting them"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a stored agent-class field on request records with an explicit unknown value"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires a named machine-readable error for operations that need a human, rather than a generic 403"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires pre-claim tokens to be revoked and credentials rotated at claim"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires Terms of Service acceptance at claim"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that unclaimed resources should hold no personal data"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the on-behalf-of-user draft has expired and should not be built against"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that actor_token itself is an RFC 8693 parameter that remains usable, while requested_actor has no successor"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Proposes client credentials or workload identity federation minting short tokens for unattended fleets"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires a named sponsoring human for each agent credential"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Warns that a major CDN verifier implemented an earlier Signature-Agent form and may reject the dictionary form, so test against both"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Labels Web Bot Auth as an IETF working-group draft, not a final standard"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends that the CLI not prompt when stdin is not a TTY"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Hands the CLI's own command and contract design to samber/developer-platform-skills@cli-interface-design or skill versioning to samber/developer-platform-skills@agent-skill-offering"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the claim uses context7.json with the generated key committed at repo root for a repo-sourced library"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Explains that long-tail libraries refresh less often, so docs can lag for weeks"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends triggering a Context7 refresh on push to the default branch"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Routes llms.txt and docs markdown endpoints to samber/developer-relations-skills@coding-agent-docs-optimization"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Mentions that Context7 title and description reject instructions or promotional text"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Deletes rather than parks the rungs the config-only ceiling rules out (credentials, skill plus CLI, MCP, claim flow)"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Shrinks measurement to edge-log classification under the config-only ceiling"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Shrinks the docs rung to the Context7 claim or other config-only work"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Treats api-catalog as a background task alongside the public spec, not an agent-readiness milestone"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Names what the efficiency order starves or the condition that would bring a deleted rung back"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Presents rankings on more than one axis (for example effort, value, efficiency) rather than a single blended list"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Does not promise an MCP server within the 2-week window"
+      }
+    ]
+  }
+}

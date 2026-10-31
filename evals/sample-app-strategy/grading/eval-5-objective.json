@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Presents two or three named portfolio shapes (lean golden path, gallery-led, reference-app anchored) with trade-offs and a recommendation, and lets the user pick or blend",
+        "evidence": "Rejects 'gallery-led' and 'lean golden path alone', and chooses 'reference-app anchored, held to one pattern, on top of the lean core'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the ranking lines for value, upkeep and efficiency, with lean golden path named as the default",
+        "evidence": "No ranking lines are stated, and lean golden path is not named as the default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names reference-app anchored as the starved shape and promotes it only on its stated condition: a regulated or multi-service flow drives deals and the capacity sum still fits",
+        "evidence": "'the flow is regulated and multi-service ... That is the condition the skill sets for promoting a reference app.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Estimates the reference app at a couple of days of upkeep per quarter (self-set), sums it with the lean core, compares to Omar's 50 hours, and says whether it fits",
+        "evidence": "'Reference app ... 16'; 'Total 39 of 50'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Caps the reference app to the one onboarding-to-payout pattern it teaches and cuts dispute handling or further feature growth as reference-app sprawl",
+        "evidence": "'Dispute handling ... is not in the app. It becomes a scenario sample and a docs page.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects quickstarts in all 7 languages: full parity only for the flagship across tier 1 (Node, Python, Java); Go, Ruby, PHP and .NET are community-labelled or absent, with the tier table published",
+        "evidence": "'Rejected, 7-language parity'; 'Supported: Node, Python, Java'; 'Publish the tier table.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds the flagship quickstart as one repo with one folder per language",
+        "evidence": "'Flagship quickstart, one repo, one folder per language'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects or defers the gallery because it needs curated intake, one repo per template and per-template telemetry, which 50 hours does not cover",
+        "evidence": "'it needs curated intake, one repo per template and per-template telemetry'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps KYC document capture and card numbers on the provider's hosted fields or tokenized flows in the sample, so a copied sample never pulls the developer into heavier compliance scope",
+        "evidence": "'KYC upload and card capture use provider-hosted or tokenized fields only.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Licenses the samples MIT-0 or MIT so customers embed the code without attribution review",
+        "evidence": "'License MIT or MIT-0.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships `.env.example`, never `.env`, with keys injected through the CLI in test mode only",
+        "evidence": "'a scaffold CLI that writes sandbox keys into .env' and 'Ship .env.example, never .env'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to publish the conference reference app without a named owner and CI in place, naming it a campaign sample otherwise",
+        "evidence": "It says 'Do not cut CI', but never states a refusal to publish without an owner and CI, and never mentions a 'campaign sample' label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tags the reference app's API traffic with its sample ID through the SDK user-agent or app-info field so deal-driven usage traces back to it",
+        "evidence": "'Tag all sample API traffic with the sample ID through the SDK user-agent or app-info field.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes 'not served' for each job the chosen shape leaves out, with the condition that would add it",
+        "evidence": "'Start a project ... Not served. Add when telemetry shows framework concentration'; 'Mobile ... Add if a mobile SDK reaches tier 1'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Presents two or three named portfolio shapes (lean golden path, gallery-led, reference-app anchored) with trade-offs and a recommendation, and lets the user pick or blend",
+        "evidence": "It gives a single recommendation, 'build the reference app, but cut its scope', with no named shapes.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the ranking lines for value, upkeep and efficiency, with lean golden path named as the default",
+        "evidence": "Not present.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names reference-app anchored as the starved shape and promotes it only on its stated condition: a regulated or multi-service flow drives deals and the capacity sum still fits",
+        "evidence": "It recommends the reference app directly.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Estimates the reference app at a couple of days of upkeep per quarter (self-set), sums it with the lean core, compares to Omar's 50 hours, and says whether it fits",
+        "evidence": "It estimates build hours (80\u2013120h plus 30h), not quarterly upkeep.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Caps the reference app to the one onboarding-to-payout pattern it teaches and cuts dispute handling or further feature growth as reference-app sprawl",
+        "evidence": "The four flows include 'Disputes as a webhook-driven state machine'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects quickstarts in all 7 languages: full parity only for the flagship across tier 1 (Node, Python, Java); Go, Ruby, PHP and .NET are community-labelled or absent, with the tier table published",
+        "evidence": "Tier 1 quickstarts come after the conference. There is no tier table and no flagship parity.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds the flagship quickstart as one repo with one folder per language",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects or defers the gallery because it needs curated intake, one repo per template and per-template telemetry, which 50 hours does not cover",
+        "evidence": "It defers the gallery, but the reason is 'A gallery of one app is an empty page', not intake and telemetry cost.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps KYC document capture and card numbers on the provider's hosted fields or tokenized flows in the sample, so a copied sample never pulls the developer into heavier compliance scope",
+        "evidence": "'Card capture uses tokenized or hosted fields... KYC documents go straight to the API or a hosted upload.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Licenses the samples MIT-0 or MIT so customers embed the code without attribution review",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships `.env.example`, never `.env`, with keys injected through the CLI in test mode only",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to publish the conference reference app without a named owner and CI in place, naming it a campaign sample otherwise",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tags the reference app's API traffic with its sample ID through the SDK user-agent or app-info field so deal-driven usage traces back to it",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes 'not served' for each job the chosen shape leaves out, with the condition that would add it",
+        "evidence": "Not present. There is only a 'what I don't know' list.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

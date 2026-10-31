@@ -1,0 +1,202 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "slack-app-directory-playbook",
+  "scenarios": 7,
+  "expectations_total": 65,
+  "expectations_subjective": 0,
+  "expectations_objective": 65,
+  "pass_rate_with_skill_pct": 98.5,
+  "pass_rate_without_skill_pct": 41.5,
+  "delta_pp": 57.0,
+  "uplift_multiplier": 2.37,
+  "trigger_accuracy_pct": 80.8,
+  "trigger_queries": 26,
+  "trigger_positive_fire_rate": 0.923,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 6,
+        "expectation": "States that a listed app cannot simply deactivate distribution and must discontinue its Marketplace listing instead"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that the Slack Marketplace requires at least 10 installs on active workspaces before submission, not 5"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that the install count must stay at or above the threshold for the whole duration of the review"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Gives the preliminary review as up to 10 business days and the functional review of a new app as up to 10 weeks"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that Slack does not expedite or accelerate reviews to match a launch date"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Explains that after approval the vendor chooses when to publish, so the launch should not depend on approval landing on a given day"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Flags channels:history (a *:history scope) as triggering enhanced review"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that each resubmission during the preliminary review resets the queue position"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that GitHub Issues alone is not acceptable support and that a channel requiring no new account is needed"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the expected support response time of 2 business days"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Tells the user to give reviewers a way to install the app themselves plus test accounts with dummy data"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends a video demo covering install, OAuth, setup, use and uninstall"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that adding an unreviewed scope to the live install URL will make installs fail"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a staging app cloned from the published app's manifest for reviewers to install"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends a video demo showing the new feature and how the new scope is used"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives the functional review for updates to a published app as up to 6 weeks"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Lists the AI disclosures for the Security & Compliance section: model used, data retention and use by the LLM, LLM data tenancy and LLM data residency"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Requires a disclaimer on the landing page and long description that LLM output can be inaccurate"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that Slack data must not be used to train LLMs"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Flags channels:history as triggering enhanced review"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Suggests marking the new scope optional if the core app works without it, without moving core scopes to optional"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that Slack charges no fee for Marketplace inclusion"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names at least one listing-only distribution lever such as app suggestions via the slack-app-id meta tag or direct install from the listing"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Warns that bulk indexing or storing message history is what Slack restricts, points to fetching messages when needed or the Real-time Search API, and notes Real-time Search is unavailable to an unlisted app"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends tracking installs and uninstalls with the app's own data, such as an OAuth install ledger or the app_uninstalled event"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires requesting the team.billing:read bot scope and limiting installs to workspaces on paid Slack plans"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the Slack API token must never be exposed to Flowmesh end users"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the app must not request user-token history or files:read scopes to collect message and file data"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Flags the nightly archive template as message export/backup that the platform must not enable"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Warns that deactivating public distribution removes the app from every workspace except the original one"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names an uninstall spike as a trigger for Slack to contact the developer and possibly delist the app"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Names unanswered support requests as a delisting risk and sets a 2-business-day support response"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends keeping developer and support contact details current and having at least one collaborator on the app"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Does not refuse the MCP-only plan outright and states that an app whose only feature is an MCP server can list when its tools deliver meaningful work inside Slackbot conversations"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that mcp:connect must be required, not optional, when the MCP connection is the app's only function"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires submission notes walking through install, authentication, a tool call and its response, plus a screenshot of a tool in a Slackbot conversation"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Mentions the OAuth redirect https://oauth2.slack.com/external/auth/callback or running Fetch Tools in App Settings before submitting"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that repeated tool failures after listing can switch the app off automatically"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Mentions the active-workspace install threshold as a prerequisite for submitting next month"
+      }
+    ]
+  }
+}

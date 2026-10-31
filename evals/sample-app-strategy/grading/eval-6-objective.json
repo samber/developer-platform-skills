@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Replaces the four hand-maintained lists with one machine-readable canonical index kept in the samples org and owned by the portfolio owner",
+        "evidence": "'repo <samples-org>/index, owned by the named portfolio owner ... samples.json'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the index schema with ID, type, job, languages, status and successor per sample",
+        "evidence": "The JSON has id, type, job, languages, status and (for deprecated entries) successor.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Drives the docs links, the gallery, `hw samples list`, GitHub topics and template-repository flags from the index, with no surface edited separately",
+        "evidence": "The surfaces table covers the CLI, docs, CMS gallery, org README, and repo description, topics and template flag.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds an agent-facing index stating which samples are current, because coding agents ingest archived and stale repos as readily as current ones",
+        "evidence": "'/llms.txt ... lists current samples', an agent guide page, and 'AGENTS.md'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives `routing-v1-demo` and `geocode-express-old` `deprecated` entries with successors, plus aliases, so the CLI and coding assistants stop offering them",
+        "evidence": "'\"aliases\": {}' is empty, and routing-v1-demo's successor is the placeholder '<routing-scenario id or null>'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies `hw samples create` as a scaffold command that writes test keys into `.env`",
+        "evidence": "'scaffold the sample, write test keys into .env (never commit it)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects stars and clone counts as the KPI; they are reported as vanity and never used to decide",
+        "evidence": "'tagged \"vanity, report only\"'; 'Archive and merge decisions never use stars.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tags every sample's API traffic with its sample ID through the SDK user-agent or app-info field so calls trace back to the artifact",
+        "evidence": "'halloway-node/3.2.1 sample/geocode-quickstart/1.4'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instruments four signals per artifact: invocations tagged with the sample ID, time to first successful sandbox call from those credentials, support tickets naming the sample, and CI pass rate over the quarter",
+        "evidence": "The 'Four signals per artifact' table: invocations, time to first call, tickets, CI pass rate.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets its own baseline in the first quarter and states that no vendor publishes clone-to-signup or deploy-to-activation benchmarks, inventing none",
+        "evidence": "'No vendor publishes clone-to-signup or deploy-to-activation benchmarks ... Quarter 1 is the baseline.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes archived samples from docs, gallery, CLI and agent index through the index while keeping a redirect to the successor",
+        "evidence": "CLI alias/archived IDs print the message and name the successor; archived IDs sit under 'deprecated'; the docs build fails on non-current links.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the pass-gate condition that every archived artifact has a successor or an explicit 'none' in the index",
+        "evidence": "'Every archived artifact has a successor or an explicit null' appears in the pass gate and the index rules.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records the approved index location and the measurement baseline in `developer-platform-context.md` when the harness has persistent memory",
+        "evidence": "No mention of developer-platform-context.md anywhere in the transcript.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Replaces the four hand-maintained lists with one machine-readable canonical index kept in the samples org and owned by the portfolio owner",
+        "evidence": "'Create `samples.yaml` in a single repo. Every other surface is a build artifact.' An owner for the registry is raised in open question 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies the index schema with ID, type, job, languages, status and successor per sample",
+        "evidence": "The schema has id, title, repo, status, replaced_by, sdk and apis. It has no type, job or languages field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Drives the docs links, the gallery, `hw samples list`, GitHub topics and template-repository flags from the index, with no surface edited separately",
+        "evidence": "Docs, CMS, CLI and README are generated. Topics are edited by hand in lifecycle step 4, and template flags are absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Adds an agent-facing index stating which samples are current, because coding agents ingest archived and stale repos as readily as current ones",
+        "evidence": "'/samples.json, a samples section in llms.txt, and a sample-status field in each repo's AGENTS.md.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives `routing-v1-demo` and `geocode-express-old` `deprecated` entries with successors, plus aliases, so the CLI and coding assistants stop offering them",
+        "evidence": "Only tombstones and a CLI 'archived... use <x>' message are described. No registry entries with successors or aliases are given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies `hw samples create` as a scaffold command that writes test keys into `.env`",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects stars and clone counts as the KPI; they are reported as vanity and never used to decide",
+        "evidence": "'Why not marketing's KPI as the headline'. 'Set no targets on them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tags every sample's API traffic with its sample ID through the SDK user-agent or app-info field so calls trace back to the artifact",
+        "evidence": "'Extend the SDK user-agent with an optional sample id: halloway-node/3.2.1 sample/geocode-express@1.4'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Instruments four signals per artifact: invocations tagged with the sample ID, time to first successful sandbox call from those credentials, support tickets naming the sample, and CI pass rate over the quarter",
+        "evidence": "It tracks tagged invocations and time to first call, plus verify status. It has no support tickets and no quarterly CI pass rate.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets its own baseline in the first quarter and states that no vendor publishes clone-to-signup or deploy-to-activation benchmarks, inventing none",
+        "evidence": "'Don't set targets... until 4 weeks of baseline exist.' It never states that no vendor benchmarks exist.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes archived samples from docs, gallery, CLI and agent index through the index while keeping a redirect to the successor",
+        "evidence": "'Docs: keep a stub page that redirects to the replacement.' The CMS pushes active entries only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the pass-gate condition that every archived artifact has a successor or an explicit 'none' in the index",
+        "evidence": "'`status: archived` requires `replaced_by` (or an explicit `none: reason`). CI fails otherwise.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Records the approved index location and the measurement baseline in `developer-platform-context.md` when the harness has persistent memory",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

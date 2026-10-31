@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the claim that stock oasdiff defaults are equivalent to the team's policy",
+        "evidence": "\"Stock settings are not fine... The defaults are oasdiff's opinion, not your policy.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces a severity map (file or table) where each row names a check and the guideline line it enforces",
+        "evidence": "api/severity-map.md table with Policy line column citing Guidelines 2",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps the 'response enums are open' guideline to declaring x-extensible-enum on the affected fields or an explicit info-level row for enum additions",
+        "evidence": "\"Pin to info. Add x-extensible-enum on those fields.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises api-security-scope-removed (scope removal, INFO by default in oasdiff) to err because the guidelines call any change to required auth scopes breaking",
+        "evidence": "\"Pin api-security-scope-removed to err\"; default INFO",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that oasdiff already reports an added required scope (api-security-scope-added) as ERR, so that direction needs no override",
+        "evidence": "\"Added scopes: ERR.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises api-major-version-not-bumped (and/or the sibling version-bump checks) to err because info.version is semver",
+        "evidence": "Pinned to err in map",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the version-bump checks default to INFO and do not fail a build unless raised",
+        "evidence": "\"defaults to INFO and never fails\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps or sets the request-parameter pattern-added check at err per guideline section 2",
+        "evidence": "request-parameter-pattern-added err in map",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends pinning the oasdiff version in CI and reviewing classification changes on upgrade",
+        "evidence": "\"pinned; bump deliberately and review rule changes\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that pinning a check's level disables oasdiff's automatic downgrades for that check, or advises pinning only what the policy contradicts",
+        "evidence": "\"Pinning disables oasdiff's own downgrades for that check, so pin only these rows.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shows the CI invocation passing a severity-levels file (e.g. --severity-levels) together with --fail-on ERR",
+        "evidence": "--severity-levels pr-levels.txt ... --fail-on ERR",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the severity map in the repository next to the spec(s)",
+        "evidence": "api/severity-map.md in layout",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points out that different diff tools classify the same change (e.g. enum additions) differently, as evidence defaults are not a standard",
+        "evidence": "No mention of other tools' classifications.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the oasdiff severity-levels file to bare check-id and level lines, with policy citations in a separate human-readable file",
+        "evidence": "levels.txt generated via awk from severity-map.md, only id and level printed",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects the claim that stock oasdiff defaults are equivalent to the team's policy",
+        "evidence": "'Verdict: no, stock settings are not fine.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces a severity map (file or table) where each row names a check and the guideline line it enforces",
+        "evidence": "severity-levels.txt entries are each preceded by a comment citing 'Guidelines \u00a72: ...'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps the 'response enums are open' guideline to declaring x-extensible-enum on the affected fields or an explicit info-level row for enum additions",
+        "evidence": "'response-property-enum-value-added info' with a Guidelines \u00a72 comment.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Raises api-security-scope-removed (scope removal, INFO by default in oasdiff) to err because the guidelines call any change to required auth scopes breaking",
+        "evidence": "Lists api-security-updated and oauth-scope-added/removed from memory. It does not name api-security-scope-removed or its INFO default.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that oasdiff already reports an added required scope (api-security-scope-added) as ERR, so that direction needs no override",
+        "evidence": "Not stated; it overrides scope-added to err.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Raises api-major-version-not-bumped (and/or the sibling version-bump checks) to err because info.version is semver",
+        "evidence": "Claims 'oasdiff does not compare info.version and has no semver check', which is wrong. It uses a custom script instead.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that the version-bump checks default to INFO and do not fail a build unless raised",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps or sets the request-parameter pattern-added check at err per guideline section 2",
+        "evidence": "'request-parameter-pattern-added err' and 'request-property-pattern-added err'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends pinning the oasdiff version in CI and reviewing classification changes on upgrade",
+        "evidence": "'Pin and bump deliberately: new oasdiff releases can change rule levels.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that pinning a check's level disables oasdiff's automatic downgrades for that check, or advises pinning only what the policy contradicts",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Shows the CI invocation passing a severity-levels file (e.g. --severity-levels) together with --fail-on ERR",
+        "evidence": "The gate script runs 'oasdiff breaking ... --severity-levels \"$SEVERITY_FILE\" --fail-on ERR'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the severity map in the repository next to the spec(s)",
+        "evidence": "Stored at .oasdiff/severity-levels.txt in the repo.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points out that different diff tools classify the same change (e.g. enum additions) differently, as evidence defaults are not a standard",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the oasdiff severity-levels file to bare check-id and level lines, with policy citations in a separate human-readable file",
+        "evidence": "The levels file carries comment lines with policy citations inline.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

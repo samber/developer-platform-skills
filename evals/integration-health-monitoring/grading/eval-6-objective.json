@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Builds the dashboard around the dated upcoming changes (Feb 14 cert rotation, April iOS SDK 3.x EOL, June 30 payload v1) rather than around error rates.",
+        "evidence": "\"Break-date catalog\" with Feb 14, April, Jun 30",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves live error-rate monitoring to the existing per-key monitors or an error-observability practice instead of rebuilding it.",
+        "evidence": "\"Keep them. Don't fold them into this dashboard\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tracks, per webhook endpoint, which payload version it receives.",
+        "evidence": "\"The version configured on each webhook endpoint, one row per endpoint.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends SDK version telemetry (e.g. a client SDK version header) to find integrations on iOS SDK 3.x.",
+        "evidence": "\"SDK name and version from the client header\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that iOS SDK upgrades depend on end users updating their apps, so SDK 3.x usage can persist after the partner ships a fix.",
+        "evidence": "\"an end user's device decides when 3.x stops calling you\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies which integrations depend on the rotating certificate (e.g. pinned certificates or verification against the old cert) as a forward risk.",
+        "evidence": "\"Every webhook endpoint that pins the old cert or key\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shows each risk per integration with its break date or days to break.",
+        "evidence": "Catalog table with Days from today; \"days to break\" field",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the partner call list by days to break and end customers affected, not by call volume.",
+        "evidence": "\"Bucket by days to break... never by call volume.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes the owner contact and whether it is verified for each row.",
+        "evidence": "\"Contacts and each one's verification date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shows partners their own specific surfaces, counts, last-seen dates and sample request IDs.",
+        "evidence": "Partner view mock with usage, last seen, sample request, breaks on",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against showing partners a single blended health score instead of the specifics.",
+        "evidence": "\"Do not show a blended health score.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps other partners' data and partner rankings internal.",
+        "evidence": "\"Do not show other partners' rows, the fleet burn-down, the rank\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a 'dispute this attribution' or similar path for partners who believe calls were misattributed.",
+        "evidence": "\"[Dispute this attribution]\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Builds the dashboard around the dated upcoming changes (Feb 14 cert rotation, April iOS SDK 3.x EOL, June 30 payload v1) rather than around error rates.",
+        "evidence": "Tracks 1-3 are Feb 14 cert, April iOS 3.x EOL, June 30 payload v1; health is Track 4.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Leaves live error-rate monitoring to the existing per-key monitors or an error-observability practice instead of rebuilding it.",
+        "evidence": "\"Keep the Datadog per-key monitors for alerting. Use the dashboard to decide who to call\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tracks, per webhook endpoint, which payload version it receives.",
+        "evidence": "\"Per-endpoint payload version subscribed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends SDK version telemetry (e.g. a client SDK version header) to find integrations on iOS SDK 3.x.",
+        "evidence": "\"This needs an SDK-version header or User-Agent.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that iOS SDK upgrades depend on end users updating their apps, so SDK 3.x usage can persist after the partner ships a fix.",
+        "evidence": "\"bundles 4.x but users still run old builds: email. This is the app-update tail\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies which integrations depend on the rotating certificate (e.g. pinned certificates or verification against the old cert) as a forward risk.",
+        "evidence": "\"A partner that pins the certificate or verifies against a cached copy\"; cert-readiness test per endpoint",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Shows each risk per integration with its break date or days to break.",
+        "evidence": "\"Deadline hit, days left\" column; \"Back-solve a 'must have shipped by' date\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ranks the partner call list by days to break and end customers affected, not by call volume.",
+        "evidence": "Tiers are rule-based (incident, failed cert test, not ready); no ranking by days to break and customers.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes the owner contact and whether it is verified for each row.",
+        "evidence": "Columns have \"Partner, owner, tier\" and \"Last contacted, acked?\"; no contact-verified field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Shows partners their own specific surfaces, counts, last-seen dates and sample request IDs.",
+        "evidence": "\"41,200 v1 deliveries in the last 7 days to 2 endpoints\"; \"include sample request IDs for debugging\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against showing partners a single blended health score instead of the specifics.",
+        "evidence": "\"Use explainable rules, not an opaque score\"; partners do not see \"any internal scoring\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps other partners' data and partner rankings internal.",
+        "evidence": "\"Do not show partners... comparisons or rankings against other partners\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a 'dispute this attribution' or similar path for partners who believe calls were misattributed.",
+        "evidence": "No dispute path in the partner view.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

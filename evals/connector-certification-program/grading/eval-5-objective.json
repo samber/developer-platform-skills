@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects certifying on the self-assessment form alone",
+        "evidence": "\"Certify on the 40-question form alone | Rejected as stated\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that self-attestation counts only when paired with published kit results (and optionally a binding declaration), never on its own",
+        "evidence": "\"Kept only as a legally binding declaration paired with published kit results\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends an operator-run conformance test kit as the default evidence source",
+        "evidence": "\"move the proof into an operator-run test kit\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the kit available to partners to run before submitting",
+        "evidence": "\"partners run the same kit locally\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Blocks submission until all required tests in the kit pass",
+        "evidence": "\"Submission is blocked until required tests pass: yes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Splits the kit into required tests and optional tests rather than relying on one overall pass percentage",
+        "evidence": "\"100% of required tests and >90% overall. A single percentage lets partners skip the tests that matter.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires reviewer sign-off and published counts for any test exemptions partners claim",
+        "evidence": "\"a reviewer signs it off, and the exemption count is published\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps manual code reading only for a narrow subset, such as integrations holding restricted or high-risk data scopes, rather than every release",
+        "evidence": "\"Restricted-scope review... restricted-scope connectors only\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points the security-depth review of high-risk integrations to the marketplace admission/app review process rather than redesigning it inside certification",
+        "evidence": "\"reviewer, via `app-marketplace-review`\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Versions the kit and records which kit version each certification was earned on",
+        "evidence": "\"Version: semver\"; the badge \"names kit v<x>\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Generates contract tests from the platform's contract or the integration's declared manifest, not from tests partners wrote themselves",
+        "evidence": "\"generated from the connector's declared contract, not from partner-written tests\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects certifying on the self-assessment form alone",
+        "evidence": "\"Don't certify on the self-assessment alone.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that self-attestation counts only when paired with published kit results (and optionally a binding declaration), never on its own",
+        "evidence": "Self-assessment is demoted and needs evidence links, but there is no published-kit-results rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends an operator-run conformance test kit as the default evidence source",
+        "evidence": "Step 3: conformance harness against a sandbox tenant.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes the kit available to partners to run before submitting",
+        "evidence": "Only the static checks run in partner CI; the harness is not given to partners, and the sandbox is an open question.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Blocks submission until all required tests in the kit pass",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Splits the kit into required tests and optional tests rather than relying on one overall pass percentage",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires reviewer sign-off and published counts for any test exemptions partners claim",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps manual code reading only for a narrow subset, such as integrations holding restricted or high-risk data scopes, rather than every release",
+        "evidence": "\"human review of security-critical paths only\"; diffs only.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points the security-depth review of high-risk integrations to the marketplace admission/app review process rather than redesigning it inside certification",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Versions the kit and records which kit version each certification was earned on",
+        "evidence": "No kit versioning.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Generates contract tests from the platform's contract or the integration's declared manifest, not from tests partners wrote themselves",
+        "evidence": "Tests are hand-listed; no generation from a contract.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

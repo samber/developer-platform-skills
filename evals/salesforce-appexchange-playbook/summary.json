@@ -1,0 +1,246 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "salesforce-appexchange-playbook",
+  "scenarios": 7,
+  "expectations_total": 66,
+  "expectations_subjective": 0,
+  "expectations_objective": 66,
+  "pass_rate_with_skill_pct": 90.9,
+  "pass_rate_without_skill_pct": 33.3,
+  "delta_pp": 57.6,
+  "uplift_multiplier": 2.73,
+  "trigger_accuracy_pct": 84.4,
+  "trigger_queries": 32,
+  "trigger_positive_fire_rate": 0.938,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 4,
+        "expectation": "Presents the revenue share as set by the PADA, commonly 15% for ISVforce and 25% for OEM, rather than as a fixed published rate"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that cancellation or reduction orders follow the PADA notice, usually 30+ days before renewal, and that COA blocks them within 5 days of the renewal date"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends registering the package version in the License Management App with a default license (Free Trial up to 90 days, or Active; per seat or site-wide)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Proposes the Feature Management App (or an equivalent licensing control) to gate paid features in the package"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Lists the GTM eligibility conditions that fit Brightpath: existing ISVforce partner, seat-based managed package, USD, US customers, 12-month contracts"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires amending the PADA with the GTM app terms (applied for through the account manager)"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Recommends marking internal-only components (custom settings, custom metadata types, labels or permissions) as protected before release"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that promotion to managed-released is irreversible or that only one beta per minor version can be promoted"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Produces a register of irreversible choices (namespace, global API, protected components) with an owner or decision date per item"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that Checkmarx and Code Analyzer reports are not required when no package is submitted"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Offers the thin managed package carrying the integration (or the ECA) as the route if Checkout or packaged distribution is wanted"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that new Connected Apps can no longer be created (new integrations use an External Client App) while the existing 2024 Connected App stays in scope of the mandatory OAuth controls"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Lists PKCE and refresh token rotation as mandatory controls for a Connected App or ECA used by more than two customer production orgs"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Names AppExchange delisting or suspended access as the consequence of missing the mandatory OAuth controls"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Rejects the one-month go-live with stage durations (1-2 weeks verification plus 3-4 weeks testing) and gives a backward timeline"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Marks Salesforce fees, durations or dates with a dagger or similar footnote telling the reader to verify them against current Salesforce docs"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Advises against bundling the bulk-export feature, because changes beyond the flagged issues force a full initial review"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that the follow-up review must keep the same package ID and namespace"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a follow-up review after code changes costs a new review fee"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that a failed test result has no appeal path and points to Product Security office hours"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Gives the retest duration as roughly 2-4 weeks after verification"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that Checkout is available only to companies based in the US, UK or an EU country, which excludes a Toronto company"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Routes Docuvane to the non-Checkout path with a PADA signed offline through the account manager"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Presents the revenue share as set by the PADA, commonly 15% for ISVforce and 25% for OEM, rather than as a fixed published rate"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires a Channel Order App order within one business day of each customer order"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that cancellation or reduction orders follow the PADA notice, usually 30+ days before renewal, and that COA blocks them within 5 days of the renewal date"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that switching between Checkout and non-Checkout, or between free and paid, sends the listing back for approval"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends registering the package version in the License Management App with a default license (Free Trial up to 90 days, or Active; per seat or site-wide)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Warns that unpaid revenue share expires the security review and removes the listing"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Proposes the Feature Management App (or an equivalent licensing control) to gate paid features in the package"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Rules out the GTM app private offers as well, because they support only seat-based packages, US customers and USD contracts"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that a version built on a passed version as ancestor is ready to list without a new security review"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that 2.4.0 or 3.0.0 cut during the re-review can be listed now and lose readiness only if the re-review ultimately fails"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires updating the security review contact on the Partner Console Company Info page"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that a missed periodic re-review expires the review for all versions and removes the listing"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that periodic re-reviews carry the review fee and that a failed one typically gets about 60 days to remediate"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Restages the 3.0 push: own test orgs first, then customer sandboxes for about a week, then production in batches (e.g. 50-100 orgs at first)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends waiting 3-4 weeks after a major Salesforce release before pushing a major upgrade"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that a public paid listing in 10 weeks from a standing start is unrealistic, citing a typical 4-9 month signup-to-first-paid-install span or equivalent stage math"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes 1-2 weeks of submission verification and 3-4 weeks of security testing in the timeline"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires Lightning Ready certification before submission"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Runs the PADA negotiation in parallel with the build"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Counts forward from today to give the realistic first-paid-install date, because counting back from a 10-week deadline yields a start date in the past"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that net-new orders that meet the GTM app requirements must go through the AgentExchange GTM app rather than the Channel Order App"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Lists the GTM eligibility conditions that fit Brightpath: existing ISVforce partner, seat-based managed package, USD, US customers, 12-month contracts"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the GTM app does not auto-renew orders, contradicting sales' auto-renew plan"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States GTM payment terms as NET30 with ACH debit and full payment upfront, contradicting card payment"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires amending the PADA with the GTM app terms (applied for through the account manager)"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps extra licenses for existing COA customers of the same app on the Channel Order App during the active contract, moving them to the GTM app only at renewal"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States that the periodic re-review carries the review fee"
+      }
+    ]
+  }
+}

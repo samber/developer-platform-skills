@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the Slack Marketplace requires at least 10 installs on active workspaces before submission, not 5",
+        "evidence": "\"Slack blocks submission below **10 active workspaces\u2020**\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Developer Program sandboxes do not count toward the install threshold and warns against relying on the vendor's own test workspaces",
+        "evidence": "Table: \"2 Developer Program sandboxes | No, sandboxes are excluded\"; \"2 of your own test workspaces | No, reviewers expect the app proven where it wasn't built\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the install count must stay at or above the threshold for the whole duration of the review",
+        "evidence": "\"the count must hold through the whole review\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends getting more pilot customers onto the unlisted distributed app before submitting",
+        "evidence": "\"Pilot as an unlisted distributed app until then\"; recruit 8 more workspaces",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the preliminary review as up to 10 business days and the functional review of a new app as up to 10 weeks",
+        "evidence": "\"Preliminary review | Up to 10 business days\u2020\"; \"Functional review (new app) | Up to 10 weeks\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Slack does not expedite or accelerate reviews to match a launch date",
+        "evidence": "\"Up to 10 weeks\u2020, can't be expedited\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that after approval the vendor chooses when to publish, so the launch should not depend on approval landing on a given day",
+        "evidence": "\"Approval and publishing are separate, so you choose the publish date after approval.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to remove users:read.email because it serves a feature that does not exist yet",
+        "evidence": "\"`users:read.email` ... None. CRM sync is next quarter | **Drop**\"; \"a roadmap scope\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the bot token instead of a user token for reading the incident channel, or flags user-token channels:history as needing a clear use case",
+        "evidence": "\"If a shipped feature does read channel messages, use the bot token\"; user tokens pass only when app must act as that user",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags channels:history (a *:history scope) as triggering enhanced review",
+        "evidence": "\"`*:history` triggers enhanced review\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes or requests a per-scope justification that says how the app uses each scope rather than what the scope does",
+        "evidence": "\"Justifications to paste in. Each names the feature, the trigger, and what is kept\" with chat:write and commands examples",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Slack figures such as thresholds or durations as needing verification against current Slack docs",
+        "evidence": "\"\u2020 Verify against the current Slack Marketplace docs.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the Slack Marketplace requires at least 10 installs on active workspaces before submission, not 5",
+        "evidence": "\"which I recall as 5\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Developer Program sandboxes do not count toward the install threshold and warns against relying on the vendor's own test workspaces",
+        "evidence": "\"I recall reviewers not counting your own or dev workspaces, which would leave you with 2.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the install count must stay at or above the threshold for the whole duration of the review",
+        "evidence": "No mention of keeping the count up during review.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends getting more pilot customers onto the unlisted distributed app before submitting",
+        "evidence": "\"get 3 or more real customer workspaces installed and actively using the app\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the preliminary review as up to 10 business days and the functional review of a new app as up to 10 weeks",
+        "evidence": "Only says \"Review typically takes weeks\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Slack does not expedite or accelerate reviews to match a launch date",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that after approval the vendor chooses when to publish, so the launch should not depend on approval landing on a given day",
+        "evidence": "Only \"Don't plan the SREcon announcement around the listing going live that day.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to remove users:read.email because it serves a feature that does not exist yet",
+        "evidence": "\"The CRM sync doesn't exist until next quarter. Fix: remove it now\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends the bot token instead of a user token for reading the incident channel, or flags user-token channels:history as needing a clear use case",
+        "evidence": "\"A bot in the incident channel could read it with channels:history as a bot scope\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags channels:history (a *:history scope) as triggering enhanced review",
+        "evidence": "Says only it is \"most likely to draw questions\"; no enhanced review.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes or requests a per-scope justification that says how the app uses each scope rather than what the scope does",
+        "evidence": "\"Every scope maps to a live, demonstrable feature, with a one-line justification per scope\"; offers to draft scope justifications.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Slack figures such as thresholds or durations as needing verification against current Slack docs",
+        "evidence": "\"check the items marked \u26a0\ufe0f against the current page\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

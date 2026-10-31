@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the curve as downloads or dependents growing while stars stay flat, and reads it as users installing from the registry rather than a GitHub problem",
+        "evidence": "'Primary row: \"Downloads or dependents grow, stars flat.\" Users install from the registry and never visit the repo to star it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the support-leak row also fits and runs the metric swap first, before the Discussions work",
+        "evidence": "'Secondary row: \"Usage questions pile up in issues.\"'; first action is to change the reported metric (template 8).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends changing the reported metric instead of a plan to raise stars, and states stars are never a target",
+        "evidence": "Metrics table: 'Stars | 1,205 | Trailing signal only, never a target.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Delivers a filled leadership metric note for the deck",
+        "evidence": "Template 8 filled with 770 dependents, 96k downloads, 1,205 stars.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The metric note cites Borges and Valente (2018) for stars measuring appreciation and bookmarks",
+        "evidence": "'(Borges and Valente, 2018)' in template 8.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The metric note cites He et al. (2026) for stars correlating only moderately with use",
+        "evidence": "'correlate only moderately with use (He et al., 2026)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The replacement metric set includes unique visitors and top referrers, watchers, dependents plus npm downloads, and Q&A answered share with median time to answer",
+        "evidence": "Visitors/referrers, watchers, dependents + npm downloads, Q&A answered share and median time to answer all in template 8.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps stars on the sheet as a trailing signal with the current count and the period change, rather than dropping them",
+        "evidence": "'Stars stay on the sheet as a trailing signal: 1,205 (+65 this quarter).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the user's figures through unchanged: 41k to 96k downloads, 290 to 770 dependents, 1,140 to 1,205 stars",
+        "evidence": "Table shows 41k\u219296k, 290\u2192770, 1,140\u21921,205.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reads the numbers as trends against the same window a quarter earlier and states that no absolute threshold exists",
+        "evidence": "Only 'against the baseline' appears; no 'no absolute threshold exists' statement and no same-window-a-quarter-earlier rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies that median time to answer is computed from GraphQL answer.createdAt minus createdAt",
+        "evidence": "'GraphQL `answer.createdAt` minus `createdAt`.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps cloners diagnostic rather than reported, because CI inflates them",
+        "evidence": "'Cloners | Diagnostic only | CI inflates them'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names an answerer (and backup) before proposing Discussions Q&A for the 6-8 weekly pool-size questions",
+        "evidence": "'Discussions moves up to rung 2 only if you name one answerer and one backup.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes no star-growth tactic (campaign, badge, README ask) as a response to the 'star gap'",
+        "evidence": "'The gap is not closable organically'; 'Buying or trading stars is not an option.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the curve as downloads or dependents growing while stars stay flat, and reads it as users installing from the registry rather than a GitHub problem",
+        "evidence": "\"Our users show up in dependents and downloads, not stars.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the support-leak row also fits and runs the metric swap first, before the Discussions work",
+        "evidence": "It runs the metric swap and the Kubernetes docs fix side by side, and never mentions Discussions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends changing the reported metric instead of a plan to raise stars, and states stars are never a target",
+        "evidence": "It keeps \"a realistic target of about 1,400\" stars.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Delivers a filled leadership metric note for the deck",
+        "evidence": "A ready-to-paste \"Memo: Stars vs. adoption for pgnest\" with a numbers table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The metric note cites Borges and Valente (2018) for stars measuring appreciation and bookmarks",
+        "evidence": "No citation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The metric note cites He et al. (2026) for stars correlating only moderately with use",
+        "evidence": "No citation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The replacement metric set includes unique visitors and top referrers, watchers, dependents plus npm downloads, and Q&A answered share with median time to answer",
+        "evidence": "It lists used-by, downloads, time-to-pool and config issues only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps stars on the sheet as a trailing signal with the current count and the period change, rather than dropping them",
+        "evidence": "Table row: \"GitHub stars | 1,140 | 1,205 | +5.7% (+65)\"; stars kept as a \"secondary indicator\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Carries the user's figures through unchanged: 41k to 96k downloads, 290 to 770 dependents, 1,140 to 1,205 stars",
+        "evidence": "41k\u219296k, 290\u2192770, 1,140\u21921,205.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Reads the numbers as trends against the same window a quarter earlier and states that no absolute threshold exists",
+        "evidence": "It uses Jan-to-now and fixed targets such as 1,200 and 1,400.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies that median time to answer is computed from GraphQL answer.createdAt minus createdAt",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps cloners diagnostic rather than reported, because CI inflates them",
+        "evidence": "Cloners are not discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names an answerer (and backup) before proposing Discussions Q&A for the 6-8 weekly pool-size questions",
+        "evidence": "No Discussions plan and no named answerer.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes no star-growth tactic (campaign, badge, README ask) as a response to the 'star gap'",
+        "evidence": "It sets a 1,400 star target and a Hacker News and r/kubernetes submission to bring \"in stars as a side effect\".",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

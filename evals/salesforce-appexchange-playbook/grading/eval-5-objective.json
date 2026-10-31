@@ -1,0 +1,106 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a version built on a passed version as ancestor is ready to list without a new security review",
+        "evidence": "\"It lists without a new review, because it was built on 2.3.0, which passed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that 2.4.0 or 3.0.0 cut during the re-review can be listed now and lose readiness only if the re-review ultimately fails",
+        "evidence": "\"A version cut during a re-review lists only until that re-review fails. So 2.4.0 is safe now but depends on the re-review outcome.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires updating the security review contact on the Partner Console Company Info page",
+        "evidence": "\"Update the security contact on Company Info in the Partner Console.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a missed periodic re-review expires the review for all versions and removes the listing",
+        "evidence": "\"A missed re-review expires every version.\" plus \"pull the listing\" in the unpaid-fee line.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that periodic re-reviews carry the review fee and that a failed one typically gets about 60 days to remediate",
+        "evidence": "\"Pay the fee\u2020 and submit on time... If it fails, you get about 60 days\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restages the 3.0 push: own test orgs first, then customer sandboxes for about a week, then production in batches (e.g. 50-100 orgs at first)",
+        "evidence": "\"Start with your own test orgs, then 50-100 production orgs\u2020\"; \"run a week in sandboxes first.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends waiting 3-4 weeks after a major Salesforce release before pushing a major upgrade",
+        "evidence": "\"Push 3-4 weeks after a major Salesforce release\u2020\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises against auto-assigning the new approvals feature to existing users, leaving access to customer admins",
+        "evidence": "\"Never auto-assign a new feature's permission set to existing users.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a version built on a passed version as ancestor is ready to list without a new security review",
+        "evidence": "It says \"Treat 3.0.0 as needing its own security review\" and that 2.4.0 may need approval.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that 2.4.0 or 3.0.0 cut during the re-review can be listed now and lose readiness only if the re-review ultimately fails",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires updating the security review contact on the Partner Console Company Info page",
+        "evidence": "It says to add an alias as contact \"in the portal and in your Partner Community profile\", not on the Company Info page.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that a missed periodic re-review expires the review for all versions and removes the listing",
+        "evidence": "It only says it \"can lead to delisting or other restrictions\".",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that periodic re-reviews carry the review fee and that a failed one typically gets about 60 days to remediate",
+        "evidence": "It says \"Review fees and queue time apply per submission\" and gives no 60-day window.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Restages the 3.0 push: own test orgs first, then customer sandboxes for about a week, then production in batches (e.g. 50-100 orgs at first)",
+        "evidence": "Its stages are \"your own sandboxes, then about 20 friendly orgs, then 10% of orgs\" with no customer sandbox week and no 50-100 batches.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends waiting 3-4 weeks after a major Salesforce release before pushing a major upgrade",
+        "evidence": "It calls the weekend after Winter release risky but gives no 3-4 week wait.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Advises against auto-assigning the new approvals feature to existing users, leaving access to customer admins",
+        "evidence": "\"Ship the permission set unassigned. Add a Setup page... where an admin picks who gets it.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

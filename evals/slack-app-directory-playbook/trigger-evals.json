@@ -1,0 +1,222 @@
+{
+  "skill_name": "slack-app-directory-playbook",
+  "description": "Gets a B2B SaaS or developer-tools vendor's Slack app approved on the Slack Marketplace (formerly Slack App Directory) and keeps it listed - the active-workspace install gate, apps Slack refuses, per-scope justifications, Security & Compliance and AI disclosures, review timelines, updates to a locked live app, delisting triggers. Use whenever a vendor mentions submitting a Slack app, a returned Slack submission, Slack scope review, or listing vs staying unlisted for a commercial Slack app. Do NOT use for listing copy or install conversion (use samber/developer-platform-skills@integration-listing-optimization), for reviewing apps on your own marketplace (use samber/developer-platform-skills@app-marketplace-review), for a company's own internal apps, for admins vetting another vendor's app, or for Slack bot code.",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "Slack returned our marketplace submission saying our scope justifications don't explain usage. How do I rewrite them?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how many active workspaces does a slack app need before you can submit it to the slack marketplace",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're a dev tools startup and want our Slack bot listed in the Slack App Directory before our launch in 6 weeks. What's the review timeline and what will they reject?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our slack app is published, we need to add the files:read scope for a new feature. what does slack's re-review need from us?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Is it worth getting our Slack integration listed, or can we keep distributing it with the Add to Slack button? Heard something about rate limits on conversations.history",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Fill out the Security & Compliance section for our Slack app submission: we use Claude via AWS Bedrock in us-east-1 and keep data 30 days",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Slack emailed us that our app may be delisted because of uninstalls and slow support replies. What do we do?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "bot token vs user token for our slack app - reviewer says we're using user scopes unnecessarily",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Can we list a Slack app whose main feature is connecting our MCP server to Slackbot?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our SaaS wants into the Slack Marketplace. Walk me through the landing page, support page and privacy policy Slack requires.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want to get the Slack app approved and also sell it through AgentExchange - where do we start on the Slack side?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Prep our Slack app resubmission: reviewers couldn't install it and asked for test accounts",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Our Slack Marketplace listing gets few installs. Rewrite the short description and reorder the screenshots to convert better.",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We're launching our own integrations marketplace. Design the review and approval process for third-party apps, including permission audits.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the OAuth scopes and consent screen for our public API so partners' apps can read invoices.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Help me pass the Salesforce AppExchange security review for our managed package.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're publishing our Zapier integration. What does Zapier's review check before we leave beta?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write a Bolt for Python handler that responds to a slash command with a modal.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're starting a Slack community for our open-source users. How should we structure channels and moderation?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our internal Slack bot keeps getting ratelimited on conversations.history. How do we page through channel history faster?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the MCP server for our product: which tools to expose and how to keep write tools safe.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Submit our Microsoft Teams app to AppSource and pass Teams store validation.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write the listing rubric our marketplace uses to reject low-quality third-party listings.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our security team has to approve a vendor's Slack app. Walk me through its Security & Compliance tab and whether we should allow it.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "can we just give customers our app manifest so each one creates their own internal Slack app and we skip the marketplace and the rate limits?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Slack app vanished from a customer's workspace after the person who installed it left the company. Why?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    }
+  ],
+  "summary": {
+    "total": 26,
+    "passed": 21,
+    "failed": 5
+  }
+}

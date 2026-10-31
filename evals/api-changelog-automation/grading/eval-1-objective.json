@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the published changelog must be diffed against the last released spec, not against main or the PR merge base",
+        "evidence": "\"The changelog needs the spec of the last released version as its baseline... Release job: last release tag vs now\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the PR gate diffing against main or the merge base, as a separate job from the changelog generation",
+        "evidence": "Workflow 1 api-contract uses merge-base; Workflow 2 api-release is separate",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to generate one spec per supported Quillbridge-Version (2025-11-01, 2026-03-01, 2026-07-01) rather than a single spec for all versions",
+        "evidence": "generate-specs.sh writes api/specs/<version>.yaml for each supported version",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to commit or attach the normalized spec of each release so a later release has a baseline to diff against",
+        "evidence": "\"Committing a spec for each version is what gives you baselines at release tags.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires making the generated springdoc spec deterministic before diffing (stable operationIds, $ref'd schemas or oneOf branches, or equivalent), not just reformatting it",
+        "evidence": "\"stable operationIds, $ref schemas, stable enum order, and a pinned springdoc version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to pin the springdoc generator version and/or the oasdiff version",
+        "evidence": "OASDIFF_VERSION: v1.34.1 and \"pinned springdoc version\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to audit the ~60 existing ignore-file lines one by one instead of carrying them into the new gate unchanged",
+        "evidence": "\"Ignore-file audit\" section; \"Don't carry it over\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says ignore-file lines that still match a change get an acknowledgement record (reason, approver or 'unknown', ticket) and lines that match nothing are deleted",
+        "evidence": "\"Delete every line that matches nothing\"; reason historic, approver 'unknown - audited <date>'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the tool's ignore file should be generated from acknowledgement records rather than edited by hand going forward",
+        "evidence": "\"oasdiff-err-ignore.txt is generated from acks.json and never edited by hand\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that oasdiff cannot detect the GET /invoices newest-first ordering change because it does not change the spec",
+        "evidence": "\"The ordering change isn't in the spec, so oasdiff will report nothing\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a declared change fragment (or equivalent PR-declared entry) for the ordering change so it reaches the changelog",
+        "evidence": "api/changes/invoice-list-order.json fragment",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the ordering change should ship only behind the next version (2026-07-01) rather than reach callers pinned to existing versions, or else go through an exception/approval path",
+        "evidence": "\"On a date-versioned API it must reach only callers on the new version... otherwise a policy exception\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the oasdiff semver version-bump checks do not apply to date versions (set to none or not used)",
+        "evidence": "\"Date, header and URI versions make oasdiff skip its version-bump checks\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a verification step that every published changelog entry traces to a diff finding or a declared fragment before publishing",
+        "evidence": "check-entry-trace.py in publish job; \"publishing only happens after the trace check passes\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the published changelog must be diffed against the last released spec, not against main or the PR merge base",
+        "evidence": "Section 5: 'It diffs the previous release's spec against the new one'; point 2 says publish from a release-to-release diff.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the PR gate diffing against main or the merge base, as a separate job from the changelog generation",
+        "evidence": "api-contract.yml gates PR base.sha vs head; publishing is a separate api-changelog.yml workflow.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to generate one spec per supported Quillbridge-Version (2025-11-01, 2026-03-01, 2026-07-01) rather than a single spec for all versions",
+        "evidence": "Only asked as a question: 'Do you ship one spec for the latest version, or one per date version?'. Never instructs it.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to commit or attach the normalized spec of each release so a later release has a baseline to diff against",
+        "evidence": "The publish workflow rebuilds both specs from tags; no per-release spec is committed or attached.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires making the generated springdoc spec deterministic before diffing (stable operationIds, $ref'd schemas or oneOf branches, or equivalent), not just reformatting it",
+        "evidence": "Only 'springdoc.writer-with-order-by-keys: true', which is key ordering. No operationId or $ref stabilisation.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says to pin the springdoc generator version and/or the oasdiff version",
+        "evidence": "Pins the springdoc plugin to version 1.9.0 and uses oasdiff-action/setup@v0.0.21 with 'pin to a SHA'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells the user to audit the ~60 existing ignore-file lines one by one instead of carrying them into the new gate unchanged",
+        "evidence": "'Don't carry the 60 lines over... Move the old file aside'. No line-by-line audit.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says ignore-file lines that still match a change get an acknowledgement record (reason, approver or 'unknown', ticket) and lines that match nothing are deleted",
+        "evidence": "Re-add entries with a PR link, owner and expiry, but no acknowledgement-record concept and no deletion of non-matching lines.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the tool's ignore file should be generated from acknowledgement records rather than edited by hand going forward",
+        "evidence": "Ignore files are hand-edited ('Re-add an entry only with a reason').",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that oasdiff cannot detect the GET /invoices newest-first ordering change because it does not change the spec",
+        "evidence": "'oasdiff can't see it... the diff will be empty. But the changelog is built from that diff'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a declared change fragment (or equivalent PR-declared entry) for the ordering change so it reaches the changelog",
+        "evidence": "changelog/pending/invoices-default-sort.md manual entry, plus the behavior-gate job.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the ordering change should ship only behind the next version (2026-07-01) rather than reach callers pinned to existing versions, or else go through an exception/approval path",
+        "evidence": "'Gate it by Quillbridge-Version. Old versions keep oldest-first. Only requests on the new version get newest-first.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the oasdiff semver version-bump checks do not apply to date versions (set to none or not used)",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a verification step that every published changelog entry traces to a diff finding or a declared fragment before publishing",
+        "evidence": "No trace check. A human reviews the PR but there is no automated traceability check.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

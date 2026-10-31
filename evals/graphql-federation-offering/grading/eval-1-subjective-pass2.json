@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Mentions the rungs/options in terms of effort for the platform versus value delivered, not only feature descriptions",
+        "evidence": "Section 2 ranks rungs 0, 1 and 2 on separate axes: 'Effort, highest first: ingested connector > app-owned extension data > webhooks plus callback' and 'Value (live partner data in one query): ingested connector == app-owned extension data > webhooks plus callback'. So effort and value do appear per rung, beyond feature descriptions. The weaknesses: the effort axis never says whose effort it is (platform or partner). The orderings are bare, with no explanation. The pick of rung 2 rests on 'a canonical Shipment type exists, and three partners sync into it', not on weighing its highest effort aga",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Mentions the rungs/options in terms of effort for the platform versus value delivered, not only feature descriptions",
+        "evidence": "The effort side shows up in a few places. Option B 'adds work in the middle: SLA negotiation, security review and pipeline setup' and may not fit before the freeze. 'Three partners means three SLAs and three on-call rotations.' The last open question also says option A's cost 'may be smaller than expected.' Value appears mostly as reduced risk, for example the webhook path 'gives you tracking data when Quayside is down.' The transcript never compares each option's platform effort with what it delivers to clients or the business. Most of options A and B are feature and requirement descriptions ",
+        "score": 2,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

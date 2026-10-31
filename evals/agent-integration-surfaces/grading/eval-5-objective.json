@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that the on-behalf-of-user draft has expired and should not be built against",
+        "evidence": "\"The draft-oauth-ai-agents-on-behalf-of-user draft expired in early 2026... Building on an expired individual draft...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that actor_token itself is an RFC 8693 parameter that remains usable, while requested_actor has no successor",
+        "evidence": "\"`requested_actor` has no successor.\" and \"`actor_token` itself is an RFC 8693 parameter, so the part of the draft you wanted is safe to use\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends RFC 8693 token exchange with the actor chain recorded in the act claim",
+        "evidence": "\"RFC 8693 token exchange... `act` claim. The issued token records the actor chain\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a Web Bot Auth signature identifies the operator and carries no user authorization",
+        "evidence": "\"Web Bot Auth answers 'which company's agent sent this?' It explicitly excludes authorization and delegation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects skipping the OAuth step for signed requests",
+        "evidence": "\"the signature gets added on top of the OAuth token, never in place of it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 90-day delegated tokens and requires delegated tokens not to outlive the user token they derive from",
+        "evidence": "\"Delegated tokens last hours or days, never 'until revoked'. They must never outlive the user token they derive from.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes client credentials or workload identity federation minting short tokens for unattended fleets",
+        "evidence": "\"Fleets mint short access tokens from it (client credentials grant) or from workload identity federation.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a named sponsoring human for each agent credential",
+        "evidence": "\"Sponsor | A named human or admin at the customer for every agent credential\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires per-agent revocation that does not log the human out",
+        "evidence": "Says \"Revocation | Per agent, from the user's settings and the customer admin console\" but never states it must not log the human out.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends sender-constrained tokens (for example DPoP or mTLS) where clients support them",
+        "evidence": "\"Bind tokens to the agent instance with DPoP or mTLS where the client supports it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a major CDN verifier implemented an earlier Signature-Agent form and may reject the dictionary form, so test against both",
+        "evidence": "\"Cloudflare's verifier implements an earlier header form and rejects the dictionary form... Sign with both forms and compare results.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Labels Web Bot Auth as an IETF working-group draft, not a final standard",
+        "evidence": "\"the draft is still moving\"; \"The working group adopted it in September 2026, so expect changes.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that the on-behalf-of-user draft has expired and should not be built against",
+        "evidence": "Calls it 'good, with guardrails' and an individual draft; does not say it expired.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes that actor_token itself is an RFC 8693 parameter that remains usable, while requested_actor has no successor",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends RFC 8693 token exchange with the actor chain recorded in the act claim",
+        "evidence": "'Consider RFC 8693 token exchange with act as a fallback.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that a Web Bot Auth signature identifies the operator and carries no user authorization",
+        "evidence": "'It does not prove that any user consented'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects skipping the OAuth step for signed requests",
+        "evidence": "'Never accept a signature in place of one.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 90-day delegated tokens and requires delegated tokens not to outlive the user token they derive from",
+        "evidence": "'(3) 90-day agent tokens: reject'; short access tokens.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes client credentials or workload identity federation minting short tokens for unattended fleets",
+        "evidence": "Not proposed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a named sponsoring human for each agent credential",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires per-agent revocation that does not log the human out",
+        "evidence": "Refresh token per agent instance; revoke grants on events; user grant list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends sender-constrained tokens (for example DPoP or mTLS) where clients support them",
+        "evidence": "'sender constraint (DPoP, mTLS, or the Web Bot Auth key)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that a major CDN verifier implemented an earlier Signature-Agent form and may reject the dictionary form, so test against both",
+        "evidence": "Says operators/CDNs may send the string form, but gives no warning that a CDN verifier may reject the new form.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Labels Web Bot Auth as an IETF working-group draft, not a final standard",
+        "evidence": "Refers to 'the newer draft' but never labels Web Bot Auth as an IETF working-group draft.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

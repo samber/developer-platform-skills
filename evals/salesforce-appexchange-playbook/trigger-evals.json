@@ -1,0 +1,270 @@
+{
+  "skill_name": "salesforce-appexchange-playbook",
+  "description": "Takes a B2B SaaS product onto Salesforce AppExchange (increasingly AgentExchange) as an ISV - partner entry, listing type, managed 2GP choices that can never be undone, security review prep and resubmission, PADA, Checkout, GTM app or Channel Order App pricing, LMA licensing, re-reviews, push upgrades, OAuth mandates. Use whenever a vendor mentions AppExchange, AgentExchange, the Salesforce security review, a managed package it distributes, the Salesforce ISV program or PNR revenue share. Vendor side only. Do NOT use for listing copy, search rank or reviews (use samber/developer-platform-skills@integration-listing-optimization), for reviewing apps on your own marketplace (use samber/developer-platform-skills@app-marketplace-review), or for Apex/LWC code, internal-org packages or consulting listings.",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "How long does the Salesforce AppExchange security review take and what do we have to submit with it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we failed the appexchange security review on CRUD/FLS and an XSS, what's the fastest way to resubmit",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "For a brand-new Salesforce ISV app, should we build a 1GP or 2GP managed package?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our sales team keeps hearing customers ask if we're on the Salesforce marketplace. What does it take to get our SaaS listed there and sell through it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "AppExchange Checkout vs Channel Order App for per-seat pricing, which one and what do we owe Salesforce?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "What is PNR and how much of our app revenue does Salesforce take as an ISV versus OEM?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Salesforce emailed us that our connected app needs PKCE and refresh token rotation or we get delisted from AgentExchange. What do we have to change?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Can I install a 2GP beta package version in a pilot customer's production org and upgrade it later?",
+      "should_trigger": true,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We got a periodic security re-review notice for our AppExchange package. What happens if we don't do it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our product only calls the Salesforce REST API from our own servers. Can we list it on AgentExchange without a package?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Plan push upgrades of our managed package to 800 subscriber orgs without breaking anyone",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Realistically, how many months from joining the Salesforce ISV partner program to our first paid install?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Is the AppExchange security review fee $999 or $2,550 these days?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Picking a namespace for our Salesforce managed package - what can't we change later?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Trialforce or Test Drive for our AppExchange listing's free trial?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We want to ship Agentforce actions as a managed package on AgentExchange. What review and packaging path applies?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Rewrite our AppExchange listing tagline and reorder the screenshots so we rank for 'invoice automation'",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "How can we get more reviews on our AppExchange listing without breaking the marketplace rules?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Write an Apex trigger that rolls opportunity amounts up to the parent account",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're opening our own app marketplace. Design the security review process third-party apps go through before we list them.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Get our bot approved in the Slack App Directory - scopes review and listing",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Submit our Zapier integration for public listing and get out of beta",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the OAuth 2.0 authorization server for our public API: PKCE, refresh token rotation, token lifetimes",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "What revenue share should our own integration marketplace charge third-party developers?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Which ecosystem should we integrate with first - Salesforce, HubSpot or Microsoft Dynamics - given our pipeline data?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Run Salesforce Code Analyzer on our org's Apex in a GitHub Actions pipeline",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Prepare our Atlassian Forge app for the Cloud Fortified badge",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Shopify app got rejected because it doesn't use the Billing API. How do we fix the submission?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Set up Salesforce as our CRM: deal stages, lead routing and dashboards for our 12 AEs",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the partner developer onboarding journey on our own platform, from signup to first submitted app",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Publish our TypeScript SDK to npm with provenance and a release pipeline",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We launch on Product Hunt next Tuesday - plan the day",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 32,
+    "passed": 27,
+    "failed": 5
+  }
+}

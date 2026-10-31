@@ -1,0 +1,190 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects 'bot PRs merged plus recent commits' as evidence that a sample is green; health is read from CI state, not activity",
+        "evidence": "'All 7 repos are really unknown, not green'; 'It measures the bot, not health.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that with no sandbox CI degrades to build, lint and type-check only, and labels every repo 'compiled, not run' until a sandbox exists",
+        "evidence": "'Replay tests ... Label: compiled, not run' and 'Keep the \"compiled, not run\" label on every repo until its live smoke has been green'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Makes building a sandbox or test mode the first queue item and routes its design to `samber/developer-platform-skills@api-test-mode-design`",
+        "evidence": "'First queue item after cleanup: build a real test mode. See samber/developer-platform-skills@api-test-mode-design.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Removes the production key from CI; CI credentials become sandbox-only test keys, with test fixtures cleaned up after each run and runs paced under the sandbox rate limit",
+        "evidence": "The leaked key is rotated; a dedicated capped CI key with 'rate limit', an 'if: always()' cleanup step, and an interim stand-in for a sandbox.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that CI secrets are never exposed to pull requests from forks",
+        "evidence": "'Never run live smoke on PRs'; 'Confirm \"Send secrets to workflows from fork pull requests\" is off'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that CI credentials are rotated on a schedule",
+        "evidence": "'Rotate it quarterly and on any suspected exposure.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the weekly ungrouped bot PRs with grouped updates: minor updates monthly, patch updates quarterly, security alerts at any time",
+        "evidence": "The Renovate config and 'minor monthly, patch quarterly, alerts any time'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Stops the no-gate weekly automerge; automerge is allowed only behind a green CI run against the sandbox",
+        "evidence": "'Turn off bot auto-merge on all 7 repos'; 'Automerge returns only when a sandbox lets the live layer run on the PR'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Excludes archived and legacy paths from the dependency bot so it stops reviving them",
+        "evidence": "'\"ignorePaths\": [\"legacy/**\"]'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes the red-build SLA as three numbers labelled self-set: time to an owner ticket after the first red run, days red before a fix-or-deprecate decision, days deprecated before archive",
+        "evidence": "Clause 4: 'issue ... opened automatically', 14 days, 30 more days; 'all numbers self-set'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names a fallback decider for when Ravi is absent, stating that an SLA with no fallback never fires",
+        "evidence": "'Fallback decider if Ravi is absent: <named sign-off owner>. This is needed; without it the SLA never fires.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins the SDK major, runtime and API version per repo and checks each against the SDK support window and the API versioning policy",
+        "evidence": "Clause 5: 'versions.json ... CI checks it against the SDK support window and the API versioning policy'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Schedules CI on a cadence plus a run on every SDK release and every API version change",
+        "evidence": "The live-smoke triggers are the weekly schedule, 'sdk-release' and 'api-version-change'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the Postman collection a contract run against the sandbox on every API spec change instead of a build, because a hosted collection has no build",
+        "evidence": "'Run it with Newman in live-smoke on every API spec change'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Routes the 400 docs snippets to `samber/developer-relations-skills@docs-code-sample-standards` and inherits its snippet policy rather than writing one here",
+        "evidence": "'The tier policy comes from samber/developer-relations-skills@docs-code-sample-standards. I inherit it and do not rewrite it.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects 'bot PRs merged plus recent commits' as evidence that a sample is green; health is read from CI state, not activity",
+        "evidence": "'Bot PRs merged counts bot activity, not whether a sample runs.' 'Delete both dashboard metrics.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that with no sandbox CI degrades to build, lint and type-check only, and labels every repo 'compiled, not run' until a sandbox exists",
+        "evidence": "CI runs live against the production API. The degradation is never discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Makes building a sandbox or test mode the first queue item and routes its design to `samber/developer-platform-skills@api-test-mode-design`",
+        "evidence": "A test mode is only a follow-up: 'I recommend building it as a follow-up.' There is no skill routing.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Removes the production key from CI; CI credentials become sandbox-only test keys, with test fixtures cleaned up after each run and runs paced under the sandbox rate limit",
+        "evidence": "The production key is replaced with 'capped, scoped CI keys' that still call the production API.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies that CI secrets are never exposed to pull requests from forks",
+        "evidence": "'Leave \"send secrets to workflows from fork PRs\"... off.' 'Fork PR (any repo) | Offline only, no secrets'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies that CI credentials are rotated on a schedule",
+        "evidence": "'Rotation every 90 days.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Replaces the weekly ungrouped bot PRs with grouped updates: minor updates monthly, patch updates quarterly, security alerts at any time",
+        "evidence": "The Dependabot schedule is weekly. The minor-and-patch group is weekly, not monthly or quarterly.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Stops the no-gate weekly automerge; automerge is allowed only behind a green CI run against the sandbox",
+        "evidence": "Automerge requires the `offline-gate` check against a mock, not a sandbox CI run.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Excludes archived and legacy paths from the dependency bot so it stops reviving them",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes the red-build SLA as three numbers labelled self-set: time to an owner ticket after the first red run, days red before a fix-or-deprecate decision, days deprecated before archive",
+        "evidence": "The SLA is 'triage within 2 business days, fix within 5' and 'Red for more than 30 days'. Those are not the three required numbers and are not labelled self-set.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names a fallback decider for when Ravi is absent, stating that an SLA with no fallback never fires",
+        "evidence": "The backup owner is 'required, not named yet'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins the SDK major, runtime and API version per repo and checks each against the SDK support window and the API versioning policy",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Schedules CI on a cadence plus a run on every SDK release and every API version change",
+        "evidence": "Weekly schedule, 'SDK release | Bump PRs to the 7 repos', and 'OpenAPI spec change... Offline gate for all 7 repos'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the Postman collection a contract run against the sandbox on every API spec change instead of a build, because a hosted collection has no build",
+        "evidence": "The Postman run is a weekly job on production keys. A spec change triggers only an offline coverage check.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the 400 docs snippets to `samber/developer-relations-skills@docs-code-sample-standards` and inherits its snippet policy rather than writing one here",
+        "evidence": "It writes its own T0/T1/T2 snippet policy and names no skill.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

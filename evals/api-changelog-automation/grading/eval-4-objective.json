@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Replaces the text output with a structured format (e.g. oasdiff -f json) as the input to entry generation",
+        "evidence": "\"-f json into build-entries.py\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects or rewrites the 'explain the benefits' instruction because it invites consequences not present in the diff",
+        "evidence": "Prompt forbids benefits unless author_note states them",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the model may only shorten or reword and must not add paths, fields, status codes, dates or consequences absent from the source",
+        "evidence": "\"may shorten and reword, but may not add a path, field, code, date or consequence\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires each entry to keep a source reference (check id / fingerprint or declared fragment id)",
+        "evidence": "Not explicitly required; prompt input fields omit source, only implied in scripts",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the tool's original wording alongside the human or model summary",
+        "evidence": "tool_text carried in record and used as fallback summary",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires each entry to carry a classification such as breaking / potentially-breaking / non-breaking",
+        "evidence": "classification field, render sections",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires breaking entries to state the action required of callers",
+        "evidence": "\"A human supplies action_required for every breaking or potentially breaking entry\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the 180 Money-schema findings should be collapsed into one entry naming the shared schema and a count, not one entry per property",
+        "evidence": "\"One entry, not 180\" with shared_schema and count",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders entries with breaking changes first",
+        "evidence": "render SECTIONS order breaking first",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds an automated check (e.g. the trace check script) that fails publishing when an entry has no matching source or a breaking finding has no entry",
+        "evidence": "check-entry-trace.py in release-changelog.sh under set -e",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Baselines the published changelog on releases (last released spec) rather than a nightly yesterday-vs-today diff, or explains why nightly diffs fragment the record",
+        "evidence": "Diff against last published api-* tag; \"daily slivers\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Excludes documentation-only edits from the published entries",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats WARN-level findings as 'potentially breaking' entries rather than dropping them",
+        "evidence": "No explicit WARN handling stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects posting the raw oasdiff text output (or a free-form rewrite of it) directly as the published release notes",
+        "evidence": "Replaces text pipe with JSON; text has no classification",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Replaces the text output with a structured format (e.g. oasdiff -f json) as the input to entry generation",
+        "evidence": "Runs 'oasdiff changelog ... -f json' and parses the entries.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects or rewrites the 'explain the benefits' instruction because it invites consequences not present in the diff",
+        "evidence": "'Drop \"explain the benefits\". The diff contains no benefits, so the model will invent them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the model may only shorten or reword and must not add paths, fields, status codes, dates or consequences absent from the source",
+        "evidence": "Prompt: 'Use only facts in the input... Do not invent fields, endpoints, types, versions, or dates.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires each entry to keep a source reference (check id / fingerprint or declared fragment id)",
+        "evidence": "Rendered entries show only a title and description; change_id is used only as a fallback title.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the tool's original wording alongside the human or model summary",
+        "evidence": "Original text is shown only as a fallback when the LLM fails.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires each entry to carry a classification such as breaking / potentially-breaking / non-breaking",
+        "evidence": "Sections 'Breaking changes', 'Changes to review', 'Other changes' by level.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires breaking entries to state the action required of callers",
+        "evidence": "Prompt: 'say plainly what breaks and what callers must change'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the 180 Money-schema findings should be collapsed into one entry naming the shared schema and a count, not one entry per property",
+        "evidence": "group_entries and normalize collapse ~180 Money lines into groups with count.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Orders entries with breaking changes first",
+        "evidence": "Groups sorted breaking, warning, info.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Adds an automated check (e.g. the trace check script) that fails publishing when an entry has no matching source or a breaking finding has no entry",
+        "evidence": "Only validates LLM refs; no check that entries match sources or that breaking findings have entries.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Baselines the published changelog on releases (last released spec) rather than a nightly yesterday-vs-today diff, or explains why nightly diffs fragment the record",
+        "evidence": "Nightly diff against last-published baseline; it does not justify or use release baselines.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Excludes documentation-only edits from the published entries",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Treats WARN-level findings as 'potentially breaking' entries rather than dropping them",
+        "evidence": "WARN is kept as a 'Changes to review' section.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects posting the raw oasdiff text output (or a free-form rewrite of it) directly as the published release notes",
+        "evidence": "'Don't pipe raw oasdiff changelog text into the LLM' and a script renders the output.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

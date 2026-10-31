@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Routes the 'which SDK languages next' question to `samber/developer-platform-skills@sdk-portfolio-strategy` instead of deciding languages inline",
+        "evidence": "It decides inline: 'Go next, then Java or Ruby.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the sandbox design to `samber/developer-platform-skills@api-test-mode-design`",
+        "evidence": "It writes a full sandbox design in section 3 and never routes it to api-test-mode-design.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes writing the quickstart page to `samber/developer-relations-skills@developer-quickstart-guide`",
+        "evidence": "It drafts the quickstart page itself in section 4.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that building one hackathon demo app is not a portfolio decision, and that if it enters the portfolio it ships only with a named owner and CI",
+        "evidence": "'A standalone demo is a reference app'; 'with you as the named owner and CI on the sandbox'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Refuses to guess the inventory from 'around 14, maybe more'; asks for the samples org listing or a count by type and language, including the old org",
+        "evidence": "'I can't triage 14 repos I haven't seen'; the script covers <CURRENT_ORG> and <OLD_ORG>; 'paste me the output'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Asks the interview questions one per message with the offered options, waiting for each answer before the next",
+        "evidence": "It ends with a list of five questions in a single message.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks what samples can run against in CI (sandbox or test mode, live service only, nothing yet) and states that 'nothing yet' degrades CI to build, lint and type-check",
+        "evidence": "It assumes a sandbox will be built and never asks about CI targets.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which named people can own samples and how many engineer-hours per quarter go to upkeep, stating that this answer caps the portfolio size",
+        "evidence": "It asks for hours ('How many real hours per quarter') but assumes the user is the solo owner. It does not ask for named people or say the answer caps the portfolio.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks who signs off on archiving and which artifacts are linked from docs, sales decks or partner material",
+        "evidence": "No question about a sign-off owner or deck/partner links appears in the open questions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks the date the first decision must land and whether this is a one-off cleanup or a standing quarterly policy",
+        "evidence": "The questions do not ask whether this is a one-off or a standing policy. The 5-week hackathon deadline is only taken as given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces no register rows and no verdicts before the inventory is supplied",
+        "evidence": "It gives only a register script and a rule order, with 'predictions' labelled as unconfirmed guesses.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the SDK tiers from sdk-portfolio-strategy gate sample coverage, never the reverse",
+        "evidence": "The transcript never says SDK tiers gate sample coverage.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Routes the 'which SDK languages next' question to `samber/developer-platform-skills@sdk-portfolio-strategy` instead of deciding languages inline",
+        "evidence": "It decides inline: 'Recommended order: Go, Ruby, Java/Kotlin.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes the sandbox design to `samber/developer-platform-skills@api-test-mode-design`",
+        "evidence": "It designs the sandbox inline in section 2.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Routes writing the quickstart page to `samber/developer-relations-skills@developer-quickstart-guide`",
+        "evidence": "It writes the quickstart inline in section 3.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that building one hackathon demo app is not a portfolio decision, and that if it enters the portfolio it ships only with a named owner and CI",
+        "evidence": "'Yes, build the one demo app.' There is no owner or CI condition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Refuses to guess the inventory from 'around 14, maybe more'; asks for the samples org listing or a count by type and language, including the old org",
+        "evidence": "It supplies a census script and proceeds to a target end state without waiting for inventory.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks the interview questions one per message with the offered options, waiting for each answer before the next",
+        "evidence": "Three questions are listed at the end. The interview is not run one at a time.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks what samples can run against in CI (sandbox or test mode, live service only, nothing yet) and states that 'nothing yet' degrades CI to build, lint and type-check",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks which named people can own samples and how many engineer-hours per quarter go to upkeep, stating that this answer caps the portfolio size",
+        "evidence": "It assumes 'about 25 DX hours per week'. It does not ask about owners or quarterly hours.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks who signs off on archiving and which artifacts are linked from docs, sales decks or partner material",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Asks the date the first decision must land and whether this is a one-off cleanup or a standing quarterly policy",
+        "evidence": "It does not ask for the date or the policy type.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces no register rows and no verdicts before the inventory is supplied",
+        "evidence": "It gives triage rules and a target end state with a monorepo of 6 examples.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the SDK tiers from sdk-portfolio-strategy gate sample coverage, never the reverse",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

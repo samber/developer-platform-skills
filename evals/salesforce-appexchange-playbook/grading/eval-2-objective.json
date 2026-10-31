@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that an API-only (Salesforce Platform API) listing must pass the AppExchange security review",
+        "evidence": "\"An API listing goes through the same review as a package.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts Fieldmark's web app and APIs in review scope because they authenticate users or exchange Salesforce data",
+        "evidence": "\"Your web app and APIs get DAST\"; \"Anything that authenticates users or sends or receives Salesforce data\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires DAST scan reports (ZAP, Burp or equivalent) of the external endpoints",
+        "evidence": "\"DAST (ZAP, Burp or equivalent) on every in-scope endpoint... send full results\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Checkmarx and Code Analyzer reports are not required when no package is submitted",
+        "evidence": "\"Fastest and lightest: no Code Analyzer, no Checkmarx.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that AppExchange Checkout requires a managed package, so it is unavailable for an API-only listing",
+        "evidence": "\"Checkout forces a package. You can't use Checkout with a pure API listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the thin managed package carrying the integration (or the ECA) as the route if Checkout or packaged distribution is wanted",
+        "evidence": "\"managed 2GP package, thin, carrying only the ECA, with Checkout.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that new Connected Apps can no longer be created (new integrations use an External Client App) while the existing 2024 Connected App stays in scope of the mandatory OAuth controls",
+        "evidence": "\"Since Spring '26, new integrations must be built on an ECA\"; \"Your 2024 Connected App is in scope of the OAuth controls.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists PKCE and refresh token rotation as mandatory controls for a Connected App or ECA used by more than two customer production orgs",
+        "evidence": "\"If it is used by more than two customer production orgs, the OAuth controls were mandatory\"; \"Enable all four (PKCE, refresh token rotation, 30-day idle expiry, IP allowlist)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Names AppExchange delisting or suspended access as the consequence of missing the mandatory OAuth controls",
+        "evidence": "\"the stated sanction is delisting or suspended access to Salesforce\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the one-month go-live with stage durations (1-2 weeks verification plus 3-4 weeks testing) and gives a backward timeline",
+        "evidence": "\"Next month is not feasible\"; timeline with \"Verification, 1-2 weeks\u2020\" and \"First test, 3-4 weeks\u2020\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Salesforce fees, durations or dates with a dagger or similar footnote telling the reader to verify them against current Salesforce docs",
+        "evidence": "\"Every Salesforce figure marked \u2020 ... must be verified against current Salesforce partner docs before you quote it.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that an API-only (Salesforce Platform API) listing must pass the AppExchange security review",
+        "evidence": "\"No, you can't skip the security review... packaged or not.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts Fieldmark's web app and APIs in review scope because they authenticate users or exchange Salesforce data",
+        "evidence": "\"The review covers your web app, its infrastructure, and how you handle OAuth tokens and customer data.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires DAST scan reports (ZAP, Burp or equivalent) of the external endpoints",
+        "evidence": "\"Run a clean external vulnerability scan against your web app and fix the findings.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Checkmarx and Code Analyzer reports are not required when no package is submitted",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that AppExchange Checkout requires a managed package, so it is unavailable for an API-only listing",
+        "evidence": "\"AppExchange Checkout is built around managed-package licensing... a package-less web app probably can't use it as-is.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers the thin managed package carrying the integration (or the ECA) as the route if Checkout or packaged distribution is wanted",
+        "evidence": "It recommends your own billing and never proposes a thin managed package.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that new Connected Apps can no longer be created (new integrations use an External Client App) while the existing 2024 Connected App stays in scope of the mandatory OAuth controls",
+        "evidence": "It only asks \"Does your 2024 Connected App need to move to an External Client App?\" and states neither point.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists PKCE and refresh token rotation as mandatory controls for a Connected App or ECA used by more than two customer production orgs",
+        "evidence": "It recommends PKCE as best practice, with no refresh token rotation and no mandatory threshold.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Names AppExchange delisting or suspended access as the consequence of missing the mandatory OAuth controls",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the one-month go-live with stage durations (1-2 weeks verification plus 3-4 weeks testing) and gives a backward timeline",
+        "evidence": "It says \"Plan on 2\u20134 months\" but gives no 1-2 week verification plus 3-4 week testing stage math and no backward timeline.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Salesforce fees, durations or dates with a dagger or similar footnote telling the reader to verify them against current Salesforce docs",
+        "evidence": "It has a general disclaimer, \"I haven't verified current fees, rates or timelines\", but no marking of individual figures.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

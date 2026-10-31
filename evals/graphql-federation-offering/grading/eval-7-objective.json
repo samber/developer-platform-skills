@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Lists every field the partner would receive (key fields plus required patient fields) as a data-clearance list",
+        "evidence": "Section 4 table listing medicationCode, quantity, pricingAgeBand, pricingRegion, HMAC reference, and not-sent fields.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies date of birth and home address as personal health-context data needing a regulated-data gate before clearance",
+        "evidence": "'Under the skill's data-clearance rule, that pair fails the regulated-data gate today.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends replacing date of birth with a coarser derived field (e.g. age band) for the partner to require",
+        "evidence": "'pricingAgeBand: AgeBand @inaccessible'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends replacing home address with a coarser derived field (e.g. region or postal area) for the partner to require",
+        "evidence": "'pricingRegion: String ... region code only'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires tenant (clinic) consent recorded at install before personal data flows to the partner",
+        "evidence": "'tenant consent recorded at install'; 'Cleared with consent'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires signed partner data-processing terms",
+        "evidence": "'signed data-processing terms' in the escalation list.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the partner's US hosting region as a residency or cross-border transfer issue for EU patient data",
+        "evidence": "'Residency blocker (us-east-1)... patient-linked medication data would leave the EU for the US.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that @requires ships the required fields once per entity, so a 50-prescription page sends patient data for every row",
+        "evidence": "'would happen once per prescription row, about 50 times per dashboard page'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the partner pricing field to be nullable on Prescription",
+        "evidence": "'verdanePricing is nullable on Prescription.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the partner endpoint to authenticate platform calls and not take tenant from the representation",
+        "evidence": "'mTLS or signed requests... reads tenant and scopes from the token, never from the payload.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sets a per-partner timeout and circuit breaker so pricing failures do not block the dashboard",
+        "evidence": "'Per-partner timeout 650 ms'; 'Circuit breaker, counting timeouts as failures'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that no clinic user credential is forwarded to the partner",
+        "evidence": "'forward no end-user Authorization, no Cookie and no Saltreed API key.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Masks partner error messages and does not pass partner response extensions through to clinic clients",
+        "evidence": "'mask Verdane errors to PARTNER_UNAVAILABLE... Never pass Verdane extensions to clients.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the pricing need as live partner-computed data before specifying the field",
+        "evidence": "Section 1: 'this is live data computed by the partner'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Lists every field the partner would receive (key fields plus required patient fields) as a data-clearance list",
+        "evidence": "\u00a74 'Data sent to Verdane' table plus the contract test 'asserting the outbound payload contains no key outside this list'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Identifies date of birth and home address as personal health-context data needing a regulated-data gate before clearance",
+        "evidence": "'special-category health data (GDPR Art. 9)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends replacing date of birth with a coarser derived field (e.g. age band) for the partner to require",
+        "evidence": "'`ageBand` | Derived from DOB on our side'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends replacing home address with a coarser derived field (e.g. region or postal area) for the partner to require",
+        "evidence": "'`region` | Derived from address | Postal prefix or region code, no street'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires tenant (clinic) consent recorded at install before personal data flows to the partner",
+        "evidence": "Gate 4: 'Clinic-side opt-in so the integration is off by default'; gate 3: per-patient consent.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires signed partner data-processing terms",
+        "evidence": "'DPA with Verdane signed, with zero retention, no secondary use, and a sub-processor list.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the partner's US hosting region as a residency or cross-border transfer issue for EU patient data",
+        "evidence": "'The destination is us-east-1, outside the EU'; asks for an EU region, DPF certification or SCCs.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that @requires ships the required fields once per entity, so a 50-prescription page sends patient data for every row",
+        "evidence": "Says it sends 'every patient's DOB and home address on every request', but does not tie this to per-row shipment across a 50-prescription page.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the partner pricing field to be nullable on Prescription",
+        "evidence": "'Nullable field, with `status` for expected failures.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the partner endpoint to authenticate platform calls and not take tenant from the representation",
+        "evidence": "No endpoint authentication requirement or tenant-derivation rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sets a per-partner timeout and circuit breaker so pricing failures do not block the dashboard",
+        "evidence": "'1.5 s per batch, then return `UNAVAILABLE`'; 'circuit breaker (50% failures over 20 calls opens it for 30 s)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that no clinic user credential is forwarded to the partner",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Masks partner error messages and does not pass partner response extensions through to clinic clients",
+        "evidence": "Statuses replace errors, but nothing about masking partner error messages or extensions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Classifies the pricing need as live partner-computed data before specifying the field",
+        "evidence": "Goes to a two-problem critique and an architecture choice without classifying the need. 'Live price quote' appears only in a docstring.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

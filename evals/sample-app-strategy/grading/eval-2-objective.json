@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects 'every sample in every language'; full language parity goes to the flagship quickstart only, across the five tier-1 languages (Node, Python, Java, Go, Kotlin)",
+        "evidence": "The quickstart covers only 'Node, Python, Java and Go'. Kotlin appears only in a separate Android app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships the scenario samples (send-SMS, verify-OTP, webhooks, number lookup) in two or three languages led by Node and Python, citing the 48% and 31% traffic shares as the reason",
+        "evidence": "'Node (48% of traffic), Python (31%)' for scenario samples.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships the Conversations sample in one language first (Node) because it is a new product",
+        "evidence": "'Supported, new product | Node | Conversations, one language first'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Ruby, PHP, .NET and Swift as community-labelled or absent and publishes a supported / community / absent tier table rather than leaving the gap silent",
+        "evidence": "'Community label or absent | Ruby, PHP, .NET, Swift | tier table plus docs snippets only'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds the flagship quickstart as one repo with one folder per language, covered by one CI harness and one index entry",
+        "evidence": "'Node, Python, Java and Go in one repo, one folder per language'; 'One shared harness for all folders'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a per-type upkeep estimate in hours per quarter multiplied by its languages, labelled self-set",
+        "evidence": "'Quickstart, 4 languages \u00d7 1.5 = 6'; 'hours are self-set'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Sums the target rows and compares the total to Lena's 30 hours, showing by how much the wish list exceeds it",
+        "evidence": "'The PM's ... needs about 70 hours a quarter ... Lena has 30.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "When over capacity, cuts within a job first (drop languages, then step down to the default artifact) before cutting across jobs",
+        "evidence": "The cut order is 'Vercel template, then the Q4 architecture page'. It does not describe dropping languages and then stepping down the artifact within a job.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cuts across jobs from the bottom of the efficiency line, so the contact-center reference app and the browser playground go before any scenario sample or the quickstart",
+        "evidence": "'Not served: the contact-center reference app and the browser playground.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the Android sample app despite its low efficiency rank because the Kotlin mobile SDK is tier 1, stating that the last artifact serving a tier-1 SDK's job is never cut",
+        "evidence": "'the Kotlin SDK is tier 1, so the last artifact serving it is never cut.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not build the contact-center reference app in this plan; serves 'learn the production pattern' with a docs architecture page plus scenarios, and states the condition that would promote the reference app (multi-service flow drives deals and the capacity sum still fits)",
+        "evidence": "'docs architecture page, no reference app'; 'add it when all three hold' (contact-center deals, sandbox simulates voice, ~16 h free).",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Writes each unserved job as 'not served' with the condition that would add it (for example the deploy template / start-a-project job)",
+        "evidence": "The playground and the reference app are 'not served' with conditions to add them.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the inbound voice callback scenario 'compiled, not run' because the sandbox does not simulate that flow, while other scenarios run against the sandbox",
+        "evidence": "'Inbound voice callback: \"compiled, not run\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the efficiency and upkeep orderings of artifact types explicitly as ordering lines, not only as a table",
+        "evidence": "No ordering lines for efficiency or upkeep appear; only tables and a cut order.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects 'every sample in every language'; full language parity goes to the flagship quickstart only, across the five tier-1 languages (Node, Python, Java, Go, Kotlin)",
+        "evidence": "The quickstart ships in 'Node, Python, Java, Go' only. Kotlin is not included.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships the scenario samples (send-SMS, verify-OTP, webhooks, number lookup) in two or three languages led by Node and Python, citing the 48% and 31% traffic shares as the reason",
+        "evidence": "'Node plus Python cover 79% of traffic.' The Vercel template 'reaches the 48% Node audience'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships the Conversations sample in one language first (Node) because it is a new product",
+        "evidence": "The Conversations row lists 'Node, Python'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Ruby, PHP, .NET and Swift as community-labelled or absent and publishes a supported / community / absent tier table rather than leaving the gap silent",
+        "evidence": "No tier table. Tier 2 gets only a line: 'Offer a quickstart only, or accept community contributions.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds the flagship quickstart as one repo with one folder per language, covered by one CI harness and one index entry",
+        "evidence": "There is no repo structure or harness design.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives a per-type upkeep estimate in hours per quarter multiplied by its languages, labelled self-set",
+        "evidence": "Only build hours are given. There are no upkeep estimates.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Sums the target rows and compares the total to Lena's 30 hours, showing by how much the wish list exceeds it",
+        "evidence": "'The full wish list is about 210-250 hours' against 30 hours, with the 54 samples at about 100 hours.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "When over capacity, cuts within a job first (drop languages, then step down to the default artifact) before cutting across jobs",
+        "evidence": "There is no explicit within-job cut rule. Only the language choices are described.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Cuts across jobs from the bottom of the efficiency line, so the contact-center reference app and the browser playground go before any scenario sample or the quickstart",
+        "evidence": "The contact center is 'Don't build it as scoped' and the playground is 'Defer', while the scenario samples and quickstart ship.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the Android sample app despite its low efficiency rank because the Kotlin mobile SDK is tier 1, stating that the last artifact serving a tier-1 SDK's job is never cut",
+        "evidence": "'Q+3 at the earliest. Kotlin traffic is under 2%.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not build the contact-center reference app in this plan; serves 'learn the production pattern' with a docs architecture page plus scenarios, and states the condition that would promote the reference app (multi-service flow drives deals and the capacity sum still fits)",
+        "evidence": "It offers 'A thin Node-only version could fit in Q+2 or Q+3'. There is no docs architecture page and no promotion condition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Writes each unserved job as 'not served' with the condition that would add it (for example the deploy template / start-a-project job)",
+        "evidence": "It includes a Vercel template build and has no 'not served' lines.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks the inbound voice callback scenario 'compiled, not run' because the sandbox does not simulate that flow, while other scenarios run against the sandbox",
+        "evidence": "It says 'unit-test the handler against fixture payloads. Then run it once against a real number'. The phrase and the CI labelling are absent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the efficiency and upkeep orderings of artifact types explicitly as ordering lines, not only as a table",
+        "evidence": "No ordering lines are given.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

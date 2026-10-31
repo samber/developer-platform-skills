@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that a @deprecated marker alone does not make removal safe",
+        "evidence": "\"'Deprecated in March' isn't the removal rule\"; lifecycle gate requires usage zero",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says suppressRemovalOfDeprecatedField should not be enabled on its own without a usage-based rule or sunset check",
+        "evidence": "\"The rule you proposed removes the check... never use it alone\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the default one-week operation-check window is too short for clients with month-end jobs",
+        "evidence": "\"month-end reconciliation script... invisible to that check\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends setting the usage window to at least the longest known client cycle (e.g. a month or more)",
+        "evidence": "USAGE_WINDOW_DAYS: 90",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that clients with no traffic in the window (mobile app versions, rarely-run scripts, SDK users) are invisible to operation checks",
+        "evidence": "Mobile apps on old builds blind spot",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the removal date to the deprecation policy's sunset date or notice period",
+        "evidence": "\"notice window and sunset come from your written policy\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Points out that March-to-next-week may fall short of the policy's notice window, or asks what the notice window is",
+        "evidence": "\"Confirm the notice window\"; asks if policy exists",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends graphql-inspector's considerUsage rule (or registry usage checks) for usage-aware classification",
+        "evidence": "--rule considerUsage",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an acknowledgement/approval record for the removal if it ships as an accepted breaking change",
+        "evidence": "Acknowledgement row JSON provided",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a changelog entry for the removal classified as breaking, with the action required",
+        "evidence": "kind removed, classification breaking, action_required name replacement",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands off contacting the remaining callers of the deprecated field to an integration-health / outreach process rather than designing it in this pipeline",
+        "evidence": "\"belongs to integration-health-monitoring, so hand it over\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Does not simply provide the CI change enabling suppressRemovalOfDeprecatedField as requested",
+        "evidence": "\"Don't add the suppress rule.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends setting or checking a sunset date on the deprecated field before allowing its removal",
+        "evidence": "\"Put that date in x-sunset or @deprecated(reason:)\"; MIN_DEPRECATION_DAYS lifecycle gate",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that a @deprecated marker alone does not make removal safe",
+        "evidence": "'Not yet: hold the deletion until the Apollo data covers a month-end'; explains clients may still call it.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says suppressRemovalOfDeprecatedField should not be enabled on its own without a usage-based rule or sunset check",
+        "evidence": "Enables it behind a PR label, without a usage-based rule.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the default one-week operation-check window is too short for clients with month-end jobs",
+        "evidence": "'Apollo's default check window is 7 days... can't see jobs that run once a month.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends setting the usage window to at least the longest known client cycle (e.g. a month or more)",
+        "evidence": "'Set the Apollo operation check window to the longest your plan allows, ideally 30 days or more.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that clients with no traffic in the window (mobile app versions, rarely-run scripts, SDK users) are invisible to operation checks",
+        "evidence": "Old mobile builds and scripts outside the instrumented router.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ties the removal date to the deprecation policy's sunset date or notice period",
+        "evidence": "Only says customers should have got a removal date; no policy sunset tie.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Points out that March-to-next-week may fall short of the policy's notice window, or asks what the notice window is",
+        "evidence": "Not asked.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends graphql-inspector's considerUsage rule (or registry usage checks) for usage-aware classification",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires an acknowledgement/approval record for the removal if it ships as an accepted breaking change",
+        "evidence": "Only a PR label.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires a changelog entry for the removal classified as breaking, with the action required",
+        "evidence": "No changelog entry.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Hands off contacting the remaining callers of the deprecated field to an integration-health / outreach process rather than designing it in this pipeline",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not simply provide the CI change enabling suppressRemovalOfDeprecatedField as requested",
+        "evidence": "Provides it gated by a label with a positive control, and says the rule is global.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends setting or checking a sunset date on the deprecated field before allowing its removal",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

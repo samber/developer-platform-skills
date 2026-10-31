@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Disagrees that the change needs no changelog entry",
+        "evidence": "\"wrong that it needs no changelog entry\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that callers (and SDKs or validators generated from the old spec) relied on the documented optional field",
+        "evidence": "SDK generated from old spec treats field as optional",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the case as a spec correction rather than a new behavior change",
+        "evidence": "reason spec-correction",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an acknowledgement record instead of a bare appended ignore line",
+        "evidence": "acks.json row",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The acknowledgement record includes an approver",
+        "evidence": "\"approver\" field",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The acknowledgement record includes a ticket or PR reference (e.g. #2291)",
+        "evidence": "\"ticket\": \"PR-2291...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "The acknowledgement record includes the date the server started behaving this way (since January)",
+        "evidence": "behaving_since field, step 1",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the ignore-file line should be generated from the acknowledgement record rather than appended by hand",
+        "evidence": "\"Let the script generate the ignore line\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes a changelog entry stating patient_dob is required on create and what callers must send",
+        "evidence": "Summary and Action required text",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that the PR-time fingerprint may differ at release time and the approval should be matched by check, operation and path (or re-recorded) when building the release changelog",
+        "evidence": "\"re-matches on check, operation, path and exact text\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding a drift alarm or contract test so the spec cannot diverge from the server again",
+        "evidence": "Step 6",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says acknowledgement rows whose change no longer appears in the diff should be removed at the next release review",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not simply agree to append the line to oasdiff-ignore.txt and merge",
+        "evidence": "\"wrong to append the line... by hand\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Disagrees that the change needs no changelog entry",
+        "evidence": "'I agree with the ignore line, but not with \"no changelog\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that callers (and SDKs or validators generated from the old spec) relied on the documented optional field",
+        "evidence": "Generated SDKs, mock servers and validators built from the spec.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Classifies the case as a spec correction rather than a new behavior change",
+        "evidence": "'Use a \"Fixed / spec correction\" section, not \"Breaking\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an acknowledgement record instead of a bare appended ignore line",
+        "evidence": "Only a commented ignore line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The acknowledgement record includes an approver",
+        "evidence": "No approver.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The acknowledgement record includes a ticket or PR reference (e.g. #2291)",
+        "evidence": "The comment holds '#2291', but there is no record.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "The acknowledgement record includes the date the server started behaving this way (since January)",
+        "evidence": "There is no record; the date appears only in the suggested comment.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the ignore-file line should be generated from the acknowledgement record rather than appended by hand",
+        "evidence": "Hand-written line.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Proposes a changelog entry stating patient_dob is required on create and what callers must send",
+        "evidence": "'appointment.patient_dob is now documented as required, and that regenerated SDKs will show it as required'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that the PR-time fingerprint may differ at release time and the approval should be matched by check, operation and path (or re-recorded) when building the release changelog",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends adding a drift alarm or contract test so the spec cannot diverge from the server again",
+        "evidence": "Not recommended.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says acknowledgement rows whose change no longer appears in the diff should be removed at the next release review",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Does not simply agree to append the line to oasdiff-ignore.txt and merge",
+        "evidence": "Opens with 'Partly' and lists steps to take before merging.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

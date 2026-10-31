@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Proposes a machine-readable JSON feed",
+        "evidence": "public/feed.json",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes an Atom or RSS feed in addition to (or alongside) the JSON feed",
+        "evidence": "feed.atom",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires stable entry ids (e.g. diff fingerprint or fragment id) so pollers can deduplicate",
+        "evidence": "\"Entry ids are stable and entries are immutable\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Groups entries by API version",
+        "evidence": "\"Per audience and per api_version\"; newest version first",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Puts the action-required text in the feed entries themselves, not only on the web page",
+        "evidence": "\"Put action_required in the feed, not only on the page.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines an entry schema with fields for version, operation, classification, source, and action required",
+        "evidence": "id, api_version, operations, classification, source, action_required listed",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Filters internal and beta operations out before generating the public feed (e.g. by x-internal / x-stability-level / filter extension)",
+        "evidence": "Projections and --filter-extension x-internal",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that an operation that gains the internal marker in a new spec appears as a removal and must stay breaking",
+        "evidence": "\"The one trap...disappears from the projected diff as a removal... stays breaking\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends marking the beta endpoint with a stability level so it is excluded from the public gate and feed until GA",
+        "evidence": "\"x-stability-level: beta\" for /v1/payouts/instant",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps a human-readable page per version with breaking changes listed first",
+        "evidence": "Breaking changes, then Potentially breaking",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes separate feeds per audience (e.g. public vs partner) or explains audience separation",
+        "evidence": "public and partner feeds",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands prose polishing of the human page to the changelog-writing skill rather than marketing rewriting entries",
+        "evidence": "\"Pass the traced entries to changelog-writing for prose\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the feed generated from structured diff output and declared fragments, not from the marketing page",
+        "evidence": "\"Marketing copy goes to a separate announcements stream\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Proposes a machine-readable JSON feed",
+        "evidence": "index.json, changelog.json and the monthly entry JSON pages.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes an Atom or RSS feed in addition to (or alongside) the JSON feed",
+        "evidence": "'feed.atom | Atom'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires stable entry ids (e.g. diff fingerprint or fragment id) so pollers can deduplicate",
+        "evidence": "'IDs are stable and never reused.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Groups entries by API version",
+        "evidence": "Entries are paged by month; api_version is only a field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Puts the action-required text in the feed entries themselves, not only on the web page",
+        "evidence": "The entry has action, deadline and migration_url fields.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines an entry schema with fields for version, operation, classification, source, and action required",
+        "evidence": "The entry JSON has api_version, affected.operations, kind/severity, spec_diff_ref and action.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Filters internal and beta operations out before generating the public feed (e.g. by x-internal / x-stability-level / filter extension)",
+        "evidence": "x-visibility allowlist builds the public spec, which is the only downstream input.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that an operation that gains the internal marker in a new spec appears as a removal and must stay breaking",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends marking the beta endpoint with a stability level so it is excluded from the public gate and feed until GA",
+        "evidence": "public-preview has 'stability: preview' and is excluded from breaking classification; private-beta is never published.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps a human-readable page per version with breaking changes listed first",
+        "evidence": "A single /changelog page rendered from the JSON; no per-version pages.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes separate feeds per audience (e.g. public vs partner) or explains audience separation",
+        "evidence": "Public feed now, plus an authenticated beta partner feed in phase 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Hands prose polishing of the human page to the changelog-writing skill rather than marketing rewriting entries",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Keeps the feed generated from structured diff output and declared fragments, not from the marketing page",
+        "evidence": "Fragments plus an oasdiff computed diff, cross-checked.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

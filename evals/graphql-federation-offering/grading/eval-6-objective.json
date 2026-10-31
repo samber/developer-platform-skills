@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Acknowledges that a few contracted partners needing live data joined across several platform entities is the condition that can justify partner subgraphs",
+        "evidence": "'Few partners under contract does not demote rung 5... Fields across several entities need joint planning, which promotes it from rung 4.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects composing partner subgraphs into the main first-party supergraph and requires a separate partner variant or router",
+        "evidence": "'Partner subgraphs compose into an isolated partner variant, served by a separate router.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects giving partners keys that can publish; partners get check-only access scoped to their own subgraph or submit through a platform endpoint",
+        "evidence": "'Partners get a check-only credential scoped to their own subgraph.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that only the platform publishes to the partner variant",
+        "evidence": "'Only you publish, after your own composition and policy checks.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'use any federation directive you need' and supplies a directive policy",
+        "evidence": "Row (4) Blocker; section 4 Directive policy table.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bans @override in partner subgraphs",
+        "evidence": "'@override (including label:) | Never.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restricts @requires to a per-entity data-clearance list",
+        "evidence": "'@requires | Only fields on your data-clearance list'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a partner type-name namespace or prefix",
+        "evidence": "'Prefix every type and root field with your namespace, for example Acme_MetricSeries'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires partner fields on platform entities to be nullable",
+        "evidence": "'Every field you add to a platform type must be nullable.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Composite Schemas specification is not yet at a stable stage (pre-Draft) and should not be promised to partners as a target",
+        "evidence": "'The spec was at Stage 0 when last recorded... We are not promising the GraphQL Composite Schemas spec.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes what partners must run (a subgraph library, check access) from the platform's router/composition licensing",
+        "evidence": "'You need a GraphOS account for check access. Composition, query planning and the router are ours and carry our license (Apollo's ELv2).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes a blocking policy check on every partner publish in the guide or platform process",
+        "evidence": "'Cobaltine runs a blocking policy check on every publish and rejects any row marked Never.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Includes an offboarding or removal section in the guide",
+        "evidence": "Lifecycle step 5 'Offboarding'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Acknowledges that a few contracted partners needing live data joined across several platform entities is the condition that can justify partner subgraphs",
+        "evidence": "Accepts the premise ('You will add computed, live metrics') without stating a justifying condition.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects composing partner subgraphs into the main first-party supergraph and requires a separate partner variant or router",
+        "evidence": "Partner fields go into the production graph, hidden by `@tag` and contracts. The sandbox graph is for development only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects giving partners keys that can publish; partners get check-only access scoped to their own subgraph or submit through a platform endpoint",
+        "evidence": "'You never hold production credentials'; the production publish runs from the platform's CI after PR review.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that only the platform publishes to the partner variant",
+        "evidence": "'We publish to production. We run the production publish from our own CI.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects 'use any federation directive you need' and supplies a directive policy",
+        "evidence": "Section 3.2 table of Allowed / Needs written approval / Not allowed.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Bans @override in partner subgraphs",
+        "evidence": "'Not allowed | `@override`, `@extends`...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Restricts @requires to a per-entity data-clearance list",
+        "evidence": "'`@requires`... Needs written approval'; 'request `@requires` approval and name the field. We will tell you what data your server will receive'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a partner type-name namespace or prefix",
+        "evidence": "'Prefix every type you define with your partner name (`Acme...`).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires partner fields on platform entities to be nullable",
+        "evidence": "'Make every field nullable unless it is always computable.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the Composite Schemas specification is not yet at a stable stage (pre-Draft) and should not be promised to partners as a target",
+        "evidence": "'a separate, still-evolving working-group spec'; 'makes no future-proofing promise'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes what partners must run (a subgraph library, check access) from the platform's router/composition licensing",
+        "evidence": "Not addressed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes a blocking policy check on every partner publish in the guide or platform process",
+        "evidence": "Relies on manual review by the graph team and a partner-side CI check. There is no blocking platform policy check.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Includes an offboarding or removal section in the guide",
+        "evidence": "No offboarding section. Only a note that fields may be disabled without notice.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

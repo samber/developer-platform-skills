@@ -1,0 +1,226 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "connector-certification-program",
+  "scenarios": 8,
+  "expectations_total": 88,
+  "expectations_subjective": 1,
+  "expectations_objective": 87,
+  "pass_rate_with_skill_pct": 96.6,
+  "pass_rate_without_skill_pct": 52.3,
+  "delta_pp": 44.3,
+  "uplift_multiplier": 1.85,
+  "trigger_accuracy_pct": 83.7,
+  "trigger_queries": 86,
+  "trigger_positive_fire_rate": 0.86,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": 1.0,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Places any usage threshold on a tier above the production-use tier, or offers a time-based exception path instead"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the decertification ladder must be published before the next decertification, not written during one"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the ranking or ordering explicitly (for example which tier shape is more efficient) rather than presenting the options as a flat list"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Places any usage threshold on a tier above the production-use tier, or offers a time-based exception path instead"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Pins each badge to the test-kit version and the platform/API version it was earned on"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Runs an explicit go/no-go check before designing any tiers"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends ownership labels only (who maintains each connector) instead of a certification program"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Gives each ownership label a support statement saying who supports the connector"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Presents the ownership-labels outcome as a complete decision, not a placeholder or deferral"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Does not design a Bronze/Silver/Gold three-level ladder"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Explains that the competitor's badge is not by itself a reason to run a program"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Suggests the operator-owned connectors that buyers use are better served by first-party ownership than by certifying partners"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Rewrites every kept criterion with all five parts: metric, threshold, window, minimum volume, and who measures it"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Deletes the Premier partner-level criterion as a commercial-status criterion that does not describe the integration"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Deletes the 3-joint-enterprise-customers criterion as commercial rather than technical"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Says that below the minimum volume a telemetry criterion reads 'insufficient data' rather than pass or fail"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Says an integration with only insufficient-data telemetry can still hold the label on test-kit evidence"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Removes or suspends the Certified label immediately while the listing and existing installs are handled separately"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Writes the standing policy as separate rungs: warning, badge suspended, new installs blocked, existing installs disabled"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gives every rung a trigger, an owner, a notice period and a customer action"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the decertification ladder must be published before the next decertification, not written during one"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Treats removing the badge, blocking new installs and disabling existing installs as distinct consequences rather than one switch"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that self-attestation counts only when paired with published kit results (and optionally a binding declaration), never on its own"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Makes the kit available to partners to run before submitting"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Blocks submission until all required tests in the kit pass"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Splits the kit into required tests and optional tests rather than relying on one overall pass percentage"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires reviewer sign-off and published counts for any test exemptions partners claim"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Points the security-depth review of high-risk integrations to the marketplace admission/app review process rather than redesigning it inside certification"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Versions the kit and records which kit version each certification was earned on"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Generates contract tests from the platform's contract or the integration's declared manifest, not from tests partners wrote themselves"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends partner-owned support with published routing for non-certified tiers"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Requires a written support sentence for every tier, shown on the listing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Explains that buyers read 'certified' as 'the platform stands behind it' unless the listing says otherwise"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Adds a KPI for tickets misrouted to the operator on partner-owned connectors"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Includes a partner response-time criterion (with window and minimum ticket count) as part of what keeps the certified label"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Recommends replacing the five-label structure with ownership labels plus a single earned quality label"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Explains that buyers cannot tell five overlapping labels apart"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Refuses search-rank boosts tied to the badge while no telemetry criteria (per-app error or success measurement) back it"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Keeps the base listing bar (Bronze/listed) separate from the certification label"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "States the ranking or ordering explicitly (for example which tier shape is more efficient) rather than presenting the options as a flat list"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Names admission security review as belonging to the marketplace review process rather than defining a certification tier by itself"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Lists a new kit major version or new data scopes/endpoints as renewal triggers"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Pins each certification to the kit version and platform version it was earned on"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Limits a calendar renewal floor to evidence that expires on its own, such as security attestations or support contacts"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Re-evaluates telemetry criteria on a fixed, published cadence"
+      }
+    ]
+  }
+}

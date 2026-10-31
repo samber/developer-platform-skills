@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the need as live partner-computed data",
+        "evidence": "'Both examples... are live data computed on the partner's side. That leaves rungs 3-5.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that many self-serve apps make per-partner mapping or per-partner schema review (remote schemas or subgraphs) not scale",
+        "evidence": "'40 self-serve apps demote rung 3 (you'd write 40 mappings) and rung 5 (you'd review 40 schemas).'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a single platform-owned mediated extension field (built once, partners plug in behind a published contract) or equivalent for the self-serve case",
+        "evidence": "'Recommendation: rung 4, a mediated extension field... Employee.app(id: ID!)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies what the mediated field returns (e.g. a platform-defined envelope plus a validated partner payload, or compares envelope vs JSON scalar vs per-partner union)",
+        "evidence": "'platform-defined envelope: display fields, a link and a status... payload validated against a JSON Schema the partner registers.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags app-registered endpoint URLs as a server-side request forgery risk",
+        "evidence": "'Self-serve endpoint registration is an SSRF door.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires validation of registered URLs: HTTPS public hosts only, blocking private, loopback, link-local and metadata ranges, re-checked on DNS resolution or through an egress allowlist",
+        "evidence": "'HTTPS on public addresses only, re-check on every DNS resolution. Reject private, loopback, link-local and cloud-metadata ranges'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the shared 60-second response cache as able to serve one user's or tenant's partner data to another",
+        "evidence": "'A partner response without a private scope can be served to a different tenant'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires partner responses to be excluded from the shared cache or keyed per tenant and credential",
+        "evidence": "'Key the cache by partner, tenant, employee and arguments, and mark it private. Turn off cross-request deduplication'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects showing every app's fields to every tenant; partner data visible only to tenants that installed the app",
+        "evidence": "Blocker 3: 'A tenant that hasn't installed app X gets not installed, not X's data.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enforcing installs at request time with a platform-assigned scope or policy rather than one schema variant per install combination",
+        "evidence": "'per-install scope the router or proxy checks... one variant per install combination doesn't scale'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that no end-user credential is forwarded to apps; a per-app scoped token is used instead",
+        "evidence": "'Forward no client token, cookie or platform API key... Mint a per-partner token per request'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires app endpoints to authenticate calls from the platform and derive tenant from the platform token",
+        "evidence": "'must verify the platform token (mTLS or a signature). It takes tenant and scopes from the token, never from the request body.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires per-app timeouts below the client SLA and a circuit breaker so a slow app degrades to null plus error",
+        "evidence": "'Timeout per partner = client SLA \u2212 internal p95... Circuit breaker per partner'; nullable field gives 'null plus an error'.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Classifies the need as live partner-computed data",
+        "evidence": "'Pull (live)' vs 'Push (not live)'; 'Is \"live\" really sub-minute for both example apps?'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that many self-serve apps make per-partner mapping or per-partner schema review (remote schemas or subgraphs) not scale",
+        "evidence": "Argues for a contract and against arbitrary schemas on security grounds. It never says per-partner schema review fails to scale.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a single platform-owned mediated extension field (built once, partners plug in behind a published contract) or equivalent for the self-serve case",
+        "evidence": "'Use `Employee.apps { benefits { \u2026 } }`... Define the contract, don't accept any schema.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies what the mediated field returns (e.g. a platform-defined envelope plus a validated partner payload, or compares envelope vs JSON scalar vs per-partner union)",
+        "evidence": "Only 'returns the declared type' and a `Benefits_EnrollmentSummary` example; no envelope or comparison.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags app-registered endpoint URLs as a server-side request forgery risk",
+        "evidence": "'SSRF: an app can point the gateway at internal hosts.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires validation of registered URLs: HTTPS public hosts only, blocking private, loopback, link-local and metadata ranges, re-checked on DNS resolution or through an egress allowlist",
+        "evidence": "'Verify domain ownership, allow HTTPS only. Resolve DNS and block private ranges, pin resolved IP... egress proxy.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags the shared 60-second response cache as able to serve one user's or tenant's partner data to another",
+        "evidence": "'A shared 60s cache will leak data.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires partner responses to be excluded from the shared cache or keyed per tenant and credential",
+        "evidence": "'Key the cache on: (tenant, partner app, employee, caller's effective scopes/role, field set). Never share across tenants.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects showing every app's fields to every tenant; partner data visible only to tenants that installed the app",
+        "evidence": "'\"Every tenant sees every app's fields\" mixes discovery with authorization.' Resolution requires the tenant to have installed the app.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends enforcing installs at request time with a platform-assigned scope or policy rather than one schema variant per install combination",
+        "evidence": "'enforce at execution and null the field'; 'consent screen with scopes. The gateway enforces it.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that no end-user credential is forwarded to apps; a per-app scoped token is used instead",
+        "evidence": "'Never forward the caller's token.' Uses a short-lived Quarrytown-signed JWT.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires app endpoints to authenticate calls from the platform and derive tenant from the platform token",
+        "evidence": "'short-lived JWT signed by Quarrytown (JWKS published) with `tenant`, `app` and employee IDs, or use mTLS.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires per-app timeouts below the client SLA and a circuit breaker so a slow app degrades to null plus error",
+        "evidence": "'Make every partner field nullable. Set a hard timeout of about 1\u20132s per partner, plus a circuit breaker. Return partial data with errors[].extensions.app.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

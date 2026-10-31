@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Splits the list into rows for named partner-manager outreach versus rows handled by automated notices, sized to the two managers' capacity.",
+        "evidence": "The split is present, though only implicitly. Zapline, LeadLoop, FinBridge and Quarterly Forecaster each get a call or named outreach. Acme gets 'targeted email and in-response warnings', with a call added 'only if the managers have hours left after the four above'. The unknown caller is moved off the managers' list to engineering and security. The capacity sizing is weak. It appears only as an assumption: 'Two partner managers is the capacity. I assumed they can run named outreach for four rows. If they have fewer hours, drop from the bottom.' There is no hours or effort estimate, no split of",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Splits the list into rows for named partner-manager outreach versus rows handled by automated notices, sized to the two managers' capacity.",
+        "evidence": "The transcript gives all five partner rows to a manager: Manager A gets Zapline, LeadLoop and Quarterly Forecaster, and Manager B gets FinBridge and Acme. No row is marked for automated notices. Quarterly Forecaster comes closest ('send a notice and then wait'), but it still stays on Manager A's list. The transcript never states either manager's capacity or uses it to size the split. Only the unknown caller is taken off the partner queue, and it goes to security, not to an automated notice. The transcript does split the work between the two managers, but it never separates manager outreach fro",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

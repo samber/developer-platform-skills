@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects '18 months without commits' as the archive trigger; archives on evidence, never on age alone",
+        "evidence": "'Age is not evidence'; 'Inactivity ... never archives by itself'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States why inactivity is a weak proxy for health: closing a bot issue resets the clock, and a repo with recent commits can still be red",
+        "evidence": "'Closing the issue does not reset the clock, which is the weakness in Microsoft's bot'; 'A repo with recent bot commits can be red.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting any repo; archives read-only, because forks, inbound links and coding agents keep reaching the repo",
+        "evidence": "'Delete is wrong. Forks, inbound links and coding agents keep reaching the repo.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the under-10-stars rule; stars are reported as vanity and never used to decide",
+        "evidence": "'Stars are vanity ... report them and never decide on them.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the triggers: red past the SLA with no fix scheduled; no named owner for one review cycle outside the adoption path; superseded by a merged or newer artifact; SDK major or API version at end of life; low usage and red together, retired first",
+        "evidence": "Triggers 2\u20136: EOL, red past SLA, superseded, no owner for a cycle, low usage and red.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Flags cart-sdk-v2-examples for archive on the SDK v2 end-of-life trigger, with a migration note or before/after pointer to its successor",
+        "evidence": "'Archive on the v2 EOL date, only after a v3 successor and migration notes exist.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the archive sequence in order: final commit with banner and successor and removal of deploy buttons and the template-repository flag; removal from the index's current list plus a redirect entry; removal from docs, gallery, CLI list and agent index; disabling the dependency bot and scheduled CI; a last secret scan; then archive read-only",
+        "evidence": "A seven-step sequence: final commit with banner, deploy buttons and template flag removed; index; surfaces; stop Renovate and CI; last secret scan; archive.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a README banner carrying the archive date, the reason, a 'use instead' successor link, migration notes, and a line that the code stays readable and forkable but may not work against the current API",
+        "evidence": "The banner template has the date, reason, 'Use instead', migration notes, and 'The code stays readable and forkable; it may not work against the current API.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For deploy-shopfront, the banner states that already-deployed copies keep running on their own keys and tells owners to rotate any key the template printed or stored",
+        "evidence": "'The archive banner must say deployed copies keep running on their own keys, and owners must rotate any key the template ever printed.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Announces the archive in the changelog whenever the sample was on the adoption path",
+        "evidence": "Step 7: 'Announce in the changelog if it was on the adoption path.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives storefront-legacy a `deprecated` entry with a successor (and an alias) in the canonical index so coding assistants and old links learn what replaced it",
+        "evidence": "'List it under deprecated in the index ... Name a successor'; the sequence uses 'deprecated and aliases'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "For checkout-react, notifies the partner-material owner and swaps the deck link before archiving",
+        "evidence": "'the partner owner swaps the deck link first'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires every archived artifact to carry a successor or an explicit 'none' in the index",
+        "evidence": "Step 1: 'Confirm the trigger and the successor, or record \"none\"'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Offers an intermediate posture for linked or heavily forked repos: retire first (README status and migration notes) then archive later, or security-patch-only",
+        "evidence": "'Put a retirement banner up now. Archive on the v2 EOL date' for cart-sdk-v2-examples.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects '18 months without commits' as the archive trigger; archives on evidence, never on age alone",
+        "evidence": "'Commit age is a weak signal... Use the evidence gates below.' R2 says 'Flagging only opens a review.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States why inactivity is a weak proxy for health: closing a bot issue resets the clock, and a repo with recent commits can still be red",
+        "evidence": "It says only that a stable sample needs no commits. It does not mention bot resets or red repos with recent commits.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects deleting any repo; archives read-only, because forks, inbound links and coding agents keep reaching the repo",
+        "evidence": "R1 allows 'Delete only after a repo has been archived for 6 months'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Rejects the under-10-stars rule; stars are reported as vanity and never used to decide",
+        "evidence": "R2 still flags 'fewer than 10 stars', though it also says 'Stars measure popularity'.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the triggers: red past the SLA with no fix scheduled; no named owner for one review cycle outside the adoption path; superseded by a merged or newer artifact; SDK major or API version at end of life; low usage and red together, retired first",
+        "evidence": "There is no trigger list. R2 flags only on age or stars.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Flags cart-sdk-v2-examples for archive on the SDK v2 end-of-life trigger, with a migration note or before/after pointer to its successor",
+        "evidence": "'Hold until SDK v2 EOL, then archive... add a v3 migration link to the banner and archive.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the archive sequence in order: final commit with banner and successor and removal of deploy buttons and the template-repository flag; removal from the index's current list plus a redirect entry; removal from docs, gallery, CLI list and agent index; disabling the dependency bot and scheduled CI; a last secret scan; then archive read-only",
+        "evidence": "R4 has 6 steps. It lacks the template flag, index removal, bot and CI disabling, and a last secret scan.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a README banner carrying the archive date, the reason, a 'use instead' successor link, migration notes, and a line that the code stays readable and forkable but may not work against the current API",
+        "evidence": "R4.1 lists 'status, date, reason, and the replacement repo' only.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For deploy-shopfront, the banner states that already-deployed copies keep running on their own keys and tells owners to rotate any key the template printed or stored",
+        "evidence": "Rotation guidance is in the incident steps, not in a banner.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Announces the archive in the changelog whenever the sample was on the adoption path",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives storefront-legacy a `deprecated` entry with a successor (and an alias) in the canonical index so coding assistants and old links learn what replaced it",
+        "evidence": "It gets a banner, topic and pointer. There is no canonical index and no alias.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "For checkout-react, notifies the partner-material owner and swaps the deck link before archiving",
+        "evidence": "'Agree on the new location with the partner owner.' Swapping the deck link is not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires every archived artifact to carry a successor or an explicit 'none' in the index",
+        "evidence": "There is no index requirement.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Offers an intermediate posture for linked or heavily forked repos: retire first (README status and migration notes) then archive later, or security-patch-only",
+        "evidence": "Only hold gates and notify. No retire-first posture.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

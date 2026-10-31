@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Deletes the never-expires policy",
+        "evidence": "\"Never expires (today) | Rejected. 'No expiry' is deleted.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends event-triggered renewal as the default rather than a yearly anniversary re-review of everything",
+        "evidence": "\"Don't adopt a yearly full manual re-review. Renew on events\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists a contract-changing platform release as a renewal trigger",
+        "evidence": "\"A platform release that changes the contract (twice a year).\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists a connector or driver release as a renewal trigger",
+        "evidence": "\"A connector release, scaled to the change.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists a new kit major version or new data scopes/endpoints as renewal triggers",
+        "evidence": "\"A new kit major version.\" and \"New data scopes or endpoints.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Pins each certification to the kit version and platform version it was earned on",
+        "evidence": "\"Each badge names the kit version, the platform contract version, and the lowest connector version covered.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Ships the kit for each contract-changing release to partners at the 8-week beta, before GA",
+        "evidence": "\"G \u2212 8 weeks (beta): Kit version for the new contract ships\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Limits a calendar renewal floor to evidence that expires on its own, such as security attestations or support contacts",
+        "evidence": "\"applies only to criteria that expire on their own: security contact, support contact, security attestations\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Re-evaluates telemetry criteria on a fixed, published cadence",
+        "evidence": "\"first business day of each month over a trailing 28-day window\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes re-testing against a new platform version (renewal) from adding a new criterion",
+        "evidence": "\"Re-running existing criteria against a new platform release is renewal, not a new criterion.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives partners a notice runway of months before a new criterion applies to already-certified connectors",
+        "evidence": "\"at least 6 months' notice\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects full manual re-review of every certified driver every year as the default",
+        "evidence": "\"Changed. ... Manual review is rejected.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Deletes the never-expires policy",
+        "evidence": "\"It is not valid 'until forever'\"; \"Transition from 'never expires'\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends event-triggered renewal as the default rather than a yearly anniversary re-review of everything",
+        "evidence": "Layer 1 release delta recert and layer 4 event triggers; rejects annual full manual re-review.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists a contract-changing platform release as a renewal trigger",
+        "evidence": "\"Trigger: each contract-changing release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists a connector or driver release as a renewal trigger",
+        "evidence": "Requirement applies to \"new partner driver releases\"; \"Major rewrite of the driver\" triggers an off-cycle review.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists a new kit major version or new data scopes/endpoints as renewal triggers",
+        "evidence": "Neither listed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Pins each certification to the kit version and platform version it was earned on",
+        "evidence": "Only \"conforms to contract version N\"; no kit version.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Ships the kit for each contract-changing release to partners at the 8-week beta, before GA",
+        "evidence": "\"T-8 weeks (beta): final spec and the conformance test are available in the beta.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Limits a calendar renewal floor to evidence that expires on its own, such as security attestations or support contacts",
+        "evidence": "The annual anniversary has the partner re-run the full suite, not just attestations.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Re-evaluates telemetry criteria on a fixed, published cadence",
+        "evidence": "No telemetry criteria discussed.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Distinguishes re-testing against a new platform version (renewal) from adding a new criterion",
+        "evidence": "Delta recert for releases vs a separate \"Notice for a new requirement\" process.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives partners a notice runway of months before a new criterion applies to already-certified connectors",
+        "evidence": "\"never enforce a requirement less than 6 months after it first appears on the roadmap\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects full manual re-review of every certified driver every year as the default",
+        "evidence": "\"Do not run an annual full manual re-review.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

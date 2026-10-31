@@ -1,0 +1,24 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Splits the list into rows for named partner-manager outreach versus rows handled by automated notices, sized to the two managers' capacity.",
+        "evidence": "A split exists, but it is implicit. Named calls go to Zapline ('Call Zapline's technical contact this week'), LeadLoop ('Make a named-outreach call to a person'), FinBridge ('Call the account owner') and Quarterly Forecaster ('one call to confirm'). Acme gets only 'targeted email and in-response warnings', and 'Add a named call only if the managers have hours left after the four above.' The unknown caller goes to engineering, outside the managers' list. Capacity is addressed only as an assumption: 'Two partner managers is the capacity. I assumed they can run named outreach for four rows... dro",
+        "score": 3,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Splits the list into rows for named partner-manager outreach versus rows handled by automated notices, sized to the two managers' capacity.",
+        "evidence": "The transcript gives all five partner rows to a named manager (Manager A: Zapline, LeadLoop, Quarterly Forecaster; Manager B: FinBridge, Acme). It has no tier of rows handled by automated notices. Quarterly Forecaster gets 'send a notice and then wait', but it is still on Manager A's list rather than in an automated bucket. It also never sizes the split to capacity: there are no hours, contact limits or workload reasoning, only a 30-minute estimate for the first two actions. The split between the two managers exists, but the personal-versus-automated split and the capacity sizing are both miss",
+        "score": 1,
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

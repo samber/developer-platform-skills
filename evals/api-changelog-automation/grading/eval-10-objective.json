@@ -1,0 +1,178 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Rejects keying entries on the bare field or element name because different changes to the same element would collide",
+        "evidence": "\"Don't key entries on the field or element name\" with collision cases",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes a fingerprint computed as a hash over change type, operation, coordinate/path and message text (or equivalent stable combination)",
+        "evidence": "sha256(\"<id>:<operation>:<path>:<args>\")",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps graphql-inspector breaking / dangerous / non-breaking to breaking / potentially-breaking / non-breaking classifications",
+        "evidence": "Table lists levels 3/2/1 as breaking/dangerous/non-breaking, no potentially-breaking mapping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Maps buf breaking findings to the breaking classification",
+        "evidence": "Only \"the same, from your severity map\"; no explicit mapping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes entry ids by API version (e.g. <version>/<fingerprint>) so the same change shipped in several versions keeps one entry per version",
+        "evidence": "id = <api_version>/<fingerprint>",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that deduplicating on an unscoped id would drop the security fix entry from one of the pinned versions",
+        "evidence": "\"Deduping on name leaves one entry, so callers pinned to the other two never see it\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Publishes the security fix as an entry in both 2026-01-15 and 2026-04-15 (and the new version if applicable)",
+        "evidence": "Three entries, one per version",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says changing behavior for callers pinned to existing versions goes through the versioning policy's exception path",
+        "evidence": "\"decided by your versioning policy's exception path\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires an approval/acknowledgement record for the security fix if it is breaking",
+        "evidence": "Breaking fragment needs ack, security-exception",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Uses an IRI (e.g. a tag: URI built from the entry id) for Atom <id> rather than a bare hash",
+        "evidence": "tag: URI",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the action required text inside the feed entries",
+        "evidence": "\"action_required goes in the entry content\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the fingerprint mapping code should live in the repository so ids stay stable across runs",
+        "evidence": "\"Keep the mapping script in the repo\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diffs each version's schema against that version's previous release rather than one diff for all versions",
+        "evidence": "Baselines per version section",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds the fingerprint from structured change values rather than the tool's message text, so a reworded message after a tool upgrade does not re-key every entry",
+        "evidence": "\"Never hash the message text\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Rejects keying entries on the bare field or element name because different changes to the same element would collide",
+        "evidence": "'Don't key on the element name... Dedupe on the name collapses three entries into one.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Proposes a fingerprint computed as a hash over change type, operation, coordinate/path and message text (or equivalent stable combination)",
+        "evidence": "'sha256(api | normalized kind | coordinate | from_version | to_version)'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Maps graphql-inspector breaking / dangerous / non-breaking to breaking / potentially-breaking / non-breaking classifications",
+        "evidence": "Says 'Map graphql-inspector's criticality... into this field' with no actual mapping, and uses dangerous/safe rather than potentially-breaking.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Maps buf breaking findings to the breaking classification",
+        "evidence": "No explicit mapping.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Scopes entry ids by API version (e.g. <version>/<fingerprint>) so the same change shipped in several versions keeps one entry per version",
+        "evidence": "'id: change_id@version... the feed entry id and the dedupe key'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that deduplicating on an unscoped id would drop the security fix entry from one of the pinned versions",
+        "evidence": "Warns only about name collisions, not about dropping the security fix from a pinned version.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Publishes the security fix as an entry in both 2026-01-15 and 2026-04-15 (and the new version if applicable)",
+        "evidence": "One change_id with entries @2026-01-15, @2026-04-15 and @2026-07-15.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says changing behavior for callers pinned to existing versions goes through the versioning policy's exception path",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires an approval/acknowledgement record for the security fix if it is breaking",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Uses an IRI (e.g. a tag: URI built from the entry id) for Atom <id> rather than a bare hash",
+        "evidence": "'tag:driftwoodledger.com,2026:change/chg_01J\u2026@2026-04-15'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Keeps the action required text inside the feed entries",
+        "evidence": "Only migration_url, no action field.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the fingerprint mapping code should live in the repository so ids stay stable across runs",
+        "evidence": "'Keep feed/registry.yaml in the repo'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Diffs each version's schema against that version's previous release rather than one diff for all versions",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds the fingerprint from structured change values rather than the tool's message text, so a reworded message after a tool upgrade does not re-key every entry",
+        "evidence": "'Do not hash the message text, line numbers, or file paths.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

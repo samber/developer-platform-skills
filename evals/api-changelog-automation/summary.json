@@ -1,0 +1,382 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "api-changelog-automation",
+  "scenarios": 11,
+  "expectations_total": 149,
+  "expectations_subjective": 0,
+  "expectations_objective": 149,
+  "pass_rate_with_skill_pct": 91.9,
+  "pass_rate_without_skill_pct": 51.7,
+  "delta_pp": 40.2,
+  "uplift_multiplier": 1.78,
+  "trigger_accuracy_pct": 63.5,
+  "trigger_queries": 148,
+  "trigger_positive_fire_rate": 0.432,
+  "trigger_run_suspect": true,
+  "trigger_suspect_reason": "fewer than half the should-trigger queries fired at all: re-measure with --redo-trigger before reading this as a routing score",
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 2,
+        "expectation": "Points out that different diff tools classify the same change (e.g. enum additions) differently, as evidence defaults are not a standard"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Classifies each of the three changes as breaking for callers"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires each entry to keep a source reference (check id / fingerprint or declared fragment id)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Excludes documentation-only edits from the published entries"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Treats WARN-level findings as 'potentially breaking' entries rather than dropping them"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that a renamed response field is a removal plus an addition and is caught by the diff as breaking"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Points to the gRPC-specific design skill (public-grpc-api-design) for proto package versioning rather than redesigning it here"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Says partner-facing entries should name the HTTP method and path partners call on the JSON facade, not only the proto RPC"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Says acknowledgement rows whose change no longer appears in the diff should be removed at the next release review"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Maps graphql-inspector breaking / dangerous / non-breaking to breaking / potentially-breaking / non-breaking classifications"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Maps buf breaking findings to the breaking classification"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Keeps published changelog entries per spec/API (or per version) rather than one undifferentiated stream"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Tells the user to generate one spec per supported Quillbridge-Version (2025-11-01, 2026-03-01, 2026-07-01) rather than a single spec for all versions"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Tells the user to commit or attach the normalized spec of each release so a later release has a baseline to diff against"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Requires making the generated springdoc spec deterministic before diffing (stable operationIds, $ref'd schemas or oneOf branches, or equivalent), not just reformatting it"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Tells the user to audit the ~60 existing ignore-file lines one by one instead of carrying them into the new gate unchanged"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Says ignore-file lines that still match a change get an acknowledgement record (reason, approver or 'unknown', ticket) and lines that match nothing are deleted"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Says the tool's ignore file should be generated from acknowledgement records rather than edited by hand going forward"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Says the oasdiff semver version-bump checks do not apply to date versions (set to none or not used)"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Includes a verification step that every published changelog entry traces to a diff finding or a declared fragment before publishing"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Raises api-security-scope-removed (scope removal, INFO by default in oasdiff) to err because the guidelines call any change to required auth scopes breaking"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that oasdiff already reports an added required scope (api-security-scope-added) as ERR, so that direction needs no override"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Raises api-major-version-not-bumped (and/or the sibling version-bump checks) to err because info.version is semver"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that the version-bump checks default to INFO and do not fail a build unless raised"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions that pinning a check's level disables oasdiff's automatic downgrades for that check, or advises pinning only what the policy contradicts"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Points out that different diff tools classify the same change (e.g. enum additions) differently, as evidence defaults are not a standard"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Keeps the oasdiff severity-levels file to bare check-id and level lines, with policy citations in a separate human-readable file"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Says declared breaking changes go through the same approval as diff-detected breaking changes"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Treats the rate-limit change as something only the declared channel (or a separate rate-limit page) can carry, not the spec diff"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Proposes a metric counting breaking changes reported by integrators that had no changelog entry (escaped breaks)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Classifies each of the three changes as breaking for callers"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Says each declared fragment names the affected operation and the action callers must take"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Requires each entry to keep a source reference (check id / fingerprint or declared fragment id)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Keeps the tool's original wording alongside the human or model summary"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Adds an automated check (e.g. the trace check script) that fails publishing when an entry has no matching source or a breaking finding has no entry"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Baselines the published changelog on releases (last released spec) rather than a nightly yesterday-vs-today diff, or explains why nightly diffs fragment the record"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Excludes documentation-only edits from the published entries"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says suppressRemovalOfDeprecatedField should not be enabled on its own without a usage-based rule or sunset check"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Ties the removal date to the deprecation policy's sunset date or notice period"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Points out that March-to-next-week may fall short of the policy's notice window, or asks what the notice window is"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends graphql-inspector's considerUsage rule (or registry usage checks) for usage-aware classification"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires an acknowledgement/approval record for the removal if it ships as an accepted breaking change"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Requires a changelog entry for the removal classified as breaking, with the action required"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Hands off contacting the remaining callers of the deprecated field to an integration-health / outreach process rather than designing it in this pipeline"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends setting or checking a sunset date on the deprecated field before allowing its removal"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Routes writing the breaking-change policy to samber/developer-platform-skills@api-versioning-policy"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Marks the severity map or gate configuration as provisional pending policy sign-off"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends shipping only the PR gate (diff vs main or merge base, fail on ERR) within the one engineer-day"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Defers the changelog feed, approval records and usage analytics to later rungs instead of building them this week"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States an explicit ordering of the automation rungs (e.g. PR gate first, then release diff and declared channel, then approval record, then feed)"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Explains that the deadline (Friday) is what promotes the PR gate alone"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that a renamed response field is a removal plus an addition and is caught by the diff as breaking"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Keeps the gate configuration (severity/levels file) in the repository next to the spec"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires entries to be generated from structured diff output with a source reference per entry"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires a changelog entry classification of breaking / potentially-breaking / non-breaking"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Requires an approval record for any accepted breaking finding"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Points to the gRPC-specific design skill (public-grpc-api-design) for proto package versioning rather than redesigning it here"
+      },
+      {
+        "eval_id": 7,
+        "expectation": "Says partner-facing entries should name the HTTP method and path partners call on the JSON facade, not only the proto RPC"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Groups entries by API version"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Warns that an operation that gains the internal marker in a new spec appears as a removal and must stay breaking"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Keeps a human-readable page per version with breaking changes listed first"
+      },
+      {
+        "eval_id": 8,
+        "expectation": "Hands prose polishing of the human page to the changelog-writing skill rather than marketing rewriting entries"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Requires an acknowledgement record instead of a bare appended ignore line"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "The acknowledgement record includes an approver"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "The acknowledgement record includes a ticket or PR reference (e.g. #2291)"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "The acknowledgement record includes the date the server started behaving this way (since January)"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Says the ignore-file line should be generated from the acknowledgement record rather than appended by hand"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Mentions that the PR-time fingerprint may differ at release time and the approval should be matched by check, operation and path (or re-recorded) when building the release changelog"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Recommends adding a drift alarm or contract test so the spec cannot diverge from the server again"
+      },
+      {
+        "eval_id": 9,
+        "expectation": "Says acknowledgement rows whose change no longer appears in the diff should be removed at the next release review"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Maps graphql-inspector breaking / dangerous / non-breaking to breaking / potentially-breaking / non-breaking classifications"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Maps buf breaking findings to the breaking classification"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Warns that deduplicating on an unscoped id would drop the security fix entry from one of the pinned versions"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Says changing behavior for callers pinned to existing versions goes through the versioning policy's exception path"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Requires an approval/acknowledgement record for the security fix if it is breaking"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Keeps the action required text inside the feed entries"
+      },
+      {
+        "eval_id": 10,
+        "expectation": "Diffs each version's schema against that version's previous release rather than one diff for all versions"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Says to review classification changes when bumping the pinned oasdiff version"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Uses the merge base with the target branch (or the PR base) as the PR-gate baseline"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "States that oasdiff's severity-levels file accepts only check-id and level per line, so the comment and third column must go"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Does not publish the changelog from the merge-to-main diff; moves publishing to a release job diffing against the last release tag"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Runs entry generation and the trace check before publishing, and publishes only when the trace check passes"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Passes the generated ignore file (from acknowledgement records) rather than a hand-edited one, or mentions acknowledgement records for accepted breaks"
+      },
+      {
+        "eval_id": 11,
+        "expectation": "Ensures the ignore file and acknowledgement list exist before the gate runs (e.g. committed empty at setup, regenerated in the PR job)"
+      }
+    ]
+  }
+}
