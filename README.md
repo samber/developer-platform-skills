@@ -166,6 +166,7 @@ This collection covers the full developer-platform surface.
 - [`partner-app-onboarding`](./skills/partner-app-onboarding): Designs the partner-developer journey from signup to first submitted app: entry gate, sandbox provisioning, education, support ladder, and funnel checkpoints.
 - [`salesforce-appexchange-playbook`](./skills/salesforce-appexchange-playbook): Takes a vendor's product onto Salesforce AppExchange as an ISV: listing type, irreversible 2GP choices, security review, PADA and payment path, and post-listing upkeep.
 - [`slack-app-directory-playbook`](./skills/slack-app-directory-playbook): Gets a vendor's Slack app approved for the Slack Marketplace and keeps it listed: install gate, scope justifications, submission packet, review timeline, and post-listing rules.
+- [`hubspot-marketplace-playbook`](./skills/hubspot-marketplace-playbook): Gets a vendor's app listed on the HubSpot Marketplace and keeps it there: install gate, eligibility, submission packet, review timeline, deadlines, certification and partner tiers.
 - [`zapier-integration-playbook`](./skills/zapier-integration-playbook): Builds, publishes and maintains a vendor's Zapier integration: step design, Platform CLI code, review checks and beta, templates and embed, and versioning without breaking live Zaps.
 
 ### Publishing-platform playbooks
