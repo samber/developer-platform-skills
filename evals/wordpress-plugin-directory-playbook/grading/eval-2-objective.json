@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Says the official Brevlo plugin must be submitted from Brevlo's own WordPress.org account with a company-domain email, not the agency's personal gmail account",
+        "evidence": "\"Don't submit today from your gmail account\"; \"A new Brevlo company WordPress.org account, with a Brevlo-domain email\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a slug or name starting with the Brevlo brand is reserved to the brand owner and gets flagged when a non-owner submits",
+        "evidence": "\"A brand plugin from a personal or agency account gets flagged for trademark, and a brand-first slug is blocked for non-owners.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the slug is permanent once the plugin is approved",
+        "evidence": "\"The slug is permanent after approval.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the slug can be checked in the confirmation email and changed only once before approval",
+        "evidence": "\"Check it in the confirmation email. You can change it once before approval, never after.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States only one plugin can be in review per account at a time, so both plugins cannot be submitted together from one account",
+        "evidence": "\"Only one plugin per account can be in review at a time.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns against creating extra accounts to get around the one-at-a-time limit",
+        "evidence": "\"Extra accounts created to get around that limit get suspended.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires the plugin and author URLs plus terms and privacy pages to be live before submitting, so the coming-soon page must be finished first",
+        "evidence": "\"Every URL in the plugin headers and readme must be live before submitting. A service plugin also needs live terms and privacy pages.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States there is no queue jumping for a launch date (only security or legal issues)",
+        "evidence": "\"No queue jumping: Only security or legal issues skip the queue.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a launch fallback such as announcing the plugin as coming to WordPress.org if approval misses the conference",
+        "evidence": "\"Announce 'coming to WordPress.org' at the conference.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires 2FA on the submitting and committer accounts",
+        "evidence": "\"Every committer needs 2FA\"; \"Brevlo-domain email read by a person and 2FA on\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks review-time figures as variable or to verify rather than promising a fixed approval date",
+        "evidence": "The figures carry daggers (\"about 10 business days\u2020\"), with the footnote \"Verify against the current developer.wordpress.org handbook\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to reply to the review email to fix a wrong submitting account rather than resubmitting",
+        "evidence": "\"Wrong account after submitting: Reply to the review email to fix it. Never resubmit.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Says the official Brevlo plugin must be submitted from Brevlo's own WordPress.org account with a company-domain email, not the agency's personal gmail account",
+        "evidence": "\"Don't submit from your gmail... ask Brevlo to create a company wordpress.org account with a @brevlo.com email.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a slug or name starting with the Brevlo brand is reserved to the brand owner and gets flagged when a non-owner submits",
+        "evidence": "\"guideline 17 reserves a brand-named slug (brevlo-forms) for the trademark owner or an authorized representative.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the slug is permanent once the plugin is approved",
+        "evidence": "Only says ownership handoff is painful because the slug is tied to the account. It never says the slug is permanent.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions the slug can be checked in the confirmation email and changed only once before approval",
+        "evidence": "No mention of the confirmation email or a one-time slug change.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States only one plugin can be in review per account at a time, so both plugins cannot be submitted together from one account",
+        "evidence": "Only says \"Check the current limit on pending submissions per account, because new accounts are capped.\" It does not state a one-at-a-time limit.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Warns against creating extra accounts to get around the one-at-a-time limit",
+        "evidence": "It recommends \"Give the second client its own account too\" and says \"Both submissions can still go out today\", with no warning about circumvention.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Requires the plugin and author URLs plus terms and privacy pages to be live before submitting, so the coming-soon page must be finished first",
+        "evidence": "\"Ask Brevlo today to publish three live pages... Use the real URLs in the plugin header and readme.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States there is no queue jumping for a launch date (only security or legal issues)",
+        "evidence": "The transcript never says review cannot be expedited.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives a launch fallback such as announcing the plugin as coming to WordPress.org if approval misses the conference",
+        "evidence": "\"Plan B... a signed zip download... plus a 'submitted to WordPress.org' line.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires 2FA on the submitting and committer accounts",
+        "evidence": "\"enable 2FA (required for committers)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks review-time figures as variable or to verify rather than promising a fixed approval date",
+        "evidence": "\"Review time varies from days to weeks... I can't verify the current queue from here.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says to reply to the review email to fix a wrong submitting account rather than resubmitting",
+        "evidence": "It suggests asking plugins@wordpress.org to transfer ownership after approval. It never says to reply to the review email.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

@@ -172,6 +172,7 @@ This collection covers the full developer-platform surface.
 - [`shopify-app-store-playbook`](./skills/shopify-app-store-playbook): Gets a SaaS vendor's app approved and kept on the Shopify App Store: distribution lock, Shopify billing, submission packet, review rounds, Built for Shopify, and ranking.
 - [`hubspot-marketplace-playbook`](./skills/hubspot-marketplace-playbook): Gets a vendor's app listed on the HubSpot Marketplace and keeps it there: install gate, eligibility, submission packet, review timeline, deadlines, certification and partner tiers.
 - [`chrome-web-store-playbook`](./skills/chrome-web-store-playbook): Gets a vendor's companion Chrome extension through Chrome Web Store review and keeps it live: permission scoping, reviewer access, safe updates, account security, and enterprise distribution.
+- [`wordpress-plugin-directory-playbook`](./skills/wordpress-plugin-directory-playbook): Gets a vendor's connector plugin onto the WordPress.org plugin directory and keeps it there: paid-feature placement, account and slug, review rounds, SVN releases, and closures.
 - [`zapier-integration-playbook`](./skills/zapier-integration-playbook): Builds, publishes and maintains a vendor's Zapier integration: step design, Platform CLI code, review checks and beta, templates and embed, and versioning without breaking live Zaps.
 
 ### Publishing-platform playbooks

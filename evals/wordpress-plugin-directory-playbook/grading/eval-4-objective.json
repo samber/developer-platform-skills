@@ -1,0 +1,142 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States WordPress.org does not permit temporary closure of a plugin",
+        "evidence": "\"Closing is meant to be permanent, not a pause.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that author-requested closure is meant to be permanent and reopening requires a full current standards and security review",
+        "evidence": "\"Reopening needs a full review against current standards\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes a plugin above 10,000 users cannot be closed by the author from the Advanced tab and needs an email to the Plugins Team",
+        "evidence": "\"Above 10,000\u2020 users, closing needs a written request to the Plugins Team.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping the fixed version as the response instead of closing",
+        "evidence": "\"Do not close the plugin. Ship 3.4.2 with the fix.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a blocked release is not offered as an update while the previous distributed version keeps being served and the plugin stays open",
+        "evidence": "\"A high score blocks that version, and sites keep the previous one\"; \"The listing stays up\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing the findings and shipping a new version rather than waiting on a false-positive appeal",
+        "evidence": "\"A rewrite is faster than an appeal.\"; \"If 3.4.2 is blocked, fix the findings and ship 3.4.3. Don't wait on a reply.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a false-positive reply to the block email is possible but slower",
+        "evidence": "\"Reply to the email only for a clear false positive, and expect the reply to be slower than a new release.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Resets the one-hour target: every release waits a cooldown (about 6 hours) during an automated security review before distribution",
+        "evidence": "\"Every release waits a 6-hour\u2020 cooldown\"; \"The directory cannot put a fix on customer sites within the hour\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives the release mechanics: bump Version, update Stable tag, commit trunk and copy to a new tag",
+        "evidence": "\"Bump Version in the main file and Stable tag... Commit trunk/, then copy it to tags/3.4.2.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that the new release goes through the same automated review and could be blocked again",
+        "evidence": "\"Run Plugin Check... a failure here predicts a second block\"; \"If 3.4.2 is blocked...\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks the cooldown duration as a figure to verify",
+        "evidence": "\"6-hour\u2020\" with the footnote \"Verify against the current developer.wordpress.org handbook\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States WordPress.org does not permit temporary closure of a plugin",
+        "evidence": "Says only \"Reopening is at the team's discretion, so 'a couple of days' isn't yours to promise.\" It does not say temporary closure is not permitted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Explains that author-requested closure is meant to be permanent and reopening requires a full current standards and security review",
+        "evidence": "No mention of permanence or a full standards and security review before reopening.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes a plugin above 10,000 users cannot be closed by the author from the Advanced tab and needs an email to the Plugins Team",
+        "evidence": "No mention of the 10,000-user threshold.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends shipping the fixed version as the response instead of closing",
+        "evidence": "\"Don't close the plugin. Ship a patched version now\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Explains that a blocked release is not offered as an update while the previous distributed version keeps being served and the plugin stays open",
+        "evidence": "It only suggests the block \"may be limiting who receives it\" and asks the team to confirm how it affects 3.4.2. It does not explain the mechanism.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing the findings and shipping a new version rather than waiting on a false-positive appeal",
+        "evidence": "\"Don't wait for the dispute. Fix cheaply anything that's easy to silence... include it in 3.4.2.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a false-positive reply to the block email is possible but slower",
+        "evidence": "It suggests replying with a rebuttal but never says this route is slower.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Resets the one-hour target: every release waits a cooldown (about 6 hours) during an automated security review before distribution",
+        "evidence": "Says the patch is \"live in the directory, usually within minutes of the stable-tag change\" and mentions no cooldown.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives the release mechanics: bump Version, update Stable tag, commit trunk and copy to a new tag",
+        "evidence": "\"Update the version header, readme.txt stable tag and changelog. Commit to trunk, copy to tags/3.4.2\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions that the new release goes through the same automated review and could be blocked again",
+        "evidence": "Only \"run Plugin Check first so you don't trigger another block\", with no mention of automated review of the new release.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks the cooldown duration as a figure to verify",
+        "evidence": "No cooldown is mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}
