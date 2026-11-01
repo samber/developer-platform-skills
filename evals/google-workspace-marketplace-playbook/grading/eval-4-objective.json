@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Classifies calendar.events as a sensitive scope that needs OAuth verification before release",
+        "evidence": "\"`calendar.events` is **sensitive**, not restricted\"; \"OAuth re-verification, sensitive tier: up to 10 days\u2020\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that shipping the scope before verification shows users the unverified-app screen",
+        "evidence": "\"Users see the 'Google hasn't verified this app' screen.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that admins of the 40 domain-installed orgs must authorize the new scope in the Admin console",
+        "evidence": "\"Admins must authorize new scopes in the Admin console.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that until admins re-grant, users in those domains are prompted individually",
+        "evidence": "\"Google documents per-user prompts until they do, but listing policy forbids re-prompting admin-installed users.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying customer admins before the release",
+        "evidence": "\"Brief the 40 orgs' admins before release\"; includes an admin notice template.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that editing the short or detailed description triggers a Marketplace review",
+        "evidence": "\"Any App Details field edit... re-enters Marketplace review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adding Calendar as a new host app to the Workspace add-on triggers a Marketplace review",
+        "evidence": "\"If you add Calendar as a new host app or integration type, that change also goes through Marketplace review.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the live listing stays published while the draft is under review",
+        "evidence": "\"Keep the current description live until review passes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the Tuesday date or decoupling the scope release from the copy change",
+        "evidence": "\"Tuesday ships nothing to production scopes\"; \"set the same-day copy launch for the approval date, not Tuesday.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions handling granular consent so users who decline the new scope can still use Docs and Sheets features",
+        "evidence": "\"Detect a missing `calendar.events` and re-prompt per feature, with the rest of the add-on still working.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Classifies calendar.events as a sensitive scope that needs OAuth verification before release",
+        "evidence": "'`calendar.events` is a sensitive scope, which means OAuth verification'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that shipping the scope before verification shows users the unverified-app screen",
+        "evidence": "'users see the \"Google hasn't verified this app\" screen'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that admins of the 40 domain-installed orgs must authorize the new scope in the Admin console",
+        "evidence": "'A new scope needs a fresh admin approval.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that until admins re-grant, users in those domains are prompted individually",
+        "evidence": "It says orgs restricting API access 'will block users from consenting at all'. It does not say users are prompted individually until admins re-grant.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends notifying customer admins before the release",
+        "evidence": "'Email the admin contact at each of the 40 orgs with the exact scope...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that editing the short or detailed description triggers a Marketplace review",
+        "evidence": "'edits to the listing text, are reviewed before they publish.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adding Calendar as a new host app to the Workspace add-on triggers a Marketplace review",
+        "evidence": "It mentions review of new scopes and listing text, but not adding a host app.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the live listing stays published while the draft is under review",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the Tuesday date or decoupling the scope release from the copy change",
+        "evidence": "'Option A: Move launch and the description rewrite to the day approval lands.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions handling granular consent so users who decline the new scope can still use Docs and Sheets features",
+        "evidence": "It says users are blocked until they re-authorize and never mentions granular consent.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

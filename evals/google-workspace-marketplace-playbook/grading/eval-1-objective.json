@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that gmail.metadata is restricted too, so a metadata-only fallback does not avoid the security assessment",
+        "evidence": "gmail.metadata is never mentioned; the fallbacks cover only message.readonly and gmail.send.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that restricted scopes require a third-party CASA security assessment when the data reaches Quillpost's servers",
+        "evidence": "\"They also bring a paid third-party CASA assessment that Google assigns (AL1 or AL2\u2020)\"; assumption 2 says Quillpost's servers receive the email content.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gmail.addons.current.message.readonly, gmail.addons.current.message.action or gmail.addons.current.message.metadata for logging the open email instead of mailbox-wide scopes",
+        "evidence": "Scope table: \"`gmail.addons.current.message.action`\" for logging, with message.readonly as a fallback.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gmail.send or gmail.addons.current.action.compose for the follow-up instead of gmail.modify or gmail.compose",
+        "evidence": "\"`gmail.addons.current.action.compose`\"; \"use `gmail.send`... Don't take `gmail.compose`, which is restricted.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that narrowing scopes after launch costs another verification round",
+        "evidence": "\"adding a restricted scope after launch is a new verification round.\" It states the scope-change cost in the widening direction, which is the intended point.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Produces a scope table mapping each feature to a scope and its tier (non-sensitive, sensitive, restricted)",
+        "evidence": "Scope table with Feature, Mechanism, Minimum scope, Tier (Non-sensitive) and Justification columns.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the Marketplace listing cannot be approved until OAuth verification completes",
+        "evidence": "\"the listing can't be approved before verification completes.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the scopes must match across the add-on manifest, the Marketplace SDK and the OAuth consent screen",
+        "evidence": "\"Declare the same scopes in code, the Marketplace SDK and the consent screen.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a timeline that works backward from the conference date and includes at least one rejection round",
+        "evidence": "Titled \"Dated plan (launch backward, one rejection round)\", with \"Plan for one rejection\" and a latest-resubmission date of Nov 27.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a per-scope justification explaining why a narrower scope fails",
+        "evidence": "\"Each scope needs a written reason a narrower scope fails\"; the justification template is cited.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Lists the demo video requirements, including the OAuth client ID visible in the address bar or the English consent screen",
+        "evidence": "\"unlisted YouTube, English consent screen, address bar showing the OAuth client ID, one segment per scope.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Marks Google timelines or figures as needing verification against current Google docs",
+        "evidence": "\"Figures marked \u2020 ... Re-check them on Google's current pages before you quote them.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that gmail.metadata is restricted too, so a metadata-only fallback does not avoid the security assessment",
+        "evidence": "The fallback says 'launch with `message.metadata` only' to avoid CASA. It never says gmail.metadata is restricted.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that restricted scopes require a third-party CASA security assessment when the data reaches Quillpost's servers",
+        "evidence": "'Because Quillpost stores email on its own servers, CASA applies, and it repeats every year.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gmail.addons.current.message.readonly, gmail.addons.current.message.action or gmail.addons.current.message.metadata for logging the open email instead of mailbox-wide scopes",
+        "evidence": "Table lists `gmail.addons.current.message.readonly` and `...message.metadata` for reading the open email.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gmail.send or gmail.addons.current.action.compose for the follow-up instead of gmail.modify or gmail.compose",
+        "evidence": "'`gmail.addons.current.action.compose` ... Fills a draft or reply window and the rep clicks Send.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that narrowing scopes after launch costs another verification round",
+        "evidence": "It only says 'Adding scopes later is possible but costs a re-review.' That is about adding scopes, not narrowing them.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Produces a scope table mapping each feature to a scope and its tier (non-sensitive, sensitive, restricted)",
+        "evidence": "The table columns are Feature, Scope and Notes. There is no tier column, and the tiers are not given per scope.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the Marketplace listing cannot be approved until OAuth verification completes",
+        "evidence": "The transcript never states this dependency. It only says to submit both by end of week 2.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says the scopes must match across the add-on manifest, the Marketplace SDK and the OAuth consent screen",
+        "evidence": "No mention of scopes needing to match across these three places.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives a timeline that works backward from the conference date and includes at least one rejection round",
+        "evidence": "'Plan for one rejection round on each review.' The 5-week table ends at the conference and submits by end of week 2.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Requires a per-scope justification explaining why a narrower scope fails",
+        "evidence": "It only says 'Per-scope justification' and 'justify each scope', with nothing about why a narrower scope fails.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Lists the demo video requirements, including the OAuth client ID visible in the address bar or the English consent screen",
+        "evidence": "It says only 'A demo video showing the full consent flow and each scope in use.'",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Marks Google timelines or figures as needing verification against current Google docs",
+        "evidence": "The Caveat says WebFetch was denied and that classification and 'verification and CASA turnaround' need a 15-minute check. It also says 'Both figures are from memory.'",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

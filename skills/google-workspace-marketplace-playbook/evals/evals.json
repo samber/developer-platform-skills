@@ -1,0 +1,318 @@
+{
+  "skill_name": "google-workspace-marketplace-playbook",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're Quillpost, a 30-person sales CRM. We want a Gmail add-on so reps can log the email they're reading into a Quillpost deal and send a templated follow-up from the sidebar. Our eng lead wants gmail.readonly and gmail.modify 'so we have everything we might need later'. Launch is pinned to our user conference in 5 weeks. Can you lay out the Google side - verification, Marketplace, timeline?",
+      "expected_output": "A plan that rejects the restricted scopes, maps both features to the Gmail add-on contextual scopes plus gmail.send, explains that restricted scopes would trigger CASA and weeks of review, refuses future-proof scopes, and builds a dated plan back from the conference in which OAuth verification gates listing approval.",
+      "files": [],
+      "expectations": [
+        "States that gmail.metadata is restricted too, so a metadata-only fallback does not avoid the security assessment",
+        "States that restricted scopes require a third-party CASA security assessment when the data reaches Quillpost's servers",
+        "Recommends gmail.addons.current.message.readonly, gmail.addons.current.message.action or gmail.addons.current.message.metadata for logging the open email instead of mailbox-wide scopes",
+        "Recommends gmail.send or gmail.addons.current.action.compose for the follow-up instead of gmail.modify or gmail.compose",
+        "States that narrowing scopes after launch costs another verification round",
+        "Produces a scope table mapping each feature to a scope and its tier (non-sensitive, sensitive, restricted)",
+        "States that the Marketplace listing cannot be approved until OAuth verification completes",
+        "Says the scopes must match across the add-on manifest, the Marketplace SDK and the OAuth consent screen",
+        "Gives a timeline that works backward from the conference date and includes at least one rejection round",
+        "Requires a per-scope justification explaining why a narrower scope fails",
+        "Lists the demo video requirements, including the OAuth client ID visible in the address bar or the English consent screen",
+        "Marks Google timelines or figures as needing verification against current Google docs"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Ferrovia sells a contract-analytics SaaS to law firms. We need full Drive access to scan every contract in a firm's Drive. Plan: set the OAuth consent screen to Internal so Google doesn't review it, and since firm admins will install us domain-wide from the Marketplace, users never see a warning anyway. Is that the fastest path? We have ~60 firms lined up.",
+      "expected_output": "An answer that refutes both shortcuts: Internal user type only covers the project-owning organization and fails a public listing, and domain-wide install does not exempt sensitive or restricted scopes from verification. It treats drive/drive.readonly as restricted with CASA, checks Drive permitted app types, and weighs drive.file plus Picker against the whole-Drive feature.",
+      "files": [],
+      "expectations": [
+        "Names drive.metadata.readonly as restricted, so a metadata-only scan does not avoid CASA",
+        "States that a multi-customer SaaS like Ferrovia cannot rely on Internal user type for law-firm customers",
+        "Notes that an Internal consent screen is a named Marketplace rejection reason or blocks a public listing",
+        "States that domain-wide installation does not remove the OAuth verification requirement for sensitive or restricted scopes",
+        "Classifies drive or drive.readonly as restricted scopes",
+        "States that restricted Drive access needs a CASA security assessment renewed annually",
+        "Checks the use case against Google's permitted application types for Drive restricted scopes",
+        "Presents drive.file with the Google Picker as the narrower alternative and names what feature it gives up (scanning files the user never picked)",
+        "Explains that domain installation bypasses per-user consent only for approved Marketplace apps",
+        "Recommends the Admin Only install setting or admin domain install for law-firm rollout",
+        "Mentions that firm admins who restrict Drive access must trust the app's OAuth client ID"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Google Trust & Safety just emailed us that our Gmail inbox-summary app (restricted scopes, data processed on our servers) is in scope for the security assessment. My CTO wants to book the cheapest CASA Tier 2 self-scan this week and be done with it forever. Also product wants to use the summarized customer emails to fine-tune our summarization model for everyone. Anything we're missing?",
+      "expected_output": "A correction that CASA now uses assurance levels AL1/AL2 assigned by Google, the self-scan is deprecated so an authorized lab is required, revalidation is annual, and fine-tuning a shared model on Gmail data violates Limited Use.",
+      "files": [],
+      "expectations": [
+        "States that CASA now uses assurance levels AL1 and AL2 rather than tiers",
+        "States that Google, not the developer, assigns the assurance level",
+        "States that the CASA self-scan is deprecated and an authorized lab must perform the assessment",
+        "States that the assessment must be revalidated every 12 months",
+        "States that the developer pays the lab and attributes price figures to labs or practitioners rather than to Google",
+        "States that using Gmail data to train or improve a model beyond that user's personalized model is prohibited under Limited Use",
+        "Rejects the plan to fine-tune a shared model on customer emails",
+        "Mentions existing certifications such as ISO 27001 or SOC 2 can shorten the assessment through the CASA accelerator",
+        "Says a newly added restricted scope may trigger an out-of-cycle reassessment",
+        "Advises keeping project owner and contact emails current so renewal notices arrive"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Our Google Workspace add-on (Docs + Sheets) has been on the Marketplace for a year, and about 40 customer orgs installed it domain-wide. Next Tuesday we ship a Calendar feature that adds the calendar.events scope, and marketing wants to rewrite the short and detailed description the same day. Engineering plans to just push the new manifest Tuesday morning. What breaks?",
+      "expected_output": "A change plan that classifies the new scope as needing OAuth verification before release, warns about the unverified-app screen if shipped first, explains that domain-installed customers must re-grant the new scope in the Admin console or users get prompted individually, and notes that description edits and a new host app re-enter Marketplace review.",
+      "files": [],
+      "expectations": [
+        "Classifies calendar.events as a sensitive scope that needs OAuth verification before release",
+        "Warns that shipping the scope before verification shows users the unverified-app screen",
+        "States that admins of the 40 domain-installed orgs must authorize the new scope in the Admin console",
+        "States that until admins re-grant, users in those domains are prompted individually",
+        "Recommends notifying customer admins before the release",
+        "States that editing the short or detailed description triggers a Marketplace review",
+        "States that adding Calendar as a new host app to the Workspace add-on triggers a Marketplace review",
+        "Says the live listing stays published while the draft is under review",
+        "Recommends moving the Tuesday date or decoupling the scope release from the copy change",
+        "Mentions handling granular consent so users who decline the new scope can still use Docs and Sheets features"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Our Sheets add-on got bounced by Marketplace review. The review doc says users see two permission prompts, our privacy policy link goes to our help center, and reviewers couldn't get past our login. Context: the Cloud project lives in our cofounder's personal gmail account. While we fix it, I'd like to flip the listing to private and run a pilot with three customer companies. What's the play?",
+      "expected_output": "A fix list keyed on each review point (scope mismatch causing the double prompt, a privacy URL that points at the actual policy on the homepage domain, a reviewer test account), a warning that visibility is permanent and private listings only serve the publisher's own organization, and a recommendation to move the project into an organization with two owners.",
+      "files": [],
+      "expectations": [
+        "Attributes the double permission prompt to scopes that differ between the manifest, Marketplace SDK and consent screen",
+        "States that users at the three customer companies can get the add-on only after public approval, since a Testing pilot reaches them only through a web app's own OAuth flow",
+        "Requires the privacy policy to be on the same domain as the homepage and the same URL as on the consent screen",
+        "Requires the reviewer test account to carry sample data reaching the scoped features",
+        "States that public or private visibility cannot be changed after it is saved",
+        "States that a private listing is only available to the publisher's own organization, so it cannot serve three customer companies",
+        "Notes that a consumer Gmail account can only publish publicly",
+        "Recommends moving the Cloud project into an organization resource with at least two owners",
+        "Recommends fixing every point in the review document before a single resubmission",
+        "Notes that Testing status must be switched to In production before resubmitting"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Brightslot is a scheduling SaaS. Users connect Google Calendar from our web app; that's the whole Google integration. Marketing wants a Google Workspace Marketplace listing for discoverability and asks if we can bill through the Marketplace and pay to get into Editor's Choice. Do we even need a listing?",
+      "expected_output": "A listing verdict ranked by efficiency: a verified OAuth client without a listing already serves a web-app Calendar connection; a listing earns admin domain install or Workspace surfaces. It refutes Marketplace billing and paid featuring, gives Editor's Choice thresholds, and lists pricing disclosure duties if they list.",
+      "files": [],
+      "expectations": [
+        "States that a web app connecting Calendar needs OAuth verification but not necessarily a Marketplace listing",
+        "Names what a listing adds: admin domain install without per-user consent or presence inside Workspace apps",
+        "Ranks the options (no listing, Admin Only listing, Individual + Admin listing) and states the default",
+        "States that Google provides no billing through the Workspace Marketplace and the vendor must identify itself as seller",
+        "States that featuring cannot be bought",
+        "States that Editor's choice requires a Workspace add-on, which a web app listing is not",
+        "Gives the Editor's choice install threshold (100,000 installs, or 10,000 with rating 4+ for apps under 6 months)",
+        "Lists pricing disclosure duties: total price with mandatory fees or how usage pricing is calculated",
+        "Recommends publishing the OAuth client ID in admin-facing documentation",
+        "Notes that the listing name must match the OAuth consent screen app name"
+      ]
+    }
+  ],
+  "trigger_queries": [
+    {
+      "query": "Google keeps showing 'Google hasn't verified this app' when customers connect Gmail to our SaaS. How do we get rid of it before launch?",
+      "should_trigger": true
+    },
+    {
+      "query": "We hit the 100 user cap on our unverified Google OAuth app. What's the fastest path to verification for a Drive integration?",
+      "should_trigger": true
+    },
+    {
+      "query": "Trust & Safety asked for a CASA assessment for our Gmail app. Which lab, how much, how long?",
+      "should_trigger": true
+    },
+    {
+      "query": "how do we publish our Google Sheets add-on publicly on the Workspace Marketplace",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Workspace Marketplace submission was rejected for 'OAuth verification incomplete' even though we submitted weeks ago. What now?",
+      "should_trigger": true
+    },
+    {
+      "query": "Which Gmail scopes avoid the restricted-scope security assessment for a CRM sidebar add-on?",
+      "should_trigger": true
+    },
+    {
+      "query": "We want IT admins to install our Google Chat app for their whole company without each user consenting. How do we set that up on the Marketplace?",
+      "should_trigger": true
+    },
+    {
+      "query": "Adding drive.readonly to our listed Google Workspace add-on next sprint - what re-review does that trigger?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Google demo video for sensitive scope verification got rejected. What exactly must it show?",
+      "should_trigger": true
+    },
+    {
+      "query": "is it worth listing our calendar integration on google workspace marketplace or just verifying the oauth app",
+      "should_trigger": true
+    },
+    {
+      "query": "We built a Meet add-on; what does Google's Marketplace review check for Meet specifically?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can we use Gmail data from our Google integration to train our AI model? We're preparing OAuth verification.",
+      "should_trigger": true
+    },
+    {
+      "query": "Google Workspace Marketplace listing: private vs public visibility for our B2B pilot customers",
+      "should_trigger": true
+    },
+    {
+      "query": "The cofounder who owned our Google Cloud project left and we lost access to our Marketplace listing. Recovery steps?",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Chrome Web Store extension got rejected for requesting too many host permissions. How do we fix the listing?",
+      "should_trigger": false
+    },
+    {
+      "query": "Design the OAuth consent screen and scope taxonomy for third-party apps calling our own public API.",
+      "should_trigger": false
+    },
+    {
+      "query": "Rewrite our HubSpot and Google Workspace Marketplace listing descriptions to convert more installs.",
+      "should_trigger": false
+    },
+    {
+      "query": "We're a Workspace admin; how do we vet and restrict third-party apps employees connect to Gmail?",
+      "should_trigger": false
+    },
+    {
+      "query": "Write an Apps Script that copies rows from one Google Sheet to another every night.",
+      "should_trigger": false
+    },
+    {
+      "query": "How should our own app marketplace review third-party apps before they get listed?",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Slack app approved on the Slack Marketplace - we have 7 active workspaces.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Microsoft Teams app failed validation for the Teams store. What do they check?",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we list on AWS Marketplace and use private offers for enterprise deals?",
+      "should_trigger": false
+    },
+    {
+      "query": "Set up Sign in with Google on our website login page with only email and profile.",
+      "should_trigger": false
+    },
+    {
+      "query": "Use the gws CLI to list my Drive files and export them to CSV.",
+      "should_trigger": false
+    },
+    {
+      "query": "Plan the launch marketing for our new integration across Product Hunt, Hacker News and our newsletter.",
+      "should_trigger": false
+    },
+    {
+      "query": "Which technology partners should we build integrations with first: Google Workspace, Microsoft 365 or Salesforce?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our internal HR tool uses the Admin SDK for our own company domain only. Do we need anything from Google?",
+      "should_trigger": false
+    },
+    {
+      "query": "Our add-on needs drive.file plus the Picker - does that still need Google verification before we list it?",
+      "should_trigger": true
+    },
+    {
+      "query": "Google says our privacy policy must be on the homepage domain. We host it on Notion. Will that fail brand verification?",
+      "should_trigger": true
+    },
+    {
+      "query": "What's the difference between Google OAuth verification and the Workspace Marketplace app review? Do we need both?",
+      "should_trigger": true
+    },
+    {
+      "query": "Restricted scope verification for our Gmail backup product - which app types does Google allow?",
+      "should_trigger": true
+    },
+    {
+      "query": "we're moving 2 workspace marketplace listings into one, what do we lose",
+      "should_trigger": true
+    },
+    {
+      "query": "Our Workspace add-on users only granted half the scopes on the new consent screen and the add-on crashes. Will review flag this?",
+      "should_trigger": true
+    },
+    {
+      "query": "Can a Gmail add-on built in Apps Script skip the CASA assessment if no data leaves Google?",
+      "should_trigger": true
+    },
+    {
+      "query": "How long does Google sensitive scope verification take for a Calendar integration? Our launch is in three weeks.",
+      "should_trigger": true
+    },
+    {
+      "query": "We sell to schools; district admins want to push our Classroom/Drive add-on to all teachers. Marketplace setup?",
+      "should_trigger": true
+    },
+    {
+      "query": "Do we need to state pricing a certain way on our Google Workspace Marketplace listing for UK customers?",
+      "should_trigger": true
+    },
+    {
+      "query": "We unpublished our old Workspace add-on but customers still use it. How do we fully retire it?",
+      "should_trigger": true
+    },
+    {
+      "query": "Design an onboarding journey for partners building apps on our own developer platform.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Atlassian Forge app needs Paid via Atlassian pricing; how do we set it up?",
+      "should_trigger": false
+    },
+    {
+      "query": "Audit our Google Search Console coverage errors on the docs site.",
+      "should_trigger": false
+    },
+    {
+      "query": "Should we adopt CASA-style security assessments for apps on our own marketplace?",
+      "should_trigger": false
+    },
+    {
+      "query": "Implement Gmail API push notifications with Pub/Sub watch in our Node backend.",
+      "should_trigger": false
+    },
+    {
+      "query": "Write the privacy policy for our mobile app's analytics SDK under GDPR.",
+      "should_trigger": false
+    },
+    {
+      "query": "Our Shopify app was rejected for not using Shopify billing. What do we change?",
+      "should_trigger": false
+    },
+    {
+      "query": "We need SOC 2 Type II before enterprise deals; how do we scope the audit?",
+      "should_trigger": false
+    },
+    {
+      "query": "Rank our listing higher on the Google Workspace Marketplace search results with better keywords and screenshots.",
+      "should_trigger": false
+    },
+    {
+      "query": "Get our Zapier integration out of beta and into public status.",
+      "should_trigger": false
+    },
+    {
+      "query": "Build a Google Chat bot in Python that answers questions from our docs.",
+      "should_trigger": false
+    }
+  ]
+}

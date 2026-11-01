@@ -1,0 +1,130 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that CASA now uses assurance levels AL1 and AL2 rather than tiers",
+        "evidence": "\"Google assigns AL1 or AL2\u2020. Older pages and labs still say 'Tier 2'.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that Google, not the developer, assigns the assurance level",
+        "evidence": "\"You don't choose the tier. Google assigns AL1 or AL2\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the CASA self-scan is deprecated and an authorized lab must perform the assessment",
+        "evidence": "\"Self-scan is deprecated\u2020... will not give you a valid Letter of Validation\"; \"authorized-lab instructions\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the assessment must be revalidated every 12 months",
+        "evidence": "\"You renew 12 months\u2020 after the letter date.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the developer pays the lab and attributes price figures to labs or practitioners rather than to Google",
+        "evidence": "\"Google charges nothing and labs set the price. Reports range from about $500 to $4,500\u2020.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that using Gmail data to train or improve a model beyond that user's personalized model is prohibited under Limited Use",
+        "evidence": "\"must not train or improve AI models beyond that one user's own personalized model.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the plan to fine-tune a shared model on customer emails",
+        "evidence": "\"Fine-tuning on customer emails: don't\"; \"a shared summarization model trained on pooled customer emails is exactly what the rule bans.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions existing certifications such as ISO 27001 or SOC 2 can shorten the assessment through the CASA accelerator",
+        "evidence": "\"If you hold ISO 27001 or SOC 2, ask about the accelerator, which can shorten the assessment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a newly added restricted scope may trigger an out-of-cycle reassessment",
+        "evidence": "\"a new restricted scope can force an early re-assessment.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises keeping project owner and contact emails current so renewal notices arrive",
+        "evidence": "\"Keep the Cloud project's Owner and contact emails current, or renewal notices go nowhere.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that CASA now uses assurance levels AL1 and AL2 rather than tiers",
+        "evidence": "It uses 'Tier 2' and 'Tier 3' throughout.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that Google, not the developer, assigns the assurance level",
+        "evidence": "'Google sets the tier, not you.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the CASA self-scan is deprecated and an authorized lab must perform the assessment",
+        "evidence": "'Tier 2 means you run an approved scan, fix the findings, and the lab validates.' It does not say self-scan is deprecated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that the assessment must be revalidated every 12 months",
+        "evidence": "'CASA validation lasts about 12 months, and Google re-requests it each year.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that the developer pays the lab and attributes price figures to labs or practitioners rather than to Google",
+        "evidence": "'Fees vary a lot by lab', 'Get 2\u20133 lab quotes', and 'the same restricted access you're paying CASA to keep'.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that using Gmail data to train or improve a model beyond that user's personalized model is prohibited under Limited Use",
+        "evidence": "'Limited Use rules... bars using Google user data to develop, improve, or train generalized AI/ML models.'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Rejects the plan to fine-tune a shared model on customer emails",
+        "evidence": "'**Don't do it.**'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions existing certifications such as ISO 27001 or SOC 2 can shorten the assessment through the CASA accelerator",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Says a newly added restricted scope may trigger an out-of-cycle reassessment",
+        "evidence": "'Material changes can trigger earlier review. Examples are new scopes...'",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Advises keeping project owner and contact emails current so renewal notices arrive",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

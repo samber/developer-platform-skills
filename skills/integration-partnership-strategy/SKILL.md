@@ -4,7 +4,7 @@ description: Select which technology partners a B2B SaaS vendor integrates with 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.3"
+  version: "1.0.4"
 ---
 
 # Integration Partnership Strategy
@@ -212,3 +212,4 @@ See also, same collection:
 - `samber/developer-platform-skills@salesforce-appexchange-playbook` - execution once Salesforce wins the prioritization: AppExchange listing type, packaging, security review and revenue share.
 - `samber/developer-platform-skills@microsoft-appsource-playbook` - execution once Microsoft wins the prioritization: transactable Marketplace offer, Teams store validation and co-sell or MACC eligibility.
 - `samber/developer-platform-skills@shopify-app-store-playbook` - execution once Shopify wins the prioritization: distribution choice, Shopify billing for your connector, App Store review and ranking.
+- `samber/developer-platform-skills@google-workspace-marketplace-playbook` - execution once Google Workspace wins the prioritization: scope tiers, OAuth verification, the CASA assessment and Marketplace listing review.
