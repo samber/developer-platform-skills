@@ -4,7 +4,7 @@ description: Select which technology partners a B2B SaaS vendor integrates with 
 license: MIT
 metadata:
   author: Samuel Berthe
-  version: "1.0.3"
+  version: "1.0.4"
 ---
 
 # Integration Partnership Strategy
