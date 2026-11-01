@@ -1,0 +1,166 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the SSO login wall or expiring trial as the likely reason the reviewer could not exercise the features",
+        "evidence": "Your two facts, Okta SSO and a 7-day trial, are the textbook cause of Yellow Magnesium.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that each violation can be appealed only once",
+        "evidence": "An appeal counts once per violation\u2020",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing and resubmitting (or asking support for clarification) before using the appeal",
+        "evidence": "Fix the access problem, then resubmit... Support clarification comes before any appeal.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends filling the Test instructions tab with reviewer credentials",
+        "evidence": "Paste into the dashboard \"Test instructions\" field... Account: <reviewer@clearpath-demo.example> / <password>",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a reviewer account that does not depend on SSO-only login",
+        "evidence": "email and password login, with no Okta/SSO",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a reviewer account that does not require MFA",
+        "evidence": "no Okta/SSO, no MFA and no expiry",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies an account that does not expire before review completes (permanent rather than a 7-day trial)",
+        "evidence": "Create a permanent demo tenant... no expiry (not a 7-day trial)",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends seeding the demo tenant with data so every feature can be reached",
+        "evidence": "permanent demo tenant, seeded with sample data",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends showing an 'account required, sign in' state inside the extension",
+        "evidence": "Add an \"Account required, sign in\" state inside the extension",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends testing the exact packed package that was uploaded",
+        "evidence": "Test the packed CRX, not just your dev build.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions checking that server allowlists or network restrictions do not block reviewers",
+        "evidence": "server and IP allowlists open to reviewers; Server allowlists accept any IP.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "If an appeal is drafted, it includes concrete evidence (steps, recording or code references) rather than only asserting the reviewer is wrong",
+        "evidence": "The drafted note lists the added demo tenant, updated credentials, steps to each feature and a video walkthrough: <URL>.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the rejection leaves the live listing or previously published version unchanged",
+        "evidence": "Your live version and listing stay up while you resubmit.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Identifies the SSO login wall or expiring trial as the likely reason the reviewer could not exercise the features",
+        "evidence": "\"a reviewer with no credentials sees a dead extension\" due to Okta SSO and 7-day trial",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that each violation can be appealed only once",
+        "evidence": "No mention of a one-appeal limit.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends fixing and resubmitting (or asking support for clarification) before using the appeal",
+        "evidence": "Only \"resubmit the updated item at the same time as you file the appeal\"; the appeal is the main path.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends filling the Test instructions tab with reviewer credentials",
+        "evidence": "\"open the Developer Dashboard... **Test instructions** tab. Paste the credentials and steps there.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies a reviewer account that does not depend on SSO-only login",
+        "evidence": "The account is an Okta SSO account (\"Click 'Sign in with SSO'\"); no non-SSO login is offered.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Specifies a reviewer account that does not require MFA",
+        "evidence": "\"Turn MFA off for it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Specifies an account that does not expire before review completes (permanent rather than a 7-day trial)",
+        "evidence": "\"permanent test account... not subject to the 7-day trial\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends seeding the demo tenant with data so every feature can be reached",
+        "evidence": "\"Seed it with demo data so the extension shows real functionality.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends showing an 'account required, sign in' state inside the extension",
+        "evidence": "Only the store listing is to say an account is required, not an in-extension state.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends testing the exact packed package that was uploaded",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Mentions checking that server allowlists or network restrictions do not block reviewers",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "If an appeal is drafted, it includes concrete evidence (steps, recording or code references) rather than only asserting the reviewer is wrong",
+        "evidence": "Appeal lists changes, test-instructions tab, video link, and \"I verified this flow today in a clean Chrome profile\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that the rejection leaves the live listing or previously published version unchanged",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

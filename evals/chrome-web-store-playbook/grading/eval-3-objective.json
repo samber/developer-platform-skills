@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "Warns that adding a permission that triggers a new install warning disables the extension for existing users until they accept it",
+        "evidence": "A new permission with a new install warning disables the extension for every existing user until they accept it.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the new access to optional permissions or optional host permissions requested at runtime",
+        "evidence": "`optional_host_permissions: [\"https://*/*\"]`, requested with `permissions.request` from a user gesture",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adding optional permissions does not disable the extension",
+        "evidence": "Optional permissions don't disable anyone on update.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gating the feature behind an in-product enable action that triggers the permission request",
+        "evidence": "an \"Enable capture from any tab\" button",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends testing the upgrade locally by packing two CRX versions (old and new)",
+        "evidence": "testing the upgrade by packing two CRX versions locally",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends a partial rollout, noting eligibility above 10,000 seven-day active users",
+        "evidence": "Partial rollout needs over 10,000 seven-day active users\u2020, so you qualify.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that raising the rollout percentage does not need a new review",
+        "evidence": "Raising the percentage needs no review.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Describes rollback as republishing the previous version under a new higher version number",
+        "evidence": "Rollback republishes the previous version, which is v1 code, under a new version number.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that deleting the v1 storage keys makes rollback break or lose data, and recommends a backward-compatible migration",
+        "evidence": "If v2 has deleted the v1 keys, a rollback leaves v1 code looking at empty storage... Make the migration two-phase",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that rollback discards pending submissions or an in-progress partial rollout",
+        "evidence": "Rollback discards any pending submission.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes the update goes through full review again, so Friday publication is not guaranteed",
+        "evidence": "Friday is a hope, not a date.",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Questions whether tabs is needed if host permissions or activeTab already cover the feature",
+        "evidence": "Host access already exposes `url` and `title` for matching tabs, so `tabs` is redundant.",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "Warns that adding a permission that triggers a new install warning disables the extension for existing users until they accept it",
+        "evidence": "\"Chrome **disables the extension** until each user re-accepts it.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends moving the new access to optional permissions or optional host permissions requested at runtime",
+        "evidence": "\"put it in `optional_host_permissions` and call `chrome.permissions.request` at first use\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that adding optional permissions does not disable the extension",
+        "evidence": "\"Existing users then see no warning and are not disabled.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends gating the feature behind an in-product enable action that triggers the permission request",
+        "evidence": "\"call `chrome.permissions.request` at first use\" plus an in-product message on re-enable",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Recommends testing the upgrade locally by packing two CRX versions (old and new)",
+        "evidence": "Upgrade testing is described via the store version, not packed CRX versions.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Recommends a partial rollout, noting eligibility above 10,000 seven-day active users",
+        "evidence": "\"needs more than about 10k weekly users, and you have 42k\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that raising the rollout percentage does not need a new review",
+        "evidence": "Not stated.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Describes rollback as republishing the previous version under a new higher version number",
+        "evidence": "\"The Web Store has no rollback. A fix means a new, higher version number\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Warns that deleting the v1 storage keys makes rollback break or lose data, and recommends a backward-compatible migration",
+        "evidence": "\"Keep the v1 keys. Delete the v1 keys in release N+1\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Notes that rollback discards pending submissions or an in-progress partial rollout",
+        "evidence": "Not mentioned.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Notes the update goes through full review again, so Friday publication is not guaranteed",
+        "evidence": "\"Broad host permissions trigger in-depth review... Submit early\"; \"Don't ship Friday to 100%\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Questions whether tabs is needed if host permissions or activeTab already cover the feature",
+        "evidence": "\"Check whether you need `tabs`... `activeTab` covers it\"; \"drop `tabs`\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  }
+}

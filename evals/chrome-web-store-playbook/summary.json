@@ -1,0 +1,162 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "chrome-web-store-playbook",
+  "scenarios": 6,
+  "expectations_total": 75,
+  "expectations_subjective": 0,
+  "expectations_objective": 75,
+  "pass_rate_with_skill_pct": 97.3,
+  "pass_rate_without_skill_pct": 64.0,
+  "delta_pp": 33.3,
+  "uplift_multiplier": 1.52,
+  "trigger_accuracy_pct": 94.0,
+  "trigger_queries": 50,
+  "trigger_positive_fire_rate": 1.0,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Mentions activeTab as an alternative for click-triggered access"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States or ranks host-access options in an explicit order from narrowest/most efficient to broad patterns"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States or ranks host-access options in an explicit order from narrowest/most efficient to broad patterns"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "States that a staged approved build must be published within 30 days or it reverts to draft"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Warns against cancelling and resubmitting a pending review because it resets the queue position"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that each violation can be appealed only once"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends fixing and resubmitting (or asking support for clarification) before using the appeal"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Specifies a reviewer account that does not depend on SSO-only login"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends showing an 'account required, sign in' state inside the extension"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Recommends testing the exact packed package that was uploaded"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions checking that server allowlists or network restrictions do not block reviewers"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Notes that the rejection leaves the live listing or previously published version unchanged"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends testing the upgrade locally by packing two CRX versions (old and new)"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that raising the rollout percentage does not need a new review"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Notes that rollback discards pending submissions or an in-progress partial rollout"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that new publishers have a default limit of two extension slots and increases must be requested"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Recommends private publishing to the customer's organization via the approval link (organization publishing)"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that a white-label per-customer build must be unlisted and distributed directly to the client"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Gives the required exception statement text for white-label builds in the description and single purpose field"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Notes that if a customer revokes organization approval, the item stays published but can no longer be updated"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Says it is undocumented whether private or organization-published items count toward the item limit and recommends asking support"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends opting in to Verified CRX Uploads so only packages signed with the vendor's private key are accepted"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Recommends storing the signing key outside the Google account (CI secrets or HSM)"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that a lost signing key takes up to about a week to replace through support"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "States that the developer account email cannot be changed and the fix is a new company-owned account plus an item transfer"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Notes that approved updates reach installed users without a holding period"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States that browsing-activity collection is only allowed for a user-facing feature described prominently in the listing and UI"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Mentions prominent disclosure and consent before collecting data that is not obvious from the listing"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Notes that data must be transmitted securely (HTTPS)"
+      }
+    ]
+  }
+}
