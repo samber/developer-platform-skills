@@ -1,0 +1,214 @@
+{
+  "repo": "developer-platform-skills",
+  "skill": "hubspot-marketplace-playbook",
+  "scenarios": 6,
+  "expectations_total": 63,
+  "expectations_subjective": 0,
+  "expectations_objective": 63,
+  "pass_rate_with_skill_pct": 92.1,
+  "pass_rate_without_skill_pct": 41.3,
+  "delta_pp": 50.8,
+  "uplift_multiplier": 2.23,
+  "trigger_accuracy_pct": 94.4,
+  "trigger_queries": 54,
+  "trigger_positive_fire_rate": 1.0,
+  "trigger_run_suspect": false,
+  "trigger_suspect_reason": null,
+  "subjective_ac2": null,
+  "subjective_pass_disagreements": [],
+  "concern_flag": false,
+  "concern_reason": null,
+  "models": {
+    "trial": "sonnet",
+    "objective_grader": "sonnet",
+    "subjective_grader": "opus",
+    "trigger": "sonnet"
+  },
+  "harness_version": "2.1.309 (Claude Code)",
+  "conditions": {
+    "mcp_servers": "disabled",
+    "project_claude_md": "not loaded (trials and grading)",
+    "user_claude_md": "loaded",
+    "dynamic_prompt_sections": "excluded"
+  },
+  "empty_trials": {
+    "with_skill": [],
+    "without_skill": []
+  },
+  "ungraded_expectations": 0,
+  "run_degraded": false,
+  "failed_expectations": {
+    "with_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "Mentions that a listing must use a single HubSpot app ID tied to the listing and must not redirect to or depend on another app"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Flags the EU AI Act high-risk or unacceptable use restriction for AI tools or MCP components"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States tiers are evaluated on a fixed cadence (quarterly tier-ups) over a trailing 12 months"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Says certification does not by itself unlock go-to-market benefits"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends logging influenced deals in the developer platform to count toward tiers"
+      }
+    ],
+    "without_skill": [
+      {
+        "eval_id": 1,
+        "expectation": "States that the Linkwise connector as described is not eligible for a HubSpot Marketplace listing"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names white-label or invisibly embedded integration infrastructure as the excluded category"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Names developer-only infrastructure or credential/token brokering as a further excluded pattern"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Does not produce a submission timeline or listing packet for the connector as described"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Notes that the 400 connected portals do not change eligibility"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Offers an alternative: Linkwise's customers listing their own branded apps under their own app ID and OAuth client"
+      },
+      {
+        "eval_id": 1,
+        "expectation": "Mentions that a listing must use a single HubSpot app ID tied to the listing and must not redirect to or depend on another app"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States that certification is not possible by the launch because it requires the app to be listed for about 6 months"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "States the 60 active install requirement for certification"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions the cap of 25 installs for an unlisted marketplace-distribution app"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Mentions the initial review of about 10 business days"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Builds a timeline backward from the SaaStock date that includes at least one Draft bounce or resubmission round"
+      },
+      {
+        "eval_id": 2,
+        "expectation": "Defines active installs as accounts with successful app activity in the last 30 days, not OAuth installs alone"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that legacy (pre-projects) public apps are rejected for new listings from a dated enforcement point, marked to verify"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Warns that migrating an unlisted app with more than 25 installs enforces the 25-install cap"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Says to contact HubSpot (support request, technology partner team or partner manager) before running the migration"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that classic CRM cards block new listings and must be converted to app cards"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "States that agent tools need their own HubSpot review before a listed app can deploy them"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Recommends migrating to a currently supported platform version rather than an older projects version"
+      },
+      {
+        "eval_id": 3,
+        "expectation": "Notes that legacy public apps can no longer be created, so a new legacy app is not an option"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Names the MCP auth app or user-level access (isUserLevel) as the build route"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "States that the MCP listing requirements call for a standalone app with its own listing rather than adding it to the existing listed app"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Mentions the MCP server must be owned by or delegated to the vendor, not a connector to someone else's server"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Says the new tickets write scope must be used by a shipped feature and reflected in the Shared data table"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Says a write scope added alongside a read scope on tickets means the sync is advertised as bi-directional where both apply"
+      },
+      {
+        "eval_id": 4,
+        "expectation": "Flags the EU AI Act high-risk or unacceptable use restriction for AI tools or MCP components"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says to allowlist the HubSpot Crawler user agent in bot protection"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says the app name must not include HubSpot or Hub and proposes a renamed form"
+      },
+      {
+        "eval_id": 5,
+        "expectation": "Says submitting the second app while the first is in review gets it rejected automatically"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends HubSpot's review request email or review link sent to customers eligible under the review guidelines instead"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Says the listing needs at least 10 reviews before a star rating is shown"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Says replies to negative reviews are expected and checked for certification"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States Premier requires attached MRR in the millions (about $7M), or the $100K influenced-deal exception that still requires every other Premier requirement"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States Premier requires certification and at least 10 reviews with 4.0 or higher"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "States tiers are evaluated on a fixed cadence (quarterly tier-ups) over a trailing 12 months"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Says certification does not by itself unlock go-to-market benefits"
+      },
+      {
+        "eval_id": 6,
+        "expectation": "Recommends logging influenced deals in the developer platform to count toward tiers"
+      }
+    ]
+  }
+}

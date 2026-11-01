@@ -1,0 +1,154 @@
+{
+  "with_skill": {
+    "expectations": [
+      {
+        "text": "States that certification is not possible by the launch because it requires the app to be listed for about 6 months",
+        "evidence": "\"Certified badge by SaaStock is impossible. Certification opens only after 6 months\u2020 listed and 60\u2020 active installs.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States the 60 active install requirement for certification",
+        "evidence": "\"60\u2020 active installs\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "States that listing requires at least 3 active installs from unaffiliated production accounts",
+        "evidence": "\"get 3 unaffiliated customer portals actively using the app\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the vendor's own HubSpot portal and the developer test account do not count toward active installs",
+        "evidence": "\"Your own portal and the dev test account don't count toward the install gate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the two design partners alone are not enough and at least one more unaffiliated customer portal is needed",
+        "evidence": "\"Two design partners are also one short of the gate.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a static-token app installs in only one standard account and recommends switching to marketplace distribution with OAuth",
+        "evidence": "\"A static-token private app serves one portal and never lists.\" and \"Rebuild auth as OAuth with `distribution: \\\"marketplace\\\"`.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the cap of 25 installs for an unlisted marketplace-distribution app",
+        "evidence": "\"Marketplace distribution allows up to 25 installs\u2020 before listing.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Tells them to remove the tickets and files scopes until features use them, or make them optional",
+        "evidence": "\"Drop tickets and files.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the initial review of about 10 business days",
+        "evidence": "\"Initial review answer (10 business days\u2020)\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Builds a timeline backward from the SaaStock date that includes at least one Draft bounce or resubmission round",
+        "evidence": "The table has \"about Dec 14 | Result if the listing bounces to Draft once (another 10 business days\u2020)\".",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Gives a fallback for launch day if approval has not landed, such as announcing the integration as coming soon",
+        "evidence": "\"Plan on 'HubSpot integration, marketplace listing in review' unless approval has landed.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines active installs as accounts with successful app activity in the last 30 days, not OAuth installs alone",
+        "evidence": "\"Active means successful API calls, webhooks or app-card requests in the last 30 days\u2020. OAuth alone doesn't count.\"",
+        "passed": true,
+        "graded": true
+      }
+    ]
+  },
+  "without_skill": {
+    "expectations": [
+      {
+        "text": "States that certification is not possible by the launch because it requires the app to be listed for about 6 months",
+        "evidence": "It says the badge is unrealistic because of installs, reviews and API history. It never mentions a ~6-month listed period.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States the 60 active install requirement for certification",
+        "evidence": "\"I recall it being in the dozens.\"",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "States that listing requires at least 3 active installs from unaffiliated production accounts",
+        "evidence": "\"minimum of active installs from accounts that aren't yours. \u26a0\ufe0f I recall about 3.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the vendor's own HubSpot portal and the developer test account do not count toward active installs",
+        "evidence": "\"Your own portal and the dev test account don't count.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says the two design partners alone are not enough and at least one more unaffiliated customer portal is needed",
+        "evidence": "\"Two design partners is one short... Recruit a third and a fourth now.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Says a static-token app installs in only one standard account and recommends switching to marketplace distribution with OAuth",
+        "evidence": "\"A private app with a static token is bound to one account... Move the app to OAuth, set to distribute to multiple accounts.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the cap of 25 installs for an unlisted marketplace-distribution app",
+        "evidence": "No mention of a 25-install cap.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Tells them to remove the tickets and files scopes until features use them, or make them optional",
+        "evidence": "\"Tickets and files: leave them out, or declare them as optional.\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Mentions the initial review of about 10 business days",
+        "evidence": "\"Review turnaround is outside your control.\" No figure given.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Builds a timeline backward from the SaaStock date that includes at least one Draft bounce or resubmission round",
+        "evidence": "The timeline submits in week 4 and answers feedback in week 5. It has no resubmission round.",
+        "passed": false,
+        "graded": true
+      },
+      {
+        "text": "Gives a fallback for launch day if approval has not landed, such as announcing the integration as coming soon",
+        "evidence": "\"If in review: 'Available to HubSpot customers now (direct install link). Marketplace listing in review.'\"",
+        "passed": true,
+        "graded": true
+      },
+      {
+        "text": "Defines active installs as accounts with successful app activity in the last 30 days, not OAuth installs alone",
+        "evidence": "No definition of \"active\" is given.",
+        "passed": false,
+        "graded": true
+      }
+    ]
+  }
+}

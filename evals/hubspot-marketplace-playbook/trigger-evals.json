@@ -1,0 +1,446 @@
+{
+  "skill_name": "hubspot-marketplace-playbook",
+  "description": "Gets a B2B SaaS vendor's app listed on the HubSpot Marketplace and keeps it there - the three-active-install gate, the 25-install cap on unlisted apps, apps HubSpot refuses, scopes and the Shared data table, Draft bounces, review timelines, version deadlines, AI connector and MCP rules, App Certification, Technology Partner tiers. Use whenever a vendor mentions listing or certifying its app on HubSpot, a listing sent back to Draft, or HubSpot technology partner tiers. Do NOT use for listing copy or install conversion (use samber/developer-platform-skills@integration-listing-optimization), for running your own marketplace (use samber/developer-platform-skills@app-marketplace-review), for CMS themes, for admins vetting another vendor's app, or for CRM admin, API code or agency work.",
+  "runs_per_query": 2,
+  "threshold": "full agreement",
+  "model": "sonnet",
+  "results": [
+    {
+      "query": "how many installs do we need before HubSpot lets us list our app on the marketplace?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our HubSpot marketplace listing got sent back to Draft because the shared data table doesn't match our scopes. What else will they check before we resubmit?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want the HubSpot Certified App badge for our integration. What are the requirements and how long does certification take?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "our hubspot app says 'unverified app' when customers install it, how do we get rid of that",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Is it worth putting our sales engagement tool on the HubSpot App Marketplace? We already have a public app with 30 customer installs, never listed.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "HubSpot rejected our marketplace submission saying it's white-label integration infrastructure. We're an embedded iPaaS. Is there any way to list?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We built an MCP server for our product and want it available to HubSpot customers through the marketplace. What does HubSpot require?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "What's the difference between Rising, Leading and Premier in the HubSpot technology partner program and how do we move up?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our hubspot app is stuck at 25 installs and new customers get an error. We haven't listed yet. What do we do?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Does HubSpot take a cut if we sell our app through their marketplace? Planning pricing for our integration listing.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We still use classic CRM cards in our listed HubSpot app. Are we going to get delisted?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Plan the submission for our HubSpot marketplace listing: setup guide, demo video, pricing tab, the whole packet.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our AI sales assistant writes to HubSpot through OAuth. HubSpot's EQ team says it needs user-level permissions to stay listed. What does that mean for us?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We have a data enrichment product that fills company firmographics in HubSpot. Can we get it onto the HubSpot marketplace?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "how long does hubspot ecosystem quality review take for a new app listing? launch is in 6 weeks",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our HubSpot certified app lost its badge because installs dropped. When can we re-apply?",
+      "should_trigger": true,
+      "trigger_rate": 0.5,
+      "triggers": 1,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "Should our HubSpot app use private or marketplace distribution while we pilot with 5 customers? We plan to list later.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we want to add agent tools for breeze to our listed hubspot app, is there a separate approval?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're migrating our legacy HubSpot public app to the projects platform. It has 200 installs and isn't on the marketplace. Any gotchas?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our HubSpot integration listing hasn't had a new install in months. Can HubSpot remove it?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our HubSpot marketplace listing gets views but few installs. Rewrite the overview and reorder screenshots to convert better.",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "We run our own app marketplace for our CRM product. Design the review process for third-party apps that want to list.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Get our managed package through the Salesforce AppExchange security review.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Slack app was returned by Slack Marketplace review for unneeded scopes. Help us fix it.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should we build a HubSpot integration or a Salesforce integration first? We have engineering for one.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write a Node script that pages through HubSpot contacts with the CRM search API and handles 429s.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Set up a HubSpot workflow that assigns new leads to reps by territory and sends a Slack alert.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We're a HubSpot Solutions Partner agency. How do we go from Gold to Platinum tier?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "How do I pass the HubSpot Inbound Marketing certification exam in HubSpot Academy?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We want to join the HubSpot affiliate program and earn commission referring customers.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Get our Shopify app through App Store review and qualify for Built for Shopify.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Publish our Atlassian Forge app on the Atlassian Marketplace and pick a licensing model.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the OAuth scopes and consent screen for third-party apps calling our own public API.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Build an MCP server for our product: tool design, auth, and hosting.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Google Workspace add-on needs OAuth verification and a security assessment before Marketplace listing. Plan it.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Build our Zapier integration with the Platform CLI and get it through Zapier's review.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Create a private app in our own HubSpot portal with a static token to sync our ERP data internally.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Should our company build its own integration marketplace or just list on others?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Automate our CRM: lead management and deal tracking rules in HubSpot.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Plan co-marketing with HubSpot for our integration launch: webinar, blog swap, joint email.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our HubSpot listing approval email says we are now a technology partner. What obligations come with that agreement?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "HubSpot wants an uninstall demo video and a security questionnaire for our recertification. What exactly do they check?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "we're on hubspot projects 2025.1, can we still submit our app for marketplace listing next month?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "A customer asked if our HubSpot app is 'approved by HubSpot'. We're unlisted with 12 installs. What would it take to list it properly?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Which pricing plans can we show on our HubSpot marketplace listing? We have Free trial, Starter, Pro and Enterprise, and only Pro+ include the HubSpot sync.",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our Chrome extension adds a HubSpot sidebar to Gmail. Get it through Chrome Web Store review.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Design the tier structure for our own technology partner program for ISVs building on our platform.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Write the HubSpot integration's in-app onboarding emails for new users after they connect.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Migrate our company's HubSpot portal from Sales Hub Professional to Enterprise and clean up properties.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "List our product on the AWS Marketplace with a private offer for an enterprise buyer.",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our CMS theme got rejected from the HubSpot Template Marketplace. What do we change before resubmitting?",
+      "should_trigger": false,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": false
+    },
+    {
+      "query": "A vendor's HubSpot app asks our users to type 'I accept the risk' when installing. As the HubSpot admin, is it safe to approve?",
+      "should_trigger": false,
+      "trigger_rate": 0.0,
+      "triggers": 0,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "We have 2 paying customers using our HubSpot app and a launch in 6 weeks. Can we be on the HubSpot Marketplace by then?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    },
+    {
+      "query": "Our hubspot app injects buttons into the record page through a chrome extension. Will that block our listing or certification?",
+      "should_trigger": true,
+      "trigger_rate": 1.0,
+      "triggers": 2,
+      "runs": 2,
+      "pass": true
+    }
+  ],
+  "summary": {
+    "total": 54,
+    "passed": 51,
+    "failed": 3
+  }
+}
