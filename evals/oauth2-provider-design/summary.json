@@ -5,10 +5,10 @@
   "expectations_total": 111,
   "expectations_subjective": 2,
   "expectations_objective": 109,
-  "pass_rate_with_skill_pct": 64.9,
+  "pass_rate_with_skill_pct": 82.9,
   "pass_rate_without_skill_pct": 52.3,
-  "delta_pp": 12.6,
-  "uplift_multiplier": 1.24,
+  "delta_pp": 30.6,
+  "uplift_multiplier": 1.59,
   "trigger_accuracy_pct": 55.1,
   "trigger_queries": 98,
   "trigger_positive_fire_rate": 0.429,
@@ -24,7 +24,7 @@
     "subjective_grader": "opus",
     "trigger": "sonnet"
   },
-  "harness_version": "2.1.284 (Claude Code)",
+  "harness_version": "2.1.309 (Claude Code)",
   "conditions": {
     "mcp_servers": "disabled",
     "project_claude_md": "not loaded (trials and grading)",
@@ -35,8 +35,8 @@
     "with_skill": [],
     "without_skill": []
   },
-  "ungraded_expectations": 22,
-  "run_degraded": true,
+  "ungraded_expectations": 0,
+  "run_degraded": false,
   "failed_expectations": {
     "with_skill": [
       {
@@ -73,47 +73,11 @@
       },
       {
         "eval_id": 5,
-        "expectation": "Refuses to supply a consent drop-off conversion figure as measured fact."
-      },
-      {
-        "eval_id": 5,
-        "expectation": "States that no rigorous public study of consent-screen conversion exists and that circulating percentages trace to vendor blog posts rather than measurements."
-      },
-      {
-        "eval_id": 5,
-        "expectation": "Addresses the specific 50% figure the user raised instead of silently omitting it."
-      },
-      {
-        "eval_id": 5,
-        "expectation": "Argues the redesign on security and UX grounds rather than on a conversion number."
-      },
-      {
-        "eval_id": 5,
-        "expectation": "Replaces the grouped buckets with one plain-language sentence per individual scope."
-      },
-      {
-        "eval_id": 5,
         "expectation": "Forbids showing the raw scope string to the user."
       },
       {
         "eval_id": 5,
-        "expectation": "Replaces all-or-nothing consent with support for partial grants."
-      },
-      {
-        "eval_id": 5,
-        "expectation": "Requires the server to diff the granted scope set against the requested one on every authorization response."
-      },
-      {
-        "eval_id": 5,
         "expectation": "Warns that the granted set can differ from the requested set even when the user appears to approve everything, and that assuming they match ships a silent capability mismatch into every integrating app."
-      },
-      {
-        "eval_id": 5,
-        "expectation": "Recommends incremental authorization, requesting a scope when the feature needs it rather than upfront."
-      },
-      {
-        "eval_id": 5,
-        "expectation": "Requires the re-consent screen to show only the net-new scope rather than re-displaying everything already granted."
       },
       {
         "eval_id": 6,
@@ -142,50 +106,6 @@
       {
         "eval_id": 8,
         "expectation": "Cites the forced-retrofit precedent: a 2025 OAuth-token campaign against a connected app hit more than 700 organizations and led a major platform to mandate PKCE and refresh-token rotation on all connected apps, with de-listing as the penalty."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "States that no industry thresholds exist for these metrics and declines to attach benchmark numbers to them."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Prescribes baselining the metrics as trends from launch instead of comparing against an external benchmark."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Names median app-review turnaround as a trend to baseline."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Names the share of apps requesting scopes their traffic never uses as a trend to baseline."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Names reuse-detection trip rate as a trend to baseline."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "States that reuse-detection trip rate is ambiguous, proxying both real attacks and a grace window set too tight."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Requires a gate proving by test, not assertion, that the discovery document and a conformance pass show no implicit or password grant, PKCE rejected-if-absent for every client, and exact redirect matching."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Requires a staging demonstration that a replayed refresh token revokes the whole family."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Requires a concurrent-refresh test that passes without a false-positive logout."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Requires a gate that every scope has per-scope plain-language consent copy and that a partial-grant integration test exercises the server-side diff."
-      },
-      {
-        "eval_id": 9,
-        "expectation": "Requires gates that every scope is classified into a verification tier with a named review requirement, that runtime subset-of-approved enforcement is live, and that the unverified-lane cap is enforced rather than merely documented."
       },
       {
         "eval_id": 10,
