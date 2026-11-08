@@ -3,69 +3,69 @@
     "expectations": [
       {
         "text": "Refuses to supply a consent drop-off conversion figure as measured fact.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"Don't put 50% on the slide.\" and \"No industry conversion statistic exists to cite, so the slide uses none.\"",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "States that no rigorous public study of consent-screen conversion exists and that circulating percentages trace to vendor blog posts rather than measurements.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"No rigorous, public A/B study of consent-screen conversion exists... The '50% drop-off...' figure traces to vendor blog posts, not measurements.\"",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Addresses the specific 50% figure the user raised instead of silently omitting it.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"Don't put 50% on the slide... If someone insists on 50%, put it on the slide as 'illustrative vendor claim, unverified'.\"",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Argues the redesign on security and UX grounds rather than on a conversion number.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"Why the current screen loses admins\" section (grouped buckets hide what the app does, all-or-nothing makes rejection safe) and the \u26a0\ufe0f security warning on admin scope.",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Replaces the grouped buckets with one plain-language sentence per individual scope.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"One plain sentence per scope. Never grouped buckets, never the raw string as the headline.\"",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Forbids showing the raw scope string to the user.",
-        "evidence": "",
+        "evidence": "The mock screen shows raw strings like [analytics:read] and rule 1 says \"The string appears small, for auditors\", so it is still displayed.",
         "passed": false,
-        "graded": false
+        "graded": true
       },
       {
         "text": "Replaces all-or-nothing consent with support for partial grants.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"Split required from optional. Admins can approve the core and decline the rest.\" and \"Add an integration test for a partial grant.\"",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Requires the server to diff the granted scope set against the requested one on every authorization response.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"Always diff granted scopes against requested scopes... Return the granted set explicitly.\"",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Warns that the granted set can differ from the requested set even when the user appears to approve everything, and that assuming they match ships a silent capability mismatch into every integrating app.",
-        "evidence": "",
+        "evidence": "Only says \"With partial grants, the granted set may not match the request\"; no warning about the approve-everything case or silent mismatch.",
         "passed": false,
-        "graded": false
+        "graded": true
       },
       {
         "text": "Recommends incremental authorization, requesting a scope when the feature needs it rather than upfront.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"Support incremental authorization. Apps request a scope when the feature needs it, not at install.\"",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Requires the re-consent screen to show only the net-new scope rather than re-displaying everything already granted.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"The re-consent screen shows only the net-new scope, not everything already granted.\"",
+        "passed": true,
+        "graded": true
       }
     ]
   },

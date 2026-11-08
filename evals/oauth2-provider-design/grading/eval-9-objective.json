@@ -3,69 +3,69 @@
     "expectations": [
       {
         "text": "States that no industry thresholds exist for these metrics and declines to attach benchmark numbers to them.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"I could not give you an industry benchmark for most of these metrics... I won't put an invented number next to a metric.\"; the benchmark column reads \"None exists\".",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Prescribes baselining the metrics as trends from launch instead of comparing against an external benchmark.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"collect 14 days of data, then alert on a sustained deviation from your own baseline\" and \"review all five at day 7 and day 14... labeled 'Palisade Grid baseline'\".",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Names median app-review turnaround as a trend to baseline.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "Metric 2: \"Median app-review turnaround (and oldest item in queue)\", covered by the baseline plan.",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Names the share of apps requesting scopes their traffic never uses as a trend to baseline.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "Metric 3: \"Unused-scope share (apps holding scopes their traffic never uses)\".",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Names reuse-detection trip rate as a trend to baseline.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "Metric 1: \"Reuse-detection trip rate\" with \"Baseline plus sustained deviation\".",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "States that reuse-detection trip rate is ambiguous, proxying both real attacks and a grace window set too tight.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "\"The tripwire can't tell attacker from legitimate client (RFC 9700 \u00a74.14)\" and \"One client dominating \u2192 likely a client bug or a too-tight grace window. Many clients or geographies at once \u2192 suspect theft.\"",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Requires a gate proving by test, not assertion, that the discovery document and a conformance pass show no implicit or password grant, PKCE rejected-if-absent for every client, and exact redirect matching.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "1.1 \"Conformance run + discovery JSON snapshot\"; 1.3 \"Automated test, both client types\"; 1.4 \"Test with 5+ near-miss URIs\".",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Requires a staging demonstration that a replayed refresh token revokes the whole family.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "2.2 \"Staging demo: replay \u2192 family dead, successor token also fails\".",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Requires a concurrent-refresh test that passes without a false-positive logout.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "2.4 \"Concurrent-refresh test... causes no false logout | Automated test, passing\".",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Requires a gate that every scope has per-scope plain-language consent copy and that a partial-grant integration test exercises the server-side diff.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "3.1 \"Copy table, one row per scope\"; 3.2 \"Integration test: user denies 1 of 3\"; 3.3 \"The server diffs granted against requested... Test: approve-all and approve-partial paths\".",
+        "passed": true,
+        "graded": true
       },
       {
         "text": "Requires gates that every scope is classified into a verification tier with a named review requirement, that runtime subset-of-approved enforcement is live, and that the unverified-lane cap is enforced rather than merely documented.",
-        "evidence": "",
-        "passed": false,
-        "graded": false
+        "evidence": "4.2 \"Tier table\"; 4.5 \"Test: request an undeclared scope\"; 4.6 \"Test: attempt user cap + 1\".",
+        "passed": true,
+        "graded": true
       }
     ]
   },
